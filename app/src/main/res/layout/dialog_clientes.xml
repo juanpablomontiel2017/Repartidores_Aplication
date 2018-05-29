@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="300dp"
+    android:layout_height="wrap_content"
+    android:layout_gravity="center">
+
+    
+    <LinearLayout
+        android:layout_marginTop="40dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#232323"
+        android:orientation="vertical"
+        android:gravity="center_horizontal">
+        
+        
+        <TextView
+            android:id="@+id/dialog_nombre_id"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Nombre del Cliente"
+            android:textColor="@android:color/white"
+            android:textStyle="bold"
+            android:textSize="24sp"
+            android:layout_marginTop="90dp"/>
+
+
+        <TextView
+            android:id="@+id/dialog_direccion_id"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="18sp"
+            android:text="Dirección"
+            android:textColor="@android:color/white"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="10dp"/>
+
+        <TextView
+            android:id="@+id/dialog_barrio_id"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="18sp"
+            android:text="Barrio"
+            android:textColor="@android:color/white"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="10dp"/>
+
+
+
+        <TextView
+            android:id="@+id/dialog_referencia_id"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="18sp"
+            android:text="Referencia"
+            android:textColor="@android:color/white"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="10dp"/>
+
+
+
+        <Button
+            android:id="@+id/dialog_btn_venta"
+            android:padding="20dp"
+            android:textAlignment="textStart"
+            android:drawablePadding="20dp"
+            android:drawableLeft="@drawable/dialog_attach_money_black_24dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@android:color/white"
+            android:text="Realizar Venta"
+            android:layout_marginTop="10dp"
+            android:layout_gravity="start"/>
+
+
+        <Button
+            android:id="@+id/dialog_btn_editar"
+            android:padding="20dp"
+            android:textAlignment="textStart"
+            android:drawablePadding="20dp"
+            android:drawableLeft="@drawable/dialog_mode_edit_black_24dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@android:color/white"
+            android:text="Editar"
+            android:layout_gravity="start"/>
+
+        <Button
+            android:id="@+id/dialog_btn_eliminar"
+            android:padding="20dp"
+            android:textAlignment="textStart"
+            android:drawablePadding="20dp"
+            android:drawableLeft="@drawable/dialog_delete_black_24dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@android:color/white"
+            android:text="Eliminar"
+            android:layout_gravity="start"/>
+
+
+
+    </LinearLayout>
+
+
+    <ImageView
+        android:id="@+id/dialog_img_cliente"
+        android:layout_width="300dp"
+        android:layout_height="80dp"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:padding="10dp"
+        android:src="@drawable/lautaromartinez" />
+    
+    
+    
+</RelativeLayout>
