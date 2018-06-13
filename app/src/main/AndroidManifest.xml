@@ -21,9 +21,16 @@
         </activity>
         <activity
             android:name=".Second_Activity"
-            android:parentActivityName=".MainActivity"
             android:label="@string/title_activity_second_"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:parentActivityName=".MainActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".Ventas_Activity"
+            android:label="Ventas Activity"
+            android:parentActivityName=".Second_Activity"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".EditarClientes" />
+        <activity android:name=".AgregarCliente" />
     </application>
 
 </manifest>

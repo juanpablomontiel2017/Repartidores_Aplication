@@ -42,11 +42,7 @@
         android:text="Barrio"
         android:id="@+id/barrio_cliente"/>
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Referencia"
-        android:id="@+id/referencia_cliente"/>
+
 
     </LinearLayout>
 
@@ -58,23 +54,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
        
-       <Button
-           android:id="@+id/btn_efectuar_venta"
-           android:padding="20dp"
-           android:textAlignment="textStart"
-           android:drawablePadding="20dp"
-           android:drawableLeft="@drawable/ic_attach_money_black_24dp"
-           android:layout_width="wrap_content"
-           android:layout_height="wrap_content"
-           android:background="@android:color/white"
-           android:layout_marginTop="10dp"
-           android:layout_gravity="start"
 
-
-
-
-
-           />
 
     </LinearLayout>
     

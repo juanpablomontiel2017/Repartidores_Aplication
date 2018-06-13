@@ -7,17 +7,25 @@ public class Clientes {
     private String Direccion;
     private String Barrio;
     private String Referencia;
+    private String Telefono;
+    private String Correo;
 
     public Clientes() {
 
     }
 
-    public Clientes(int foto, String nombre, String direccion, String barrio, String referencia) {
+    public Clientes(int foto, String nombre, String direccion, String barrio,String referencia, String telefono, String correo) {
         Foto = foto;
         Nombre = nombre;
         Direccion = direccion;
         Barrio = barrio;
         Referencia = referencia;
+        Telefono = telefono;
+        Correo = correo;
+
+
+
+
     }
 
     //Getter
@@ -39,9 +47,13 @@ public class Clientes {
         return Barrio;
     }
 
-    public String getReferencia() {
-        return Referencia;
-    }
+    public String getReferencia() {return Referencia;}
+
+    public String getTelefono() {return Telefono;}
+
+    public String getCorreo() {return Correo;}
+
+
 
 
     //Setter
@@ -65,6 +77,14 @@ public class Clientes {
 
     public void setReferencia(String referencia) {
         Referencia = referencia;
+
+    }
+    public void setTelefono (String telefono) {
+        Telefono = telefono;
+    }
+
+    public void setCorreo (String correo) {
+        Correo = correo;
     }
 }
 
