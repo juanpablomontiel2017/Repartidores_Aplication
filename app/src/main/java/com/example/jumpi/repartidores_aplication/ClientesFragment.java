@@ -1,8 +1,10 @@
 package com.example.jumpi.repartidores_aplication;
 
 import android.content.Context;
+import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -41,6 +43,10 @@ public class ClientesFragment extends Fragment {
     private List<Clientes> lstClientes;
 
 
+
+
+
+
     public ClientesFragment() {
         // Required empty public constructor
 
@@ -76,6 +82,7 @@ public class ClientesFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+        
 
         lstClientes = new ArrayList<>();
         lstClientes.add(new Clientes(R.drawable.ricardofort,"Ricardo Fort","Urquiza 590","Centro","Casa rosada con portón blanco","(+54) 3644 413254","rikypapa19@gmail.com"));
@@ -95,6 +102,8 @@ public class ClientesFragment extends Fragment {
 
 
 
+
+
        /* if (getArguments() != null) {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
@@ -103,6 +112,8 @@ public class ClientesFragment extends Fragment {
         */
 
     }
+
+
 
 
 
@@ -130,10 +141,20 @@ public class ClientesFragment extends Fragment {
 
 
 
+
+
+
         return v;
+
+
+
 
         // Inflate the layout for this fragment
         //return inflater.inflate(R.layout.fragment_clientes, container, false);
+
+
+
+
     }
 
     //Hasta aquí
