@@ -11,6 +11,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -19,75 +20,29 @@ import android.widget.Toast;
 
 import org.w3c.dom.Text;
 
+import java.util.Collections;
 import java.util.List;
 
 
-public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapter.MyViewHolder> {//implements View.OnClickListener { //implements View.OnClickListener { //implements View.OnClickListener {
+public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapter.MyViewHolder> implements ItemTouchHelperAdapter {//implements View.OnClickListener { //implements View.OnClickListener { //implements View.OnClickListener {
 
 
 
 
     Context mContext;
     List<Clientes> mData;
+    private static final int TYPE_ITEM = 0;
+   // private final LayoutInflater mInflater;
+    private final OnStartDragListener mDragStartListener;
+    AdapterView.OnItemClickListener mItemClickListener;
+
     //Esto también pertenece a la parte 3 del tutorial: "Fragment with RecyclerView Part 3 : item Click Listener Event : Show Custom dialog Box" del chabon Aws Rh
     Dialog myDialog;
-    //Hasta aquí
 
-
-    public static class MyViewHolder extends RecyclerView.ViewHolder{// implements View.OnClickListener {//implements View.OnClickListener {//implements View.OnClickListener {//implements View.OnClickListener {
-
-
-        //Esta variable privada pertenece a la parte 3 del tutorial: "Fragment with RecyclerView Part 3 : item Click Listener Event : Show Custom dialog Box" del chabon Aws Rh
-        private LinearLayout item_clientes;
-        //Hasta aquí
-
-
-
-        private TextView tv_nombre;
-        private TextView tv_direccion;
-        private TextView tv_barrio;
-        //private TextView tv_referencia;
-        //private TextView tv_telefono;
-        //private TextView tv_correo;
-        private ImageView img_foto;
-
-
-        //PRUEBA DEL VIDEO: "Eventos en cada elemento de un RecyclerView| Abrir un nuevo activity y pasarle valores" by Programación y más
-        Button dialog_btn_venta;
-        Button dialog_btn_editar;
-        Button dialog_btn_eliminar;
-        //Hasta aquí
-
-
-
-
-        public MyViewHolder(View itemView) {
-
-
-            super(itemView);
-
-            //Esto también pertenece a la parte 3 del tutorial: "Fragment with RecyclerView Part 3 : item Click Listener Event : Show Custom dialog Box" del chabon Aws Rh
-            item_clientes = (LinearLayout) itemView.findViewById(R.id.clientes_item_id);
-            //Hasta aquí
-
-            tv_nombre = (TextView) itemView.findViewById(R.id.nombre_cliente);
-            tv_direccion = (TextView) itemView.findViewById(R.id.direccion_cliente);
-            tv_barrio = (TextView) itemView.findViewById(R.id.barrio_cliente);
-            //tv_referencia = (TextView) itemView.findViewById(R.id.referencia_cliente);
-            //tv_telefono = (TextView) itemView.findViewById(R.id.te)
-            img_foto = (ImageView) itemView.findViewById(R.id.img_cliente);
-
-
-        }
-
-
-    }
-
-
-
-    public RecyclerViewAdapter(Context mContext, List<Clientes> mData) {
+    public RecyclerViewAdapter(Context mContext, List<Clientes> mData, OnStartDragListener dragListner) {
         this.mContext = mContext;
         this.mData = mData;
+        mDragStartListener = dragListner;
     }
 
     @NonNull
@@ -128,7 +83,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
                 TextView dialog_correo_tv = (TextView) myDialog.findViewById(R.id.dialog_correo_id);
                 ImageView dialog_cliente_img = (ImageView) myDialog.findViewById(R.id.dialog_img_cliente);
 
-                 //PRUEBA (Mati)
+                //PRUEBA (Mati)
                 Button dialog_cliente_btnVentas = (Button) myDialog.findViewById(R.id.dialog_btn_venta);
                 dialog_cliente_btnVentas.setOnClickListener(new View.OnClickListener() {
                     @Override
@@ -136,8 +91,8 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
 
 
 
-                                Intent intentVentas = new Intent(mContext, Ventas_Activity.class);
-                                mContext.startActivity(intentVentas);
+                        Intent intentVentas = new Intent(mContext, Ventas_Activity.class);
+                        mContext.startActivity(intentVentas);
 
 
                     }
@@ -202,6 +157,11 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
 
     }
 
+    @Override
+    public int getItemViewType(int position) {
+        return TYPE_ITEM;
+    }
+
 
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
@@ -215,17 +175,99 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
 
     }
 
-
-
-
-
     @Override
     public int getItemCount() {
         return mData.size();
     }
 
+    public interface OnItemClickListener {
+        void onItemClick(View view, int position);
+    }
+
+    public void setOnItemClickListener(final OnItemClickListener mItemClickListener) {
+        this.mItemClickListener = mItemClickListener;
+    }
 
 
+    public static class MyViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener, ItemTouchHelperViewHolder{// implements View.OnClickListener {//implements View.OnClickListener {//implements View.OnClickListener {//implements View.OnClickListener {
+
+
+        //Esta variable privada pertenece a la parte 3 del tutorial: "Fragment with RecyclerView Part 3 : item Click Listener Event : Show Custom dialog Box" del chabon Aws Rh
+        private LinearLayout item_clientes;
+        //Hasta aquí
+
+
+
+        private TextView tv_nombre;
+        private TextView tv_direccion;
+        private TextView tv_barrio;
+        //private TextView tv_referencia;
+        //private TextView tv_telefono;
+        //private TextView tv_correo;
+        private ImageView img_foto;
+
+
+        //PRUEBA DEL VIDEO: "Eventos en cada elemento de un RecyclerView| Abrir un nuevo activity y pasarle valores" by Programación y más
+        Button dialog_btn_venta;
+        Button dialog_btn_editar;
+        Button dialog_btn_eliminar;
+        //Hasta aquí
+
+
+
+
+        public MyViewHolder(View itemView) {
+
+
+            super(itemView);
+
+            //Esto también pertenece a la parte 3 del tutorial: "Fragment with RecyclerView Part 3 : item Click Listener Event : Show Custom dialog Box" del chabon Aws Rh
+            item_clientes = (LinearLayout) itemView.findViewById(R.id.clientes_item_id);
+            //Hasta aquí
+
+            tv_nombre = (TextView) itemView.findViewById(R.id.nombre_cliente);
+            tv_direccion = (TextView) itemView.findViewById(R.id.direccion_cliente);
+            tv_barrio = (TextView) itemView.findViewById(R.id.barrio_cliente);
+            //tv_referencia = (TextView) itemView.findViewById(R.id.referencia_cliente);
+            //tv_telefono = (TextView) itemView.findViewById(R.id.te)
+            img_foto = (ImageView) itemView.findViewById(R.id.img_cliente);
+
+
+        }
+
+
+    }
+
+    @Override
+    public void onItemDismiss(int position) {
+        mPersonList.remove(position);
+        notifyItemRemoved(position);
+    }
+
+    @Override
+    public boolean onItemMove(int fromPosition, int toPosition) {
+        //Log.v("", "Log position" + fromPosition + " " + toPosition);
+        if (fromPosition < mPersonList.size() && toPosition < mPersonList.size()) {
+            if (fromPosition < toPosition) {
+                for (int i = fromPosition; i < toPosition; i++) {
+                    Collections.swap(mPersonList, i, i + 1);
+                }
+            } else {
+                for (int i = fromPosition; i > toPosition; i--) {
+                    Collections.swap(mPersonList, i, i - 1);
+                }
+            }
+            notifyItemMoved(fromPosition, toPosition);
+        }
+        return true;
+    }
+
+    public void updateList(List<ItemModel> list) {
+        mPersonList = list;
+        notifyDataSetChanged();
+    }
+
+    //Hasta aquí
 
 
 }
