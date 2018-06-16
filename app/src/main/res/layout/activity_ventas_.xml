@@ -1,9 +1,243 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="horizontal"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
+    android:gravity="center_horizontal"
+    android:padding="20dp"
+    android:layout_marginTop="30dp"
     tools:context=".Ventas_Activity">
 
-</android.support.constraint.ConstraintLayout>
+
+    <LinearLayout
+        android:layout_width="271dp"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="16dp"
+        android:orientation="vertical">
+
+
+        <TextView
+            android:id="@+id/nombre_cliente_ventas"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Nombre del Cliente"
+            android:textSize="24sp"
+            android:textStyle="bold"/>
+
+        <TextView
+            android:id="@+id/direccion_cliente_ventas"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Dirección"
+            android:textStyle="bold"/>
+
+
+        <TextView
+            android:id="@+id/barrio_cliente_ventas"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Barrio"
+            android:textStyle="bold"/>
+
+
+
+        <TextView
+            android:id="@+id/referencia_cliente_ventas"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Referencia"
+            android:textStyle="bold"/>
+
+        <LinearLayout
+            android:layout_width="271dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="0dp"
+            android:orientation="horizontal"
+            android:layout_marginTop="30dp"
+            >
+
+
+            <TextView
+                android:id="@+id/llenos_envases_ventas"
+                android:layout_width="100dp"
+                android:layout_height="50dp"
+                android:layout_margin="@dimen/appbar_padding_top"
+                android:layout_marginTop="10dp"
+                android:drawablePadding="0dp"
+                android:padding="0dp"
+                android:text="Envases Llenos"
+                android:textStyle="bold"/>
+
+            <EditText
+                android:id="@+id/cantiad_llenos_ventas"
+                android:layout_width="100dp"
+                android:layout_height="50dp"
+                android:layout_margin="@dimen/appbar_padding_top"
+                android:layout_marginTop="10dp"
+                android:drawablePadding="0dp"
+                android:padding="0dp"
+                android:inputType="number"
+                android:textStyle="bold"/>
+
+        </LinearLayout>
+
+
+
+
+        <LinearLayout
+            android:layout_width="271dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="0dp"
+            android:orientation="horizontal"
+            android:layout_marginTop="1dp"
+            >
+
+
+            <TextView
+                android:id="@+id/vacios_envases_ventas"
+                android:layout_width="100dp"
+                android:layout_height="50dp"
+                android:layout_margin="@dimen/appbar_padding_top"
+                android:layout_marginTop="10dp"
+                android:drawablePadding="0dp"
+                android:padding="0dp"
+                android:text="Envases Vacíos"
+                android:textStyle="bold"/>
+
+            <EditText
+                android:id="@+id/cantiad_vacios_ventas"
+                android:layout_width="100dp"
+                android:layout_height="50dp"
+                android:layout_margin="@dimen/appbar_padding_top"
+                android:layout_marginTop="10dp"
+                android:drawablePadding="0dp"
+                android:padding="0dp"
+                android:inputType="number"
+                android:textStyle="bold"/>
+
+        </LinearLayout>
+
+
+
+
+        <LinearLayout
+            android:layout_width="271dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="0dp"
+            android:orientation="horizontal"
+            android:layout_marginTop="1dp"
+            >
+
+
+            <Spinner
+                android:id="@+id/lista_productos_ventas"
+                android:layout_width="100dp"
+                android:layout_height="50dp"
+                android:layout_margin="@dimen/appbar_padding_top"
+                android:layout_marginTop="10dp"
+                android:drawablePadding="0dp"
+                android:padding="0dp"
+                android:text="Envases Vacíos"
+                android:textStyle="bold"/>
+
+            <EditText
+                android:id="@+id/cantiad_productos_ventas"
+                android:layout_width="100dp"
+                android:layout_height="50dp"
+                android:layout_margin="@dimen/appbar_padding_top"
+                android:layout_marginTop="10dp"
+                android:drawablePadding="0dp"
+                android:padding="0dp"
+                android:inputType="textMultiLine"
+                android:textStyle="bold"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="271dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="0dp"
+            android:orientation="horizontal"
+            android:layout_marginTop="1dp"
+            >
+
+
+            <TextView
+                android:id="@+id/saldo_ventas"
+                android:layout_width="100dp"
+                android:layout_height="50dp"
+                android:layout_margin="@dimen/appbar_padding_top"
+                android:layout_marginTop="10dp"
+                android:drawablePadding="0dp"
+                android:padding="0dp"
+                android:text="Saldo"
+                android:textStyle="bold"/>
+
+            <TextView
+                android:id="@+id/entrega_ventas"
+                android:layout_width="100dp"
+                android:layout_height="50dp"
+                android:layout_margin="@dimen/appbar_padding_top"
+                android:layout_marginTop="10dp"
+                android:drawablePadding="0dp"
+                android:padding="0dp"
+                android:textAlignment="textEnd"
+                android:text="Entrega"
+                android:textStyle="bold"/>
+
+        </LinearLayout>
+
+
+
+
+
+
+        <LinearLayout
+            android:layout_width="271dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="0dp"
+            android:orientation="horizontal"
+            android:layout_marginTop="1dp"
+            >
+
+
+            <EditText
+                android:id="@+id/saldo_cantidad_ventas"
+                android:layout_width="100dp"
+                android:layout_height="50dp"
+                android:layout_margin="@dimen/appbar_padding_top"
+                android:layout_marginTop="10dp"
+                android:drawablePadding="0dp"
+                android:padding="0dp"
+                android:inputType="numberDecimal"
+                android:textStyle="bold"/>
+
+
+            <Button
+                android:id="@+id/button_confirmar_ventas"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:drawableLeft="@drawable/ic_check_black_24dp"/>
+
+
+            <EditText
+                android:id="@+id/entrega_cantidad_ventas"
+                android:layout_width="100dp"
+                android:layout_height="50dp"
+                android:layout_margin="@dimen/appbar_padding_top"
+                android:layout_marginTop="10dp"
+                android:drawablePadding="0dp"
+                android:padding="0dp"
+                android:inputType="numberDecimal"
+                android:textStyle="bold"/>
+
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+
+
+</LinearLayout>

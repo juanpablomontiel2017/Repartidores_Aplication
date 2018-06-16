@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Parcelable;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -109,7 +110,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
                 @Override
                 public void onClick(View view) {
 
-                    TextView dialog_nombre_tv = (TextView) myDialog.findViewById(R.id.dialog_nombre_id);
+                    final TextView dialog_nombre_tv = (TextView) myDialog.findViewById(R.id.dialog_nombre_id);
                     //TextView dialog_direccion_tv = (TextView) myDialog.findViewById(R.id.dialog_direccion_id);
                     //TextView dialog_barrio_tv = (TextView) myDialog.findViewById(R.id.dialog_barrio_id);
                     TextView dialog_referencia_tv = (TextView) myDialog.findViewById(R.id.dialog_referencia_id);
@@ -125,7 +126,13 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
 
 
                             Intent intentVentas = new Intent(mContext, Ventas_Activity.class);
+
+                            intentVentas.putExtra("Nombre", dialog_nombre_tv.getText());
+
+
                             mContext.startActivity(intentVentas);
+
+
 
 
                         }
