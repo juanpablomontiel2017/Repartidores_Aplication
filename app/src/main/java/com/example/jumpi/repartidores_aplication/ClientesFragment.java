@@ -82,7 +82,7 @@ public class ClientesFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        
+
 
         lstClientes = new ArrayList<>();
         lstClientes.add(new Clientes(R.drawable.ricardofort,"Ricardo Fort","Urquiza 590","Centro","Casa rosada con portón blanco","(+54) 3644 413254","rikypapa19@gmail.com"));
