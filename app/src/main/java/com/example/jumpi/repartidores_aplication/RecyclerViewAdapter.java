@@ -6,9 +6,11 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.v4.view.MotionEventCompat;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
@@ -58,18 +60,6 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
         //Dialog Inicial
         myDialog = new Dialog(mContext);
         myDialog.setContentView(R.layout.dialog_clientes);
-
-
-
-
-
-
-
-
-
-
-
-
 
         vHolder.item_clientes.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -164,14 +154,25 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
 
 
     @Override
-    public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull MyViewHolder viewHolder, int position) {
 
+
+        final MyViewHolder holder= (MyViewHolder)viewHolder;
 
         holder.tv_nombre.setText(mData.get(position).getNombre());
         holder.tv_direccion.setText(mData.get(position).getDireccion());
         holder.tv_barrio.setText(mData.get(position).getBarrio());
         //holder.tv_referencia.setText(mData.get(position).getReferencia());
         holder.img_foto.setImageResource(mData.get(position).getFoto());
+        holder.img_foto.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                if (MotionEventCompat.getActionMasked(event) == MotionEvent.ACTION_DOWN) {
+                    mDragStartListener.onStartDrag(holder);
+                }
+                return false;
+            }
+        });
 
     }
 
