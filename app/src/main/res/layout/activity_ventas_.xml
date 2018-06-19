@@ -5,17 +5,18 @@
     android:orientation="horizontal"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:gravity="center_horizontal"
     android:padding="20dp"
     android:layout_marginTop="30dp"
+    android:gravity="center_horizontal"
     tools:context=".Ventas_Activity">
 
 
     <LinearLayout
         android:layout_width="271dp"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="16dp"
+        android:layout_height="300dp"
+        android:layout_marginLeft="17dp"
         android:orientation="vertical">
+
 
 
         <TextView
@@ -43,15 +44,11 @@
 
 
 
-        <TextView
-            android:id="@+id/referencia_cliente_ventas"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Referencia"
-            android:textStyle="bold"/>
+        </LinearLayout>
 
         <LinearLayout
-            android:layout_width="271dp"
+
+            android:layout_width="340dp"
             android:layout_height="wrap_content"
             android:layout_marginLeft="0dp"
             android:orientation="horizontal"
@@ -70,7 +67,13 @@
                 android:text="Envases Llenos"
                 android:textStyle="bold"/>
 
+            <LinearLayout
+                android:gravity="end"
+                android:layout_width="170dp"
+                android:layout_height="match_parent">
+
             <EditText
+
                 android:id="@+id/cantiad_llenos_ventas"
                 android:layout_width="100dp"
                 android:layout_height="50dp"
@@ -81,13 +84,15 @@
                 android:inputType="number"
                 android:textStyle="bold"/>
 
+            </LinearLayout>
+
         </LinearLayout>
 
 
 
 
         <LinearLayout
-            android:layout_width="271dp"
+            android:layout_width="340dp"
             android:layout_height="wrap_content"
             android:layout_marginLeft="0dp"
             android:orientation="horizontal"
@@ -106,6 +111,11 @@
                 android:text="Envases Vacíos"
                 android:textStyle="bold"/>
 
+            <LinearLayout
+                android:gravity="end"
+                android:layout_width="170dp"
+                android:layout_height="match_parent">
+
             <EditText
                 android:id="@+id/cantiad_vacios_ventas"
                 android:layout_width="100dp"
@@ -117,18 +127,23 @@
                 android:inputType="number"
                 android:textStyle="bold"/>
 
+            </LinearLayout>
+
+
         </LinearLayout>
 
 
 
 
         <LinearLayout
-            android:layout_width="271dp"
+            android:layout_width="340dp"
             android:layout_height="wrap_content"
             android:layout_marginLeft="0dp"
             android:orientation="horizontal"
             android:layout_marginTop="1dp"
             >
+
+
 
 
             <Spinner
@@ -142,6 +157,13 @@
                 android:text="Envases Vacíos"
                 android:textStyle="bold"/>
 
+
+            <LinearLayout
+                android:gravity="end"
+                android:layout_width="170dp"
+                android:layout_height="match_parent">
+
+
             <EditText
                 android:id="@+id/cantiad_productos_ventas"
                 android:layout_width="100dp"
@@ -153,10 +175,16 @@
                 android:inputType="textMultiLine"
                 android:textStyle="bold"/>
 
+            </LinearLayout>
+
+
         </LinearLayout>
 
+
+
+
         <LinearLayout
-            android:layout_width="271dp"
+            android:layout_width="340dp"
             android:layout_height="wrap_content"
             android:layout_marginLeft="0dp"
             android:orientation="horizontal"
@@ -175,6 +203,12 @@
                 android:text="Saldo"
                 android:textStyle="bold"/>
 
+            <LinearLayout
+                android:gravity="end"
+                android:layout_width="170dp"
+                android:layout_height="match_parent">
+
+
             <TextView
                 android:id="@+id/entrega_ventas"
                 android:layout_width="100dp"
@@ -187,6 +221,9 @@
                 android:text="Entrega"
                 android:textStyle="bold"/>
 
+            </LinearLayout>
+
+
         </LinearLayout>
 
 
@@ -195,7 +232,7 @@
 
 
         <LinearLayout
-            android:layout_width="271dp"
+            android:layout_width="340dp"
             android:layout_height="wrap_content"
             android:layout_marginLeft="0dp"
             android:orientation="horizontal"
@@ -222,6 +259,11 @@
                 android:drawableLeft="@drawable/ic_check_black_24dp"/>
 
 
+            <LinearLayout
+                android:gravity="end"
+                android:layout_width="120dp"
+                android:layout_height="match_parent">
+
             <EditText
                 android:id="@+id/entrega_cantidad_ventas"
                 android:layout_width="100dp"
@@ -233,10 +275,10 @@
                 android:inputType="numberDecimal"
                 android:textStyle="bold"/>
 
+            </LinearLayout>
+
+
         </LinearLayout>
-
-
-    </LinearLayout>
 
 
 
