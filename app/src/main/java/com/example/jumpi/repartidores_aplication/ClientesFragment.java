@@ -124,7 +124,7 @@ public class ClientesFragment extends Fragment {
 
         v = inflater.inflate(R.layout.fragment_clientes, container, false);
         myrecyclerview = (RecyclerView) v.findViewById(R.id.clientes_recyclerview);
-        RecyclerViewAdapter recyclerAdapter = new RecyclerViewAdapter(getContext(),lstClientes);
+        RecyclerViewAdapter recyclerAdapter = new RecyclerViewAdapter(this,lstClientes, this);
         myrecyclerview.setLayoutManager(new LinearLayoutManager(getActivity()));
         myrecyclerview.setAdapter(recyclerAdapter);
 
