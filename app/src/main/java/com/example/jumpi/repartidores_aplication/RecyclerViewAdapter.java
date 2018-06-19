@@ -4,6 +4,7 @@ import android.app.Dialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.view.MotionEventCompat;
@@ -36,7 +37,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
     private static final int TYPE_ITEM = 0;
    // private final LayoutInflater mInflater;
     private final OnStartDragListener mDragStartListener;
-    AdapterView.OnItemClickListener mItemClickListener;
+    OnItemClickListener mItemClickListener;
 
     //Esto también pertenece a la parte 3 del tutorial: "Fragment with RecyclerView Part 3 : item Click Listener Event : Show Custom dialog Box" del chabon Aws Rh
     Dialog myDialog;
@@ -190,7 +191,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
     }
 
 
-    public static class MyViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener, ItemTouchHelperViewHolder{// implements View.OnClickListener {//implements View.OnClickListener {//implements View.OnClickListener {//implements View.OnClickListener {
+    public class MyViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener, ItemTouchHelperViewHolder{// implements View.OnClickListener {//implements View.OnClickListener {//implements View.OnClickListener {//implements View.OnClickListener {
 
 
         //Esta variable privada pertenece a la parte 3 del tutorial: "Fragment with RecyclerView Part 3 : item Click Listener Event : Show Custom dialog Box" del chabon Aws Rh
@@ -232,30 +233,46 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
             //tv_referencia = (TextView) itemView.findViewById(R.id.referencia_cliente);
             //tv_telefono = (TextView) itemView.findViewById(R.id.te)
             img_foto = (ImageView) itemView.findViewById(R.id.img_cliente);
-
+            itemView.setOnClickListener(this);
 
         }
 
 
+        @Override
+        public void onClick(View view) {
+            if (mItemClickListener != null) {
+                mItemClickListener.onItemClick(view, getPosition());
+            }
+        }
+
+        @Override
+        public void onItemSelected() {
+            itemView.setBackgroundColor(Color.LTGRAY);
+        }
+
+        @Override
+        public void onItemClear() {
+            itemView.setBackgroundColor(0);
+        }
     }
 
     @Override
     public void onItemDismiss(int position) {
-        mPersonList.remove(position);
+        mData.remove(position);
         notifyItemRemoved(position);
     }
 
     @Override
     public boolean onItemMove(int fromPosition, int toPosition) {
         //Log.v("", "Log position" + fromPosition + " " + toPosition);
-        if (fromPosition < mPersonList.size() && toPosition < mPersonList.size()) {
+        if (fromPosition < mData.size() && toPosition < mData.size()) {
             if (fromPosition < toPosition) {
                 for (int i = fromPosition; i < toPosition; i++) {
-                    Collections.swap(mPersonList, i, i + 1);
+                    Collections.swap(mData, i, i + 1);
                 }
             } else {
                 for (int i = fromPosition; i > toPosition; i--) {
-                    Collections.swap(mPersonList, i, i - 1);
+                    Collections.swap(mData, i, i - 1);
                 }
             }
             notifyItemMoved(fromPosition, toPosition);
@@ -263,8 +280,8 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
         return true;
     }
 
-    public void updateList(List<ItemModel> list) {
-        mPersonList = list;
+    public void updateList(List<Clientes> list) {
+        mData = list;
         notifyDataSetChanged();
     }
 
