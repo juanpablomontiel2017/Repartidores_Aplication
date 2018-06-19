@@ -13,7 +13,7 @@ public class Ventas_Activity extends AppCompatActivity {
 
 
     Spinner lista;
-    String [] datos =  {"Dispenser Plástico","Dispenser Eléctrico","Canillas","Envases"};
+    String [] datos =  {"Canillas","Dispenser Eléctrico","Dispenser Plástico","Envases"};
 
     TextView Nombre_Cliente_Ventas;
 
