@@ -8,12 +8,15 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:gravity="center"
+    android:background="#FFF"
     tools:context=".Registro_Ventas_Fragment">
 
-    <TextView
+
+
+    <Button
         android:id="@+id/titulo_cargas-descargas_ventas"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="40dp"
         android:background="#304ffe"
         android:text="Cargas y Descargas"
         android:textAlignment="center"
@@ -31,20 +34,19 @@
 
         <TextView
             android:id="@+id/total_cargas_ventas"
-            android:layout_width="200dp"
+            android:layout_width="230dp"
             android:layout_height="wrap_content"
             android:text="Total_Cargas:"
             android:textAlignment="center"
+            android:textColor="#000"
             android:textSize="20sp"
-            android:textStyle="bold"
-            android:textColor="#000"/>
+            android:textStyle="bold" />
 
 
         <EditText
             android:id="@+id/numero_total_cargas_ventas"
-            android:layout_width="150dp"
+            android:layout_width="120dp"
             android:layout_height="wrap_content"
-            android:hint="Número"
             android:inputType="number"
             android:textAlignment="center"
             android:textColorHint="#000"
@@ -74,7 +76,7 @@
 
             <TextView
                 android:id="@+id/total_descargas_ventas"
-                android:layout_width="200dp"
+                android:layout_width="230dp"
                 android:layout_height="wrap_content"
                 android:text="Total_Descargas:"
                 android:textAlignment="center"
@@ -84,9 +86,8 @@
 
             <EditText
                 android:id="@+id/numero_total_descargas_ventas"
-                android:layout_width="150dp"
+                android:layout_width="120dp"
                 android:layout_height="wrap_content"
-                android:hint="Número"
                 android:inputType="number"
                 android:textAlignment="center"
                 android:textColorHint="#000"
@@ -104,7 +105,7 @@
 
             <TextView
                 android:id="@+id/total_recuento_envases_ventas"
-                android:layout_width="200dp"
+                android:layout_width="230dp"
                 android:layout_height="wrap_content"
                 android:text="Recuento_Envases:"
                 android:textAlignment="center"
@@ -113,12 +114,10 @@
                 android:textStyle="bold" />
 
 
-
             <EditText
                 android:id="@+id/numero_recuento_envases_ventas"
-                android:layout_width="150dp"
+                android:layout_width="120dp"
                 android:layout_height="wrap_content"
-                android:hint="Número"
                 android:inputType="number"
                 android:textAlignment="center"
                 android:textColorHint="#000"
@@ -138,7 +137,7 @@
 
             <TextView
                 android:id="@+id/total_envases_rotos_ventas"
-                android:layout_width="200dp"
+                android:layout_width="230dp"
                 android:layout_height="wrap_content"
                 android:text="Total_Envases_Rotos:"
                 android:textAlignment="center"
@@ -149,9 +148,8 @@
 
             <EditText
                 android:id="@+id/numero_total_envases_rotos_ventas"
-                android:layout_width="150dp"
+                android:layout_width="120dp"
                 android:layout_height="wrap_content"
-                android:hint="Número"
                 android:inputType="number"
                 android:textAlignment="center"
                 android:textColorHint="#000"
@@ -163,10 +161,10 @@
         <!--Fin de la tupla de TOTAL DE ENVASES ROTOS -->
 
 
-        <TextView
+        <Button
             android:id="@+id/titulo_dinero_ventas"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="40dp"
             android:background="#304ffe"
             android:text="Dinero"
             android:textAlignment="center"
@@ -184,10 +182,10 @@
 
             <TextView
                 android:id="@+id/monto_inicial_ventas"
-                android:layout_width="200dp"
+                android:layout_width="230dp"
                 android:layout_height="wrap_content"
                 android:background="#FFF"
-                android:text="Monto Inicial"
+                android:text="Recibiste"
                 android:textAlignment="center"
                 android:textColor="#000"
                 android:textSize="20sp"
@@ -196,9 +194,8 @@
 
             <EditText
                 android:id="@+id/numero_monto_incial_ventas"
-                android:layout_width="150dp"
+                android:layout_width="120dp"
                 android:layout_height="wrap_content"
-                android:hint="Número"
                 android:inputType="number"
                 android:textAlignment="center"
                 android:textColorHint="#000"
@@ -216,10 +213,10 @@
 
             <TextView
                 android:id="@+id/total_dinero_ventas"
-                android:layout_width="200dp"
+                android:layout_width="230dp"
                 android:layout_height="wrap_content"
                 android:background="#FFF"
-                android:text="Total:"
+                android:text="Entregaste:"
                 android:textAlignment="center"
                 android:textColor="#000"
                 android:textSize="20sp"
@@ -228,10 +225,9 @@
 
             <EditText
                 android:id="@+id/numero_total_dinero_ventas"
-                android:layout_width="185dp"
+                android:layout_width="120dp"
                 android:layout_height="wrap_content"
                 android:background="#FFF"
-                android:hint="Número"
                 android:inputType="number"
                 android:textAlignment="center"
                 android:textColorHint="#000"
@@ -242,10 +238,10 @@
 
         <!--Comienzo de ARTÍCULOS -->
 
-        <TextView
+        <Button
             android:id="@+id/titulo_articulos_ventas"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="40dp"
             android:background="#304ffe"
             android:text="Artículos"
             android:textAlignment="center"
@@ -263,7 +259,7 @@
 
             <TextView
                 android:id="@+id/total_dispenser_plasticos_ventas"
-                android:layout_width="200dp"
+                android:layout_width="230dp"
                 android:layout_height="wrap_content"
                 android:background="#FFF"
                 android:text="Total_Disp.Plasticos:"
@@ -274,10 +270,9 @@
 
             <EditText
                 android:id="@+id/numero_total_dispenser_plasticos_ventas"
-                android:layout_width="150dp"
+                android:layout_width="120dp"
                 android:layout_height="wrap_content"
                 android:background="#FFF"
-                android:hint="Número"
                 android:inputType="number"
                 android:textAlignment="center"
                 android:textColorHint="#000"
@@ -299,7 +294,7 @@
 
             <TextView
                 android:id="@+id/total_dispenser_electrico_ventas"
-                android:layout_width="200dp"
+                android:layout_width="230dp"
                 android:layout_height="wrap_content"
                 android:background="#FFF"
                 android:text="Total_Disp.Electricos:"
@@ -311,10 +306,9 @@
 
             <EditText
                 android:id="@+id/numero_total_dispenser_electricos_ventas"
-                android:layout_width="150dp"
+                android:layout_width="120dp"
                 android:layout_height="wrap_content"
                 android:background="#FFF"
-                android:hint="Número"
                 android:inputType="number"
                 android:textAlignment="center"
                 android:textColorHint="#000"
@@ -334,7 +328,7 @@
 
             <TextView
                 android:id="@+id/total_canillas_ventas"
-                android:layout_width="200dp"
+                android:layout_width="230dp"
                 android:layout_height="wrap_content"
                 android:background="#FFF"
                 android:text="Total_Canillas:"
@@ -346,10 +340,9 @@
 
             <EditText
                 android:id="@+id/numero_total_canillas_ventas"
-                android:layout_width="150dp"
+                android:layout_width="120dp"
                 android:layout_height="wrap_content"
                 android:background="#FFF"
-                android:hint="Número"
                 android:inputType="number"
                 android:textAlignment="center"
                 android:textColorHint="#000"
@@ -384,7 +377,6 @@
                 android:layout_width="120dp"
                 android:layout_height="wrap_content"
                 android:background="#FFF"
-                android:hint="Número"
                 android:inputType="number"
                 android:textAlignment="center"
                 android:textColorHint="#000"
@@ -396,11 +388,8 @@
 
 
 
+
     </LinearLayout>  <!--Aquí termina el LinearLayout "Vertical" -->
-
-
-
-
 
 
 
