@@ -1,5 +1,6 @@
 package com.example.jumpi.repartidores_aplication;
 
+import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.DialogInterface;

@@ -32,11 +32,11 @@
         <activity
             android:name=".EditarClientes"
             android:label="Editar_Clientes"
-            android:parentActivityName=".Second_Activity"/>
+            android:parentActivityName=".Second_Activity" />
         <activity
             android:name=".AgregarCliente"
             android:label="Agregar_Clientes"
-            android:parentActivityName=".Second_Activity"/>
+            android:parentActivityName=".Second_Activity" />
     </application>
 
 </manifest>
