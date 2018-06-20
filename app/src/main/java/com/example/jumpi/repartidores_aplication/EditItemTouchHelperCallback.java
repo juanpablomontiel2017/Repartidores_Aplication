@@ -9,9 +9,9 @@ import android.support.v7.widget.helper.ItemTouchHelper;
  */
 public class EditItemTouchHelperCallback extends ItemTouchHelper.Callback {
 
-    private final ItemAdapter mAdapter;
+    private final RecyclerViewAdapter mAdapter;
 
-    public EditItemTouchHelperCallback(ItemAdapter adapter) {
+    public EditItemTouchHelperCallback(RecyclerViewAdapter adapter) {
         mAdapter = adapter;
     }
 

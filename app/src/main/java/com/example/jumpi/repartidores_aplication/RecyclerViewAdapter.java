@@ -42,10 +42,10 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
     //Esto también pertenece a la parte 3 del tutorial: "Fragment with RecyclerView Part 3 : item Click Listener Event : Show Custom dialog Box" del chabon Aws Rh
     Dialog myDialog;
 
-    public RecyclerViewAdapter(Context mContext, List<Clientes> mData, OnStartDragListener dragListner) {
+    public RecyclerViewAdapter(Context mContext, List<Clientes> mData, OnStartDragListener dragListener) {
         this.mContext = mContext;
         this.mData = mData;
-        mDragStartListener = dragListner;
+        mDragStartListener = dragListener;
     }
 
     @NonNull

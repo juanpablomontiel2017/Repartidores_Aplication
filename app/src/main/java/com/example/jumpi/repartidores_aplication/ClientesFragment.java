@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.helper.ItemTouchHelper;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -22,7 +23,7 @@ import java.util.List;
  * Use the {@link //ClientesFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class ClientesFragment extends Fragment {
+public class ClientesFragment extends Fragment implements OnStartDragListener {
 
 
     // TODO: Rename parameter arguments, choose names that match
@@ -39,15 +40,11 @@ public class ClientesFragment extends Fragment {
 
     private RecyclerView myrecyclerview;
     private List<Clientes> lstClientes;
+    ItemTouchHelper mItemTouchHelper;
 
 
     public ClientesFragment() {
         // Required empty public constructor
-
-
-
-
-
 
     }
 
@@ -104,15 +101,7 @@ public class ClientesFragment extends Fragment {
 
     }
 
-
-
-
     //Viendo la parte 2 del tutorial de Aws Rh "Fragment with Recyclerview"
-
-
-
-
-
 
     //Voy a trabajar primero con este método onCreateView según el video "Menú con Pestañas en Android Studio (Tabbed Activity), by Developeru"
 
@@ -124,8 +113,16 @@ public class ClientesFragment extends Fragment {
 
         v = inflater.inflate(R.layout.fragment_clientes, container, false);
         myrecyclerview = (RecyclerView) v.findViewById(R.id.clientes_recyclerview);
-        RecyclerViewAdapter recyclerAdapter = new RecyclerViewAdapter(this,lstClientes, this);
+        RecyclerViewAdapter recyclerAdapter = new RecyclerViewAdapter(getContext(),lstClientes, this);
+
+        ItemTouchHelper.Callback callback =
+                new EditItemTouchHelperCallback(recyclerAdapter);
+
         myrecyclerview.setLayoutManager(new LinearLayoutManager(getActivity()));
+
+        mItemTouchHelper = new ItemTouchHelper(callback);
+        mItemTouchHelper.attachToRecyclerView(myrecyclerview);
+
         myrecyclerview.setAdapter(recyclerAdapter);
 
 
@@ -134,6 +131,11 @@ public class ClientesFragment extends Fragment {
 
         // Inflate the layout for this fragment
         //return inflater.inflate(R.layout.fragment_clientes, container, false);
+    }
+
+    @Override
+    public void onStartDrag(RecyclerView.ViewHolder viewHolder) {
+        mItemTouchHelper.startDrag(viewHolder);
     }
 
     //Hasta aquí
