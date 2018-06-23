@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.helper.ItemTouchHelper;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -22,7 +23,7 @@ import java.util.List;
  * Use the {@link //ClientesFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class ClientesFragment extends Fragment {
+public class ClientesFragment extends Fragment implements OnStartDragListener {
 
 
     // TODO: Rename parameter arguments, choose names that match
@@ -39,15 +40,11 @@ public class ClientesFragment extends Fragment {
 
     private RecyclerView myrecyclerview;
     private List<Clientes> lstClientes;
+    ItemTouchHelper mItemTouchHelper;
 
 
     public ClientesFragment() {
         // Required empty public constructor
-
-
-
-
-
 
     }
 
@@ -78,19 +75,22 @@ public class ClientesFragment extends Fragment {
 
 
         lstClientes = new ArrayList<>();
-        lstClientes.add(new Clientes(R.drawable.ricardofort,"Ricardo Fort","Urquiza 590","Centro","Casa rosada con porton blanco"));
-        lstClientes.add(new Clientes(R.drawable.lautaromartinez,"Lautaro Martinez","Mitre 190","Centro","Casa celeste con porton negro"));
-        lstClientes.add(new Clientes(R.drawable.ricardocenturion,"Ricardo Centurion","Sarmiento 150","Apache","Casa verde con porton de chapa"));
-        lstClientes.add(new Clientes(R.drawable.leomessi,"Leo Messi","Belgrano 401","Loma Linda","Casa violeta con rejas negras"));
-        lstClientes.add(new Clientes(R.drawable.omarjudis,"Omar Judis","Roque 232","San Cayetano","Casa de color rojo con porton negro"));
-        lstClientes.add(new Clientes(R.drawable.solperez,"Sol Perez","San Martin 201","Puerta del Sol","Casa blanca alado de un maxi-kiosko"));
+        lstClientes.add(new Clientes(R.drawable.ricardofort,"Ricardo Fort","Urquiza 590","Centro","Casa rosada con portón blanco","(+54) 3644 413254","rikypapa19@gmail.com"));
+        lstClientes.add(new Clientes(R.drawable.lautaromartinez,"Lautaro Martinez","Mitre 190","Centro","Casa celeste con porton negro","(+54) 3644 442210", "lauti10@gmail.com"));
+        lstClientes.add(new Clientes(R.drawable.ricardocenturion,"Ricardo Centurion","Sarmiento 150","Apache","Casa verde con portón de chapa","(+54) 3644 402356", "rikicentuwachin50@gmail.com"));
+        lstClientes.add(new Clientes(R.drawable.leomessi,"Leo Messi","Belgrano 401","Loma Linda","Casa violeta con rejas negras", "(+54) 3734 448890","leomessi10@gmail.com"));
+        lstClientes.add(new Clientes(R.drawable.omarjudis,"Omar Judis","Roque 232","San Cayetano","Casa de color rojo con portón negro","(+54) 3644 506643", "omarju@gmail.com"));
 
-        lstClientes.add(new Clientes(R.drawable.ricardofort,"Ricardo Fort","Urquiza 590","Centro","Casa rosada con porton blanco"));
-        lstClientes.add(new Clientes(R.drawable.lautaromartinez,"Lautaro Martinez","Mitre 190","Centro","Casa celeste con porton negro"));
-        lstClientes.add(new Clientes(R.drawable.ricardocenturion,"Ricardo Centurion","Sarmiento 150","Apache","Casa verde con porton de chapa"));
-        lstClientes.add(new Clientes(R.drawable.leomessi,"Leo Messi","Belgrano 401","Loma Linda","Casa violeta con rejas negras"));
-        lstClientes.add(new Clientes(R.drawable.omarjudis,"Omar Judis","Roque 232","San Cayetano","Casa de color rojo con porton negro"));
-        lstClientes.add(new Clientes(R.drawable.solperez,"Sol Perez","San Martin 201","Puerta del Sol","Casa blanca alado de un maxi-kiosko"));
+
+
+        lstClientes.add(new Clientes(R.drawable.ricardofort,"Ricardo Fort","Urquiza 590","Centro","Casa rosada con portón blanco","(+54) 3644 413254","rikypapa19@gmail.com"));
+        lstClientes.add(new Clientes(R.drawable.lautaromartinez,"Lautaro Martinez","Mitre 190","Centro","Casa celeste con porton negro","(+54) 3644 442210", "lauti10@gmail.com"));
+        lstClientes.add(new Clientes(R.drawable.ricardocenturion,"Ricardo Centurion","Sarmiento 150","Apache","Casa verde con portón de chapa","(+54) 3644 402356", "rikicentuwachin50@gmail.com"));
+        lstClientes.add(new Clientes(R.drawable.leomessi,"Leo Messi","Belgrano 401","Loma Linda","Casa violeta con rejas negras", "(+54) 3734 448890","leomessi10@gmail.com"));
+        lstClientes.add(new Clientes(R.drawable.omarjudis,"Omar Judis","Roque 232","San Cayetano","Casa de color rojo con portón negro","(+54) 3644 506643", "omarju@gmail.com"));
+
+
+
 
        /* if (getArguments() != null) {
             mParam1 = getArguments().getString(ARG_PARAM1);
@@ -101,15 +101,7 @@ public class ClientesFragment extends Fragment {
 
     }
 
-
-
-
     //Viendo la parte 2 del tutorial de Aws Rh "Fragment with Recyclerview"
-
-
-
-
-
 
     //Voy a trabajar primero con este método onCreateView según el video "Menú con Pestañas en Android Studio (Tabbed Activity), by Developeru"
 
@@ -121,8 +113,16 @@ public class ClientesFragment extends Fragment {
 
         v = inflater.inflate(R.layout.fragment_clientes, container, false);
         myrecyclerview = (RecyclerView) v.findViewById(R.id.clientes_recyclerview);
-        RecyclerViewAdapter recyclerAdapter = new RecyclerViewAdapter(getContext(),lstClientes);
+        RecyclerViewAdapter recyclerAdapter = new RecyclerViewAdapter(getContext(),lstClientes, this);
+
+        ItemTouchHelper.Callback callback =
+                new EditItemTouchHelperCallback(recyclerAdapter);
+
         myrecyclerview.setLayoutManager(new LinearLayoutManager(getActivity()));
+
+        mItemTouchHelper = new ItemTouchHelper(callback);
+        mItemTouchHelper.attachToRecyclerView(myrecyclerview);
+
         myrecyclerview.setAdapter(recyclerAdapter);
 
 
@@ -131,6 +131,11 @@ public class ClientesFragment extends Fragment {
 
         // Inflate the layout for this fragment
         //return inflater.inflate(R.layout.fragment_clientes, container, false);
+    }
+
+    @Override
+    public void onStartDrag(RecyclerView.ViewHolder viewHolder) {
+        mItemTouchHelper.startDrag(viewHolder);
     }
 
     //Hasta aquí

@@ -1,13 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/dialog_clientes_id"
     android:layout_width="300dp"
     android:layout_height="wrap_content"
     android:layout_gravity="center">
 
     
     <LinearLayout
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="20dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="#232323"
@@ -27,24 +28,27 @@
 
 
         <TextView
-            android:id="@+id/dialog_direccion_id"
+            android:id="@+id/dialog_telefono_id"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="18sp"
-            android:text="Dirección"
+            android:text="Teléfono"
             android:textColor="@android:color/white"
             android:layout_marginTop="5dp"
             android:layout_marginBottom="10dp"/>
 
+
         <TextView
-            android:id="@+id/dialog_barrio_id"
+            android:id="@+id/dialog_correo_id"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="18sp"
-            android:text="Barrio"
+            android:text="Correo"
             android:textColor="@android:color/white"
             android:layout_marginTop="5dp"
             android:layout_marginBottom="10dp"/>
+
+
 
 
 
