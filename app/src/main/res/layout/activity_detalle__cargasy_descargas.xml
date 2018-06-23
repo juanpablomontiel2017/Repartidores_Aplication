@@ -25,7 +25,7 @@
         <TextView
             android:id="@+id/textview_tandas_cargasydescargas_detalle_ventas"
             android:layout_width="120dp"
-            android:layout_height="58dp"
+            android:layout_height="75dp"
             android:text="Tandas"
             android:textAlignment="center"
             android:textColor="#FFF"
@@ -37,7 +37,7 @@
             android:id="@+id/img_cargas_detalle_ventas"
             android:layout_width="56dp"
             android:layout_height="56dp"
-            android:layout_marginStart="45dp"
+            android:layout_marginStart="35dp"
             android:src="@mipmap/ic_launcher_cargass_ventas" />
 
         <ImageView
@@ -67,8 +67,9 @@
             <TextView
                 android:id="@+id/primer_tanda_detalle_ventas"
                 android:layout_width="120dp"
-                android:layout_height="65dp"
+                android:layout_height="75dp"
                 android:text="1ra Tanda:"
+                android:textAlignment="center"
                 android:textColor="#000"
                 android:textSize="26sp"
                 android:textStyle="bold" />
@@ -103,8 +104,9 @@
             <TextView
                 android:id="@+id/segunda_tanda_detalle_ventas"
                 android:layout_width="120dp"
-                android:layout_height="65dp"
+                android:layout_height="75dp"
                 android:text="2da Tanda:"
+                android:textAlignment="center"
                 android:textColor="#000"
                 android:textSize="26sp"
                 android:textStyle="bold" />
@@ -139,8 +141,9 @@
             <TextView
                 android:id="@+id/tercera_tanda_detalle_ventas"
                 android:layout_width="120dp"
-                android:layout_height="65dp"
+                android:layout_height="75dp"
                 android:text="3ra Tanda:"
+                android:textAlignment="center"
                 android:textColor="#000"
                 android:textSize="26sp"
                 android:textStyle="bold" />
@@ -175,8 +178,9 @@
             <TextView
                 android:id="@+id/cuarta_tanda_detalle_ventas"
                 android:layout_width="120dp"
-                android:layout_height="65dp"
+                android:layout_height="75dp"
                 android:text="4ta Tanda:"
+                android:textAlignment="center"
                 android:textColor="#000"
                 android:textSize="26sp"
                 android:textStyle="bold" />
@@ -211,8 +215,9 @@
             <TextView
                 android:id="@+id/quinta_tanda_detalle_ventas"
                 android:layout_width="120dp"
-                android:layout_height="65dp"
+                android:layout_height="70dp"
                 android:text="5ta Tanda:"
+                android:textAlignment="center"
                 android:textColor="#000"
                 android:textSize="26sp"
                 android:textStyle="bold" />
@@ -247,8 +252,9 @@
             <TextView
                 android:id="@+id/sexta_tanda_detalle_ventas"
                 android:layout_width="120dp"
-                android:layout_height="65dp"
+                android:layout_height="70dp"
                 android:text="6ta Tanda:"
+                android:textAlignment="center"
                 android:textColor="#000"
                 android:textSize="26sp"
                 android:textStyle="bold" />
@@ -273,39 +279,7 @@
         </LinearLayout>
 
 
-        <LinearLayout
-            android:orientation="horizontal"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
 
-
-            <TextView
-                android:id="@+id/septima_tanda_detalle_ventas"
-                android:layout_width="120dp"
-                android:layout_height="65dp"
-                android:text="7ta Tanda:"
-                android:textColor="#000"
-                android:textSize="26sp"
-                android:textStyle="bold" />
-
-
-            <TextView
-                android:id="@+id/textview_septima_tanda_carga_detalle_ventas"
-                android:layout_width="130dp"
-                android:layout_height="65dp"
-                android:textColor="#000"
-                android:textSize="20sp"
-                android:textStyle="bold" />
-
-            <TextView
-                android:id="@+id/textview_septima_tanda_descarga_detalle_ventas"
-                android:layout_width="130dp"
-                android:layout_height="65dp"
-                android:textColor="#000"
-                android:textSize="20sp"
-                android:textStyle="bold" />
-
-        </LinearLayout>
 
 
 
