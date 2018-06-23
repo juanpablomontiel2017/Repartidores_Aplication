@@ -77,7 +77,7 @@ public class Ventas_Activity extends AppCompatActivity {
 
 
 
-                Nombre_Cliente_Ventas  = (TextView) findViewById(R.id.nombre_cliente_ventas);
+                Nombre_Cliente_Ventas  = (TextView) findViewById(R.id.nombre_cliente_realizar_ventas);
 
 
         String extras = getIntent().getStringExtra("Nombre");
