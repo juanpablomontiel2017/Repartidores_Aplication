@@ -1,12 +1,14 @@
 package com.example.jumpi.repartidores_aplication;
 
 import android.content.Context;
+import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 
 
 /**
@@ -67,12 +69,26 @@ public class Registro_Ventas_Fragment extends Fragment {
     }
 
 */
+
+
+
+
+
     //Voy a trabajar primero con este método onCreateView según el video "Menú con Pestañas en Android Studio (Tabbed Activity), by Developeru"
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+
+
+
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_registro__ventas_, container, false);
+
+
+
+
+
+
     }
 
 
