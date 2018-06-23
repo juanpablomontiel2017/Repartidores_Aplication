@@ -3,6 +3,7 @@ package com.example.jumpi.repartidores_aplication;
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.annotation.TargetApi;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.support.annotation.NonNull;
 import android.support.design.widget.Snackbar;
@@ -19,6 +20,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.provider.ContactsContract;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -28,6 +30,13 @@ import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.toolbox.Volley;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -54,6 +63,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
     /**
      * Keep track of the login task to ensure we can cancel it if requested.
      */
+
     private UserLoginTask mAuthTask = null;
 
     // UI references.
@@ -158,7 +168,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
 
         boolean cancel = false;
         View focusView = null;
-
+/**
         // Check for a valid password, if the user entered one.
         if (!TextUtils.isEmpty(password) && !isPasswordValid(password)) {
             mPasswordView.setError(getString(R.string.error_invalid_password));
@@ -176,6 +186,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
             focusView = mEmailView;
             cancel = true;
         }
+*/
 
         if (cancel) {
             // There was an error; don't attempt login and focus the first
@@ -186,7 +197,10 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
             // perform the user login attempt.
             showProgress(true);
             mAuthTask = new UserLoginTask(email, password);
-            mAuthTask.execute((Void) null);
+            //mAuthTask.execute((Void) null);
+            mAuthTask.doInBackground();
+            Log.d("Validación", "se verifica la validación y pasa a loguearse con el servidor");
+
         }
     }
 
@@ -294,57 +308,97 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
      * Represents an asynchronous login/registration task used to authenticate
      * the user.
      */
-    public class UserLoginTask extends AsyncTask<Void, Void, Boolean> {
+    public class UserLoginTask  {
 
         private final String mEmail;
         private final String mPassword;
+        private  String id = null;
+        private  String dni = null;
+
+
 
         UserLoginTask(String email, String password) {
             mEmail = email;
             mPassword = password;
+            Log.d("userlogin", "se crea el objeto userlogin, email y password");
+
         }
 
-        @Override
-        protected Boolean doInBackground(Void... params) {
+
+        private void doInBackground() {
             // TODO: attempt authentication against a network service.
+            Log.d("background", "ingresa a doInBackground ");
 
-            try {
-                // Simulate network access.
-                Thread.sleep(2000);
-            } catch (InterruptedException e) {
-                return false;
-            }
+            Response.Listener<String> responseListener = new Response.Listener<String>() {
 
-            for (String credential : DUMMY_CREDENTIALS) {
-                String[] pieces = credential.split(":");
-                if (pieces[0].equals(mEmail)) {
-                    // Account exists, return true if the password matches.
-                    return pieces[1].equals(mPassword);
+
+                @Override
+                public void onResponse(String response) {
+                    Log.d("RESPONSE", String.valueOf(response));
+                    Log.d("onResponse", "ingresa a onResponse");
+                    //final VolleyCallback callback = new LoginExitoso();
+                    // UserLoginTask obj = new UserLoginTask();
+                    mAuthTask = null;
+                    showProgress(false);
+
+                    try {
+                        JSONObject jsonResponse = new JSONObject(String.valueOf(response));
+                        boolean success = jsonResponse.getBoolean("exito");
+
+
+                        Log.d("RESPONSE", String.valueOf(response));
+
+
+
+                        if (success) {
+                            id = jsonResponse.getString("id");
+                            dni = jsonResponse.getString("dni");
+
+
+
+                            Log.d("exito", "response true/exitoso. Se crea el intent");
+
+
+                            // ingresas a otra activity de la app. Logueo exitoso
+
+                            finish();
+                            Intent myIntent = new Intent(LoginActivity.this,MainActivity.class);
+                            myIntent.putExtra("id", id);
+                            myIntent.putExtra("dni", dni);
+                            LoginActivity.this.startActivity(myIntent);
+
+                            // callback.onSuccess();
+
+                            // obj.registerEventListener(callback);
+
+                        } else {
+                            // callback.onError();
+                            //obj.registerEventListener(callback);
+
+                            Log.d("exito", "response FALSE");
+                            // mPasswordView.setError(getString(R.string.error_incorrect_password));
+                            mPasswordView.setError("La contraseña o el usuario no son válidos. Vuelva a intentar");
+                            mPasswordView.requestFocus();
+                            Log.d("incorrect", "incorrect password ");
+                        }
+
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                        Log.d("JSON", "Error en login/response. Excepción json");
+
+                    }
+
                 }
-            }
+            };
+            LoginRequest loginRequest = new LoginRequest(mEmail, mPassword, responseListener);
+            RequestQueue queue = Volley.newRequestQueue(LoginActivity.this);
+            queue.add(loginRequest);
+            Log.d("request", "Se crea la solicitud al servidor");
 
-            // TODO: register the new account here.
-            return true;
-        }
 
-        @Override
-        protected void onPostExecute(final Boolean success) {
-            mAuthTask = null;
-            showProgress(false);
 
-            if (success) {
-                finish();
-            } else {
-                mPasswordView.setError(getString(R.string.error_incorrect_password));
-                mPasswordView.requestFocus();
-            }
-        }
-
-        @Override
-        protected void onCancelled() {
-            mAuthTask = null;
-            showProgress(false);
         }
     }
-}
+
+ }
 
