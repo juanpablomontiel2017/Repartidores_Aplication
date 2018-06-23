@@ -314,6 +314,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
         private final String mPassword;
         private  String id = null;
         private  String dni = null;
+        private  String msj = null;
 
 
 
@@ -353,19 +354,35 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
                         if (success) {
                             id = jsonResponse.getString("id");
                             dni = jsonResponse.getString("dni");
+                            msj = jsonResponse.getString("msj");
 
 
 
-                            Log.d("exito", "response true/exitoso. Se crea el intent");
 
 
                             // ingresas a otra activity de la app. Logueo exitoso
 
                             finish();
-                            Intent myIntent = new Intent(LoginActivity.this,MainActivity.class);
-                            myIntent.putExtra("id", id);
-                            myIntent.putExtra("dni", dni);
-                            LoginActivity.this.startActivity(myIntent);
+
+                            if (TextUtils.equals(msj, "repartidor")){
+                                Log.d("exito", "response true/exitoso. Ingresa a Main Repartidor");
+
+
+
+                                Intent myIntent = new Intent(LoginActivity.this,MainActivity.class);
+                                myIntent.putExtra("id", id);
+                                myIntent.putExtra("dni", dni);
+                                LoginActivity.this.startActivity(myIntent);
+                            } else {
+                                if (TextUtils.equals(msj, "supervisor")){
+                                    Log.d("exito", "response true/exitoso. Ingresa a Main Supervisor");
+
+                                    // Crear el intent y pasar a una activity supervisor
+
+                                }
+                            }
+
+
 
                             // callback.onSuccess();
 
