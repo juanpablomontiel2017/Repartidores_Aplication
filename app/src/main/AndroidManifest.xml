@@ -37,7 +37,8 @@
             android:name=".AgregarCliente"
             android:label="Agregar_Clientes"
             android:parentActivityName=".Second_Activity" />
-        <activity android:name=".Detalle_CargasyDescargas"></activity>
+        <activity android:name=".Detalle_CargasyDescargas" />
+        <activity android:name=".Detalle_Articulos"></activity>
     </application>
 
 </manifest>
