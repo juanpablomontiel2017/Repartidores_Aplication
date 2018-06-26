@@ -227,7 +227,7 @@ public class Second_Activity extends AppCompatActivity {
 
              case 0:
 
-                 return "Resumen de Ventas";
+                 return "Resumen de Cargas";
 
              case 1:
 

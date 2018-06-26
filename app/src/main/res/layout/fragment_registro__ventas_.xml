@@ -43,11 +43,10 @@
             android:textStyle="bold" />
 
 
-        <EditText
+        <TextView
             android:id="@+id/numero_total_cargas_ventas"
             android:layout_width="120dp"
             android:layout_height="wrap_content"
-            android:inputType="number"
             android:textAlignment="center"
             android:textColorHint="#000"
             android:textSize="20sp"
@@ -84,11 +83,10 @@
                 android:textSize="20sp"
                 android:textStyle="bold" />
 
-            <EditText
+            <TextView
                 android:id="@+id/numero_total_descargas_ventas"
                 android:layout_width="120dp"
                 android:layout_height="wrap_content"
-                android:inputType="number"
                 android:textAlignment="center"
                 android:textColorHint="#000"
                 android:textSize="20sp"
@@ -114,11 +112,10 @@
                 android:textStyle="bold" />
 
 
-            <EditText
+            <TextView
                 android:id="@+id/numero_recuento_envases_ventas"
                 android:layout_width="120dp"
                 android:layout_height="wrap_content"
-                android:inputType="number"
                 android:textAlignment="center"
                 android:textColorHint="#000"
                 android:textSize="20sp"
@@ -146,11 +143,10 @@
                 android:textStyle="bold" />
 
 
-            <EditText
+            <TextView
                 android:id="@+id/numero_total_envases_rotos_ventas"
                 android:layout_width="120dp"
                 android:layout_height="wrap_content"
-                android:inputType="number"
                 android:textAlignment="center"
                 android:textColorHint="#000"
                 android:textSize="20sp"
@@ -192,11 +188,10 @@
                 android:textStyle="bold" />
 
 
-            <EditText
+            <TextView
                 android:id="@+id/numero_monto_incial_ventas"
                 android:layout_width="120dp"
                 android:layout_height="wrap_content"
-                android:inputType="number"
                 android:textAlignment="center"
                 android:textColorHint="#000"
                 android:textSize="20sp"
@@ -223,12 +218,11 @@
                 android:textStyle="bold" />
 
 
-            <EditText
+            <TextView
                 android:id="@+id/numero_total_dinero_ventas"
                 android:layout_width="120dp"
                 android:layout_height="wrap_content"
                 android:background="#FFF"
-                android:inputType="number"
                 android:textAlignment="center"
                 android:textColorHint="#000"
                 android:textSize="20sp"
@@ -268,12 +262,11 @@
                 android:textSize="20sp"
                 android:textStyle="bold" />
 
-            <EditText
+            <TextView
                 android:id="@+id/numero_total_dispenser_plasticos_ventas"
                 android:layout_width="120dp"
                 android:layout_height="wrap_content"
                 android:background="#FFF"
-                android:inputType="number"
                 android:textAlignment="center"
                 android:textColorHint="#000"
                 android:textSize="20sp"
@@ -304,12 +297,11 @@
                 android:textStyle="bold" />
 
 
-            <EditText
+            <TextView
                 android:id="@+id/numero_total_dispenser_electricos_ventas"
                 android:layout_width="120dp"
                 android:layout_height="wrap_content"
                 android:background="#FFF"
-                android:inputType="number"
                 android:textAlignment="center"
                 android:textColorHint="#000"
                 android:textSize="20sp"
@@ -338,12 +330,11 @@
                 android:textStyle="bold" />
 
 
-            <EditText
+            <TextView
                 android:id="@+id/numero_total_canillas_ventas"
                 android:layout_width="120dp"
                 android:layout_height="wrap_content"
                 android:background="#FFF"
-                android:inputType="number"
                 android:textAlignment="center"
                 android:textColorHint="#000"
                 android:textSize="20sp"
@@ -372,12 +363,11 @@
                 android:textStyle="bold" />
 
 
-            <EditText
+            <TextView
                 android:id="@+id/numero_total_envases_vendidos_ventas"
                 android:layout_width="120dp"
                 android:layout_height="wrap_content"
                 android:background="#FFF"
-                android:inputType="number"
                 android:textAlignment="center"
                 android:textColorHint="#000"
                 android:textSize="20sp"

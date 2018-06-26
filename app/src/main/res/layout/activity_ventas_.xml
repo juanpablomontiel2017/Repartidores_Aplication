@@ -310,20 +310,19 @@
         >
 
 
-        <EditText
+        <TextView
             android:id="@+id/cantidad_saldo_productos_ventas"
             android:layout_width="170dp"
-            android:layout_height="30dp"
-            android:layout_margin="@dimen/appbar_padding_top"
-            android:inputType="number"
+            android:layout_height="40dp"
+            android:layout_marginStart="10dp"
             android:textStyle="bold" />
 
 
         <EditText
             android:id="@+id/cantidad_entrega_productos_ventas"
-            android:layout_width="170dp"
-            android:layout_height="30dp"
-            android:layout_margin="10dp"
+            android:layout_width="150dp"
+            android:layout_height="40dp"
+            android:layout_marginStart="50dp"
             android:inputType="number"
             android:textStyle="bold" />
 
