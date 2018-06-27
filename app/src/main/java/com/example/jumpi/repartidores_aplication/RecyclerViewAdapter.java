@@ -2,12 +2,15 @@ package com.example.jumpi.repartidores_aplication;
 
 import android.app.AlertDialog;
 import android.app.Dialog;
+import android.app.DialogFragment;
+import android.app.FragmentManager;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Parcelable;
 import android.support.annotation.NonNull;
+import android.support.v4.app.Fragment;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -89,6 +92,8 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
         this.mData = mData;
     }
 
+
+
     @NonNull
     @Override
     public MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -105,6 +110,8 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
             //Dialog Inicial
             myDialog = new Dialog(mContext);
             myDialog.setContentView(R.layout.dialog_clientes);
+
+
 
 
             vHolder.item_clientes.setOnClickListener(new View.OnClickListener() {
@@ -156,13 +163,19 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
                     });
 
 
+
+
+
+
+
+
                     Button dialog_cliente_btnEliminar = (Button) myDialog.findViewById(R.id.dialog_btn_eliminar);
                     dialog_cliente_btnEliminar.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View view) {
 
 
-                            Intent intentEliminar = new Intent(mContext, Ventas_Activity.class);
+                            Intent intentEliminar = new Intent(mContext, Dialog_Eliminar_Clientes.class);
                             mContext.startActivity(intentEliminar);
 
 

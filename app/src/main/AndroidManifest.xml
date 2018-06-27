@@ -39,7 +39,8 @@
             android:parentActivityName=".Second_Activity" />
         <activity android:name=".Detalle_CargasyDescargas" />
         <activity android:name=".Detalle_Articulos" />
-        <activity android:name=".detalle_ventas_dinero"></activity>
+        <activity android:name=".detalle_ventas_dinero" />
+        <activity android:name=".Dialog_Eliminar_Clientes"></activity>
     </application>
 
 </manifest>
