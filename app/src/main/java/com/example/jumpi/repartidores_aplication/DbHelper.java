@@ -1,3 +1,5 @@
+package com.example.jumpi.repartidores_aplication;
+
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
@@ -53,6 +55,18 @@ public class DbHelper extends SQLiteOpenHelper {
         String selection = DbContract.DNI+" = ";
         String[] selection_args = {Integer.toString(dni)};
         database.update(DbContract.TABLE_NAME,contentValues,selection,selection_args);
+
+    }
+
+
+    public boolean checkForTableExists(SQLiteDatabase db, String table){
+        String sql = "SELECT * FROM repartidor";
+        Cursor mCursor = db.rawQuery(sql, null);
+        if (mCursor.getCount() > 0) {
+            return true;
+        }
+        mCursor.close();
+        return false;
     }
 
 

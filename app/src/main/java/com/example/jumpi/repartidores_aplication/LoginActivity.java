@@ -5,6 +5,7 @@ import android.animation.AnimatorListenerAdapter;
 import android.annotation.TargetApi;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.database.sqlite.SQLiteDatabase;
 import android.support.annotation.NonNull;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
@@ -74,6 +75,38 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
+        /**
+         * COMPRUEBA SI YA TIENE LOS DATOS DEL REPARTIDOR PARA LOGUEARSE AUTOMÁTICAMENTE
+         *
+         * DbHelper dbHelper = new DbHelper(getApplicationContext());
+         SQLiteDatabase database = dbHelper.getReadableDatabase();
+
+         Cursor cursor = dbHelper.readFromLocalDatabase(database);
+
+         if (dbHelper.checkForTableExists(database, "repartidor")){
+            Log.d("BDrepartidor", "existen datos de repartidor");
+            showProgress(true);
+            String usuario;
+            String password
+
+            while (cursor.moveToNext())
+            {
+                usuario = cursor.getString(cursor.getColumnIndex(DbContract.USUARIO));
+                password = cursor.getString(cursor.getColumnIndex(DbContract.PASSWORD));
+
+
+            }
+            dbHelper.close();
+            mAuthTask = new UserLoginTask(usuario, password);
+            Log.d("DBrepartidor", "se encuentra el repartidor en la BD");
+            mAuthTask.doInBackground();
+
+
+         }
+         */
+
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
         // Set up the login form.
@@ -330,7 +363,10 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
             // TODO: attempt authentication against a network service.
             Log.d("background", "ingresa a doInBackground ");
 
+
+
             Response.Listener<String> responseListener = new Response.Listener<String>() {
+                // Se realiza una acción cuando se recibe el response
 
 
                 @Override
@@ -339,7 +375,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
                     Log.d("onResponse", "ingresa a onResponse");
                     //final VolleyCallback callback = new LoginExitoso();
                     // UserLoginTask obj = new UserLoginTask();
-                    mAuthTask = null;
+
                     showProgress(false);
 
                     try {
@@ -356,6 +392,11 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
                             dni = jsonResponse.getString("dni");
                             msj = jsonResponse.getString("msj");
 
+                            DbHelper dbHelper = new DbHelper(getApplicationContext());
+                            SQLiteDatabase database = dbHelper.getWritableDatabase();
+
+                            dbHelper.saveToLocalDatabase(Integer.parseInt(dni), Integer.parseInt(id),mEmail,mPassword, DbContract.SYNC_STATUS_OK, database);
+                            mAuthTask = null;
 
 
 
@@ -407,6 +448,19 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
 
                 }
             };
+
+            //*************************
+            //En ésta parte del código se crea el reponse para enviarlo al servidor
+
+
+
+
+
+
+
+
+
+
             LoginRequest loginRequest = new LoginRequest(mEmail, mPassword, responseListener);
             RequestQueue queue = Volley.newRequestQueue(LoginActivity.this);
             queue.add(loginRequest);
