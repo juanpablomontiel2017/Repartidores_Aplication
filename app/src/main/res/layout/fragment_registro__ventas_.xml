@@ -35,7 +35,7 @@
         <TextView
             android:id="@+id/total_cargas_ventas"
             android:layout_width="230dp"
-            android:layout_height="wrap_content"
+            android:layout_height="35dp"
             android:text="Total_Cargas:"
             android:textAlignment="center"
             android:textColor="#000"
@@ -76,7 +76,7 @@
             <TextView
                 android:id="@+id/total_descargas_ventas"
                 android:layout_width="230dp"
-                android:layout_height="wrap_content"
+                android:layout_height="35dp"
                 android:text="Total_Descargas:"
                 android:textAlignment="center"
                 android:textColor="#000"
@@ -104,7 +104,7 @@
             <TextView
                 android:id="@+id/total_recuento_envases_ventas"
                 android:layout_width="230dp"
-                android:layout_height="wrap_content"
+                android:layout_height="40dp"
                 android:text="Recuento_Envases:"
                 android:textAlignment="center"
                 android:textColor="#000"
@@ -135,7 +135,7 @@
             <TextView
                 android:id="@+id/total_envases_rotos_ventas"
                 android:layout_width="230dp"
-                android:layout_height="wrap_content"
+                android:layout_height="40dp"
                 android:text="Total_Envases_Rotos:"
                 android:textAlignment="center"
                 android:textColor="#000"
@@ -179,7 +179,7 @@
             <TextView
                 android:id="@+id/monto_inicial_ventas"
                 android:layout_width="230dp"
-                android:layout_height="wrap_content"
+                android:layout_height="40dp"
                 android:background="#FFF"
                 android:text="Recibiste"
                 android:textAlignment="center"
@@ -209,7 +209,7 @@
             <TextView
                 android:id="@+id/total_dinero_ventas"
                 android:layout_width="230dp"
-                android:layout_height="wrap_content"
+                android:layout_height="40dp"
                 android:background="#FFF"
                 android:text="Entregaste:"
                 android:textAlignment="center"
@@ -254,7 +254,7 @@
             <TextView
                 android:id="@+id/total_dispenser_plasticos_ventas"
                 android:layout_width="230dp"
-                android:layout_height="wrap_content"
+                android:layout_height="40dp"
                 android:background="#FFF"
                 android:text="Total_Disp.Plasticos:"
                 android:textAlignment="center"
@@ -288,7 +288,7 @@
             <TextView
                 android:id="@+id/total_dispenser_electrico_ventas"
                 android:layout_width="230dp"
-                android:layout_height="wrap_content"
+                android:layout_height="40dp"
                 android:background="#FFF"
                 android:text="Total_Disp.Electricos:"
                 android:textAlignment="center"
@@ -321,7 +321,7 @@
             <TextView
                 android:id="@+id/total_canillas_ventas"
                 android:layout_width="230dp"
-                android:layout_height="wrap_content"
+                android:layout_height="40dp"
                 android:background="#FFF"
                 android:text="Total_Canillas:"
                 android:textAlignment="center"
@@ -354,7 +354,7 @@
             <TextView
                 android:id="@+id/total_envases_vendidos_ventas"
                 android:layout_width="230dp"
-                android:layout_height="wrap_content"
+                android:layout_height="40dp"
                 android:background="#FFF"
                 android:text="Total_Envases_Vendidos:"
                 android:textAlignment="center"
