@@ -9,11 +9,4 @@
         app:showAsAction="never" />
 
 
-    <item
-        android:icon="@drawable/ic_add_black_24dp"
-        android:id="@+id/agregar_cliente_menu"
-        android:orderInCategory="100"
-        android:title="Agregar Cliente"
-        app:showAsAction="always" />
-
 </menu>

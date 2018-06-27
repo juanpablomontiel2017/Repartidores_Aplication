@@ -140,11 +140,7 @@ public class Second_Activity extends AppCompatActivity {
             return true;
         }
 
-        if (id == R.id.agregar_cliente_menu) {
 
-
-            return true;
-        }
 
         return super.onOptionsItemSelected(item);
     }

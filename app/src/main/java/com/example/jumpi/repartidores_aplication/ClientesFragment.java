@@ -139,8 +139,18 @@ public class ClientesFragment extends Fragment {
         myrecyclerview.setLayoutManager(new LinearLayoutManager(getActivity()));
         myrecyclerview.setAdapter(recyclerAdapter);
 
+        FloatingActionButton fab = (FloatingActionButton) v.findViewById(R.id.fab);
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
 
 
+                Intent fab = new Intent(getActivity(), AgregarCliente.class);
+                startActivity(fab);
+
+
+            }
+        });
 
         return v;
 
