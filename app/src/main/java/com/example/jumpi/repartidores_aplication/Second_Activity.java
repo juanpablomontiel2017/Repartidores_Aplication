@@ -95,7 +95,7 @@ public class Second_Activity extends AppCompatActivity {
 
 
 
-
+/*
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -109,7 +109,7 @@ public class Second_Activity extends AppCompatActivity {
             }
         });
 
-
+*/
 
 
 
@@ -137,6 +137,12 @@ public class Second_Activity extends AppCompatActivity {
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
+            return true;
+        }
+
+        if (id == R.id.agregar_cliente_menu) {
+
+
             return true;
         }
 

@@ -142,8 +142,6 @@ public class ClientesFragment extends Fragment {
 
 
 
-
-
         return v;
 
 
