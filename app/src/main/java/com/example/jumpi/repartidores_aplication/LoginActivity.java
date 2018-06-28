@@ -136,7 +136,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        Log.d("OnCreate", "ingresa a OnCreate");
+
 
 
 
@@ -153,8 +153,8 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
         SQLiteDatabase database = dbHelper.getReadableDatabase();
         Cursor cursor = dbHelper.readFromLocalDatabase(database);
 
-        if (dbHelper.checkForTableExists(database, "usuario")){
-            Log.d("BDrepartidor", "existen datos de usuario");
+        if (dbHelper.checkForTableExists(database, "repartidor")){
+            Log.d("BDrepartidor", "existen datos de repartidor");
 
 
             //showProgress(true);
@@ -507,7 +507,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
                                      usuariobd = cursor.getString(cursor.getColumnIndex(DbContract.USUARIO));
                                      passwordbd = cursor.getString(cursor.getColumnIndex(DbContract.PASSWORD));
                                      dnibd = cursor.getString(cursor.getColumnIndex(DbContract.DNI));
-                                     idbd = cursor.getString(cursor.getColumnIndex(DbContract.ID));
+                                     idbd = cursor.getString(cursor.getColumnIndex(DbContract.IDREPARTIDOR));
 
 
 

@@ -7,7 +7,7 @@ public class DbContract {
 
     public static final String DATABASE_NAME = "aquavitaldb";
 
-    public static final String TABLE_NAME = "usuario";
+    public static final String TABLE_NAME_USUARIO = "usuario";
     public static final String ID = "id";
     public static final String DNI = "dni";
     public static final String USUARIO = "usuario";
