@@ -48,7 +48,53 @@ import static android.Manifest.permission.READ_CONTACTS;
  * A login screen that offers login via email/password.
  */
 public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<Cursor> {
+/**
+ *  /**
+ * COMPRUEBA SI YA TIENE LOS DATOS DEL REPARTIDOR PARA LOGUEARSE AUTOMÁTICAMENTE
+ *
+ *
+ *
 
+
+    DbHelper dbHelper = new DbHelper(contexto);
+    SQLiteDatabase database = dbHelper.getReadableDatabase();
+
+    Cursor cursor = dbHelper.readFromLocalDatabase(database);
+
+        if (dbHelper.checkForTableExists(database, "repartidor")){
+        Log.d("BDrepartidor", "existen datos de repartidor");
+        Intent myIntent = new Intent(this,LoginActivity.class);
+
+        CheckAppStatus.this.startActivity(myIntent);
+
+        showProgress(true);
+        String usuario=null;
+        String password=null;
+
+        while (cursor.moveToNext())
+        {
+            usuario = cursor.getString(cursor.getColumnIndex(DbContract.USUARIO));
+            password = cursor.getString(cursor.getColumnIndex(DbContract.PASSWORD));
+
+
+        }
+        dbHelper.close();
+        mAuthTask = new LoginActivity.UserLoginTask(usuario, password);
+        Log.d("DBrepartidor", "se encuentra el repartidor en la BD");
+        mAuthTask.doInBackground();
+        StringBuilder sb = new StringBuilder();
+        sb.append(usuario);
+        sb.append(password);
+        //sb.append(dnibd);
+        //sb.append(idbd);
+        String resultado = sb.toString();
+
+        Log.d("RepartidorGuardado", resultado);
+
+
+
+    }
+ */
 
 
 
@@ -102,6 +148,48 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
         populateAutoComplete();
 
         mPasswordView = (EditText) findViewById(R.id.password);
+
+        DbHelper dbHelper = new DbHelper(getApplicationContext());
+        SQLiteDatabase database = dbHelper.getReadableDatabase();
+        Cursor cursor = dbHelper.readFromLocalDatabase(database);
+
+        if (dbHelper.checkForTableExists(database, "repartidor")){
+            Log.d("BDrepartidor", "existen datos de repartidor");
+
+
+            //showProgress(true);
+            String usuario=null;
+            String password=null;
+
+            while (cursor.moveToNext())
+            {
+                usuario = cursor.getString(cursor.getColumnIndex(DbContract.USUARIO));
+                password = cursor.getString(cursor.getColumnIndex(DbContract.PASSWORD));
+
+            }
+
+
+            dbHelper.close();
+           // mAuthTask = new LoginActivity.UserLoginTask(usuario, password);
+            Log.d("DBrepartidor", "se encuentra el repartidor en la BD");
+            //mAuthTask.doInBackground();
+
+            mEmailView.setText(usuario);
+            mPasswordView.setText(password);
+            StringBuilder sb = new StringBuilder();
+            sb.append(usuario);
+            sb.append(password);
+            //sb.append(dnibd);
+            //sb.append(idbd);
+            String resultado = sb.toString();
+
+            Log.d("RepartidorGuardado", resultado);
+
+
+
+        }
+
+
         mPasswordView.setOnEditorActionListener(new TextView.OnEditorActionListener() {
             @Override
             public boolean onEditorAction(TextView textView, int id, KeyEvent keyEvent) {
