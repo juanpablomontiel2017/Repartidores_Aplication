@@ -237,14 +237,21 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
                         //sb.append(idbd);
                         String resultado = sb.toString();
 
-                        Log.d("onClickTermino", resultado);
+                        Log.d("onClickTermino", "es usuario registrado en bd");
                     }else{
+                        Log.d("onClickTermino", "existe un usuario registrado pero se loguea con otra cuenta");
                         attemptLogin();
+
+
+                        /**
+                         * EN ESTA PARTE SE DEBE INVOCAR UN MÉTODO DIFERENTE DE ATTEMPTLOGIN
+                         * NO SOLO DEBE LOGUEAR SI NO TAMBIÉN  BORRAR LAS TABLAS PERTENECIENTES A LA CUENTA VIEJA
+                         */
                     }
 
 
 
-                   }else {
+                }else {
                     attemptLogin();
                 }
 
@@ -705,10 +712,10 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
                             if (TextUtils.equals(msj, "repartidor")){
                                 Log.d("exito", "response true/exitoso. Ingresa a Main Repartidor");
 
-                                DbHelper dbHelper = new DbHelper(getApplicationContext());
-                                SQLiteDatabase database = dbHelper.getWritableDatabase();
+                                //DbHelper dbHelper = new DbHelper(getApplicationContext());
+                                //SQLiteDatabase database = dbHelper.getWritableDatabase();
 
-                                dbHelper.saveToLocalDatabase(Integer.parseInt(dni), Integer.parseInt(id),mEmail,mPassword, DbContract.SYNC_STATUS_OK, database);
+                              //  dbHelper.saveToLocalDatabase(Integer.parseInt(dni), Integer.parseInt(id),mEmail,mPassword, DbContract.SYNC_STATUS_OK, database);
 
 
                                 // prueba para saber si guarda los datos del repartidor en la BD
