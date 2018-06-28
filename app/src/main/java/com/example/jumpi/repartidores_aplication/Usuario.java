@@ -1,32 +1,32 @@
 package com.example.jumpi.repartidores_aplication;
 
-public class Repartidor {
-    private String IdPersona;
-    private String DNIrepartidor;
+public class Usuario {
+    private int IdPersona;
+    private int DNI;
     private String Usuario;
     private String Password;
 
-    Repartidor(String IdPersona, String DNIrepartidor, String Usuario, String Password){
+    Usuario(int IdPersona, int DNI, String Usuario, String Password){
         this.setIdPersona(IdPersona);
-        this.setDNIrepartidor(DNIrepartidor);
+        this.setDNI(DNI);
         this.setUsuario(Usuario);
         this.setPassword(Password);
     }
 
-    public String getIdPersona() {
+    public int getIdPersona() {
         return IdPersona;
     }
 
-    public void setIdPersona(String idPersona) {
+    public void setIdPersona(int idPersona) {
         IdPersona = idPersona;
     }
 
-    public String getDNIrepartidor() {
-        return DNIrepartidor;
+    public int getDNI() {
+        return DNI;
     }
 
-    public void setDNIrepartidor(String DNIrepartidor) {
-        this.DNIrepartidor = DNIrepartidor;
+    public void setDNI(int DNI) {
+        this.DNI = DNI;
     }
 
     public String getUsuario() {
