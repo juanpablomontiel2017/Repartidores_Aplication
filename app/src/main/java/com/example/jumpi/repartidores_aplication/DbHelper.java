@@ -11,8 +11,8 @@ import com.example.jumpi.repartidores_aplication.DbContract;
 public class DbHelper extends SQLiteOpenHelper {
 
     private static final int DATABASE_VERSION = 1;
-    private static final String CREATE_TABLE = "create table "+DbContract.TABLE_NAME+"("+DbContract.DNI+" integer primary key,"+DbContract.IDREPARTIDOR+" integer,"+DbContract.USUARIO+" text,"+DbContract.PASSWORD+" text, "+DbContract.SYNC_STATUS+" integer);";
-    private static final String DROP_TABLE = "drop table if exists "+DbContract.TABLE_NAME;
+    private static final String CREATE_TABLE = "create table "+DbContract.TABLE_NAME_USUARIO+"("+DbContract.DNI+" integer primary key,"+DbContract.ID+" integer,"+DbContract.USUARIO+" text,"+DbContract.PASSWORD+" text, "+DbContract.SYNC_STATUS+" integer);";
+    private static final String DROP_TABLE = "drop table if exists "+DbContract.TABLE_NAME_USUARIO;
 
     public DbHelper (Context context){
         super(context, DbContract.DATABASE_NAME, null, DATABASE_VERSION);
@@ -32,18 +32,18 @@ public class DbHelper extends SQLiteOpenHelper {
     public  void saveToLocalDatabase(int dni, int idrepartidor, String usuario, String password, int sync_status, SQLiteDatabase database){
         ContentValues contentValues = new ContentValues();
         contentValues.put(DbContract.DNI, dni);
-        contentValues.put(DbContract.IDREPARTIDOR, idrepartidor);
+        contentValues.put(DbContract.ID, idrepartidor);
         contentValues.put(DbContract.USUARIO, usuario);
         contentValues.put(DbContract.PASSWORD, password);
         contentValues.put(DbContract.SYNC_STATUS, sync_status);
-        database.insert(DbContract.TABLE_NAME,null,contentValues);
+        database.insert(DbContract.TABLE_NAME_USUARIO,null,contentValues);
 
     }
 
     public Cursor readFromLocalDatabase (SQLiteDatabase database){
-        String[] projection = {DbContract.DNI, DbContract.IDREPARTIDOR, DbContract.USUARIO, DbContract.PASSWORD, DbContract.SYNC_STATUS};
+        String[] projection = {DbContract.DNI, DbContract.ID, DbContract.USUARIO, DbContract.PASSWORD, DbContract.SYNC_STATUS};
 
-        return (database.query(DbContract.TABLE_NAME,projection, null,null, null,null,null));
+        return (database.query(DbContract.TABLE_NAME_USUARIO,projection, null,null, null,null,null));
     }
 
     public void updateLocalDatabase(int dni, int idrepartidor, String usuario, String password, int sync_status, SQLiteDatabase database){
@@ -54,13 +54,13 @@ public class DbHelper extends SQLiteOpenHelper {
 
         String selection = DbContract.DNI+" = ";
         String[] selection_args = {Integer.toString(dni)};
-        database.update(DbContract.TABLE_NAME,contentValues,selection,selection_args);
+        database.update(DbContract.TABLE_NAME_USUARIO,contentValues,selection,selection_args);
 
     }
 
 
     public boolean checkForTableExists(SQLiteDatabase db, String table){
-        String sql = "SELECT * FROM repartidor";
+        String sql = "SELECT * FROM "+table;
         Cursor mCursor = db.rawQuery(sql, null);
         if (mCursor.getCount() > 0) {
             return true;

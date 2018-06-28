@@ -63,9 +63,9 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
 
         if (dbHelper.checkForTableExists(database, "repartidor")){
         Log.d("BDrepartidor", "existen datos de repartidor");
-        Intent myIntent = new Intent(this,LoginActivity.class);
 
-        CheckAppStatus.this.startActivity(myIntent);
+
+
 
         showProgress(true);
         String usuario=null;
@@ -153,7 +153,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
         SQLiteDatabase database = dbHelper.getReadableDatabase();
         Cursor cursor = dbHelper.readFromLocalDatabase(database);
 
-        if (dbHelper.checkForTableExists(database, "repartidor")){
+        if (dbHelper.checkForTableExists(database, "usuario")){
             Log.d("BDrepartidor", "existen datos de repartidor");
 
 
@@ -454,7 +454,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
                     Log.d("onResponse", "ingresa a onResponse");
                     //final VolleyCallback callback = new LoginExitoso();
                     // UserLoginTask obj = new UserLoginTask();
-
+                    mAuthTask = null;
                     showProgress(false);
 
                     try {
@@ -491,7 +491,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
                                 SQLiteDatabase database = dbHelper.getWritableDatabase();
 
                                 dbHelper.saveToLocalDatabase(Integer.parseInt(dni), Integer.parseInt(id),mEmail,mPassword, DbContract.SYNC_STATUS_OK, database);
-                                mAuthTask = null;
+
 
                                 // prueba para saber si guarda los datos del repartidor en la BD
 
@@ -507,7 +507,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
                                      usuariobd = cursor.getString(cursor.getColumnIndex(DbContract.USUARIO));
                                      passwordbd = cursor.getString(cursor.getColumnIndex(DbContract.PASSWORD));
                                      dnibd = cursor.getString(cursor.getColumnIndex(DbContract.DNI));
-                                     idbd = cursor.getString(cursor.getColumnIndex(DbContract.IDREPARTIDOR));
+                                     idbd = cursor.getString(cursor.getColumnIndex(DbContract.ID));
 
 
 
