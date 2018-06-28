@@ -1,6 +1,8 @@
 package com.example.jumpi.repartidores_aplication;
 
 import android.content.Intent;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -135,7 +137,21 @@ public class MainActivity extends AppCompatActivity {
 
         if (id == R.id.id_cerrar_sesión) {
 
-            Toast.makeText(this, "Ha pulsado en menu -> Cerrar sesión <-",Toast.LENGTH_SHORT).show();
+            //Toast.makeText(this, "Ha pulsado en menu -> Cerrar sesión <-",Toast.LENGTH_SHORT).show();
+
+            DbHelper dbHelper = new DbHelper(getApplicationContext());
+            SQLiteDatabase database = dbHelper.getReadableDatabase();
+
+            dbHelper.onUpgrade(database,1,1);
+
+
+            Intent i = getBaseContext().getPackageManager()
+                    .getLaunchIntentForPackage( getBaseContext().getPackageName() );
+            i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+            finish();
+            startActivity(i);
+
+
 
             return true;
         }
