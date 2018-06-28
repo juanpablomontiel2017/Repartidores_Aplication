@@ -49,6 +49,13 @@ import static android.Manifest.permission.READ_CONTACTS;
  */
 public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<Cursor> {
 
+
+
+
+
+
+
+
     /**
      * Id to identity READ_CONTACTS permission request.
      */
@@ -73,42 +80,66 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
     private View mProgressView;
     private View mLoginFormView;
 
+
+
+
+
+
+
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
         /**
          * COMPRUEBA SI YA TIENE LOS DATOS DEL REPARTIDOR PARA LOGUEARSE AUTOMÁTICAMENTE
          *
-         * DbHelper dbHelper = new DbHelper(getApplicationContext());
-         SQLiteDatabase database = dbHelper.getReadableDatabase();
+         *
+         * */
+        DbHelper dbHelper = new DbHelper(getApplicationContext());
+        SQLiteDatabase database = dbHelper.getReadableDatabase();
 
-         Cursor cursor = dbHelper.readFromLocalDatabase(database);
+        Cursor cursor = dbHelper.readFromLocalDatabase(database);
 
-         if (dbHelper.checkForTableExists(database, "repartidor")){
+        if (dbHelper.checkForTableExists(database, "repartidor")){
             Log.d("BDrepartidor", "existen datos de repartidor");
-            showProgress(true);
-            String usuario;
-            String password
+            Intent myIntent = new Intent(LoginActivity.this,MainActivity.class);
 
-            while (cursor.moveToNext())
-            {
-                usuario = cursor.getString(cursor.getColumnIndex(DbContract.USUARIO));
-                password = cursor.getString(cursor.getColumnIndex(DbContract.PASSWORD));
+            LoginActivity.this.startActivity(myIntent);
+            /**
+             showProgress(true);
+             String usuario=null;
+             String password=null;
 
-
-            }
-            dbHelper.close();
-            mAuthTask = new UserLoginTask(usuario, password);
-            Log.d("DBrepartidor", "se encuentra el repartidor en la BD");
-            mAuthTask.doInBackground();
+             while (cursor.moveToNext())
+             {
+             usuario = cursor.getString(cursor.getColumnIndex(DbContract.USUARIO));
+             password = cursor.getString(cursor.getColumnIndex(DbContract.PASSWORD));
 
 
-         }
-         */
+             }
+             dbHelper.close();
+             mAuthTask = new UserLoginTask(usuario, password);
+             Log.d("DBrepartidor", "se encuentra el repartidor en la BD");
+             mAuthTask.doInBackground();
+             StringBuilder sb = new StringBuilder();
+             sb.append(usuario);
+             sb.append(password);
+             //sb.append(dnibd);
+             //sb.append(idbd);
+             String resultado = sb.toString();
+
+             Log.d("RepartidorGuardado", resultado);
+
+             */
+
+        }
+
 
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+
         // Set up the login form.
         mEmailView = (AutoCompleteTextView) findViewById(R.id.email);
         populateAutoComplete();
@@ -187,6 +218,9 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
      * errors are presented and no actual login attempt is made.
      */
     private void attemptLogin() {
+        Log.d("attemptLogin", "ingresa a attemptLogin ");
+
+
         if (mAuthTask != null) {
             return;
         }
@@ -452,6 +486,8 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
                                     Log.d("exito", "response true/exitoso. Ingresa a Main Supervisor");
 
                                     // Crear el intent y pasar a una activity supervisor
+
+
 
                                 }
                             }
