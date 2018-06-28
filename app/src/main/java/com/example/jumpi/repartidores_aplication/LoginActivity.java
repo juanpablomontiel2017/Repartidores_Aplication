@@ -348,7 +348,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
         private  String id = null;
         private  String dni = null;
         private  String msj = null;
-
+      //  private  String usuariobd = null;
 
 
         UserLoginTask(String email, String password) {
@@ -392,11 +392,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
                             dni = jsonResponse.getString("dni");
                             msj = jsonResponse.getString("msj");
 
-                            DbHelper dbHelper = new DbHelper(getApplicationContext());
-                            SQLiteDatabase database = dbHelper.getWritableDatabase();
 
-                            dbHelper.saveToLocalDatabase(Integer.parseInt(dni), Integer.parseInt(id),mEmail,mPassword, DbContract.SYNC_STATUS_OK, database);
-                            mAuthTask = null;
 
 
 
@@ -404,11 +400,48 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
                             // ingresas a otra activity de la app. Logueo exitoso
 
                             finish();
+                            String usuariobd = null;
+                            String passwordbd = null;
+                            String dnibd = null;
+                            String idbd = null;
 
                             if (TextUtils.equals(msj, "repartidor")){
                                 Log.d("exito", "response true/exitoso. Ingresa a Main Repartidor");
 
+                                DbHelper dbHelper = new DbHelper(getApplicationContext());
+                                SQLiteDatabase database = dbHelper.getWritableDatabase();
 
+                                dbHelper.saveToLocalDatabase(Integer.parseInt(dni), Integer.parseInt(id),mEmail,mPassword, DbContract.SYNC_STATUS_OK, database);
+                                mAuthTask = null;
+
+                                // prueba para saber si guarda los datos del repartidor en la BD
+
+
+                                DbHelper dbHelperRead = new DbHelper(getApplicationContext());
+                                SQLiteDatabase databaseRead = dbHelperRead.getReadableDatabase();
+                                Cursor cursor = dbHelperRead.readFromLocalDatabase(databaseRead);
+
+
+
+                                while (cursor.moveToNext())
+                                {
+                                     usuariobd = cursor.getString(cursor.getColumnIndex(DbContract.USUARIO));
+                                     passwordbd = cursor.getString(cursor.getColumnIndex(DbContract.PASSWORD));
+                                     dnibd = cursor.getString(cursor.getColumnIndex(DbContract.DNI));
+                                     idbd = cursor.getString(cursor.getColumnIndex(DbContract.IDREPARTIDOR));
+
+
+
+                                }
+
+                                StringBuilder sb = new StringBuilder();
+                                sb.append(usuariobd);
+                                sb.append(passwordbd);
+                                sb.append(dnibd);
+                                sb.append(idbd);
+                                String resultado = sb.toString();
+
+                                Log.d("BdRepartidor", resultado);
 
                                 Intent myIntent = new Intent(LoginActivity.this,MainActivity.class);
                                 myIntent.putExtra("id", id);
