@@ -107,6 +107,8 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
      */
     private static final int REQUEST_READ_CONTACTS = 0;
 
+    ArrayList<Usuario> ListaUsuario = new ArrayList<>();
+
     /**
      * A dummy authentication store containing known user names and passwords.
      * TODO: remove after connecting to a real authentication system.
@@ -574,13 +576,14 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
                                 Cursor cursor = dbHelperRead.readFromLocalDatabase(databaseRead);
 
 
-
+                                ListaUsuario = null;
                                 while (cursor.moveToNext())
                                 {
                                      usuariobd = cursor.getString(cursor.getColumnIndex(DbContract.USUARIO));
                                      passwordbd = cursor.getString(cursor.getColumnIndex(DbContract.PASSWORD));
                                      dnibd = cursor.getString(cursor.getColumnIndex(DbContract.DNI));
                                      idbd = cursor.getString(cursor.getColumnIndex(DbContract.ID));
+                                     ListaUsuario.add(new Usuario(Integer.parseInt(idbd), Integer.parseInt(dnibd), usuariobd, passwordbd));
 
 
 
@@ -595,6 +598,26 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
 
                                 Log.d("TFSB", "Datos del usuario logeado "+resultado);
 
+
+/*
+                                usuariobd = null;
+                                passwordbd = null;
+                                dnibd = null;
+                                idbd = null;
+
+                                Log.d("TFSB", "Datos del usuario logeado en Lista ");
+
+                                for( int i = 0 ; i < ListaUsuario.size() ; i++ ){
+
+                                    usuariobd = ListaUsuario.get(i).getUsuario();
+                                    passwordbd = ListaUsuario.get(i).getPassword();
+                                    dnibd = Integer.parseInt(ListaUsuario.get(i).get);
+                                    idbd = null;
+
+                                    Log.d("TFSB", "Datos del usuario logeado en Lista ");
+
+                                }
+*/
                                 Intent myIntent = new Intent(LoginActivity.this,MainActivity.class);
                                 myIntent.putExtra("id", id);
                                 myIntent.putExtra("dni", dni);
@@ -935,7 +958,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
                                 //Cursor cursor = dbHelper.readFromLocalDatabase(databaseRead);
 
 
-                              //  Cursor cursor = dbHelper.readFromLocalDatabase(databaseRead);
+                              //k  Cursor cursor = dbHelper.readFromLocalDatabase(databaseRead);
                                 while (cursor.moveToFirst())
                                 {
                                     usuariobd = cursor.getString(cursor.getColumnIndex(DbContract.USUARIO));

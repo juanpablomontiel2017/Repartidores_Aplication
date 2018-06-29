@@ -14,4 +14,19 @@ public class DbContract {
     public static final String SYNC_STATUS = "syncstatus";
 
 
+    /**
+     *   TABLA ZONA DE REPARTO
+     */
+
+
+    public static final String TABLE_NAME_ZONA_REPARTO= "zonareparto";
+    public static final String DIRECCION = "direccion";
+    public static final String BARRIO = "barrio";
+    public static final String REFERENCIA = "referencia";
+    public static final String TELEFONO = "telefono";
+    public static final String CORREO = "correo";
+    public static final String FOTO = "foto";
+    public static final String NOMBRE = "nombre";
+
+
 }
