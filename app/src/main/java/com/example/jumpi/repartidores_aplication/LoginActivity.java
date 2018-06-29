@@ -62,7 +62,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
     Cursor cursor = dbHelper.readFromLocalDatabase(database);
 
         if (dbHelper.checkForTableExists(database, "repartidor")){
-        Log.d("BDrepartidor", "existen datos de repartidor");
+        Log.d("TFSB", "existen datos de repartidor");
 
 
 
@@ -80,7 +80,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
         }
         dbHelper.close();
         mAuthTask = new LoginActivity.UserLoginTask(usuario, password);
-        Log.d("DBrepartidor", "se encuentra el repartidor en la BD");
+        Log.d("TFSB", "se encuentra el repartidor en la BD");
         mAuthTask.doInBackground();
         StringBuilder sb = new StringBuilder();
         sb.append(usuario);
@@ -89,7 +89,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
         //sb.append(idbd);
         String resultado = sb.toString();
 
-        Log.d("RepartidorGuardado", resultado);
+        Log.d("TFSB", resultado);
 
 
 
@@ -132,6 +132,10 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
+        Log.d("TFSB", "***************************");
+        Log.d("TFSB", "                           ");
+        Log.d("TFSB", "    BIENVENIDO A LOGCAT    ");
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
@@ -147,7 +151,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
         Cursor cursor = dbHelper.readFromLocalDatabase(database);
 
         if (dbHelper.checkForTableExists(database, "usuario")){
-            Log.d("BDrepartidor", "existen datos de repartidor");
+            Log.d("TFSB", "existen datos de usuario");
 
 
             //showProgress(true);
@@ -164,7 +168,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
 
             dbHelper.close();
 
-            Log.d("DBrepartidor", "se encuentra el repartidor en la BD");
+            Log.d("TFSB", "se encuentra el usuario en la BD");
 
 
             mEmailView.setText(usuario);
@@ -176,9 +180,9 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
             //sb.append(idbd);
             String resultado = sb.toString();
 
-            Log.d("RepartidorGuardado", resultado);
+            Log.d("TFSB", "Existe un usuario: "+resultado+ " se autocompletaran los datos");
 
-            boolean flag = true;
+
 
         }
 
@@ -200,13 +204,17 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
         mEmailSignInButton.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View view) {
+                Log.d("TFSB", "***************************");
+                Log.d("TFSB", "                           ");
+                Log.d("TFSB", "onClick/ ingresa a onClick");
+
 
                 DbHelper dbHelper = new DbHelper(getApplicationContext());
                 SQLiteDatabase database = dbHelper.getReadableDatabase();
                 Cursor cursor = dbHelper.readFromLocalDatabase(database);
 
                 if (dbHelper.checkForTableExists(database, "usuario")){
-                    Log.d("onClick", "ingresa a onClick");
+                    Log.d("TFSB", "Se comprueba nuevamente que el usuario existe");
 
 
                     //showProgress(true);
@@ -223,10 +231,11 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
 
                     dbHelper.close();
                     showProgress(true);
-                    Log.d("onClick", "obtiene los datos del usuario");
+                    Log.d("TFSB", "onClick/ obtiene los datos del usuario");
 
                     if (TextUtils.equals(usuario,mEmailView.getText().toString()) && TextUtils.equals(password,mPasswordView.getText().toString()) ){
 
+                        Log.d("TFSB", "onClick/ el usuario y password a enviar se encuentra registrado");
                         mAuthDb = new DbUserLogin(usuario, password);
                         mAuthDb.execute();
 
@@ -237,9 +246,9 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
                         //sb.append(idbd);
                         String resultado = sb.toString();
 
-                        Log.d("onClickTermino", "es usuario registrado en bd");
+
                     }else{
-                        Log.d("onClickTermino", "existe un usuario registrado pero se loguea con otra cuenta");
+                        Log.d("TFSB", "onClick/ existe un usuario registrado pero se loguea con otra cuenta");
 
 
 
@@ -248,7 +257,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
                          * NO SOLO DEBE LOGUEAR SI NO TAMBIÉN  BORRAR LAS TABLAS PERTENECIENTES A LA CUENTA VIEJA
                          */
 
-                        mAuthDb = new DbUserLogin(usuario, password);
+                        mAuthDb = new DbUserLogin(mEmailView.getText().toString(), mPasswordView.getText().toString());
                         mAuthDb.newUserlogin();
 
                     }
@@ -317,7 +326,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
      * errors are presented and no actual login attempt is made.
      */
     private void attemptLogin() {
-        Log.d("attemptLogin", "ingresa a attemptLogin ");
+        Log.d("TFSB", "ingresa a attemptLogin ");
 
 
         if (mAuthTask != null) {
@@ -375,7 +384,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
             mAuthTask = new UserLoginTask(email, password);
             //mAuthTask.execute((Void) null);
             mAuthTask.doInBackground();
-            Log.d("Validación", "se verifica la validación y pasa a loguearse con el servidor");
+
 
         }
     }
@@ -497,14 +506,14 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
         UserLoginTask(String email, String password) {
             mEmail = email;
             mPassword = password;
-            Log.d("userLoginTask", "se crea el objeto userlogin, email y password");
+            Log.d("TFSB", "se crea el objeto userlogin, email y password");
 
         }
 
 
         private void doInBackground() {
             // TODO: attempt authentication against a network service.
-            Log.d("background", "ingresa a doInBackground ");
+            Log.d("TFSB", "ingresa a doInBackground ");
 
 
 
@@ -514,8 +523,8 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
 
                 @Override
                 public void onResponse(String response) {
-                    Log.d("RESPONSE", String.valueOf(response));
-                    Log.d("onResponse", "ingresa a onResponse");
+                    Log.d("TFSB", String.valueOf(response));
+                    Log.d("TFSB", "ingresa a onResponse");
                     //final VolleyCallback callback = new LoginExitoso();
                     // UserLoginTask obj = new UserLoginTask();
                     mAuthTask = null;
@@ -526,7 +535,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
                         boolean success = jsonResponse.getBoolean("exito");
 
 
-                        Log.d("RESPONSE", String.valueOf(response));
+                        Log.d("TFSB", String.valueOf(response));
 
 
 
@@ -549,7 +558,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
                             String idbd = null;
 
                             if (TextUtils.equals(msj, "repartidor")){
-                                Log.d("exito", "response true/exitoso. Ingresa a Main Repartidor");
+                                Log.d("TFSB", "response true. Ingresa a Main Repartidor");
 
                                 DbHelper dbHelper = new DbHelper(getApplicationContext());
                                 SQLiteDatabase database = dbHelper.getWritableDatabase();
@@ -584,7 +593,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
                                 sb.append(idbd);
                                 String resultado = sb.toString();
 
-                                Log.d("BdRepartidor", resultado);
+                                Log.d("TFSB", "Datos del usuario logeado "+resultado);
 
                                 Intent myIntent = new Intent(LoginActivity.this,MainActivity.class);
                                 myIntent.putExtra("id", id);
@@ -592,7 +601,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
                                 LoginActivity.this.startActivity(myIntent);
                             } else {
                                 if (TextUtils.equals(msj, "supervisor")){
-                                    Log.d("exito", "response true/exitoso. Ingresa a Main Supervisor");
+                                    Log.d("TFSB", "response true. Ingresa a Main Supervisor");
 
                                     // Crear el intent y pasar a una activity supervisor
 
@@ -611,16 +620,16 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
                             // callback.onError();
                             //obj.registerEventListener(callback);
 
-                            Log.d("exito", "response FALSE");
+                            Log.d("TFSB", "response FALSE");
                             // mPasswordView.setError(getString(R.string.error_incorrect_password));
                             mPasswordView.setError("La contraseña o el usuario no son válidos. Vuelva a intentar");
                             mPasswordView.requestFocus();
-                            Log.d("incorrect", "incorrect password ");
+                            Log.d("TFSB", "incorrect password ");
                         }
 
                     } catch (JSONException e) {
                         e.printStackTrace();
-                        Log.d("JSON", "Error en login/response. Excepción json");
+                        Log.d("TFSB", "Error en login/response. Excepción json");
 
                     }
 
@@ -642,7 +651,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
             LoginRequest loginRequest = new LoginRequest(mEmail, mPassword, responseListener);
             RequestQueue queue = Volley.newRequestQueue(LoginActivity.this);
             queue.add(loginRequest);
-            Log.d("request", "Se crea la solicitud al servidor");
+            Log.d("TFSB", "Se crea la solicitud al servidor. Usuario: "+mEmail+" Pass: "+mPassword);
 
 
 
@@ -662,14 +671,14 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
         DbUserLogin(String usuario, String password) {
             mEmail = usuario;
             mPassword = password;
-            Log.d("DbUserLogin", "se crea el objeto userlogin, email y password");
+            Log.d("TFSB", "se crea el objeto userlogin, email y password");
 
         }
 
 
         private void execute() {
             // TODO: attempt authentication against a network service.
-            Log.d("execute", "ingresa a execute ");
+            Log.d("TFSB", "Execute/ ingresa a execute ");
 
 
 
@@ -679,8 +688,8 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
 
                 @Override
                 public void onResponse(String response) {
-                    Log.d("RESPONSE", String.valueOf(response));
-                    Log.d("onResponse", "ingresa a onResponse");
+                    Log.d("TFSB", "Execute/ "+String.valueOf(response));
+                    Log.d("TFSB", "Execute/ ingresa a onResponse");
                     //final VolleyCallback callback = new LoginExitoso();
                     // UserLoginTask obj = new UserLoginTask();
                     mAuthDb = null;
@@ -691,7 +700,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
                         boolean success = jsonResponse.getBoolean("exito");
 
 
-                        Log.d("RESPONSE", String.valueOf(response));
+
 
 
 
@@ -714,7 +723,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
                             String idbd = null;
 
                             if (TextUtils.equals(msj, "repartidor")){
-                                Log.d("exito", "response true/exitoso. Ingresa a Main Repartidor");
+                                Log.d("TFSB", "Execute/ response true. Ingresa a Main Repartidor");
 
                                 //DbHelper dbHelper = new DbHelper(getApplicationContext());
                                 //SQLiteDatabase database = dbHelper.getWritableDatabase();
@@ -749,7 +758,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
                                 sb.append(idbd);
                                 String resultado = sb.toString();
 
-                                Log.d("BdRepartidor", resultado);
+                                Log.d("TFSB","Execute/ resultado en la BD " + resultado);
 
                                 Intent myIntent = new Intent(LoginActivity.this,MainActivity.class);
                                 myIntent.putExtra("id", id);
@@ -757,7 +766,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
                                 LoginActivity.this.startActivity(myIntent);
                             } else {
                                 if (TextUtils.equals(msj, "supervisor")){
-                                    Log.d("exito", "response true/exitoso. Ingresa a Main Supervisor");
+                                    Log.d("TFSB", "Execute/ response true/exitoso. Ingresa a Main Supervisor");
 
                                     // Crear el intent y pasar a una activity supervisor
 
@@ -776,16 +785,16 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
                             // callback.onError();
                             //obj.registerEventListener(callback);
 
-                            Log.d("exito", "response FALSE");
+                            Log.d("TFSB", "Execute/ response FALSE");
                             // mPasswordView.setError(getString(R.string.error_incorrect_password));
                             mPasswordView.setError("La contraseña o el usuario no son válidos. Vuelva a intentar");
                             mPasswordView.requestFocus();
-                            Log.d("incorrect", "incorrect password ");
+                            Log.d("TFSB", "Execute/ incorrect password ");
                         }
 
                     } catch (JSONException e) {
                         e.printStackTrace();
-                        Log.d("JSON", "Error en login/response. Excepción json");
+                        Log.d("TFSB", "Execute/ Error en login/response. Excepción json");
 
                     }
 
@@ -798,7 +807,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
             LoginRequest loginRequest = new LoginRequest(mEmail, mPassword, responseListener);
             RequestQueue queue = Volley.newRequestQueue(LoginActivity.this);
             queue.add(loginRequest);
-            Log.d("request", "Se crea la solicitud al servidor");
+            Log.d("TFSB", "Se crea la solicitud al servidor. Usuario: "+mEmail+" Pass: "+mPassword);
 
 
 
@@ -807,7 +816,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
         private void newUserlogin(){
 
             // TODO: attempt authentication against a network service.
-            Log.d("newUserlogin", "ingresa a newUserlogin. Se loguea un nuevo usuario ");
+            Log.d("TFSB", "DbUserLogin/ ingresa a newUserlogin. Se loguea un nuevo usuario ");
 
 
 
@@ -817,8 +826,8 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
 
                 @Override
                 public void onResponse(String response) {
-                    Log.d("RESPONSE", String.valueOf(response));
-                    Log.d("onResponse", "ingresa a onResponse");
+                    Log.d("TFSB", String.valueOf(response));
+                    Log.d("TFSB", "DbUserLogin/onResponse ingresa a onResponse");
 
                     mAuthDb = null;
                     showProgress(false);
@@ -828,34 +837,54 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
                         boolean success = jsonResponse.getBoolean("exito");
 
 
-                        Log.d("RESPONSE", String.valueOf(response));
-
-
-
                         if (success) {
                             id = jsonResponse.getString("id");
                             dni = jsonResponse.getString("dni");
                             msj = jsonResponse.getString("msj");
 
-                            DbHelper dbHelperRead = new DbHelper(getApplicationContext());
-                            SQLiteDatabase databaseRead = dbHelperRead.getReadableDatabase();
+                            DbHelper dbHelper = new DbHelper(getApplicationContext());
+                            SQLiteDatabase databaseRead = dbHelper.getReadableDatabase();
 
-                            dbHelperRead.onUpgrade(databaseRead,1,1);
+                            dbHelper.onUpgrade(databaseRead,1,1);
+
+                            Cursor cursor = dbHelper.readFromLocalDatabase(databaseRead);
+                            String usuariobd = null;
+                            String passwordbd = null;
+                            String dnibd = null;
+                            String idbd = null;
 
 
+                            while (cursor.moveToNext())
+                            {
+                                usuariobd = cursor.getString(cursor.getColumnIndex(DbContract.USUARIO));
+                                passwordbd = cursor.getString(cursor.getColumnIndex(DbContract.PASSWORD));
+                                dnibd = cursor.getString(cursor.getColumnIndex(DbContract.DNI));
+                                idbd = cursor.getString(cursor.getColumnIndex(DbContract.ID));
+
+
+
+                            }
+                           // cursor.close();
+
+
+                            StringBuilder sb = new StringBuilder();
+                            sb.append(usuariobd);
+                            sb.append(passwordbd);
+                            sb.append(dnibd);
+                            sb.append(idbd);
+                            String ResultadoViejoUsuario = sb.toString();
+
+                            Log.d("TFSB", "DbUserLogin/onResponse Datos del viejo usuario: "+ResultadoViejoUsuario);
 
 
 
                             // ingresas a otra activity de la app. Logueo exitoso
 
                             finish();
-                            String usuariobd = null;
-                            String passwordbd = null;
-                            String dnibd = null;
-                            String idbd = null;
+
 
                             if (TextUtils.equals(msj, "repartidor")){
-                                Log.d("exito", "response true/exitoso. Ingresa a Main Repartidor");
+                                Log.d("TFSB", "DbUserLogin/onResponse/ response true. Ingresa a Main Repartidor");
 
                                 //DbHelper dbHelper = new DbHelper(getApplicationContext());
                                 //SQLiteDatabase database = dbHelper.getWritableDatabase();
@@ -890,24 +919,24 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
                                 sb.append(idbd);
                                 String resultado = sb.toString();
 
-                                Log.d("BdRepartidor", resultado);
+                                Log.d("TFSB", resultado);
 */
-                                DbHelper dbHelper = new DbHelper(getApplicationContext());
+
                                 SQLiteDatabase database = dbHelper.getWritableDatabase();
 
                                 dbHelper.saveToLocalDatabase(Integer.parseInt(dni), Integer.parseInt(id),mEmail,mPassword, DbContract.SYNC_STATUS_OK, database);
-                                dbHelper.close();
+
 
                                 // prueba para saber si guarda los datos del repartidor en la BD
 
 
                               //  DbHelper dbHelperRead = new DbHelper(getApplicationContext());
                                 //SQLiteDatabase databaseRead = dbHelperRead.getReadableDatabase();
-                                Cursor cursor = dbHelperRead.readFromLocalDatabase(databaseRead);
+                                //Cursor cursor = dbHelper.readFromLocalDatabase(databaseRead);
 
 
-
-                                while (cursor.moveToNext())
+                              //  Cursor cursor = dbHelper.readFromLocalDatabase(databaseRead);
+                                while (cursor.moveToFirst())
                                 {
                                     usuariobd = cursor.getString(cursor.getColumnIndex(DbContract.USUARIO));
                                     passwordbd = cursor.getString(cursor.getColumnIndex(DbContract.PASSWORD));
@@ -918,15 +947,15 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
 
                                 }
 
-                                StringBuilder sb = new StringBuilder();
-                                sb.append(usuariobd);
-                                sb.append(passwordbd);
-                                sb.append(dnibd);
-                                sb.append(idbd);
-                                String resultado = sb.toString();
+                                StringBuilder concat = new StringBuilder();
+                                concat.append(usuariobd);
+                                concat.append(passwordbd);
+                                concat.append(dnibd);
+                                concat.append(idbd);
+                                String ResultadoNuevoUsuario = concat.toString();
 
-                                Log.d("BdRepartidor", resultado);
-                                dbHelperRead.close();
+                                Log.d("TFSB", "DbUserLogin/onResponse/ Datos del nuevo usuario :"+ResultadoNuevoUsuario);
+                                dbHelper.close();
 
                                 Intent myIntent = new Intent(LoginActivity.this,MainActivity.class);
                                 myIntent.putExtra("id", id);
@@ -934,7 +963,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
                                 LoginActivity.this.startActivity(myIntent);
                             } else {
                                 if (TextUtils.equals(msj, "supervisor")){
-                                    Log.d("exito", "response true/exitoso. Ingresa a Main Supervisor");
+                                    Log.d("TFSB", "DbUserLogin/onResponse/ response true. Ingresa a Main Supervisor");
 
                                     // Crear el intent y pasar a una activity supervisor
 
@@ -953,16 +982,16 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
                             // callback.onError();
                             //obj.registerEventListener(callback);
 
-                            Log.d("exito", "response FALSE");
+                            Log.d("TFSB", "DbUserLogin/onResponse/ response FALSE");
                             // mPasswordView.setError(getString(R.string.error_incorrect_password));
                             mPasswordView.setError("La contraseña o el usuario no son válidos. Vuelva a intentar");
                             mPasswordView.requestFocus();
-                            Log.d("incorrect", "incorrect password ");
+                            Log.d("TFSB", "DbUserLogin/onResponse/ incorrect password ");
                         }
 
                     } catch (JSONException e) {
                         e.printStackTrace();
-                        Log.d("JSON", "Error en login/response. Excepción json");
+                        Log.d("TFSB", "DbUserLogin/onResponse/ Error en login/response. Excepción json");
 
                     }
 
@@ -975,7 +1004,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
             LoginRequest loginRequest = new LoginRequest(mEmail, mPassword, responseListener);
             RequestQueue queue = Volley.newRequestQueue(LoginActivity.this);
             queue.add(loginRequest);
-            Log.d("request", "Se crea la solicitud al servidor");
+            Log.d("TFSB", "DbUserLogin/ Se crea la solicitud al servidor. Usuario: "+mEmail+" pass: "+mPassword);
 
         }
 
