@@ -240,13 +240,17 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
                         Log.d("onClickTermino", "es usuario registrado en bd");
                     }else{
                         Log.d("onClickTermino", "existe un usuario registrado pero se loguea con otra cuenta");
-                        attemptLogin();
+
 
 
                         /**
                          * EN ESTA PARTE SE DEBE INVOCAR UN MÉTODO DIFERENTE DE ATTEMPTLOGIN
                          * NO SOLO DEBE LOGUEAR SI NO TAMBIÉN  BORRAR LAS TABLAS PERTENECIENTES A LA CUENTA VIEJA
                          */
+
+                        mAuthDb = new DbUserLogin(usuario, password);
+                        mAuthDb.newUserlogin();
+
                     }
 
 
@@ -799,7 +803,185 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
 
 
         }
+
+        private void newUserlogin(){
+
+            // TODO: attempt authentication against a network service.
+            Log.d("newUserlogin", "ingresa a newUserlogin. Se loguea un nuevo usuario ");
+
+
+
+            Response.Listener<String> responseListener = new Response.Listener<String>() {
+                // Se realiza una acción cuando se recibe el response
+
+
+                @Override
+                public void onResponse(String response) {
+                    Log.d("RESPONSE", String.valueOf(response));
+                    Log.d("onResponse", "ingresa a onResponse");
+
+                    mAuthDb = null;
+                    showProgress(false);
+
+                    try {
+                        JSONObject jsonResponse = new JSONObject(String.valueOf(response));
+                        boolean success = jsonResponse.getBoolean("exito");
+
+
+                        Log.d("RESPONSE", String.valueOf(response));
+
+
+
+                        if (success) {
+                            id = jsonResponse.getString("id");
+                            dni = jsonResponse.getString("dni");
+                            msj = jsonResponse.getString("msj");
+
+                            DbHelper dbHelperRead = new DbHelper(getApplicationContext());
+                            SQLiteDatabase databaseRead = dbHelperRead.getReadableDatabase();
+
+                            dbHelperRead.onUpgrade(databaseRead,1,1);
+
+
+
+
+
+                            // ingresas a otra activity de la app. Logueo exitoso
+
+                            finish();
+                            String usuariobd = null;
+                            String passwordbd = null;
+                            String dnibd = null;
+                            String idbd = null;
+
+                            if (TextUtils.equals(msj, "repartidor")){
+                                Log.d("exito", "response true/exitoso. Ingresa a Main Repartidor");
+
+                                //DbHelper dbHelper = new DbHelper(getApplicationContext());
+                                //SQLiteDatabase database = dbHelper.getWritableDatabase();
+
+                                //  dbHelper.saveToLocalDatabase(Integer.parseInt(dni), Integer.parseInt(id),mEmail,mPassword, DbContract.SYNC_STATUS_OK, database);
+
+
+                                // prueba para saber si guarda los datos del repartidor en la BD
+
+/**
+                                DbHelper dbHelperRead = new DbHelper(getApplicationContext());
+                                SQLiteDatabase databaseRead = dbHelperRead.getReadableDatabase();
+                                Cursor cursor = dbHelperRead.readFromLocalDatabase(databaseRead);
+
+
+
+                                while (cursor.moveToNext())
+                                {
+                                    usuariobd = cursor.getString(cursor.getColumnIndex(DbContract.USUARIO));
+                                    passwordbd = cursor.getString(cursor.getColumnIndex(DbContract.PASSWORD));
+                                    dnibd = cursor.getString(cursor.getColumnIndex(DbContract.DNI));
+                                    idbd = cursor.getString(cursor.getColumnIndex(DbContract.ID));
+
+
+
+                                }
+                                dbHelperRead.close();
+                                StringBuilder sb = new StringBuilder();
+                                sb.append(usuariobd);
+                                sb.append(passwordbd);
+                                sb.append(dnibd);
+                                sb.append(idbd);
+                                String resultado = sb.toString();
+
+                                Log.d("BdRepartidor", resultado);
+*/
+                                DbHelper dbHelper = new DbHelper(getApplicationContext());
+                                SQLiteDatabase database = dbHelper.getWritableDatabase();
+
+                                dbHelper.saveToLocalDatabase(Integer.parseInt(dni), Integer.parseInt(id),mEmail,mPassword, DbContract.SYNC_STATUS_OK, database);
+                                dbHelper.close();
+
+                                // prueba para saber si guarda los datos del repartidor en la BD
+
+
+                              //  DbHelper dbHelperRead = new DbHelper(getApplicationContext());
+                                //SQLiteDatabase databaseRead = dbHelperRead.getReadableDatabase();
+                                Cursor cursor = dbHelperRead.readFromLocalDatabase(databaseRead);
+
+
+
+                                while (cursor.moveToNext())
+                                {
+                                    usuariobd = cursor.getString(cursor.getColumnIndex(DbContract.USUARIO));
+                                    passwordbd = cursor.getString(cursor.getColumnIndex(DbContract.PASSWORD));
+                                    dnibd = cursor.getString(cursor.getColumnIndex(DbContract.DNI));
+                                    idbd = cursor.getString(cursor.getColumnIndex(DbContract.ID));
+
+
+
+                                }
+
+                                StringBuilder sb = new StringBuilder();
+                                sb.append(usuariobd);
+                                sb.append(passwordbd);
+                                sb.append(dnibd);
+                                sb.append(idbd);
+                                String resultado = sb.toString();
+
+                                Log.d("BdRepartidor", resultado);
+                                dbHelperRead.close();
+
+                                Intent myIntent = new Intent(LoginActivity.this,MainActivity.class);
+                                myIntent.putExtra("id", id);
+                                myIntent.putExtra("dni", dni);
+                                LoginActivity.this.startActivity(myIntent);
+                            } else {
+                                if (TextUtils.equals(msj, "supervisor")){
+                                    Log.d("exito", "response true/exitoso. Ingresa a Main Supervisor");
+
+                                    // Crear el intent y pasar a una activity supervisor
+
+
+
+                                }
+                            }
+
+
+
+                            // callback.onSuccess();
+
+                            // obj.registerEventListener(callback);
+
+                        } else {
+                            // callback.onError();
+                            //obj.registerEventListener(callback);
+
+                            Log.d("exito", "response FALSE");
+                            // mPasswordView.setError(getString(R.string.error_incorrect_password));
+                            mPasswordView.setError("La contraseña o el usuario no son válidos. Vuelva a intentar");
+                            mPasswordView.requestFocus();
+                            Log.d("incorrect", "incorrect password ");
+                        }
+
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                        Log.d("JSON", "Error en login/response. Excepción json");
+
+                    }
+
+                }
+            };
+
+            //*************************
+            //En ésta parte del código se crea el reponse para enviarlo al servidor
+
+            LoginRequest loginRequest = new LoginRequest(mEmail, mPassword, responseListener);
+            RequestQueue queue = Volley.newRequestQueue(LoginActivity.this);
+            queue.add(loginRequest);
+            Log.d("request", "Se crea la solicitud al servidor");
+
+        }
+
+
     }
+
 
 
 }

@@ -143,7 +143,7 @@ public class MainActivity extends AppCompatActivity {
             SQLiteDatabase database = dbHelper.getReadableDatabase();
 
             dbHelper.onUpgrade(database,1,1);
-
+            dbHelper.close();
 
             Intent i = getBaseContext().getPackageManager()
                     .getLaunchIntentForPackage( getBaseContext().getPackageName() );
