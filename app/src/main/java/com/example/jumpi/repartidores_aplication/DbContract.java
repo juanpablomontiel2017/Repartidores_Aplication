@@ -4,6 +4,7 @@ public class DbContract {
 
     public static final int SYNC_STATUS_OK = 0;
     public static final int SYNC_STATUS_FAILED = 1;
+    public static final String SERVER_URL = "https://aquavital.000webhostapp.com/login/login.php";
 
     public static final String DATABASE_NAME = "aquavitaldb";
     public static final String TABLE_NAME_USUARIO = "usuario";

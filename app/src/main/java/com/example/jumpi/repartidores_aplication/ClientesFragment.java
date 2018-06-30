@@ -15,8 +15,19 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.android.volley.AuthFailureError;
+import com.android.volley.Request;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
+
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 
 /**
@@ -79,7 +90,7 @@ public class ClientesFragment extends Fragment implements OnStartDragListener {
 
 
         lstClientes = new ArrayList<>();
-        readFromLocalStorage();
+        readFromLocalDbZonaReparto();
 
         /**
         lstClientes.add(new Clientes(R.drawable.ricardofort,"Ricardo Fort","Urquiza 590","Centro","Casa rosada con portón blanco","(+54) 3644 413254","rikypapa19@gmail.com"));
@@ -155,7 +166,7 @@ public class ClientesFragment extends Fragment implements OnStartDragListener {
 
     }
 
-    private void readFromLocalStorage(){
+    private void readFromLocalDbZonaReparto(){
         DbHelper dbHelperRead = new DbHelper(getContext());
         SQLiteDatabase databaseRead = dbHelperRead.getReadableDatabase();
         Cursor cursor = dbHelperRead.readFromLocalDatabaseZonaReparto(databaseRead);
@@ -190,26 +201,69 @@ public class ClientesFragment extends Fragment implements OnStartDragListener {
     }
 
 
-    private void saveToLocalStorage(int DNI, int IdPersona, int foto, String nombre, String direccion, String barrio,String referencia, String telefono, String correo){
+    private void saveToRemoteDbZonaReparto(final int DNI, final int IdPersona, final int foto, final String nombre, final String direccion, final String barrio, final String referencia, final String telefono, final String correo){
 
         /**
          * Sirve para guardar los clientes a la tabla ZONAREPARTO.
          * Los datos vienen en el RESPONSE del servidor.
          */
-        DbHelper dbHelper = new DbHelper(getContext());
-        SQLiteDatabase database = dbHelper.getWritableDatabase();
+
 
         if (checkNetworkConnection()){
+            StringRequest stringRequest = new StringRequest(Request.Method.POST, DbContract.SERVER_URL,
+                    new Response.Listener<String>() {
+                        @Override
+                        public void onResponse(String response) {
+                            try {
+                                JSONObject jsonObject = new JSONObject(response);
+                                boolean success = jsonObject.getBoolean("exito");
+                                if (success){
+                                    saveToLocalDbZonaReparto(DNI, IdPersona, foto, nombre, direccion, barrio, referencia, telefono, correo, DbContract.SYNC_STATUS_OK);
+                                }
+                                else
+                                {
+                                    saveToLocalDbZonaReparto(DNI, IdPersona, foto, nombre, direccion, barrio, referencia, telefono, correo, DbContract.SYNC_STATUS_FAILED);
+                                }
 
+                            } catch (JSONException e) {
+                                e.printStackTrace();
+                            }
+                        }
+                    }, new Response.ErrorListener(){
+
+                @Override
+                public void onErrorResponse(VolleyError error) {
+                    saveToLocalDbZonaReparto(DNI, IdPersona, foto, nombre, direccion, barrio, referencia, telefono, correo, DbContract.SYNC_STATUS_FAILED);
+                }
+            })
+            {
+                @Override
+                protected Map<String, String> getParams() throws AuthFailureError {
+                    Map<String,String> params =  new HashMap<>();
+                   // params.put("name", name);
+                    return super.getParams();
+                }
+            };
+
+
+            MySingleton.getInstance(getContext()).addToRequestQueue(stringRequest);
         }
         else
         {
-            dbHelper.saveToLocalDatabaseZonaReparto(DNI, IdPersona, nombre, direccion, barrio,referencia, telefono, correo, foto, DbContract.SYNC_STATUS_FAILED, database);
+            saveToLocalDbZonaReparto(DNI, IdPersona, foto, nombre, direccion, barrio, referencia, telefono, correo, DbContract.SYNC_STATUS_FAILED);
         }
 
-        readFromLocalStorage();
-        dbHelper.close();
 
+
+    }
+
+    public void saveToLocalDbZonaReparto(int DNI, int IdPersona, int foto, String nombre, String direccion, String barrio,String referencia, String telefono, String correo, int sync){
+        DbHelper dbHelper = new DbHelper(getContext());
+        SQLiteDatabase database = dbHelper.getWritableDatabase();
+
+        dbHelper.saveToLocalDatabaseZonaReparto(DNI, IdPersona, nombre, direccion, barrio,referencia, telefono, correo, foto, sync, database);
+        readFromLocalDbZonaReparto();
+        dbHelper.close();
     }
 
 
