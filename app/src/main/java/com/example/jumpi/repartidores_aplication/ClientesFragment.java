@@ -1,6 +1,10 @@
 package com.example.jumpi.repartidores_aplication;
 
 import android.content.Context;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -72,9 +76,10 @@ public class ClientesFragment extends Fragment implements OnStartDragListener {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-
         lstClientes = new ArrayList<>();
+        readFromLocalStorage();
+
+        /**
         lstClientes.add(new Clientes(R.drawable.ricardofort,"Ricardo Fort","Urquiza 590","Centro","Casa rosada con portón blanco","(+54) 3644 413254","rikypapa19@gmail.com"));
         lstClientes.add(new Clientes(R.drawable.lautaromartinez,"Lautaro Martinez","Mitre 190","Centro","Casa celeste con porton negro","(+54) 3644 442210", "lauti10@gmail.com"));
         lstClientes.add(new Clientes(R.drawable.ricardocenturion,"Ricardo Centurion","Sarmiento 150","Apache","Casa verde con portón de chapa","(+54) 3644 402356", "rikicentuwachin50@gmail.com"));
@@ -92,12 +97,14 @@ public class ClientesFragment extends Fragment implements OnStartDragListener {
 
 
 
-       /* if (getArguments() != null) {
+        if (getArguments() != null) {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
 
         */
+
+
 
     }
 
@@ -137,6 +144,71 @@ public class ClientesFragment extends Fragment implements OnStartDragListener {
     public void onStartDrag(RecyclerView.ViewHolder viewHolder) {
         mItemTouchHelper.startDrag(viewHolder);
     }
+
+    public boolean checkNetworkConnection()
+    {
+        ConnectivityManager connectivityManager = (ConnectivityManager) getContext().getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo networkInfo = connectivityManager.getActiveNetworkInfo();
+        return (networkInfo!= null && networkInfo.isConnected());
+
+    }
+
+    private void readFromLocalStorage(){
+        DbHelper dbHelperRead = new DbHelper(getContext());
+        SQLiteDatabase databaseRead = dbHelperRead.getReadableDatabase();
+        Cursor cursor = dbHelperRead.readFromLocalDatabaseZonaReparto(databaseRead);
+
+        while (cursor.moveToNext())
+        {
+            lstClientes.clear();
+
+
+            String nombre = cursor.getString(cursor.getColumnIndex(DbContract.NOMBRE));
+            String direccion = cursor.getString(cursor.getColumnIndex(DbContract.DIRECCION));
+            String barrio = cursor.getString(cursor.getColumnIndex(DbContract.BARRIO));
+            String referencia = cursor.getString(cursor.getColumnIndex(DbContract.REFERENCIA));
+            String telefono = cursor.getString(cursor.getColumnIndex(DbContract.TELEFONO));
+            String correo = cursor.getString(cursor.getColumnIndex(DbContract.CORREO));
+            String dni = cursor.getString(cursor.getColumnIndex(DbContract.DNI));
+            String id = cursor.getString(cursor.getColumnIndex(DbContract.ID));
+            //int foto = cursor.getInt(cursor.getColumnIndex(DbContract.FOTO));
+            int foto = R.drawable.leomessi;
+            int sync_status = cursor.getInt(cursor.getColumnIndex(DbContract.SYNC_STATUS));
+
+            lstClientes.add(new Clientes(Integer.parseInt(dni), Integer.parseInt(id), foto, nombre, direccion, barrio, referencia, telefono, correo));
+
+            myrecyclerview.notify();
+            cursor.close();
+            dbHelperRead.close();
+
+
+        }
+
+
+    }
+
+
+    private void saveToLocalStorage(){
+
+        /**
+         * Sirve para guardar los clientes a la tabla ZONAREPARTO.
+         * Los datos vienen en el RESPONSE del servidor.
+         */
+        DbHelper dbHelper = new DbHelper(getContext());
+        SQLiteDatabase database = dbHelper.getWritableDatabase();
+
+        if (checkNetworkConnection()){
+
+        }
+        else
+        {
+            dbHelper.saveToLocalDatabaseZonaReparto();
+        }
+
+    }
+
+
+
 
     //Hasta aquí
 
