@@ -9,9 +9,12 @@ public class ZonaReparto {
     private String Referencia;
     private String Telefono;
     private String Correo;
+    private int Foto;
 
 
-    ZonaReparto(int IdPersona, int DNI, String Nombre, String Direccion, String Barrio, String Referencia, String Telefono, String Correo ){
+
+
+    ZonaReparto(int IdPersona, int DNI, String Nombre, String Direccion, String Barrio, String Referencia, String Telefono, String Correo, int Foto ){
         this.setIdPersona(IdPersona);
         this.setDNI(DNI);
         this.setNombre(Nombre);
@@ -20,6 +23,8 @@ public class ZonaReparto {
         this.setReferencia(Referencia);
         this.setTelefono(Telefono);
         this.setCorreo(Correo);
+        this.setFoto(Foto);
+
 
     }
 
@@ -85,5 +90,13 @@ public class ZonaReparto {
 
     public void setCorreo(String correo) {
         Correo = correo;
+    }
+
+    public int getFoto() {
+        return Foto;
+    }
+
+    public void setFoto(int foto) {
+        Foto = foto;
     }
 }
