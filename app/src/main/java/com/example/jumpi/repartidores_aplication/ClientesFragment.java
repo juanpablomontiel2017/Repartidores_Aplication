@@ -76,6 +76,8 @@ public class ClientesFragment extends Fragment implements OnStartDragListener {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+
         lstClientes = new ArrayList<>();
         readFromLocalStorage();
 
@@ -188,7 +190,7 @@ public class ClientesFragment extends Fragment implements OnStartDragListener {
     }
 
 
-    private void saveToLocalStorage(){
+    private void saveToLocalStorage(int DNI, int IdPersona, int foto, String nombre, String direccion, String barrio,String referencia, String telefono, String correo){
 
         /**
          * Sirve para guardar los clientes a la tabla ZONAREPARTO.
@@ -202,8 +204,11 @@ public class ClientesFragment extends Fragment implements OnStartDragListener {
         }
         else
         {
-            dbHelper.saveToLocalDatabaseZonaReparto();
+            dbHelper.saveToLocalDatabaseZonaReparto(DNI, IdPersona, nombre, direccion, barrio,referencia, telefono, correo, foto, DbContract.SYNC_STATUS_FAILED, database);
         }
+
+        readFromLocalStorage();
+        dbHelper.close();
 
     }
 
