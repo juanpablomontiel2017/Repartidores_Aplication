@@ -26,6 +26,8 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         //scheduleJob();
+        ConnectionStateMonitor connectionStateMonitor = new ConnectionStateMonitor(getApplicationContext());
+        connectionStateMonitor.enable();
 
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
