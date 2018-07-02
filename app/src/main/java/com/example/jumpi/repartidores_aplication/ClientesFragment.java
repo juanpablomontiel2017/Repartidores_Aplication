@@ -1,6 +1,9 @@
 package com.example.jumpi.repartidores_aplication;
 
+import android.content.BroadcastReceiver;
 import android.content.Context;
+import android.content.Intent;
+import android.content.IntentFilter;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.net.ConnectivityManager;
@@ -56,6 +59,7 @@ public class ClientesFragment extends Fragment implements OnStartDragListener {
     private RecyclerView myrecyclerview;
     private List<Clientes> lstClientes;
     ItemTouchHelper mItemTouchHelper;
+    BroadcastReceiver broadcastReceiver;
 
 
     public ClientesFragment() {
@@ -87,7 +91,12 @@ public class ClientesFragment extends Fragment implements OnStartDragListener {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        broadcastReceiver = new BroadcastReceiver() {
+            @Override
+            public void onReceive(Context context, Intent intent) {
 
+            }
+        };
 
         lstClientes = new ArrayList<>();
         readFromLocalDbZonaReparto();
@@ -321,4 +330,11 @@ public class ClientesFragment extends Fragment implements OnStartDragListener {
     }
 
     */
+
+    
+    @Override
+    public void onStart() {
+        super.onStart();
+        registerReceiver(broadcastReceiver, new IntentFilter(DbContract.UI_UPDATE_BROADCAST));
+    }
 }

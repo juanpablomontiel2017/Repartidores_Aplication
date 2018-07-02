@@ -1,6 +1,7 @@
 package com.example.jumpi.repartidores_aplication;
 
 import android.content.Context;
+import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.net.ConnectivityManager;
@@ -79,6 +80,7 @@ public class ConnectionStateMonitor extends ConnectivityManager.NetworkCallback 
                                     if (success)
                                     {
                                         dbHelper.updateLocalDatabaseZonaReparto(Integer.parseInt(dni), Integer.parseInt(dni), null,null,null,null,null, null, DbContract.SYNC_STATUS_OK, database);
+                                        cntx.sendBroadcast(new Intent(DbContract.UI_UPDATE_BROADCAST));
                                     }
                                 } catch (JSONException e) {
                                     e.printStackTrace();
