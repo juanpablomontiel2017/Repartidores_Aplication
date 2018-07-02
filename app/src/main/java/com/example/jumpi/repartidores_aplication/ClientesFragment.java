@@ -94,9 +94,11 @@ public class ClientesFragment extends Fragment implements OnStartDragListener {
         broadcastReceiver = new BroadcastReceiver() {
             @Override
             public void onReceive(Context context, Intent intent) {
-
+                readFromLocalDbZonaReparto();
             }
         };
+
+
 
         lstClientes = new ArrayList<>();
         readFromLocalDbZonaReparto();
@@ -335,6 +337,12 @@ public class ClientesFragment extends Fragment implements OnStartDragListener {
     @Override
     public void onStart() {
         super.onStart();
-        registerReceiver(broadcastReceiver, new IntentFilter(DbContract.UI_UPDATE_BROADCAST));
+        getActivity().registerReceiver(broadcastReceiver, new IntentFilter(DbContract.UI_UPDATE_BROADCAST));
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        getActivity().unregisterReceiver(broadcastReceiver);
     }
 }
