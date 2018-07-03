@@ -30,5 +30,13 @@ public class DbContract {
     public static final String FOTO = "foto";
     public static final String NOMBRE = "nombre";
 
+    public static final String LUNES = "lunes";
+    public static final String MARTES = "martes";
+    public static final String MIERCOLES = "miercoles";
+    public static final String JUEVES = "jueves";
+    public static final String VIERNES = "viernes";
+    public static final String SABADO = "sabado";
+
+
 
 }
