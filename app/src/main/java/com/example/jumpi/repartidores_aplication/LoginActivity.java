@@ -542,6 +542,8 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
 
 
                         if (success) {
+
+                            JSONObject jsonData = jsonResponse.getJSONObject("data");
                             id = jsonResponse.getString("id");
                             dni = jsonResponse.getString("dni");
                             msj = jsonResponse.getString("msj");
