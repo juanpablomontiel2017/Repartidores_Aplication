@@ -14,6 +14,7 @@ public class DbContract {
     public static final String USUARIO = "usuario";
     public static final String PASSWORD = "contrasena";
     public static final String SYNC_STATUS = "syncstatus";
+    public static final int ENTERO_NULO = 99;
 
 
     /**

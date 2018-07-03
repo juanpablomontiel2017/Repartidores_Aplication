@@ -81,7 +81,7 @@ public class DbHelper extends SQLiteOpenHelper {
  */
 
 
-    public  void saveToLocalDatabaseZonaReparto(int dni, int id, String nombre, String direccion, String barrio, String referencia, String telefono, String correo, int foto, int sync_status, SQLiteDatabase database){
+    public  void saveToLocalDatabaseZonaReparto(int dni, int id, String nombre, String direccion, String barrio, String referencia, String telefono, String correo, int foto,int lunes,int martes,int miercoles,int jueves,int viernes,int sabado, int sync_status, SQLiteDatabase database){
     ContentValues contentValues = new ContentValues();
     contentValues.put(DbContract.DNI, dni);
     contentValues.put(DbContract.ID, id);
@@ -91,6 +91,13 @@ public class DbHelper extends SQLiteOpenHelper {
     contentValues.put(DbContract.REFERENCIA, referencia);
     contentValues.put(DbContract.TELEFONO, telefono);
     contentValues.put(DbContract.CORREO, correo);
+
+    contentValues.put(DbContract.LUNES, lunes);
+    contentValues.put(DbContract.MARTES, martes);
+    contentValues.put(DbContract.MIERCOLES, miercoles);
+    contentValues.put(DbContract.JUEVES, jueves);
+    contentValues.put(DbContract.VIERNES, viernes);
+    contentValues.put(DbContract.SABADO, sabado);
     contentValues.put(DbContract.FOTO, foto);
     contentValues.put(DbContract.SYNC_STATUS, sync_status);
     database.insert(DbContract.TABLE_NAME_ZONA_REPARTO,null,contentValues);
@@ -98,12 +105,12 @@ public class DbHelper extends SQLiteOpenHelper {
 }
 
     public Cursor readFromLocalDatabaseZonaReparto (SQLiteDatabase database){
-        String[] projection = {DbContract.DNI, DbContract.ID, DbContract.NOMBRE, DbContract.DIRECCION, DbContract.BARRIO, DbContract.REFERENCIA, DbContract.TELEFONO, DbContract.CORREO, DbContract.FOTO, DbContract.SYNC_STATUS};
+        String[] projection = {DbContract.DNI, DbContract.ID, DbContract.NOMBRE, DbContract.DIRECCION, DbContract.BARRIO, DbContract.REFERENCIA, DbContract.TELEFONO, DbContract.CORREO, DbContract.FOTO, DbContract.LUNES, DbContract.MARTES, DbContract.MIERCOLES, DbContract.JUEVES, DbContract.VIERNES, DbContract.SABADO, DbContract.SYNC_STATUS};
 
         return (database.query(DbContract.TABLE_NAME_ZONA_REPARTO,projection, null,null, null,null,null));
     }
 
-    public void updateLocalDatabaseZonaReparto(int dni, int id, String nombre, String direccion, String barrio, String referencia, String telefono, String correo, int sync_status, SQLiteDatabase database){
+    public void updateLocalDatabaseZonaReparto(int dni, int id, String nombre, String direccion, String barrio, String referencia, String telefono, String correo, int lunes, int martes, int miercoles, int jueves, int viernes, int sabado, int sync_status, SQLiteDatabase database){
         ContentValues contentValues = new ContentValues();
         if (nombre!=null){
             contentValues.put(DbContract.NOMBRE, nombre);
@@ -122,6 +129,24 @@ public class DbHelper extends SQLiteOpenHelper {
         }
         if (correo!=null){
             contentValues.put(DbContract.CORREO, correo);
+        }
+        if (lunes!=DbContract.ENTERO_NULO){
+            contentValues.put(DbContract.LUNES, lunes);
+        }
+        if (martes!=DbContract.ENTERO_NULO){
+            contentValues.put(DbContract.MARTES, martes);
+        }
+        if (miercoles!=DbContract.ENTERO_NULO){
+            contentValues.put(DbContract.MIERCOLES, miercoles);
+        }
+        if (jueves!=DbContract.ENTERO_NULO){
+            contentValues.put(DbContract.JUEVES, jueves);
+        }
+        if (viernes!=DbContract.ENTERO_NULO){
+            contentValues.put(DbContract.VIERNES, viernes);
+        }
+        if (sabado!=DbContract.ENTERO_NULO){
+            contentValues.put(DbContract.SABADO, sabado);
         }
 
 
