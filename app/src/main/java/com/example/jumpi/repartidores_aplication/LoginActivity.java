@@ -648,38 +648,99 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
                                 Log.d("TFSB", "response true. Ingresa a Main Repartidor");
 
 
+                                /**
+                                 * PRUEBA PARA SABER SI GUARDA LOS DATOS DEL USUARIO EN LA BD LOCAL
+                                 */
 
-
-                                // prueba para saber si guarda los datos del usuario en la BD
-/*
 
                                 DbHelper dbHelperRead = new DbHelper(getApplicationContext());
                                 SQLiteDatabase databaseRead = dbHelperRead.getReadableDatabase();
                                 Cursor cursor = dbHelperRead.readFromLocalDatabase(databaseRead);
 
 
-                                ListaUsuario = null;
+                                String usuariobd=null;
+                                String passwordbd=null;
+                                String dnibd=null;
+                                String idbd=null;
+
+                                //ListaUsuario = null;
                                 while (cursor.moveToNext())
                                 {
                                      usuariobd = cursor.getString(cursor.getColumnIndex(DbContract.USUARIO));
                                      passwordbd = cursor.getString(cursor.getColumnIndex(DbContract.PASSWORD));
                                      dnibd = cursor.getString(cursor.getColumnIndex(DbContract.DNI));
                                      idbd = cursor.getString(cursor.getColumnIndex(DbContract.ID));
-                                     ListaUsuario.add(new Usuario(Integer.parseInt(idbd), Integer.parseInt(dnibd), usuariobd, passwordbd));
+                                     //ListaUsuario.add(new Usuario(Integer.parseInt(idbd), Integer.parseInt(dnibd), usuariobd, passwordbd));
 
 
 
                                 }
+                                dbHelper.close();
 
+/*
                                 StringBuilder sb = new StringBuilder();
                                 sb.append(usuariobd);
                                 sb.append(passwordbd);
                                 sb.append(dnibd);
                                 sb.append(idbd);
                                 String resultado = sb.toString();
-
-                                Log.d("TFSB", "Datos del usuario logeado "+resultado);
 */
+
+                                Log.d("TFSB", "PRUEBA PARA SABER SI GUARDA LOS DATOS DEL USUARIO -> DNI: "+dnibd+" ID: "+idbd+" USUARIO: "+usuariobd+" PASSWORD: "+passwordbd);
+
+
+                                /**
+                                 * PRUEBA PARA SABER SI GUARDA LOS DATOS DE LOS CLIENTES
+                                 */
+
+                                 dbHelperRead = new DbHelper(getApplicationContext());
+                                 databaseRead = dbHelperRead.getReadableDatabase();
+                                 cursor = dbHelperRead.readFromLocalDatabaseZonaReparto(databaseRead);
+
+                                Log.d("TFSB", "                               ");
+                                Log.d("TFSB", "  PRUEBA PARA SABER SI GUARDA LOS DATOS DE LOS CLIENTES");
+                                Log.d("TFSB", "                               ");
+
+                                 dnibd=null;
+                                 idbd=null;
+
+                                //ListaUsuario = null;
+                                while (cursor.moveToNext())
+                                {
+
+                                    dnibd = cursor.getString(cursor.getColumnIndex(DbContract.DNI));
+                                     idbd = cursor.getString(cursor.getColumnIndex(DbContract.ID));
+                                    String apellidoDB = cursor.getString(cursor.getColumnIndex(DbContract.APELLIDO));
+                                    String nombreDB = cursor.getString(cursor.getColumnIndex(DbContract.NOMBRE));
+                                    String telefonoDB = cursor.getString(cursor.getColumnIndex(DbContract.TELEFONO));
+                                    String emailDB = cursor.getString(cursor.getColumnIndex(DbContract.CORREO));
+                                    String direccionDB = cursor.getString(cursor.getColumnIndex(DbContract.DIRECCION));
+                                    String barrioDB = cursor.getString(cursor.getColumnIndex(DbContract.BARRIO));
+                                    String foto = cursor.getString(cursor.getColumnIndex(DbContract.FOTO));
+
+                                    String lunes = cursor.getString(cursor.getColumnIndex(DbContract.LUNES));
+                                    String martes = cursor.getString(cursor.getColumnIndex(DbContract.MARTES));
+                                    String miercoles = cursor.getString(cursor.getColumnIndex(DbContract.MIERCOLES));
+                                    String jueves = cursor.getString(cursor.getColumnIndex(DbContract.JUEVES));
+                                    String viernes = cursor.getString(cursor.getColumnIndex(DbContract.VIERNES));
+                                    String sabado = cursor.getString(cursor.getColumnIndex(DbContract.SABADO));
+
+                                    //ListaUsuario.add(new Usuario(Integer.parseInt(idbd), Integer.parseInt(dnibd), usuariobd, passwordbd));
+
+                                    Log.d("TFSB", "DNI: "+dnibd+" ID: "+idbd+" APELLIDO: "+apellidoDB+" NOMBRE: "+nombreDB);
+
+
+                                }
+                                dbHelper.close();
+
+
+
+
+
+
+
+                                //*************************************************************************
+
 
 /*
                                 usuariobd = null;
