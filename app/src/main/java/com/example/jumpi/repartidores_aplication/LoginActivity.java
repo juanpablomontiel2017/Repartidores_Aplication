@@ -36,6 +36,7 @@ import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.toolbox.Volley;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -544,14 +545,38 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
                         if (success) {
 
                             JSONObject jsonData = jsonResponse.getJSONObject("data");
-                            id = jsonResponse.getString("id");
-                            dni = jsonResponse.getString("dni");
-                            msj = jsonResponse.getString("msj");
+                            id = jsonData.getString("id");
+                            dni = jsonData.getString("dni");
+                            msj = jsonData.getString("msj");
+
+                            /**
+                             * OBTENGO LOS CLIENTES DEL REPARTIDOR
+                             */
+
+                            JSONArray jsonClientes = jsonResponse.getJSONArray("clientes");
+                            JSONObject jsonClientesDatos = null;
+                            for (int i = 0; i < jsonClientes.length(); i++)
+                            {
+                                try {
+                                    jsonClientesDatos = jsonClientes.getJSONObject(i);
+                                    String idDB = jsonClientesDatos.getString("ClientesDirectos_Persona_IdCliente");
+                                    String dniDB = jsonClientesDatos.getString("ClientesDirectos_Persona_DNICliente");
+                                    String apellidoDB = jsonClientesDatos.getString("Apellido");
+                                    String nombreDB = jsonClientesDatos.getString("Nombre");
+                                    String telefonoDB = jsonClientesDatos.getString("Telefono");
+                                    String emailDB = jsonClientesDatos.getString("Email");
+                                    String direccionDB = jsonClientesDatos.getString("Direccion");
+                                    String referenciaDB = jsonClientesDatos.getString("Referencia");
+                                    String barioDB = jsonClientesDatos.getString("Barrio");
+                                    //String diaDB = jsonClientesDatos.getString("ClientesDirectos_Persona_DNICliente");
+
+                                    saveToLocalDatabaseZonaReparto();
 
 
-
-
-
+                                } catch (JSONException e) {
+                                    Log.e("TSFB", "Parser JSON "+ e.toString());
+                                }
+                            }
 
                             // ingresas a otra activity de la app. Logueo exitoso
 

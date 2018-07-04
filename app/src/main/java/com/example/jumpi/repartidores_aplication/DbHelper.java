@@ -12,7 +12,7 @@ public class DbHelper extends SQLiteOpenHelper {
 
     private static final int DATABASE_VERSION = 1;
     private static final String CREATE_TABLE = "create table "+DbContract.TABLE_NAME_USUARIO+"("+DbContract.DNI+" integer primary key,"+DbContract.ID+" integer,"+DbContract.USUARIO+" text,"+DbContract.PASSWORD+" text, "+DbContract.SYNC_STATUS+" integer);";
-    private static final String CREATE_TABLE_ZONA_REPARTO = "create table "+DbContract.TABLE_NAME_ZONA_REPARTO+"("+DbContract.DNI+" integer primary key,"+DbContract.ID+" integer,"+DbContract.NOMBRE+" text,"+DbContract.DIRECCION+" text,"+DbContract.BARRIO+" text,"+DbContract.REFERENCIA+" text,"+DbContract.TELEFONO+" text,"+DbContract.CORREO+" text,"+DbContract.LUNES+" int,"+DbContract.MARTES+" int,"+DbContract.MIERCOLES+" int,"+DbContract.JUEVES+" int,"+DbContract.VIERNES+" int,"+DbContract.SABADO+" int, "+DbContract.FOTO+" int, "+DbContract.SYNC_STATUS+" integer);";
+    private static final String CREATE_TABLE_ZONA_REPARTO = "create table "+DbContract.TABLE_NAME_ZONA_REPARTO+"("+DbContract.DNI+" integer primary key,"+DbContract.ID+" integer,"+DbContract.APELLIDO+" text,"+DbContract.NOMBRE+" text,"+DbContract.DIRECCION+" text,"+DbContract.BARRIO+" text,"+DbContract.REFERENCIA+" text,"+DbContract.TELEFONO+" text,"+DbContract.CORREO+" text,"+DbContract.LUNES+" int,"+DbContract.MARTES+" int,"+DbContract.MIERCOLES+" int,"+DbContract.JUEVES+" int,"+DbContract.VIERNES+" int,"+DbContract.SABADO+" int, "+DbContract.FOTO+" int, "+DbContract.SYNC_STATUS+" integer);";
 
 
     private static final String DROP_TABLE = "drop table if exists "+DbContract.TABLE_NAME_USUARIO;
@@ -81,10 +81,11 @@ public class DbHelper extends SQLiteOpenHelper {
  */
 
 
-    public  void saveToLocalDatabaseZonaReparto(int dni, int id, String nombre, String direccion, String barrio, String referencia, String telefono, String correo, int foto,int lunes,int martes,int miercoles,int jueves,int viernes,int sabado, int sync_status, SQLiteDatabase database){
+    public  void saveToLocalDatabaseZonaReparto(int dni, int id, String apellido, String nombre, String direccion, String barrio, String referencia, String telefono, String correo, int foto,int lunes,int martes,int miercoles,int jueves,int viernes,int sabado, int sync_status, SQLiteDatabase database){
     ContentValues contentValues = new ContentValues();
     contentValues.put(DbContract.DNI, dni);
     contentValues.put(DbContract.ID, id);
+    contentValues.put(DbContract.APELLIDO, apellido);
     contentValues.put(DbContract.NOMBRE, nombre);
     contentValues.put(DbContract.DIRECCION, direccion);
     contentValues.put(DbContract.BARRIO, barrio);
@@ -105,13 +106,16 @@ public class DbHelper extends SQLiteOpenHelper {
 }
 
     public Cursor readFromLocalDatabaseZonaReparto (SQLiteDatabase database){
-        String[] projection = {DbContract.DNI, DbContract.ID, DbContract.NOMBRE, DbContract.DIRECCION, DbContract.BARRIO, DbContract.REFERENCIA, DbContract.TELEFONO, DbContract.CORREO, DbContract.FOTO, DbContract.LUNES, DbContract.MARTES, DbContract.MIERCOLES, DbContract.JUEVES, DbContract.VIERNES, DbContract.SABADO, DbContract.SYNC_STATUS};
+        String[] projection = {DbContract.DNI, DbContract.ID, DbContract.APELLIDO, DbContract.NOMBRE, DbContract.DIRECCION, DbContract.BARRIO, DbContract.REFERENCIA, DbContract.TELEFONO, DbContract.CORREO, DbContract.FOTO, DbContract.LUNES, DbContract.MARTES, DbContract.MIERCOLES, DbContract.JUEVES, DbContract.VIERNES, DbContract.SABADO, DbContract.SYNC_STATUS};
 
         return (database.query(DbContract.TABLE_NAME_ZONA_REPARTO,projection, null,null, null,null,null));
     }
 
-    public void updateLocalDatabaseZonaReparto(int dni, int id, String nombre, String direccion, String barrio, String referencia, String telefono, String correo, int lunes, int martes, int miercoles, int jueves, int viernes, int sabado, int sync_status, SQLiteDatabase database){
+    public void updateLocalDatabaseZonaReparto(int dni, int id, String apellido, String nombre, String direccion, String barrio, String referencia, String telefono, String correo, int lunes, int martes, int miercoles, int jueves, int viernes, int sabado, int sync_status, SQLiteDatabase database){
         ContentValues contentValues = new ContentValues();
+        if (apellido!=null){
+            contentValues.put(DbContract.APELLIDO, apellido);
+        }
         if (nombre!=null){
             contentValues.put(DbContract.NOMBRE, nombre);
         }

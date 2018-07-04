@@ -186,7 +186,7 @@ public class ClientesFragment extends Fragment implements OnStartDragListener {
         {
             lstClientes.clear();
 
-
+            String apellido = cursor.getString(cursor.getColumnIndex(DbContract.APELLIDO));
             String nombre = cursor.getString(cursor.getColumnIndex(DbContract.NOMBRE));
             String direccion = cursor.getString(cursor.getColumnIndex(DbContract.DIRECCION));
             String barrio = cursor.getString(cursor.getColumnIndex(DbContract.BARRIO));
@@ -199,7 +199,7 @@ public class ClientesFragment extends Fragment implements OnStartDragListener {
             int foto = R.drawable.leomessi;
             int sync_status = cursor.getInt(cursor.getColumnIndex(DbContract.SYNC_STATUS));
 
-            lstClientes.add(new Clientes(Integer.parseInt(dni), Integer.parseInt(id), foto, nombre, direccion, barrio, referencia, telefono, correo));
+            lstClientes.add(new Clientes(Integer.parseInt(dni), Integer.parseInt(id), foto, apellido, nombre, direccion, barrio, referencia, telefono, correo));
 
             myrecyclerview.notify();
             cursor.close();

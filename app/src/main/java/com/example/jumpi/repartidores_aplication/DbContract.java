@@ -30,6 +30,8 @@ public class DbContract {
     public static final String CORREO = "correo";
     public static final String FOTO = "foto";
     public static final String NOMBRE = "nombre";
+    public static final String APELLIDO = "apellido";
+
 
     public static final String LUNES = "lunes";
     public static final String MARTES = "martes";
