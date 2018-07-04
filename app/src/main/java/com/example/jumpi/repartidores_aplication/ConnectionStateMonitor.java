@@ -56,7 +56,7 @@ public class ConnectionStateMonitor extends ConnectivityManager.NetworkCallback 
             {
 
 
-
+                final String apellido = cursor.getString(cursor.getColumnIndex(DbContract.APELLIDO));
                 final String nombre = cursor.getString(cursor.getColumnIndex(DbContract.NOMBRE));
                 final String direccion = cursor.getString(cursor.getColumnIndex(DbContract.DIRECCION));
                 final String barrio = cursor.getString(cursor.getColumnIndex(DbContract.BARRIO));
@@ -68,6 +68,12 @@ public class ConnectionStateMonitor extends ConnectivityManager.NetworkCallback 
                 //int foto = cursor.getInt(cursor.getColumnIndex(DbContract.FOTO));
                 final int foto = R.drawable.leomessi;
                 //int sync_status = cursor.getInt(cursor.getColumnIndex(DbContract.SYNC_STATUS));
+                final String lunes = cursor.getString(cursor.getColumnIndex(DbContract.LUNES));
+                final String martes = cursor.getString(cursor.getColumnIndex(DbContract.MARTES));
+                final String miercoles = cursor.getString(cursor.getColumnIndex(DbContract.MIERCOLES));
+                final String jueves = cursor.getString(cursor.getColumnIndex(DbContract.JUEVES));
+                final String viernes = cursor.getString(cursor.getColumnIndex(DbContract.VIERNES));
+                final String sabado = cursor.getString(cursor.getColumnIndex(DbContract.SABADO));
 
                // lstClientes.add(new Clientes(Integer.parseInt(dni), Integer.parseInt(id), foto, nombre, direccion, barrio, referencia, telefono, correo));
                 StringRequest stringRequest = new StringRequest(Request.Method.POST, DbContract.SERVER_URL,
@@ -79,7 +85,7 @@ public class ConnectionStateMonitor extends ConnectivityManager.NetworkCallback 
                                     boolean success = jsonObject.getBoolean("exito");
                                     if (success)
                                     {
-                                        dbHelper.updateLocalDatabaseZonaReparto(Integer.parseInt(dni), Integer.parseInt(dni), null,null,null,null,null, null, DbContract.SYNC_STATUS_OK, database);
+                                        dbHelper.updateLocalDatabaseZonaReparto(Integer.parseInt(dni), Integer.parseInt(dni), null,null,null,null,null, null, null, DbContract.ENTERO_NULO, DbContract.ENTERO_NULO, DbContract.ENTERO_NULO, DbContract.ENTERO_NULO, DbContract.ENTERO_NULO, DbContract.ENTERO_NULO,  DbContract.SYNC_STATUS_OK, database);
                                         cntx.sendBroadcast(new Intent(DbContract.UI_UPDATE_BROADCAST));
                                     }
                                 } catch (JSONException e) {
@@ -98,6 +104,7 @@ public class ConnectionStateMonitor extends ConnectivityManager.NetworkCallback 
                         Map<String,String> params = new HashMap<>();
                         params.put("dni",dni);
                         params.put("id",id);
+                        params.put("apellido",apellido);
                         params.put("foto",String.valueOf(foto));
                         params.put("nombre",nombre);
                         params.put("direccion",direccion);
@@ -105,7 +112,12 @@ public class ConnectionStateMonitor extends ConnectivityManager.NetworkCallback 
                         params.put("referencia",referencia);
                         params.put("telefono",telefono);
                         params.put("correo",correo);
-
+                        params.put("lunes",lunes);
+                        params.put("martes",martes);
+                        params.put("miercoles",miercoles);
+                        params.put("jueves",jueves);
+                        params.put("viernes",viernes);
+                        params.put("sabado",sabado);
 
                         return params;
                     }

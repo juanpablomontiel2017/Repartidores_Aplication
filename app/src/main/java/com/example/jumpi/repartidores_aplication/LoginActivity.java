@@ -553,7 +553,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
                              * OBTENGO LOS CLIENTES DEL REPARTIDOR
                              */
 
-                            JSONArray jsonClientes = jsonResponse.getJSONArray("clientes");
+                            JSONArray jsonClientes = jsonData.getJSONArray("clientes");
                             JSONObject jsonClientesDatos = null;
                             for (int i = 0; i < jsonClientes.length(); i++)
                             {
@@ -571,12 +571,12 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
 
                                     JSONArray jsonDia = jsonClientesDatos.getJSONArray("Dia");
                                     JSONObject jsonDiaDatos = null;
-                                    int lunes =DbContract.ENTERO_NULO;
-                                    int martes =DbContract.ENTERO_NULO;
-                                    int miercoles =DbContract.ENTERO_NULO;
-                                    int jueves =DbContract.ENTERO_NULO;
-                                    int viernes =DbContract.ENTERO_NULO;
-                                    int sabado =DbContract.ENTERO_NULO;
+                                    int lunes =DbContract.DIA_FAIL;
+                                    int martes =DbContract.DIA_FAIL;
+                                    int miercoles =DbContract.DIA_FAIL;
+                                    int jueves =DbContract.DIA_FAIL;
+                                    int viernes =DbContract.DIA_FAIL;
+                                    int sabado =DbContract.DIA_FAIL;
 
 
                                     for (int j = 0; j < jsonDia.length(); j++)
@@ -642,7 +642,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
 
 
                                 // prueba para saber si guarda los datos del repartidor en la BD
-
+/*
 
                                 DbHelper dbHelperRead = new DbHelper(getApplicationContext());
                                 SQLiteDatabase databaseRead = dbHelperRead.getReadableDatabase();
@@ -670,7 +670,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
                                 String resultado = sb.toString();
 
                                 Log.d("TFSB", "Datos del usuario logeado "+resultado);
-
+*/
 
 /*
                                 usuariobd = null;
@@ -725,7 +725,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
 
                     } catch (JSONException e) {
                         e.printStackTrace();
-                        Log.d("TFSB", "Error en login/response. Excepción json");
+                        Log.d("TFSB", "Error en login/response. Excepción json " + e.toString());
 
                     }
 
