@@ -212,11 +212,13 @@ public class ClientesFragment extends Fragment implements OnStartDragListener {
     }
 
 
-    private void saveToRemoteDbZonaReparto(final int DNI, final int IdPersona, final int foto, final String nombre, final String direccion, final String barrio, final String referencia, final String telefono, final String correo){
+    private void saveToRemoteDbZonaReparto(final int DNI, final int IdPersona, final int foto, final String apellido, final String nombre, final String direccion, final String barrio, final String referencia, final String telefono, final String correo, final int lunes, final int martes, final int miercoles, final int jueves, final int viernes, final int sabado){
 
         /**
-         * Sirve para guardar los clientes a la tabla ZONAREPARTO.
-         * Los datos vienen en el RESPONSE del servidor.
+         * Sirve para guardar los clientes nuevos.
+         * Envía los datos al server
+         * Guarda los datos en la BD local
+         *
          */
 
 
@@ -229,11 +231,11 @@ public class ClientesFragment extends Fragment implements OnStartDragListener {
                                 JSONObject jsonObject = new JSONObject(response);
                                 boolean success = jsonObject.getBoolean("exito");
                                 if (success){
-                                    saveToLocalDbZonaReparto(DNI, IdPersona, foto, nombre, direccion, barrio, referencia, telefono, correo, DbContract.SYNC_STATUS_OK);
+                                    saveToLocalDbZonaReparto(DNI, IdPersona, foto, apellido, nombre, direccion, barrio, referencia, telefono, correo,, lunes, martes, miercoles, jueves, viernes, sabado, DbContract.SYNC_STATUS_OK);
                                 }
                                 else
                                 {
-                                    saveToLocalDbZonaReparto(DNI, IdPersona, foto, nombre, direccion, barrio, referencia, telefono, correo, DbContract.SYNC_STATUS_FAILED);
+                                    saveToLocalDbZonaReparto(DNI, IdPersona, foto, apellido, nombre, direccion, barrio, referencia, telefono, correo, lunes, martes, miercoles, jueves, viernes, sabado, DbContract.SYNC_STATUS_FAILED);
                                 }
 
                             } catch (JSONException e) {
@@ -268,11 +270,11 @@ public class ClientesFragment extends Fragment implements OnStartDragListener {
 
     }
 
-    public void saveToLocalDbZonaReparto(int DNI, int IdPersona, int foto, String nombre, String direccion, String barrio,String referencia, String telefono, String correo, int sync){
+    public void saveToLocalDbZonaReparto(int DNI, int IdPersona, int foto,String apellido, String nombre, String direccion, String barrio,String referencia, String telefono, String correo, int lunes, int martes, int miercoles, int jueves, int viernes, int sabado, int sync){
         DbHelper dbHelper = new DbHelper(getContext());
         SQLiteDatabase database = dbHelper.getWritableDatabase();
 
-        dbHelper.saveToLocalDatabaseZonaReparto(DNI, IdPersona, nombre, direccion, barrio,referencia, telefono, correo, foto, sync, database);
+        dbHelper.saveToLocalDatabaseZonaReparto(DNI, IdPersona, apellido, nombre, direccion, barrio,referencia, telefono, correo, foto, lunes, martes, miercoles, jueves, viernes, sabado, sync, database);
         readFromLocalDbZonaReparto();
         dbHelper.close();
     }
