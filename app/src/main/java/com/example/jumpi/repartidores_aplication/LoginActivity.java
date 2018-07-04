@@ -563,13 +563,17 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
                                     jsonClientesDatos = jsonClientes.getJSONObject(i);
                                     String idDB = jsonClientesDatos.getString("ClientesDirectos_Persona_IdCliente");
                                     String dniDB = jsonClientesDatos.getString("ClientesDirectos_Persona_DNICliente");
-                                    String apellidoDB = jsonClientesDatos.getString("Apellido");
-                                    String nombreDB = jsonClientesDatos.getString("Nombre");
-                                    String telefonoDB = jsonClientesDatos.getString("Telefono");
-                                    String emailDB = jsonClientesDatos.getString("Email");
-                                    String direccionDB = jsonClientesDatos.getString("Direccion");
-                                    String referenciaDB = jsonClientesDatos.getString("Referencia");
-                                    String barrioDB = jsonClientesDatos.getString("Barrio");
+                                    String apellidoDB = jsonClientesDatos.optString("Apellido");
+                                    String nombreDB = jsonClientesDatos.optString("Nombre");
+                                    String telefonoDB = jsonClientesDatos.optString("Telefono");
+                                    String emailDB = jsonClientesDatos.optString("Email");
+                                    String direccionDB = jsonClientesDatos.optString("Direccion");
+                                    String referenciaDB = jsonClientesDatos.optString("Referencia");
+                                    String barrioDB = jsonClientesDatos.optString("Barrio");
+
+                                    if (jsonClientesDatos.has("Dia")) {
+
+                                    }
 
                                     JSONArray jsonDia = jsonClientesDatos.getJSONArray("Dia");
                                     JSONObject jsonDiaDatos;
@@ -586,26 +590,35 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
 
                                         try{
                                             jsonDiaDatos = jsonDia.getJSONObject(j);
-                                            String Dia = jsonDiaDatos.getString("Dia");
 
-                                            if (TextUtils.equals(Dia, "LUNES")){
-                                                 lunes = DbContract.DIA_OK;
+                                            if (jsonDiaDatos.has("Dia")) {
+                                                String Dia = jsonDiaDatos.optString("Dia");
+
+
+                                                if (TextUtils.equals(Dia, "LUNES")){
+                                                    lunes = DbContract.DIA_OK;
+                                                }
+                                                if (TextUtils.equals(Dia, "MARTES")){
+                                                    martes = DbContract.DIA_OK;
+                                                }
+                                                if (TextUtils.equals(Dia, "MIERCOLES")){
+                                                    miercoles = DbContract.DIA_OK;
+                                                }
+                                                if (TextUtils.equals(Dia, "JUEVES")){
+                                                    jueves = DbContract.DIA_OK;
+                                                }
+                                                if (TextUtils.equals(Dia, "VIERNES")){
+                                                    viernes = DbContract.DIA_OK;
+                                                }
+                                                if (TextUtils.equals(Dia, "SABADO")){
+                                                    sabado = DbContract.DIA_OK;
+                                                }
+                                                Log.e("TSFB", "MUESTRO EL DIA "+ Dia);
                                             }
-                                            if (TextUtils.equals(Dia, "MARTES")){
-                                                martes = DbContract.DIA_OK;
-                                            }
-                                            if (TextUtils.equals(Dia, "MIERCOLES")){
-                                                miercoles = DbContract.DIA_OK;
-                                            }
-                                            if (TextUtils.equals(Dia, "JUEVES")){
-                                                jueves = DbContract.DIA_OK;
-                                            }
-                                            if (TextUtils.equals(Dia, "VIERNES")){
-                                                viernes = DbContract.DIA_OK;
-                                            }
-                                            if (TextUtils.equals(Dia, "SABADO")){
-                                                sabado = DbContract.DIA_OK;
-                                            }
+
+
+
+
 
                                         }catch (JSONException a){
                                             Log.e("TSFB", "Parser JSON DIA DATOS  "+ a.toString());
