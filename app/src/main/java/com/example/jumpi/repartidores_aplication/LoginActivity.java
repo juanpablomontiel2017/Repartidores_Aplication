@@ -570,8 +570,11 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
                                     String barioDB = jsonClientesDatos.getString("Barrio");
                                     //String diaDB = jsonClientesDatos.getString("ClientesDirectos_Persona_DNICliente");
 
-                                    saveToLocalDatabaseZonaReparto();
+                                    DbHelper dbHelper = new DbHelper(getContext());
+                                    SQLiteDatabase database = dbHelper.getWritableDatabase();
 
+                                    dbHelper.saveToLocalDatabaseZonaReparto(dniDB, idDB, apellido, nombre, direccion, barrio,referencia, telefono, correo, foto, lunes, martes, miercoles, jueves, viernes, sabado, sync, database);
+                                    dbHelper.close();
 
                                 } catch (JSONException e) {
                                     Log.e("TSFB", "Parser JSON "+ e.toString());
