@@ -567,13 +567,56 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
                                     String emailDB = jsonClientesDatos.getString("Email");
                                     String direccionDB = jsonClientesDatos.getString("Direccion");
                                     String referenciaDB = jsonClientesDatos.getString("Referencia");
-                                    String barioDB = jsonClientesDatos.getString("Barrio");
+                                    String barrioDB = jsonClientesDatos.getString("Barrio");
+
+                                    JSONArray jsonDia = jsonClientesDatos.getJSONArray("Dia");
+                                    JSONObject jsonDiaDatos = null;
+                                    int lunes =DbContract.ENTERO_NULO;
+                                    int martes =DbContract.ENTERO_NULO;
+                                    int miercoles =DbContract.ENTERO_NULO;
+                                    int jueves =DbContract.ENTERO_NULO;
+                                    int viernes =DbContract.ENTERO_NULO;
+                                    int sabado =DbContract.ENTERO_NULO;
+
+
+                                    for (int j = 0; j < jsonDia.length(); j++)
+                                    {
+
+                                        try{
+                                            jsonDiaDatos = jsonDia.getJSONObject(j);
+                                            String Dia = jsonDiaDatos.getString("Dia");
+
+                                            if (TextUtils.equals(Dia, "LUNES")){
+                                                 lunes = DbContract.DIA_OK;
+                                            }
+                                            if (TextUtils.equals(Dia, "MARTES")){
+                                                lunes = DbContract.DIA_OK;
+                                            }
+                                            if (TextUtils.equals(Dia, "MIERCOLES")){
+                                                lunes = DbContract.DIA_OK;
+                                            }
+                                            if (TextUtils.equals(Dia, "JUEVES")){
+                                                lunes = DbContract.DIA_OK;
+                                            }
+                                            if (TextUtils.equals(Dia, "VIERNES")){
+                                                lunes = DbContract.DIA_OK;
+                                            }
+                                            if (TextUtils.equals(Dia, "SABADO")){
+                                                lunes = DbContract.DIA_OK;
+                                            }
+
+                                        }catch (JSONException a){
+                                            Log.e("TSFB", "Parser JSON "+ a.toString());
+
+                                        }
+                                    }
+
                                     //String diaDB = jsonClientesDatos.getString("ClientesDirectos_Persona_DNICliente");
 
-                                    DbHelper dbHelper = new DbHelper(getContext());
+                                    DbHelper dbHelper = new DbHelper(getApplicationContext());
                                     SQLiteDatabase database = dbHelper.getWritableDatabase();
 
-                                    dbHelper.saveToLocalDatabaseZonaReparto(dniDB, idDB, apellido, nombre, direccion, barrio,referencia, telefono, correo, foto, lunes, martes, miercoles, jueves, viernes, sabado, sync, database);
+                                    dbHelper.saveToLocalDatabaseZonaReparto(Integer.parseInt(dniDB), Integer.parseInt(idDB), apellidoDB, nombreDB, direccionDB, barrioDB,referenciaDB, telefonoDB, emailDB, R.drawable.leomessi, lunes, martes, miercoles, jueves, viernes, sabado, DbContract.SYNC_STATUS_OK, database);
                                     dbHelper.close();
 
                                 } catch (JSONException e) {

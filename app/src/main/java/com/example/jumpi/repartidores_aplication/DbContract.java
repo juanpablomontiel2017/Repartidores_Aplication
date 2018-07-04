@@ -15,6 +15,9 @@ public class DbContract {
     public static final String PASSWORD = "contrasena";
     public static final String SYNC_STATUS = "syncstatus";
     public static final int ENTERO_NULO = 99;
+    public static final int DIA_OK = 1;
+    public static final int DIA_FAIL = 0;
+
 
 
     /**
