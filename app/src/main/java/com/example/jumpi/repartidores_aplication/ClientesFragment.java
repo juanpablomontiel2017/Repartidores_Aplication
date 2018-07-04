@@ -231,7 +231,7 @@ public class ClientesFragment extends Fragment implements OnStartDragListener {
                                 JSONObject jsonObject = new JSONObject(response);
                                 boolean success = jsonObject.getBoolean("exito");
                                 if (success){
-                                    saveToLocalDbZonaReparto(DNI, IdPersona, foto, apellido, nombre, direccion, barrio, referencia, telefono, correo,, lunes, martes, miercoles, jueves, viernes, sabado, DbContract.SYNC_STATUS_OK);
+                                    saveToLocalDbZonaReparto(DNI, IdPersona, foto, apellido, nombre, direccion, barrio, referencia, telefono, correo, lunes, martes, miercoles, jueves, viernes, sabado, DbContract.SYNC_STATUS_OK);
                                 }
                                 else
                                 {
@@ -246,7 +246,7 @@ public class ClientesFragment extends Fragment implements OnStartDragListener {
 
                 @Override
                 public void onErrorResponse(VolleyError error) {
-                    saveToLocalDbZonaReparto(DNI, IdPersona, foto, nombre, direccion, barrio, referencia, telefono, correo, DbContract.SYNC_STATUS_FAILED);
+                    saveToLocalDbZonaReparto(DNI, IdPersona, foto, apellido, nombre, direccion, barrio, referencia, telefono, correo, lunes, martes, miercoles, jueves, viernes, sabado, DbContract.SYNC_STATUS_FAILED);
                 }
             })
             {
@@ -263,7 +263,7 @@ public class ClientesFragment extends Fragment implements OnStartDragListener {
         }
         else
         {
-            saveToLocalDbZonaReparto(DNI, IdPersona, foto, nombre, direccion, barrio, referencia, telefono, correo, DbContract.SYNC_STATUS_FAILED);
+            saveToLocalDbZonaReparto(DNI, IdPersona, foto, apellido, nombre, direccion, barrio, referencia, telefono, correo, lunes, martes, miercoles, jueves, viernes, sabado, DbContract.SYNC_STATUS_FAILED);
         }
 
 
