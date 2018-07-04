@@ -540,7 +540,9 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
 
                         Log.d("TFSB", String.valueOf(response));
 
-
+                        /** SI SUCCESS ES = TRUE ENTONCES USUARIO Y CONTRASEÑA VÁLIDA
+                         *
+                         */
 
                         if (success) {
 
@@ -550,11 +552,11 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
                             msj = jsonData.getString("msj");
 
                             /**
-                             * OBTENGO LOS CLIENTES DEL REPARTIDOR
+                             * OBTENGO LOS DATOS RECIBIDOS DE LA KEY "DATA"
                              */
 
                             JSONArray jsonClientes = jsonData.getJSONArray("clientes");
-                            JSONObject jsonClientesDatos = null;
+                            JSONObject jsonClientesDatos;
                             for (int i = 0; i < jsonClientes.length(); i++)
                             {
                                 try {
@@ -570,7 +572,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
                                     String barrioDB = jsonClientesDatos.getString("Barrio");
 
                                     JSONArray jsonDia = jsonClientesDatos.getJSONArray("Dia");
-                                    JSONObject jsonDiaDatos = null;
+                                    JSONObject jsonDiaDatos;
                                     int lunes =DbContract.DIA_FAIL;
                                     int martes =DbContract.DIA_FAIL;
                                     int miercoles =DbContract.DIA_FAIL;
@@ -590,23 +592,23 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
                                                  lunes = DbContract.DIA_OK;
                                             }
                                             if (TextUtils.equals(Dia, "MARTES")){
-                                                lunes = DbContract.DIA_OK;
+                                                martes = DbContract.DIA_OK;
                                             }
                                             if (TextUtils.equals(Dia, "MIERCOLES")){
-                                                lunes = DbContract.DIA_OK;
+                                                miercoles = DbContract.DIA_OK;
                                             }
                                             if (TextUtils.equals(Dia, "JUEVES")){
-                                                lunes = DbContract.DIA_OK;
+                                                jueves = DbContract.DIA_OK;
                                             }
                                             if (TextUtils.equals(Dia, "VIERNES")){
-                                                lunes = DbContract.DIA_OK;
+                                                viernes = DbContract.DIA_OK;
                                             }
                                             if (TextUtils.equals(Dia, "SABADO")){
-                                                lunes = DbContract.DIA_OK;
+                                                sabado = DbContract.DIA_OK;
                                             }
 
                                         }catch (JSONException a){
-                                            Log.e("TSFB", "Parser JSON "+ a.toString());
+                                            Log.e("TSFB", "Parser JSON DIA DATOS  "+ a.toString());
 
                                         }
                                     }
@@ -616,6 +618,10 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
                                     DbHelper dbHelper = new DbHelper(getApplicationContext());
                                     SQLiteDatabase database = dbHelper.getWritableDatabase();
 
+                                    /*
+                                        SE INSERTAN LOS DATOS DEL CLIENTE EN LA TABLA ZONAREPARTO
+                                     */
+
                                     dbHelper.saveToLocalDatabaseZonaReparto(Integer.parseInt(dniDB), Integer.parseInt(idDB), apellidoDB, nombreDB, direccionDB, barrioDB,referenciaDB, telefonoDB, emailDB, R.drawable.leomessi, lunes, martes, miercoles, jueves, viernes, sabado, DbContract.SYNC_STATUS_OK, database);
                                     dbHelper.close();
 
@@ -624,24 +630,27 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
                                 }
                             }
 
-                            // ingresas a otra activity de la app. Logueo exitoso
+
+
+
 
                             finish();
-                            String usuariobd = null;
-                            String passwordbd = null;
-                            String dnibd = null;
-                            String idbd = null;
+                            DbHelper dbHelper = new DbHelper(getApplicationContext());
+                            SQLiteDatabase database = dbHelper.getWritableDatabase();
 
+
+                            // INSERTA LOS DATOS DEL USUARIO EN LA TABLA USUARIO
+
+                            dbHelper.saveToLocalDatabase(Integer.parseInt(dni), Integer.parseInt(id),mEmail,mPassword, DbContract.SYNC_STATUS_OK, database);
+
+                            // ingresas a otra activity de la app. Logueo exitoso
                             if (TextUtils.equals(msj, "repartidor")){
                                 Log.d("TFSB", "response true. Ingresa a Main Repartidor");
 
-                                DbHelper dbHelper = new DbHelper(getApplicationContext());
-                                SQLiteDatabase database = dbHelper.getWritableDatabase();
-
-                                dbHelper.saveToLocalDatabase(Integer.parseInt(dni), Integer.parseInt(id),mEmail,mPassword, DbContract.SYNC_STATUS_OK, database);
 
 
-                                // prueba para saber si guarda los datos del repartidor en la BD
+
+                                // prueba para saber si guarda los datos del usuario en la BD
 /*
 
                                 DbHelper dbHelperRead = new DbHelper(getApplicationContext());
