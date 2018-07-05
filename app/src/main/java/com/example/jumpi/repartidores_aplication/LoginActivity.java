@@ -842,9 +842,11 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
 
 
 
-            LoginRequest loginRequest = new LoginRequest(mEmail, mPassword, responseListener);
-            RequestQueue queue = Volley.newRequestQueue(LoginActivity.this);
-            queue.add(loginRequest);
+            LoginRequest loginRequest = new LoginRequest(mEmail, mPassword, "true", responseListener);
+            MySingleton.getInstance(getApplicationContext()).addToRequestQueue(loginRequest);
+
+            //RequestQueue queue = Volley.newRequestQueue(LoginActivity.this);
+            //queue.add(loginRequest);
             Log.d("TFSB", "Se crea la solicitud al servidor. Usuario: "+mEmail+" Pass: "+mPassword);
 
 
@@ -859,6 +861,12 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
         private  String id = null;
         private  String dni = null;
         private  String msj = null;
+        int lunes =DbContract.DIA_FAIL;
+        int martes =DbContract.DIA_FAIL;
+        int miercoles =DbContract.DIA_FAIL;
+        int jueves =DbContract.DIA_FAIL;
+        int viernes =DbContract.DIA_FAIL;
+        int sabado =DbContract.DIA_FAIL;
         //  private  String usuariobd = null;
 
 
@@ -998,9 +1006,11 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
             //*************************
             //En ésta parte del código se crea el reponse para enviarlo al servidor
 
-            LoginRequest loginRequest = new LoginRequest(mEmail, mPassword, responseListener);
-            RequestQueue queue = Volley.newRequestQueue(LoginActivity.this);
-            queue.add(loginRequest);
+            LoginRequest loginRequest = new LoginRequest(mEmail, mPassword, "false", responseListener);
+            MySingleton.getInstance(getApplicationContext()).addToRequestQueue(loginRequest);
+
+//            RequestQueue queue = Volley.newRequestQueue(LoginActivity.this);
+  //          queue.add(loginRequest);
             Log.d("TFSB", "Se crea la solicitud al servidor. Usuario: "+mEmail+" Pass: "+mPassword);
 
 
@@ -1031,133 +1041,270 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
                         boolean success = jsonResponse.getBoolean("exito");
 
 
+                        Log.d("TFSB", String.valueOf(response));
+
+                        /** SI SUCCESS ES = TRUE ENTONCES USUARIO Y CONTRASEÑA VÁLIDA
+                         *
+                         */
+
                         if (success) {
-                            id = jsonResponse.getString("id");
-                            dni = jsonResponse.getString("dni");
-                            msj = jsonResponse.getString("msj");
+
+                            JSONObject jsonData = jsonResponse.getJSONObject("data");
+                            id = jsonData.getString("id");
+                            dni = jsonData.getString("dni");
+                            msj = jsonData.getString("msj");
+
 
                             DbHelper dbHelper = new DbHelper(getApplicationContext());
                             SQLiteDatabase databaseRead = dbHelper.getReadableDatabase();
 
                             dbHelper.onUpgrade(databaseRead,1,1);
 
-                            Cursor cursor = dbHelper.readFromLocalDatabase(databaseRead);
-                            String usuariobd = null;
-                            String passwordbd = null;
-                            String dnibd = null;
-                            String idbd = null;
 
 
-                            while (cursor.moveToNext())
-                            {
-                                usuariobd = cursor.getString(cursor.getColumnIndex(DbContract.USUARIO));
-                                passwordbd = cursor.getString(cursor.getColumnIndex(DbContract.PASSWORD));
-                                dnibd = cursor.getString(cursor.getColumnIndex(DbContract.DNI));
-                                idbd = cursor.getString(cursor.getColumnIndex(DbContract.ID));
+                            /**
+                             * OBTENGO LOS DATOS RECIBIDOS DE LA KEY "DATA"
+                             */
+
+                            if (jsonData.has("clientes")){
+                                JSONArray jsonClientes = jsonData.getJSONArray("clientes");
+                                JSONObject jsonClientesDatos;
+                                for (int i = 0; i < jsonClientes.length(); i++)
+                                {
+                                    try {
+                                        jsonClientesDatos = jsonClientes.getJSONObject(i);
+                                        String idDB = jsonClientesDatos.getString("ClientesDirectos_Persona_IdCliente");
+                                        String dniDB = jsonClientesDatos.getString("ClientesDirectos_Persona_DNICliente");
+                                        String apellidoDB = jsonClientesDatos.optString("Apellido");
+                                        String nombreDB = jsonClientesDatos.optString("Nombre");
+                                        String telefonoDB = jsonClientesDatos.optString("Telefono");
+                                        String emailDB = jsonClientesDatos.optString("Email");
+                                        String direccionDB = jsonClientesDatos.optString("Direccion");
+                                        String referenciaDB = jsonClientesDatos.optString("Referencia");
+                                        String barrioDB = jsonClientesDatos.optString("Barrio");
 
 
 
+                                        lunes =DbContract.DIA_FAIL;
+                                        martes =DbContract.DIA_FAIL;
+                                        miercoles =DbContract.DIA_FAIL;
+                                        jueves =DbContract.DIA_FAIL;
+                                        viernes =DbContract.DIA_FAIL;
+                                        sabado =DbContract.DIA_FAIL;
+
+                                        if (jsonClientesDatos.has("Dia")) {
+
+                                            JSONArray jsonDia = jsonClientesDatos.getJSONArray("Dia");
+                                            JSONObject jsonDiaDatos;
+
+
+
+                                            for (int j = 0; j < jsonDia.length(); j++)
+                                            {
+
+                                                try{
+                                                    jsonDiaDatos = jsonDia.getJSONObject(j);
+
+                                                    if (jsonDiaDatos.has("Dia")) {
+                                                        String Dia = jsonDiaDatos.optString("Dia");
+
+
+                                                        if (TextUtils.equals(Dia, "LUNES")){
+                                                            lunes = DbContract.DIA_OK;
+                                                        }
+                                                        if (TextUtils.equals(Dia, "MARTES")){
+                                                            martes = DbContract.DIA_OK;
+                                                        }
+                                                        if (TextUtils.equals(Dia, "MIERCOLES")){
+                                                            miercoles = DbContract.DIA_OK;
+                                                        }
+                                                        if (TextUtils.equals(Dia, "JUEVES")){
+                                                            jueves = DbContract.DIA_OK;
+                                                        }
+                                                        if (TextUtils.equals(Dia, "VIERNES")){
+                                                            viernes = DbContract.DIA_OK;
+                                                        }
+                                                        if (TextUtils.equals(Dia, "SABADO")){
+                                                            sabado = DbContract.DIA_OK;
+                                                        }
+                                                        //Log.e("TSFB", "MUESTRO EL DIA "+ Dia);
+                                                    }
+
+
+
+
+
+                                                }catch (JSONException a){
+                                                    Log.e("TSFB", "Parser JSON DIA DATOS  "+ a.toString());
+
+                                                }
+                                            }
+
+                                        }
+
+
+                                        //String diaDB = jsonClientesDatos.getString("ClientesDirectos_Persona_DNICliente");
+
+                                        dbHelper = new DbHelper(getApplicationContext());
+                                        SQLiteDatabase database = dbHelper.getWritableDatabase();
+
+                                    /*
+                                        SE INSERTAN LOS DATOS DEL CLIENTE EN LA TABLA ZONAREPARTO
+                                     */
+
+                                        dbHelper.saveToLocalDatabaseZonaReparto(Integer.parseInt(dniDB), Integer.parseInt(idDB), apellidoDB, nombreDB, direccionDB, barrioDB,referenciaDB, telefonoDB, emailDB, R.drawable.leomessi, lunes, martes, miercoles, jueves, viernes, sabado, DbContract.SYNC_STATUS_OK, database);
+                                        dbHelper.close();
+
+                                    } catch (JSONException e) {
+                                        Log.e("TSFB", "Parser JSON "+ e.toString());
+                                    }
+                                }
                             }
-                            cursor.close();
-                            dbHelper.close();
-
-
-                            StringBuilder sb = new StringBuilder();
-                            sb.append(usuariobd);
-                            sb.append(passwordbd);
-                            sb.append(dnibd);
-                            sb.append(idbd);
-                            String ResultadoViejoUsuario = sb.toString();
-
-                            Log.d("TFSB", "DbUserLogin/onResponse Datos del viejo usuario: "+ResultadoViejoUsuario);
 
 
 
-                            // ingresas a otra activity de la app. Logueo exitoso
+
+
+
 
                             finish();
 
+                             dbHelper = new DbHelper(getApplicationContext());
+                            SQLiteDatabase database = dbHelper.getWritableDatabase();
+
+
+                            // INSERTA LOS DATOS DEL USUARIO EN LA TABLA USUARIO
+
+                            dbHelper.saveToLocalDatabase(Integer.parseInt(dni), Integer.parseInt(id),mEmail,mPassword, DbContract.SYNC_STATUS_OK, database);
+                            dbHelper.close();
+
+                            // ingresas a otra activity de la app. Logueo exitoso
                             if (TextUtils.equals(msj, "repartidor")){
-                                Log.d("TFSB", "DbUserLogin/onResponse/ response true. Ingresa a Main Repartidor");
-
-                                //DbHelper dbHelper = new DbHelper(getApplicationContext());
-                                //SQLiteDatabase database = dbHelper.getWritableDatabase();
-
-                                //  dbHelper.saveToLocalDatabase(Integer.parseInt(dni), Integer.parseInt(id),mEmail,mPassword, DbContract.SYNC_STATUS_OK, database);
+                                Log.d("TFSB", "response true. Ingresa a Main Repartidor");
 
 
-                                // prueba para saber si guarda los datos del repartidor en la BD
+                                /**
+                                 * PRUEBA PARA SABER SI GUARDA LOS DATOS DEL USUARIO EN LA BD LOCAL
+                                 */
 
-/**
+
                                 DbHelper dbHelperRead = new DbHelper(getApplicationContext());
-                                SQLiteDatabase databaseRead = dbHelperRead.getReadableDatabase();
+                                 databaseRead = dbHelperRead.getReadableDatabase();
                                 Cursor cursor = dbHelperRead.readFromLocalDatabase(databaseRead);
 
 
+                                String usuariobd=null;
+                                String passwordbd=null;
+                                String dnibd=null;
+                                String idbd=null;
 
+                                //ListaUsuario = null;
                                 while (cursor.moveToNext())
                                 {
                                     usuariobd = cursor.getString(cursor.getColumnIndex(DbContract.USUARIO));
                                     passwordbd = cursor.getString(cursor.getColumnIndex(DbContract.PASSWORD));
                                     dnibd = cursor.getString(cursor.getColumnIndex(DbContract.DNI));
                                     idbd = cursor.getString(cursor.getColumnIndex(DbContract.ID));
+                                    //ListaUsuario.add(new Usuario(Integer.parseInt(idbd), Integer.parseInt(dnibd), usuariobd, passwordbd));
 
 
 
                                 }
                                 dbHelperRead.close();
+                                cursor.close();
+
+/*
                                 StringBuilder sb = new StringBuilder();
                                 sb.append(usuariobd);
                                 sb.append(passwordbd);
                                 sb.append(dnibd);
                                 sb.append(idbd);
                                 String resultado = sb.toString();
-
-                                Log.d("TFSB", resultado);
 */
 
-                                SQLiteDatabase database = dbHelper.getWritableDatabase();
-
-                                dbHelper.saveToLocalDatabase(Integer.parseInt(dni), Integer.parseInt(id),mEmail,mPassword, DbContract.SYNC_STATUS_OK, database);
-                                dbHelper.close();
-
-                                // prueba para saber si guarda los datos del repartidor en la BD
+                                Log.d("TFSB", "PRUEBA PARA SABER SI GUARDA LOS DATOS DEL USUARIO -> DNI: "+dnibd+" ID: "+idbd+" USUARIO: "+usuariobd+" PASSWORD: "+passwordbd);
 
 
-                              //  DbHelper dbHelperRead = new DbHelper(getApplicationContext());
-                                //SQLiteDatabase databaseRead = dbHelperRead.getReadableDatabase();
-                                //Cursor cursor = dbHelper.readFromLocalDatabase(databaseRead);
+                                /**
+                                 * PRUEBA PARA SABER SI GUARDA LOS DATOS DE LOS CLIENTES
+                                 */
 
+                                dbHelperRead = new DbHelper(getApplicationContext());
+                                databaseRead = dbHelperRead.getReadableDatabase();
+                                cursor = dbHelperRead.readFromLocalDatabaseZonaReparto(databaseRead);
 
-                              //k  Cursor cursor = dbHelper.readFromLocalDatabase(databaseRead);
-                                while (cursor.moveToFirst())
+                                Log.d("TFSB", "                               ");
+                                Log.d("TFSB", "  PRUEBA PARA SABER SI GUARDA LOS DATOS DE LOS CLIENTES");
+                                Log.d("TFSB", "                               ");
+
+                                dnibd=null;
+                                idbd=null;
+
+                                //ListaUsuario = null;
+                                while (cursor.moveToNext())
                                 {
-                                    usuariobd = cursor.getString(cursor.getColumnIndex(DbContract.USUARIO));
-                                    passwordbd = cursor.getString(cursor.getColumnIndex(DbContract.PASSWORD));
+
                                     dnibd = cursor.getString(cursor.getColumnIndex(DbContract.DNI));
                                     idbd = cursor.getString(cursor.getColumnIndex(DbContract.ID));
+                                    String apellidoDB = cursor.getString(cursor.getColumnIndex(DbContract.APELLIDO));
+                                    String nombreDB = cursor.getString(cursor.getColumnIndex(DbContract.NOMBRE));
+                                    String telefonoDB = cursor.getString(cursor.getColumnIndex(DbContract.TELEFONO));
+                                    String emailDB = cursor.getString(cursor.getColumnIndex(DbContract.CORREO));
+                                    String direccionDB = cursor.getString(cursor.getColumnIndex(DbContract.DIRECCION));
+                                    String barrioDB = cursor.getString(cursor.getColumnIndex(DbContract.BARRIO));
+                                    String foto = cursor.getString(cursor.getColumnIndex(DbContract.FOTO));
 
+                                    String lunes = cursor.getString(cursor.getColumnIndex(DbContract.LUNES));
+                                    String martes = cursor.getString(cursor.getColumnIndex(DbContract.MARTES));
+                                    String miercoles = cursor.getString(cursor.getColumnIndex(DbContract.MIERCOLES));
+                                    String jueves = cursor.getString(cursor.getColumnIndex(DbContract.JUEVES));
+                                    String viernes = cursor.getString(cursor.getColumnIndex(DbContract.VIERNES));
+                                    String sabado = cursor.getString(cursor.getColumnIndex(DbContract.SABADO));
+
+                                    //ListaUsuario.add(new Usuario(Integer.parseInt(idbd), Integer.parseInt(dnibd), usuariobd, passwordbd));
+
+                                    Log.d("TFSB", "DNI: "+dnibd+" ID: "+idbd+" APELLIDO: "+apellidoDB+" NOMBRE: "+nombreDB);
 
 
                                 }
+                                dbHelperRead.close();
+                                cursor.close();
 
-                                StringBuilder concat = new StringBuilder();
-                                concat.append(usuariobd);
-                                concat.append(passwordbd);
-                                concat.append(dnibd);
-                                concat.append(idbd);
-                                String ResultadoNuevoUsuario = concat.toString();
 
-                                Log.d("TFSB", "DbUserLogin/onResponse/ Datos del nuevo usuario :"+ResultadoNuevoUsuario);
-                                dbHelper.close();
 
+
+
+
+
+                                //*************************************************************************
+
+
+/*
+                                usuariobd = null;
+                                passwordbd = null;
+                                dnibd = null;
+                                idbd = null;
+
+                                Log.d("TFSB", "Datos del usuario logeado en Lista ");
+
+                                for( int i = 0 ; i < ListaUsuario.size() ; i++ ){
+
+                                    usuariobd = ListaUsuario.get(i).getUsuario();
+                                    passwordbd = ListaUsuario.get(i).getPassword();
+                                    dnibd = Integer.parseInt(ListaUsuario.get(i).get);
+                                    idbd = null;
+
+                                    Log.d("TFSB", "Datos del usuario logeado en Lista ");
+
+                                }
+*/
                                 Intent myIntent = new Intent(LoginActivity.this,MainActivity.class);
                                 myIntent.putExtra("id", id);
                                 myIntent.putExtra("dni", dni);
                                 LoginActivity.this.startActivity(myIntent);
                             } else {
                                 if (TextUtils.equals(msj, "supervisor")){
-                                    Log.d("TFSB", "DbUserLogin/onResponse/ response true. Ingresa a Main Supervisor");
+                                    Log.d("TFSB", "response true. Ingresa a Main Supervisor");
 
                                     // Crear el intent y pasar a una activity supervisor
 
@@ -1176,16 +1323,16 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
                             // callback.onError();
                             //obj.registerEventListener(callback);
 
-                            Log.d("TFSB", "DbUserLogin/onResponse/ response FALSE");
+                            Log.d("TFSB", "response FALSE");
                             // mPasswordView.setError(getString(R.string.error_incorrect_password));
                             mPasswordView.setError("La contraseña o el usuario no son válidos. Vuelva a intentar");
                             mPasswordView.requestFocus();
-                            Log.d("TFSB", "DbUserLogin/onResponse/ incorrect password ");
+                            Log.d("TFSB", "incorrect password ");
                         }
 
                     } catch (JSONException e) {
                         e.printStackTrace();
-                        Log.d("TFSB", "DbUserLogin/onResponse/ Error en login/response. Excepción json");
+                        Log.d("TFSB", "Error en login/response. Excepción json " + e.toString());
 
                     }
 
@@ -1195,9 +1342,11 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
             //*************************
             //En ésta parte del código se crea el reponse para enviarlo al servidor
 
-            LoginRequest loginRequest = new LoginRequest(mEmail, mPassword, responseListener);
-            RequestQueue queue = Volley.newRequestQueue(LoginActivity.this);
-            queue.add(loginRequest);
+            LoginRequest loginRequest = new LoginRequest(mEmail, mPassword,"true", responseListener);
+            MySingleton.getInstance(getApplicationContext()).addToRequestQueue(loginRequest);
+
+//            RequestQueue queue = Volley.newRequestQueue(LoginActivity.this);
+  //          queue.add(loginRequest);
             Log.d("TFSB", "DbUserLogin/ Se crea la solicitud al servidor. Usuario: "+mEmail+" pass: "+mPassword);
 
         }
