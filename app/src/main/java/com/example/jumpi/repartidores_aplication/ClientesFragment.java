@@ -213,6 +213,43 @@ public class ClientesFragment extends Fragment implements OnStartDragListener {
 
     }
 
+    private void actualizarMyRecyclerView(){
+        DbHelper dbHelperRead = new DbHelper(getContext());
+        SQLiteDatabase databaseRead = dbHelperRead.getReadableDatabase();
+        Cursor cursor = dbHelperRead.readFromLocalDatabaseZonaReparto(databaseRead);
+        lstClientes.clear();
+        while (cursor.moveToNext())
+        {
+
+
+            String apellido = cursor.getString(cursor.getColumnIndex(DbContract.APELLIDO));
+            String nombre = cursor.getString(cursor.getColumnIndex(DbContract.NOMBRE));
+            String direccion = cursor.getString(cursor.getColumnIndex(DbContract.DIRECCION));
+            String barrio = cursor.getString(cursor.getColumnIndex(DbContract.BARRIO));
+            String referencia = cursor.getString(cursor.getColumnIndex(DbContract.REFERENCIA));
+            String telefono = cursor.getString(cursor.getColumnIndex(DbContract.TELEFONO));
+            String correo = cursor.getString(cursor.getColumnIndex(DbContract.CORREO));
+            String dni = cursor.getString(cursor.getColumnIndex(DbContract.DNI));
+            String id = cursor.getString(cursor.getColumnIndex(DbContract.ID));
+            //int foto = cursor.getInt(cursor.getColumnIndex(DbContract.FOTO));
+            int foto = R.drawable.leomessi;
+            int sync_status = cursor.getInt(cursor.getColumnIndex(DbContract.SYNC_STATUS));
+
+            lstClientes.add(new Clientes(Integer.parseInt(dni), Integer.parseInt(id), foto, apellido, nombre, direccion, barrio, referencia, telefono, correo));
+
+            myrecyclerview.notify();
+
+
+
+        }
+
+        cursor.close();
+        dbHelperRead.close();
+
+
+    }
+
+
 
     private void saveToRemoteDbZonaReparto(final int DNI, final int IdPersona, final int foto, final String apellido, final String nombre, final String direccion, final String barrio, final String referencia, final String telefono, final String correo, final int lunes, final int martes, final int miercoles, final int jueves, final int viernes, final int sabado){
 
