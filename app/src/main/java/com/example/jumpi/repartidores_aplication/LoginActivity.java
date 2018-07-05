@@ -659,6 +659,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
 
 
                             finish();
+
                             DbHelper dbHelper = new DbHelper(getApplicationContext());
                             SQLiteDatabase database = dbHelper.getWritableDatabase();
 
@@ -666,6 +667,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
                             // INSERTA LOS DATOS DEL USUARIO EN LA TABLA USUARIO
 
                             dbHelper.saveToLocalDatabase(Integer.parseInt(dni), Integer.parseInt(id),mEmail,mPassword, DbContract.SYNC_STATUS_OK, database);
+                            dbHelper.close();
 
                             // ingresas a otra activity de la app. Logueo exitoso
                             if (TextUtils.equals(msj, "repartidor")){
@@ -699,7 +701,8 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
 
 
                                 }
-                                dbHelper.close();
+                                dbHelperRead.close();
+                                cursor.close();
 
 /*
                                 StringBuilder sb = new StringBuilder();
@@ -755,7 +758,8 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
 
 
                                 }
-                                dbHelper.close();
+                                dbHelperRead.close();
+                                cursor.close();
 
 
 
@@ -1054,7 +1058,8 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
 
 
                             }
-                           // cursor.close();
+                            cursor.close();
+                            dbHelper.close();
 
 
                             StringBuilder sb = new StringBuilder();
@@ -1071,7 +1076,6 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
                             // ingresas a otra activity de la app. Logueo exitoso
 
                             finish();
-
 
                             if (TextUtils.equals(msj, "repartidor")){
                                 Log.d("TFSB", "DbUserLogin/onResponse/ response true. Ingresa a Main Repartidor");
@@ -1115,7 +1119,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
                                 SQLiteDatabase database = dbHelper.getWritableDatabase();
 
                                 dbHelper.saveToLocalDatabase(Integer.parseInt(dni), Integer.parseInt(id),mEmail,mPassword, DbContract.SYNC_STATUS_OK, database);
-
+                                dbHelper.close();
 
                                 // prueba para saber si guarda los datos del repartidor en la BD
 

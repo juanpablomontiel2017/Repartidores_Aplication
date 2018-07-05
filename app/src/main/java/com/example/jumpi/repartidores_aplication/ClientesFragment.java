@@ -181,10 +181,10 @@ public class ClientesFragment extends Fragment implements OnStartDragListener {
         DbHelper dbHelperRead = new DbHelper(getContext());
         SQLiteDatabase databaseRead = dbHelperRead.getReadableDatabase();
         Cursor cursor = dbHelperRead.readFromLocalDatabaseZonaReparto(databaseRead);
-
+        lstClientes.clear();
         while (cursor.moveToNext())
         {
-            lstClientes.clear();
+
 
             String apellido = cursor.getString(cursor.getColumnIndex(DbContract.APELLIDO));
             String nombre = cursor.getString(cursor.getColumnIndex(DbContract.NOMBRE));
@@ -201,12 +201,14 @@ public class ClientesFragment extends Fragment implements OnStartDragListener {
 
             lstClientes.add(new Clientes(Integer.parseInt(dni), Integer.parseInt(id), foto, apellido, nombre, direccion, barrio, referencia, telefono, correo));
 
-            myrecyclerview.notify();
-            cursor.close();
-            dbHelperRead.close();
+            //myrecyclerview.notify();
+
 
 
         }
+
+        cursor.close();
+        dbHelperRead.close();
 
 
     }
