@@ -503,6 +503,12 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
         private  String id = null;
         private  String dni = null;
         private  String msj = null;
+        int lunes =DbContract.DIA_FAIL;
+        int martes =DbContract.DIA_FAIL;
+        int miercoles =DbContract.DIA_FAIL;
+        int jueves =DbContract.DIA_FAIL;
+        int viernes =DbContract.DIA_FAIL;
+        int sabado =DbContract.DIA_FAIL;
       //  private  String usuariobd = null;
 
 
@@ -571,60 +577,65 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
                                     String referenciaDB = jsonClientesDatos.optString("Referencia");
                                     String barrioDB = jsonClientesDatos.optString("Barrio");
 
+
+
+                                     lunes =DbContract.DIA_FAIL;
+                                     martes =DbContract.DIA_FAIL;
+                                     miercoles =DbContract.DIA_FAIL;
+                                     jueves =DbContract.DIA_FAIL;
+                                     viernes =DbContract.DIA_FAIL;
+                                     sabado =DbContract.DIA_FAIL;
+
                                     if (jsonClientesDatos.has("Dia")) {
 
-                                    }
-
-                                    JSONArray jsonDia = jsonClientesDatos.getJSONArray("Dia");
-                                    JSONObject jsonDiaDatos;
-                                    int lunes =DbContract.DIA_FAIL;
-                                    int martes =DbContract.DIA_FAIL;
-                                    int miercoles =DbContract.DIA_FAIL;
-                                    int jueves =DbContract.DIA_FAIL;
-                                    int viernes =DbContract.DIA_FAIL;
-                                    int sabado =DbContract.DIA_FAIL;
+                                        JSONArray jsonDia = jsonClientesDatos.getJSONArray("Dia");
+                                        JSONObject jsonDiaDatos;
 
 
-                                    for (int j = 0; j < jsonDia.length(); j++)
-                                    {
 
-                                        try{
-                                            jsonDiaDatos = jsonDia.getJSONObject(j);
+                                        for (int j = 0; j < jsonDia.length(); j++)
+                                        {
 
-                                            if (jsonDiaDatos.has("Dia")) {
-                                                String Dia = jsonDiaDatos.optString("Dia");
+                                            try{
+                                                jsonDiaDatos = jsonDia.getJSONObject(j);
+
+                                                if (jsonDiaDatos.has("Dia")) {
+                                                    String Dia = jsonDiaDatos.optString("Dia");
 
 
-                                                if (TextUtils.equals(Dia, "LUNES")){
-                                                    lunes = DbContract.DIA_OK;
+                                                    if (TextUtils.equals(Dia, "LUNES")){
+                                                        lunes = DbContract.DIA_OK;
+                                                    }
+                                                    if (TextUtils.equals(Dia, "MARTES")){
+                                                        martes = DbContract.DIA_OK;
+                                                    }
+                                                    if (TextUtils.equals(Dia, "MIERCOLES")){
+                                                        miercoles = DbContract.DIA_OK;
+                                                    }
+                                                    if (TextUtils.equals(Dia, "JUEVES")){
+                                                        jueves = DbContract.DIA_OK;
+                                                    }
+                                                    if (TextUtils.equals(Dia, "VIERNES")){
+                                                        viernes = DbContract.DIA_OK;
+                                                    }
+                                                    if (TextUtils.equals(Dia, "SABADO")){
+                                                        sabado = DbContract.DIA_OK;
+                                                    }
+                                                    //Log.e("TSFB", "MUESTRO EL DIA "+ Dia);
                                                 }
-                                                if (TextUtils.equals(Dia, "MARTES")){
-                                                    martes = DbContract.DIA_OK;
-                                                }
-                                                if (TextUtils.equals(Dia, "MIERCOLES")){
-                                                    miercoles = DbContract.DIA_OK;
-                                                }
-                                                if (TextUtils.equals(Dia, "JUEVES")){
-                                                    jueves = DbContract.DIA_OK;
-                                                }
-                                                if (TextUtils.equals(Dia, "VIERNES")){
-                                                    viernes = DbContract.DIA_OK;
-                                                }
-                                                if (TextUtils.equals(Dia, "SABADO")){
-                                                    sabado = DbContract.DIA_OK;
-                                                }
-                                                Log.e("TSFB", "MUESTRO EL DIA "+ Dia);
+
+
+
+
+
+                                            }catch (JSONException a){
+                                                Log.e("TSFB", "Parser JSON DIA DATOS  "+ a.toString());
+
                                             }
-
-
-
-
-
-                                        }catch (JSONException a){
-                                            Log.e("TSFB", "Parser JSON DIA DATOS  "+ a.toString());
-
                                         }
+
                                     }
+
 
                                     //String diaDB = jsonClientesDatos.getString("ClientesDirectos_Persona_DNICliente");
 
