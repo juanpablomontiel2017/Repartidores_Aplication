@@ -42,6 +42,12 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View view) {
 
                Intent buttonLunes = new Intent(MainActivity.this, Second_Activity.class);
+               Bundle bundle = new Bundle();
+               String dia = "lunes";
+                bundle.putString("dia", dia);
+
+                buttonLunes.putExtras(bundle);
+                // Agregas el Bundle al Intent e inicias ActivityB
                startActivity(buttonLunes);
 
             }
@@ -55,6 +61,11 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View view) {
 
                 Intent buttonMartes = new Intent(MainActivity.this, Second_Activity.class);
+                Bundle bundle = new Bundle();
+                String dia = "martes";
+                bundle.putString("dia", dia);
+
+                buttonMartes.putExtras(bundle);
                 startActivity(buttonMartes);
 
             }
@@ -68,6 +79,11 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View view) {
 
                 Intent buttonMiercoles = new Intent(MainActivity.this, Second_Activity.class);
+                Bundle bundle = new Bundle();
+                String dia = "miercoles";
+                bundle.putString("dia", dia);
+
+                buttonMiercoles.putExtras(bundle);
                 startActivity(buttonMiercoles);
 
             }
@@ -82,6 +98,12 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View view) {
 
                 Intent buttonJueves = new Intent(MainActivity.this, Second_Activity.class);
+                Bundle bundle = new Bundle();
+                String dia = "jueves";
+                bundle.putString("dia", dia);
+
+                buttonJueves.putExtras(bundle);
+
                 startActivity(buttonJueves);
 
             }
@@ -96,6 +118,13 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View view) {
 
                 Intent buttonViernes = new Intent(MainActivity.this, Second_Activity.class);
+
+                Bundle bundle = new Bundle();
+                String dia = "viernes";
+                bundle.putString("dia", dia);
+
+                buttonViernes.putExtras(bundle);
+
                 startActivity(buttonViernes);
 
             }
@@ -110,6 +139,12 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View view) {
 
                 Intent buttonSabado = new Intent(MainActivity.this, Second_Activity.class);
+
+                Bundle bundle = new Bundle();
+                String dia = "sabado";
+                bundle.putString("dia", dia);
+                buttonSabado.putExtras(bundle);
+
                 startActivity(buttonSabado);
 
             }

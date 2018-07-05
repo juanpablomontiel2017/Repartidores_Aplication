@@ -14,6 +14,7 @@ import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.helper.ItemTouchHelper;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -60,10 +61,12 @@ public class ClientesFragment extends Fragment implements OnStartDragListener {
     private List<Clientes> lstClientes;
     ItemTouchHelper mItemTouchHelper;
     BroadcastReceiver broadcastReceiver;
+    String dia = null;
 
 
     public ClientesFragment() {
         // Required empty public constructor
+
 
     }
 
@@ -94,14 +97,14 @@ public class ClientesFragment extends Fragment implements OnStartDragListener {
         broadcastReceiver = new BroadcastReceiver() {
             @Override
             public void onReceive(Context context, Intent intent) {
-                readFromLocalDbZonaReparto();
+                readFromLocalDbZonaReparto(dia);
             }
         };
 
-
+        dia = getArguments().getString("dia");
 
         lstClientes = new ArrayList<>();
-        readFromLocalDbZonaReparto();
+        readFromLocalDbZonaReparto(dia);
 
         /**
         lstClientes.add(new Clientes(R.drawable.ricardofort,"Ricardo Fort","Urquiza 590","Centro","Casa rosada con portón blanco","(+54) 3644 413254","rikypapa19@gmail.com"));
@@ -177,29 +180,33 @@ public class ClientesFragment extends Fragment implements OnStartDragListener {
 
     }
 
-    private void readFromLocalDbZonaReparto(){
+    private void readFromLocalDbZonaReparto(String dia){
         DbHelper dbHelperRead = new DbHelper(getContext());
         SQLiteDatabase databaseRead = dbHelperRead.getReadableDatabase();
         Cursor cursor = dbHelperRead.readFromLocalDatabaseZonaReparto(databaseRead);
         lstClientes.clear();
         while (cursor.moveToNext())
         {
+            int diaDB = Integer.parseInt(cursor.getString(cursor.getColumnIndex(dia)));
+
+            if (diaDB == DbContract.DIA_OK){
+                String apellido = cursor.getString(cursor.getColumnIndex(DbContract.APELLIDO));
+                String nombre = cursor.getString(cursor.getColumnIndex(DbContract.NOMBRE));
+                String direccion = cursor.getString(cursor.getColumnIndex(DbContract.DIRECCION));
+                String barrio = cursor.getString(cursor.getColumnIndex(DbContract.BARRIO));
+                String referencia = cursor.getString(cursor.getColumnIndex(DbContract.REFERENCIA));
+                String telefono = cursor.getString(cursor.getColumnIndex(DbContract.TELEFONO));
+                String correo = cursor.getString(cursor.getColumnIndex(DbContract.CORREO));
+                String dni = cursor.getString(cursor.getColumnIndex(DbContract.DNI));
+                String id = cursor.getString(cursor.getColumnIndex(DbContract.ID));
+                //int foto = cursor.getInt(cursor.getColumnIndex(DbContract.FOTO));
+                int foto = R.drawable.leomessi;
+                int sync_status = cursor.getInt(cursor.getColumnIndex(DbContract.SYNC_STATUS));
+
+                lstClientes.add(new Clientes(Integer.parseInt(dni), Integer.parseInt(id), foto, apellido, nombre, direccion, barrio, referencia, telefono, correo));
+            }
 
 
-            String apellido = cursor.getString(cursor.getColumnIndex(DbContract.APELLIDO));
-            String nombre = cursor.getString(cursor.getColumnIndex(DbContract.NOMBRE));
-            String direccion = cursor.getString(cursor.getColumnIndex(DbContract.DIRECCION));
-            String barrio = cursor.getString(cursor.getColumnIndex(DbContract.BARRIO));
-            String referencia = cursor.getString(cursor.getColumnIndex(DbContract.REFERENCIA));
-            String telefono = cursor.getString(cursor.getColumnIndex(DbContract.TELEFONO));
-            String correo = cursor.getString(cursor.getColumnIndex(DbContract.CORREO));
-            String dni = cursor.getString(cursor.getColumnIndex(DbContract.DNI));
-            String id = cursor.getString(cursor.getColumnIndex(DbContract.ID));
-            //int foto = cursor.getInt(cursor.getColumnIndex(DbContract.FOTO));
-            int foto = R.drawable.leomessi;
-            int sync_status = cursor.getInt(cursor.getColumnIndex(DbContract.SYNC_STATUS));
-
-            lstClientes.add(new Clientes(Integer.parseInt(dni), Integer.parseInt(id), foto, apellido, nombre, direccion, barrio, referencia, telefono, correo));
 
             //myrecyclerview.notify();
 
@@ -314,7 +321,7 @@ public class ClientesFragment extends Fragment implements OnStartDragListener {
         SQLiteDatabase database = dbHelper.getWritableDatabase();
 
         dbHelper.saveToLocalDatabaseZonaReparto(DNI, IdPersona, apellido, nombre, direccion, barrio,referencia, telefono, correo, foto, lunes, martes, miercoles, jueves, viernes, sabado, sync, database);
-        readFromLocalDbZonaReparto();
+        readFromLocalDbZonaReparto(dia);
         dbHelper.close();
     }
 

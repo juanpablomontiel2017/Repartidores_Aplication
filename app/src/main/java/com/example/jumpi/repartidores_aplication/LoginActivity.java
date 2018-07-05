@@ -754,7 +754,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
 
                                     //ListaUsuario.add(new Usuario(Integer.parseInt(idbd), Integer.parseInt(dnibd), usuariobd, passwordbd));
 
-                                    Log.d("TFSB", "DNI: "+dnibd+" ID: "+idbd+" APELLIDO: "+apellidoDB+" NOMBRE: "+nombreDB);
+                                    Log.d("TFSB", "DNI: "+dnibd+" ID: "+idbd+" APELLIDO: "+apellidoDB+" NOMBRE: "+nombreDB+" LUNES:"+ lunes+" MARTES:"+ martes+" MIERCOLES:"+ miercoles+" JUEVES:"+ jueves+" VIERNES:"+ viernes+" SABADO:"+ sabado);
 
 
                                 }
@@ -907,9 +907,10 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
 
 
                         if (success) {
-                            id = jsonResponse.getString("id");
-                            dni = jsonResponse.getString("dni");
-                            msj = jsonResponse.getString("msj");
+                            JSONObject jsonData = jsonResponse.getJSONObject("data");
+                            id = jsonData.getString("id");
+                            dni = jsonData.getString("dni");
+                            msj = jsonData.getString("msj");
 
 
 
@@ -952,6 +953,9 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
 
 
                                 }
+                                cursor.close();
+                                dbHelperRead.close();
+
 
                                 StringBuilder sb = new StringBuilder();
                                 sb.append(usuariobd);
@@ -961,6 +965,62 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
                                 String resultado = sb.toString();
 
                                 Log.d("TFSB","Execute/ resultado en la BD " + resultado);
+
+
+                                /**
+                                 * PRUEBA PARA SABER SI GUARDA LOS DATOS DE LOS CLIENTES
+                                 */
+
+                                dbHelperRead = new DbHelper(getApplicationContext());
+                                databaseRead = dbHelperRead.getReadableDatabase();
+                                cursor = dbHelperRead.readFromLocalDatabaseZonaReparto(databaseRead);
+
+                                Log.d("TFSB", "                               ");
+                                Log.d("TFSB", "  PRUEBA PARA SABER SI GUARDA LOS DATOS DE LOS CLIENTES");
+                                Log.d("TFSB", "                               ");
+
+                                dnibd=null;
+                                idbd=null;
+
+                                //ListaUsuario = null;
+                                while (cursor.moveToNext())
+                                {
+
+                                    dnibd = cursor.getString(cursor.getColumnIndex(DbContract.DNI));
+                                    idbd = cursor.getString(cursor.getColumnIndex(DbContract.ID));
+                                    String apellidoDB = cursor.getString(cursor.getColumnIndex(DbContract.APELLIDO));
+                                    String nombreDB = cursor.getString(cursor.getColumnIndex(DbContract.NOMBRE));
+                                    String telefonoDB = cursor.getString(cursor.getColumnIndex(DbContract.TELEFONO));
+                                    String emailDB = cursor.getString(cursor.getColumnIndex(DbContract.CORREO));
+                                    String direccionDB = cursor.getString(cursor.getColumnIndex(DbContract.DIRECCION));
+                                    String barrioDB = cursor.getString(cursor.getColumnIndex(DbContract.BARRIO));
+                                    String foto = cursor.getString(cursor.getColumnIndex(DbContract.FOTO));
+
+                                    String lunes = cursor.getString(cursor.getColumnIndex(DbContract.LUNES));
+                                    String martes = cursor.getString(cursor.getColumnIndex(DbContract.MARTES));
+                                    String miercoles = cursor.getString(cursor.getColumnIndex(DbContract.MIERCOLES));
+                                    String jueves = cursor.getString(cursor.getColumnIndex(DbContract.JUEVES));
+                                    String viernes = cursor.getString(cursor.getColumnIndex(DbContract.VIERNES));
+                                    String sabado = cursor.getString(cursor.getColumnIndex(DbContract.SABADO));
+
+                                    //ListaUsuario.add(new Usuario(Integer.parseInt(idbd), Integer.parseInt(dnibd), usuariobd, passwordbd));
+
+                                    Log.d("TFSB", "DNI: "+dnibd+" ID: "+idbd+" APELLIDO: "+apellidoDB+" NOMBRE: "+nombreDB+" LUNES:"+ lunes+" MARTES:"+ martes+" MIERCOLES:"+ miercoles+" JUEVES:"+ jueves+" VIERNES:"+ viernes+" SABADO:"+ sabado);
+
+
+                                }
+                                dbHelperRead.close();
+                                cursor.close();
+
+
+
+
+
+
+
+
+
+
 
                                 Intent myIntent = new Intent(LoginActivity.this,MainActivity.class);
                                 myIntent.putExtra("id", id);
