@@ -20,13 +20,27 @@
         android:layout_marginLeft="16dp">
 
 
-    
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textStyle="bold"
-        android:text="Nombre del Cliente"
-        android:id="@+id/nombre_cliente"/>
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="250dp"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/nombre_cliente"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Nombre del Cliente"
+                android:textStyle="bold" />
+
+
+            <TextView
+                android:id="@+id/apellido_cliente"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Apellido del Cliente"
+                android:textStyle="bold" />
+
+        </LinearLayout>
 
     <TextView
         android:layout_width="wrap_content"

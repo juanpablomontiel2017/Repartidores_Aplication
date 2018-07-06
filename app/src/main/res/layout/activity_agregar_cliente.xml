@@ -2,21 +2,20 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:orientation="horizontal"
+    android:id="@+id/agregar_clientes_id"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:layout_marginTop="10dp"
+    android:orientation="horizontal"
     android:padding="20dp"
-    android:layout_marginTop="90dp"
-    android:id="@+id/agregar_clientes_id"
     tools:context=".AgregarCliente">
 
 
-
     <ImageView
+        android:id="@+id/img_cliente_agregar"
         android:layout_width="56dp"
         android:layout_height="56dp"
-        android:src="@mipmap/ic_launcher_round"
-        android:id="@+id/img_cliente_agregar"/>
+        android:src="@mipmap/ic_launcher_round" />
 
 
     <LinearLayout
@@ -26,66 +25,81 @@
         android:orientation="vertical">
 
 
-
         <EditText
             android:id="@+id/nombre_cliente_agregar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:inputType="text"
             android:hint="Nombre del Cliente"
-            android:textStyle="bold"/>
+            android:inputType="text"
+            android:textStyle="bold" />
 
         <EditText
             android:id="@+id/direccion_cliente_agregar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:inputType="text"
             android:hint="Dirección"
-            android:textStyle="bold"/>
+            android:inputType="text"
+            android:textStyle="bold" />
 
 
         <EditText
             android:id="@+id/barrio_cliente_agregar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:inputType="text"
             android:hint="Barrio"
-            android:textStyle="bold"/>
+            android:inputType="text"
+            android:textStyle="bold" />
 
         <EditText
             android:id="@+id/telefono_cliente_agregar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:inputType="text"
             android:hint="Telefono"
-            android:textStyle="bold"/>
+            android:inputType="text"
+            android:textStyle="bold" />
 
         <EditText
             android:id="@+id/correo_cliente_agregar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:inputType="textEmailAddress"
             android:hint="Correo"
-            android:textStyle="bold"/>
+            android:inputType="textEmailAddress"
+            android:textStyle="bold" />
 
-
+        <EditText
+            android:id="@+id/dni_cliente_agregar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="DNI del Cliente"
+            android:inputType="number"
+            android:textStyle="bold" />
 
 
         <EditText
             android:id="@+id/referencia_cliente_agregar"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:inputType="textMultiLine"
             android:hint="Referencia"
-            android:textStyle="bold"/>
+            android:inputType="textMultiLine"
+            android:textStyle="bold" />
+
+        <!--CheckBox de "días de la semana" -->
+
+        <CheckBox
+            android:id="@+id/idcheckbox_lunes"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+
+
+
 
         <LinearLayout
             android:layout_width="271dp"
             android:layout_height="wrap_content"
             android:layout_marginLeft="0dp"
-            android:orientation="horizontal"
-            android:layout_marginTop="30dp">
-
+            android:layout_marginTop="10dp"
+            android:orientation="horizontal">
 
 
             <Button
@@ -125,12 +139,6 @@
 
 
     </LinearLayout>
-
-
-
-
-
-
 
 
 </LinearLayout>
