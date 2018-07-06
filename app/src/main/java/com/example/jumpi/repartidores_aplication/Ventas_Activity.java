@@ -1,10 +1,12 @@
 package com.example.jumpi.repartidores_aplication;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -234,6 +236,22 @@ public class Ventas_Activity extends AppCompatActivity {
         String extras = getIntent().getStringExtra("Nombre");
 
         Nombre_Cliente_Ventas.setText(extras);
+
+
+        final Button buttonConfirmarVentas = (Button) findViewById(R.id.button_confirmar_ventas);
+
+        buttonConfirmarVentas.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View view) {
+
+                Intent buttonConfirmarV = new Intent(Ventas_Activity.this, Second_Activity.class);
+                startActivity(buttonConfirmarV);
+
+            }
+        });
+
+
 
 
 

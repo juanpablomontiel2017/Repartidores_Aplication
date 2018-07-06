@@ -89,7 +89,7 @@
 
 
             <Button
-                android:id="@+id/button_cancelar"
+                android:id="@+id/button_cancelar_AC"
                 android:layout_width="100dp"
                 android:layout_height="50dp"
 
@@ -105,7 +105,7 @@
 
 
             <Button
-                android:id="@+id/button_agregar"
+                android:id="@+id/button_agregar_AC"
                 android:layout_width="100dp"
                 android:layout_height="50dp"
 
