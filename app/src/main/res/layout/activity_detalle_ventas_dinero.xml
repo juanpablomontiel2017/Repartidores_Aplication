@@ -1,0 +1,285 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center"
+    android:background="#FFF"
+
+
+    tools:context=".detalle_ventas_dinero">
+
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="0dp"
+        android:orientation="horizontal"
+        android:background="#303f9f">
+
+
+        <TextView
+            android:id="@+id/textview_titulo_dinero_detalle_ventas"
+            android:layout_width="140dp"
+            android:layout_height="58dp"
+            android:layout_marginStart="60dp"
+            android:text="DINERO"
+            android:textAlignment="center"
+            android:textAllCaps="false"
+            android:textColor="#FFF"
+            android:textSize="30sp"
+            android:textStyle="bold"
+            android:typeface="serif" />
+
+
+        <ImageView
+            android:id="@+id/img_cargas_detalle_ventas"
+            android:layout_width="56dp"
+            android:layout_height="56dp"
+            android:layout_marginStart="20dp"
+            android:src="@mipmap/ic_dinero" />
+
+
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#2962ff"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/entregas_dinero_detalle_ventas"
+                android:layout_width="200dp"
+                android:layout_height="65dp"
+                android:text="Entregas"
+                android:textAlignment="center"
+                android:textColor="#000"
+                android:textSize="26sp"
+                android:textStyle="bold"
+                android:typeface="sans" />
+
+
+            <TextView
+                android:id="@+id/cantidades_entregas_dinero_detalle_ventas"
+                android:layout_width="182dp"
+                android:layout_height="65dp"
+                android:text="Cantidades"
+                android:textAlignment="center"
+                android:textColor="#000"
+                android:textSize="25sp"
+                android:textStyle="bold" />
+
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/primer_entrega_dinero_detalle_ventas"
+                android:layout_width="200dp"
+                android:layout_height="65dp"
+                android:text="1er Entrega:"
+                android:textAlignment="center"
+                android:textColor="#000"
+                android:textSize="26sp"
+                android:textStyle="bold"
+                android:typeface="sans" />
+
+
+            <TextView
+                android:id="@+id/cantidad_primer_entrega_dinero_detalle_ventas"
+                android:layout_width="182dp"
+                android:layout_height="65dp"
+                android:textAlignment="center"
+                android:textColor="#000"
+                android:textSize="25sp"
+                android:textStyle="bold" />
+
+
+        </LinearLayout>
+
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:background="#2962ff">
+
+            <TextView
+                android:id="@+id/segunda_entrega_dinero_detalle_ventas"
+                android:layout_width="200dp"
+                android:layout_height="65dp"
+                android:text="2da Entrega:"
+                android:textAlignment="center"
+                android:textColor="#000"
+                android:textSize="26sp"
+                android:textStyle="bold"
+                android:typeface="sans" />
+
+
+            <TextView
+                android:id="@+id/cantidad_segunda_entrega_dinero_detalle_ventas"
+                android:layout_width="182dp"
+                android:layout_height="65dp"
+                android:textAlignment="center"
+                android:textColor="#000"
+                android:textSize="25sp"
+                android:textStyle="bold" />
+
+
+        </LinearLayout>
+
+
+      <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/tercera_entrega_dinero_detalle_ventas"
+                android:layout_width="200dp"
+                android:layout_height="65dp"
+                android:text="3ra Entrega:"
+                android:textAlignment="center"
+                android:textColor="#000"
+                android:textSize="26sp"
+                android:textStyle="bold"
+                android:typeface="sans" />
+
+
+            <TextView
+                android:id="@+id/cantidad_tercera_entrega_dinero_detalle_ventas"
+                android:layout_width="182dp"
+                android:layout_height="65dp"
+                android:textAlignment="center"
+                android:textColor="#000"
+                android:textSize="25sp"
+                android:textStyle="bold" />
+
+
+        </LinearLayout>
+
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:background="#2962ff">
+
+            <TextView
+                android:id="@+id/cuarta_entrega_dinero_detalle_ventas"
+                android:layout_width="200dp"
+                android:layout_height="65dp"
+                android:text="4ta Entrega:"
+                android:textAlignment="center"
+                android:textColor="#000"
+                android:textSize="26sp"
+                android:textStyle="bold"
+                android:typeface="sans" />
+
+
+            <TextView
+                android:id="@+id/cantidad_cuarta_entrega_dinero_detalle_ventas"
+                android:layout_width="182dp"
+                android:layout_height="65dp"
+                android:textAlignment="center"
+                android:textColor="#000"
+                android:textSize="25sp"
+                android:textStyle="bold" />
+
+
+        </LinearLayout>
+
+
+        <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/quinta_entrega_dinero_detalle_ventas"
+            android:layout_width="200dp"
+            android:layout_height="65dp"
+            android:text="5ta Entrega:"
+            android:textAlignment="center"
+            android:textColor="#000"
+            android:textSize="26sp"
+            android:textStyle="bold"
+            android:typeface="sans" />
+
+
+        <TextView
+            android:id="@+id/cantidad_quinta_entrega_dinero_detalle_ventas"
+            android:layout_width="182dp"
+            android:layout_height="65dp"
+            android:textAlignment="center"
+            android:textColor="#000"
+            android:textSize="25sp"
+            android:textStyle="bold" />
+
+
+    </LinearLayout>
+
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:background="#2962ff">
+
+            <TextView
+                android:id="@+id/sexta_entrega_dinero_detalle_ventas"
+                android:layout_width="200dp"
+                android:layout_height="65dp"
+                android:text="6ta Entrega:"
+                android:textAlignment="center"
+                android:textColor="#000"
+                android:textSize="26sp"
+                android:textStyle="bold"
+                android:typeface="sans" />
+
+
+            <TextView
+                android:id="@+id/cantidad_sexta_entrega_dinero_detalle_ventas"
+                android:layout_width="182dp"
+                android:layout_height="65dp"
+                android:textAlignment="center"
+                android:textColor="#000"
+                android:textSize="25sp"
+                android:textStyle="bold" />
+
+
+        </LinearLayout>
+
+
+
+
+
+    </LinearLayout>
+
+
+
+
+
+
+
+
+</LinearLayout>

@@ -1,0 +1,29 @@
+package com.example.jumpi.repartidores_aplication;
+
+import android.content.Intent;
+import android.support.v7.app.AppCompatActivity;
+import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
+
+public class Dialog_Eliminar_Clientes extends AppCompatActivity {
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_dialog__eliminar__clientes);
+
+        final Button buttonCancelar = (Button) findViewById(R.id.btn_cancelar);
+
+        buttonCancelar.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View view) {
+
+                Intent buttonCancel = new Intent(Dialog_Eliminar_Clientes.this, Second_Activity.class);
+                startActivity(buttonCancel);
+
+            }
+        });
+    }
+}

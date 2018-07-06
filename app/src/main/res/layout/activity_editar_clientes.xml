@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:padding="20dp"
-    android:layout_marginTop="125dp"
+    android:layout_marginTop="90dp"
     tools:context=".EditarClientes">
 
 
@@ -25,44 +25,55 @@
         android:orientation="vertical">
 
 
-        <TextView
+        <EditText
             android:id="@+id/nombre_cliente_editar"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:inputType="text"
             android:text="Nombre del Cliente"
-            android:textStyle="bold" />
+            android:textStyle="bold"/>
 
-        <TextView
+        <EditText
             android:id="@+id/direccion_cliente_editar"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Direccion" />
+            android:inputType="text"
+            android:text="Dirección"
+            android:textStyle="bold"/>
 
-        <TextView
+
+        <EditText
             android:id="@+id/barrio_cliente_editar"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Barrio" />
+            android:inputType="text"
+            android:text="Barrio"
+            android:textStyle="bold"/>
 
-
-        <TextView
+        <EditText
             android:id="@+id/telefono_cliente_editar"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Telefono" />
+            android:inputType="text"
+            android:text="Telefono"
+            android:textStyle="bold"/>
 
-
-        <TextView
+        <EditText
             android:id="@+id/correo_cliente_editar"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Correo" />
+            android:inputType="textEmailAddress"
+            android:text="Correo"
+            android:textStyle="bold"/>
 
-        <TextView
-            android:id="@+id/referencia_cliente"
+
+        <EditText
+            android:id="@+id/referencia_cliente_editar"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Referencia" />
+            android:inputType="textMultiLine"
+            android:text="Referencia"
+            android:textStyle="bold"/>
 
         <LinearLayout
             android:layout_width="271dp"

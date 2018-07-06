@@ -41,11 +41,24 @@
             android:name=".Ventas_Activity"
             android:label="Ventas Activity"
             android:parentActivityName=".Second_Activity"
-            android:theme="@style/AppTheme.NoActionBar" >
+            android:theme="@style/AppTheme.NoActionBar">
         </activity>
 
-        <activity android:name=".EditarClientes" />
-        <activity android:name=".AgregarCliente" />
+
+
+
+        <activity
+            android:name=".EditarClientes"
+            android:label="Editar_Clientes"
+            android:parentActivityName=".Second_Activity" />
+        <activity
+            android:name=".AgregarCliente"
+            android:label="Agregar_Clientes"
+            android:parentActivityName=".Second_Activity" />
+        <activity android:name=".Detalle_CargasyDescargas" />
+        <activity android:name=".Detalle_Articulos" />
+        <activity android:name=".detalle_ventas_dinero" />
+        <activity android:name=".Dialog_Eliminar_Clientes"></activity>
     </application>
 
 </manifest>
