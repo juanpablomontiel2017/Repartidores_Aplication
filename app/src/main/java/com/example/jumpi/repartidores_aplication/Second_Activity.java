@@ -91,7 +91,18 @@ public class Second_Activity extends AppCompatActivity {
         ActionBar actionBar = getSupportActionBar();
         actionBar.setDisplayHomeAsUpEnabled(true);
 
+        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
 
+
+                Intent fab = new Intent(Second_Activity.this, AgregarCliente.class);
+                startActivity(fab);
+
+
+            }
+        });
 
 
 
