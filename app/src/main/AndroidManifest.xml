@@ -17,7 +17,7 @@
         android:theme="@style/AppTheme">
         <activity
             android:name=".LoginActivity"
-            android:label="AquaVital-Desarrollo">
+            android:label="Beta">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
