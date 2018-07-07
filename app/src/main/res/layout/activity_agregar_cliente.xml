@@ -92,24 +92,27 @@
 
             <CheckBox
                 android:id="@+id/idcheckbox_lunes"
-                android:layout_width="85dp"
+                android:layout_width="70dp"
                 android:layout_height="wrap_content"
                 android:text="Lunes"
+                android:textSize="12sp"
                 android:textStyle="bold" />
 
 
             <CheckBox
                 android:id="@+id/idcheckbox_miercoles"
-                android:layout_width="100dp"
+                android:layout_width="96dp"
                 android:layout_height="wrap_content"
                 android:text="Miércoles"
+                android:textSize="12sp"
                 android:textStyle="bold" />
 
             <CheckBox
                 android:id="@+id/idcheckbox_viernes"
-                android:layout_width="85dp"
+                android:layout_width="100dp"
                 android:layout_height="wrap_content"
                 android:text="Viernes"
+                android:textSize="12sp"
                 android:textStyle="bold" />
 
 
@@ -124,24 +127,27 @@
 
             <CheckBox
                 android:id="@+id/idcheckbox_martes"
-                android:layout_width="85dp"
+                android:layout_width="80dp"
                 android:layout_height="wrap_content"
                 android:text="Martes"
+                android:textSize="12sp"
                 android:textStyle="bold" />
 
 
             <CheckBox
                 android:id="@+id/idcheckbox_jueves"
-                android:layout_width="100dp"
+                android:layout_width="85dp"
                 android:layout_height="wrap_content"
                 android:text="Jueves"
+                android:textSize="12sp"
                 android:textStyle="bold" />
 
             <CheckBox
                 android:id="@+id/idcheckbox_sabado"
-                android:layout_width="85dp"
+                android:layout_width="100dp"
                 android:layout_height="wrap_content"
                 android:text="Sábado"
+                android:textSize="12sp"
                 android:textStyle="bold" />
 
 
