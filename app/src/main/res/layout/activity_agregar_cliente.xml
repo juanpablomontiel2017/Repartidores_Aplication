@@ -85,10 +85,67 @@
 
         <!--CheckBox de "días de la semana" -->
 
-        <CheckBox
-            android:id="@+id/idcheckbox_lunes"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <CheckBox
+                android:id="@+id/idcheckbox_lunes"
+                android:layout_width="85dp"
+                android:layout_height="wrap_content"
+                android:text="Lunes"
+                android:textStyle="bold" />
+
+
+            <CheckBox
+                android:id="@+id/idcheckbox_miercoles"
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:text="Miércoles"
+                android:textStyle="bold" />
+
+            <CheckBox
+                android:id="@+id/idcheckbox_viernes"
+                android:layout_width="85dp"
+                android:layout_height="wrap_content"
+                android:text="Viernes"
+                android:textStyle="bold" />
+
+
+        </LinearLayout>
+
+
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <CheckBox
+                android:id="@+id/idcheckbox_martes"
+                android:layout_width="85dp"
+                android:layout_height="wrap_content"
+                android:text="Martes"
+                android:textStyle="bold" />
+
+
+            <CheckBox
+                android:id="@+id/idcheckbox_jueves"
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:text="Jueves"
+                android:textStyle="bold" />
+
+            <CheckBox
+                android:id="@+id/idcheckbox_sabado"
+                android:layout_width="85dp"
+                android:layout_height="wrap_content"
+                android:text="Sábado"
+                android:textStyle="bold" />
+
+
+        </LinearLayout>
 
 
 
