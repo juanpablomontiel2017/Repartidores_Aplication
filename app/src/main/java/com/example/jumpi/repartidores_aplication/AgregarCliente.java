@@ -74,7 +74,7 @@ public class AgregarCliente extends AppCompatActivity {
     private void MethodAgregarC(){
 
 
-       
+
 
     } //Fin del método
 
