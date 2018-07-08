@@ -3,6 +3,9 @@ package com.example.jumpi.repartidores_aplication;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -25,6 +28,9 @@ public class Ventas_Activity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_ventas_);
+
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar_ventas);
+        setSupportActionBar(toolbar);
 
         lista = (Spinner)findViewById(R.id.lista_productos_ventas);
 
@@ -247,7 +253,7 @@ public class Ventas_Activity extends AppCompatActivity {
 
                 Intent buttonConfirmarV = new Intent(Ventas_Activity.this, Second_Activity.class);
                 startActivity(buttonConfirmarV);
-
+                Toast.makeText(getApplicationContext(),"Venta realizada con éxito",Toast.LENGTH_LONG).show();
             }
         });
 
@@ -258,6 +264,33 @@ public class Ventas_Activity extends AppCompatActivity {
     }
 
 
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.menu_realizar_ventas, menu);
+        return true;
+    }
 
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+
+        int id = item.getItemId();
+
+
+        if (id == R.id.action_settings_ventas) {
+            return true;
+        }
+
+        if (id == R.id.id_cancelar_venta) {
+
+            Intent IntentCancelarV = new Intent(Ventas_Activity.this, Second_Activity.class);
+            startActivity(IntentCancelarV);
+
+            return true;
+        }
+
+
+        return super.onOptionsItemSelected(item);
+    }
 
 }
