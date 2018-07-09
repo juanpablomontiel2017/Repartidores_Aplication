@@ -118,6 +118,8 @@ public class Second_Activity extends AppCompatActivity {
 
 
                 Intent fab = new Intent(Second_Activity.this, AgregarCliente.class);
+
+
                 startActivity(fab);
 
 

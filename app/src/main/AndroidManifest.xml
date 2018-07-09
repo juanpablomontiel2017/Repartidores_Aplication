@@ -52,7 +52,7 @@
 
 
 
->>>>>>> BetaN°2---HotFix1
+
         <activity
             android:name=".EditarClientes"
             android:label="Editar_Clientes"
