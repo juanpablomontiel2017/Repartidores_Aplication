@@ -30,7 +30,7 @@
             android:layout_marginStart="20dp"
             android:padding="10dp"
             android:paddingTop="30dp"
-            android:text="Warning"
+            android:text="Atención!"
             android:textColor="#000"
             android:textSize="30sp"
             android:textStyle="bold" />

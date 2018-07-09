@@ -24,6 +24,14 @@
         android:layout_marginLeft="16dp"
         android:orientation="vertical">
 
+        <EditText
+            android:id="@+id/apellido_cliente_agregar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Apellido del Cliente"
+            android:inputType="text"
+            android:textStyle="bold" />
+
 
         <EditText
         android:id="@+id/nombre_cliente_agregar"
@@ -33,13 +41,7 @@
         android:inputType="text"
         android:textStyle="bold" />
 
-        <EditText
-            android:id="@+id/apellido_cliente_agregar"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Apellido del Cliente"
-            android:inputType="text"
-            android:textStyle="bold" />
+
 
         <EditText
             android:id="@+id/direccion_cliente_agregar"

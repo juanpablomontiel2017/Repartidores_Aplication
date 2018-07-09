@@ -24,6 +24,14 @@
         android:layout_marginLeft="16dp"
         android:orientation="vertical">
 
+        <EditText
+            android:id="@+id/apellido_cliente_editar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="text"
+            android:text="Apellido del Cliente"
+            android:textStyle="bold"/>
+
 
         <EditText
             android:id="@+id/nombre_cliente_editar"
@@ -34,13 +42,6 @@
             android:textStyle="bold"/>
 
 
-        <EditText
-            android:id="@+id/apellido_cliente_editar"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:inputType="text"
-            android:text="Apellido del Cliente"
-            android:textStyle="bold"/>
 
         <EditText
             android:id="@+id/direccion_cliente_editar"
@@ -95,7 +96,7 @@
 
             <Button
                 android:id="@+id/button_cancelar_EC"
-                android:layout_width="100dp"
+                android:layout_width="110dp"
                 android:layout_height="50dp"
 
                 android:layout_margin="@dimen/appbar_padding_top"
@@ -111,18 +112,14 @@
 
             <Button
                 android:id="@+id/button_aceptar_EC"
-                android:layout_width="100dp"
+                android:layout_width="110dp"
                 android:layout_height="50dp"
 
 
-                android:layout_margin="@dimen/appbar_padding_top"
-
-
-                android:layout_marginTop="10dp"
                 android:background="#232323"
                 android:drawablePadding="0dp"
                 android:padding="0dp"
-                android:text="Aceptar"
+                android:text="Guardar Cambios"
 
                 android:textColor="@android:color/white" />
 
