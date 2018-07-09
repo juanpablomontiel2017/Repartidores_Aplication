@@ -1,9 +1,136 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="horizontal"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="20dp"
+    android:layout_marginTop="90dp"
+    android:id="@+id/agregar_clientes_id"
     tools:context=".AgregarCliente">
 
-</android.support.constraint.ConstraintLayout>
+
+
+    <ImageView
+        android:layout_width="56dp"
+        android:layout_height="56dp"
+        android:src="@mipmap/ic_launcher_round"
+        android:id="@+id/img_cliente_agregar"/>
+
+
+    <LinearLayout
+        android:layout_width="271dp"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="16dp"
+        android:orientation="vertical">
+
+
+
+        <EditText
+            android:id="@+id/nombre_cliente_agregar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="text"
+            android:hint="Nombre del Cliente"
+            android:textStyle="bold"/>
+
+        <EditText
+            android:id="@+id/direccion_cliente_agregar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="text"
+            android:hint="Dirección"
+            android:textStyle="bold"/>
+
+
+        <EditText
+            android:id="@+id/barrio_cliente_agregar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="text"
+            android:hint="Barrio"
+            android:textStyle="bold"/>
+
+        <EditText
+            android:id="@+id/telefono_cliente_agregar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="text"
+            android:hint="Telefono"
+            android:textStyle="bold"/>
+
+        <EditText
+            android:id="@+id/correo_cliente_agregar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="textEmailAddress"
+            android:hint="Correo"
+            android:textStyle="bold"/>
+
+
+
+
+        <EditText
+            android:id="@+id/referencia_cliente_agregar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:inputType="textMultiLine"
+            android:hint="Referencia"
+            android:textStyle="bold"/>
+
+        <LinearLayout
+            android:layout_width="271dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="0dp"
+            android:orientation="horizontal"
+            android:layout_marginTop="30dp">
+
+
+
+            <Button
+                android:id="@+id/button_cancelar"
+                android:layout_width="100dp"
+                android:layout_height="50dp"
+
+                android:layout_margin="@dimen/appbar_padding_top"
+
+
+                android:layout_marginTop="10dp"
+                android:background="#232323"
+                android:drawablePadding="0dp"
+                android:padding="0dp"
+                android:text="Cancelar"
+                android:textColor="@android:color/white" />
+
+
+            <Button
+                android:id="@+id/button_agregar"
+                android:layout_width="100dp"
+                android:layout_height="50dp"
+
+
+                android:layout_margin="@dimen/appbar_padding_top"
+
+
+                android:layout_marginTop="10dp"
+                android:background="#232323"
+                android:drawablePadding="0dp"
+                android:padding="0dp"
+                android:text="Agregar"
+
+                android:textColor="@android:color/white" />
+
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+
+
+
+
+
+
+
+</LinearLayout>

@@ -1,12 +1,15 @@
 package com.example.jumpi.repartidores_aplication;
 
 import android.content.Context;
+import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 
 
 /**
@@ -67,12 +70,70 @@ public class Registro_Ventas_Fragment extends Fragment {
     }
 
 */
+
+
+
+
+
     //Voy a trabajar primero con este método onCreateView según el video "Menú con Pestañas en Android Studio (Tabbed Activity), by Developeru"
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+
+
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_registro__ventas_, container, false);
+        View view = inflater.inflate(R.layout.fragment_registro__ventas_, container, false);
+
+
+        final Button buttonCD= (Button) view.findViewById(R.id.titulo_cargas_descargas_ventas);
+
+        buttonCD.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View view) {
+
+                Intent buttonCDR = new Intent(getActivity(), Detalle_CargasyDescargas.class);
+                startActivity(buttonCDR);
+
+            }
+        });
+
+
+        final Button buttonD= (Button) view.findViewById(R.id.titulo_dinero_ventas);
+
+        buttonD.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View view) {
+
+                Intent buttonDR = new Intent(getActivity(), detalle_ventas_dinero.class);
+                startActivity(buttonDR);
+
+            }
+        });
+
+
+        final Button buttonA= (Button) view.findViewById(R.id.titulo_articulos_ventas);
+
+        buttonA.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View view) {
+
+                Intent buttonAR = new Intent(getActivity(), Detalle_Articulos.class);
+                startActivity(buttonAR);
+
+            }
+        });
+
+
+
+
+        return view;
+
+
+
+
     }
 
 

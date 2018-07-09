@@ -1,13 +1,21 @@
 package com.example.jumpi.repartidores_aplication;
 
+import android.app.AlertDialog;
 import android.app.Dialog;
+import android.app.DialogFragment;
+import android.app.FragmentManager;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.os.Parcelable;
 import android.support.annotation.NonNull;
+
 import android.support.v4.view.MotionEventCompat;
+
+import android.support.v4.app.Fragment;
+
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -42,11 +50,21 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
     //Esto también pertenece a la parte 3 del tutorial: "Fragment with RecyclerView Part 3 : item Click Listener Event : Show Custom dialog Box" del chabon Aws Rh
     Dialog myDialog;
 
+    //Hasta aquí
+
+
     public RecyclerViewAdapter(Context mContext, List<Clientes> mData, OnStartDragListener dragListener) {
         this.mContext = mContext;
         this.mData = mData;
         mDragStartListener = dragListener;
     }
+
+
+
+
+
+
+
 
     @NonNull
     @Override
@@ -57,94 +75,98 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
         v = LayoutInflater.from(mContext).inflate(R.layout.item_clientes, parent, false);
         final MyViewHolder vHolder = new MyViewHolder(v);
 
+
         //Esto también pertenece a la parte 3 del tutorial: "Fragment with RecyclerView Part 3 : item Click Listener Event : Show Custom dialog Box" del chabon Aws Rh"
         //Dialog Inicial
         myDialog = new Dialog(mContext);
         myDialog.setContentView(R.layout.dialog_clientes);
 
-        vHolder.item_clientes.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
 
-                TextView dialog_nombre_tv = (TextView) myDialog.findViewById(R.id.dialog_nombre_id);
-                //TextView dialog_direccion_tv = (TextView) myDialog.findViewById(R.id.dialog_direccion_id);
-                //TextView dialog_barrio_tv = (TextView) myDialog.findViewById(R.id.dialog_barrio_id);
-                TextView dialog_referencia_tv = (TextView) myDialog.findViewById(R.id.dialog_referencia_id);
-                TextView dialog_telefono_tv = (TextView) myDialog.findViewById(R.id.dialog_telefono_id);
-                TextView dialog_correo_tv = (TextView) myDialog.findViewById(R.id.dialog_correo_id);
-                ImageView dialog_cliente_img = (ImageView) myDialog.findViewById(R.id.dialog_img_cliente);
+            vHolder.item_clientes.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
 
-                //PRUEBA (Mati)
-                Button dialog_cliente_btnVentas = (Button) myDialog.findViewById(R.id.dialog_btn_venta);
-                dialog_cliente_btnVentas.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
+                    final TextView dialog_nombre_tv = (TextView) myDialog.findViewById(R.id.dialog_nombre_id);
+                    //TextView dialog_direccion_tv = (TextView) myDialog.findViewById(R.id.dialog_direccion_id);
+                    //TextView dialog_barrio_tv = (TextView) myDialog.findViewById(R.id.dialog_barrio_id);
+                    TextView dialog_referencia_tv = (TextView) myDialog.findViewById(R.id.dialog_referencia_id);
+                    TextView dialog_telefono_tv = (TextView) myDialog.findViewById(R.id.dialog_telefono_id);
+                    TextView dialog_correo_tv = (TextView) myDialog.findViewById(R.id.dialog_correo_id);
+                    ImageView dialog_cliente_img = (ImageView) myDialog.findViewById(R.id.dialog_img_cliente);
 
-
-
-                        Intent intentVentas = new Intent(mContext, Ventas_Activity.class);
-                        mContext.startActivity(intentVentas);
+                    //PRUEBA (Mati)
+                    Button dialog_cliente_btnVentas = (Button) myDialog.findViewById(R.id.dialog_btn_venta);
+                    dialog_cliente_btnVentas.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
 
 
-                    }
-                });
+                            Intent intentVentas = new Intent(mContext, Ventas_Activity.class);
 
+                            intentVentas.putExtra("Nombre", dialog_nombre_tv.getText());
 
-                Button dialog_cliente_btnEditar = (Button) myDialog.findViewById(R.id.dialog_btn_editar);
-                dialog_cliente_btnEditar.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
+                            mContext.startActivity(intentVentas);
 
 
 
-                        Intent intentEditar = new Intent(mContext, EditarClientes.class);
-                        mContext.startActivity(intentEditar);
+                        }
+                    });
 
 
-                    }
-                });
+                    Button dialog_cliente_btnEditar = (Button) myDialog.findViewById(R.id.dialog_btn_editar);
+                    dialog_cliente_btnEditar.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
 
 
+                            Intent intentEditar = new Intent(mContext, EditarClientes.class);
+                            mContext.startActivity(intentEditar);
 
 
-                Button dialog_cliente_btnEliminar = (Button) myDialog.findViewById(R.id.dialog_btn_eliminar);
-                dialog_cliente_btnEliminar.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-
-
-
-                        Intent intentEliminar = new Intent(mContext, Ventas_Activity.class);
-                        mContext.startActivity(intentEliminar);
-
-
-                    }
-                });
-
-
-                dialog_nombre_tv.setText(mData.get(vHolder.getAdapterPosition()).getNombre());
-                //dialog_direccion_tv.setText(mData.get(vHolder.getAdapterPosition()).getDireccion());
-                //dialog_barrio_tv.setText(mData.get(vHolder.getAdapterPosition()).getBarrio());
-                dialog_referencia_tv.setText(mData.get(vHolder.getAdapterPosition()).getReferencia());
-                dialog_telefono_tv.setText(mData.get(vHolder.getAdapterPosition()).getTelefono());
-                dialog_correo_tv.setText(mData.get(vHolder.getAdapterPosition()).getCorreo());
-                dialog_cliente_img.setImageResource(mData.get(vHolder.getAdapterPosition()).getFoto());
+                        }
+                    });
 
 
 
 
-                Toast.makeText(mContext, "Test Click" + String.valueOf(vHolder.getAdapterPosition()), Toast.LENGTH_SHORT).show();
-                myDialog.show();
-
-
-            }
 
 
 
-        });
+
+                    Button dialog_cliente_btnEliminar = (Button) myDialog.findViewById(R.id.dialog_btn_eliminar);
+                    dialog_cliente_btnEliminar.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
 
 
-        return vHolder;
+                            Intent intentEliminar = new Intent(mContext, Dialog_Eliminar_Clientes.class);
+                            mContext.startActivity(intentEliminar);
+
+
+                        }
+                    });
+
+
+                    dialog_nombre_tv.setText(mData.get(vHolder.getAdapterPosition()).getNombre());
+                    //dialog_direccion_tv.setText(mData.get(vHolder.getAdapterPosition()).getDireccion());
+                    //dialog_barrio_tv.setText(mData.get(vHolder.getAdapterPosition()).getBarrio());
+                    dialog_referencia_tv.setText(mData.get(vHolder.getAdapterPosition()).getReferencia());
+                    dialog_telefono_tv.setText(mData.get(vHolder.getAdapterPosition()).getTelefono());
+                    dialog_correo_tv.setText(mData.get(vHolder.getAdapterPosition()).getCorreo());
+                    dialog_cliente_img.setImageResource(mData.get(vHolder.getAdapterPosition()).getFoto());
+
+
+                    Toast.makeText(mContext, "Test Click" + String.valueOf(vHolder.getAdapterPosition()), Toast.LENGTH_SHORT).show();
+                    myDialog.show();
+
+
+                }
+
+
+            });
+
+
+            return vHolder;
 
     }
 
@@ -152,6 +174,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
     public int getItemViewType(int position) {
         return TYPE_ITEM;
     }
+
 
 
     @Override

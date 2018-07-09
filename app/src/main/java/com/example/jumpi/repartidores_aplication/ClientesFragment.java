@@ -1,8 +1,10 @@
 package com.example.jumpi.repartidores_aplication;
 
 import android.content.Context;
+import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -41,6 +43,10 @@ public class ClientesFragment extends Fragment implements OnStartDragListener {
     private RecyclerView myrecyclerview;
     private List<Clientes> lstClientes;
     ItemTouchHelper mItemTouchHelper;
+
+
+
+
 
 
     public ClientesFragment() {
@@ -124,8 +130,6 @@ public class ClientesFragment extends Fragment implements OnStartDragListener {
         mItemTouchHelper.attachToRecyclerView(myrecyclerview);
 
         myrecyclerview.setAdapter(recyclerAdapter);
-
-
 
         return v;
 
