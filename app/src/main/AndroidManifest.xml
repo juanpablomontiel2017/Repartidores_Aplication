@@ -21,8 +21,7 @@
         android:theme="@style/AppTheme">
         <activity
             android:name=".LoginActivity"
-            android:label="Beta 3.1">
-
+            android:label="Beta 3.2">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -46,9 +45,14 @@
             android:name=".Ventas_Activity"
             android:label="Ventas Activity"
             android:parentActivityName=".Second_Activity"
-
             android:theme="@style/AppTheme.NoActionBar" >
         </activity>
+
+
+
+
+
+>>>>>>> BetaN°2---HotFix1
         <activity
             android:name=".EditarClientes"
             android:label="Editar_Clientes"

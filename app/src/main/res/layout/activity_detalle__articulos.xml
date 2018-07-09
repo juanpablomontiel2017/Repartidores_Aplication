@@ -72,7 +72,7 @@
 
             <TextView
                 android:id="@+id/textview_dispenser_plastico_articulos_detalle_ventas"
-                android:layout_width="96dp"
+                android:layout_width="85dp"
                 android:layout_height="65dp"
                 android:text="Disp. P"
                 android:textAlignment="center"
@@ -82,7 +82,7 @@
 
             <TextView
                 android:id="@+id/textview_dispenser_electrico_articulos_detalle_ventas"
-                android:layout_width="100dp"
+                android:layout_width="85dp"
                 android:layout_height="65dp"
                 android:text="Disp. E"
                 android:textAlignment="center"
@@ -92,7 +92,7 @@
 
             <TextView
                 android:id="@+id/textview_canillas_articulos_detalle_ventas"
-                android:layout_width="100dp"
+                android:layout_width="115dp"
                 android:layout_height="65dp"
                 android:text="Canillas"
                 android:textAlignment="center"
@@ -120,7 +120,7 @@
 
             <TextView
                 android:id="@+id/primer_tanda_dispenser_plastico_articulos_detalle_ventas"
-                android:layout_width="96dp"
+                android:layout_width="85dp"
                 android:layout_height="65dp"
                 android:textAlignment="center"
                 android:textColor="#000"
@@ -129,7 +129,7 @@
 
             <TextView
                 android:id="@+id/primer_tanda_dispenser_electrico_articulos_detalle_ventas"
-                android:layout_width="100dp"
+                android:layout_width="85dp"
                 android:layout_height="65dp"
                 android:textAlignment="center"
                 android:textColor="#000"
@@ -138,7 +138,7 @@
 
             <TextView
                 android:id="@+id/primer_tanda_canillas_articulos_detalle_ventas"
-                android:layout_width="100dp"
+                android:layout_width="115dp"
                 android:layout_height="65dp"
                 android:textAlignment="center"
                 android:textColor="#000"
@@ -167,7 +167,7 @@
 
             <TextView
                 android:id="@+id/segunda_tanda_dispenser_plastico_articulos_detalle_ventas"
-                android:layout_width="96dp"
+                android:layout_width="85dp"
                 android:layout_height="65dp"
                 android:textAlignment="center"
                 android:textColor="#000"
@@ -176,7 +176,7 @@
 
             <TextView
                 android:id="@+id/segunda_tanda_dispenser_electrico_articulos_detalle_ventas"
-                android:layout_width="100dp"
+                android:layout_width="85dp"
                 android:layout_height="65dp"
                 android:textAlignment="center"
                 android:textColor="#000"
@@ -185,7 +185,7 @@
 
             <TextView
                 android:id="@+id/segunda_tanda_canillas_articulos_detalle_ventas"
-                android:layout_width="100dp"
+                android:layout_width="115dp"
                 android:layout_height="65dp"
                 android:textAlignment="center"
                 android:textColor="#000"
@@ -212,7 +212,7 @@
 
             <TextView
                 android:id="@+id/tercera_tanda_dispenser_plastico_articulos_detalle_ventas"
-                android:layout_width="96dp"
+                android:layout_width="85dp"
                 android:layout_height="65dp"
                 android:textAlignment="center"
                 android:textColor="#000"
@@ -221,7 +221,7 @@
 
             <TextView
                 android:id="@+id/tercera_tanda_dispenser_electrico_articulos_detalle_ventas"
-                android:layout_width="100dp"
+                android:layout_width="85dp"
                 android:layout_height="65dp"
                 android:textAlignment="center"
                 android:textColor="#000"
@@ -230,7 +230,7 @@
 
             <TextView
                 android:id="@+id/tercera_tanda_canillas_articulos_detalle_ventas"
-                android:layout_width="100dp"
+                android:layout_width="115dp"
                 android:layout_height="65dp"
                 android:textAlignment="center"
                 android:textColor="#000"
@@ -259,7 +259,7 @@
 
             <TextView
                 android:id="@+id/cuarta_tanda_dispenser_plastico_articulos_detalle_ventas"
-                android:layout_width="96dp"
+                android:layout_width="85dp"
                 android:layout_height="65dp"
                 android:textAlignment="center"
                 android:textColor="#000"
@@ -268,7 +268,7 @@
 
             <TextView
                 android:id="@+id/cuarta_tanda_dispenser_electrico_articulos_detalle_ventas"
-                android:layout_width="100dp"
+                android:layout_width="85dp"
                 android:layout_height="65dp"
                 android:textAlignment="center"
                 android:textColor="#000"
@@ -277,7 +277,7 @@
 
             <TextView
                 android:id="@+id/cuarta_tanda_canillas_articulos_detalle_ventas"
-                android:layout_width="100dp"
+                android:layout_width="115dp"
                 android:layout_height="65dp"
                 android:textAlignment="center"
                 android:textColor="#000"
@@ -305,7 +305,7 @@
 
             <TextView
                 android:id="@+id/quinta_tanda_dispenser_plastico_articulos_detalle_ventas"
-                android:layout_width="96dp"
+                android:layout_width="85dp"
                 android:layout_height="65dp"
                 android:textAlignment="center"
                 android:textColor="#000"
@@ -314,7 +314,7 @@
 
             <TextView
                 android:id="@+id/quinta_tanda_dispenser_electrico_articulos_detalle_ventas"
-                android:layout_width="100dp"
+                android:layout_width="85dp"
                 android:layout_height="65dp"
                 android:textAlignment="center"
                 android:textColor="#000"
@@ -323,7 +323,7 @@
 
             <TextView
                 android:id="@+id/quinta_tanda_canillas_articulos_detalle_ventas"
-                android:layout_width="100dp"
+                android:layout_width="115dp"
                 android:layout_height="65dp"
                 android:textAlignment="center"
                 android:textColor="#000"
@@ -351,7 +351,7 @@
 
             <TextView
                 android:id="@+id/sexta_tanda_dispenser_plastico_articulos_detalle_ventas"
-                android:layout_width="96dp"
+                android:layout_width="85dp"
                 android:layout_height="65dp"
                 android:textAlignment="center"
                 android:textColor="#000"
@@ -360,7 +360,7 @@
 
             <TextView
                 android:id="@+id/sexta_tanda_dispenser_electrico_articulos_detalle_ventas"
-                android:layout_width="100dp"
+                android:layout_width="85dp"
                 android:layout_height="65dp"
                 android:textAlignment="center"
                 android:textColor="#000"
@@ -369,7 +369,7 @@
 
             <TextView
                 android:id="@+id/sexta_tanda_canillas_articulos_detalle_ventas"
-                android:layout_width="100dp"
+                android:layout_width="115dp"
                 android:layout_height="65dp"
                 android:textAlignment="center"
                 android:textColor="#000"

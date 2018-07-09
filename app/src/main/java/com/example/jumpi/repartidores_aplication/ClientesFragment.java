@@ -11,7 +11,7 @@ import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.net.Uri;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
+
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -66,10 +66,6 @@ public class ClientesFragment extends Fragment implements OnStartDragListener {
     String dia = null;
 
 
-
-
-
-
     public ClientesFragment() {
         // Required empty public constructor
 
@@ -107,7 +103,9 @@ public class ClientesFragment extends Fragment implements OnStartDragListener {
             }
         };
 
+
         dia = getArguments().getString("dia");
+
 
         lstClientes = new ArrayList<>();
         readFromLocalDbZonaReparto(dia);
@@ -130,13 +128,16 @@ public class ClientesFragment extends Fragment implements OnStartDragListener {
 
 
 
-        if (getArguments() != null) {
+
+
+
+       /* if (getArguments() != null) {
+
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
 
         */
-
 
 
     }
@@ -165,6 +166,7 @@ public class ClientesFragment extends Fragment implements OnStartDragListener {
 
         myrecyclerview.setAdapter(recyclerAdapter);
 
+
         return v;
 
         // Inflate the layout for this fragment
@@ -182,7 +184,9 @@ public class ClientesFragment extends Fragment implements OnStartDragListener {
         NetworkInfo networkInfo = connectivityManager.getActiveNetworkInfo();
         return (networkInfo!= null && networkInfo.isConnected());
 
+
     }
+
 
     private void readFromLocalDbZonaReparto(String dia){
         DbHelper dbHelperRead = new DbHelper(getContext());
@@ -221,6 +225,12 @@ public class ClientesFragment extends Fragment implements OnStartDragListener {
         cursor.close();
         dbHelperRead.close();
 
+
+
+
+
+        // Inflate the layout for this fragment
+        //return inflater.inflate(R.layout.fragment_clientes, container, false);
 
     }
 
