@@ -14,15 +14,13 @@
     <!-- TODO: Update blank fragment layout -->
 
 
+
+
     <android.support.v7.widget.RecyclerView
 
-
-        android:id="@+id/clientes_recyclerview"
-        android:layout_width="match_parent"
-        android:layout_height="445dp"
-        android:layout_marginTop="5dp"
-        android:background="#FFF"
-        android:padding="30dp">
+        android:layout_width = "match_parent"
+        android:layout_height= "match_parent"
+        android:id="@+id/clientes_recyclerview">
 
 
 
