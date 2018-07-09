@@ -99,6 +99,8 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
 
                             Intent intentVentas = new Intent(mContext, Ventas_Activity.class);
 
+                            //intentVentas.putExtra("Apellido", dialog_nombre_tv.getText());
+
                             intentVentas.putExtra("Nombre", dialog_nombre_tv.getText());
 
                                         mContext.startActivity(intentVentas);
@@ -116,7 +118,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
 
 
                                         Intent intentEditar = new Intent(mContext, EditarClientes.class);
-                                        
+
                                         mContext.startActivity(intentEditar);
 
 
@@ -147,7 +149,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
                                 dialog_cliente_img.setImageResource(mData.get(vHolder.getAdapterPosition()).getFoto());
 
 
-                                Toast.makeText(mContext, "Test Click" + String.valueOf(vHolder.getAdapterPosition()), Toast.LENGTH_SHORT).show();
+                               //Toast.makeText(mContext, "Test Click" + String.valueOf(vHolder.getAdapterPosition()), Toast.LENGTH_SHORT).show();
                                 myDialog.show();
 
 

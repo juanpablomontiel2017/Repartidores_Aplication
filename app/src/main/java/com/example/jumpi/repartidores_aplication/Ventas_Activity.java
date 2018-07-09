@@ -10,6 +10,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -18,9 +19,19 @@ public class Ventas_Activity extends AppCompatActivity {
 
 
     Spinner lista, lista2, lista3, lista4;
-    String [] datos =  {"Canillas","Dispenser Eléctrico","Dispenser Plástico","Envases"};
+    String [] datos =  {"Árticulo","Canillas","Dispenser Eléctrico","Dispenser Plástico","Envases"};
 
     TextView Nombre_Cliente_Ventas;
+    TextView Apellido_Cliente_Ventas;
+    TextView Direccion_Cliente_Ventas;
+    TextView Barrio_Cliente_Ventas;
+
+    EditText eTcant1;
+    EditText eTcant2;
+    EditText eTcant3;
+    EditText eTcant4;
+    EditText eTVacios;
+    EditText eTLlenos;
 
 
 
@@ -31,6 +42,28 @@ public class Ventas_Activity extends AppCompatActivity {
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar_ventas);
         setSupportActionBar(toolbar);
+        eTcant1 = (EditText) findViewById(R.id.cantidad_productos_ventas);
+        eTcant1.setEnabled(false);
+
+
+
+        eTcant2 = (EditText) findViewById(R.id.cantidad2_productos_ventas);
+        eTcant2.setEnabled(false);
+
+
+
+        eTcant3 = (EditText) findViewById(R.id.cantidad3_productos_ventas);
+        eTcant3.setEnabled(false);
+
+
+
+        eTcant4 = (EditText) findViewById(R.id.cantidad4_productos_ventas);
+        eTcant4.setEnabled(false);
+
+
+
+        eTVacios = (EditText) findViewById(R.id.cantiad_vacios_ventas);
+        eTLlenos = (EditText) findViewById(R.id.cantiad_llenos_ventas);
 
         lista = (Spinner)findViewById(R.id.lista_productos_ventas);
 
@@ -47,25 +80,42 @@ public class Ventas_Activity extends AppCompatActivity {
                 switch (i){
 
                     case 0:
-                        Toast to = Toast.makeText(getApplicationContext(),datos[i],Toast.LENGTH_LONG);
-                        to.show();
+                        eTcant1.setEnabled(false);
+
+                       // Toast to = Toast.makeText(getApplicationContext(),datos[i],Toast.LENGTH_LONG);
+                       // to.show();
                         break;
 
                     case 1:
-                        Toast t = Toast.makeText(getApplicationContext(),datos[i],Toast.LENGTH_LONG);
-                        t.show();
+
+                        eTcant1.setEnabled(true);
+                        // Toast t = Toast.makeText(getApplicationContext(),datos[i],Toast.LENGTH_LONG);
+                        //t.show();
                         break;
 
 
                     case 2:
-                        Toast ta = Toast.makeText(getApplicationContext(),datos[i],Toast.LENGTH_LONG);
-                        ta.show();
+
+                        eTcant1.setEnabled(true);
+                        //Toast ta = Toast.makeText(getApplicationContext(),datos[i],Toast.LENGTH_LONG);
+                        //ta.show();
                         break;
 
 
                     case 3:
-                        Toast te = Toast.makeText(getApplicationContext(),datos[i],Toast.LENGTH_LONG);
-                        te.show();
+
+                        eTcant1.setEnabled(true);
+
+                        //Toast te = Toast.makeText(getApplicationContext(),datos[i],Toast.LENGTH_LONG);
+                        //te.show();
+                        break;
+
+                    case 4:
+
+                        eTcant1.setEnabled(true);
+
+                        //  Toast te = Toast.makeText(getApplicationContext(),datos[i],Toast.LENGTH_LONG);
+                        //te.show();
                         break;
 
 
@@ -100,25 +150,45 @@ public class Ventas_Activity extends AppCompatActivity {
                 switch (i){
 
                     case 0:
-                        Toast to = Toast.makeText(getApplicationContext(),datos[i],Toast.LENGTH_LONG);
-                        to.show();
+                        eTcant2.setEnabled(false);
+
+                        // Toast to = Toast.makeText(getApplicationContext(),datos[i],Toast.LENGTH_LONG);
+                        // to.show();
                         break;
 
                     case 1:
-                        Toast t = Toast.makeText(getApplicationContext(),datos[i],Toast.LENGTH_LONG);
-                        t.show();
+
+                        eTcant2.setEnabled(true);
+
+
+                        // Toast t = Toast.makeText(getApplicationContext(),datos[i],Toast.LENGTH_LONG);
+                        //t.show();
                         break;
 
 
                     case 2:
-                        Toast ta = Toast.makeText(getApplicationContext(),datos[i],Toast.LENGTH_LONG);
-                        ta.show();
+
+                        eTcant2.setEnabled(true);
+
+                        //Toast ta = Toast.makeText(getApplicationContext(),datos[i],Toast.LENGTH_LONG);
+                        //ta.show();
                         break;
 
 
                     case 3:
-                        Toast te = Toast.makeText(getApplicationContext(),datos[i],Toast.LENGTH_LONG);
-                        te.show();
+
+                        eTcant2.setEnabled(true);
+
+                        //  Toast te = Toast.makeText(getApplicationContext(),datos[i],Toast.LENGTH_LONG);
+                        //te.show();
+                        break;
+
+                    case 4:
+
+                        eTcant2.setEnabled(true);
+
+                        //  Toast te = Toast.makeText(getApplicationContext(),datos[i],Toast.LENGTH_LONG);
+                        //te.show();
                         break;
 
 
@@ -149,25 +219,44 @@ public class Ventas_Activity extends AppCompatActivity {
                 switch (i){
 
                     case 0:
-                        Toast to = Toast.makeText(getApplicationContext(),datos[i],Toast.LENGTH_LONG);
-                        to.show();
+                        eTcant3.setEnabled(false);
+
+                        // Toast to = Toast.makeText(getApplicationContext(),datos[i],Toast.LENGTH_LONG);
+                        // to.show();
                         break;
 
                     case 1:
-                        Toast t = Toast.makeText(getApplicationContext(),datos[i],Toast.LENGTH_LONG);
-                        t.show();
+
+                        eTcant3.setEnabled(true);
+
+                        // Toast t = Toast.makeText(getApplicationContext(),datos[i],Toast.LENGTH_LONG);
+                        //t.show();
                         break;
 
 
                     case 2:
-                        Toast ta = Toast.makeText(getApplicationContext(),datos[i],Toast.LENGTH_LONG);
-                        ta.show();
+
+                        eTcant3.setEnabled(true);
+
+                        //Toast ta = Toast.makeText(getApplicationContext(),datos[i],Toast.LENGTH_LONG);
+                        //ta.show();
                         break;
 
 
                     case 3:
-                        Toast te = Toast.makeText(getApplicationContext(),datos[i],Toast.LENGTH_LONG);
-                        te.show();
+
+                        eTcant3.setEnabled(true);
+
+                        //  Toast te = Toast.makeText(getApplicationContext(),datos[i],Toast.LENGTH_LONG);
+                        //te.show();
+                        break;
+
+                    case 4:
+
+                        eTcant3.setEnabled(true);
+
+                        //  Toast te = Toast.makeText(getApplicationContext(),datos[i],Toast.LENGTH_LONG);
+                        //te.show();
                         break;
 
 
@@ -199,30 +288,49 @@ public class Ventas_Activity extends AppCompatActivity {
                 switch (i){
 
                     case 0:
-                        Toast to = Toast.makeText(getApplicationContext(),datos[i],Toast.LENGTH_LONG);
-                        to.show();
+                        eTcant4.setEnabled(false);
+
+                        // Toast to = Toast.makeText(getApplicationContext(),datos[i],Toast.LENGTH_LONG);
+                        // to.show();
                         break;
 
                     case 1:
-                        Toast t = Toast.makeText(getApplicationContext(),datos[i],Toast.LENGTH_LONG);
-                        t.show();
+
+                        eTcant4.setEnabled(true);
+
+
+                        // Toast t = Toast.makeText(getApplicationContext(),datos[i],Toast.LENGTH_LONG);
+                        //t.show();
                         break;
 
 
                     case 2:
-                        Toast ta = Toast.makeText(getApplicationContext(),datos[i],Toast.LENGTH_LONG);
-                        ta.show();
+
+                        eTcant4.setEnabled(true);
+
+                        //Toast ta = Toast.makeText(getApplicationContext(),datos[i],Toast.LENGTH_LONG);
+                        //ta.show();
                         break;
 
 
                     case 3:
-                        Toast te = Toast.makeText(getApplicationContext(),datos[i],Toast.LENGTH_LONG);
-                        te.show();
+
+                        eTcant4.setEnabled(true);
+
+                        //  Toast te = Toast.makeText(getApplicationContext(),datos[i],Toast.LENGTH_LONG);
+                        //te.show();
+                        break;
+
+                    case 4:
+
+                        eTcant4.setEnabled(true);
+
+                        //  Toast te = Toast.makeText(getApplicationContext(),datos[i],Toast.LENGTH_LONG);
+                        //te.show();
                         break;
 
 
                 }
-
 
             }
 
@@ -233,13 +341,18 @@ public class Ventas_Activity extends AppCompatActivity {
         });
 
 
+        //Recibir los párametros de los clientes desde el RecyclerViewAdapter
+        Apellido_Cliente_Ventas  = (TextView) findViewById(R.id.apellido_cliente_realizar_ventas);
 
+        String extras = getIntent().getStringExtra("Apellido");
+
+        Apellido_Cliente_Ventas.setText(extras);
 
 
         //Recibir los párametros de los clientes desde el RecyclerViewAdapter
         Nombre_Cliente_Ventas  = (TextView) findViewById(R.id.nombre_cliente_realizar_ventas);
 
-        String extras = getIntent().getStringExtra("Nombre");
+         extras = getIntent().getStringExtra("Nombre");
 
         Nombre_Cliente_Ventas.setText(extras);
 
@@ -251,9 +364,10 @@ public class Ventas_Activity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-                Intent buttonConfirmarV = new Intent(Ventas_Activity.this, Second_Activity.class);
-                startActivity(buttonConfirmarV);
+                //Intent buttonConfirmarV = new Intent(Ventas_Activity.this, Second_Activity.class);
+                //startActivity(buttonConfirmarV);
                 Toast.makeText(getApplicationContext(),"Venta realizada con éxito",Toast.LENGTH_LONG).show();
+                finish();
             }
         });
 
@@ -283,9 +397,9 @@ public class Ventas_Activity extends AppCompatActivity {
 
         if (id == R.id.id_cancelar_venta) {
 
-            Intent IntentCancelarV = new Intent(Ventas_Activity.this, Second_Activity.class);
-            startActivity(IntentCancelarV);
-
+            //Intent IntentCancelarV = new Intent(Ventas_Activity.this, Second_Activity.class);
+            //startActivity(IntentCancelarV);
+            finish();
             return true;
         }
 

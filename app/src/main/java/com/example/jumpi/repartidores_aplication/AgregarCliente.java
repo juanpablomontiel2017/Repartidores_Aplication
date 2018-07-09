@@ -35,9 +35,11 @@ public class AgregarCliente extends AppCompatActivity {
 
             @Override
             public void onClick(View view) {
-
+/*
                 Intent buttonCancelarC = new Intent(AgregarCliente.this, Second_Activity.class);
                 startActivity(buttonCancelarC);
+*/
+                finish();
 
             }
         });
@@ -50,10 +52,12 @@ public class AgregarCliente extends AppCompatActivity {
 
             @Override
             public void onClick(View view) {
-
+/*
                 Intent buttonAgregarA = new Intent(AgregarCliente.this, Ventas_Activity.class);
                 startActivity(buttonAgregarA);
+*/
 
+                finish();
             }
         });
 

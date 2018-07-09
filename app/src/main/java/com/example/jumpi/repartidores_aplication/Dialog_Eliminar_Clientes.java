@@ -20,9 +20,11 @@ public class Dialog_Eliminar_Clientes extends AppCompatActivity {
 
             @Override
             public void onClick(View view) {
-
+/*
                 Intent buttonCancelElC = new Intent(Dialog_Eliminar_Clientes.this, Second_Activity.class);
                 startActivity(buttonCancelElC);
+*/
+                finish();
 
             }
         });
@@ -34,11 +36,15 @@ public class Dialog_Eliminar_Clientes extends AppCompatActivity {
 
             @Override
             public void onClick(View view) {
-
+/*
                 Intent buttonAceptarElC = new Intent(Dialog_Eliminar_Clientes.this, Second_Activity.class);
                 startActivity(buttonAceptarElC);
+*/
+
+
                 Toast.makeText(getApplicationContext(),"El cliente ha sido eliminado",Toast.LENGTH_LONG).show();
 
+                finish();
             }
         });
 

@@ -20,9 +20,11 @@ public class EditarClientes extends AppCompatActivity {
 
             @Override
             public void onClick(View view) {
-
+/*
                 Intent buttonCancelarEC = new Intent(EditarClientes.this, Second_Activity.class);
                 startActivity(buttonCancelarEC);
+*/
+        finish();
 
             }
         });
@@ -34,10 +36,11 @@ public class EditarClientes extends AppCompatActivity {
 
             @Override
             public void onClick(View view) {
-
+/*
                 Intent buttonAceptarEC = new Intent(EditarClientes.this, Second_Activity.class);
                 startActivity(buttonAceptarEC);
-
+*/
+                finish();
             }
         });
 
