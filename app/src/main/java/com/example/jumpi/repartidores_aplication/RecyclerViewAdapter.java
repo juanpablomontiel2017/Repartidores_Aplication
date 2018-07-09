@@ -94,6 +94,8 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
 
                                 Intent intentVentas = new Intent(mContext, Ventas_Activity.class);
 
+                                
+
                                 intentVentas.putExtra("Nombre", dialog_nombre_tv.getText());
 
                                         mContext.startActivity(intentVentas);
