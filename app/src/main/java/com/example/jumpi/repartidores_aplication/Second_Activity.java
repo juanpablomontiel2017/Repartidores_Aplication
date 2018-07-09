@@ -55,7 +55,7 @@ public class Second_Activity extends AppCompatActivity {
         Bundle bundle = getIntent().getExtras();
 
         // Obtienes el texto
-        String dia = bundle.getString("dia");
+        final String dia = bundle.getString("dia");
 
         // Creamos un nuevo Bundle
         Bundle args = new Bundle();
@@ -119,6 +119,13 @@ public class Second_Activity extends AppCompatActivity {
 
                 Intent fab = new Intent(Second_Activity.this, AgregarCliente.class);
 
+                /*
+                Bundle bundle = new Bundle();
+
+                bundle.putString("dia", dia);
+
+                fab.putExtras(bundle);
+                */
 
                 startActivity(fab);
 

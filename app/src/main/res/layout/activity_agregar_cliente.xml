@@ -34,13 +34,12 @@
 
 
         <EditText
-        android:id="@+id/nombre_cliente_agregar"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="Nombre del Cliente"
-        android:inputType="text"
-        android:textStyle="bold" />
-
+            android:id="@+id/nombre_cliente_agregar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Nombre del Cliente"
+            android:inputType="text"
+            android:textStyle="bold" />
 
 
         <EditText
@@ -96,9 +95,9 @@
         <!--CheckBox de "días de la semana" -->
 
         <LinearLayout
-            android:orientation="horizontal"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
 
             <CheckBox
                 android:id="@+id/idcheckbox_lunes"
@@ -129,11 +128,10 @@
         </LinearLayout>
 
 
-
         <LinearLayout
-            android:orientation="horizontal"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
 
             <CheckBox
                 android:id="@+id/idcheckbox_martes"
@@ -162,9 +160,6 @@
 
 
         </LinearLayout>
-
-
-
 
 
         <LinearLayout

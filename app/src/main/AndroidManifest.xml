@@ -55,12 +55,10 @@
 
         <activity
             android:name=".EditarClientes"
-            android:label="Editar_Clientes"
-            android:parentActivityName=".Second_Activity" />
+            android:label="Editar_Clientes" />
         <activity
             android:name=".AgregarCliente"
-            android:label="Agregar_Clientes"
-            android:parentActivityName=".Second_Activity" />
+            android:label="Agregar_Clientes" />
         <activity android:name=".Detalle_CargasyDescargas" />
         <activity android:name=".Detalle_Articulos" />
         <activity android:name=".detalle_ventas_dinero" />

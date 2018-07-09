@@ -116,6 +116,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
 
 
                                         Intent intentEditar = new Intent(mContext, EditarClientes.class);
+                                        
                                         mContext.startActivity(intentEditar);
 
 

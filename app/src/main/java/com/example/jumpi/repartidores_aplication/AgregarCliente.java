@@ -7,6 +7,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.Toast;
+import android.widget.Toolbar;
 
 public class AgregarCliente extends AppCompatActivity {
 
@@ -14,12 +15,18 @@ public class AgregarCliente extends AppCompatActivity {
 
     CheckBox c1, c2, c3, c4, c5, c6;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_agregar_cliente);
 
+
+
+/*
+
+        Bundle bundle = getIntent().getExtras();
+        //final String dia = bundle.getString("dia");
+*/
 
 
         final Button buttonCancelar = (Button) findViewById(R.id.button_cancelar_AC);
