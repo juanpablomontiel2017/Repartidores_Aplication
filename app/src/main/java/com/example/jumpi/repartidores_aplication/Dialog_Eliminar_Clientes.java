@@ -5,6 +5,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Toast;
 
 public class Dialog_Eliminar_Clientes extends AppCompatActivity {
 
@@ -36,6 +37,7 @@ public class Dialog_Eliminar_Clientes extends AppCompatActivity {
 
                 Intent buttonAceptarElC = new Intent(Dialog_Eliminar_Clientes.this, Second_Activity.class);
                 startActivity(buttonAceptarElC);
+                Toast.makeText(getApplicationContext(),"El cliente ha sido eliminado",Toast.LENGTH_LONG).show();
 
             }
         });
