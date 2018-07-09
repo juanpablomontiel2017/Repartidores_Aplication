@@ -31,12 +31,12 @@ import android.widget.Toast;
 
 import org.w3c.dom.Text;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
 
 public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapter.MyViewHolder> implements ItemTouchHelperAdapter {//implements View.OnClickListener { //implements View.OnClickListener { //implements View.OnClickListener {
-
 
 
 

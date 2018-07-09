@@ -1,8 +1,10 @@
 package com.example.jumpi.repartidores_aplication;
 
 public class Clientes {
-
+    private int IdPersona;
+    private int DNI;
     private int Foto;
+    private String Apellido;
     private String Nombre;
     private String Direccion;
     private String Barrio;
@@ -14,8 +16,12 @@ public class Clientes {
 
     }
 
-    public Clientes(int foto, String nombre, String direccion, String barrio,String referencia, String telefono, String correo) {
+    public Clientes(int DNI, int IdPersona, int foto, String apellido, String nombre, String direccion, String barrio,String referencia, String telefono, String correo) {
+        IdPersona = IdPersona;
+        DNI=DNI;
+
         Foto = foto;
+        Apellido = apellido;
         Nombre = nombre;
         Direccion = direccion;
         Barrio = barrio;
@@ -30,6 +36,22 @@ public class Clientes {
 
     //Getter
 
+
+    public int getIdPersona() {
+        return IdPersona;
+    }
+
+    public void setIdPersona(int idPersona) {
+        IdPersona = idPersona;
+    }
+
+    public int getDNI() {
+        return DNI;
+    }
+
+    public void setDNI(int DNI) {
+        this.DNI = DNI;
+    }
 
     public int getFoto() {
         return Foto;
@@ -85,6 +107,14 @@ public class Clientes {
 
     public void setCorreo (String correo) {
         Correo = correo;
+    }
+
+    public String getApellido() {
+        return Apellido;
+    }
+
+    public void setApellido(String apellido) {
+        Apellido = apellido;
     }
 }
 

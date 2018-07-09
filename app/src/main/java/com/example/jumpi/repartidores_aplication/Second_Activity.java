@@ -51,6 +51,25 @@ public class Second_Activity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_second_);
 
+        // Obtienes el Bundle del Intent
+        Bundle bundle = getIntent().getExtras();
+
+        // Obtienes el texto
+        String dia = bundle.getString("dia");
+
+        // Creamos un nuevo Bundle
+        Bundle args = new Bundle();
+
+        // Colocamos el String
+        args.putString("dia", dia);
+
+        // Supongamos que tu Fragment se llama TestFragment. Colocamos este nuevo Bundle como argumento en el fragmento.
+        ClientesFragment clientesFragment = new ClientesFragment();
+        clientesFragment.setArguments(args);
+
+
+
+
 
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
@@ -69,9 +88,10 @@ public class Second_Activity extends AppCompatActivity {
 
         //Add Fragment Here
 
+
         adapter.AddFragment (new Registro_Ventas_Fragment(),"Registro de ventas");
 
-        adapter.AddFragment (new ClientesFragment(),"Clientes");
+        adapter.AddFragment (clientesFragment,"Clientes");
 
         mViewPager.setAdapter(adapter);
 
