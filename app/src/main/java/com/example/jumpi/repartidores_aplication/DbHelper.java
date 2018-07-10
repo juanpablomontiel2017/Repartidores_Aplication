@@ -14,6 +14,8 @@ public class DbHelper extends SQLiteOpenHelper {
     private static final String CREATE_TABLE = "create table "+DbContract.TABLE_NAME_USUARIO+"("+DbContract.DNI+" integer primary key,"+DbContract.ID+" integer,"+DbContract.USUARIO+" text,"+DbContract.PASSWORD+" text, "+DbContract.SYNC_STATUS+" integer);";
     private static final String CREATE_TABLE_ZONA_REPARTO = "create table "+DbContract.TABLE_NAME_ZONA_REPARTO+"("+DbContract.DNI+" integer primary key,"+DbContract.ID+" integer,"+DbContract.APELLIDO+" text,"+DbContract.NOMBRE+" text,"+DbContract.DIRECCION+" text,"+DbContract.BARRIO+" text,"+DbContract.REFERENCIA+" text,"+DbContract.TELEFONO+" text,"+DbContract.CORREO+" text,"+DbContract.LUNES+" int,"+DbContract.MARTES+" int,"+DbContract.MIERCOLES+" int,"+DbContract.JUEVES+" int,"+DbContract.VIERNES+" int,"+DbContract.SABADO+" int, "+DbContract.FOTO+" int, "+DbContract.SYNC_STATUS+" integer);";
     private static final String CREATE_TABLE_ARTICULO = "create table "+DbContract.TABLE_NAME_ARTICULO+"("+DbContract.ID+" integer primary key,"+DbContract.ARTICULO+" text,"+DbContract.PRECIO+" integer);";
+    private static final String CREATE_TABLE_VENTA = "create table "+DbContract.TABLE_NAME_VENTA+"("+DbContract.ID+" integer primary key autoincrement,"+DbContract.ID_CLIENTE+" integer,"+DbContract.DNI+" integer,"+DbContract.ENVASE_LLENO+" int,"+DbContract.ENVASE_VACIO+" int,"+DbContract.CANILLA+" int,"+DbContract.DISPENSER_ELECTRICO+" int,"+DbContract.DISPENSER_PLASTICO+" int,"+DbContract.ENVASE_VENTA+" int,"+DbContract.ENTREGA+" int,"+DbContract.FECHA+" date);";
+
 
 
     private static final String DROP_TABLE = "drop table if exists "+DbContract.TABLE_NAME_USUARIO;
@@ -30,6 +32,7 @@ public class DbHelper extends SQLiteOpenHelper {
         db.execSQL(CREATE_TABLE);
         db.execSQL(CREATE_TABLE_ZONA_REPARTO);
         db.execSQL(CREATE_TABLE_ARTICULO);
+        db.execSQL(CREATE_TABLE_VENTA);
     }
 
     @Override

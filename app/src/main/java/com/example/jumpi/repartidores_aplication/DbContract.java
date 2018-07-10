@@ -14,7 +14,7 @@ public class DbContract {
     public static final String USUARIO = "usuario";
     public static final String PASSWORD = "contrasena";
     public static final String SYNC_STATUS = "syncstatus";
-    public static final int ENTERO_NULO = 99;
+    public static final int ENTERO_NULO = 9999;
     public static final int DIA_OK = 1;
     public static final int DIA_FAIL = 0;
 
@@ -53,6 +53,21 @@ public class DbContract {
     public static final String ARTICULO = "articulo";
     public static final String PRECIO = "precio";
 
+    /**
+     *   TABLA VENTAS
+     */
+
+    public static final String TABLE_NAME_VENTA = "venta";
+    public static final String ENVASE_LLENO = "envase_lleno";
+    public static final String ENVASE_VACIO = "envase_vacio";
+    public static final String CANILLA = "canilla";
+    public static final String DISPENSER_ELECTRICO = "dispenser_electrico";
+    public static final String DISPENSER_PLASTICO = "dispenser_plastico";
+    public static final String ENVASE_VENTA = "envase_venta";
+    public static final String ENTREGA = "entrega";
+
+    public static final String ID_CLIENTE = "id_cliente";
+    public static final String FECHA = "fecha";
 
 
 
