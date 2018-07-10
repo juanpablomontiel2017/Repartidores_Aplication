@@ -14,7 +14,7 @@ public class DbHelper extends SQLiteOpenHelper {
     private static final String CREATE_TABLE = "create table "+DbContract.TABLE_NAME_USUARIO+"("+DbContract.DNI+" integer primary key,"+DbContract.ID+" integer,"+DbContract.USUARIO+" text,"+DbContract.PASSWORD+" text, "+DbContract.SYNC_STATUS+" integer);";
     private static final String CREATE_TABLE_ZONA_REPARTO = "create table "+DbContract.TABLE_NAME_ZONA_REPARTO+"("+DbContract.DNI+" integer primary key,"+DbContract.ID+" integer,"+DbContract.APELLIDO+" text,"+DbContract.NOMBRE+" text,"+DbContract.DIRECCION+" text,"+DbContract.BARRIO+" text,"+DbContract.REFERENCIA+" text,"+DbContract.TELEFONO+" text,"+DbContract.CORREO+" text,"+DbContract.LUNES+" int,"+DbContract.MARTES+" int,"+DbContract.MIERCOLES+" int,"+DbContract.JUEVES+" int,"+DbContract.VIERNES+" int,"+DbContract.SABADO+" int, "+DbContract.FOTO+" int, "+DbContract.SYNC_STATUS+" integer);";
     private static final String CREATE_TABLE_ARTICULO = "create table "+DbContract.TABLE_NAME_ARTICULO+"("+DbContract.ID+" integer primary key,"+DbContract.ARTICULO+" text,"+DbContract.PRECIO+" integer);";
-    private static final String CREATE_TABLE_VENTA = "create table "+DbContract.TABLE_NAME_VENTA+"("+DbContract.ID+" integer primary key autoincrement,"+DbContract.ID_CLIENTE+" integer,"+DbContract.DNI+" integer,"+DbContract.ENVASE_LLENO+" int,"+DbContract.ENVASE_VACIO+" int,"+DbContract.CANILLA+" int,"+DbContract.DISPENSER_ELECTRICO+" int,"+DbContract.DISPENSER_PLASTICO+" int,"+DbContract.ENVASE_VENTA+" int,"+DbContract.ENTREGA+" int,"+DbContract.FECHA+" date);";
+    private static final String CREATE_TABLE_VENTA = "create table "+DbContract.TABLE_NAME_VENTA+"("+DbContract.ID+" integer primary key autoincrement,"+DbContract.ID_CLIENTE+" integer,"+DbContract.DNI+" integer,"+DbContract.ENVASE_LLENO+" int,"+DbContract.ENVASE_VACIO+" int,"+DbContract.CANILLA+" int,"+DbContract.DISPENSER_ELECTRICO+" int,"+DbContract.DISPENSER_PLASTICO+" int,"+DbContract.ENVASE_VENTA+" int,"+DbContract.ENTREGA+" int,"+DbContract.FECHA+" text,"+DbContract.SYNC_STATUS+" integer);";
 
 
 
@@ -207,6 +207,78 @@ public class DbHelper extends SQLiteOpenHelper {
         String selection = DbContract.ID+" = ";
         String[] selection_args = {Integer.toString(id)};
         database.update(DbContract.TABLE_NAME_ARTICULO,contentValues,selection,selection_args);
+
+    }
+
+
+
+
+    /**
+     *              MÉTODOS PARA TABLA VENTAS
+     */
+
+
+    public  void saveToLocalDatabaseVenta(int idCliente, int dni, int lleno, int vacio, int canilla, int electrico, int plastico, int envase, int entrega, String fecha, int sync_status, SQLiteDatabase database){
+        ContentValues contentValues = new ContentValues();
+
+        contentValues.put(DbContract.ID_CLIENTE, idCliente);
+        contentValues.put(DbContract.DNI, dni);
+        contentValues.put(DbContract.ENVASE_LLENO, lleno);
+        contentValues.put(DbContract.ENVASE_VACIO, vacio);
+        contentValues.put(DbContract.CANILLA, canilla);
+        contentValues.put(DbContract.DISPENSER_ELECTRICO, electrico);
+        contentValues.put(DbContract.DISPENSER_PLASTICO, plastico);
+        contentValues.put(DbContract.ENVASE_VENTA, envase);
+
+        contentValues.put(DbContract.ENTREGA, entrega);
+        contentValues.put(DbContract.FECHA, fecha);
+
+        contentValues.put(DbContract.SYNC_STATUS, sync_status);
+        database.insert(DbContract.TABLE_NAME_VENTA,null,contentValues);
+
+    }
+
+    public Cursor readFromLocalDatabaseVenta (SQLiteDatabase database){
+        String[] projection = {DbContract.ID, DbContract.ID_CLIENTE, DbContract.DNI, DbContract.ENVASE_LLENO, DbContract.ENVASE_VACIO, DbContract.CANILLA, DbContract.DISPENSER_ELECTRICO, DbContract.DISPENSER_PLASTICO, DbContract.ENVASE_VENTA, DbContract.ENTREGA, DbContract.FECHA, DbContract.SYNC_STATUS};
+
+        return (database.query(DbContract.TABLE_NAME_ZONA_REPARTO,projection, null,null, null,null,null));
+    }
+
+    public void updateLocalDatabaseVenta(int dni, int lleno, int vacio, int canilla, int electrico, int plastico, int envase, int entrega, String fecha, int sync_status, SQLiteDatabase database){
+        ContentValues contentValues = new ContentValues();
+        if (lleno!=0){
+            contentValues.put(DbContract.ENVASE_LLENO, lleno);
+        }
+        if (vacio!=0){
+            contentValues.put(DbContract.ENVASE_VACIO, vacio);
+        }
+        if (canilla!=0){
+            contentValues.put(DbContract.CANILLA, canilla);
+        }
+        if (electrico!=0){
+            contentValues.put(DbContract.BARRIO, electrico);
+        }
+        if (plastico!=0){
+            contentValues.put(DbContract.REFERENCIA, plastico);
+        }
+        if (envase!=0){
+            contentValues.put(DbContract.TELEFONO, envase);
+        }
+        if (entrega!=0){
+            contentValues.put(DbContract.ENTREGA, entrega);
+        }
+        if (fecha!=null){
+            contentValues.put(DbContract.FECHA, fecha);
+        }
+
+
+
+
+        contentValues.put(DbContract.SYNC_STATUS, sync_status);
+
+        String selection = DbContract.DNI+" = ";
+        String[] selection_args = {Integer.toString(dni)};
+        database.update(DbContract.TABLE_NAME_VENTA,contentValues,selection,selection_args);
 
     }
 
