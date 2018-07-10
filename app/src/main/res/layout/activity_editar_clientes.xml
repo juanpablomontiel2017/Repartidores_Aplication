@@ -2,20 +2,30 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:orientation="horizontal"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:orientation="horizontal"
     android:padding="20dp"
-    android:layout_marginTop="50dp"
     tools:context=".EditarClientes">
 
 
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
 
     <ImageView
+        android:id="@+id/img_cliente_editar"
         android:layout_width="56dp"
         android:layout_height="56dp"
-        android:src="@mipmap/ic_launcher_round"
-        android:id="@+id/img_cliente_editar"/>
+        android:src="@mipmap/ic_launcher_round" />
 
 
     <LinearLayout
@@ -39,8 +49,7 @@
             android:layout_height="wrap_content"
             android:inputType="text"
             android:text="Nombre del Cliente"
-            android:textStyle="bold"/>
-
+            android:textStyle="bold" />
 
 
         <EditText
@@ -49,7 +58,7 @@
             android:layout_height="wrap_content"
             android:inputType="text"
             android:text="Dirección"
-            android:textStyle="bold"/>
+            android:textStyle="bold" />
 
 
         <EditText
@@ -58,7 +67,7 @@
             android:layout_height="wrap_content"
             android:inputType="text"
             android:text="Barrio"
-            android:textStyle="bold"/>
+            android:textStyle="bold" />
 
         <EditText
             android:id="@+id/telefono_cliente_editar"
@@ -66,7 +75,7 @@
             android:layout_height="wrap_content"
             android:inputType="text"
             android:text="Telefono"
-            android:textStyle="bold"/>
+            android:textStyle="bold" />
 
         <EditText
             android:id="@+id/correo_cliente_editar"
@@ -83,15 +92,85 @@
             android:layout_height="wrap_content"
             android:inputType="textMultiLine"
             android:text="Referencia"
-            android:textStyle="bold"/>
+            android:textStyle="bold" />
+
+
+        <!--CheckBox de "días de la semana" -->
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <CheckBox
+                android:id="@+id/idcheckbox_lunes"
+                android:layout_width="70dp"
+                android:layout_height="wrap_content"
+                android:text="Lunes"
+                android:textSize="12sp"
+                android:textStyle="bold" />
+
+
+            <CheckBox
+                android:id="@+id/idcheckbox_miercoles"
+                android:layout_width="96dp"
+                android:layout_height="wrap_content"
+                android:text="Miércoles"
+                android:textSize="12sp"
+                android:textStyle="bold" />
+
+            <CheckBox
+                android:id="@+id/idcheckbox_viernes"
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:text="Viernes"
+                android:textSize="12sp"
+                android:textStyle="bold" />
+
+
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <CheckBox
+                android:id="@+id/idcheckbox_martes"
+                android:layout_width="80dp"
+                android:layout_height="wrap_content"
+                android:text="Martes"
+                android:textSize="12sp"
+                android:textStyle="bold" />
+
+
+            <CheckBox
+                android:id="@+id/idcheckbox_jueves"
+                android:layout_width="85dp"
+                android:layout_height="wrap_content"
+                android:text="Jueves"
+                android:textSize="12sp"
+                android:textStyle="bold" />
+
+            <CheckBox
+                android:id="@+id/idcheckbox_sabado"
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:text="Sábado"
+                android:textSize="12sp"
+                android:textStyle="bold" />
+
+
+        </LinearLayout>
+
 
         <LinearLayout
             android:layout_width="271dp"
             android:layout_height="wrap_content"
             android:layout_marginLeft="0dp"
-            android:orientation="horizontal"
             android:layout_marginTop="30dp"
-            >
+            android:orientation="horizontal">
 
 
             <Button
@@ -128,5 +207,8 @@
 
     </LinearLayout>
 
+
+        </LinearLayout>
+    </ScrollView>
 
 </LinearLayout>

@@ -5,6 +5,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -18,6 +19,9 @@ public class EditarClientes extends AppCompatActivity {
     TextView Telefono_Cliente_EditarCliente;
     TextView Correo_Cliente_EditarCliente;
     TextView Referencia_Cliente_EditarCliente;
+
+
+    CheckBox c1, c2, c3, c4, c5, c6;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -128,6 +132,35 @@ public class EditarClientes extends AppCompatActivity {
         Referencia_Cliente_EditarCliente.setText(extras);
 
 
+        c1 = (CheckBox) findViewById(R.id.idcheckbox_lunes);
+        c2 = (CheckBox) findViewById(R.id.idcheckbox_martes);
+        c3 = (CheckBox) findViewById(R.id.idcheckbox_miercoles);
+        c4 = (CheckBox) findViewById(R.id.idcheckbox_jueves);
+        c5 = (CheckBox) findViewById(R.id.idcheckbox_viernes);
+        c6 = (CheckBox) findViewById(R.id.idcheckbox_sabado);
+
 
     }
+
+
+
+    public void onclick (View view) {
+
+        if (view.getId()==R.id.button_aceptar_EC) {
+
+            MethodEditarC();
+        } //Fin de la sentencia 'if'
+
+    }
+
+
+    private void MethodEditarC(){
+
+
+
+
+    } //Fin del método
+
+
+
 }
