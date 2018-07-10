@@ -10,6 +10,9 @@
     tools:context=".MainActivity"
     tools:showIn="@layout/activity_main">
 
+
+
+
     <TextView
         android:id="@+id/textViewDias"
         android:layout_width="wrap_content"
@@ -36,6 +39,7 @@
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:text="Lunes"
+        android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
@@ -52,6 +56,7 @@
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:text="Martes"
+        android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
@@ -68,6 +73,7 @@
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:text="Miércoles"
+        android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
@@ -84,6 +90,7 @@
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:text="Jueves"
+        android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
@@ -100,6 +107,7 @@
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:text="Viernes"
+        android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
@@ -116,6 +124,7 @@
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:text="Sábado"
+        android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
@@ -139,6 +148,10 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/textViewDias"
         app:layout_constraintVertical_bias="0.941" />
+
+
+
+
 
 
 
