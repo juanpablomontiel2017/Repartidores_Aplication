@@ -20,6 +20,8 @@ public class DbContract {
 
 
 
+
+
     /**
      *   TABLA ZONA DE REPARTO
      */
@@ -42,6 +44,17 @@ public class DbContract {
     public static final String JUEVES = "jueves";
     public static final String VIERNES = "viernes";
     public static final String SABADO = "sabado";
+
+    /**
+     *   TABLA ARTÍCULO
+     */
+
+    public static final String TABLE_NAME_ARTICULO = "articulo";
+    public static final String ARTICULO = "articulo";
+    public static final String PRECIO = "precio";
+
+
+
 
 
 

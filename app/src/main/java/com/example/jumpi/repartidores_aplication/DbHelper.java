@@ -13,10 +13,13 @@ public class DbHelper extends SQLiteOpenHelper {
     private static final int DATABASE_VERSION = 1;
     private static final String CREATE_TABLE = "create table "+DbContract.TABLE_NAME_USUARIO+"("+DbContract.DNI+" integer primary key,"+DbContract.ID+" integer,"+DbContract.USUARIO+" text,"+DbContract.PASSWORD+" text, "+DbContract.SYNC_STATUS+" integer);";
     private static final String CREATE_TABLE_ZONA_REPARTO = "create table "+DbContract.TABLE_NAME_ZONA_REPARTO+"("+DbContract.DNI+" integer primary key,"+DbContract.ID+" integer,"+DbContract.APELLIDO+" text,"+DbContract.NOMBRE+" text,"+DbContract.DIRECCION+" text,"+DbContract.BARRIO+" text,"+DbContract.REFERENCIA+" text,"+DbContract.TELEFONO+" text,"+DbContract.CORREO+" text,"+DbContract.LUNES+" int,"+DbContract.MARTES+" int,"+DbContract.MIERCOLES+" int,"+DbContract.JUEVES+" int,"+DbContract.VIERNES+" int,"+DbContract.SABADO+" int, "+DbContract.FOTO+" int, "+DbContract.SYNC_STATUS+" integer);";
+    private static final String CREATE_TABLE_ARTICULO = "create table "+DbContract.TABLE_NAME_ARTICULO+"("+DbContract.ID+" integer primary key,"+DbContract.ARTICULO+" text,"+DbContract.PRECIO+" integer);";
 
 
     private static final String DROP_TABLE = "drop table if exists "+DbContract.TABLE_NAME_USUARIO;
     private static final String DROP_TABLE_ZONA_REPARTO = "drop table if exists "+DbContract.TABLE_NAME_ZONA_REPARTO;
+    private static final String DROP_TABLE_ARTICULO = "drop table if exists "+DbContract.TABLE_NAME_ARTICULO;
+
 
     public DbHelper (Context context){
         super(context, DbContract.DATABASE_NAME, null, DATABASE_VERSION);
@@ -26,12 +29,14 @@ public class DbHelper extends SQLiteOpenHelper {
     public void onCreate(SQLiteDatabase db) {
         db.execSQL(CREATE_TABLE);
         db.execSQL(CREATE_TABLE_ZONA_REPARTO);
+        db.execSQL(CREATE_TABLE_ARTICULO);
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int i, int i1) {
         db.execSQL(DROP_TABLE);
         db.execSQL(DROP_TABLE_ZONA_REPARTO);
+        db.execSQL(DROP_TABLE_ARTICULO);
         onCreate(db);
     }
 
@@ -160,6 +165,45 @@ public class DbHelper extends SQLiteOpenHelper {
         String selection = DbContract.DNI+" = ";
         String[] selection_args = {Integer.toString(dni)};
         database.update(DbContract.TABLE_NAME_ZONA_REPARTO,contentValues,selection,selection_args);
+
+    }
+
+/**
+ *              MÉTODOS PARA TABLA ARTÍCULO
+ */
+
+
+
+    public  void saveToLocalDatabaseArticulo(int id, String articulo, int precio, SQLiteDatabase database){
+    ContentValues contentValues = new ContentValues();
+
+    contentValues.put(DbContract.ID, id);
+    contentValues.put(DbContract.ARTICULO, articulo);
+    contentValues.put(DbContract.PRECIO, precio);
+    database.insert(DbContract.TABLE_NAME_ARTICULO,null,contentValues);
+
+}
+
+    public Cursor readFromLocalDatabaseArticulo (SQLiteDatabase database){
+        String[] projection = {DbContract.ID, DbContract.ARTICULO, DbContract.PRECIO};
+
+        return (database.query(DbContract.TABLE_NAME_ARTICULO,projection, null,null, null,null,null));
+    }
+
+    public void updateLocalDatabaseArticulo(int id, String articulo, int precio, SQLiteDatabase database){
+        ContentValues contentValues = new ContentValues();
+        if (articulo!=null){
+            contentValues.put(DbContract.ARTICULO, articulo);
+        }
+        if (precio!=DbContract.ENTERO_NULO){
+            contentValues.put(DbContract.PRECIO, precio);
+        }
+
+
+
+        String selection = DbContract.ID+" = ";
+        String[] selection_args = {Integer.toString(id)};
+        database.update(DbContract.TABLE_NAME_ARTICULO,contentValues,selection,selection_args);
 
     }
 
