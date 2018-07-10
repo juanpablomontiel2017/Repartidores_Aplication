@@ -10,6 +10,8 @@
 
     tools:context=".Ventas_Activity">
 
+
+
     <android.support.v7.widget.Toolbar
         android:id="@+id/toolbar_ventas"
         android:layout_width="match_parent"

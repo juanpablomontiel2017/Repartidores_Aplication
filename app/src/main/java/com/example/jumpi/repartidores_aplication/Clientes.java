@@ -17,6 +17,7 @@ public class Clientes {
     }
 
     public Clientes(int DNI, int IdPersona, int foto, String apellido, String nombre, String direccion, String barrio,String referencia, String telefono, String correo) {
+
         IdPersona = IdPersona;
         DNI=DNI;
 

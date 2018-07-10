@@ -57,6 +57,9 @@ public class AgregarCliente extends AppCompatActivity {
                 startActivity(buttonAgregarA);
 */
 
+
+                Toast.makeText(getApplicationContext(),"El cliente fue añadido al sistema con éxito",Toast.LENGTH_LONG).show();
+
                 finish();
             }
         });

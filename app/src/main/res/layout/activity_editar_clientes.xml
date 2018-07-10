@@ -30,7 +30,7 @@
             android:layout_height="wrap_content"
             android:inputType="text"
             android:text="Apellido del Cliente"
-            android:textStyle="bold"/>
+            android:textStyle="bold" />
 
 
         <EditText
@@ -74,7 +74,7 @@
             android:layout_height="wrap_content"
             android:inputType="textEmailAddress"
             android:text="Correo"
-            android:textStyle="bold"/>
+            android:textStyle="bold" />
 
 
         <EditText
