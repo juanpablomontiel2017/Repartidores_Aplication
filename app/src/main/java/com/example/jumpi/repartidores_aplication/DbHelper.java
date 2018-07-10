@@ -21,6 +21,7 @@ public class DbHelper extends SQLiteOpenHelper {
     private static final String DROP_TABLE = "drop table if exists "+DbContract.TABLE_NAME_USUARIO;
     private static final String DROP_TABLE_ZONA_REPARTO = "drop table if exists "+DbContract.TABLE_NAME_ZONA_REPARTO;
     private static final String DROP_TABLE_ARTICULO = "drop table if exists "+DbContract.TABLE_NAME_ARTICULO;
+    private static final String DROP_TABLE_VENTA = "drop table if exists "+DbContract.TABLE_NAME_VENTA;
 
 
     public DbHelper (Context context){
@@ -40,6 +41,7 @@ public class DbHelper extends SQLiteOpenHelper {
         db.execSQL(DROP_TABLE);
         db.execSQL(DROP_TABLE_ZONA_REPARTO);
         db.execSQL(DROP_TABLE_ARTICULO);
+        db.execSQL(DROP_TABLE_VENTA);
         onCreate(db);
     }
 
