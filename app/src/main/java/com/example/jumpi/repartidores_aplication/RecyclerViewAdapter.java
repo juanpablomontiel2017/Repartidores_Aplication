@@ -125,6 +125,20 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
 
                                         Intent intentEditar = new Intent(mContext, EditarClientes.class);
 
+                                        intentEditar.putExtra("ApellidoEC", mData.get(vHolder.getAdapterPosition()).getApellido());
+
+                                        intentEditar.putExtra("NombreEC", mData.get(vHolder.getAdapterPosition()).getNombre());
+
+                                        intentEditar.putExtra("DireccionEC", mData.get(vHolder.getAdapterPosition()).getDireccion());
+
+                                        intentEditar.putExtra("BarrioEC",  mData.get(vHolder.getAdapterPosition()).getBarrio());
+
+                                        intentEditar.putExtra("TelefonoEC",mData.get(vHolder.getAdapterPosition()).getTelefono());
+
+                                        intentEditar.putExtra("CorreoEC",  mData.get(vHolder.getAdapterPosition()).getCorreo());
+
+                                        intentEditar.putExtra("ReferenciaEC", mData.get(vHolder.getAdapterPosition()).getReferencia());
+
                                         mContext.startActivity(intentEditar);
 
 
@@ -147,8 +161,6 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
 
                                 dialog_apellido_tv.setText(mData.get(vHolder.getAdapterPosition()).getApellido());
                                 dialog_nombre_tv.setText(mData.get(vHolder.getAdapterPosition()).getNombre());
-                                //dialog_direccion_tv = (mData.get(vHolder.getAdapterPosition()).getDireccion());
-                                //dialog_barrio_tv .setText(mData.get(vHolder.getAdapterPosition()).getBarrio());
                                 dialog_referencia_tv.setText(mData.get(vHolder.getAdapterPosition()).getReferencia());
                                 dialog_telefono_tv.setText(mData.get(vHolder.getAdapterPosition()).getTelefono());
                                 dialog_correo_tv.setText(mData.get(vHolder.getAdapterPosition()).getCorreo());
