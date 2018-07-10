@@ -82,9 +82,10 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
                 @Override
                 public void onClick(View view) {
 
+
+
+                    final TextView dialog_apellido_tv = (TextView) myDialog.findViewById(R.id.dialog_apellido_id);
                     final TextView dialog_nombre_tv = (TextView) myDialog.findViewById(R.id.dialog_nombre_id);
-                    //TextView dialog_direccion_tv = (TextView) myDialog.findViewById(R.id.dialog_direccion_id);
-                    //TextView dialog_barrio_tv = (TextView) myDialog.findViewById(R.id.dialog_barrio_id);
                     TextView dialog_referencia_tv = (TextView) myDialog.findViewById(R.id.dialog_referencia_id);
                     TextView dialog_telefono_tv = (TextView) myDialog.findViewById(R.id.dialog_telefono_id);
                     TextView dialog_correo_tv = (TextView) myDialog.findViewById(R.id.dialog_correo_id);
@@ -99,9 +100,14 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
 
                             Intent intentVentas = new Intent(mContext, Ventas_Activity.class);
 
-                            //intentVentas.putExtra("Apellido", dialog_nombre_tv.getText());
+                            intentVentas.putExtra("Apellido", dialog_apellido_tv.getText());
 
                             intentVentas.putExtra("Nombre", dialog_nombre_tv.getText());
+
+                            intentVentas.putExtra("Direccion", mData.get(vHolder.getAdapterPosition()).getDireccion());
+
+                            intentVentas.putExtra("Barrio", mData.get(vHolder.getAdapterPosition()).getBarrio());
+
 
                                         mContext.startActivity(intentVentas);
 
@@ -139,10 +145,10 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
                                     }
                                 });
 
-
+                                dialog_apellido_tv.setText(mData.get(vHolder.getAdapterPosition()).getApellido());
                                 dialog_nombre_tv.setText(mData.get(vHolder.getAdapterPosition()).getNombre());
-                                //dialog_direccion_tv.setText(mData.get(vHolder.getAdapterPosition()).getDireccion());
-                                //dialog_barrio_tv.setText(mData.get(vHolder.getAdapterPosition()).getBarrio());
+                                //dialog_direccion_tv = (mData.get(vHolder.getAdapterPosition()).getDireccion());
+                                //dialog_barrio_tv .setText(mData.get(vHolder.getAdapterPosition()).getBarrio());
                                 dialog_referencia_tv.setText(mData.get(vHolder.getAdapterPosition()).getReferencia());
                                 dialog_telefono_tv.setText(mData.get(vHolder.getAdapterPosition()).getTelefono());
                                 dialog_correo_tv.setText(mData.get(vHolder.getAdapterPosition()).getCorreo());
@@ -173,6 +179,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
 
                         final MyViewHolder holder= (MyViewHolder)viewHolder;
 
+                        holder.tv_apellido.setText(mData.get(position).getApellido());
                         holder.tv_nombre.setText(mData.get(position).getNombre());
                         holder.tv_direccion.setText(mData.get(position).getDireccion());
                         holder.tv_barrio.setText(mData.get(position).getBarrio());
@@ -212,7 +219,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
                         //Hasta aquí
 
 
-
+                        private TextView tv_apellido;
                         private TextView tv_nombre;
                         private TextView tv_direccion;
                         private TextView tv_barrio;
@@ -240,6 +247,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
                             item_clientes = (LinearLayout) itemView.findViewById(R.id.clientes_item_id);
                             //Hasta aquí
 
+                            tv_apellido = (TextView) itemView.findViewById(R.id.apellido_cliente);
                             tv_nombre = (TextView) itemView.findViewById(R.id.nombre_cliente);
                             tv_direccion = (TextView) itemView.findViewById(R.id.direccion_cliente);
                             tv_barrio = (TextView) itemView.findViewById(R.id.barrio_cliente);

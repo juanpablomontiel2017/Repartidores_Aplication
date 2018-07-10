@@ -341,7 +341,12 @@ public class Ventas_Activity extends AppCompatActivity {
         });
 
 
+
+
+
         //Recibir los párametros de los clientes desde el RecyclerViewAdapter
+
+        //Pasar el apellido del cliente a la actividad de "Realizar_Ventas"
         Apellido_Cliente_Ventas  = (TextView) findViewById(R.id.apellido_cliente_realizar_ventas);
 
         String extras = getIntent().getStringExtra("Apellido");
@@ -349,12 +354,36 @@ public class Ventas_Activity extends AppCompatActivity {
         Apellido_Cliente_Ventas.setText(extras);
 
 
-        //Recibir los párametros de los clientes desde el RecyclerViewAdapter
+
+
+
+        //Pasar el nombre del cliente a la actividad de "Realizar_Ventas"
         Nombre_Cliente_Ventas  = (TextView) findViewById(R.id.nombre_cliente_realizar_ventas);
 
          extras = getIntent().getStringExtra("Nombre");
 
         Nombre_Cliente_Ventas.setText(extras);
+
+
+
+
+        //Pasar la dirección del cliente a la actividad de "Realizar_Ventas"
+        Direccion_Cliente_Ventas  = (TextView) findViewById(R.id.direccion_cliente_realizar_ventas);
+
+        extras = getIntent().getStringExtra("Direccion");
+
+        Direccion_Cliente_Ventas.setText(extras);
+
+
+        //Pasar el barrio del cliente a la actividad de "Realizar_Ventas"
+        Barrio_Cliente_Ventas  = (TextView) findViewById(R.id.barrio_cliente_realizar_ventas);
+
+        extras = getIntent().getStringExtra("Barrio");
+
+        Barrio_Cliente_Ventas.setText(extras);
+
+
+
 
 
         final Button buttonConfirmarVentas = (Button) findViewById(R.id.button_confirmar_ventas);
