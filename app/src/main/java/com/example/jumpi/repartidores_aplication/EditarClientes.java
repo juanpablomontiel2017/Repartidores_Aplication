@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
+import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -22,6 +23,18 @@ public class EditarClientes extends AppCompatActivity {
 
 
     CheckBox c1, c2, c3, c4, c5, c6;
+
+
+    EditText eTApellido;
+    EditText eTNombre;
+    EditText eTDireccion;
+    EditText eTBarrio;
+    EditText eTTelefono;
+    EditText eTCorreo;
+    EditText eTReferencia;
+
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,14 +64,87 @@ public class EditarClientes extends AppCompatActivity {
 
             @Override
             public void onClick(View view) {
-/*
+
+                String AuxiliarApellidoE = eTApellido.getText().toString();
+                String AuxiliarNombreE = eTNombre.getText().toString();
+                String AuxiliarDireccionE = eTDireccion.getText().toString();
+                String AuxiliarBarrioE = eTBarrio.getText().toString();
+                String AuxiliarTelefonoE = eTTelefono.getText().toString();
+                String AuxiliarCorreoE = eTCorreo.getText().toString();
+                String AuxiliarReferenciaE = eTReferencia.getText().toString();
+
+
+
+
+
+
+                //Estructuras selectivas utilizadas para comprobar que ningún campo importante como el 'Apellido' 'Nombre' 'Dirección' 'Barrio' y 'Referencia' quede vacío.
+
+                if (AuxiliarApellidoE.isEmpty() && AuxiliarNombreE.isEmpty() && AuxiliarDireccionE.isEmpty() && AuxiliarBarrioE.isEmpty() && AuxiliarTelefonoE.isEmpty() && AuxiliarCorreoE.isEmpty() && AuxiliarReferenciaE.isEmpty() ) {
+
+                    Toast.makeText(getApplicationContext(),"Error! Todos los campos estan vacios. Por favor, complete los campos correspondientes con datos válidos",Toast.LENGTH_LONG).show();
+                }
+
+
+
+
+                else if (AuxiliarApellidoE.isEmpty() && AuxiliarNombreE.isEmpty() && AuxiliarDireccionE.isEmpty() && AuxiliarBarrioE.isEmpty() && AuxiliarReferenciaE.isEmpty()){
+
+                    Toast.makeText(getApplicationContext(),"Error! Los campos: Apellido, nombre, dirección, barrio y referencia son obligatorios. Por favor, verifíquelos!",Toast.LENGTH_LONG).show();
+
+
+
+
+
+                } else  if (AuxiliarApellidoE.isEmpty() ) {
+
+
+                Toast.makeText(getApplicationContext(),"Error! El campo 'apellido' está vacío. Por favor complete el campo correspondiente con datos válidos !",Toast.LENGTH_LONG).show();
+
+
+            } else if (AuxiliarNombreE.isEmpty()) {
+
+
+                    Toast.makeText(getApplicationContext(),"Error! El campo 'nombre' está vacío. Por favor complete el campo correspondiente con datos válidos !",Toast.LENGTH_LONG).show();
+
+                } else if (AuxiliarDireccionE.isEmpty()) {
+
+
+                    Toast.makeText(getApplicationContext(),"Error! El campo 'dirección' está vacío. Por favor complete el campo correspondiente con datos válidos !",Toast.LENGTH_LONG).show();
+
+                } else  if (AuxiliarBarrioE.isEmpty()) {
+
+                    Toast.makeText(getApplicationContext(),"Error! El campo 'barrio' está vacío. Por favor complete el campo correspondiente con datos válidos !",Toast.LENGTH_LONG).show();
+
+                } else if (AuxiliarReferenciaE.isEmpty()){
+
+                    Toast.makeText(getApplicationContext(),"Error! El campo 'referencia' está vacío. Por favor complete el campo correspondiente con datos válidos !",Toast.LENGTH_LONG).show();
+
+                //Para que ningun CheckBox quede sin seleccionar
+                } else if (c1.isChecked() == false && c2.isChecked() == false && c3.isChecked()==false && c4.isChecked()==false && c5.isChecked()==false && c6.isChecked()==false ){
+
+
+                    Toast.makeText(getApplicationContext(),"Error! No ha seleccionado un día de reparto. Por favor, seleccione al menos uno",Toast.LENGTH_LONG).show();
+
+                } else {
+
+
+
+    /*
                 Intent buttonAceptarEC = new Intent(EditarClientes.this, Second_Activity.class);
                 startActivity(buttonAceptarEC);
-*/
 
-                Toast.makeText(getApplicationContext(),"Edición Exitosa",Toast.LENGTH_LONG).show();
+                    */
 
-                finish();
+                    Toast.makeText(getApplicationContext(),"Edición Exitosa",Toast.LENGTH_LONG).show();
+
+                    finish();
+                }
+
+
+
+
+
             }
         });
 
@@ -138,6 +224,25 @@ public class EditarClientes extends AppCompatActivity {
         c4 = (CheckBox) findViewById(R.id.idcheckbox_jueves);
         c5 = (CheckBox) findViewById(R.id.idcheckbox_viernes);
         c6 = (CheckBox) findViewById(R.id.idcheckbox_sabado);
+
+
+
+
+        eTApellido = (EditText) findViewById(R.id.apellido_cliente_editar);
+
+        eTNombre = (EditText) findViewById(R.id.nombre_cliente_editar);
+
+        eTDireccion = (EditText) findViewById(R.id.direccion_cliente_editar);
+
+        eTBarrio = (EditText) findViewById(R.id.barrio_cliente_editar);
+
+        eTTelefono = (EditText) findViewById(R.id.telefono_cliente_editar);
+
+        eTCorreo = (EditText) findViewById(R.id.correo_cliente_editar);
+
+        eTReferencia = (EditText) findViewById(R.id.referencia_cliente_editar);
+
+
 
 
     }

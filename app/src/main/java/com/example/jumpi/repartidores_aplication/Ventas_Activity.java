@@ -42,6 +42,7 @@ public class Ventas_Activity extends AppCompatActivity {
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar_ventas);
         setSupportActionBar(toolbar);
+
         eTcant1 = (EditText) findViewById(R.id.cantidad_productos_ventas);
         eTcant1.setEnabled(false);
 
