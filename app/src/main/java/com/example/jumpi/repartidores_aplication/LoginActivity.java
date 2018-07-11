@@ -552,13 +552,85 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
 
                         if (success) {
 
+                            /**
+                             * OBTENGO LOS DATOS RECIBIDOS DE LA KEY "DATA"
+                             */
+
                             JSONObject jsonData = jsonResponse.getJSONObject("data");
                             id = jsonData.getString("id");
                             dni = jsonData.getString("dni");
                             msj = jsonData.getString("msj");
 
+
+
                             /**
-                             * OBTENGO LOS DATOS RECIBIDOS DE LA KEY "DATA"
+                             *  * OBTENGO LOS DATOS DEL ARRAY ARTICULO
+                             * */
+
+                            if (jsonData.has("articulo")){
+                                JSONArray jsonArticulo = jsonData.getJSONArray("articulo");
+                                JSONObject jsonArticuloDatos;
+
+                                try{
+                                    for (int i = 0; i < jsonArticulo.length(); i++){
+                                        jsonArticuloDatos = jsonArticulo.getJSONObject(i);
+                                        String idArt = jsonArticuloDatos.getString("IdArticulo");
+                                        String nombreArt = jsonArticuloDatos.getString("Articulo");
+                                        String precioArt = jsonArticuloDatos.optString("Precio");
+
+                                        DbHelper dbHelper = new DbHelper(getApplicationContext());
+                                        SQLiteDatabase database = dbHelper.getWritableDatabase();
+
+                                    /*
+                                        SE INSERTAN LOS DATOS DE LOS ARTICULOS EN LA TABLA
+                                     */
+
+                                        dbHelper.saveToLocalDatabaseArticulo(Integer.parseInt(idArt), nombreArt, Integer.parseInt(precioArt), database);
+                                        dbHelper.close();
+
+                                    }
+
+                                }catch (JSONException a){
+                                    Log.e("TSFB", "Parser JSON ARTICULO  "+ a.toString());
+
+                                }
+                            }
+
+
+
+
+                            /**
+                             * PRUEBA PARA SABER SI GUARDA LOS DATOS DEL USUARIO EN LA BD LOCAL
+                             */
+
+
+                            DbHelper dbHelperRead = new DbHelper(getApplicationContext());
+                            SQLiteDatabase databaseRead = dbHelperRead.getReadableDatabase();
+                            Cursor cursor = dbHelperRead.readFromLocalDatabaseArticulo(databaseRead);
+
+
+                            String idArt =null;
+                            String nombreArt=null;
+                            String precioArt=null;
+
+                            while (cursor.moveToNext())
+                            {
+                                idArt = cursor.getString(cursor.getColumnIndex(DbContract.ID));
+                                nombreArt = cursor.getString(cursor.getColumnIndex(DbContract.ARTICULO));
+                                precioArt = cursor.getString(cursor.getColumnIndex(DbContract.PRECIO));
+                                Log.d("TFSB", "PRUEBA PARA SABER SI GUARDA LOS DATOS DE LOS ARTICULOS -> ID: "+idArt+" ARTICULO: "+nombreArt+" PRECIO: "+precioArt);
+
+                            }
+                            dbHelperRead.close();
+                            cursor.close();
+
+
+
+
+
+
+                            /**
+                             * OBTENGO LOS DATOS DEL ARRAY CLIENTES
                              */
 
                             JSONArray jsonClientes = jsonData.getJSONArray("clientes");
@@ -679,9 +751,9 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
                                  */
 
 
-                                DbHelper dbHelperRead = new DbHelper(getApplicationContext());
-                                SQLiteDatabase databaseRead = dbHelperRead.getReadableDatabase();
-                                Cursor cursor = dbHelperRead.readFromLocalDatabase(databaseRead);
+                                 dbHelperRead = new DbHelper(getApplicationContext());
+                                 databaseRead = dbHelperRead.getReadableDatabase();
+                                 cursor = dbHelperRead.readFromLocalDatabase(databaseRead);
 
 
                                 String usuariobd=null;
@@ -913,6 +985,66 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
                             msj = jsonData.getString("msj");
 
 
+                            /**
+                             *  * OBTENGO LOS DATOS DEL ARRAY ARTICULO
+                             * */
+
+                            if (jsonData.has("articulo")){
+                                JSONArray jsonArticulo = jsonData.getJSONArray("articulo");
+                                JSONObject jsonArticuloDatos;
+
+                                try{
+                                    for (int i = 0; i < jsonArticulo.length(); i++){
+                                        jsonArticuloDatos = jsonArticulo.getJSONObject(i);
+                                        String idArt = jsonArticuloDatos.getString("IdArticulo");
+                                        String nombreArt = jsonArticuloDatos.getString("Articulo");
+                                        String precioArt = jsonArticuloDatos.optString("Precio");
+
+                                        DbHelper dbHelper = new DbHelper(getApplicationContext());
+                                        SQLiteDatabase database = dbHelper.getWritableDatabase();
+
+                                    /*
+                                        SE INSERTAN LOS DATOS DE LOS ARTICULOS EN LA TABLA
+                                     */
+
+                                        dbHelper.saveToLocalDatabaseArticulo(Integer.parseInt(idArt), nombreArt, Integer.parseInt(precioArt), database);
+                                        dbHelper.close();
+
+                                    }
+
+                                }catch (JSONException a){
+                                    Log.e("TSFB", "Parser JSON ARTICULO  "+ a.toString());
+
+                                }
+                            }
+
+
+
+
+                            /**
+                             * PRUEBA PARA SABER SI GUARDA LOS DATOS DEL USUARIO EN LA BD LOCAL
+                             */
+
+
+                            DbHelper dbHelperRead = new DbHelper(getApplicationContext());
+                            SQLiteDatabase databaseRead = dbHelperRead.getReadableDatabase();
+                            Cursor cursor = dbHelperRead.readFromLocalDatabaseArticulo(databaseRead);
+
+
+                            String idArt =null;
+                            String nombreArt=null;
+                            String precioArt=null;
+
+                            while (cursor.moveToNext())
+                            {
+                                idArt = cursor.getString(cursor.getColumnIndex(DbContract.ID));
+                                nombreArt = cursor.getString(cursor.getColumnIndex(DbContract.ARTICULO));
+                                precioArt = cursor.getString(cursor.getColumnIndex(DbContract.PRECIO));
+                                Log.d("TFSB", "PRUEBA PARA SABER SI GUARDA LOS DATOS DE LOS ARTICULOS -> ID: "+idArt+" ARTICULO: "+nombreArt+" PRECIO: "+precioArt);
+
+                            }
+                            dbHelperRead.close();
+                            cursor.close();
 
 
 
@@ -937,9 +1069,9 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
                                 // prueba para saber si guarda los datos del repartidor en la BD
 
 
-                                DbHelper dbHelperRead = new DbHelper(getApplicationContext());
-                                SQLiteDatabase databaseRead = dbHelperRead.getReadableDatabase();
-                                Cursor cursor = dbHelperRead.readFromLocalDatabase(databaseRead);
+                                 dbHelperRead = new DbHelper(getApplicationContext());
+                                 databaseRead = dbHelperRead.getReadableDatabase();
+                                 cursor = dbHelperRead.readFromLocalDatabase(databaseRead);
 
 
 
