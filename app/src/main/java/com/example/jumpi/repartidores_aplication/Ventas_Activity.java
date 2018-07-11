@@ -19,7 +19,7 @@ public class Ventas_Activity extends AppCompatActivity {
 
 
     Spinner lista, lista2, lista3, lista4;
-    String [] datos =  {"Árticulo","Canillas","Dispenser Eléctrico","Dispenser Plástico","Envases"};
+    String [] datos =  {"Árticulo","Canillas","Dispenser Eléctrico","Dispenser Plástico"};
 
     TextView Nombre_Cliente_Ventas;
     TextView Apellido_Cliente_Ventas;
@@ -113,14 +113,6 @@ public class Ventas_Activity extends AppCompatActivity {
                         //te.show();
                         break;
 
-                    case 4:
-
-                        eTcant1.setEnabled(true);
-
-                        //  Toast te = Toast.makeText(getApplicationContext(),datos[i],Toast.LENGTH_LONG);
-                        //te.show();
-                        break;
-
 
                 }
 
@@ -186,13 +178,7 @@ public class Ventas_Activity extends AppCompatActivity {
                         //te.show();
                         break;
 
-                    case 4:
 
-                        eTcant2.setEnabled(true);
-
-                        //  Toast te = Toast.makeText(getApplicationContext(),datos[i],Toast.LENGTH_LONG);
-                        //te.show();
-                        break;
 
 
                 }
@@ -254,13 +240,7 @@ public class Ventas_Activity extends AppCompatActivity {
                         //te.show();
                         break;
 
-                    case 4:
 
-                        eTcant3.setEnabled(true);
-
-                        //  Toast te = Toast.makeText(getApplicationContext(),datos[i],Toast.LENGTH_LONG);
-                        //te.show();
-                        break;
 
 
                 }
@@ -324,13 +304,6 @@ public class Ventas_Activity extends AppCompatActivity {
                         //te.show();
                         break;
 
-                    case 4:
-
-                        eTcant4.setEnabled(true);
-
-                        //  Toast te = Toast.makeText(getApplicationContext(),datos[i],Toast.LENGTH_LONG);
-                        //te.show();
-                        break;
 
 
                 }
