@@ -38,7 +38,7 @@
                 android:id="@+id/tabItem"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Registro de Cargas" />
+                android:text="Cargas y Desargas" />
 
             <android.support.design.widget.TabItem
                 android:id="@+id/tabItem2"
@@ -46,11 +46,6 @@
                 android:layout_height="wrap_content"
                 android:text="Clientes" />
 
-            <android.support.design.widget.TabItem
-                android:id="@+id/tabItem3"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/tab_text_3" />
 
         </android.support.design.widget.TabLayout>
 
@@ -73,7 +68,8 @@
         android:layout_height="wrap_content"
         android:layout_gravity="end|bottom"
         android:layout_margin="@dimen/fab_margin"
-        android:src="@drawable/ic_add_black_24dp" />
+        android:src="@drawable/ic_person_add_black_24dp"
+        app:backgroundTint="?attr/colorError" />
 
 
 

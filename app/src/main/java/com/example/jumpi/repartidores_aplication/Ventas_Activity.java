@@ -32,7 +32,7 @@ public class Ventas_Activity extends AppCompatActivity {
     EditText eTcant4;
     EditText eTVacios;
     EditText eTLlenos;
-
+    EditText eEntrega;
 
 
     @Override
@@ -42,6 +42,7 @@ public class Ventas_Activity extends AppCompatActivity {
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar_ventas);
         setSupportActionBar(toolbar);
+
         eTcant1 = (EditText) findViewById(R.id.cantidad_productos_ventas);
         eTcant1.setEnabled(false);
 
@@ -64,6 +65,8 @@ public class Ventas_Activity extends AppCompatActivity {
 
         eTVacios = (EditText) findViewById(R.id.cantiad_vacios_ventas);
         eTLlenos = (EditText) findViewById(R.id.cantiad_llenos_ventas);
+        eEntrega = (EditText) findViewById(R.id.cantidad_entrega_productos_ventas);
+
 
         lista = (Spinner)findViewById(R.id.lista_productos_ventas);
 
@@ -208,7 +211,7 @@ public class Ventas_Activity extends AppCompatActivity {
 
         //PRUEBA para el TERCER SPINNER
         lista3 = (Spinner)findViewById(R.id.lista3_productos_ventas);
-        ArrayAdapter<String> adaptador3 = new ArrayAdapter<String>(this,android.R.layout.simple_spinner_item,datos);
+        ArrayAdapter<String> adaptador3 = new ArrayAdapter<String>(this,android.R.layout.simple_spinner_item, datos);
         lista3.setAdapter(adaptador3);
 
         lista3.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
@@ -386,6 +389,9 @@ public class Ventas_Activity extends AppCompatActivity {
 
 
 
+
+
+
         final Button buttonConfirmarVentas = (Button) findViewById(R.id.button_confirmar_ventas);
 
         buttonConfirmarVentas.setOnClickListener(new View.OnClickListener() {
@@ -393,10 +399,32 @@ public class Ventas_Activity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-                //Intent buttonConfirmarV = new Intent(Ventas_Activity.this, Second_Activity.class);
-                //startActivity(buttonConfirmarV);
-                Toast.makeText(getApplicationContext(),"Venta realizada con éxito",Toast.LENGTH_LONG).show();
-                finish();
+                String AuxiliarLlenos = eTLlenos.getText().toString();
+                String AuxiliarVacios = eTVacios.getText().toString();
+                String AuxiliarCant1  = eTcant1.getText().toString();
+                String AuxiliarCant2  = eTcant2.getText().toString();
+                String AuxiliarCant3  = eTcant3.getText().toString();
+                String AuxiliarCant4  = eTcant4.getText().toString();
+                String AuxiliarEntrega = eEntrega.getText().toString();
+
+
+                if (AuxiliarLlenos.isEmpty() && AuxiliarVacios.isEmpty() && AuxiliarCant1.isEmpty()&& AuxiliarCant2.isEmpty() && AuxiliarCant3.isEmpty() && AuxiliarCant4.isEmpty() && AuxiliarEntrega.isEmpty() ){
+
+                    Toast.makeText(getApplicationContext(),"Error! Los campos estan vacios. Por favor, complete al menos un campo",Toast.LENGTH_LONG).show();
+
+
+                }
+
+                else {
+
+                    //Intent buttonConfirmarV = new Intent(Ventas_Activity.this, Second_Activity.class);
+                    //startActivity(buttonConfirmarV);
+                    Toast.makeText(getApplicationContext(),"Venta realizada con éxito",Toast.LENGTH_LONG).show();
+                    finish();
+
+                }
+
+
             }
         });
 
