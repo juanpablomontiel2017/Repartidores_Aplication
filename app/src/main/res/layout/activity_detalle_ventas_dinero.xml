@@ -60,10 +60,10 @@
             android:orientation="horizontal">
 
             <TextView
-                android:id="@+id/entregas_dinero_detalle_ventas"
-                android:layout_width="200dp"
+                android:id="@+id/tandas_dinero_detalle_ventas"
+                android:layout_width="100dp"
                 android:layout_height="65dp"
-                android:text="Entregas"
+                android:text="Tandas"
                 android:textAlignment="center"
                 android:textColor="#000"
                 android:textSize="26sp"
@@ -72,10 +72,20 @@
 
 
             <TextView
-                android:id="@+id/cantidades_entregas_dinero_detalle_ventas"
-                android:layout_width="182dp"
+                android:id="@+id/entregas_dinero_detalle_ventas"
+                android:layout_width="130dp"
                 android:layout_height="65dp"
-                android:text="Cantidades"
+                android:text="Entrega"
+                android:textAlignment="center"
+                android:textColor="#000"
+                android:textSize="25sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/recibido_entregas_dinero_detalle_ventas"
+                android:layout_width="152dp"
+                android:layout_height="65dp"
+                android:text="Recibido"
                 android:textAlignment="center"
                 android:textColor="#000"
                 android:textSize="25sp"
@@ -90,10 +100,10 @@
             android:orientation="horizontal">
 
             <TextView
-                android:id="@+id/primer_entrega_dinero_detalle_ventas"
-                android:layout_width="200dp"
+                android:id="@+id/primer_tanda_dinero_detalle_ventas"
+                android:layout_width="100dp"
                 android:layout_height="65dp"
-                android:text="1er Entrega:"
+                android:text="1"
                 android:textAlignment="center"
                 android:textColor="#000"
                 android:textSize="26sp"
@@ -102,8 +112,17 @@
 
 
             <TextView
-                android:id="@+id/cantidad_primer_entrega_dinero_detalle_ventas"
-                android:layout_width="182dp"
+                android:id="@+id/primer_entrega_dinero_detalle_ventas"
+                android:layout_width="130dp"
+                android:layout_height="65dp"
+                android:textAlignment="center"
+                android:textColor="#000"
+                android:textSize="25sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/primer_recibido_dinero_detalle_ventas"
+                android:layout_width="152dp"
                 android:layout_height="65dp"
                 android:textAlignment="center"
                 android:textColor="#000"
@@ -122,10 +141,10 @@
             android:background="#2962ff">
 
             <TextView
-                android:id="@+id/segunda_entrega_dinero_detalle_ventas"
-                android:layout_width="200dp"
+                android:id="@+id/segunda_tanda_dinero_detalle_ventas"
+                android:layout_width="100dp"
                 android:layout_height="65dp"
-                android:text="2da Entrega:"
+                android:text="2"
                 android:textAlignment="center"
                 android:textColor="#000"
                 android:textSize="26sp"
@@ -134,8 +153,17 @@
 
 
             <TextView
-                android:id="@+id/cantidad_segunda_entrega_dinero_detalle_ventas"
-                android:layout_width="182dp"
+                android:id="@+id/segunda_entrega_dinero_detalle_ventas"
+                android:layout_width="130dp"
+                android:layout_height="65dp"
+                android:textAlignment="center"
+                android:textColor="#000"
+                android:textSize="25sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/segundo_recibido_dinero_detalle_ventas"
+                android:layout_width="152dp"
                 android:layout_height="65dp"
                 android:textAlignment="center"
                 android:textColor="#000"
@@ -151,27 +179,36 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal">
 
-            <TextView
-                android:id="@+id/tercera_entrega_dinero_detalle_ventas"
-                android:layout_width="200dp"
-                android:layout_height="65dp"
-                android:text="3ra Entrega:"
-                android:textAlignment="center"
-                android:textColor="#000"
-                android:textSize="26sp"
-                android:textStyle="bold"
-                android:typeface="sans" />
+          <TextView
+              android:id="@+id/tercera_tanda_dinero_detalle_ventas"
+              android:layout_width="100dp"
+              android:layout_height="65dp"
+              android:text="3"
+              android:textAlignment="center"
+              android:textColor="#000"
+              android:textSize="26sp"
+              android:textStyle="bold"
+              android:typeface="sans" />
 
 
-            <TextView
-                android:id="@+id/cantidad_tercera_entrega_dinero_detalle_ventas"
-                android:layout_width="182dp"
-                android:layout_height="65dp"
-                android:textAlignment="center"
-                android:textColor="#000"
-                android:textSize="25sp"
-                android:textStyle="bold" />
+          <TextView
+              android:id="@+id/tercera_entrega_dinero_detalle_ventas"
+              android:layout_width="130dp"
+              android:layout_height="65dp"
+              android:textAlignment="center"
+              android:textColor="#000"
+              android:textSize="25sp"
+              android:textStyle="bold" />
 
+
+          <TextView
+              android:id="@+id/tercer_recibido_dinero_detalle_ventas"
+              android:layout_width="152dp"
+              android:layout_height="65dp"
+              android:textAlignment="center"
+              android:textColor="#000"
+              android:textSize="25sp"
+              android:textStyle="bold" />
 
         </LinearLayout>
 
@@ -184,10 +221,10 @@
             android:background="#2962ff">
 
             <TextView
-                android:id="@+id/cuarta_entrega_dinero_detalle_ventas"
-                android:layout_width="200dp"
+                android:id="@+id/cuarta_tanda_dinero_detalle_ventas"
+                android:layout_width="100dp"
                 android:layout_height="65dp"
-                android:text="4ta Entrega:"
+                android:text="4"
                 android:textAlignment="center"
                 android:textColor="#000"
                 android:textSize="26sp"
@@ -196,14 +233,23 @@
 
 
             <TextView
-                android:id="@+id/cantidad_cuarta_entrega_dinero_detalle_ventas"
-                android:layout_width="182dp"
+                android:id="@+id/cuarta_entrega_dinero_detalle_ventas"
+                android:layout_width="130dp"
                 android:layout_height="65dp"
                 android:textAlignment="center"
                 android:textColor="#000"
                 android:textSize="25sp"
                 android:textStyle="bold" />
 
+
+            <TextView
+                android:id="@+id/cuarto_recibido_dinero_detalle_ventas"
+                android:layout_width="152dp"
+                android:layout_height="65dp"
+                android:textAlignment="center"
+                android:textColor="#000"
+                android:textSize="25sp"
+                android:textStyle="bold" />
 
         </LinearLayout>
 
@@ -213,26 +259,36 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal">
 
-        <TextView
-            android:id="@+id/quinta_entrega_dinero_detalle_ventas"
-            android:layout_width="200dp"
-            android:layout_height="65dp"
-            android:text="5ta Entrega:"
-            android:textAlignment="center"
-            android:textColor="#000"
-            android:textSize="26sp"
-            android:textStyle="bold"
-            android:typeface="sans" />
+            <TextView
+                android:id="@+id/quinta_tanda_dinero_detalle_ventas"
+                android:layout_width="100dp"
+                android:layout_height="65dp"
+                android:text="5"
+                android:textAlignment="center"
+                android:textColor="#000"
+                android:textSize="26sp"
+                android:textStyle="bold"
+                android:typeface="sans" />
 
 
-        <TextView
-            android:id="@+id/cantidad_quinta_entrega_dinero_detalle_ventas"
-            android:layout_width="182dp"
-            android:layout_height="65dp"
-            android:textAlignment="center"
-            android:textColor="#000"
-            android:textSize="25sp"
-            android:textStyle="bold" />
+            <TextView
+                android:id="@+id/quinta_entrega_dinero_detalle_ventas"
+                android:layout_width="130dp"
+                android:layout_height="65dp"
+                android:textAlignment="center"
+                android:textColor="#000"
+                android:textSize="25sp"
+                android:textStyle="bold" />
+
+
+            <TextView
+                android:id="@+id/quinto_recibido_dinero_detalle_ventas"
+                android:layout_width="152dp"
+                android:layout_height="65dp"
+                android:textAlignment="center"
+                android:textColor="#000"
+                android:textSize="25sp"
+                android:textStyle="bold" />
 
 
     </LinearLayout>
@@ -246,10 +302,10 @@
             android:background="#2962ff">
 
             <TextView
-                android:id="@+id/sexta_entrega_dinero_detalle_ventas"
-                android:layout_width="200dp"
+                android:id="@+id/sexta_tanda_dinero_detalle_ventas"
+                android:layout_width="100dp"
                 android:layout_height="65dp"
-                android:text="6ta Entrega:"
+                android:text="6"
                 android:textAlignment="center"
                 android:textColor="#000"
                 android:textSize="26sp"
@@ -258,8 +314,18 @@
 
 
             <TextView
-                android:id="@+id/cantidad_sexta_entrega_dinero_detalle_ventas"
-                android:layout_width="182dp"
+                android:id="@+id/sexta_entrega_dinero_detalle_ventas"
+                android:layout_width="130dp"
+                android:layout_height="65dp"
+                android:textAlignment="center"
+                android:textColor="#000"
+                android:textSize="25sp"
+                android:textStyle="bold" />
+
+
+            <TextView
+                android:id="@+id/sexto_recibido_dinero_detalle_ventas"
+                android:layout_width="152dp"
                 android:layout_height="65dp"
                 android:textAlignment="center"
                 android:textColor="#000"
