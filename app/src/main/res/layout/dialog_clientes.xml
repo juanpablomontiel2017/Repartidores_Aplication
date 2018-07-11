@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/dialog_clientes_id"
     android:layout_width="300dp"
     android:layout_height="wrap_content"
@@ -17,25 +18,27 @@
 
 
         <TextView
+            android:id="@+id/dialog_apellido_id"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="70dp"
+            android:text="Apellido"
+            android:textColor="@android:color/white"
+            android:textSize="24sp"
+            android:textStyle="bold" />
+
+        <TextView
             android:id="@+id/dialog_nombre_id"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="90dp"
+            android:layout_marginTop="10dp"
             android:text="Nombre"
             android:textColor="@android:color/white"
             android:textSize="24sp"
             android:textStyle="bold" />
 
 
-        <TextView
-            android:id="@+id/dialog_apellido_id"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:text="Apellido"
-            android:textColor="@android:color/white"
-            android:textSize="24sp"
-            android:textStyle="bold" />
+
 
 
         <TextView
