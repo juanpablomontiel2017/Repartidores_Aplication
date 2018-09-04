@@ -23,7 +23,7 @@
 
         <activity
             android:name=".LoginActivity"
-            android:label="Beta 3.2.3">
+            android:label="Prueba Merge">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
