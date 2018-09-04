@@ -23,7 +23,7 @@
 
         <activity
             android:name=".LoginActivity"
-            android:label="Prueba Merge">
+            android:label="Desarrollo">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
