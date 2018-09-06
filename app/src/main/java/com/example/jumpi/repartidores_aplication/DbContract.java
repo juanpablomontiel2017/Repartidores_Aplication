@@ -2,6 +2,12 @@ package com.example.jumpi.repartidores_aplication;
 
 public class DbContract {
 
+    /**
+     * En esta clase se especifican los nombres de las tablas de la base de datos y sus respectivos campos
+     *
+     */
+
+
     public static final int SYNC_STATUS_OK = 0;
     public static final int SYNC_STATUS_FAILED = 1;
     public static final String SERVER_URL = "https://aquavital.000webhostapp.com/login/login.php";
