@@ -124,7 +124,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
 
 
                                         Intent intentEditar = new Intent(mContext, EditarClientes.class);
-
+                                        
                                         intentEditar.putExtra("ApellidoEC", mData.get(vHolder.getAdapterPosition()).getApellido());
 
                                         intentEditar.putExtra("NombreEC", mData.get(vHolder.getAdapterPosition()).getNombre());

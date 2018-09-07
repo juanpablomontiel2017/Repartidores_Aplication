@@ -10,6 +10,10 @@ import com.example.jumpi.repartidores_aplication.DbContract;
 
 public class DbHelper extends SQLiteOpenHelper {
 
+    /**
+     * Se guardan en variables string las consultas de definición de sql
+     */
+
     private static final int DATABASE_VERSION = 1;
     private static final String CREATE_TABLE = "create table "+DbContract.TABLE_NAME_USUARIO+"("+DbContract.DNI+" integer primary key,"+DbContract.ID+" integer,"+DbContract.USUARIO+" text,"+DbContract.PASSWORD+" text, "+DbContract.SYNC_STATUS+" integer);";
     private static final String CREATE_TABLE_ZONA_REPARTO = "create table "+DbContract.TABLE_NAME_ZONA_REPARTO+"("+DbContract.DNI+" integer primary key,"+DbContract.ID+" integer,"+DbContract.APELLIDO+" text,"+DbContract.NOMBRE+" text,"+DbContract.DIRECCION+" text,"+DbContract.BARRIO+" text,"+DbContract.REFERENCIA+" text,"+DbContract.TELEFONO+" text,"+DbContract.CORREO+" text,"+DbContract.LUNES+" int,"+DbContract.MARTES+" int,"+DbContract.MIERCOLES+" int,"+DbContract.JUEVES+" int,"+DbContract.VIERNES+" int,"+DbContract.SABADO+" int, "+DbContract.FOTO+" int, "+DbContract.SYNC_STATUS+" integer);";
@@ -17,6 +21,9 @@ public class DbHelper extends SQLiteOpenHelper {
     private static final String CREATE_TABLE_VENTA = "create table "+DbContract.TABLE_NAME_VENTA+"("+DbContract.ID+" integer primary key autoincrement,"+DbContract.ID_CLIENTE+" integer,"+DbContract.DNI+" integer,"+DbContract.ENVASE_LLENO+" int,"+DbContract.ENVASE_VACIO+" int,"+DbContract.CANILLA+" int,"+DbContract.DISPENSER_ELECTRICO+" int,"+DbContract.DISPENSER_PLASTICO+" int,"+DbContract.ENVASE_VENTA+" int,"+DbContract.ENTREGA+" int,"+DbContract.FECHA+" text,"+DbContract.SYNC_STATUS+" integer);";
 
 
+    /**
+     * Estas son las consultas de definición para borrar las tablas
+     */
 
     private static final String DROP_TABLE = "drop table if exists "+DbContract.TABLE_NAME_USUARIO;
     private static final String DROP_TABLE_ZONA_REPARTO = "drop table if exists "+DbContract.TABLE_NAME_ZONA_REPARTO;
@@ -30,6 +37,8 @@ public class DbHelper extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
+        //se crean las tablas con las consultas escritas en las variables string
+
         db.execSQL(CREATE_TABLE);
         db.execSQL(CREATE_TABLE_ZONA_REPARTO);
         db.execSQL(CREATE_TABLE_ARTICULO);
@@ -45,6 +54,10 @@ public class DbHelper extends SQLiteOpenHelper {
         onCreate(db);
     }
 
+    /**
+     *  MÉTODOS PARA TABLA DE USUARIO LOGUEADO
+     *
+     */
     public  void saveToLocalDatabase(int dni, int id, String usuario, String password, int sync_status, SQLiteDatabase database){
         ContentValues contentValues = new ContentValues();
         contentValues.put(DbContract.DNI, dni);

@@ -13,26 +13,31 @@
     <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
 
     <application
+
         android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@mipmap/ic_logo_app_prueba1"
         android:label="Aqua Vital"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+
         <activity
             android:name=".LoginActivity"
-            android:label="Beta 3.2.3">
+
+            android:label="Feature Ventas">
+
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
         <activity
             android:name=".Second_Activity"
-            android:label="En Reparto"
-            android:parentActivityName=".MainActivity"
-            android:theme="@style/AppTheme.NoActionBar" >
+            android:label="Mi Reparto"
+            android:theme="@style/AppTheme.NoActionBar"
+            android:parentActivityName=".MainActivity">
         </activity>
         <activity
             android:name=".MainActivity"
@@ -51,18 +56,28 @@
 
 
 
-
-
         <activity
             android:name=".EditarClientes"
             android:label="Editar Clientes" />
+
         <activity
             android:name=".AgregarCliente"
             android:label="Agregar_Clientes" />
-        <activity android:name=".Detalle_CargasyDescargas" />
-        <activity android:name=".Detalle_Articulos" />
-        <activity android:name=".detalle_ventas_dinero" />
-        <activity android:name=".Dialog_Eliminar_Clientes"></activity>
+
+        <activity android:name=".Detalle_CargasyDescargas"
+            android:label="Detalle de Cargas y Descargas"/>
+
+        <activity android:name=".Detalle_Articulos"
+            android:label="Detalle de Cargas y Descargas"/>
+
+        <activity android:name=".detalle_ventas_dinero"
+            android:label="Detalle de Entregas de Dinero"/>
+
+
+        <activity android:name=".Dialog_Eliminar_Clientes"
+            android:label="Eliminar Cliente">
+
+        </activity>
    </application>
 
 
