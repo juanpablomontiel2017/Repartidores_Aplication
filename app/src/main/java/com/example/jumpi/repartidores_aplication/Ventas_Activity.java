@@ -1,6 +1,7 @@
 package com.example.jumpi.repartidores_aplication;
 
 import android.content.Intent;
+import android.database.sqlite.SQLiteDatabase;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
@@ -392,7 +393,25 @@ public class Ventas_Activity extends AppCompatActivity {
 
                     //Intent buttonConfirmarV = new Intent(Ventas_Activity.this, Second_Activity.class);
                     //startActivity(buttonConfirmarV);
+
+                    String dni = getIntent().getStringExtra("dni");
+
+                    String id = getIntent().getStringExtra("id");
+
+
+                    /**
+                     * Se guarda la venta realizada en la tabla  Ventas
+                     */
+
+                    DbHelper dbHelper = new DbHelper(getApplicationContext());
+                    SQLiteDatabase database = dbHelper.getWritableDatabase();
+
+                    dbHelper.saveToLocalDatabaseVenta(Integer.parseInt(id), Integer.parseInt(dni), Integer.parseInt(AuxiliarLlenos),Integer.parseInt(AuxiliarVacios),1,1,1,Integer.parseInt(AuxiliarEntrega), "08092018", DbContract.SYNC_STATUS_FAILED,database);
+                    dbHelper.close();
+
                     Toast.makeText(getApplicationContext(),"Venta realizada con éxito",Toast.LENGTH_LONG).show();
+
+
                     finish();
 
                 }

@@ -100,9 +100,14 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
 
                             Intent intentVentas = new Intent(mContext, Ventas_Activity.class);
 
+                            intentVentas.putExtra("id", mData.get(vHolder.getAdapterPosition()).getIdPersona());
+
+                            intentVentas.putExtra("dni", mData.get(vHolder.getAdapterPosition()).getDNI());
+
                             intentVentas.putExtra("Apellido", dialog_apellido_tv.getText());
 
                             intentVentas.putExtra("Nombre", dialog_nombre_tv.getText());
+
 
                             intentVentas.putExtra("Direccion", mData.get(vHolder.getAdapterPosition()).getDireccion());
 
@@ -225,7 +230,9 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
 
     public class MyViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener, ItemTouchHelperViewHolder{// implements View.OnClickListener {//implements View.OnClickListener {//implements View.OnClickListener {//implements View.OnClickListener {
 
-
+        /**
+         * Se declaran variables que luego van a ser utilizadas para guardar datos de la tarjeta item_clientes
+         */
                         //Esta variable privada pertenece a la parte 3 del tutorial: "Fragment with RecyclerView Part 3 : item Click Listener Event : Show Custom dialog Box" del chabon Aws Rh
                         private LinearLayout item_clientes;
                         //Hasta aquí
@@ -242,17 +249,20 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
 
 
                         //PRUEBA DEL VIDEO: "Eventos en cada elemento de un RecyclerView| Abrir un nuevo activity y pasarle valores" by Programación y más
+                        //Botones del cuadro de diálogo
                         Button dialog_btn_venta;
                         Button dialog_btn_editar;
                         Button dialog_btn_eliminar;
-                        //Hasta aquí
 
 
 
 
                         public MyViewHolder(View itemView) {
 
-
+/**
+ * Constructor de MyViewHolder
+ * Las variables previamente declaradas se referencian a entidades de la interfaz gráfica
+ */
                             super(itemView);
 
                             //Esto también pertenece a la parte 3 del tutorial: "Fragment with RecyclerView Part 3 : item Click Listener Event : Show Custom dialog Box" del chabon Aws Rh
