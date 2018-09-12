@@ -16,6 +16,12 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
+
+
 public class Ventas_Activity extends AppCompatActivity {
 
 
@@ -399,6 +405,15 @@ public class Ventas_Activity extends AppCompatActivity {
                     int id = getIntent().getIntExtra("id",999999);
 
 
+
+                    //INTENTO DE OBTENER LA FECHA DEL DÍA
+                    Date date = Calendar.getInstance().getTime();
+
+                    DateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
+                    String fecha = formatter.format(date);
+
+
+
                     /**
                      * Se guarda la venta realizada en la tabla  Ventas
                      */
@@ -406,7 +421,7 @@ public class Ventas_Activity extends AppCompatActivity {
                     DbHelper dbHelper = new DbHelper(getApplicationContext());
                     SQLiteDatabase database = dbHelper.getWritableDatabase();
 
-                    dbHelper.saveToLocalDatabaseVenta(id, dni, Integer.parseInt(AuxiliarLlenos),Integer.parseInt(AuxiliarVacios),1,1,1,Integer.parseInt(AuxiliarEntrega), "08092018", DbContract.SYNC_STATUS_FAILED,database);
+                    dbHelper.saveToLocalDatabaseVenta(id, dni, Integer.parseInt(AuxiliarLlenos),Integer.parseInt(AuxiliarVacios),1,1,1,Integer.parseInt(AuxiliarEntrega), fecha,DbContract.SYNC_STATUS_FAILED,database);
                     dbHelper.close();
 
                     Toast.makeText(getApplicationContext(),"Venta realizada con éxito",Toast.LENGTH_LONG).show();
