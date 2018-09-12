@@ -394,9 +394,9 @@ public class Ventas_Activity extends AppCompatActivity {
                     //Intent buttonConfirmarV = new Intent(Ventas_Activity.this, Second_Activity.class);
                     //startActivity(buttonConfirmarV);
 
-                    String dni = getIntent().getStringExtra("dni");
+                    int dni = getIntent().getIntExtra("dni",999999);
 
-                    String id = getIntent().getStringExtra("id");
+                    int id = getIntent().getIntExtra("id",999999);
 
 
                     /**
@@ -406,7 +406,7 @@ public class Ventas_Activity extends AppCompatActivity {
                     DbHelper dbHelper = new DbHelper(getApplicationContext());
                     SQLiteDatabase database = dbHelper.getWritableDatabase();
 
-                    dbHelper.saveToLocalDatabaseVenta(Integer.parseInt(id), Integer.parseInt(dni), Integer.parseInt(AuxiliarLlenos),Integer.parseInt(AuxiliarVacios),1,1,1,Integer.parseInt(AuxiliarEntrega), "08092018", DbContract.SYNC_STATUS_FAILED,database);
+                    dbHelper.saveToLocalDatabaseVenta(id, dni, Integer.parseInt(AuxiliarLlenos),Integer.parseInt(AuxiliarVacios),1,1,1,Integer.parseInt(AuxiliarEntrega), "08092018", DbContract.SYNC_STATUS_FAILED,database);
                     dbHelper.close();
 
                     Toast.makeText(getApplicationContext(),"Venta realizada con éxito",Toast.LENGTH_LONG).show();

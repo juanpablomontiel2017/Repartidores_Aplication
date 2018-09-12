@@ -16,11 +16,10 @@ public class Clientes {
 
     }
 
-    public Clientes(int DNI, int IdPersona, int foto, String apellido, String nombre, String direccion, String barrio,String referencia, String telefono, String correo) {
+    public Clientes(int dni, int id, int foto, String apellido, String nombre, String direccion, String barrio,String referencia, String telefono, String correo) {
 
-        IdPersona = IdPersona;
-        DNI=DNI;
-
+        IdPersona = id;
+        DNI= dni;
         Foto = foto;
         Apellido = apellido;
         Nombre = nombre;
@@ -42,20 +41,20 @@ public class Clientes {
         return IdPersona;
     }
 
-    public void setIdPersona(int idPersona) {
-        IdPersona = idPersona;
-    }
+
 
     public int getDNI() {
         return DNI;
     }
 
-    public void setDNI(int DNI) {
-        this.DNI = DNI;
-    }
+
 
     public int getFoto() {
         return Foto;
+    }
+
+    public String getApellido() {
+        return Apellido;
     }
 
     public String getNombre() {
@@ -86,8 +85,16 @@ public class Clientes {
         Foto = foto;
     }
 
+    public void setDNI(int dni) {
+        DNI = dni;
+    }
+
     public void setNombre(String nombre) {
         Nombre = nombre;
+    }
+
+    public void setIdPersona(int idPersona) {
+        IdPersona = idPersona;
     }
 
     public void setDireccion(String direccion) {
@@ -110,9 +117,7 @@ public class Clientes {
         Correo = correo;
     }
 
-    public String getApellido() {
-        return Apellido;
-    }
+
 
     public void setApellido(String apellido) {
         Apellido = apellido;

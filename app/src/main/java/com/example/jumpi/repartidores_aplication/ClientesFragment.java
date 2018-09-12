@@ -205,13 +205,13 @@ public class ClientesFragment extends Fragment implements OnStartDragListener {
                 String referencia = cursor.getString(cursor.getColumnIndex(DbContract.REFERENCIA));
                 String telefono = cursor.getString(cursor.getColumnIndex(DbContract.TELEFONO));
                 String correo = cursor.getString(cursor.getColumnIndex(DbContract.CORREO));
-                String dni = cursor.getString(cursor.getColumnIndex(DbContract.DNI));
-                String id = cursor.getString(cursor.getColumnIndex(DbContract.ID));
+                int dni = cursor.getInt(cursor.getColumnIndex(DbContract.DNI));
+                int id = cursor.getInt(cursor.getColumnIndex(DbContract.ID));
                 //int foto = cursor.getInt(cursor.getColumnIndex(DbContract.FOTO));
                 int foto = R.drawable.leomessi;
                 int sync_status = cursor.getInt(cursor.getColumnIndex(DbContract.SYNC_STATUS));
 
-                lstClientes.add(new Clientes(Integer.parseInt(dni), Integer.parseInt(id), foto, apellido, nombre, direccion, barrio, referencia, telefono, correo));
+                lstClientes.add(new Clientes(dni, id, foto, apellido, nombre, direccion, barrio, referencia, telefono, correo));
             }
 
 
