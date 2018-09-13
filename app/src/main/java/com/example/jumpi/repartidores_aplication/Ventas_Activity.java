@@ -1,10 +1,14 @@
 package com.example.jumpi.repartidores_aplication;
 
 import android.content.Intent;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.text.Editable;
+import android.text.TextUtils;
+import android.text.TextWatcher;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -18,8 +22,10 @@ import android.widget.Toast;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.List;
 
 
 public class Ventas_Activity extends AppCompatActivity {
@@ -32,6 +38,7 @@ public class Ventas_Activity extends AppCompatActivity {
     TextView Apellido_Cliente_Ventas;
     TextView Direccion_Cliente_Ventas;
     TextView Barrio_Cliente_Ventas;
+    TextView Saldo_Cliente_Ventas;
 
     EditText eTcant1;
     EditText eTcant2;
@@ -41,11 +48,18 @@ public class Ventas_Activity extends AppCompatActivity {
     EditText eTLlenos;
     EditText eEntrega;
 
+    private List<Articulos> mArticulos;
+
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_ventas_);
+
+        mArticulos = new ArrayList<>();
+        readFromLocalDbArticulo();
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar_ventas);
         setSupportActionBar(toolbar);
@@ -53,7 +67,7 @@ public class Ventas_Activity extends AppCompatActivity {
         eTcant1 = (EditText) findViewById(R.id.cantidad_productos_ventas);
         eTcant1.setEnabled(false);
 
-
+        Saldo_Cliente_Ventas = (TextView) findViewById(R.id.cantidad_saldo_productos_ventas);
 
         eTcant2 = (EditText) findViewById(R.id.cantidad2_productos_ventas);
         eTcant2.setEnabled(false);
@@ -72,6 +86,51 @@ public class Ventas_Activity extends AppCompatActivity {
 
         eTVacios = (EditText) findViewById(R.id.cantiad_vacios_ventas);
         eTLlenos = (EditText) findViewById(R.id.cantiad_llenos_ventas);
+        eTLlenos.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+
+
+                int saldo;
+                int cantidadLlenos;
+                int precio = 0;
+
+
+                if (eTLlenos.getText().toString().trim().isEmpty()){
+                    cantidadLlenos=0;
+                }
+                else{
+                    cantidadLlenos = Integer.parseInt(eTLlenos.getText().toString().trim());
+
+                }
+
+
+                for( int i = 0 ; i < mArticulos.size() ; i++ ){
+
+                    if (TextUtils.equals(mArticulos.get(i).getArticulo(), "ENVASE LLENO") ){
+                        precio = mArticulos.get(i).getPrecio();
+
+                    }
+
+                }
+                saldo = cantidadLlenos * precio;
+                Saldo_Cliente_Ventas.setText(String.valueOf(saldo));
+
+
+            }
+        });
+
+
         eEntrega = (EditText) findViewById(R.id.cantidad_entrega_productos_ventas);
 
 
@@ -400,6 +459,11 @@ public class Ventas_Activity extends AppCompatActivity {
                     //Intent buttonConfirmarV = new Intent(Ventas_Activity.this, Second_Activity.class);
                     //startActivity(buttonConfirmarV);
 
+                    VerificarCorregir herramienta = new VerificarCorregir();
+                    AuxiliarLlenos= herramienta.corregirVariablesVacias(AuxiliarLlenos);
+                    AuxiliarVacios = herramienta.corregirVariablesVacias(AuxiliarVacios);
+                    AuxiliarEntrega = herramienta.corregirVariablesVacias(AuxiliarEntrega);
+
                     int dni = getIntent().getIntExtra("dni",999999);
 
                     int id = getIntent().getIntExtra("id",999999);
@@ -409,7 +473,7 @@ public class Ventas_Activity extends AppCompatActivity {
                     //INTENTO DE OBTENER LA FECHA DEL DÍA
                     Date date = Calendar.getInstance().getTime();
 
-                    DateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
+                    DateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
                     String fecha = formatter.format(date);
 
 
@@ -421,7 +485,7 @@ public class Ventas_Activity extends AppCompatActivity {
                     DbHelper dbHelper = new DbHelper(getApplicationContext());
                     SQLiteDatabase database = dbHelper.getWritableDatabase();
 
-                    dbHelper.saveToLocalDatabaseVenta(id, dni, Integer.parseInt(AuxiliarLlenos),Integer.parseInt(AuxiliarVacios),1,1,1,Integer.parseInt(AuxiliarEntrega), fecha,DbContract.SYNC_STATUS_FAILED,database);
+                    dbHelper.saveToLocalDatabaseVenta(id, dni, Integer.parseInt(AuxiliarLlenos),Integer.parseInt(AuxiliarVacios),0,0,0,Integer.parseInt(AuxiliarEntrega), fecha,DbContract.SYNC_STATUS_FAILED,database);
                     dbHelper.close();
 
                     Toast.makeText(getApplicationContext(),"Venta realizada con éxito",Toast.LENGTH_LONG).show();
@@ -441,7 +505,39 @@ public class Ventas_Activity extends AppCompatActivity {
 
     }
 
+    private void readFromLocalDbArticulo(){
+        DbHelper dbHelperRead = new DbHelper(getApplicationContext());
+        SQLiteDatabase databaseRead = dbHelperRead.getReadableDatabase();
+        Cursor cursor = dbHelperRead.readFromLocalDatabaseArticulo(databaseRead);
+        mArticulos.clear();
+        while (cursor.moveToNext())
+        {
 
+
+                String nombre = cursor.getString(cursor.getColumnIndex(DbContract.ARTICULO));
+
+                int precio = cursor.getInt(cursor.getColumnIndex(DbContract.PRECIO));
+                int id = cursor.getInt(cursor.getColumnIndex(DbContract.ID));
+
+
+            mArticulos.add(new Articulos(id, nombre, precio));
+
+
+
+
+            //myrecyclerview.notify();
+
+
+
+        }
+
+        cursor.close();
+        dbHelperRead.close();
+
+
+    }
+
+    
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.

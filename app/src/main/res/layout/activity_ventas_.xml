@@ -352,6 +352,7 @@
                     android:layout_width="170dp"
                     android:layout_height="40dp"
                     android:layout_marginStart="10dp"
+                    android:textSize="18sp"
                     android:textStyle="bold" />
 
 
