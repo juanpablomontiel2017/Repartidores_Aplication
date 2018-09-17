@@ -66,17 +66,24 @@ public class DbContract {
     public static final String TABLE_NAME_VENTA = "venta";
     public static final String ENVASE_LLENO = "envase_lleno";
     public static final String ENVASE_VACIO = "envase_vacio";
-    public static final String CANILLA = "canilla";
-    public static final String DISPENSER_ELECTRICO = "dispenser_electrico";
-    public static final String DISPENSER_PLASTICO = "dispenser_plastico";
-    public static final String ENVASE_VENTA = "envase_venta";
+    //public static final String CANILLA = "canilla";
+    //public static final String DISPENSER_ELECTRICO = "dispenser_electrico";
+    //public static final String DISPENSER_PLASTICO = "dispenser_plastico";
+    //public static final String ENVASE_VENTA = "envase_venta";
     public static final String ENTREGA = "entrega";
 
     public static final String ID_CLIENTE = "id_cliente";
     public static final String FECHA = "fecha";
 
 
+    /**
+     *   TABLA DETALLE VENTAS
+     */
 
-
+    public static final String ID_DETALLE_VENTA = "id_detalle_venta";
+    public static final String TABLE_NAME_DETALLE_VENTA = "detalleventa";
+    public static final String ID_VENTA = "id_venta";
+    public static final String ID_ARTICULO = "id_articulo";
+    public static final String CANTIDAD = "cantidad";
 
 }

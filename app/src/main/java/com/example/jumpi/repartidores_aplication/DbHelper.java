@@ -18,11 +18,14 @@ public class DbHelper extends SQLiteOpenHelper {
     private static final String CREATE_TABLE = "create table "+DbContract.TABLE_NAME_USUARIO+"("+DbContract.DNI+" integer primary key,"+DbContract.ID+" integer,"+DbContract.USUARIO+" text,"+DbContract.PASSWORD+" text, "+DbContract.SYNC_STATUS+" integer);";
     private static final String CREATE_TABLE_ZONA_REPARTO = "create table "+DbContract.TABLE_NAME_ZONA_REPARTO+"("+DbContract.DNI+" integer primary key,"+DbContract.ID+" integer,"+DbContract.APELLIDO+" text,"+DbContract.NOMBRE+" text,"+DbContract.DIRECCION+" text,"+DbContract.BARRIO+" text,"+DbContract.REFERENCIA+" text,"+DbContract.TELEFONO+" text,"+DbContract.CORREO+" text,"+DbContract.LUNES+" int,"+DbContract.MARTES+" int,"+DbContract.MIERCOLES+" int,"+DbContract.JUEVES+" int,"+DbContract.VIERNES+" int,"+DbContract.SABADO+" int, "+DbContract.FOTO+" int, "+DbContract.SYNC_STATUS+" integer);";
     private static final String CREATE_TABLE_ARTICULO = "create table "+DbContract.TABLE_NAME_ARTICULO+"("+DbContract.ID+" integer primary key,"+DbContract.ARTICULO+" text,"+DbContract.PRECIO+" integer);";
-    private static final String CREATE_TABLE_VENTA = "create table "+DbContract.TABLE_NAME_VENTA+"("+DbContract.ID+" integer primary key autoincrement,"+DbContract.ID_CLIENTE+" integer,"+DbContract.DNI+" integer,"+DbContract.ENVASE_LLENO+" int,"+DbContract.ENVASE_VACIO+" int,"+DbContract.CANILLA+" int,"+DbContract.DISPENSER_ELECTRICO+" int,"+DbContract.DISPENSER_PLASTICO+" int,"+DbContract.ENTREGA+" int,"+DbContract.FECHA+" text,"+DbContract.SYNC_STATUS+" integer);";
+    private static final String CREATE_TABLE_VENTA = "create table "+DbContract.TABLE_NAME_VENTA+"("+DbContract.ID+" integer primary key autoincrement,"+DbContract.ID_CLIENTE+" integer,"+DbContract.DNI+" integer,"+DbContract.ENVASE_LLENO+" int,"+DbContract.ENVASE_VACIO+" int,"+DbContract.ENTREGA+" int,"+DbContract.FECHA+" text,"+DbContract.SYNC_STATUS+" integer);";
+    private static final String CREATE_TABLE_DETALLE_VENTA = "create table "+DbContract.TABLE_NAME_DETALLE_VENTA+"("+DbContract.ID+" integer primary key autoincrement,"+DbContract.ID_VENTA+" integer,"+DbContract.ID_ARTICULO+" integer,"+DbContract.CANTIDAD+" int,"+DbContract.SYNC_STATUS+" integer, FOREIGN KEY ("+DbContract.ID_ARTICULO+") REFERENCES "+DbContract.TABLE_NAME_ARTICULO+"("+DbContract.ID+"), FOREIGN KEY ("+DbContract.ID_VENTA+") REFERENCES "+DbContract.TABLE_NAME_VENTA+"("+DbContract.ID+") );";
 
 
     /**
      * Estas son las consultas de definición para borrar las tablas
+     * ,FOREIGN KEY(trackartist) REFERENCES artist(artistid)
+     ,"+ " FOREIGN KEY ("+TASK_CAT+") REFERENCES "+CAT_TABLE+"("+CAT_ID+"));";
      */
 
     private static final String DROP_TABLE = "drop table if exists "+DbContract.TABLE_NAME_USUARIO;
@@ -43,6 +46,7 @@ public class DbHelper extends SQLiteOpenHelper {
         db.execSQL(CREATE_TABLE_ZONA_REPARTO);
         db.execSQL(CREATE_TABLE_ARTICULO);
         db.execSQL(CREATE_TABLE_VENTA);
+        db.execSQL(CREATE_TABLE_DETALLE_VENTA);
     }
 
     @Override
@@ -240,9 +244,7 @@ public class DbHelper extends SQLiteOpenHelper {
         contentValues.put(DbContract.DNI, dni);
         contentValues.put(DbContract.ENVASE_LLENO, lleno);
         contentValues.put(DbContract.ENVASE_VACIO, vacio);
-        contentValues.put(DbContract.CANILLA, canilla);
-        contentValues.put(DbContract.DISPENSER_ELECTRICO, electrico);
-        contentValues.put(DbContract.DISPENSER_PLASTICO, plastico);
+
 
         contentValues.put(DbContract.ENTREGA, entrega);
         contentValues.put(DbContract.FECHA, fecha);
@@ -253,7 +255,7 @@ public class DbHelper extends SQLiteOpenHelper {
     }
 
     public Cursor readFromLocalDatabaseVenta (SQLiteDatabase database){
-        String[] projection = {DbContract.ID, DbContract.ID_CLIENTE, DbContract.DNI, DbContract.ENVASE_LLENO, DbContract.ENVASE_VACIO, DbContract.CANILLA, DbContract.DISPENSER_ELECTRICO, DbContract.DISPENSER_PLASTICO, DbContract.ENTREGA, DbContract.FECHA, DbContract.SYNC_STATUS};
+        String[] projection = {DbContract.ID, DbContract.ID_CLIENTE, DbContract.DNI, DbContract.ENVASE_LLENO, DbContract.ENVASE_VACIO, DbContract.ENTREGA, DbContract.FECHA, DbContract.SYNC_STATUS};
 
         return (database.query(DbContract.TABLE_NAME_ZONA_REPARTO,projection, null,null, null,null,null));
     }
@@ -266,9 +268,7 @@ public class DbHelper extends SQLiteOpenHelper {
         if (vacio!=0){
             contentValues.put(DbContract.ENVASE_VACIO, vacio);
         }
-        if (canilla!=0){
-            contentValues.put(DbContract.CANILLA, canilla);
-        }
+
         if (electrico!=0){
             contentValues.put(DbContract.BARRIO, electrico);
         }
