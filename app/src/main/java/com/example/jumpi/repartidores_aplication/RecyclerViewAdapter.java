@@ -253,22 +253,22 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
                         public MyViewHolder(View itemView) {
 
 
-                            super(itemView);
+            super(itemView);
 
-                            //Esto también pertenece a la parte 3 del tutorial: "Fragment with RecyclerView Part 3 : item Click Listener Event : Show Custom dialog Box" del chabon Aws Rh
-                            item_clientes = (LinearLayout) itemView.findViewById(R.id.clientes_item_id);
-                            //Hasta aquí
+            //Esto también pertenece a la parte 3 del tutorial: "Fragment with RecyclerView Part 3 : item Click Listener Event : Show Custom dialog Box" del chabon Aws Rh
+            item_clientes = (LinearLayout) itemView.findViewById(R.id.clientes_item_id);
+            //Hasta aquí
 
-                            tv_apellido = (TextView) itemView.findViewById(R.id.apellido_cliente);
-                            tv_nombre = (TextView) itemView.findViewById(R.id.nombre_cliente);
-                            tv_direccion = (TextView) itemView.findViewById(R.id.direccion_cliente);
-                            tv_barrio = (TextView) itemView.findViewById(R.id.barrio_cliente);
-                            //tv_referencia = (TextView) itemView.findViewById(R.id.referencia_cliente);
-                            //tv_telefono = (TextView) itemView.findViewById(R.id.te)
-                            img_foto = (ImageView) itemView.findViewById(R.id.img_cliente);
-                            itemView.setOnClickListener(this);
+            tv_apellido = (TextView) itemView.findViewById(R.id.apellido_cliente);
+            tv_nombre = (TextView) itemView.findViewById(R.id.nombre_cliente);
+            tv_direccion = (TextView) itemView.findViewById(R.id.direccion_cliente);
+            tv_barrio = (TextView) itemView.findViewById(R.id.barrio_cliente);
+            //tv_referencia = (TextView) itemView.findViewById(R.id.referencia_cliente);
+            //tv_telefono = (TextView) itemView.findViewById(R.id.te)
+            img_foto = (ImageView) itemView.findViewById(R.id.img_cliente);
+            itemView.setOnClickListener(this);
 
-                        }
+        }
 
 
                         @Override
