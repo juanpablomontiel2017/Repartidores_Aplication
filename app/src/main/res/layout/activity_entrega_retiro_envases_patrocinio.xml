@@ -34,15 +34,15 @@
         android:orientation="horizontal">
 
 
-    <android.support.design.widget.FloatingActionButton
-        android:id="@+id/fab_nueva_entrega_retiro"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="bottom|end"
-        android:layout_margin="@dimen/fab_margin"
-        android:backgroundTint="#4caf50"
-        android:src="@drawable/ic_fab_add_entrega_retiro"
-        android:visibility="invisible"/>
+        <android.support.design.widget.FloatingActionButton
+            android:id="@+id/fab_nueva_entrega_retiro"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom|end"
+            android:layout_margin="@dimen/fab_margin"
+            android:src="@drawable/ic_fab_nueva_er"
+            app:backgroundTint="#4caf50"
+            android:visibility="invisible" />
 
 
         <android.support.design.widget.FloatingActionButton
