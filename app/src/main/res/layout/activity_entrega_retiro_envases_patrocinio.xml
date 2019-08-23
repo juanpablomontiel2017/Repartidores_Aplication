@@ -41,7 +41,7 @@
         android:layout_gravity="bottom|end"
         android:layout_margin="@dimen/fab_margin"
         android:backgroundTint="#4caf50"
-        tools:src="@drawable/ic_fab_add_entrega_retiro"
+        android:src="@drawable/ic_fab_add_entrega_retiro"
         android:visibility="invisible"/>
 
 
@@ -52,7 +52,7 @@
             android:layout_gravity="bottom|end"
             android:layout_margin="@dimen/fab_margin"
             android:onClick="CancelarNuevaVuelta"
-            tools:src="@drawable/ic_menos_tanda"
+            android:src="@drawable/ic_menos_tanda"
             android:visibility="gone"
             app:backgroundTint="#263238" />
 
