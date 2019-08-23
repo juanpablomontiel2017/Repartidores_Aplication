@@ -263,7 +263,7 @@ public class EntregaRetiroEnvasesPatrocinio extends AppCompatActivity {
         /*Inicialización de la variable de tipo TextView creada en XML para hacer referencia al número de tanda en el que estamos parados */
         TextView textViewVuelta = (TextView) findViewById(R.id.vuelta_erep);
         vuelta_numero++;
-        textViewVuelta.setText("VUELTA N°: " + vuelta_numero);
+        textViewVuelta.setText("Vuelta N°: " + vuelta_numero);
 
 
 
