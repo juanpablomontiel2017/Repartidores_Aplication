@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+    xmlns:tools="http://schemas.android.com/tools"
+
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    tools:context=".OpcionesEstadisticas">
+
+
+
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="#d50000"
+        app:popupTheme="@style/AppTheme.PopupOverlay" />
+
+
+
+
+
+
+    <LinearLayout
+
+        android:id="@+id/llv_padre_estadisticas_opciones"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <Button
+            android:id="@+id/btn_comisiones"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#d50000"
+            android:text="COMISIONES"
+            android:textColor="#FFFFFF" />
+
+
+
+        <Button
+            android:id="@+id/btn_combustible"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#d50000"
+            android:text="GASTO EN COMBUSTIBLE"
+            android:textColor="#FFFFFF" />
+
+
+
+    </LinearLayout>
+
+
+</LinearLayout>

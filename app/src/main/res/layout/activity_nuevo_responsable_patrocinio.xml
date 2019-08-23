@@ -1,0 +1,730 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+
+    tools:context=".NuevoResponsablePatrocinio">
+
+
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="#d50000"
+        app:popupTheme="@style/AppTheme.PopupOverlay" />
+
+
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+
+
+
+  <LinearLayout
+
+      android:id="@+id/contenedor_horizontales"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:orientation="vertical">
+
+
+      <LinearLayout
+
+          android:id="@+id/llh_datos_personales_responsable"
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:layout_marginBottom="20dp"
+          android:orientation="horizontal"
+          android:weightSum="1">
+
+
+          <TextView
+
+              android:id="@+id/datos_personales_responsable"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:layout_weight="1"
+              android:background="#ff5722"
+              android:gravity="center"
+              android:text="RESPONSABLE"
+              android:textColor="#000"
+              android:textSize="24sp"
+              android:textStyle="bold" />
+
+
+      </LinearLayout>
+
+
+
+
+
+    <!--############################################################## -->
+
+
+    <LinearLayout
+
+        android:id="@+id/llv_uno_formulario_patrocinio"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+
+        <LinearLayout
+
+            android:id="@+id/llh_dni_formulario_patrocinio"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginBottom="20dp"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:weightSum="2">
+
+
+            <TextView
+
+                android:id="@+id/tv_dni_formulario_patrocinio"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="DNI:"
+                android:textColor="#000000"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+
+            <EditText
+
+                android:id="@+id/et_dni_nuevo_responsable_formulario_patrocinio_supervisor"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:hint="(Obligatorio)"
+                android:inputType="number"
+                android:maxLength="8"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+
+
+        </LinearLayout>
+
+
+        <LinearLayout
+
+            android:id="@+id/llh_nombre_apellido_formulario_patrocinio"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginBottom="20dp"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:weightSum="2">
+
+
+            <TextView
+
+                android:id="@+id/tv_nombre_apellido_formulario_patrocinio"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="NOMBRE Y APELLIDO:"
+                android:textColor="#000000"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+
+            <EditText
+
+                android:id="@+id/et_nombre_apellido_nuevo_responsable_formulario_patrocinio_supervisor"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:hint="(Obligatorio)"
+                android:inputType="textMultiLine"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+
+
+        </LinearLayout>
+
+
+        <LinearLayout
+
+            android:id="@+id/llh_telefono_formulario_patrocinio"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginBottom="20dp"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:weightSum="2">
+
+
+            <TextView
+
+                android:id="@+id/tv_telefono_formulario_patrocinio"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="TELÉFONO:"
+                android:textColor="#000000"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+
+            <EditText
+
+                android:id="@+id/et_telefono_nuevo_responsable_formulario_patrocinio_supervisor"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:hint="(Obligatorio)"
+                android:inputType="phone"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+
+
+        </LinearLayout>
+
+
+        <LinearLayout
+
+            android:id="@+id/llh_direccion_formulario_patrocinio"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginBottom="20dp"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:weightSum="2">
+
+
+            <TextView
+
+                android:id="@+id/tv_direccion_formulario_patrocinio"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="DIRECCIÓN:"
+                android:textColor="#000000"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+
+            <EditText
+
+                android:id="@+id/et_direccion_nuevo_responsable_formulario_patrocinio_supervisor"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:hint="(Obligatorio)"
+                android:inputType="textMultiLine"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+
+
+        </LinearLayout>
+
+
+        <LinearLayout
+
+            android:id="@+id/llh_barrio_formulario_patrocinio"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginBottom="20dp"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:weightSum="2">
+
+
+            <TextView
+
+                android:id="@+id/tv_barrio_formulario_patrocinio"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="BARRIO:"
+                android:textColor="#000000"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+
+            <EditText
+
+                android:id="@+id/et_barrio_nuevo_responsable_formulario_patrocinio_supervisor"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:hint="(Obligatorio)"
+                android:inputType="textMultiLine"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+
+
+        </LinearLayout>
+
+
+        <LinearLayout
+
+            android:id="@+id/llh_email_formulario_patrocinio"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginBottom="20dp"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:weightSum="2">
+
+
+            <TextView
+
+                android:id="@+id/tv_email_formulario_patrocinio"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="CORREO:"
+                android:textColor="#000000"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+
+            <EditText
+
+                android:id="@+id/et_email_nuevo_responsable_formulario_patrocinio_supervisor"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:hint=""
+                android:inputType="textMultiLine|textEmailAddress"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+
+
+        </LinearLayout>
+
+
+        <LinearLayout
+
+            android:id="@+id/llh_referencia_formulario_patrocinio"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginBottom="20dp"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:weightSum="2">
+
+
+            <TextView
+
+                android:id="@+id/tv_referencia_formulario_patrocinio"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="REFERENCIA:"
+                android:textColor="#000000"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+
+            <EditText
+
+                android:id="@+id/et_referencia_nuevo_responsable_formulario_patrocinio_supervisor"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:hint=""
+                android:inputType="textMultiLine"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+
+
+        </LinearLayout>
+
+
+
+
+
+    </LinearLayout>
+
+
+
+
+    <!--############################################################## -->
+
+
+
+    <LinearLayout
+
+        android:id="@+id/llh_datos_evento_formulario_patrocinio"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp"
+        android:background="@color/colorAccent"
+        android:orientation="horizontal">
+
+
+        <TextView
+
+            android:id="@+id/tv_evento_formulario_patrocinio"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="#ff5722"
+            android:gravity="center"
+            android:text="EVENTO"
+            android:textColor="#000000"
+            android:textSize="24sp"
+            android:textStyle="bold" />
+
+    </LinearLayout>
+
+
+      <!--############################################################## -->
+
+
+      <LinearLayout
+
+        android:id="@+id/llv_dos_formulario_patrocinio"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+
+        <LinearLayout
+
+            android:id="@+id/llh_nombre_evento_formulario_patrocinio"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="20dp"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:weightSum="2">
+
+
+            <TextView
+
+                android:id="@+id/tv_nombre_evento_formulario_patrocinio"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="NOMBRE:"
+                android:textColor="#000000"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+
+            <EditText
+
+                android:id="@+id/et_nuevo_responsable_nombre_evento_formulario_patrocinio_supervisor"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:hint="(Obligatorio)"
+                android:inputType="textMultiLine"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+
+
+        </LinearLayout>
+
+
+
+
+
+
+          <LinearLayout
+
+              android:id="@+id/llh_direccion_evento_formulario_patrocinio"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:layout_marginTop="5dp"
+              android:layout_marginBottom="20dp"
+              android:gravity="center"
+              android:orientation="horizontal"
+              android:weightSum="2">
+
+
+              <TextView
+
+                  android:id="@+id/tv_direccion_evento_formulario_patrocinio"
+                  android:layout_width="match_parent"
+                  android:layout_height="wrap_content"
+                  android:layout_weight="1"
+                  android:gravity="center"
+                  android:text="DIRECCIÓN:"
+                  android:textColor="#000000"
+                  android:textSize="20sp"
+                  android:textStyle="bold" />
+
+              <EditText
+
+                  android:id="@+id/et_nuevo_responsable_direccion_evento_formulario_patrocinio_supervisor"
+                  android:layout_width="match_parent"
+                  android:layout_height="wrap_content"
+                  android:layout_gravity="center"
+                  android:layout_weight="1"
+                  android:gravity="center"
+                  android:hint="(Obligatorio)"
+                  android:inputType="textMultiLine"
+                  android:textSize="20sp"
+                  android:textStyle="bold" />
+
+
+          </LinearLayout>
+
+
+
+
+          <LinearLayout
+
+              android:id="@+id/llh_barrio_evento_formulario_patrocinio"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:layout_marginTop="5dp"
+              android:layout_marginBottom="20dp"
+              android:gravity="center"
+              android:orientation="horizontal"
+              android:weightSum="2">
+
+
+              <TextView
+
+                  android:id="@+id/tv_barrio_evento_formulario_patrocinio"
+                  android:layout_width="match_parent"
+                  android:layout_height="wrap_content"
+                  android:layout_weight="1"
+                  android:gravity="center"
+                  android:text="BARRIO:"
+                  android:textColor="#000000"
+                  android:textSize="20sp"
+                  android:textStyle="bold" />
+
+              <EditText
+
+                  android:id="@+id/et_nuevo_responsable_barrio_evento_formulario_patrocinio_supervisor"
+                  android:layout_width="match_parent"
+                  android:layout_height="wrap_content"
+                  android:layout_gravity="center"
+                  android:layout_weight="1"
+                  android:gravity="center"
+                  android:hint="(Obligatorio)"
+                  android:inputType="textMultiLine"
+                  android:textSize="20sp"
+                  android:textStyle="bold" />
+
+
+          </LinearLayout>
+
+
+
+
+
+
+
+          <LinearLayout
+
+              android:id="@+id/llh_referencia_evento_formulario_patrocinio"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:layout_marginTop="5dp"
+              android:layout_marginBottom="20dp"
+              android:gravity="center"
+              android:orientation="horizontal"
+              android:weightSum="2">
+
+
+              <TextView
+
+                  android:id="@+id/tv_referencia_evento_formulario_patrocinio"
+                  android:layout_width="match_parent"
+                  android:layout_height="wrap_content"
+                  android:layout_weight="1"
+                  android:gravity="center"
+                  android:text="REFERENCIA:"
+                  android:textColor="#000000"
+                  android:textSize="20sp"
+                  android:textStyle="bold" />
+
+              <EditText
+
+                  android:id="@+id/et_nuevo_responsable_referencia_evento_formulario_patrocinio_supervisor"
+                  android:layout_width="match_parent"
+                  android:layout_height="wrap_content"
+                  android:layout_gravity="center"
+                  android:layout_weight="1"
+                  android:gravity="center"
+                  android:hint="(Obligatorio)"
+                  android:inputType="textMultiLine"
+                  android:textSize="20sp"
+                  android:textStyle="bold" />
+
+
+          </LinearLayout>
+
+
+
+
+
+          <LinearLayout
+
+            android:id="@+id/llh_fecha_inicio_formulario_patrocinio"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginBottom="20dp"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:weightSum="2">
+
+
+            <TextView
+
+                android:id="@+id/tv_fecha_inicio_formulario_patrocinio"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="FECHA DE INICIO:"
+                android:textColor="#000000"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+
+            <EditText
+
+                android:id="@+id/et_nuevo_responsable_fecha_inicio_evento_formulario_patrocinio_supervisor"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:hint="(Obligatorio)"
+                android:inputType="datetime"
+                android:maxLength="10"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+
+
+        </LinearLayout>
+
+
+        <LinearLayout
+
+            android:id="@+id/llh_fecha_fin_formulario_patrocinio"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginBottom="20dp"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:weightSum="2">
+
+
+            <TextView
+
+                android:id="@+id/tv_fecha_fin_formulario_patrocinio"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="FECHA DE FIN:"
+                android:textColor="#000000"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+
+            <EditText
+
+                android:id="@+id/et_nuevo_responsable_fecha_fin_evento_formulario_patrocinio"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:hint="(Obligatorio)"
+                android:inputType="datetime"
+                android:maxLength="10"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+
+
+        </LinearLayout>
+
+
+
+
+    </LinearLayout> <!-- Fin del 'llv_dos' -->
+
+
+      <!--############################################################## -->
+
+
+      <LinearLayout
+
+          android:id="@+id/llh_botones_formulario_patrocinio"
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:layout_marginBottom="10dp"
+          android:background="#FFF"
+          android:orientation="horizontal"
+          android:weightSum="2">
+
+
+          <Button
+
+              android:id="@+id/btn_cancelar_nuevo_responsable_del_evento_formulario_patrocinio_supervisor"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:layout_marginLeft="10dp"
+              android:layout_marginRight="10dp"
+              android:layout_weight="1"
+              android:background="#d50000"
+              android:gravity="center"
+              android:text="CANCELAR"
+              android:textColor="#FFF"
+              android:textSize="24sp"
+              android:textStyle="bold" />
+
+          <Button
+
+              android:id="@+id/btn_confirmar_nuevo_responsable_del_evento_formulario_patrocinio_supervisor"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:layout_marginRight="10dp"
+              android:layout_weight="1"
+              android:background="#43a047"
+              android:gravity="center"
+              android:text="CONFIRMAR"
+              android:textColor="#FFF"
+              android:textSize="24sp"
+              android:textStyle="bold" />
+
+      </LinearLayout>
+
+
+
+
+
+
+
+
+
+
+  </LinearLayout> <!--Fin del llv_contenedor_horizontales -->
+
+    </ScrollView>
+
+
+</LinearLayout>

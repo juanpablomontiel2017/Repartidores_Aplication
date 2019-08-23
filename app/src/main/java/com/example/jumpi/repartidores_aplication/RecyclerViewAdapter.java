@@ -24,6 +24,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -36,19 +37,49 @@ import java.util.Collections;
 import java.util.List;
 
 
-public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapter.MyViewHolder> implements ItemTouchHelperAdapter {//implements View.OnClickListener { //implements View.OnClickListener { //implements View.OnClickListener {
+public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapter.MyViewHolder> implements ItemTouchHelperAdapter {
+
+
+
+
+
+ /**** DECLARACIÓN DE VARIABLES GLOBALES ****/
 
 
 
     Context mContext;
+
     List<Clientes> mData;
+
     private static final int TYPE_ITEM = 0;
-   // private final LayoutInflater mInflater;
+
     private final OnStartDragListener mDragStartListener;
+
     OnItemClickListener mItemClickListener;
 
-    //Esto también pertenece a la parte 3 del tutorial: "Fragment with RecyclerView Part 3 : item Click Listener Event : Show Custom dialog Box" del chabon Aws Rh
     Dialog myDialog;
+
+
+
+
+
+
+
+    /********************************************************************************/
+    /********************************************************************************/
+    /********************************************************************************/
+    /********************************************************************************/
+    /********************************************************************************/
+    /********************************************************************************/
+    /********************************************************************************/
+    /********************************************************************************/
+    /********************************************************************************/
+    /********************************************************************************/
+
+
+
+
+
 
 
     public RecyclerViewAdapter(Context mContext, List<Clientes> mData, OnStartDragListener dragListener) {
@@ -61,20 +92,42 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
 
 
 
+
+
+
+
+    /********************************************************************************/
+    /********************************************************************************/
+    /********************************************************************************/
+    /********************************************************************************/
+    /********************************************************************************/
+    /********************************************************************************/
+    /********************************************************************************/
+    /********************************************************************************/
+    /********************************************************************************/
+    /********************************************************************************/
+
+
+
+
+
+
+
+
+
+
     @NonNull
     @Override
     public MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
 
-        View v;
+        final View v;
 
         v = LayoutInflater.from(mContext).inflate(R.layout.item_clientes, parent, false);
+
         final MyViewHolder vHolder = new MyViewHolder(v);
 
-
-
-        //Esto también pertenece a la parte 3 del tutorial: "Fragment with RecyclerView Part 3 : item Click Listener Event : Show Custom dialog Box" del chabon Aws Rh"
-        //Dialog Inicial
         myDialog = new Dialog(mContext);
+
         myDialog.setContentView(R.layout.dialog_clientes);
 
 
@@ -85,14 +138,26 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
 
 
                     final TextView dialog_apellido_tv = (TextView) myDialog.findViewById(R.id.dialog_apellido_id);
+
                     final TextView dialog_nombre_tv = (TextView) myDialog.findViewById(R.id.dialog_nombre_id);
+
                     TextView dialog_referencia_tv = (TextView) myDialog.findViewById(R.id.dialog_referencia_id);
+
                     TextView dialog_telefono_tv = (TextView) myDialog.findViewById(R.id.dialog_telefono_id);
+
                     TextView dialog_correo_tv = (TextView) myDialog.findViewById(R.id.dialog_correo_id);
+
                     ImageView dialog_cliente_img = (ImageView) myDialog.findViewById(R.id.dialog_img_cliente);
 
-                    //PRUEBA (Mati)
+
+
+
+
+
+
+
                     Button dialog_cliente_btnVentas = (Button) myDialog.findViewById(R.id.dialog_btn_venta);
+
                     dialog_cliente_btnVentas.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View view) {
@@ -109,81 +174,193 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
                             intentVentas.putExtra("Barrio", mData.get(vHolder.getAdapterPosition()).getBarrio());
 
 
-                                        mContext.startActivity(intentVentas);
+                            mContext.startActivity(intentVentas);
 
 
 
-                                    }
+                           }
                         });
 
 
-                                Button dialog_cliente_btnEditar = (Button) myDialog.findViewById(R.id.dialog_btn_editar);
-                                dialog_cliente_btnEditar.setOnClickListener(new View.OnClickListener() {
+
+
+
+
+
+
+
+
+
+
+                    Button dialog_cliente_btnEditar = (Button) myDialog.findViewById(R.id.dialog_btn_editar);
+
+                    dialog_cliente_btnEditar.setOnClickListener(new View.OnClickListener() {
                                     @Override
                                     public void onClick(View view) {
 
-
-                                        Intent intentEditar = new Intent(mContext, EditarClientes.class);
+                        Intent intentEditar = new Intent(mContext, EditarClientes.class);
                                         
-                                        intentEditar.putExtra("ApellidoEC", mData.get(vHolder.getAdapterPosition()).getApellido());
+                        intentEditar.putExtra("ApellidoEC", mData.get(vHolder.getAdapterPosition()).getApellido());
 
-                                        intentEditar.putExtra("NombreEC", mData.get(vHolder.getAdapterPosition()).getNombre());
+                        intentEditar.putExtra("NombreEC", mData.get(vHolder.getAdapterPosition()).getNombre());
 
-                                        intentEditar.putExtra("DireccionEC", mData.get(vHolder.getAdapterPosition()).getDireccion());
+                        intentEditar.putExtra("DireccionEC", mData.get(vHolder.getAdapterPosition()).getDireccion());
 
-                                        intentEditar.putExtra("BarrioEC",  mData.get(vHolder.getAdapterPosition()).getBarrio());
+                        intentEditar.putExtra("BarrioEC",  mData.get(vHolder.getAdapterPosition()).getBarrio());
 
-                                        intentEditar.putExtra("TelefonoEC",mData.get(vHolder.getAdapterPosition()).getTelefono());
+                        intentEditar.putExtra("TelefonoEC",mData.get(vHolder.getAdapterPosition()).getTelefono());
 
-                                        intentEditar.putExtra("CorreoEC",  mData.get(vHolder.getAdapterPosition()).getCorreo());
+                        intentEditar.putExtra("CorreoEC",  mData.get(vHolder.getAdapterPosition()).getCorreo());
 
-                                        intentEditar.putExtra("ReferenciaEC", mData.get(vHolder.getAdapterPosition()).getReferencia());
+                        intentEditar.putExtra("ReferenciaEC", mData.get(vHolder.getAdapterPosition()).getReferencia());
 
-                                        mContext.startActivity(intentEditar);
+                        mContext.startActivity(intentEditar);
+
+                        }
+                    });
 
 
-                                    }
-                                });
 
 
-                                Button dialog_cliente_btnEliminar = (Button) myDialog.findViewById(R.id.dialog_btn_eliminar);
-                                dialog_cliente_btnEliminar.setOnClickListener(new View.OnClickListener() {
+
+
+
+
+
+
+
+
+                    Button dialog_cliente_btnEliminar = (Button) myDialog.findViewById(R.id.dialog_btn_eliminar);
+
+                    dialog_cliente_btnEliminar.setOnClickListener(new View.OnClickListener() {
                                     @Override
                                     public void onClick(View view) {
 
 
-                                        Intent intentEliminar = new Intent(mContext, Dialog_Eliminar_Clientes.class);
-                                        mContext.startActivity(intentEliminar);
+                        AlertDialog.Builder builder = new AlertDialog.Builder(mContext);
+
+                        builder.setIcon(R.drawable.ic_msj_alerta);
+
+                        builder.setTitle("Desea eliminar este cliente?!");
+
+                        builder.setMessage("Al presionar el botón 'Aceptar' se borrará al cliente de la lista. ¿Desea continuar?");
+
+
+                        builder.setPositiveButton("Aceptar", new DialogInterface.OnClickListener() {
+                                            public void onClick(DialogInterface dialog, int id) {
+
+                                                int newPosition = vHolder.getAdapterPosition();
+
+                                                mData.remove(newPosition);
+
+                                                notifyItemRemoved(newPosition);
+
+                                                notifyItemRangeChanged(newPosition, mData.size());
+
+                                                Toast.makeText(mContext, "El cliente ha sido eliminado de la lista", Toast.LENGTH_LONG).show();
+
+                                                dialog.dismiss();
+
+
+                                                   }
+                                            });
+
+
+
+
+                        builder.setNegativeButton("Cancelar", new DialogInterface.OnClickListener() {
+
+
+                            public void onClick(DialogInterface dialog, int id) {
+
+                                                dialog.dismiss();
+                            }
+                        });
+
+
+
+                        AlertDialog dialog = builder.create();
+
+                        dialog.show();
+
+
+
 
 
                                     }
-                                });
 
-                                dialog_apellido_tv.setText(mData.get(vHolder.getAdapterPosition()).getApellido());
-                                dialog_nombre_tv.setText(mData.get(vHolder.getAdapterPosition()).getNombre());
-                                dialog_referencia_tv.setText(mData.get(vHolder.getAdapterPosition()).getReferencia());
-                                dialog_telefono_tv.setText(mData.get(vHolder.getAdapterPosition()).getTelefono());
-                                dialog_correo_tv.setText(mData.get(vHolder.getAdapterPosition()).getCorreo());
-                                dialog_cliente_img.setImageResource(mData.get(vHolder.getAdapterPosition()).getFoto());
+                        });
 
+                    dialog_apellido_tv.setText(mData.get(vHolder.getAdapterPosition()).getApellido());
 
-                               //Toast.makeText(mContext, "Test Click" + String.valueOf(vHolder.getAdapterPosition()), Toast.LENGTH_SHORT).show();
-                                myDialog.show();
+                    dialog_nombre_tv.setText(mData.get(vHolder.getAdapterPosition()).getNombre());
 
+                    dialog_referencia_tv.setText(mData.get(vHolder.getAdapterPosition()).getReferencia());
 
-                    }
+                    dialog_telefono_tv.setText(mData.get(vHolder.getAdapterPosition()).getTelefono());
 
+                    dialog_correo_tv.setText(mData.get(vHolder.getAdapterPosition()).getCorreo());
 
-        });
+                    dialog_cliente_img.setImageResource(mData.get(vHolder.getAdapterPosition()).getFoto());
+
+                    myDialog.show();
 
 
+                }
+
+
+            });
         return vHolder;
     }
 
+
+
+
+
+
+
+    /********************************************************************************/
+    /********************************************************************************/
+    /********************************************************************************/
+    /********************************************************************************/
+    /********************************************************************************/
+    /********************************************************************************/
+    /********************************************************************************/
+    /********************************************************************************/
+    /********************************************************************************/
+    /********************************************************************************/
+
+
+
+
     @Override
     public int getItemViewType(int position) {
+
+
                         return TYPE_ITEM;
-                    }
+    }
+
+
+
+
+
+
+
+    /********************************************************************************/
+    /********************************************************************************/
+    /********************************************************************************/
+    /********************************************************************************/
+    /********************************************************************************/
+    /********************************************************************************/
+    /********************************************************************************/
+    /********************************************************************************/
+    /********************************************************************************/
+    /********************************************************************************/
+
+
+
+
+
 
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder viewHolder, int position) {
@@ -195,7 +372,6 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
                         holder.tv_nombre.setText(mData.get(position).getNombre());
                         holder.tv_direccion.setText(mData.get(position).getDireccion());
                         holder.tv_barrio.setText(mData.get(position).getBarrio());
-                        //holder.tv_referencia.setText(mData.get(position).getReferencia());
                         holder.img_foto.setImageResource(mData.get(position).getFoto());
                         holder.img_foto.setOnTouchListener(new View.OnTouchListener() {
                             @Override
@@ -207,119 +383,334 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
                             }
                         });
 
-                    }
+    }
+
+
+    /********************************************************************************/
+    /********************************************************************************/
+    /********************************************************************************/
+    /********************************************************************************/
+    /********************************************************************************/
+    /********************************************************************************/
+    /********************************************************************************/
+    /********************************************************************************/
+    /********************************************************************************/
+    /********************************************************************************/
+
 
     @Override
     public int getItemCount() {
+
                         return mData.size();
-                    }
+    }
+
+
+
+
+
+    /********************************************************************************/
+    /********************************************************************************/
+    /********************************************************************************/
+    /********************************************************************************/
+    /********************************************************************************/
+    /********************************************************************************/
+    /********************************************************************************/
+    /********************************************************************************/
+    /********************************************************************************/
+    /********************************************************************************/
 
     public interface OnItemClickListener {
+
                         void onItemClick(View view, int position);
-                    }
+
+    }
+
+
+
+
+
+    /********************************************************************************/
+    /********************************************************************************/
+    /********************************************************************************/
+    /********************************************************************************/
+    /********************************************************************************/
+    /********************************************************************************/
+    /********************************************************************************/
+    /********************************************************************************/
+    /********************************************************************************/
+    /********************************************************************************/
 
     public void setOnItemClickListener(final OnItemClickListener mItemClickListener) {
+
                         this.mItemClickListener = mItemClickListener;
-                    }
+
+    }
 
 
-    public class MyViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener, ItemTouchHelperViewHolder{// implements View.OnClickListener {//implements View.OnClickListener {//implements View.OnClickListener {//implements View.OnClickListener {
 
 
-                        //Esta variable privada pertenece a la parte 3 del tutorial: "Fragment with RecyclerView Part 3 : item Click Listener Event : Show Custom dialog Box" del chabon Aws Rh
+
+
+
+
+    /********************************************************************************/
+    /********************************************************************************/
+    /********************************************************************************/
+    /********************************************************************************/
+    /********************************************************************************/
+    /********************************************************************************/
+    /********************************************************************************/
+    /********************************************************************************/
+    /********************************************************************************/
+    /********************************************************************************/
+
+    public class MyViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener, ItemTouchHelperViewHolder{
+
+
                         private LinearLayout item_clientes;
-                        //Hasta aquí
 
 
                         private TextView tv_apellido;
                         private TextView tv_nombre;
                         private TextView tv_direccion;
                         private TextView tv_barrio;
-                        //private TextView tv_referencia;
-                        //private TextView tv_telefono;
-                        //private TextView tv_correo;
                         private ImageView img_foto;
 
 
-                        //PRUEBA DEL VIDEO: "Eventos en cada elemento de un RecyclerView| Abrir un nuevo activity y pasarle valores" by Programación y más
                         Button dialog_btn_venta;
                         Button dialog_btn_editar;
                         Button dialog_btn_eliminar;
-                        //Hasta aquí
 
 
 
+        /********************************************************************************/
+        /********************************************************************************/
+        /********************************************************************************/
+        /********************************************************************************/
+        /********************************************************************************/
+        /********************************************************************************/
+        /********************************************************************************/
+        /********************************************************************************/
+        /********************************************************************************/
+        /********************************************************************************/
 
-                        public MyViewHolder(View itemView) {
+        public MyViewHolder(View itemView) {
 
 
             super(itemView);
 
-            //Esto también pertenece a la parte 3 del tutorial: "Fragment with RecyclerView Part 3 : item Click Listener Event : Show Custom dialog Box" del chabon Aws Rh
             item_clientes = (LinearLayout) itemView.findViewById(R.id.clientes_item_id);
-            //Hasta aquí
 
             tv_apellido = (TextView) itemView.findViewById(R.id.apellido_cliente);
             tv_nombre = (TextView) itemView.findViewById(R.id.nombre_cliente);
             tv_direccion = (TextView) itemView.findViewById(R.id.direccion_cliente);
             tv_barrio = (TextView) itemView.findViewById(R.id.barrio_cliente);
-            //tv_referencia = (TextView) itemView.findViewById(R.id.referencia_cliente);
-            //tv_telefono = (TextView) itemView.findViewById(R.id.te)
             img_foto = (ImageView) itemView.findViewById(R.id.img_cliente);
             itemView.setOnClickListener(this);
 
         }
 
 
-                        @Override
-                        public void onClick(View view) {
-                            if (mItemClickListener != null) {
-                                mItemClickListener.onItemClick(view, getPosition());
-                            }
-                        }
 
-                        @Override
-                        public void onItemSelected() {
-                            itemView.setBackgroundColor(Color.LTGRAY);
-                        }
+        /********************************************************************************/
+        /********************************************************************************/
+        /********************************************************************************/
+        /********************************************************************************/
+        /********************************************************************************/
+        /********************************************************************************/
+        /********************************************************************************/
+        /********************************************************************************/
+        /********************************************************************************/
+        /********************************************************************************/
 
-                        @Override
-                        public void onItemClear() {
-                            itemView.setBackgroundColor(0);
-                        }
+        @Override
+        public void onClick(View view) {
+
+            if (mItemClickListener != null) {
+
+                mItemClickListener.onItemClick(view, getPosition());
+
+            }
+
+        }
+
+
+
+
+        /********************************************************************************/
+        /********************************************************************************/
+        /********************************************************************************/
+        /********************************************************************************/
+        /********************************************************************************/
+        /********************************************************************************/
+        /********************************************************************************/
+        /********************************************************************************/
+        /********************************************************************************/
+        /********************************************************************************/
+
+
+
+        @Override
+        public void onItemSelected() {
+
+            itemView.setBackgroundColor(Color.LTGRAY);
+
+        }
+
+
+
+        /********************************************************************************/
+        /********************************************************************************/
+        /********************************************************************************/
+        /********************************************************************************/
+        /********************************************************************************/
+        /********************************************************************************/
+        /********************************************************************************/
+        /********************************************************************************/
+        /********************************************************************************/
+        /********************************************************************************/
+
+        @Override
+        public void onItemClear() {
+
+            itemView.setBackgroundColor(0);
+
+        }
     }
+
+
+
+    /********************************************************************************/
+    /********************************************************************************/
+    /********************************************************************************/
+    /********************************************************************************/
+    /********************************************************************************/
+    /********************************************************************************/
+    /********************************************************************************/
+    /********************************************************************************/
+    /********************************************************************************/
+    /********************************************************************************/
+
+
 
     @Override
     public void onItemDismiss(int position) {
+
                         mData.remove(position);
+
                         notifyItemRemoved(position);
+
     }
+
+
+
+
+
+
+    /********************************************************************************/
+    /********************************************************************************/
+    /********************************************************************************/
+    /********************************************************************************/
+    /********************************************************************************/
+    /********************************************************************************/
+    /********************************************************************************/
+    /********************************************************************************/
+    /********************************************************************************/
+    /********************************************************************************/
+
+
+
 
     @Override
     public boolean onItemMove(int fromPosition, int toPosition) {
-                        //Log.v("", "Log position" + fromPosition + " " + toPosition);
+
                         if (fromPosition < mData.size() && toPosition < mData.size()) {
+
                             if (fromPosition < toPosition) {
+
                                 for (int i = fromPosition; i < toPosition; i++) {
+
                                     Collections.swap(mData, i, i + 1);
+
                                 }
+
+
                             } else {
+
+
                                 for (int i = fromPosition; i > toPosition; i--) {
+
                                     Collections.swap(mData, i, i - 1);
+
                                 }
+
                             }
+
                             notifyItemMoved(fromPosition, toPosition);
+
                         }
+
+
+
                         return true;
     }
 
+
+
+
+
+
+
+
+
+    /********************************************************************************/
+    /********************************************************************************/
+    /********************************************************************************/
+    /********************************************************************************/
+    /********************************************************************************/
+    /********************************************************************************/
+    /********************************************************************************/
+    /********************************************************************************/
+    /********************************************************************************/
+    /********************************************************************************/
+
+
+
+
+
+
+
     public void updateList(List<Clientes> list) {
-                        mData = list;
-                        notifyDataSetChanged();
+
+
+        mData = list;
+
+        notifyDataSetChanged();
+
+
     }
 
 
 
-}
+
+    /**********************************************************************************************/
+    /**********************************************************************************************/
+    /**********************************************************************************************/
+    /**********************************************************************************************/
+    /**********************************************************************************************/
+    /**********************************************************************************************/
+    /**********************************************************************************************/
+    /**********************************************************************************************/
+    /**********************************************************************************************/
+    /**********************************************************************************************/
+
+
+
+
+
+
+
+
+}/********************************* FIN DE LA CLASE RecyclerViewAdapter **************************************/
 
 

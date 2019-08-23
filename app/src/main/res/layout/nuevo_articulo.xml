@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+
+    android:id="@+id/parent_layout_horizontal"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal">
+
+
+    <ImageButton
+
+        android:id="@+id/delete_art"
+        android:layout_width="40dp"
+        android:layout_height="wrap_content"
+        android:background="@android:color/transparent"
+        android:focusable="false"
+        android:onClick="EliminarNuevoArticulo"
+        android:src="@drawable/ic_menos_art" />
+
+    <Spinner
+
+        android:id="@+id/sp_new_art"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:prompt="@string/title_spinner"
+        android:spinnerMode="dialog">
+
+    </Spinner>
+
+
+    <EditText
+
+        android:id="@+id/edtx_carga_new_art"
+        android:layout_width="95dp"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:hint="Cantidad"
+        android:imeOptions="actionNext"
+        android:inputType="number" />
+
+    <EditText
+
+        android:id="@+id/edtx_descarga_new_art"
+        android:layout_width="95dp"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:hint="Cantidad"
+        android:imeOptions="actionNext"
+        android:inputType="number" />
+
+
+
+    </LinearLayout>
