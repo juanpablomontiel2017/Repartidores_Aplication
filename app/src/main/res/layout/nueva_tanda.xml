@@ -37,7 +37,6 @@
                 android:id="@+id/llv_contenedor_para_bordes"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@drawable/borde_linear_layout"
                 android:orientation="vertical">
 
 
@@ -185,11 +184,13 @@
                         android:id="@+id/edtx_descarga"
                         android:layout_width="95dp"
                         android:layout_height="wrap_content"
-                        android:focusableInTouchMode="true"
                         android:gravity="center"
                         android:hint="Cantidad"
                         android:imeOptions="actionNext"
                         android:inputType="number" />
+
+                    <!--android:focusableInTouchMode="true"-->
+
 
                 </LinearLayout>
 

@@ -8,6 +8,7 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -69,7 +70,7 @@ public class Cargas_Descargas extends AppCompatActivity {
 
     /******Matriz clásica********/
 
-    String[] ArticulosDelArrayClasico = {"Bidones", "Dispenser Plástico", "Canillas", "Dispenser Eléctrico", "Envases rotos/pinchados", "Envases estropeados"};
+    String[] ArticulosDelArrayClasico = {"Bidones", "Dispenser Plástico", "Canillas", "Dispenser Eléctrico", "Envases rotos/pinchados", "Envases estropeados","Combustible"};
 
 
     /******Variables tipo String********/
@@ -396,7 +397,7 @@ public class Cargas_Descargas extends AppCompatActivity {
 
 
         /*Llamada a la función: */
-        setSpinner(spinner_fijo, eTcantCarga,true);
+        setSpinner(spinner_fijo, eTcantCarga,true,eTcantDescarga);
 
 
 
@@ -898,7 +899,7 @@ public class Cargas_Descargas extends AppCompatActivity {
 
 
 
-    public void setSpinner(final Spinner spinner, final EditText EditTextCarga,boolean EsSpinnerFijo) {
+    public void setSpinner(final Spinner spinner, final EditText EditTextCarga,boolean EsSpinnerFijo,final EditText EditTextDescarga) {
 
 
     /*********************************************************************************************************/
@@ -989,6 +990,26 @@ public class Cargas_Descargas extends AppCompatActivity {
 
         }
 
+
+
+
+
+        if(ArticuloSeleccionado == "Combustible"){
+
+            EditTextDescarga.setEnabled(false);
+            EditTextCarga.setHint(" ");
+            EditTextDescarga.setText(" ");
+            EditTextDescarga.setBackgroundDrawable(ContextCompat.getDrawable(this,R.drawable.ic_combustible));
+
+
+        } else {
+
+            EditTextDescarga.setEnabled(true);
+            EditTextDescarga.setHint("Cantidad");
+            EditTextDescarga.setBackgroundResource(0);
+
+        }
+
         /*****************************************************************************/
 
 
@@ -1053,6 +1074,31 @@ public class Cargas_Descargas extends AppCompatActivity {
                         EditTextCarga.setHint("Cantidad");
 
                     } //Fin del else
+
+
+
+
+
+
+
+
+                    if(text == "Combustible"){
+
+                        EditTextDescarga.setEnabled(false);
+                        EditTextCarga.setHint(" ");
+                        EditTextDescarga.setText(" ");
+                        EditTextDescarga.setBackgroundDrawable(ContextCompat.getDrawable(Cargas_Descargas.this,R.drawable.ic_combustible));
+
+
+                    } else {
+
+                        EditTextDescarga.setEnabled(true);
+                        EditTextDescarga.setHint("Cantidad");
+                        EditTextDescarga.setBackgroundResource(0);
+
+
+                    }
+
 
 
 
@@ -1340,7 +1386,7 @@ public void ObtenerNuevoArticulo(String ValorElementoSeleccionadoSpinnerPrograma
 
 
     /*Llamada a la función: */
-    setSpinner(spinner_nuevos_articulos, EditText_Carga_Nuevo_Articulo,false);
+    setSpinner(spinner_nuevos_articulos, EditText_Carga_Nuevo_Articulo,false,EditText_Descarga_Nuevo_Articulo);
 
 
     ArticuloSeleccionadoAnterior = spinner_nuevos_articulos.getSelectedItem().toString();
@@ -1605,7 +1651,7 @@ public void ObtenerNuevoArticulo(String ValorElementoSeleccionadoSpinnerPrograma
         Utils_Spinner.contador_de_inicializacion = 0;
 
         /*Llamada a la función: */
-        setSpinner(spinner_fijo_nueva_tanda, et_carga_nueva_tanda,true);
+        setSpinner(spinner_fijo_nueva_tanda, et_carga_nueva_tanda,true,et_descarga_nueva_tanda);
 
 
         ArticuloSeleccionadoAnterior = spinner_fijo_nueva_tanda.getSelectedItem().toString();
