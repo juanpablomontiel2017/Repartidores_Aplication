@@ -177,9 +177,9 @@
                         <EditText
 
                             android:id="@+id/edtx_descarga"
+                            style="@style/Widget.AppCompat.EditText"
                             android:layout_width="95dp"
                             android:layout_height="wrap_content"
-                            android:cursorVisible="true"
                             android:gravity="center"
                             android:hint="Cantidad"
                             android:imeOptions="actionNext"

@@ -996,6 +996,7 @@ public class Cargas_Descargas extends AppCompatActivity {
 
         if(ArticuloSeleccionado == "Combustible"){
 
+            EditTextCarga.setHint("$");
             EditTextDescarga.setEnabled(false);
             EditTextCarga.setHint(" ");
             EditTextDescarga.setText(" ");
@@ -1004,10 +1005,10 @@ public class Cargas_Descargas extends AppCompatActivity {
 
         } else {
 
+            EditTextCarga.setHint("Cantidad");
             EditTextDescarga.setEnabled(true);
             EditTextDescarga.setHint("Cantidad");
-            EditTextDescarga.setBackgroundResource(0);
-
+            EditTextDescarga.setBackgroundDrawable(ContextCompat.getDrawable(this,R.drawable.edit_text_bottom_border));
         }
 
         /*****************************************************************************/
@@ -1087,14 +1088,16 @@ public class Cargas_Descargas extends AppCompatActivity {
                         EditTextDescarga.setEnabled(false);
                         EditTextCarga.setHint(" ");
                         EditTextDescarga.setText(" ");
+                        EditTextCarga.setHint("$");
                         EditTextDescarga.setBackgroundDrawable(ContextCompat.getDrawable(Cargas_Descargas.this,R.drawable.ic_combustible));
 
 
                     } else {
 
+                        EditTextCarga.setHint("Cantidad");
                         EditTextDescarga.setEnabled(true);
                         EditTextDescarga.setHint("Cantidad");
-                        EditTextDescarga.setBackgroundResource(0);
+                        EditTextDescarga.setBackgroundDrawable(ContextCompat.getDrawable(Cargas_Descargas.this,R.drawable.edit_text_bottom_border));
 
 
                     }
