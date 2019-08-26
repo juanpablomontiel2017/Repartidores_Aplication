@@ -1,12 +1,16 @@
 package com.example.jumpi.repartidores_aplication;
 
+import android.graphics.Color;
 import android.net.Uri;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
 
 public class CombustibleEstadisticas extends AppCompatActivity implements View.OnClickListener, GastoCombustiblePorMes_Fragment.OnFragmentInteractionListener, GastoCombustibleSemestral_Fragment.OnFragmentInteractionListener, GastoCombustibleAnual_Fragment.OnFragmentInteractionListener {
 
@@ -17,6 +21,34 @@ public class CombustibleEstadisticas extends AppCompatActivity implements View.O
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_combustible_estadisticas);
+
+
+
+        /**Añadir "manualmente" color al StatusBar **/
+
+        Window window = this.getWindow();
+
+        // clear FLAG_TRANSLUCENT_STATUS flag:
+        window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+
+        // add FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS flag to the window
+        window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
+
+        // finally change the color
+        window.setStatusBarColor(Color.parseColor("#b71c1c"));
+
+
+
+
+
+        /*Inicialización del Toolbar */
+        Toolbar toolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+
+
+
+
+
 
 
 
@@ -54,7 +86,10 @@ public class CombustibleEstadisticas extends AppCompatActivity implements View.O
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_prueba, menu);
+        getMenuInflater().inflate(R.menu.menu_filtro_gc, menu);
+
+
+
 
         return true;
 

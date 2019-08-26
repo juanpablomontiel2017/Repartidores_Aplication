@@ -1,8 +1,11 @@
 package com.example.jumpi.repartidores_aplication;
 
+import android.graphics.Color;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.view.Window;
+import android.view.WindowManager;
 
 public class ComisionesEstadisticas extends AppCompatActivity {
 
@@ -18,6 +21,24 @@ public class ComisionesEstadisticas extends AppCompatActivity {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_comisiones_estadisticas);
+
+
+        /**Añadir "manualmente" color al StatusBar **/
+
+        Window window = this.getWindow();
+
+        // clear FLAG_TRANSLUCENT_STATUS flag:
+        window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+
+        // add FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS flag to the window
+        window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
+
+        // finally change the color
+        window.setStatusBarColor(Color.parseColor("#b71c1c"));
+
+
+
+
 
 
 

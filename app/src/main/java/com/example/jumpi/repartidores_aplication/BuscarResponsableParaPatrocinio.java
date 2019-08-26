@@ -2,6 +2,7 @@ package com.example.jumpi.repartidores_aplication;
 
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.view.MenuItemCompat;
@@ -12,6 +13,8 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.Button;
 
 public class BuscarResponsableParaPatrocinio extends AppCompatActivity implements SearchView.OnQueryTextListener {
@@ -21,6 +24,9 @@ public class BuscarResponsableParaPatrocinio extends AppCompatActivity implement
     Button btnResponsableInactivo, btnResponsableActivo;
 
 
+    /************************* Comienzo del onCreate() ******************************/
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -28,8 +34,35 @@ public class BuscarResponsableParaPatrocinio extends AppCompatActivity implement
 
 
 
+
+        /**Añadir "manualmente" color al StatusBar **/
+
+        Window window = this.getWindow();
+
+        // clear FLAG_TRANSLUCENT_STATUS flag:
+        window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+
+        // add FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS flag to the window
+        window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
+
+        // finally change the color
+        window.setStatusBarColor(Color.parseColor("#b71c1c"));
+
+
+
+
+
+
+
+
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
+
+
+
+
+
 
 
         btnResponsableInactivo = (Button) findViewById(R.id.btn_responsable_inactivo);
@@ -79,8 +112,10 @@ public class BuscarResponsableParaPatrocinio extends AppCompatActivity implement
                 dialog.show();
 
 
-            }
-        });
+            }/*********** FIN DEL EVENTO onClick() ****************/
+
+
+        }); /*********** FIN DEL EVENTO setOnClickListener() ****************/
 
 
 
@@ -105,11 +140,11 @@ public class BuscarResponsableParaPatrocinio extends AppCompatActivity implement
                 startActivity(intent);
 
 
-            }
+            }/*********** FIN DEL EVENTO onClick() ****************/
 
 
 
-        });
+        });/*********** FIN DEL EVENTO setOnClickListener() ****************/
 
 
 
@@ -135,6 +170,8 @@ public class BuscarResponsableParaPatrocinio extends AppCompatActivity implement
                         startActivity(intent);
 
                     }
+
+
                 });
 
 
@@ -162,8 +199,11 @@ public class BuscarResponsableParaPatrocinio extends AppCompatActivity implement
 
 
                 return false;
-            }
-        });
+            }/*********** FIN DEL EVENTO onLongClick() ****************/
+
+
+
+        });/*********** FIN DEL EVENTO setOnLongListener() ****************/
 
 
 
@@ -217,18 +257,35 @@ public class BuscarResponsableParaPatrocinio extends AppCompatActivity implement
 
 
 
-
-            }
-        });
+            }/*********** FIN DEL EVENTO onClick() ****************/
 
 
 
+        });/*********** FIN DEL EVENTO setOnClickListener() ****************/
 
 
 
 
-    }
 
+
+
+    }/******************************* FIN DEL onCreate() ***********************************/
+
+
+
+
+
+
+    /************************************************************************/
+    /************************************************************************/
+    /************************************************************************/
+    /************************************************************************/
+    /************************************************************************/
+    /************************************************************************/
+    /************************************************************************/
+    /************************************************************************/
+    /************************************************************************/
+    /************************************************************************/
 
 
 
@@ -253,6 +310,18 @@ public class BuscarResponsableParaPatrocinio extends AppCompatActivity implement
 
 
 
+    /************************************************************************/
+    /************************************************************************/
+    /************************************************************************/
+    /************************************************************************/
+    /************************************************************************/
+    /************************************************************************/
+    /************************************************************************/
+    /************************************************************************/
+    /************************************************************************/
+    /************************************************************************/
+
+
 
     @Override
     public boolean onQueryTextSubmit(String query) {
@@ -262,8 +331,28 @@ public class BuscarResponsableParaPatrocinio extends AppCompatActivity implement
 
     }
 
-    @Override
 
+
+
+
+
+
+    /************************************************************************/
+    /************************************************************************/
+    /************************************************************************/
+    /************************************************************************/
+    /************************************************************************/
+    /************************************************************************/
+    /************************************************************************/
+    /************************************************************************/
+    /************************************************************************/
+    /************************************************************************/
+
+
+
+
+
+    @Override
     public boolean onQueryTextChange(String newText) {
 
         // User changed the text
@@ -275,8 +364,20 @@ public class BuscarResponsableParaPatrocinio extends AppCompatActivity implement
 
 
 
+    /************************************************************************/
+    /************************************************************************/
+    /************************************************************************/
+    /************************************************************************/
+    /************************************************************************/
+    /************************************************************************/
+    /************************************************************************/
+    /************************************************************************/
+    /************************************************************************/
+    /************************************************************************/
 
 
 
 
-}
+
+
+}/*************************** FIN DE LA ACTIVITY BuscarResponsableParaPatrocinio ******************************/

@@ -4,33 +4,27 @@ import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.graphics.Color;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.ScrollView;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-
-import static android.view.View.GONE;
-import static com.example.jumpi.repartidores_aplication.Utils_Spinner.ObtenerBotonParaAgregarNuevosArticulos;
-import static com.example.jumpi.repartidores_aplication.Utils_Spinner.RefrescarOtrosSpinnerConBordes;
-import static com.example.jumpi.repartidores_aplication.Utils_Spinner.contador_de_inicializacion;
 
 public class RealizarVentasClientesSupervisor extends AppCompatActivity {
 
@@ -102,6 +96,24 @@ public class RealizarVentasClientesSupervisor extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_realizar_ventas_clientes_supervisor);
+
+
+        /**Añadir "manualmente" color al StatusBar **/
+
+        Window window = this.getWindow();
+
+        // clear FLAG_TRANSLUCENT_STATUS flag:
+        window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+
+        // add FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS flag to the window
+        window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
+
+        // finally change the color
+        window.setStatusBarColor(Color.parseColor("#b71c1c"));
+
+
+
+
 
 
 

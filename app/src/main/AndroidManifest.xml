@@ -93,10 +93,11 @@
 
 
         <activity android:name=".CombustibleEstadisticas"
-            android:label=""
-            android:screenOrientation="landscape"/>
+                  android:label=""
+                  android:theme="@style/AppTheme.NoActionBar"
+                  android:screenOrientation="landscape"/>
 
-        
+
 
 
         <activity android:name=".NuevoEventoPatrocinio"
