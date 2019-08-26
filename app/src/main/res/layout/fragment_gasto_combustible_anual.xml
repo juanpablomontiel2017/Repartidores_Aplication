@@ -1,13 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout
+
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+
     android:layout_width="match_parent"
     android:layout_height="match_parent"
 
-
-    tools:context=".GastoCombustiblePorMes_Fragment">
+    tools:context=".GastoCombustibleAnual_Fragment">
 
     <!-- TODO: Update blank fragment layout -->
+
 
     <LinearLayout
 
@@ -25,10 +28,11 @@
             android:layout_marginTop="10dp"
             android:background="#FFFF"
             android:gravity="center"
-            android:text="GASTO MENSUAL"
+            android:text="GASTO ANUAL"
             android:textColor="#000"
             android:textSize="18sp"
             android:textStyle="bold" />
+
 
         <com.github.mikephil.charting.charts.BarChart
 
@@ -39,13 +43,6 @@
 
 
     </LinearLayout>
-
-
-
-
-
-
-
 
 
 

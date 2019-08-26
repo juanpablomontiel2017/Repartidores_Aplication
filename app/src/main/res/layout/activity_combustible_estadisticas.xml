@@ -12,8 +12,6 @@
     tools:context=".CombustibleEstadisticas">
 
 
-
-
     <FrameLayout
 
         android:id="@+id/contenedor_para_fragment"

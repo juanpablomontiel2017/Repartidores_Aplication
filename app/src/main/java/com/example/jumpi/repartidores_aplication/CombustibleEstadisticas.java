@@ -1,14 +1,14 @@
 package com.example.jumpi.repartidores_aplication;
 
 import android.net.Uri;
-import android.os.Bundle;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
+import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 
-public class CombustibleEstadisticas extends AppCompatActivity implements View.OnClickListener, GastoCombustiblePorMes_Fragment.OnFragmentInteractionListener, GastoCombustibleSemestral_Fragment.OnFragmentInteractionListener {
+public class CombustibleEstadisticas extends AppCompatActivity implements View.OnClickListener, GastoCombustiblePorMes_Fragment.OnFragmentInteractionListener, GastoCombustibleSemestral_Fragment.OnFragmentInteractionListener, GastoCombustibleAnual_Fragment.OnFragmentInteractionListener {
 
 
 
@@ -118,6 +118,21 @@ public class CombustibleEstadisticas extends AppCompatActivity implements View.O
 
 
         if (id == R.id.action_gasto_combustible_por_anio_prueba) {
+
+
+
+
+
+            GastoCombustibleAnual_Fragment fragment_gca = new GastoCombustibleAnual_Fragment();
+
+            FragmentTransaction transition2 = getSupportFragmentManager().beginTransaction();
+
+            transition2.replace(R.id.contenedor_para_fragment,fragment_gca);
+
+            transition2.commit();
+
+
+
             return true;
         }
 
@@ -133,4 +148,6 @@ public class CombustibleEstadisticas extends AppCompatActivity implements View.O
 
 
 
-}/************************* FIN DE LA Activity CombustibleEstadisticas****************************/
+
+
+}/****************************** FIN DE LA Activity CombustibleEstadisticas ***************************/
