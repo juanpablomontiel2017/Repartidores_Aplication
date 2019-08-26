@@ -2332,13 +2332,13 @@ public void ObtenerNuevoArticulo(String ValorElementoSeleccionadoSpinnerPrograma
 
                 final Spinner sp_nueva_tanda = (Spinner) ArrayListTandas.get(k).findViewById(R.id.sp_art);
 
-                final EditText editText_carga_nueva_tanda = (EditText) ArrayListTandas.get(k).findViewById(R.id.edtx_carga);
+                final EditText editText_carga = (EditText) ArrayListTandas.get(k).findViewById(R.id.edtx_carga);
 
-                final EditText editText_descarga_nueva_tanda = (EditText) ArrayListTandas.get(k).findViewById(R.id.edtx_descarga);
+                final EditText editText_descarga = (EditText) ArrayListTandas.get(k).findViewById(R.id.edtx_descarga);
 
-                final EditText editText_carga_money_nueva_tanda = (EditText)  ArrayListTandas.get(k).findViewById(R.id.edtx_carga_money);
+                final EditText editText_carga_money = (EditText)  ArrayListTandas.get(k).findViewById(R.id.edtx_carga_money);
 
-                final EditText editText_descarga_money_nueva_tanda = (EditText)  ArrayListTandas.get(k).findViewById(R.id.edtx_descarga_money);
+                final EditText editText_descarga_money = (EditText)  ArrayListTandas.get(k).findViewById(R.id.edtx_descarga_money);
 
 
                 btnAgregarNuevoArticuloParaLaNuevaTanda.setVisibility(View.VISIBLE);
@@ -2350,40 +2350,40 @@ public void ObtenerNuevoArticulo(String ValorElementoSeleccionadoSpinnerPrograma
 
 
 
-                editText_carga_nueva_tanda.setFocusableInTouchMode(true);
-                editText_carga_nueva_tanda.requestFocus();
-                editText_carga_nueva_tanda.setCursorVisible(true);
-                editText_carga_nueva_tanda.setHint("Cantidad");
-                editText_carga_nueva_tanda.setHintTextColor(Color.parseColor("#9e9e9e"));
-                editText_carga_nueva_tanda.setBackgroundColor(Color.TRANSPARENT);
+                editText_carga.setFocusableInTouchMode(true);
+                editText_carga.requestFocus();
+                editText_carga.setCursorVisible(true);
+                editText_carga.setHint("Cantidad");
+                editText_carga.setHintTextColor(Color.parseColor("#9e9e9e"));
+                editText_carga.setBackgroundDrawable(getDrawable(R.drawable.edit_text_material_customizado));
 
 
 
 
 
-                editText_descarga_nueva_tanda.setFocusableInTouchMode(true);
-                editText_descarga_nueva_tanda.setCursorVisible(true);
-                editText_descarga_nueva_tanda.setHint("Cantidad");
-                editText_descarga_nueva_tanda.setHintTextColor(Color.parseColor("#9e9e9e"));
-                editText_descarga_nueva_tanda.setBackgroundColor(Color.TRANSPARENT);
+                editText_descarga.setFocusableInTouchMode(true);
+                editText_descarga.setCursorVisible(true);
+                editText_descarga.setHint("Cantidad");
+                editText_descarga.setHintTextColor(Color.parseColor("#9e9e9e"));
+                editText_descarga.setBackgroundDrawable(getDrawable(R.drawable.edit_text_material_customizado));
 
 
 
 
-                editText_carga_money_nueva_tanda.setFocusableInTouchMode(true);
-                editText_carga_money_nueva_tanda.setCursorVisible(true);
-                editText_carga_money_nueva_tanda.setHint("$");
-                editText_carga_money_nueva_tanda.setHintTextColor(Color.parseColor("#9e9e9e"));
-                editText_carga_money_nueva_tanda.setBackgroundColor(Color.TRANSPARENT);
+                editText_carga_money.setFocusableInTouchMode(true);
+                editText_carga_money.setCursorVisible(true);
+                editText_carga_money.setHint("$");
+                editText_carga_money.setHintTextColor(Color.parseColor("#9e9e9e"));
+                editText_carga_money.setBackgroundDrawable(getDrawable(R.drawable.edit_text_material_customizado));
 
 
 
 
-                editText_descarga_money_nueva_tanda.setFocusableInTouchMode(true);
-                editText_descarga_money_nueva_tanda.setCursorVisible(true);
-                editText_descarga_money_nueva_tanda.setHint("$");
-                editText_descarga_money_nueva_tanda.setHintTextColor(Color.parseColor("#9e9e9e"));
-                editText_descarga_money_nueva_tanda.setBackgroundColor(Color.TRANSPARENT);
+                editText_descarga_money.setFocusableInTouchMode(true);
+                editText_descarga_money.setCursorVisible(true);
+                editText_descarga_money.setHint("$");
+                editText_descarga_money.setHintTextColor(Color.parseColor("#9e9e9e"));
+                editText_descarga_money.setBackgroundDrawable(getDrawable(R.drawable.edit_text_material_customizado));
 
 
 
@@ -2394,9 +2394,9 @@ public void ObtenerNuevoArticulo(String ValorElementoSeleccionadoSpinnerPrograma
 
                     final LinearLayout LLH_Nuevo_Articulo = (LinearLayout) LLV_Tercer_Tupla.getChildAt(l);
 
-                    final ImageButton btnDeleteNuevoArticuloParaLaNuevaTanda = (ImageButton) LLH_Nuevo_Articulo.findViewById(R.id.delete_art);
+                    final ImageButton btnDeleteNuevoArticulo = (ImageButton) LLH_Nuevo_Articulo.findViewById(R.id.delete_art);
 
-                    final Spinner sp_nuevo_articulo_nueva_tanda = (Spinner) LLH_Nuevo_Articulo.findViewById(R.id.sp_new_art);
+                    final Spinner sp_nuevo_del_articulo = (Spinner) LLH_Nuevo_Articulo.findViewById(R.id.sp_new_art);
 
                     final EditText et_carga_del_nuevo_articulo = (EditText) LLH_Nuevo_Articulo.findViewById(R.id.edtx_carga_new_art);
 
@@ -2405,14 +2405,14 @@ public void ObtenerNuevoArticulo(String ValorElementoSeleccionadoSpinnerPrograma
 
 
 
-                    btnDeleteNuevoArticuloParaLaNuevaTanda.setVisibility(View.VISIBLE);
+                    btnDeleteNuevoArticulo.setVisibility(View.VISIBLE);
 
 
 
 
 
 
-                    sp_nuevo_articulo_nueva_tanda.setEnabled(true);
+                    sp_nuevo_del_articulo.setEnabled(true);
 
 
 
@@ -2421,7 +2421,7 @@ public void ObtenerNuevoArticulo(String ValorElementoSeleccionadoSpinnerPrograma
                     et_carga_del_nuevo_articulo.setCursorVisible(true);
                     et_carga_del_nuevo_articulo.setHint("Cantidad");
                     et_carga_del_nuevo_articulo.setHintTextColor(Color.parseColor("#9e9e9e"));
-                    et_carga_del_nuevo_articulo.setBackgroundColor(Color.TRANSPARENT);
+                    et_carga_del_nuevo_articulo.setBackgroundDrawable(getDrawable(R.drawable.edit_text_material_customizado));
 
 
 
@@ -2430,7 +2430,7 @@ public void ObtenerNuevoArticulo(String ValorElementoSeleccionadoSpinnerPrograma
                     et_descarga_del_nuevo_articulo.setCursorVisible(true);
                     et_descarga_del_nuevo_articulo.setHint("Cantidad");
                     et_descarga_del_nuevo_articulo.setHintTextColor(Color.parseColor("#9e9e9e"));
-                    et_descarga_del_nuevo_articulo.setBackgroundColor(Color.TRANSPARENT);
+                    et_descarga_del_nuevo_articulo.setBackgroundDrawable(getDrawable(R.drawable.edit_text_material_customizado));
 
 
 

@@ -1482,41 +1482,41 @@ public class EntregaRetiroEnvasesPatrocinio extends AppCompatActivity {
 
             for(int k=0; k < ArrayListVueltas.size(); k++){
 
-                final ImageButton btnAgregarNuevoArticuloParaLaNuevaVuelta = (ImageButton) ArrayListVueltas.get(k).findViewById(R.id.add_art_erep);
+                final ImageButton btnAgregarNuevoArticuloVuelta = (ImageButton) ArrayListVueltas.get(k).findViewById(R.id.add_art_erep);
 
-                final Spinner sp_nueva_vuelta = (Spinner) ArrayListVueltas.get(k).findViewById(R.id.sp_art_erep);
+                final Spinner sp_vuelta = (Spinner) ArrayListVueltas.get(k).findViewById(R.id.sp_art_erep);
 
-                final EditText editText_entrega_nueva_vuelta = (EditText) ArrayListVueltas.get(k).findViewById(R.id.edtx_entrega_erep);
+                final EditText editText_entrega_vuelta = (EditText) ArrayListVueltas.get(k).findViewById(R.id.edtx_entrega_erep);
 
-                final EditText editText_retiro_nueva_vuelta = (EditText) ArrayListVueltas.get(k).findViewById(R.id.edtx_retiro_erep);
-
-
-
-                btnAgregarNuevoArticuloParaLaNuevaVuelta.setVisibility(View.VISIBLE);
+                final EditText editText_retiro_vuelta = (EditText) ArrayListVueltas.get(k).findViewById(R.id.edtx_retiro_erep);
 
 
 
-
-                sp_nueva_vuelta.setEnabled(true);
-
-
-
-                editText_entrega_nueva_vuelta.setFocusableInTouchMode(true);
-                editText_entrega_nueva_vuelta.requestFocus();
-                editText_entrega_nueva_vuelta.setCursorVisible(true);
-                editText_entrega_nueva_vuelta.setHint("Cantidad");
-                editText_entrega_nueva_vuelta.setHintTextColor(Color.parseColor("#9e9e9e"));
-                editText_entrega_nueva_vuelta.setBackgroundColor(Color.TRANSPARENT);
+                btnAgregarNuevoArticuloVuelta.setVisibility(View.VISIBLE);
 
 
 
 
+                sp_vuelta.setEnabled(true);
 
-                editText_retiro_nueva_vuelta.setFocusableInTouchMode(true);
-                editText_retiro_nueva_vuelta.setCursorVisible(true);
-                editText_retiro_nueva_vuelta.setHint("Cantidad");
-                editText_retiro_nueva_vuelta.setHintTextColor(Color.parseColor("#9e9e9e"));
-                editText_retiro_nueva_vuelta.setBackgroundColor(Color.TRANSPARENT);
+
+
+                editText_entrega_vuelta.setFocusableInTouchMode(true);
+                editText_entrega_vuelta.requestFocus();
+                editText_entrega_vuelta.setCursorVisible(true);
+                editText_entrega_vuelta.setHint("Cantidad");
+                editText_entrega_vuelta.setHintTextColor(Color.parseColor("#9e9e9e"));
+                editText_entrega_vuelta.setBackgroundDrawable(getDrawable(R.drawable.edit_text_material_customizado));
+
+
+
+
+
+                editText_retiro_vuelta.setFocusableInTouchMode(true);
+                editText_retiro_vuelta.setCursorVisible(true);
+                editText_retiro_vuelta.setHint("Cantidad");
+                editText_retiro_vuelta.setHintTextColor(Color.parseColor("#9e9e9e"));
+                editText_retiro_vuelta.setBackgroundDrawable(getDrawable(R.drawable.edit_text_material_customizado));
 
 
 
@@ -1530,9 +1530,9 @@ public class EntregaRetiroEnvasesPatrocinio extends AppCompatActivity {
 
                     final LinearLayout LLH_Nuevo_Articulo = (LinearLayout) LLV_Tercer_Tupla_Patrocinio.getChildAt(l);
 
-                    final ImageButton btnDeleteNuevoArticuloParaLaNuevaVuelta = (ImageButton) LLH_Nuevo_Articulo.findViewById(R.id.delete_art);
+                    final ImageButton btnDeleteNuevoArticuloVuelta = (ImageButton) LLH_Nuevo_Articulo.findViewById(R.id.delete_art);
 
-                    final Spinner sp_nuevo_articulo_nueva_vuelta = (Spinner) LLH_Nuevo_Articulo.findViewById(R.id.sp_new_art);
+                    final Spinner sp_nuevo_articulo_vuelta = (Spinner) LLH_Nuevo_Articulo.findViewById(R.id.sp_new_art);
 
                     final EditText et_entrega_del_nuevo_articulo = (EditText) LLH_Nuevo_Articulo.findViewById(R.id.edtx_carga_new_art);
 
@@ -1541,11 +1541,11 @@ public class EntregaRetiroEnvasesPatrocinio extends AppCompatActivity {
 
 
 
-                    btnDeleteNuevoArticuloParaLaNuevaVuelta.setVisibility(View.VISIBLE);
+                    btnDeleteNuevoArticuloVuelta.setVisibility(View.VISIBLE);
 
 
 
-                    sp_nuevo_articulo_nueva_vuelta.setEnabled(true);
+                    sp_nuevo_articulo_vuelta.setEnabled(true);
 
 
 
@@ -1553,7 +1553,7 @@ public class EntregaRetiroEnvasesPatrocinio extends AppCompatActivity {
                     et_entrega_del_nuevo_articulo.setCursorVisible(true);
                     et_entrega_del_nuevo_articulo.setHint("Cantidad");
                     et_entrega_del_nuevo_articulo.setHintTextColor(Color.parseColor("#9e9e9e"));
-                    et_entrega_del_nuevo_articulo.setBackgroundColor(Color.TRANSPARENT);
+                    et_entrega_del_nuevo_articulo.setBackgroundDrawable(getDrawable(R.drawable.edit_text_material_customizado));
 
 
 
@@ -1562,7 +1562,7 @@ public class EntregaRetiroEnvasesPatrocinio extends AppCompatActivity {
                     et_retiro_del_nuevo_articulo.setCursorVisible(true);
                     et_retiro_del_nuevo_articulo.setHint("Cantidad");
                     et_retiro_del_nuevo_articulo.setHintTextColor(Color.parseColor("#9e9e9e"));
-                    et_retiro_del_nuevo_articulo.setBackgroundColor(Color.TRANSPARENT);
+                    et_retiro_del_nuevo_articulo.setBackgroundDrawable(getDrawable(R.drawable.edit_text_material_customizado));
 
 
 
