@@ -16,7 +16,6 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
-import android.widget.Adapter;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
@@ -26,8 +25,6 @@ import android.widget.ScrollView;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
-
-import com.github.mikephil.charting.utils.Utils;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -72,7 +69,7 @@ public class Cargas_Descargas extends AppCompatActivity {
 
     /******Matriz clásica********/
 
-    String[] ArticulosDelArrayClasico = {"Bidones", "Dispenser Plástico", "Canillas", "Dispenser Eléctrico", "Envases rotos/pinchados", "Envases estropeados"};
+    String[] ArticulosDelArrayClasico = {"Bidones", "Dispenser plástico", "Canillas", "Dispenser eléctrico", "Envases rotos/pinchados", "Envases estropeados","Combustible"};
 
 
     /******Variables tipo String********/
@@ -399,7 +396,7 @@ public class Cargas_Descargas extends AppCompatActivity {
 
 
         /*Llamada a la función: */
-        setSpinner(spinner_fijo, eTcantCarga,true);
+        setSpinner(spinner_fijo, eTcantCarga,true, eTcantDescarga);
 
 
 
@@ -901,7 +898,8 @@ public class Cargas_Descargas extends AppCompatActivity {
 
 
 
-    public void setSpinner(final Spinner spinner, final EditText EditTextCarga,boolean EsSpinnerFijo) {
+    public void setSpinner(final Spinner spinner, final EditText EditTextCarga,boolean EsSpinnerFijo,
+                           final EditText EditTextDescarga) {
 
 
     /*********************************************************************************************************/
@@ -982,15 +980,43 @@ public class Cargas_Descargas extends AppCompatActivity {
             EditTextCarga.setEnabled(false);
             EditTextCarga.setHint("");
             EditTextCarga.setText("");
+            EditTextDescarga.setHint("Cantidad");
+
 
 
         } else {
 
             EditTextCarga.setEnabled(true);
             EditTextCarga.setHint("Cantidad");
+            EditTextDescarga.setHint("Cantidad");
+
 
 
         }
+
+        if (ArticuloSeleccionado == "Combustible") {
+
+            EditTextCarga.setHint("$");
+            EditTextDescarga.setEnabled(false);
+            EditTextDescarga.setHint(" ");
+            EditTextDescarga.setText("");
+
+
+        }
+
+
+        else {
+
+            EditTextDescarga.setEnabled(true);
+            EditTextDescarga.setHint("Cantidad");
+
+        }
+
+
+
+
+
+
 
         /*****************************************************************************/
 
@@ -1046,16 +1072,42 @@ public class Cargas_Descargas extends AppCompatActivity {
                     if (text == "Envases rotos/pinchados" || text == "Envases estropeados") {
 
                         EditTextCarga.setEnabled(false);
-                        EditTextCarga.setHint("");
+                        EditTextCarga.setHint(" ");
                         EditTextCarga.setText("");
+                        EditTextDescarga.setHint("Cantidad");
 
 
                     } else {
 
                         EditTextCarga.setEnabled(true);
                         EditTextCarga.setHint("Cantidad");
+                        EditTextDescarga.setHint("Cantidad");
+
 
                     } //Fin del else
+
+
+
+
+                    if (text == "Combustible") {
+
+                        EditTextCarga.setHint("$");
+                        EditTextDescarga.setEnabled(false);
+                        EditTextDescarga.setHint("");
+                        EditTextDescarga.setText("");
+
+                        EditTextDescarga.setBackgroundDrawable(getDrawable(R.drawable.ic_combustible));
+
+
+                    } else {
+
+                        EditTextDescarga.setEnabled(true);
+                        EditTextDescarga.setBackgroundDrawable(getDrawable(R.drawable.edit_text_material_customizado));
+
+                    }
+
+
+
 
 
 
@@ -1343,7 +1395,7 @@ public void ObtenerNuevoArticulo(String ValorElementoSeleccionadoSpinnerPrograma
 
 
     /*Llamada a la función: */
-    setSpinner(spinner_nuevos_articulos, EditText_Carga_Nuevo_Articulo,false);
+    setSpinner(spinner_nuevos_articulos, EditText_Carga_Nuevo_Articulo,false, EditText_Descarga_Nuevo_Articulo);
 
 
     ArticuloSeleccionadoAnterior = spinner_nuevos_articulos.getSelectedItem().toString();
@@ -1608,7 +1660,7 @@ public void ObtenerNuevoArticulo(String ValorElementoSeleccionadoSpinnerPrograma
         Utils_Spinner.contador_de_inicializacion = 0;
 
         /*Llamada a la función: */
-        setSpinner(spinner_fijo_nueva_tanda, et_carga_nueva_tanda,true);
+        setSpinner(spinner_fijo_nueva_tanda, et_carga_nueva_tanda,true, et_descarga_nueva_tanda);
 
 
         ArticuloSeleccionadoAnterior = spinner_fijo_nueva_tanda.getSelectedItem().toString();

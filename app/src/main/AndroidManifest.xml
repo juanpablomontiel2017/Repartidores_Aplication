@@ -159,6 +159,7 @@
             android:theme="@style/AppTheme.NoActionBar"/>
 
 
+
         <activity
             android:name=".Cargas_Descargas"
             android:configChanges="screenSize|orientation"
@@ -172,6 +173,7 @@
             android:label=" "
             android:parentActivityName=".LoginActivity"
             android:theme="@style/AppTheme.NoActionBar"/>
+
 
 
 

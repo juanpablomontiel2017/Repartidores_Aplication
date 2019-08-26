@@ -36,7 +36,6 @@
                 android:id="@+id/llv_contenedor_para_bordes"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@drawable/borde_linear_layout"
                 android:orientation="vertical">
 
 
