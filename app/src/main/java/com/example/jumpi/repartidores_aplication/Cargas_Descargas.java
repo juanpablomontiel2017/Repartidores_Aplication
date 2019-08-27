@@ -1208,6 +1208,8 @@ public class Cargas_Descargas extends AppCompatActivity {
 
 
 
+
+
         /******>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>###########<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<******/
         /*******************Mostrar los valores de los campos que permanecen fijos de las nuevas tandas****************/
         /******>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>###########<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<******/
@@ -1273,6 +1275,11 @@ public class Cargas_Descargas extends AppCompatActivity {
                         String ValorDescargaNuevoArticuloNuevaTanda = preferences.getString("Repartidor: " + nombre_apellido_recibir + "CantidadDeDescargaNuevoArticuloProgramatico_NUEVA_TANDA - " + "Tanda Numero: " + indice_tandas + " - " + "Posicion: " + j, "");
 
 
+
+
+
+
+
                         if (ValorCargaNuevoArticuloNuevaTanda != "" || ValorDescargaNuevoArticuloNuevaTanda != "") {
 
                             final View tanda = ArrayListTandas.get(indice_tandas);
@@ -1317,6 +1324,8 @@ public class Cargas_Descargas extends AppCompatActivity {
             DeshabilitarVistasDeLasTandasAlGuardarCambios(true);
 
         }
+
+
 
 
 
@@ -2218,7 +2227,14 @@ public void ObtenerNuevoArticulo(String ValorElementoSeleccionadoSpinnerPrograma
 
                     btnAgregarNuevoArticuloParaLaNuevaTanda.setVisibility(GONE);
 
+
+
                     sp_nueva_tanda.setEnabled(false);
+
+
+                    String text_spinner_fijo = sp_nueva_tanda.getSelectedItem().toString();
+
+
 
                     editText_carga_nueva_tanda.setFocusable(false);
                     editText_carga_nueva_tanda.setCursorVisible(false);
@@ -2227,10 +2243,24 @@ public void ObtenerNuevoArticulo(String ValorElementoSeleccionadoSpinnerPrograma
                     editText_carga_nueva_tanda.setBackgroundColor(Color.TRANSPARENT);
 
 
-                    editText_descarga_nueva_tanda.setFocusable(false);
-                    editText_descarga_nueva_tanda.setHint("");
-                    editText_descarga_nueva_tanda.setHintTextColor(Color.parseColor("#fafafa"));
-                    editText_descarga_nueva_tanda.setBackgroundColor(Color.TRANSPARENT);
+                    if(text_spinner_fijo == "Combustible"){
+
+                        editText_descarga_nueva_tanda.setFocusable(false);
+                        editText_descarga_nueva_tanda.setHint("");
+                        editText_descarga_nueva_tanda.setHintTextColor(Color.parseColor("#fafafa"));
+                        editText_descarga_nueva_tanda.setBackgroundDrawable(getDrawable(R.drawable.ic_combustible));
+
+
+
+                    } else {
+
+                        editText_descarga_nueva_tanda.setFocusable(false);
+                        editText_descarga_nueva_tanda.setHint("");
+                        editText_descarga_nueva_tanda.setHintTextColor(Color.parseColor("#fafafa"));
+                        editText_descarga_nueva_tanda.setBackgroundColor(Color.TRANSPARENT);
+
+                    }
+
 
 
                     editText_carga_money_nueva_tanda.setFocusable(false);
@@ -2243,6 +2273,11 @@ public void ObtenerNuevoArticulo(String ValorElementoSeleccionadoSpinnerPrograma
                     editText_descarga_money_nueva_tanda.setHint("");
                     editText_descarga_money_nueva_tanda.setHintTextColor(Color.parseColor("#fafafa"));
                     editText_descarga_money_nueva_tanda.setBackgroundColor(Color.TRANSPARENT);
+
+
+
+
+
 
 
 
@@ -2263,7 +2298,12 @@ public void ObtenerNuevoArticulo(String ValorElementoSeleccionadoSpinnerPrograma
 
                         btnDeleteNuevoArticuloParaLaNuevaTanda.setVisibility(GONE);
 
+
                         sp_nuevo_articulo_nueva_tanda.setEnabled(false);
+
+                        String text_spinner_programatico = sp_nuevo_articulo_nueva_tanda.getSelectedItem().toString();
+
+
 
                         et_carga_del_nuevo_articulo.setFocusable(false);
                         et_carga_del_nuevo_articulo.setHint("");
@@ -2271,11 +2311,29 @@ public void ObtenerNuevoArticulo(String ValorElementoSeleccionadoSpinnerPrograma
                         et_carga_del_nuevo_articulo.setBackgroundColor(Color.TRANSPARENT);
 
 
-                        et_descarga_del_nuevo_articulo.setFocusable(false);
-                        et_descarga_del_nuevo_articulo.setHint("");
-                        et_descarga_del_nuevo_articulo.setHintTextColor(Color.parseColor("#fafafa"));
-                        et_descarga_del_nuevo_articulo.setBackgroundColor(Color.TRANSPARENT);
 
+
+                        if(text_spinner_programatico == "Combustible"){
+
+                            et_descarga_del_nuevo_articulo.setFocusable(false);
+                            et_descarga_del_nuevo_articulo.setHint("");
+                            et_descarga_del_nuevo_articulo.setHintTextColor(Color.parseColor("#fafafa"));
+                            et_descarga_del_nuevo_articulo.setBackgroundDrawable(getDrawable(R.drawable.ic_combustible));
+
+
+
+                        } else {
+
+
+                            et_descarga_del_nuevo_articulo.setFocusable(false);
+                            et_descarga_del_nuevo_articulo.setHint("");
+                            et_descarga_del_nuevo_articulo.setHintTextColor(Color.parseColor("#fafafa"));
+                            et_descarga_del_nuevo_articulo.setBackgroundColor(Color.TRANSPARENT);
+
+
+
+
+                        }//Fin del else
 
 
 
