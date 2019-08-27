@@ -579,7 +579,7 @@ public class EntregaRetiroEnvasesPatrocinio extends AppCompatActivity {
     public void RefrescarVueltasEnPantalla(){
 
 
-        SharedPreferences preferences = getSharedPreferences("Datos", MODE_PRIVATE);
+        SharedPreferences preferences = getSharedPreferences("Datos_Patrocinio_Supervisor", MODE_PRIVATE);
 
 
 
@@ -616,7 +616,7 @@ public class EntregaRetiroEnvasesPatrocinio extends AppCompatActivity {
                         String ValorRetiroNuevoArticuloProgramatico = preferences.getString("CantidadDeRetiroNuevoArticuloProgramatico - " + "Vuelta Numero: " + indice_vueltas + " - " + "Posicion: " + j, "");
 
 
-                        if (ValorEntregaNuevoArticuloProgramatico != "" && ValorRetiroNuevoArticuloProgramatico != "") {
+                        if (ValorEntregaNuevoArticuloProgramatico != "" || ValorRetiroNuevoArticuloProgramatico != "") {
 
                             final View vuelta = ArrayListVueltas.get(indice_vueltas);
 
@@ -649,7 +649,11 @@ public class EntregaRetiroEnvasesPatrocinio extends AppCompatActivity {
 
 
 
+        if(preferences.getBoolean("GuardarLasVistasDeLasVueltasDeshabilitadas",false)){
 
+            DeshabilitarVistasDeLasVueltasAlGuardarCambios(true);
+
+        }
 
 
 
@@ -1222,32 +1226,14 @@ public class EntregaRetiroEnvasesPatrocinio extends AppCompatActivity {
 
 
 
-
         /*Llamada a la función: */
         RefrescarOtrosSpinner(spinner ,null, ArticuloSeleccionado, this);
 
 
 
+        /*Llamada a la función: */
+        Habilitar_Deshabilitar_Campos_ElementosEspecialesDelSpinner(ArticuloSeleccionado,spinner,EditTextEntregaPatrocinio);
 
-        /*************************************************************************/
-
-
-
-
-        if (ArticuloSeleccionado == "Envases rotos/pinchados" || ArticuloSeleccionado == "Dispenser plástico roto" ||
-                ArticuloSeleccionado == "Dispenser eléctrico descompuesto") {
-
-            EditTextEntregaPatrocinio.setEnabled(false);
-            EditTextEntregaPatrocinio.setHint("");
-            EditTextEntregaPatrocinio.setText("");
-
-
-        } else {
-
-            EditTextEntregaPatrocinio.setEnabled(true);
-            EditTextEntregaPatrocinio.setHint("Cantidad");
-
-        } //Fin del else
 
 
         /*****************************************************************************/
@@ -1299,20 +1285,9 @@ public class EntregaRetiroEnvasesPatrocinio extends AppCompatActivity {
                     to.show();
 
 
-                    if (text == "Envases rotos/pinchados" || text == "Dispenser plástico roto" ||
-                            text == "Dispenser eléctrico descompuesto") {
 
-                        EditTextEntregaPatrocinio.setEnabled(false);
-                        EditTextEntregaPatrocinio.setHint("");
-                        EditTextEntregaPatrocinio.setText("");
-
-
-                    } else {
-
-                        EditTextEntregaPatrocinio.setEnabled(true);
-                        EditTextEntregaPatrocinio.setHint("Cantidad");
-
-                    } //Fin del else
+                    /*Llamada a la función: */
+                    Habilitar_Deshabilitar_Campos_ElementosEspecialesDelSpinner(text,spinner,EditTextEntregaPatrocinio);
 
 
                     /*Llamada a la función: */
@@ -1346,6 +1321,76 @@ public class EntregaRetiroEnvasesPatrocinio extends AppCompatActivity {
 
 
     }/******************************FIN DE LA FUNCIÓN setSpinner()*****************************/
+
+
+
+
+
+
+    /***************************************************************************************************/
+    /***************************************************************************************************/
+    /***************************************************************************************************/
+    /***************************************************************************************************/
+    /***************************************************************************************************/
+    /***************************************************************************************************/
+    /***************************************************************************************************/
+    /***************************************************************************************************/
+    /***************************************************************************************************/
+    /***************************************************************************************************/
+
+
+
+
+
+
+
+
+    public void Habilitar_Deshabilitar_Campos_ElementosEspecialesDelSpinner(String ArticuloSeleccionadoText,Spinner spinner,
+                                                                            EditText EditTextEntrega){
+
+
+
+
+
+
+        if (ArticuloSeleccionadoText == "Envases rotos/pinchados" || ArticuloSeleccionadoText == "Dispenser plástico roto"
+        || ArticuloSeleccionadoText == "Dispenser eléctrico descompuesto") {
+
+            EditTextEntrega.setEnabled(false);
+            EditTextEntrega.setHint("");
+            EditTextEntrega.setText("");
+
+
+        } else {
+
+            EditTextEntrega.setEnabled(true);
+            EditTextEntrega.setHint("Cantidad");
+
+        }
+
+
+
+
+
+
+    }/***************** Habilitar_Deshabilitar_Campos_ElementosEspecialesDelSpinner() *****************/
+
+
+
+
+
+    /***************************************************************************************************/
+    /***************************************************************************************************/
+    /***************************************************************************************************/
+    /***************************************************************************************************/
+    /***************************************************************************************************/
+    /***************************************************************************************************/
+    /***************************************************************************************************/
+    /***************************************************************************************************/
+    /***************************************************************************************************/
+    /***************************************************************************************************/
+
+
 
 
 
@@ -1912,22 +1957,45 @@ public class EntregaRetiroEnvasesPatrocinio extends AppCompatActivity {
 
 
 
-                editText_entrega_vuelta.setFocusableInTouchMode(true);
-                editText_entrega_vuelta.requestFocus();
-                editText_entrega_vuelta.setCursorVisible(true);
-                editText_entrega_vuelta.setHint("Cantidad");
-                editText_entrega_vuelta.setHintTextColor(Color.parseColor("#9e9e9e"));
-                editText_entrega_vuelta.setBackgroundDrawable(getDrawable(R.drawable.edit_text_material_customizado));
+                String text_spinner_fijo = sp_vuelta.getSelectedItem().toString();
+
+
+                if(text_spinner_fijo == "Envases rotos/pinchados" || text_spinner_fijo == "Dispenser plástico roto"
+                   || text_spinner_fijo == "Dispenser eléctrico descompuesto"){
+
+
+                    editText_entrega_vuelta.setEnabled(false);
+                    editText_entrega_vuelta.setHint(" ");
+                    editText_entrega_vuelta.setText("");
+                    editText_entrega_vuelta.setHint("Cantidad");
+
+
+                } else {
+
+
+
+                    editText_entrega_vuelta.setFocusableInTouchMode(true);
+                    editText_entrega_vuelta.requestFocus();
+                    editText_entrega_vuelta.setCursorVisible(true);
+                    editText_entrega_vuelta.setHint("Cantidad");
+                    editText_entrega_vuelta.setHintTextColor(Color.parseColor("#9e9e9e"));
+                    editText_entrega_vuelta.setBackgroundDrawable(getDrawable(R.drawable.edit_text_material_customizado));
 
 
 
 
 
-                editText_retiro_vuelta.setFocusableInTouchMode(true);
-                editText_retiro_vuelta.setCursorVisible(true);
-                editText_retiro_vuelta.setHint("Cantidad");
-                editText_retiro_vuelta.setHintTextColor(Color.parseColor("#9e9e9e"));
-                editText_retiro_vuelta.setBackgroundDrawable(getDrawable(R.drawable.edit_text_material_customizado));
+                    editText_retiro_vuelta.setFocusableInTouchMode(true);
+                    editText_retiro_vuelta.setCursorVisible(true);
+                    editText_retiro_vuelta.setHint("Cantidad");
+                    editText_retiro_vuelta.setHintTextColor(Color.parseColor("#9e9e9e"));
+                    editText_retiro_vuelta.setBackgroundDrawable(getDrawable(R.drawable.edit_text_material_customizado));
+
+
+
+
+                }
+
 
 
 
@@ -1960,20 +2028,41 @@ public class EntregaRetiroEnvasesPatrocinio extends AppCompatActivity {
 
 
 
-                    et_entrega_del_nuevo_articulo.setFocusableInTouchMode(true);
-                    et_entrega_del_nuevo_articulo.setCursorVisible(true);
-                    et_entrega_del_nuevo_articulo.setHint("Cantidad");
-                    et_entrega_del_nuevo_articulo.setHintTextColor(Color.parseColor("#9e9e9e"));
-                    et_entrega_del_nuevo_articulo.setBackgroundDrawable(getDrawable(R.drawable.edit_text_material_customizado));
+
+                    String text_spinner_programatico = sp_nuevo_articulo_vuelta.getSelectedItem().toString();
+
+
+                    if(text_spinner_programatico == "Envases rotos/pinchados" ||
+                            text_spinner_programatico == "Dispenser plástico roto" ||
+                            text_spinner_programatico == "Dispenser eléctrico descompuesto"){
+
+
+                        et_entrega_del_nuevo_articulo.setEnabled(false);
+                        et_entrega_del_nuevo_articulo.setHint(" ");
+                        et_entrega_del_nuevo_articulo.setText("");
+                        et_entrega_del_nuevo_articulo.setHint("Cantidad");
+
+
+                    } else {
+
+                        et_entrega_del_nuevo_articulo.setFocusableInTouchMode(true);
+                        et_entrega_del_nuevo_articulo.setCursorVisible(true);
+                        et_entrega_del_nuevo_articulo.setHint("Cantidad");
+                        et_entrega_del_nuevo_articulo.setHintTextColor(Color.parseColor("#9e9e9e"));
+                        et_entrega_del_nuevo_articulo.setBackgroundDrawable(getDrawable(R.drawable.edit_text_material_customizado));
 
 
 
 
-                    et_retiro_del_nuevo_articulo.setFocusableInTouchMode(true);
-                    et_retiro_del_nuevo_articulo.setCursorVisible(true);
-                    et_retiro_del_nuevo_articulo.setHint("Cantidad");
-                    et_retiro_del_nuevo_articulo.setHintTextColor(Color.parseColor("#9e9e9e"));
-                    et_retiro_del_nuevo_articulo.setBackgroundDrawable(getDrawable(R.drawable.edit_text_material_customizado));
+                        et_retiro_del_nuevo_articulo.setFocusableInTouchMode(true);
+                        et_retiro_del_nuevo_articulo.setCursorVisible(true);
+                        et_retiro_del_nuevo_articulo.setHint("Cantidad");
+                        et_retiro_del_nuevo_articulo.setHintTextColor(Color.parseColor("#9e9e9e"));
+                        et_retiro_del_nuevo_articulo.setBackgroundDrawable(getDrawable(R.drawable.edit_text_material_customizado));
+
+
+
+                    }//Fin del else
 
 
 
@@ -2009,7 +2098,7 @@ public class EntregaRetiroEnvasesPatrocinio extends AppCompatActivity {
     public void MostrarValoresDelSharedPreferencesPatrocinio() {
 
 
-        SharedPreferences preferences = getSharedPreferences("Datos", MODE_PRIVATE);
+        SharedPreferences preferences = getSharedPreferences("Datos_Patrocinio_Supervisor", MODE_PRIVATE);
 
 
 
@@ -2071,7 +2160,7 @@ public class EntregaRetiroEnvasesPatrocinio extends AppCompatActivity {
                         String ValorRetiroNuevoArticuloProgramatico = preferences.getString("CantidadDeRetiroNuevoArticuloProgramatico - " + "Vuelta Numero: " + indice_vueltas + " - " + "Posicion: " + j, "");
 
 
-                        if (ValorEntregaNuevoArticuloProgramatico != "" && ValorRetiroNuevoArticuloProgramatico != "") {
+                        if (ValorEntregaNuevoArticuloProgramatico != "" || ValorRetiroNuevoArticuloProgramatico != "") {
 
                             final View tanda = ArrayListVueltas.get(indice_vueltas);
 
@@ -2147,7 +2236,7 @@ public class EntregaRetiroEnvasesPatrocinio extends AppCompatActivity {
 
     public void GuardarValoresEnSharedPreferencesPatrocinio() {
 
-        SharedPreferences sharedPreferences = getSharedPreferences("Datos", MODE_PRIVATE);
+        SharedPreferences sharedPreferences = getSharedPreferences("Datos_Patrocinio_Supervisor", MODE_PRIVATE);
 
         SharedPreferences.Editor editor = sharedPreferences.edit();
 
@@ -2265,7 +2354,7 @@ public class EntregaRetiroEnvasesPatrocinio extends AppCompatActivity {
 
     public void BorrarValoresDelSharedPreferencesPatrocinio(){
 
-        SharedPreferences sharedPreferences = getSharedPreferences("Datos", MODE_PRIVATE);
+        SharedPreferences sharedPreferences = getSharedPreferences("Datos_Patrocinio_Supervisor", MODE_PRIVATE);
 
         SharedPreferences.Editor editor = sharedPreferences.edit();
 
@@ -2585,7 +2674,7 @@ public class EntregaRetiroEnvasesPatrocinio extends AppCompatActivity {
                     //Debería salir de esta activity, desactivar los botones: flotante, guardar, editar y el propio finalizar.
 
 
-                    SharedPreferences preferences = getSharedPreferences("Datos", MODE_PRIVATE);
+                    SharedPreferences preferences = getSharedPreferences("Datos_Patrocinio_Supervisor", MODE_PRIVATE);
 
                     Integer DimensionArrayNuevasVueltas = Integer.parseInt(preferences.getString("DimensionArrayNuevasVueltas", "0"));
 

@@ -732,7 +732,7 @@ public class Cargas_Descargas extends AppCompatActivity {
         public void RefrescarTandasEnPantalla(){
 
 
-            SharedPreferences preferences = getSharedPreferences("Datos", MODE_PRIVATE);
+            SharedPreferences preferences = getSharedPreferences("Datos_Cargas_Descargas", MODE_PRIVATE);
 
 
 
@@ -775,7 +775,7 @@ public class Cargas_Descargas extends AppCompatActivity {
                             String ValorDescargaNuevoArticuloNuevaTanda = preferences.getString("Repartidor: " + nombre_apellido_recibir + "CantidadDeDescargaNuevoArticuloProgramatico_NUEVA_TANDA - " + "Tanda Numero: " + indice_tandas + " - " + "Posicion: " + j, "");
 
 
-                            if (ValorCargaNuevoArticuloNuevaTanda != "" && ValorDescargaNuevoArticuloNuevaTanda != "") {
+                            if (ValorCargaNuevoArticuloNuevaTanda != "" || ValorDescargaNuevoArticuloNuevaTanda != "") {
 
                                 final View tanda = ArrayListTandas.get(indice_tandas);
 
@@ -805,6 +805,11 @@ public class Cargas_Descargas extends AppCompatActivity {
 
 
 
+            if(preferences.getBoolean("GuardarLasVistasDeLasTandasDeshabilitadas",false)){
+
+                DeshabilitarVistasDeLasTandasAlGuardarCambios(true);
+
+            }
 
 
 
@@ -989,58 +994,13 @@ public class Cargas_Descargas extends AppCompatActivity {
 
 
 
-
         /*Llamada a la función: */
         Utils_Spinner.RefrescarOtrosSpinner(spinner ,null, ArticuloSeleccionado,this);
 
 
 
-
-        /*******************************************************************************************/
-
-
-
-        if (ArticuloSeleccionado == "Envases rotos/pinchados" || ArticuloSeleccionado == "Envases estropeados") {
-
-            EditTextCarga.setEnabled(false);
-            EditTextCarga.setHint("");
-            EditTextCarga.setText("");
-            EditTextDescarga.setHint("Cantidad");
-
-
-
-        } else {
-
-            EditTextCarga.setEnabled(true);
-            EditTextCarga.setHint("Cantidad");
-            EditTextDescarga.setHint("Cantidad");
-
-
-
-        }
-
-        if (ArticuloSeleccionado == "Combustible") {
-
-            EditTextCarga.setHint("$");
-            EditTextDescarga.setEnabled(false);
-            EditTextDescarga.setHint(" ");
-            EditTextDescarga.setText("");
-
-
-        }
-
-
-        else {
-
-            EditTextDescarga.setEnabled(true);
-            EditTextDescarga.setHint("Cantidad");
-
-        }
-
-
-
-
-
+        /*Llamada a la función: */
+        Habilitar_Deshabilitar_Campos_ElementosEspecialesDelSpinner(ArticuloSeleccionado,spinner,EditTextCarga,EditTextDescarga);
 
 
         /*****************************************************************************/
@@ -1086,6 +1046,7 @@ public class Cargas_Descargas extends AppCompatActivity {
 
                 else {
 
+
                     String text = spinner.getSelectedItem().toString();
 
 
@@ -1094,44 +1055,10 @@ public class Cargas_Descargas extends AppCompatActivity {
 
 
 
-                    if (text == "Envases rotos/pinchados" || text == "Envases estropeados") {
-
-                        EditTextCarga.setEnabled(false);
-                        EditTextCarga.setHint(" ");
-                        EditTextCarga.setText("");
-                        EditTextDescarga.setHint("Cantidad");
 
 
-                    } else {
-
-                        EditTextCarga.setEnabled(true);
-                        EditTextCarga.setHint("Cantidad");
-                        EditTextDescarga.setHint("Cantidad");
-
-
-                    } //Fin del else
-
-
-
-
-                    if (text == "Combustible") {
-
-                        EditTextCarga.setHint("$");
-                        EditTextDescarga.setEnabled(false);
-                        EditTextDescarga.setHint("");
-                        EditTextDescarga.setText("");
-
-                        EditTextDescarga.setBackgroundDrawable(getDrawable(R.drawable.ic_combustible));
-
-
-                    } else {
-
-                        EditTextDescarga.setEnabled(true);
-                        EditTextDescarga.setBackgroundDrawable(getDrawable(R.drawable.edit_text_material_customizado));
-
-                    }
-
-
+                    /*Llamada a la función: */
+                    Habilitar_Deshabilitar_Campos_ElementosEspecialesDelSpinner(text,spinner,EditTextCarga,EditTextDescarga);
 
 
 
@@ -1185,17 +1112,81 @@ public class Cargas_Descargas extends AppCompatActivity {
 
 
 
+    /***************************************************************************************************/
+    /***************************************************************************************************/
+    /***************************************************************************************************/
+    /***************************************************************************************************/
+    /***************************************************************************************************/
+    /***************************************************************************************************/
+    /***************************************************************************************************/
+    /***************************************************************************************************/
+    /***************************************************************************************************/
+    /***************************************************************************************************/
 
-/***************************************************************************************************/
-/***************************************************************************************************/
-/***************************************************************************************************/
-/***************************************************************************************************/
-/***************************************************************************************************/
-/***************************************************************************************************/
-/***************************************************************************************************/
-/***************************************************************************************************/
-/***************************************************************************************************/
-/***************************************************************************************************/
+
+    public void Habilitar_Deshabilitar_Campos_ElementosEspecialesDelSpinner(String ArticuloSeleccionadoText,Spinner spinner, EditText EditTextCarga,
+                                                                            EditText EditTextDescarga){
+
+
+
+
+
+
+        if (ArticuloSeleccionadoText == "Envases rotos/pinchados" || ArticuloSeleccionadoText == "Envases estropeados") {
+
+            EditTextCarga.setEnabled(false);
+            EditTextCarga.setHint(" ");
+            EditTextCarga.setText("");
+            EditTextDescarga.setHint("Cantidad");
+
+
+        } else {
+
+            EditTextCarga.setEnabled(true);
+            EditTextCarga.setHint("Cantidad");
+            EditTextDescarga.setHint("Cantidad");
+
+
+        } //Fin del else
+
+
+
+
+        if (ArticuloSeleccionadoText == "Combustible") {
+
+            EditTextCarga.setHint("$");
+            EditTextDescarga.setEnabled(false);
+            EditTextDescarga.setHint("");
+            EditTextDescarga.setText("");
+
+            EditTextDescarga.setBackgroundDrawable(getDrawable(R.drawable.ic_combustible));
+
+
+        } else {
+
+            EditTextDescarga.setEnabled(true);
+            EditTextDescarga.setBackgroundDrawable(getDrawable(R.drawable.edit_text_material_customizado));
+
+        }
+
+
+
+    }/***************** Habilitar_Deshabilitar_Campos_ElementosEspecialesDelSpinner() *****************/
+
+
+
+
+
+    /***************************************************************************************************/
+    /***************************************************************************************************/
+    /***************************************************************************************************/
+    /***************************************************************************************************/
+    /***************************************************************************************************/
+    /***************************************************************************************************/
+    /***************************************************************************************************/
+    /***************************************************************************************************/
+    /***************************************************************************************************/
+    /***************************************************************************************************/
 
 
 
@@ -1205,7 +1196,7 @@ public class Cargas_Descargas extends AppCompatActivity {
     public void MostrarValoresDelSharedPreferences() {
 
 
-        SharedPreferences preferences = getSharedPreferences("Datos", MODE_PRIVATE);
+        SharedPreferences preferences = getSharedPreferences("Datos_Cargas_Descargas", MODE_PRIVATE);
 
 
 
@@ -1282,7 +1273,7 @@ public class Cargas_Descargas extends AppCompatActivity {
                         String ValorDescargaNuevoArticuloNuevaTanda = preferences.getString("Repartidor: " + nombre_apellido_recibir + "CantidadDeDescargaNuevoArticuloProgramatico_NUEVA_TANDA - " + "Tanda Numero: " + indice_tandas + " - " + "Posicion: " + j, "");
 
 
-                        if (ValorCargaNuevoArticuloNuevaTanda != "" && ValorDescargaNuevoArticuloNuevaTanda != "") {
+                        if (ValorCargaNuevoArticuloNuevaTanda != "" || ValorDescargaNuevoArticuloNuevaTanda != "") {
 
                             final View tanda = ArrayListTandas.get(indice_tandas);
 
@@ -2354,23 +2345,57 @@ public void ObtenerNuevoArticulo(String ValorElementoSeleccionadoSpinnerPrograma
                 sp_nueva_tanda.setEnabled(true);
 
 
-
-                editText_carga.setFocusableInTouchMode(true);
-                editText_carga.requestFocus();
-                editText_carga.setCursorVisible(true);
-                editText_carga.setHint("Cantidad");
-                editText_carga.setHintTextColor(Color.parseColor("#9e9e9e"));
-                editText_carga.setBackgroundDrawable(getDrawable(R.drawable.edit_text_material_customizado));
+                String text_spinner_fijo = sp_nueva_tanda.getSelectedItem().toString();
 
 
+                if(text_spinner_fijo == "Envases rotos/pinchados" || text_spinner_fijo == "Envases estropeados"){
+
+
+                    editText_carga.setEnabled(false);
+                    editText_carga.setHint(" ");
+                    editText_carga.setText("");
+                    editText_carga.setHint("Cantidad");
+
+
+                } else {
+
+
+                    editText_carga.setFocusableInTouchMode(true);
+                    editText_carga.requestFocus();
+                    editText_carga.setCursorVisible(true);
+                    editText_carga.setHint("Cantidad");
+                    editText_carga.setHintTextColor(Color.parseColor("#9e9e9e"));
+                    editText_carga.setBackgroundDrawable(getDrawable(R.drawable.edit_text_material_customizado));
 
 
 
-                editText_descarga.setFocusableInTouchMode(true);
-                editText_descarga.setCursorVisible(true);
-                editText_descarga.setHint("Cantidad");
-                editText_descarga.setHintTextColor(Color.parseColor("#9e9e9e"));
-                editText_descarga.setBackgroundDrawable(getDrawable(R.drawable.edit_text_material_customizado));
+
+
+                    editText_descarga.setFocusableInTouchMode(true);
+                    editText_descarga.setCursorVisible(true);
+                    editText_descarga.setHint("Cantidad");
+                    editText_descarga.setHintTextColor(Color.parseColor("#9e9e9e"));
+                    editText_descarga.setBackgroundDrawable(getDrawable(R.drawable.edit_text_material_customizado));
+
+                }
+
+
+                if (text_spinner_fijo == "Combustible") {
+
+                    editText_carga.setHint("$");
+                    editText_descarga.setEnabled(false);
+                    editText_descarga.setHint("");
+                    editText_descarga.setText("");
+
+                    editText_descarga.setBackgroundDrawable(getDrawable(R.drawable.ic_combustible));
+
+
+                } else {
+
+                    editText_descarga.setEnabled(true);
+                    editText_descarga.setBackgroundDrawable(getDrawable(R.drawable.edit_text_material_customizado));
+
+                }
 
 
 
@@ -2419,23 +2444,62 @@ public void ObtenerNuevoArticulo(String ValorElementoSeleccionadoSpinnerPrograma
 
                     sp_nuevo_del_articulo.setEnabled(true);
 
+                    String text_spinner_programatico = sp_nuevo_del_articulo.getSelectedItem().toString();
+
+
+                    if(text_spinner_programatico == "Envases rotos/pinchados" || text_spinner_programatico == "Envases estropeados"){
+
+
+                        et_carga_del_nuevo_articulo.setEnabled(false);
+                        et_carga_del_nuevo_articulo.setHint(" ");
+                        et_carga_del_nuevo_articulo.setText("");
+                        et_carga_del_nuevo_articulo.setHint("Cantidad");
+
+
+                    } else {
 
 
 
-                    et_carga_del_nuevo_articulo.setFocusableInTouchMode(true);
-                    et_carga_del_nuevo_articulo.setCursorVisible(true);
-                    et_carga_del_nuevo_articulo.setHint("Cantidad");
-                    et_carga_del_nuevo_articulo.setHintTextColor(Color.parseColor("#9e9e9e"));
-                    et_carga_del_nuevo_articulo.setBackgroundDrawable(getDrawable(R.drawable.edit_text_material_customizado));
+
+                        et_carga_del_nuevo_articulo.setFocusableInTouchMode(true);
+                        et_carga_del_nuevo_articulo.setCursorVisible(true);
+                        et_carga_del_nuevo_articulo.setHint("Cantidad");
+                        et_carga_del_nuevo_articulo.setHintTextColor(Color.parseColor("#9e9e9e"));
+                        et_carga_del_nuevo_articulo.setBackgroundDrawable(getDrawable(R.drawable.edit_text_material_customizado));
 
 
 
 
-                    et_descarga_del_nuevo_articulo.setFocusableInTouchMode(true);
-                    et_descarga_del_nuevo_articulo.setCursorVisible(true);
-                    et_descarga_del_nuevo_articulo.setHint("Cantidad");
-                    et_descarga_del_nuevo_articulo.setHintTextColor(Color.parseColor("#9e9e9e"));
-                    et_descarga_del_nuevo_articulo.setBackgroundDrawable(getDrawable(R.drawable.edit_text_material_customizado));
+                        et_descarga_del_nuevo_articulo.setFocusableInTouchMode(true);
+                        et_descarga_del_nuevo_articulo.setCursorVisible(true);
+                        et_descarga_del_nuevo_articulo.setHint("Cantidad");
+                        et_descarga_del_nuevo_articulo.setHintTextColor(Color.parseColor("#9e9e9e"));
+                        et_descarga_del_nuevo_articulo.setBackgroundDrawable(getDrawable(R.drawable.edit_text_material_customizado));
+
+
+
+                    }
+
+
+
+
+                    if (text_spinner_programatico == "Combustible") {
+
+                        et_carga_del_nuevo_articulo.setHint("$");
+                        et_descarga_del_nuevo_articulo.setEnabled(false);
+                        et_descarga_del_nuevo_articulo.setHint("");
+                        et_descarga_del_nuevo_articulo.setText("");
+
+                        et_descarga_del_nuevo_articulo.setBackgroundDrawable(getDrawable(R.drawable.ic_combustible));
+
+
+                    } else {
+
+                        et_descarga_del_nuevo_articulo.setEnabled(true);
+                        et_descarga_del_nuevo_articulo.setBackgroundDrawable(getDrawable(R.drawable.edit_text_material_customizado));
+
+                    }
+
 
 
 
@@ -2474,7 +2538,7 @@ public void ObtenerNuevoArticulo(String ValorElementoSeleccionadoSpinnerPrograma
 
         public void GuardarValoresEnSharedPreferences() {
 
-            SharedPreferences sharedPreferences = getSharedPreferences("Datos", MODE_PRIVATE);
+            SharedPreferences sharedPreferences = getSharedPreferences("Datos_Cargas_Descargas", MODE_PRIVATE);
 
             SharedPreferences.Editor editor = sharedPreferences.edit();
 
@@ -2595,7 +2659,7 @@ public void ObtenerNuevoArticulo(String ValorElementoSeleccionadoSpinnerPrograma
 
         public void BorrarValoresDelSharedPreferences(){
 
-            SharedPreferences sharedPreferences = getSharedPreferences("Datos", MODE_PRIVATE);
+            SharedPreferences sharedPreferences = getSharedPreferences("Datos_Cargas_Descargas", MODE_PRIVATE);
 
             SharedPreferences.Editor editor = sharedPreferences.edit();
 
@@ -2917,7 +2981,7 @@ public void ObtenerNuevoArticulo(String ValorElementoSeleccionadoSpinnerPrograma
                     public void onClick(DialogInterface dialog, int id) {
 
 
-                        SharedPreferences preferences = getSharedPreferences("Datos", MODE_PRIVATE);
+                        SharedPreferences preferences = getSharedPreferences("Datos_Cargas_Descargas", MODE_PRIVATE);
 
                         Integer DimensionArrayNuevasTandas = Integer.parseInt(preferences.getString("Repartidor: " + nombre_apellido_recibir + "DimensionArrayNuevasTandas", "0"));
 
