@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="com.example.prueba_de_modulos.Cargas_Descargas">
+
+
+            <item
+                android:id="@+id/action_save_tanda"
+                android:icon="@drawable/ic_save_tanda"
+                android:orderInCategory="100"
+                android:title="@string/action_save_tanda"
+                app:showAsAction="always|withText" />
+
+            <item
+                android:id="@+id/action_edit_tanda"
+                android:icon="@drawable/ic_editar_tanda"
+                android:orderInCategory="100"
+                android:title="@string/action_editar_tanda"
+                app:showAsAction="always|withText" />
+
+
+
+            <item
+               android:id="@+id/action_finish_tanda"
+               android:orderInCategory="100"
+               android:title="@string/action_finish_tanda"
+               app:showAsAction="never" />
+
+
+
+
+
+
+
+
+</menu>

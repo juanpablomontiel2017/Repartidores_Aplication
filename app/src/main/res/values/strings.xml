@@ -1,35 +1,145 @@
 <resources>
+
     <string name="app_name">Repartidores_Aplication</string>
-    <string name="action_settings">Settings</string>
-    <string name="textViewDias">Seleccione un día laboral</string>
-    <string name="buttonLunes">Lunes</string>
-    <string name="buttonMartes">Martes</string>
-    <string name="buttonMiercoles">Miércoles</string>
-    <string name="buttonJueves">Jueves</string>
-    <string name="buttonViernes">Viernes</string>
-    <string name="buttonSabado">Sábado</string>
-    <string name="title_activity_second_">Second_Activity</string>
-    <string name="tab_text_1">Tab 1</string>
-    <string name="tab_text_2">Tab 2</string>
-    <string name="tab_text_3">Tab 3</string>
+
     <string name="section_format">Hello World from section: %1$d</string>
 
-    <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
 
-    <string name="title_activity_login">Ingresar</string>
+
+    <!--Strings menu-->
+    <string name="action_settings">Settings</string>
+
+    <string name="action_ventas_por_patrocinio">Realizar venta por patrocinio</string>
+
+
+    <!--Repartidores_Main_Activity -->
+    <string name="title_repartidores_main_activity">Repartidores_Main_Activity</string>
+
+    <string name="tab_text_1">Tab 1</string>
+
+    <string name="tab_text_2">Tab 2</string>
+
+    <string name="tab_text_3">Tab 3</string>
+
+
+    <!--Ventas Activity -->
+    <string name="title_spinner">Artículos</string>
+
 
     <!-- Strings related to login -->
+    <string name="title_activity_login">Ingresar</string>
+
     <string name="prompt_email">Email</string>
+
     <string name="prompt_password">Password (optional)</string>
+
     <string name="action_sign_in">Sign in or register</string>
+
     <string name="action_sign_in_short">Sign in</string>
+
     <string name="error_invalid_email">This email address is invalid</string>
+
     <string name="error_invalid_password">This password is too short</string>
+
     <string name="error_incorrect_password">This password is incorrect</string>
+
     <string name="error_field_required">This field is required</string>
+
     <string name="permission_rationale">"Contacts permissions are needed for providing email
         completions."
+
     </string>
+    <string name="title_activity_ventas__por__patrocinio">Ventas_Por_Patrocinio</string>
+
+
+
+
+
+
+
+    <!--//////////////////////////Values Strings para Supervisores//////////////////////////////-->
+
+
+
+
+    <!--MainActivity y su respectivo Menu-->
+
+    <string name="action_entrega_retiro_envases_patrocinio">Patrocinio</string>
+
+
+    <!--Cargas_Descargas Activity y su respectivo Menu-->
+
+    <string name="title_activity_cargas_descargas"> </string>
+
+    <string name="action_save_tanda">Guardar Cambios</string>
+
+    <string name="action_finish_tanda">Cerrar Tandas</string>
+
+    <!-- <string name="title_spinner">Artículos</string> -->
+
+    <string name="action_editar_tanda">Editar Tandas</string>
+
+    <!--Envases Activity-->
+
+    <string name="title_activity_envases"></string>
+
+    <!-- Eleccion Repartidores Activity-->
+
+    <string name="nombre_transicion_imagen">imagen_compartida</string>
+
+
+    <!--Menu: buscar_cliente_para_realizar_venta.xml -->
+
+    <string name="hint_search">Buscar</string>
+
+    <!--Menu: filtros_gasto_en_combustible.xml -->
+
+    <string name="action_gc_mes">Gasto Mensual</string>
+
+    <string name="action_gc_seis_meses">Gasto Semestral</string>
+
+    <string name="action_gc_anio">Gasto Anual</string>
+
+
+    <!--Menu: prueba.xml -->
+
+    <string name="action_gc_mes_prueba">Gasto Mensual</string>
+
+    <string name="action_gc_seis_meses_prueba">Gasto Semestral</string>
+
+    <string name="action_gc_anio_prueba">Gasto Anual</string>
+
+
+    <!--Menu: entrega_retiro_envases_patrocinio.xml -->
+
+    <string name="action_save_vuelta"> Guardar Cambios </string>
+
+    <string name="action_editar_vuelta"> Editar Vuelta </string>
+
+    <string name="action_finish_evento"> Finalizar Evento</string>
+
+
+
+
+
+
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <!-- <string name="hello_blank_fragment">Hello blank fragment</string> -->
+    <string name="title_activity_entrega_retiro_envases_patrocinio">EntregaRetiroEnvasesPatrocinio
+    </string>
+    <string name="title_activity_buscar_responsable_para_patrocinio">
+        BuscarResponsableParaPatrocinio
+    </string>
+
+
+
+
+
+
+
+
+
 
 </resources>
