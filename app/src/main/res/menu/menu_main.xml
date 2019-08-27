@@ -1,18 +1,13 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:context="com.example.jumpi.repartidores_aplication.MainActivity">
-    <item
-        android:icon="@android:drawable/ic_menu_preferences"
-        android:id="@+id/action_settings"
-        android:orderInCategory="100"
-        android:title="Configuraciones"
-        app:showAsAction="always" />
+    tools:context="com.example.prueba_de_modulos.MainActivity">
 
     <item
-        android:id="@+id/id_cerrar_sesión"
+        android:id="@+id/action_erep"
         android:orderInCategory="100"
-        android:title="Cerrar Sesión"
+        android:title="@string/action_entrega_retiro_envases_patrocinio"
         app:showAsAction="never" />
+
 
 </menu>

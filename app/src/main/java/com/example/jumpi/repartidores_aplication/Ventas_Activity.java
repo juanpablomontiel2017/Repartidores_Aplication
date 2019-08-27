@@ -1,9 +1,10 @@
 package com.example.jumpi.repartidores_aplication;
 
-import android.content.Intent;
+import android.content.Context;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -11,6 +12,8 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
+import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -18,349 +21,120 @@ import android.widget.Toast;
 public class Ventas_Activity extends AppCompatActivity {
 
 
-    Spinner lista, lista2, lista3, lista4;
-    String [] datos =  {"Árticulo","Canillas","Dispenser Eléctrico","Dispenser Plástico"};
+
+    /** Declaración de Variables Globales**/
+
+
+
+
+    /**Variables tipo Spinner**/
+
+    Spinner spinner_ventas;
+
+
+
+
+    /** Matríz Clásica tipo Cadena */
+
+
+
+    String [] ListaDeArticulosEnVenta =  {"Bidones", "Dispenser Plástico", "Canillas", "Dispenser Eléctrico","Envases vacíos"};
+
+
+
+
+    /** Variables tipo TextView*/
 
     TextView Nombre_Cliente_Ventas;
+
     TextView Apellido_Cliente_Ventas;
+
     TextView Direccion_Cliente_Ventas;
+
     TextView Barrio_Cliente_Ventas;
 
-    EditText eTcant1;
-    EditText eTcant2;
-    EditText eTcant3;
-    EditText eTcant4;
-    EditText eTVacios;
-    EditText eTLlenos;
-    EditText eEntrega;
+
+
+
+    /**Variables tipo EditText*/
+
+    EditText eTCantVentas;
+
+    EditText eTEntrega;
+
+
+
+
+    /** Variables tipo ImageButton*/
+
+    ImageButton btnAgregarNuevoArticulo;
+
+
+
+    LinearLayout LinearLayoutVerticalVentas;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_ventas_);
+
+        setContentView(R.layout.activity_ventas_por_cliente);
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar_ventas);
         setSupportActionBar(toolbar);
 
-        eTcant1 = (EditText) findViewById(R.id.cantidad_productos_ventas);
-        eTcant1.setEnabled(false);
 
-
-
-        eTcant2 = (EditText) findViewById(R.id.cantidad2_productos_ventas);
-        eTcant2.setEnabled(false);
-
-
-
-        eTcant3 = (EditText) findViewById(R.id.cantidad3_productos_ventas);
-        eTcant3.setEnabled(false);
-
-
-
-        eTcant4 = (EditText) findViewById(R.id.cantidad4_productos_ventas);
-        eTcant4.setEnabled(false);
-
-
-
-        eTVacios = (EditText) findViewById(R.id.cantiad_vacios_ventas);
-        eTLlenos = (EditText) findViewById(R.id.cantiad_llenos_ventas);
-        eEntrega = (EditText) findViewById(R.id.cantidad_entrega_productos_ventas);
-
-
-        lista = (Spinner)findViewById(R.id.lista_productos_ventas);
-
-
-        ArrayAdapter<String> adaptador = new ArrayAdapter<String>(this,android.R.layout.simple_spinner_item,datos);
-        lista.setAdapter(adaptador);
-
-        lista.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-
-
-            @Override
-            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-
-                switch (i){
-
-                    case 0:
-                        eTcant1.setEnabled(false);
-
-                       // Toast to = Toast.makeText(getApplicationContext(),datos[i],Toast.LENGTH_LONG);
-                       // to.show();
-                        break;
-
-                    case 1:
-
-                        eTcant1.setEnabled(true);
-                        // Toast t = Toast.makeText(getApplicationContext(),datos[i],Toast.LENGTH_LONG);
-                        //t.show();
-                        break;
-
-
-                    case 2:
-
-                        eTcant1.setEnabled(true);
-                        //Toast ta = Toast.makeText(getApplicationContext(),datos[i],Toast.LENGTH_LONG);
-                        //ta.show();
-                        break;
-
-
-                    case 3:
-
-                        eTcant1.setEnabled(true);
-
-                        //Toast te = Toast.makeText(getApplicationContext(),datos[i],Toast.LENGTH_LONG);
-                        //te.show();
-                        break;
-
-
-                }
-
-
-
-
-            }
-
-
-            @Override
-            public void onNothingSelected(AdapterView<?> adapterView) {
-
-            }
-        });
-
-
-
-
-
-         //PRUEBA para el SEGUNDO SPINNER
-        lista2 = (Spinner)findViewById(R.id.lista2_productos_ventas);
-        ArrayAdapter<String> adaptador2 = new ArrayAdapter<String>(this,android.R.layout.simple_spinner_item,datos);
-        lista2.setAdapter(adaptador2);
-
-        lista2.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-
-
-                switch (i){
-
-                    case 0:
-                        eTcant2.setEnabled(false);
-
-                        // Toast to = Toast.makeText(getApplicationContext(),datos[i],Toast.LENGTH_LONG);
-                        // to.show();
-                        break;
-
-                    case 1:
-
-                        eTcant2.setEnabled(true);
-
-
-                        // Toast t = Toast.makeText(getApplicationContext(),datos[i],Toast.LENGTH_LONG);
-                        //t.show();
-                        break;
-
-
-                    case 2:
-
-                        eTcant2.setEnabled(true);
-
-                        //Toast ta = Toast.makeText(getApplicationContext(),datos[i],Toast.LENGTH_LONG);
-                        //ta.show();
-                        break;
-
-
-                    case 3:
-
-                        eTcant2.setEnabled(true);
-
-                        //  Toast te = Toast.makeText(getApplicationContext(),datos[i],Toast.LENGTH_LONG);
-                        //te.show();
-                        break;
-
-
-
-
-                }
-
-
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> adapterView) {
-
-            }
-        });
-
-
-
-
-        //PRUEBA para el TERCER SPINNER
-        lista3 = (Spinner)findViewById(R.id.lista3_productos_ventas);
-        ArrayAdapter<String> adaptador3 = new ArrayAdapter<String>(this,android.R.layout.simple_spinner_item, datos);
-        lista3.setAdapter(adaptador3);
-
-        lista3.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-
-
-                switch (i){
-
-                    case 0:
-                        eTcant3.setEnabled(false);
-
-                        // Toast to = Toast.makeText(getApplicationContext(),datos[i],Toast.LENGTH_LONG);
-                        // to.show();
-                        break;
-
-                    case 1:
-
-                        eTcant3.setEnabled(true);
-
-                        // Toast t = Toast.makeText(getApplicationContext(),datos[i],Toast.LENGTH_LONG);
-                        //t.show();
-                        break;
-
-
-                    case 2:
-
-                        eTcant3.setEnabled(true);
-
-                        //Toast ta = Toast.makeText(getApplicationContext(),datos[i],Toast.LENGTH_LONG);
-                        //ta.show();
-                        break;
-
-
-                    case 3:
-
-                        eTcant3.setEnabled(true);
-
-                        //  Toast te = Toast.makeText(getApplicationContext(),datos[i],Toast.LENGTH_LONG);
-                        //te.show();
-                        break;
-
-
-
-
-                }
-
-
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> adapterView) {
-
-            }
-        });
-
-
-
-
-
-        //PRUEBA para el CUARTO SPINNER
-        lista4 = (Spinner)findViewById(R.id.lista4_productos_ventas);
-        ArrayAdapter<String> adaptador4 = new ArrayAdapter<String>(this,android.R.layout.simple_spinner_item,datos);
-        lista4.setAdapter(adaptador4);
-
-        lista4.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-
-
-                switch (i){
-
-                    case 0:
-                        eTcant4.setEnabled(false);
-
-                        // Toast to = Toast.makeText(getApplicationContext(),datos[i],Toast.LENGTH_LONG);
-                        // to.show();
-                        break;
-
-                    case 1:
-
-                        eTcant4.setEnabled(true);
-
-
-                        // Toast t = Toast.makeText(getApplicationContext(),datos[i],Toast.LENGTH_LONG);
-                        //t.show();
-                        break;
-
-
-                    case 2:
-
-                        eTcant4.setEnabled(true);
-
-                        //Toast ta = Toast.makeText(getApplicationContext(),datos[i],Toast.LENGTH_LONG);
-                        //ta.show();
-                        break;
-
-
-                    case 3:
-
-                        eTcant4.setEnabled(true);
-
-                        //  Toast te = Toast.makeText(getApplicationContext(),datos[i],Toast.LENGTH_LONG);
-                        //te.show();
-                        break;
-
-
-
-                }
-
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> adapterView) {
-
-            }
-        });
-
-
-
-
-
-        //Recibir los párametros de los clientes desde el RecyclerViewAdapter
-
-        //Pasar el apellido del cliente a la actividad de "Realizar_Ventas"
         Apellido_Cliente_Ventas  = (TextView) findViewById(R.id.apellido_cliente_realizar_ventas);
 
-        String extras = getIntent().getStringExtra("Apellido");
-
-        Apellido_Cliente_Ventas.setText(extras);
-
-
-
-
-
-        //Pasar el nombre del cliente a la actividad de "Realizar_Ventas"
         Nombre_Cliente_Ventas  = (TextView) findViewById(R.id.nombre_cliente_realizar_ventas);
 
-         extras = getIntent().getStringExtra("Nombre");
-
-        Nombre_Cliente_Ventas.setText(extras);
-
-
-
-
-        //Pasar la dirección del cliente a la actividad de "Realizar_Ventas"
         Direccion_Cliente_Ventas  = (TextView) findViewById(R.id.direccion_cliente_realizar_ventas);
 
-        extras = getIntent().getStringExtra("Direccion");
-
-        Direccion_Cliente_Ventas.setText(extras);
-
-
-        //Pasar el barrio del cliente a la actividad de "Realizar_Ventas"
         Barrio_Cliente_Ventas  = (TextView) findViewById(R.id.barrio_cliente_realizar_ventas);
 
-        extras = getIntent().getStringExtra("Barrio");
-
-        Barrio_Cliente_Ventas.setText(extras);
 
 
 
+        eTCantVentas = (EditText) findViewById(R.id.edtx_cantidad_productos_ventas);
 
+        eTEntrega = (EditText) findViewById(R.id.cantidad_entrega_productos_ventas);
+
+
+
+
+        spinner_ventas = (Spinner)findViewById(R.id.sp_art);
+
+        /*Llamada a la función: */
+
+        setSpinner(spinner_ventas, eTCantVentas);
+
+
+
+        LinearLayoutVerticalVentas = (LinearLayout) findViewById(R.id.layout_vertical_ventas);
+
+
+
+        btnAgregarNuevoArticulo = (ImageButton) findViewById(R.id.add_art);
+
+        /**Método para añadir nuevos artículos pero que deberá cumplir ciertas condiciones para que se cumpla dicha acción**/
+        btnAgregarNuevoArticulo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+
+                ObtenerNuevoArticulo(0,""
+                ,LinearLayoutVerticalVentas);
+
+
+            } /*Fin del método OnClick*/
+
+        }); /**Fin del método setOnClickListener**/
+
+
+
+        /*Llamada a la función: */
+        RecibirParametrosDeClientesDesdeRecyclerViewAdapter();
 
 
 
@@ -372,31 +146,7 @@ public class Ventas_Activity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-                String AuxiliarLlenos = eTLlenos.getText().toString();
-                String AuxiliarVacios = eTVacios.getText().toString();
-                String AuxiliarCant1  = eTcant1.getText().toString();
-                String AuxiliarCant2  = eTcant2.getText().toString();
-                String AuxiliarCant3  = eTcant3.getText().toString();
-                String AuxiliarCant4  = eTcant4.getText().toString();
-                String AuxiliarEntrega = eEntrega.getText().toString();
-
-
-                if (AuxiliarLlenos.isEmpty() && AuxiliarVacios.isEmpty() && AuxiliarCant1.isEmpty()&& AuxiliarCant2.isEmpty() && AuxiliarCant3.isEmpty() && AuxiliarCant4.isEmpty() && AuxiliarEntrega.isEmpty() ){
-
-                    Toast.makeText(getApplicationContext(),"Error! Los campos estan vacios. Por favor, complete al menos un campo",Toast.LENGTH_LONG).show();
-
-
-                }
-
-                else {
-
-                    //Intent buttonConfirmarV = new Intent(Ventas_Activity.this, Second_Activity.class);
-                    //startActivity(buttonConfirmarV);
-                    Toast.makeText(getApplicationContext(),"Venta realizada con éxito",Toast.LENGTH_LONG).show();
-                    finish();
-
-                }
-
+                ValidacionAntesDeConfirmarVenta();
 
             }
         });
@@ -405,7 +155,318 @@ public class Ventas_Activity extends AppCompatActivity {
 
 
 
+    } /**********************************FIN DEL OnCreate()***********************************/
+
+
+
+
+    /***************************************************************************************************/
+    /***************************************************************************************************/
+    /***************************************************************************************************/
+    /***************************************************************************************************/
+    /***************************************************************************************************/
+    /***************************************************************************************************/
+    /***************************************************************************************************/
+    /***************************************************************************************************/
+    /***************************************************************************************************/
+    /***************************************************************************************************/
+
+
+
+
+
+
+    public void setSpinner(final Spinner spinner, final EditText EditTextCarga) {
+
+        ArrayAdapter<String> adaptador = new ArrayAdapter<String>(this, R.layout.spinner_ventas, ListaDeArticulosEnVenta);
+        spinner.setAdapter(adaptador);
+
+
+        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+
+
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+
+
+                String text = spinner.getSelectedItem().toString();
+
+                Toast to = Toast.makeText(getApplicationContext(), "Ha seleccionado " + text, Toast.LENGTH_LONG);
+                to.show();
+
+
+            }
+
+
+
+
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        });
+
+    }   /******************************FIN DE LA FUNCION setSpinner()*****************************/
+
+
+
+
+    /***************************************************************************************************/
+    /***************************************************************************************************/
+    /***************************************************************************************************/
+    /***************************************************************************************************/
+    /***************************************************************************************************/
+    /***************************************************************************************************/
+    /***************************************************************************************************/
+    /***************************************************************************************************/
+    /***************************************************************************************************/
+    /***************************************************************************************************/
+
+
+
+
+
+
+    public void ValidacionAntesDeConfirmarVenta(){
+
+
+
+
+        String AuxiliarCantVentas  = eTCantVentas.getText().toString();
+
+        String AuxiliarEntrega = eTEntrega.getText().toString();
+
+
+        if (AuxiliarCantVentas.isEmpty() && AuxiliarEntrega.isEmpty() ){
+
+            Toast.makeText(getApplicationContext(),"Error! Los campos estan vacios. Por favor, complete al menos un campo",Toast.LENGTH_LONG).show();
+
+
+        }
+
+        else {
+
+
+            Toast.makeText(getApplicationContext(),"Venta realizada con éxito",Toast.LENGTH_LONG).show();
+            finish();
+
+        }
+
+    } /******************************FIN DE LA FUNCION ValidacionAntesDeConfirmarVenta()*****************************/
+
+
+
+
+
+
+    /***************************************************************************************************/
+    /***************************************************************************************************/
+    /***************************************************************************************************/
+    /***************************************************************************************************/
+    /***************************************************************************************************/
+    /***************************************************************************************************/
+    /***************************************************************************************************/
+    /***************************************************************************************************/
+    /***************************************************************************************************/
+    /***************************************************************************************************/
+
+
+
+
+    public void RecibirParametrosDeClientesDesdeRecyclerViewAdapter(){
+
+
+
+        String extras = getIntent().getStringExtra("Apellido");
+
+        Apellido_Cliente_Ventas.setText(extras);
+
+
+
+
+
+        extras = getIntent().getStringExtra("Nombre");
+
+        Nombre_Cliente_Ventas.setText(extras);
+
+
+
+
+
+
+        extras = getIntent().getStringExtra("Direccion");
+
+        Direccion_Cliente_Ventas.setText(extras);
+
+
+
+
+        extras = getIntent().getStringExtra("Barrio");
+
+        Barrio_Cliente_Ventas.setText(extras);
+
+
+
     }
+
+
+    /***************************************************************************************************/
+    /***************************************************************************************************/
+    /***************************************************************************************************/
+    /***************************************************************************************************/
+    /***************************************************************************************************/
+    /***************************************************************************************************/
+    /***************************************************************************************************/
+    /***************************************************************************************************/
+    /***************************************************************************************************/
+    /***************************************************************************************************/
+
+
+
+
+    int ChildNuevoArticulo = 0;
+
+    public void ObtenerNuevoArticulo(int ValorElementoSeleccionadoSpinnerProgramatico,
+                                     String Valor_a_SetearDelEditTextCargaParaNuevoArticuloPrimerTanda,
+                                     final LinearLayout linearLayout) {
+
+        View NuevoArticuloInflado;
+
+        /*Llamada a la función: */
+        NuevoArticuloInflado = AgregarNuevoArticulo(linearLayout);
+
+
+        /** Instanciamos las vistas del diseño XML: "nuevo_articulo_ventas.xml" **/
+
+        final ImageButton btnEliminarArticulo = (ImageButton) NuevoArticuloInflado.findViewById(R.id.delete_art);
+
+        btnEliminarArticulo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+
+                EliminarNuevoArticulo(v);
+
+
+            }
+        });
+
+
+
+        final EditText EditText_Cantidad_Ventas_Nuevo_Articulo = (EditText) NuevoArticuloInflado.findViewById(R.id.edtx_cantidad_new_art);
+
+
+        if(Valor_a_SetearDelEditTextCargaParaNuevoArticuloPrimerTanda != ""){
+
+
+            EditText_Cantidad_Ventas_Nuevo_Articulo.setText(Valor_a_SetearDelEditTextCargaParaNuevoArticuloPrimerTanda);
+
+
+        }
+
+
+
+
+
+        final Spinner spinner_nuevos_articulos = (Spinner) NuevoArticuloInflado.findViewById(R.id.sp_new_art_ventas);
+
+        setSpinner(spinner_nuevos_articulos, EditText_Cantidad_Ventas_Nuevo_Articulo);
+
+        spinner_nuevos_articulos.setSelection(ValorElementoSeleccionadoSpinnerProgramatico);
+
+
+
+
+
+
+
+
+
+    } /**********************************FIN DE LA FUNCIÓN ObtenerNuevoArticulo()*************************************/
+
+
+
+
+
+
+    /***************************************************************************************************/
+    /***************************************************************************************************/
+    /***************************************************************************************************/
+    /***************************************************************************************************/
+    /***************************************************************************************************/
+    /***************************************************************************************************/
+    /***************************************************************************************************/
+    /***************************************************************************************************/
+    /***************************************************************************************************/
+    /***************************************************************************************************/
+
+
+
+
+    public View AgregarNuevoArticulo(final LinearLayout LayoutVerticalVentas) {
+
+
+        LayoutInflater inflater = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+
+        final View InflatedView = inflater.inflate(R.layout.nuevo_articulo_ventas, null, true);
+
+        LayoutVerticalVentas.addView(InflatedView);
+
+        ChildNuevoArticulo = LayoutVerticalVentas.getChildCount();
+
+
+        return InflatedView;
+
+
+
+
+    } /*****************************FIN DE LA FUNCION AgregarNuevoArticulo()************************************/
+
+
+
+
+
+    /***************************************************************************************************/
+    /***************************************************************************************************/
+    /***************************************************************************************************/
+    /***************************************************************************************************/
+    /***************************************************************************************************/
+    /***************************************************************************************************/
+    /***************************************************************************************************/
+    /***************************************************************************************************/
+    /***************************************************************************************************/
+    /***************************************************************************************************/
+
+
+
+
+    public void EliminarNuevoArticulo(View btnEliminarNuevoArticulo) {
+
+
+        final LinearLayout ChildLinearLayoutHorizontalNuevosArticulos = (LinearLayout) btnEliminarNuevoArticulo.getParent();
+
+        final LinearLayout LLV_Padre = (LinearLayout) ChildLinearLayoutHorizontalNuevosArticulos.getParent();
+
+        LLV_Padre.removeView(ChildLinearLayoutHorizontalNuevosArticulos);
+
+
+
+    } /*************************************FIN DE LA FUNCIÓN EliminarNuevoArticulo()***********************************************/
+
+
+
+
+    /***************************************************************************************************/
+    /***************************************************************************************************/
+    /***************************************************************************************************/
+    /***************************************************************************************************/
+    /***************************************************************************************************/
+    /***************************************************************************************************/
+    /***************************************************************************************************/
+    /***************************************************************************************************/
+    /***************************************************************************************************/
+    /***************************************************************************************************/
 
 
     @Override
@@ -413,7 +474,14 @@ public class Ventas_Activity extends AppCompatActivity {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_realizar_ventas, menu);
         return true;
-    }
+
+
+    }/************************ FIN DEL onCreateOptionsMenu() *************************/
+
+
+
+
+
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
@@ -425,16 +493,42 @@ public class Ventas_Activity extends AppCompatActivity {
             return true;
         }
 
+
+
+
         if (id == R.id.id_cancelar_venta) {
 
-            //Intent IntentCancelarV = new Intent(Ventas_Activity.this, Second_Activity.class);
-            //startActivity(IntentCancelarV);
+
             finish();
             return true;
         }
 
 
         return super.onOptionsItemSelected(item);
-    }
 
-}
+
+
+    }/************************ FIN DEL onOptionsItemSelected() *************************/
+
+
+
+
+
+
+    /**********************************************************************************************/
+    /**********************************************************************************************/
+    /**********************************************************************************************/
+    /**********************************************************************************************/
+    /**********************************************************************************************/
+    /**********************************************************************************************/
+    /**********************************************************************************************/
+    /**********************************************************************************************/
+    /**********************************************************************************************/
+    /**********************************************************************************************/
+
+
+
+
+
+
+} /****************************** FIN DE LA Activity Ventas_Activity *******************************/

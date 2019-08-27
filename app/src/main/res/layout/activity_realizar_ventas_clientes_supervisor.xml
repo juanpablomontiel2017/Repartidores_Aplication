@@ -1,0 +1,353 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#FFFF"
+    android:orientation="vertical"
+    tools:context=".RealizarVentasClientesSupervisor">
+
+
+    <android.support.v7.widget.Toolbar
+
+        android:id="@+id/toolbar_ventas_supervisor"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#d50000"
+        app:subtitleTextAppearance="@style/TextAppearance.AppCompat.Body1">
+
+    </android.support.v7.widget.Toolbar>
+
+    <ScrollView
+
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+
+        <LinearLayout
+
+            android:id="@+id/parent_llv_activity_ventas_supervisor"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:weightSum="2">
+
+
+            <!--#################################################################-->
+
+
+            <LinearLayout
+
+                android:id="@+id/llv_datos_personales"
+                android:layout_width="match_parent"
+                android:layout_height="300dp"
+                android:layout_marginBottom="20dp"
+                android:background="#ff5722"
+                android:orientation="vertical"
+                android:weightSum="4">
+
+
+                <LinearLayout
+
+                    android:id="@+id/llh_imagen_cliente"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:orientation="horizontal">
+
+
+                    <ImageView
+
+                        android:id="@+id/img_cliente_supervisor"
+                        android:layout_width="match_parent"
+                        android:layout_height="100dp"
+                        android:src="@mipmap/ic_img_cliente_round" />
+
+                </LinearLayout>
+
+
+                <LinearLayout
+
+                    android:id="@+id/llh_nombre_apellido_ventas_supervisor"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="horizontal">
+
+
+                    <TextView
+
+                        android:id="@+id/nombre_apellido_cliente_realizar_ventas_supervisor"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:text="NOMBRE Y APELLIDO"
+                        android:textAlignment="center"
+                        android:textColor="#FFFF"
+                        android:textSize="25sp"
+                        android:textStyle="bold" />
+
+                </LinearLayout>
+
+
+                <LinearLayout
+
+                    android:id="@+id/llh_direccion_ventas_supervisor"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="horizontal">
+
+
+                    <TextView
+                        android:id="@+id/direccion_cliente_realizar_ventas_supervisor"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:text="DIRECCIÓN"
+                        android:textAlignment="center"
+                        android:textColor="#FFFF"
+                        android:textSize="25sp"
+                        android:textStyle="bold" />
+
+                </LinearLayout>
+
+
+                <LinearLayout
+
+                    android:id="@+id/llh_barrio_ventas_supervisor"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="horizontal">
+
+
+                    <TextView
+                        android:id="@+id/barrio_cliente_realizar_ventas_supervisor"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:text="BARRIO"
+                        android:textAlignment="center"
+                        android:textColor="#FFFF"
+                        android:textSize="25sp"
+                        android:textStyle="bold" />
+
+
+                </LinearLayout>
+
+
+            </LinearLayout>
+
+
+            <!--################################################################-->
+
+            <ScrollView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="#FFFF">
+
+                <LinearLayout
+
+                    android:id="@+id/layout_vertical_ventas_supervisor"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:background="#FFFF"
+                    android:orientation="vertical">
+
+
+                    <LinearLayout
+                        android:id="@+id/layout_horizontal_ventas_supervisor"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="#FFFF"
+                        android:gravity="center"
+                        android:orientation="horizontal"
+                        android:weightSum="2">
+
+                        <ImageButton
+
+                            android:id="@+id/add_art_ventas_supervisor"
+                            android:layout_width="40dp"
+                            android:layout_height="wrap_content"
+                            android:background="@android:color/transparent"
+                            android:src="@drawable/ic_add_new_art" />
+
+
+                        <LinearLayout
+
+                            android:id="@+id/llh_contenedor_spinner"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:orientation="horizontal"
+                            android:background="@drawable/spinner_style">
+
+
+                            <Spinner
+
+                                android:id="@+id/sp_art_ventas_supervisor"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:gravity="center"
+                                android:popupBackground="#FFFF"
+                                android:prompt="@string/title_spinner"
+                                android:spinnerMode="dialog">
+
+                            </Spinner>
+
+
+                        </LinearLayout>
+
+
+                        <EditText
+
+                            android:id="@+id/edtx_cantidad_productos_ventas_supervisor"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:gravity="center"
+                            android:hint="Cantidad"
+                            android:imeOptions="actionNext"
+                            android:inputType="number" />
+
+                    </LinearLayout>
+
+                </LinearLayout> <!--Fin del "layout_vertical_ventas_supervisor"-->
+
+
+            </ScrollView>
+
+            <!--#################################################################-->
+
+
+            <LinearLayout
+
+                android:id="@+id/llv_importe_entrega_venta_supervisor"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:layout_weight="1"
+                android:background="#ff5722"
+                android:orientation="vertical">
+
+
+                <LinearLayout
+
+                    android:id="@+id/llh_importe_entrega_ventas_supervisor"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="#ff5722"
+                    android:orientation="horizontal"
+                    android:weightSum="3">
+
+
+                    <TextView
+                        android:id="@+id/importe_ventas_supervisor"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:text="IMPORTE"
+                        android:textAlignment="center"
+                        android:textColor="#FFFF"
+                        android:textSize="24sp"
+                        android:textStyle="bold" />
+
+
+                    <ImageButton
+
+                        android:id="@+id/img_button_confirmar_ventas_supervisor"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_weight="1"
+                        android:background="@mipmap/contenedor_checkbox"
+                        android:src="@drawable/ic_check_rojo" />
+
+
+                    <TextView
+                        android:id="@+id/entrega_ventas_supervisor"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:text="ENTREGA"
+                        android:textAlignment="center"
+                        android:textColor="#FFFF"
+                        android:textSize="24sp"
+                        android:textStyle="bold" />
+
+
+                </LinearLayout>
+
+
+            </LinearLayout>
+
+
+            <!--#################################################################-->
+
+
+            <LinearLayout
+
+                android:id="@+id/llv_numero_importe_venta_supervisor"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="#FFFF"
+                android:orientation="vertical">
+
+
+                <LinearLayout
+
+                    android:id="@+id/llh_numero_importe_entrega_supervisor"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="#FFFF"
+                    android:orientation="horizontal"
+                    android:weightSum="2">
+
+
+                    <TextView
+                        android:id="@+id/cantidad_saldo_productos_ventas_supervisor"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:text="IMPORTE"
+                        android:textAlignment="center"
+                        android:textColor="#d50000"
+                        android:textSize="24sp"
+                        android:textStyle="bold" />
+
+
+                    <EditText
+                        android:id="@+id/cantidad_entrega_productos_ventas_supervisor"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginStart="50dp"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:hint="$"
+                        android:inputType="number"
+                        android:textSize="24sp"
+                        android:textStyle="bold" />
+
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+
+            <!--|||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||| -->
+
+
+        </LinearLayout>
+
+    </ScrollView>
+
+
+</LinearLayout>

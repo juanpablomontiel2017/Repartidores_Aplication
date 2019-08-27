@@ -15,6 +15,9 @@ import android.widget.Toast;
 public class EditarClientes extends AppCompatActivity {
 
 
+/******************** DECLARACIÓN DE VARIABLES GLOBALES ****************************/
+
+
 
     TextView Apellido_Cliente_EditarCliente;
     TextView Nombre_Cliente_EditarCliente;
@@ -39,10 +42,28 @@ public class EditarClientes extends AppCompatActivity {
 
 
 
+
+
+    /**********************************************************************************************/
+    /**********************************************************************************************/
+    /**********************************************************************************************/
+    /**********************************************************************************************/
+    /**********************************************************************************************/
+    /**********************************************************************************************/
+    /**********************************************************************************************/
+    /**********************************************************************************************/
+    /**********************************************************************************************/
+    /**********************************************************************************************/
+
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_editar_clientes);
+
+
+
 
 
         final Button buttonCancelarEditarCliente = (Button) findViewById(R.id.button_cancelar_EC);
@@ -51,14 +72,15 @@ public class EditarClientes extends AppCompatActivity {
 
             @Override
             public void onClick(View view) {
-/*
-                Intent buttonCancelarEC = new Intent(EditarClientes.this, Second_Activity.class);
-                startActivity(buttonCancelarEC);
-*/
-        finish();
+
+                finish();
 
             }
         });
+
+
+
+
 
 
         final Button buttonAceptarEditarCliente = (Button) findViewById(R.id.button_aceptar_EC);
@@ -69,16 +91,24 @@ public class EditarClientes extends AppCompatActivity {
             public void onClick(View view) {
 
                 String AuxiliarApellidoE = eTApellido.getText().toString();
+
                 String AuxiliarNombreE = eTNombre.getText().toString();
+
                 String AuxiliarDireccionE = eTDireccion.getText().toString();
+
                 String AuxiliarBarrioE = eTBarrio.getText().toString();
+
                 String AuxiliarTelefonoE = eTTelefono.getText().toString();
+
                 String AuxiliarCorreoE = eTCorreo.getText().toString();
+
                 String AuxiliarReferenciaE = eTReferencia.getText().toString();
 
 
 
 
+
+                /***COLOCAR ESTO EN UNA FUNCION DE VALIDACION ***/
 
 
                 //Estructuras selectivas utilizadas para comprobar que ningún campo importante como el 'Apellido' 'Nombre' 'Dirección' 'Barrio' y 'Referencia' quede vacío.
@@ -133,11 +163,6 @@ public class EditarClientes extends AppCompatActivity {
 
 
 
-    /*
-                Intent buttonAceptarEC = new Intent(EditarClientes.this, Second_Activity.class);
-                startActivity(buttonAceptarEC);
-
-                    */
 
                     Toast.makeText(getApplicationContext(),"Edición Exitosa",Toast.LENGTH_LONG).show();
 

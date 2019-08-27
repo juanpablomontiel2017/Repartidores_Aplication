@@ -8,75 +8,187 @@
     <uses-permission android:name="android.permission.READ_CONTACTS" />
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-    <uses-permission android:name="android.permission.WAKE_LOCK"/>
-
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
     <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
 
     <application
 
         android:allowBackup="true"
         android:icon="@mipmap/ic_logo_app_prueba1"
-        android:label="Aqua Vital"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
 
+
+
         <activity
             android:name=".LoginActivity"
-            android:label="Desarrollo">
+            android:label="Beta 3.2.3">
+
+
+
             <intent-filter>
+
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
+
+
+
             </intent-filter>
+
+
         </activity>
 
+
+
+<!--#################### Para REPARTIDORES ###########################-->
+
+
+
         <activity
-            android:name=".Second_Activity"
-            android:label="Mi Reparto"
-            android:theme="@style/AppTheme.NoActionBar"
-            android:parentActivityName=".MainActivity">
-        </activity>
-        <activity
-            android:name=".MainActivity"
-            android:label="Días de reparto"
-            android:theme="@style/AppTheme.NoActionBar"
-            android:parentActivityName=".LoginActivity">
-        </activity>
+            android:name=".Repartidores_Main_Activity"
+            android:label=" "
+            android:parentActivityName=".LoginActivity"
+            android:theme="@style/AppTheme.NoActionBar">
+    </activity>
+
+
 
         <activity
             android:name=".Ventas_Activity"
             android:label="Ventas"
-            android:parentActivityName=".Second_Activity"
-            android:theme="@style/AppTheme.NoActionBar" >
-        </activity>
-
-
-
+            android:parentActivityName=".Repartidores_Main_Activity"
+            android:theme="@style/AppTheme.NoActionBar" />
 
         <activity
             android:name=".EditarClientes"
             android:label="Editar Clientes" />
 
+
         <activity
             android:name=".AgregarCliente"
             android:label="Agregar_Clientes" />
 
-        <activity android:name=".Detalle_CargasyDescargas"
-            android:label="Detalle de Cargas y Descargas"/>
 
-        <activity android:name=".Detalle_Articulos"
-            android:label="Detalle de Cargas y Descargas"/>
-
-        <activity android:name=".detalle_ventas_dinero"
-            android:label="Detalle de Entregas de Dinero"/>
+        <activity
+            android:name=".Detalle_Envases"
+            android:label="Detalle de Cargas y Descargas" />
 
 
-        <activity android:name=".Dialog_Eliminar_Clientes"
-            android:label="Eliminar Cliente">
+
+        <activity
+            android:name=".Detalle_Articulos"
+            android:label="Detalle de Cargas y Descargas" />
+
+
+        <activity
+            android:name=".Detalle_Dinero"
+            android:label="Detalle de Entregas de Dinero" />
+
+
+
+        <!--########################## Para SUPERVISORES ###########################-->
+
+
+
+        <activity android:name=".CombustibleEstadisticas"
+                  android:label=""
+                  android:theme="@style/AppTheme.NoActionBar"
+                  android:screenOrientation="landscape"/>
+
+
+
+
+        <activity android:name=".NuevoEventoPatrocinio"
+                  android:label="Nuevo Evento"
+                  android:theme="@style/AppTheme.NoActionBar">
 
         </activity>
-   </application>
+
+
+        <activity
+            android:name=".BuscarResponsableParaPatrocinio"
+            android:label="Buscar"
+            android:theme="@style/AppTheme.NoActionBar" />
+
+
+
+        <activity
+            android:name=".EntregaRetiroEnvasesPatrocinio"
+            android:configChanges="screenSize|orientation"
+            android:label=" "
+            android:theme="@style/AppTheme.NoActionBar"
+            android:windowSoftInputMode="stateAlwaysVisible" />
+
+
+
+
+
+        <activity android:name=".NuevoResponsablePatrocinio"
+                  android:label="Nuevo Responsable"
+                  android:theme="@style/AppTheme.NoActionBar"/>
+
+
+        <activity
+            android:name=".BuscarClienteParaRealizarVenta"
+            android:label="Buscar Cliente" />
+
+
+
+        <activity
+            android:name=".RealizarVentasClientesSupervisor"
+            android:label=""
+            android:theme="@style/AppTheme.NoActionBar" />
+
+
+
+        <activity
+            android:name=".ComisionesEstadisticas"
+            android:label="@string/title_activity_envases"
+            android:theme="@style/AppTheme.NoActionBar" />
+
+
+
+        <activity android:name=".OpcionesEstadisticas"
+                  android:label="Opciones de Estadísticas"
+                  android:theme="@style/AppTheme.NoActionBar"/>
+
+
+
+
+        <activity
+            android:name=".EleccionRepartidores"
+            android:label="Elija un Repartidor"
+            android:theme="@style/AppTheme.NoActionBar"/>
+
+
+
+        <activity
+            android:name=".Cargas_Descargas"
+            android:configChanges="screenSize|orientation"
+            android:label="@string/title_activity_cargas_descargas"
+            android:theme="@style/AppTheme.NoActionBar"
+            android:windowSoftInputMode="stateAlwaysVisible" />
+
+
+        <activity
+            android:name=".MainActivity"
+            android:label=" "
+            android:parentActivityName=".LoginActivity"
+            android:theme="@style/AppTheme.NoActionBar"/>
+
+
+
+
+
+
+
+
+
+
+
+    </application>
 
 
 </manifest>

@@ -1,0 +1,368 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+    xmlns:tools="http://schemas.android.com/tools"
+
+    android:id="@+id/id_llv_principal_activity_ventas"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+
+
+    tools:context=".Ventas_Activity">
+
+    <android.support.v7.widget.Toolbar
+
+        android:id="@+id/toolbar_ventas"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/colorPrimary">
+
+    </android.support.v7.widget.Toolbar>
+
+
+     <ScrollView
+
+         android:id="@+id/sv_principal_activity_ventas"
+         android:layout_width="match_parent"
+         android:layout_height="match_parent">
+
+       <LinearLayout
+
+           android:id="@+id/parent_llv_activity_ventas"
+           android:layout_width="match_parent"
+           android:layout_height="wrap_content"
+           android:orientation="vertical">
+
+
+
+
+
+           <LinearLayout
+
+               android:id="@+id/llh_datos_personales_ventas"
+               android:layout_width="match_parent"
+               android:layout_height="wrap_content"
+               android:background="#303f9f"
+               android:orientation="horizontal"
+               android:weightSum="1">
+
+
+               <TextView
+
+                   android:id="@+id/datos_personales_cliente_realizar_ventas"
+                   android:layout_width="match_parent"
+                   android:layout_height="50dp"
+                   android:layout_weight="1"
+                   android:background=" #c2185b"
+                   android:gravity="center"
+                   android:text="DATOS PERSONALES"
+                   android:textAlignment="center"
+                   android:textColor="#000"
+                   android:textSize="25sp"
+                   android:textStyle="bold" />
+
+           </LinearLayout>
+
+
+            <LinearLayout
+
+                android:id="@+id/llh_apellido"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="#303f9f"
+                android:orientation="horizontal"
+                android:weightSum="1">
+
+
+                <TextView
+
+                    android:id="@+id/apellido_cliente_realizar_ventas"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:background="#bbdefb"
+                    android:text="Apellido"
+                    android:textAlignment="center"
+                    android:textColor="#000"
+                    android:textSize="25sp"
+                    android:textStyle="bold" />
+
+            </LinearLayout>
+
+            <LinearLayout
+
+                android:id="@+id/llh_nombre"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="#303f9f"
+                android:orientation="horizontal"
+                android:weightSum="1">
+
+
+                <TextView
+
+                    android:id="@+id/nombre_cliente_realizar_ventas"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:background="#bbdefb"
+                    android:text="Nombre"
+                    android:textAlignment="center"
+                    android:textColor="#000"
+                    android:textSize="25sp"
+                    android:textStyle="bold" />
+
+            </LinearLayout>
+
+
+            <LinearLayout
+
+                android:id="@+id/llh_direccion"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="#303f9f"
+                android:orientation="horizontal"
+                android:weightSum="1">
+
+
+                <TextView
+                    android:id="@+id/direccion_cliente_realizar_ventas"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:background="#bbdefb"
+                    android:text="Dirección"
+                    android:textAlignment="center"
+                    android:textColor="#000"
+                    android:textSize="25sp"
+                    android:textStyle="bold" />
+
+            </LinearLayout>
+
+
+            <LinearLayout
+
+                android:id="@+id/llh_barrio"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="#303f9f"
+                android:orientation="horizontal"
+                android:weightSum="1">
+
+
+                <TextView
+                    android:id="@+id/barrio_cliente_realizar_ventas"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:background="#bbdefb"
+                    android:text="Barrio"
+                    android:textAlignment="center"
+                    android:textColor="#000"
+                    android:textSize="25sp"
+                    android:textStyle="bold" />
+
+
+            </LinearLayout>
+
+
+
+           <LinearLayout
+
+               android:id="@+id/llh_titulo_ventas"
+               android:layout_width="match_parent"
+               android:layout_height="wrap_content"
+               android:background="#303f9f"
+               android:orientation="horizontal"
+               android:weightSum="1">
+
+
+               <TextView
+
+                   android:id="@+id/titulo_ventas_cliente_realizar_ventas"
+                   android:layout_width="match_parent"
+                   android:layout_height="50dp"
+                   android:layout_weight="1"
+                   android:background=" #c2185b"
+                   android:gravity="center"
+                   android:text="VENTA"
+                   android:textAlignment="center"
+                   android:textColor="#000"
+                   android:textSize="25sp"
+                   android:textStyle="bold" />
+
+           </LinearLayout>
+
+
+           <LinearLayout
+
+               android:id="@+id/layout_vertical_ventas"
+               android:layout_width="match_parent"
+               android:layout_height="wrap_content"
+               android:background="#bbdefb"
+               android:orientation="vertical">
+
+
+               <LinearLayout
+                   android:id="@+id/layout_horizontal_ventas"
+                   android:layout_width="match_parent"
+                   android:layout_height="match_parent"
+                   android:background="#bbdefb"
+                   android:orientation="horizontal"
+                   android:weightSum="1">
+
+                   <ImageButton
+
+                       android:id="@+id/add_art"
+                       android:layout_width="40dp"
+                       android:layout_height="wrap_content"
+                       android:background="@android:color/transparent"
+                       android:src="@drawable/ic_add_new_art" />
+
+                   <Spinner
+
+                       android:id="@+id/sp_art"
+                       android:layout_width="match_parent"
+                       android:layout_height="wrap_content"
+                       android:layout_weight="1"
+                       android:gravity="center"
+                       android:prompt="@string/title_spinner"
+                       android:spinnerMode="dialog">
+
+                   </Spinner>
+
+
+                   <EditText
+
+                       android:id="@+id/edtx_cantidad_productos_ventas"
+                       android:layout_width="95dp"
+                       android:layout_height="wrap_content"
+                       android:gravity="center"
+                       android:hint="Cantidad"
+                       android:imeOptions="actionNext"
+                       android:inputType="number" />
+
+               </LinearLayout>
+
+           </LinearLayout> <!--Fin del "layout_vertical_ventas"-->
+
+
+           <LinearLayout
+
+               android:id="@+id/llh_titulo_caja_ventas"
+               android:layout_width="match_parent"
+               android:layout_height="wrap_content"
+               android:background="#303f9f"
+               android:orientation="horizontal"
+               android:weightSum="1">
+
+
+               <TextView
+
+                   android:id="@+id/titulo_caja_cliente_realizar_ventas"
+                   android:layout_width="match_parent"
+                   android:layout_height="50dp"
+                   android:layout_weight="1"
+                   android:background=" #c2185b"
+                   android:gravity="center"
+                   android:text="CAJA"
+                   android:textAlignment="center"
+                   android:textColor="#000"
+                   android:textSize="25sp"
+                   android:textStyle="bold" />
+
+           </LinearLayout>
+
+
+           <LinearLayout
+
+               android:id="@+id/llh_saldo_entrega"
+               android:layout_width="match_parent"
+               android:layout_height="wrap_content"
+               android:background="#2962ff"
+               android:orientation="horizontal"
+               android:weightSum="2">
+
+
+               <TextView
+                   android:id="@+id/saldo_ventas"
+                   android:layout_width="match_parent"
+                   android:layout_height="wrap_content"
+                   android:layout_weight="1"
+                   android:text="Saldo:"
+                   android:textAlignment="center"
+                   android:textColor="#000"
+                   android:textSize="20sp"
+                   android:textStyle="bold" />
+
+
+               <Button
+                   android:id="@+id/button_confirmar_ventas"
+                   android:layout_width="50dp"
+                   android:layout_height="50dp"
+                   android:drawableLeft="@drawable/ic_check_black_24dp" />
+
+
+               <TextView
+                   android:id="@+id/entrega_ventas"
+                   android:layout_width="match_parent"
+                   android:layout_height="wrap_content"
+                   android:layout_weight="1"
+                   android:text="Entrega:"
+                   android:textAlignment="center"
+                   android:textColor="#000"
+                   android:textSize="20sp"
+                   android:textStyle="bold" />
+
+
+           </LinearLayout>
+
+
+           <LinearLayout
+
+               android:id="@+id/llh_cantidad_saldo_entrega"
+               android:layout_width="match_parent"
+               android:layout_height="wrap_content"
+               android:background="#bbdefb"
+               android:orientation="horizontal"
+               android:weightSum="2">
+
+
+               <TextView
+                   android:id="@+id/cantidad_saldo_productos_ventas"
+                   android:layout_width="match_parent"
+                   android:layout_height="wrap_content"
+                   android:layout_weight="1"
+                   android:text="Número_Importe:"
+                   android:textAlignment="center"
+                   android:textColor="#000"
+                   android:textSize="20sp"
+                   android:textStyle="bold" />
+
+
+               <EditText
+                   android:id="@+id/cantidad_entrega_productos_ventas"
+                   android:layout_width="match_parent"
+                   android:layout_height="wrap_content"
+                   android:layout_marginStart="50dp"
+                   android:layout_weight="1"
+                   android:inputType="numberDecimal"
+                   android:textStyle="bold" />
+
+
+           </LinearLayout>
+
+
+
+
+</LinearLayout>
+
+
+
+    </ScrollView>
+
+
+
+
+</LinearLayout>

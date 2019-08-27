@@ -12,19 +12,15 @@ import android.widget.Toolbar;
 
 public class AgregarCliente extends AppCompatActivity {
 
-    //Declaración de variables para cada CheckBox correspondiente a los 6 días laborales
 
+    /*************** DECLARACIÓN DE VARIABLES GLOBALES *****************/
+
+
+    //Declaración de variables para cada CheckBox correspondiente a los 6 días laborales
     CheckBox c1, c2, c3, c4, c5, c6;
 
 
-    EditText eTApellidoAC;
-    EditText eTNombreAC;
-    EditText eTDireccionAC;
-    EditText eTBarrioAC;
-    EditText eTTelefonoAC;
-    EditText eTCorreoAC;
-    EditText eTdniAC;
-    EditText eTReferenciaAC;
+    EditText eTApellidoAC, eTNombreAC, eTDireccionAC, eTBarrioAC, eTTelefonoAC, eTCorreoAC, eTdniAC, eTReferenciaAC;
 
 
     @Override
@@ -34,12 +30,6 @@ public class AgregarCliente extends AppCompatActivity {
 
 
 
-/*
-
-        Bundle bundle = getIntent().getExtras();
-        //final String dia = bundle.getString("dia");
-*/
-
 
         final Button buttonCancelar = (Button) findViewById(R.id.button_cancelar_AC);
 
@@ -47,10 +37,7 @@ public class AgregarCliente extends AppCompatActivity {
 
             @Override
             public void onClick(View view) {
-/*
-                Intent buttonCancelarC = new Intent(AgregarCliente.this, Second_Activity.class);
-                startActivity(buttonCancelarC);
-*/
+
                 finish();
 
             }
