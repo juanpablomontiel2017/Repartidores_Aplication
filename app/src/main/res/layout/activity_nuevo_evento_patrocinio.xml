@@ -269,7 +269,7 @@
 
                         android:id="@+id/titulo_nuevo_evento_patrocinio_supervisor"
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent"
+                        android:layout_height="50dp"
                         android:layout_weight="1"
                         android:gravity="center"
                         android:text="NUEVO EVENTO"
@@ -531,7 +531,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:text="FECHA DE FIN:"
+                        android:text="FECHA DE FIN ESTIMADA:"
                         android:textAlignment="center"
                         android:textColor="#FFFF"
                         android:textSize="25sp"

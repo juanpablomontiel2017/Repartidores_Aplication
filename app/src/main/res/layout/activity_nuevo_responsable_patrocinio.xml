@@ -51,7 +51,7 @@
 
               android:id="@+id/datos_personales_responsable"
               android:layout_width="match_parent"
-              android:layout_height="wrap_content"
+              android:layout_height="50dp"
               android:layout_weight="1"
               android:background="#ff5722"
               android:gravity="center"
@@ -380,7 +380,7 @@
 
             android:id="@+id/tv_evento_formulario_patrocinio"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="50dp"
             android:layout_weight="1"
             android:background="#ff5722"
             android:gravity="center"
@@ -640,7 +640,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:gravity="center"
-                android:text="FECHA DE FIN:"
+                android:text="FECHA DE FIN ESTIMADA:"
                 android:textColor="#000000"
                 android:textSize="20sp"
                 android:textStyle="bold" />

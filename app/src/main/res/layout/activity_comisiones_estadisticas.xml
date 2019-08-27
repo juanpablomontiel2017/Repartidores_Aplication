@@ -3,11 +3,14 @@
 
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+
 
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
+    android:weightSum="2"
+
 
     tools:context=".ComisionesEstadisticas">
 
@@ -30,57 +33,22 @@
 
     <LinearLayout
 
+        android:layout_weight="1"
         android:id="@+id/llv_uno"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical">
-
-
-        <LinearLayout
-
-            android:id="@+id/llh_bidones_vendidos_semana"
-            android:layout_width="match_parent"
-            android:layout_height="60dp"
-            android:layout_marginTop="10dp"
-            android:layout_marginBottom="20dp"
-            android:orientation="horizontal"
-            android:weightSum="2">
-
-
-            <TextView
-
-                android:id="@+id/tv_bidones_vendidos_semana"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:text="Bidones vendidos durante la semana: "
-                android:textColor="#000000"
-                android:textSize="20sp"
-                android:textStyle="bold" />
-
-            <TextView
-
-                android:id="@+id/textview_cantidad_bidones_vendidos_semana"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:hint="Cantidad"
-                android:textSize="20sp"
-                android:textStyle="bold" />
-
-
-        </LinearLayout>
+        android:orientation="vertical"
+        android:weightSum="2">
 
 
         <LinearLayout
 
             android:id="@+id/llh_faltantes_sobrantes_dinero"
             android:layout_width="match_parent"
-            android:layout_height="60dp"
+            android:layout_height="wrap_content"
             android:layout_marginBottom="20dp"
+            android:layout_weight="1"
+            android:gravity="center"
             android:orientation="horizontal"
             android:weightSum="2">
 
@@ -92,7 +60,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:gravity="center"
-                android:text="Faltante y/o sobrante de dinero: "
+                android:text="FALTANTE Y/O SOBRANTE DE DINERO: "
                 android:textColor="#000000"
                 android:textSize="20sp"
                 android:textStyle="bold" />
@@ -117,7 +85,9 @@
 
             android:id="@+id/llh_comision"
             android:layout_width="match_parent"
-            android:layout_height="60dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
             android:orientation="horizontal"
             android:weightSum="2">
 
@@ -129,7 +99,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:gravity="center"
-                android:text="Comisión: "
+                android:text="COMISIÓN: "
                 android:textColor="#000000"
                 android:textSize="20sp"
                 android:textStyle="bold" />
@@ -155,7 +125,7 @@
 
         android:id="@+id/llh_otros_articulos"
         android:layout_width="match_parent"
-        android:layout_height="30dp"
+        android:layout_height="wrap_content"
         android:layout_marginBottom="10dp"
         android:orientation="horizontal">
 
@@ -164,12 +134,12 @@
 
             android:id="@+id/tv_otros_articulos"
             android:layout_width="match_parent"
-            android:layout_height="30dp"
+            android:layout_height="50dp"
             android:layout_weight="1"
             android:background="#ff5722"
             android:gravity="center"
-            android:text="OTROS ARTÍCULOS: "
-            android:textColor="#000000"
+            android:text="ARTÍCULOS VENDIDOS EN LA SEMANA"
+            android:textColor="#FFFF"
             android:textSize="20sp"
             android:textStyle="bold" />
 
@@ -183,19 +153,65 @@
 
     <LinearLayout
 
+        android:layout_weight="1"
         android:id="@+id/llv_dos"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:weightSum="4">
+
+
+        <LinearLayout
+
+            android:id="@+id/llh_bidones_vendidos_semana"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="20dp"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:weightSum="2">
+
+
+            <TextView
+
+                android:id="@+id/tv_bidones_vendidos_semana"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="BIDONES: "
+                android:textColor="#000000"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+
+            <TextView
+
+                android:id="@+id/textview_cantidad_bidones_vendidos_semana"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:hint="Cantidad"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+
+
+        </LinearLayout>
 
 
         <LinearLayout
 
             android:id="@+id/llh_dispenser_plasticos_vendidos_semana"
             android:layout_width="match_parent"
-            android:layout_height="80dp"
+            android:layout_height="wrap_content"
             android:layout_marginTop="5dp"
             android:layout_marginBottom="20dp"
+            android:layout_weight="1"
+            android:gravity="center"
             android:orientation="horizontal"
             android:weightSum="2">
 
@@ -207,7 +223,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:gravity="center"
-                android:text="Dispenser Plásticos vendidos durante la semana: "
+                android:text="DISPENSER PLÁSTICO: "
                 android:textColor="#000000"
                 android:textSize="20sp"
                 android:textStyle="bold" />
@@ -232,8 +248,10 @@
 
             android:id="@+id/llh_dispenser_electricos_vendidos_semana"
             android:layout_width="match_parent"
-            android:layout_height="80dp"
+            android:layout_height="wrap_content"
             android:layout_marginBottom="20dp"
+            android:layout_weight="1"
+            android:gravity="center"
             android:orientation="horizontal"
             android:weightSum="2">
 
@@ -245,7 +263,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:gravity="center"
-                android:text="Dispenser Eléctricos vendidos durante la semana: "
+                android:text="DISPENSER ELÉCTRICO: "
                 android:textColor="#000000"
                 android:textSize="20sp"
                 android:textStyle="bold" />
@@ -270,8 +288,10 @@
 
             android:id="@+id/llh_canillas_vendidas_semana"
             android:layout_width="match_parent"
-            android:layout_height="60dp"
+            android:layout_height="wrap_content"
             android:layout_marginBottom="20dp"
+            android:layout_weight="1"
+            android:gravity="center"
             android:orientation="horizontal"
             android:weightSum="2">
 
@@ -283,7 +303,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:gravity="center"
-                android:text="Canillas vendidas durante la semana: "
+                android:text="CANILLAS:"
                 android:textColor="#000000"
                 android:textSize="20sp"
                 android:textStyle="bold" />
