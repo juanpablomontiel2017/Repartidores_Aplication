@@ -6,8 +6,6 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
-import com.example.jumpi.repartidores_aplication.DbContract;
-
 public class DbHelper extends SQLiteOpenHelper {
 
     /**
@@ -112,7 +110,7 @@ public class DbHelper extends SQLiteOpenHelper {
 
 
     @Override
-    public void onUpgrade(SQLiteDatabase db, int i, int i1) {
+    public void onUpgrade(SQLiteDatabase db, int i, int l) {
 
         db.execSQL(DROP_TABLE);
 

@@ -1061,200 +1061,17 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
 
 
 
-                            /**
-                             * OBTENGO LOS DATOS RECIBIDOS DE LA KEY "DATA"
-                             */
-
-
-
-                            JSONArray jsonClientes = jsonData.getJSONArray("clientes");
-
-                            JSONObject jsonClientesDatos;
-
-
-
-                            for (int i = 0; i < jsonClientes.length(); i++)
-                            {
-
-
-                                try {
-
-
-                                    jsonClientesDatos = jsonClientes.getJSONObject(i);
-
-                                    String idDB = jsonClientesDatos.getString("ClientesDirectos_Persona_IdCliente");
-
-                                    String dniDB = jsonClientesDatos.getString("ClientesDirectos_Persona_DNICliente");
-
-                                    String apellidoDB = jsonClientesDatos.optString("Apellido");
-
-                                    String nombreDB = jsonClientesDatos.optString("Nombre");
-
-                                    String telefonoDB = jsonClientesDatos.optString("Telefono");
-
-                                    String emailDB = jsonClientesDatos.optString("Email");
-
-                                    String direccionDB = jsonClientesDatos.optString("Direccion");
-
-                                    String referenciaDB = jsonClientesDatos.optString("Referencia");
-
-                                    String barrioDB = jsonClientesDatos.optString("Barrio");
-
-
-
-                                    lunes =DbContract.DIA_FAIL;
-
-                                    martes =DbContract.DIA_FAIL;
-
-                                    miercoles =DbContract.DIA_FAIL;
-
-                                    jueves =DbContract.DIA_FAIL;
-
-                                    viernes =DbContract.DIA_FAIL;
-
-                                    sabado =DbContract.DIA_FAIL;
-
-
-
-                                    if (jsonClientesDatos.has("Dia")) {
-
-
-                                        JSONArray jsonDia = jsonClientesDatos.getJSONArray("Dia");
-
-
-                                        JSONObject jsonDiaDatos;
-
-
-
-                                        for (int j = 0; j < jsonDia.length(); j++)
-                                        {
-
-                                            try {
-
-
-                                                jsonDiaDatos = jsonDia.getJSONObject(j);
-
-
-
-                                                if (jsonDiaDatos.has("Dia")) {
-                                                    String Dia = jsonDiaDatos.optString("Dia");
-
-
-                                                    if (TextUtils.equals(Dia, "LUNES")){
-                                                        lunes = DbContract.DIA_OK;
-                                                    }
-
-
-                                                    if (TextUtils.equals(Dia, "MARTES")){
-                                                        martes = DbContract.DIA_OK;
-                                                    }
-
-
-                                                    if (TextUtils.equals(Dia, "MIERCOLES")){
-                                                        miercoles = DbContract.DIA_OK;
-                                                    }
-
-
-                                                    if (TextUtils.equals(Dia, "JUEVES")){
-                                                        jueves = DbContract.DIA_OK;
-                                                    }
-
-
-                                                    if (TextUtils.equals(Dia, "VIERNES")){
-                                                        viernes = DbContract.DIA_OK;
-                                                    }
-
-
-                                                    if (TextUtils.equals(Dia, "SABADO")){
-                                                        sabado = DbContract.DIA_OK;
-                                                    }
-
-
-                                                }//Fin del if(jsonDiaDatos.has("Dia"))
-
-
-
-
-
-                                            }//Fin del try
-
-
-
-
-                                            catch (JSONException a){
-                                                Log.e("TSFB", "Parser JSON DIA DATOS  "+ a.toString());
-
-                                            }//Fin del catch
-
-
-
-
-                                        }//Fin del for (hasta jsonDia)
-
-
-
-
-                                    }//Fin del if(jsonClientesDatos.has("Dia"))
-
-
-
-
-
-                                    DbHelper dbHelper = new DbHelper(getApplicationContext());
-                                    SQLiteDatabase database = dbHelper.getWritableDatabase();
-
-                                    /*
-                                        SE INSERTAN LOS DATOS DEL CLIENTE EN LA TABLA ZONAREPARTO
-                                     */
-
-
-                                    dbHelper.saveToLocalDatabaseZonaReparto(Integer.parseInt(dniDB), Integer.parseInt(idDB), apellidoDB, nombreDB, direccionDB, barrioDB,referenciaDB, telefonoDB, emailDB, R.drawable.leomessi, lunes, martes, miercoles, jueves, viernes, sabado, DbContract.SYNC_STATUS_OK, database);
-
-                                    dbHelper.close();
-
-                                }//Fin del segundo try
-
-
-                                catch (JSONException e) {
-
-
-
-                                    Log.e("TSFB", "Parser JSON "+ e.toString());
-
-
-
-                                }//Fin del catch
-
-
-
-
-                            }//Fin del for(hasta jsonClientes.length)
-
-
-
-
-
-                            finish();
-
-
-
-
-                            DbHelper dbHelper = new DbHelper(getApplicationContext());
-
-                            SQLiteDatabase database = dbHelper.getWritableDatabase();
-
-
-                            // INSERTA LOS DATOS DEL USUARIO EN LA TABLA USUARIO
-
-                            dbHelper.saveToLocalDatabase(Integer.parseInt(dni), Integer.parseInt(id),mEmail,mPassword, DbContract.SYNC_STATUS_OK, database);
-
-                            dbHelper.close();
-
-
-
-                            // Ingresas a otra activity de la app. Logueo exitoso
-
                             if (TextUtils.equals(msj, "repartidor")){
+
+
+                                /*Llamada a la función: */
+                                LeerClientesDelResponse(jsonData,lunes,martes,miercoles,jueves
+                                                        ,viernes,sabado,id,dni,msj, mEmail,mPassword);
+
+
+
+                                // Ingresas a otra activity de la app. Logueo exitoso
+
 
                                 Log.d("TFSB", "response true. Ingresa a Main Repartidor");
 
@@ -1996,6 +1813,14 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
 
                         if (success) {
 
+                            DbHelper db = new DbHelper(getApplicationContext());
+                            SQLiteDatabase sql = db.getReadableDatabase();
+
+                            db.onUpgrade(sql,1,1);
+
+                            db.close();
+
+
 
                             JSONObject jsonData = jsonResponse.getJSONObject("data");
 
@@ -2007,179 +1832,184 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
                             msj = jsonData.getString("msj");
 
 
-                            DbHelper dbHelper = new DbHelper(getApplicationContext());
 
-                            SQLiteDatabase databaseRead = dbHelper.getReadableDatabase();
+                            if (TextUtils.equals(msj, "repartidor")){
 
-                            dbHelper.onUpgrade(databaseRead,1,1);
 
+                                DbHelper dbHelper = new DbHelper(getApplicationContext());
 
+                                SQLiteDatabase databaseRead = dbHelper.getReadableDatabase();
 
-                            /*** OBTENGO LOS DATOS RECIBIDOS DE LA KEY "DATA" ***/
+                                dbHelper.onUpgrade(databaseRead,1,1);
 
-                            if (jsonData.has("clientes")) {
 
 
-                                JSONArray jsonClientes = jsonData.getJSONArray("clientes");
 
-                                JSONObject jsonClientesDatos;
+                                /*** OBTENGO LOS DATOS RECIBIDOS DE LA KEY "DATA" ***/
 
+                                if (jsonData.has("clientes")) {
 
 
-                                for (int i = 0; i < jsonClientes.length(); i++)
-                                {
+                                    JSONArray jsonClientes = jsonData.getJSONArray("clientes");
 
+                                    JSONObject jsonClientesDatos;
 
-                                    try {
 
 
-                                        jsonClientesDatos = jsonClientes.getJSONObject(i);
+                                    for (int i = 0; i < jsonClientes.length(); i++)
+                                    {
 
 
-                                        String idDB = jsonClientesDatos.getString("ClientesDirectos_Persona_IdCliente");
+                                        try {
 
-                                        String dniDB = jsonClientesDatos.getString("ClientesDirectos_Persona_DNICliente");
 
-                                        String apellidoDB = jsonClientesDatos.optString("Apellido");
+                                            jsonClientesDatos = jsonClientes.getJSONObject(i);
 
-                                        String nombreDB = jsonClientesDatos.optString("Nombre");
 
-                                        String telefonoDB = jsonClientesDatos.optString("Telefono");
+                                            String idDB = jsonClientesDatos.getString("ClientesDirectos_Persona_IdCliente");
 
-                                        String emailDB = jsonClientesDatos.optString("Email");
+                                            String dniDB = jsonClientesDatos.getString("ClientesDirectos_Persona_DNICliente");
 
-                                        String direccionDB = jsonClientesDatos.optString("Direccion");
+                                            String apellidoDB = jsonClientesDatos.optString("Apellido");
 
-                                        String referenciaDB = jsonClientesDatos.optString("Referencia");
+                                            String nombreDB = jsonClientesDatos.optString("Nombre");
 
-                                        String barrioDB = jsonClientesDatos.optString("Barrio");
+                                            String telefonoDB = jsonClientesDatos.optString("Telefono");
 
+                                            String emailDB = jsonClientesDatos.optString("Email");
 
+                                            String direccionDB = jsonClientesDatos.optString("Direccion");
 
+                                            String referenciaDB = jsonClientesDatos.optString("Referencia");
 
-                                        lunes =DbContract.DIA_FAIL;
+                                            String barrioDB = jsonClientesDatos.optString("Barrio");
 
-                                        martes =DbContract.DIA_FAIL;
 
-                                        miercoles =DbContract.DIA_FAIL;
 
-                                        jueves =DbContract.DIA_FAIL;
 
-                                        viernes =DbContract.DIA_FAIL;
+                                            lunes =DbContract.DIA_FAIL;
 
-                                        sabado =DbContract.DIA_FAIL;
+                                            martes =DbContract.DIA_FAIL;
 
+                                            miercoles =DbContract.DIA_FAIL;
 
+                                            jueves =DbContract.DIA_FAIL;
 
+                                            viernes =DbContract.DIA_FAIL;
 
-                                        if (jsonClientesDatos.has("Dia")) {
+                                            sabado =DbContract.DIA_FAIL;
 
 
-                                            JSONArray jsonDia = jsonClientesDatos.getJSONArray("Dia");
 
-                                            JSONObject jsonDiaDatos;
 
+                                            if (jsonClientesDatos.has("Dia")) {
 
 
-                                            for (int j = 0; j < jsonDia.length(); j++)
-                                            {
+                                                JSONArray jsonDia = jsonClientesDatos.getJSONArray("Dia");
 
+                                                JSONObject jsonDiaDatos;
 
 
 
-                                                try{
+                                                for (int j = 0; j < jsonDia.length(); j++)
+                                                {
 
 
-                                                    jsonDiaDatos = jsonDia.getJSONObject(j);
 
-                                                    if (jsonDiaDatos.has("Dia")) {
 
+                                                    try{
 
-                                                        String Dia = jsonDiaDatos.optString("Dia");
 
+                                                        jsonDiaDatos = jsonDia.getJSONObject(j);
 
+                                                        if (jsonDiaDatos.has("Dia")) {
 
-                                                        if (TextUtils.equals(Dia, "LUNES")){
 
-                                                            lunes = DbContract.DIA_OK;
+                                                            String Dia = jsonDiaDatos.optString("Dia");
 
 
-                                                        } //Fin del  if
 
+                                                            if (TextUtils.equals(Dia, "LUNES")){
 
+                                                                lunes = DbContract.DIA_OK;
 
-                                                        if (TextUtils.equals(Dia, "MARTES")){
 
-                                                            martes = DbContract.DIA_OK;
+                                                            } //Fin del  if
 
-                                                        } //Fin del if
 
 
+                                                            if (TextUtils.equals(Dia, "MARTES")){
 
-                                                        if (TextUtils.equals(Dia, "MIERCOLES")){
+                                                                martes = DbContract.DIA_OK;
 
-                                                            miercoles = DbContract.DIA_OK;
+                                                            } //Fin del if
 
-                                                        } //Fin del if
 
 
+                                                            if (TextUtils.equals(Dia, "MIERCOLES")){
 
-                                                        if (TextUtils.equals(Dia, "JUEVES")){
+                                                                miercoles = DbContract.DIA_OK;
 
-                                                            jueves = DbContract.DIA_OK;
+                                                            } //Fin del if
 
-                                                        } //Fin del if
 
 
+                                                            if (TextUtils.equals(Dia, "JUEVES")){
 
-                                                        if (TextUtils.equals(Dia, "VIERNES")){
+                                                                jueves = DbContract.DIA_OK;
 
-                                                            viernes = DbContract.DIA_OK;
+                                                            } //Fin del if
 
-                                                        } //Fin del if
 
 
+                                                            if (TextUtils.equals(Dia, "VIERNES")){
 
-                                                        if (TextUtils.equals(Dia, "SABADO")){
+                                                                viernes = DbContract.DIA_OK;
 
-                                                            sabado = DbContract.DIA_OK;
+                                                            } //Fin del if
 
-                                                        } //Fin del if
 
 
+                                                            if (TextUtils.equals(Dia, "SABADO")){
 
+                                                                sabado = DbContract.DIA_OK;
 
-                                                    }//Fin del if (jsonDiaDatos.has("Dia"))
+                                                            } //Fin del if
 
 
 
 
+                                                        }//Fin del if (jsonDiaDatos.has("Dia"))
 
-                                                }//Fin del try
 
 
 
-                                                catch (JSONException a){
-                                                    Log.e("TSFB", "Parser JSON DIA DATOS  "+ a.toString());
 
-                                                }
+                                                    }//Fin del try
 
 
 
+                                                    catch (JSONException a){
+                                                        Log.e("TSFB", "Parser JSON DIA DATOS  "+ a.toString());
 
+                                                    }
 
-                                            }//Fin del for (hasta jsonDia.length)
 
 
 
 
-                                        }// FIN DEL if (jsonClientesDatos.has("Dia"))
+                                                }//Fin del for (hasta jsonDia.length)
 
 
 
-                                        dbHelper = new DbHelper(getApplicationContext());
 
-                                        SQLiteDatabase database = dbHelper.getWritableDatabase();
+                                            }// FIN DEL if (jsonClientesDatos.has("Dia"))
+
+
+
+                                            dbHelper = new DbHelper(getApplicationContext());
+
+                                            SQLiteDatabase database = dbHelper.getWritableDatabase();
 
 
 
@@ -2189,53 +2019,50 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
 
 
 
-                                        dbHelper.saveToLocalDatabaseZonaReparto(Integer.parseInt(dniDB), Integer.parseInt(idDB), apellidoDB, nombreDB, direccionDB, barrioDB,referenciaDB, telefonoDB, emailDB, R.drawable.leomessi, lunes, martes, miercoles, jueves, viernes, sabado, DbContract.SYNC_STATUS_OK, database);
+                                            dbHelper.saveToLocalDatabaseZonaReparto(Integer.parseInt(dniDB), Integer.parseInt(idDB), apellidoDB, nombreDB, direccionDB, barrioDB,referenciaDB, telefonoDB, emailDB, R.drawable.leomessi, lunes, martes, miercoles, jueves, viernes, sabado, DbContract.SYNC_STATUS_OK, database);
 
-                                        dbHelper.close();
+                                            dbHelper.close();
 
-                                    }//Fin del segundo try
-
-
-                                    catch (JSONException e) {
+                                        }//Fin del segundo try
 
 
-                                        Log.e("TSFB", "Parser JSON "+ e.toString());
-                                    }
+                                        catch (JSONException e) {
 
 
-
-                                }//Fin del for (hasta jsonClientes.length)
+                                            Log.e("TSFB", "Parser JSON "+ e.toString());
+                                        }
 
 
 
-
-
-                            }//Fin del if (jsonData.has("clientes"))
+                                    }//Fin del for (hasta jsonClientes.length)
 
 
 
 
 
+                                }//Fin del if (jsonData.has("clientes"))
 
 
-                            finish();
 
 
-                            dbHelper = new DbHelper(getApplicationContext());
-
-                            SQLiteDatabase database = dbHelper.getWritableDatabase();
 
 
-                            // INSERTA LOS DATOS DEL USUARIO EN LA TABLA USUARIO
 
-                            dbHelper.saveToLocalDatabase(Integer.parseInt(dni), Integer.parseInt(id),mEmail,mPassword, DbContract.SYNC_STATUS_OK, database);
+                                finish();
 
-                            dbHelper.close();
 
-                            // ingresas a otra activity de la app. Logueo exitoso
+                                dbHelper = new DbHelper(getApplicationContext());
 
-                            if (TextUtils.equals(msj, "repartidor")){
+                                SQLiteDatabase database = dbHelper.getWritableDatabase();
 
+
+                                // INSERTA LOS DATOS DEL USUARIO EN LA TABLA USUARIO
+
+                                dbHelper.saveToLocalDatabase(Integer.parseInt(dni), Integer.parseInt(id),mEmail,mPassword, DbContract.SYNC_STATUS_OK, database);
+
+                                dbHelper.close();
+
+                                // ingresas a otra activity de la app. Logueo exitoso
 
                                 Log.d("TFSB", "response true. Ingresa a Main Repartidor");
 
@@ -2429,6 +2256,22 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
                                     myIntent.putExtra("dni", dni);
 
 
+
+
+                                    DbHelper dbHelper = new DbHelper(getApplicationContext());
+
+                                    SQLiteDatabase database = dbHelper.getWritableDatabase();
+
+
+                                    // INSERTA LOS DATOS DEL USUARIO EN LA TABLA USUARIO
+
+                                    dbHelper.saveToLocalDatabase(Integer.parseInt(dni), Integer.parseInt(id),mEmail,mPassword, DbContract.SYNC_STATUS_OK, database);
+
+                                    dbHelper.close();
+
+
+
+
                                     LoginActivity.this.startActivity(myIntent);
 
 
@@ -2531,7 +2374,208 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
 
 
 
+    public void LeerClientesDelResponse(JSONObject jsonData, int lunes,int martes,int miercoles,int jueves
+                                        ,int viernes,int sabado,String id,String dni,String msj
+                                        ,String mEmail,String mPassword) throws JSONException {
 
+
+
+
+        /**
+         * OBTENGO LOS DATOS RECIBIDOS DE LA KEY "DATA"
+         */
+
+
+
+        JSONArray jsonClientes = jsonData.getJSONArray("clientes");
+
+        JSONObject jsonClientesDatos;
+
+
+
+        for (int i = 0; i < jsonClientes.length(); i++)
+        {
+
+
+            try {
+
+
+                jsonClientesDatos = jsonClientes.getJSONObject(i);
+
+                String idDB = jsonClientesDatos.getString("ClientesDirectos_Persona_IdCliente");
+
+                String dniDB = jsonClientesDatos.getString("ClientesDirectos_Persona_DNICliente");
+
+                String apellidoDB = jsonClientesDatos.optString("Apellido");
+
+                String nombreDB = jsonClientesDatos.optString("Nombre");
+
+                String telefonoDB = jsonClientesDatos.optString("Telefono");
+
+                String emailDB = jsonClientesDatos.optString("Email");
+
+                String direccionDB = jsonClientesDatos.optString("Direccion");
+
+                String referenciaDB = jsonClientesDatos.optString("Referencia");
+
+                String barrioDB = jsonClientesDatos.optString("Barrio");
+
+
+
+                lunes =DbContract.DIA_FAIL;
+
+                martes =DbContract.DIA_FAIL;
+
+                miercoles =DbContract.DIA_FAIL;
+
+                jueves =DbContract.DIA_FAIL;
+
+                viernes =DbContract.DIA_FAIL;
+
+                sabado =DbContract.DIA_FAIL;
+
+
+
+                if (jsonClientesDatos.has("Dia")) {
+
+
+                    JSONArray jsonDia = jsonClientesDatos.getJSONArray("Dia");
+
+
+                    JSONObject jsonDiaDatos;
+
+
+
+                    for (int j = 0; j < jsonDia.length(); j++)
+                    {
+
+                        try {
+
+
+                            jsonDiaDatos = jsonDia.getJSONObject(j);
+
+
+
+                            if (jsonDiaDatos.has("Dia")) {
+                                String Dia = jsonDiaDatos.optString("Dia");
+
+
+                                if (TextUtils.equals(Dia, "LUNES")){
+                                    lunes = DbContract.DIA_OK;
+                                }
+
+
+                                if (TextUtils.equals(Dia, "MARTES")){
+                                    martes = DbContract.DIA_OK;
+                                }
+
+
+                                if (TextUtils.equals(Dia, "MIERCOLES")){
+                                    miercoles = DbContract.DIA_OK;
+                                }
+
+
+                                if (TextUtils.equals(Dia, "JUEVES")){
+                                    jueves = DbContract.DIA_OK;
+                                }
+
+
+                                if (TextUtils.equals(Dia, "VIERNES")){
+                                    viernes = DbContract.DIA_OK;
+                                }
+
+
+                                if (TextUtils.equals(Dia, "SABADO")){
+                                    sabado = DbContract.DIA_OK;
+                                }
+
+
+                            }//Fin del if(jsonDiaDatos.has("Dia"))
+
+
+
+
+
+                        }//Fin del try
+
+
+
+
+                        catch (JSONException a){
+                            Log.e("TSFB", "Parser JSON DIA DATOS  "+ a.toString());
+
+                        }//Fin del catch
+
+
+
+
+                    }//Fin del for (hasta jsonDia)
+
+
+
+
+                }//Fin del if(jsonClientesDatos.has("Dia"))
+
+
+
+
+
+                DbHelper dbHelper = new DbHelper(getApplicationContext());
+                SQLiteDatabase database = dbHelper.getWritableDatabase();
+
+                                    /*
+                                        SE INSERTAN LOS DATOS DEL CLIENTE EN LA TABLA ZONAREPARTO
+                                     */
+
+
+                dbHelper.saveToLocalDatabaseZonaReparto(Integer.parseInt(dniDB), Integer.parseInt(idDB), apellidoDB, nombreDB, direccionDB, barrioDB,referenciaDB, telefonoDB, emailDB, R.drawable.leomessi, lunes, martes, miercoles, jueves, viernes, sabado, DbContract.SYNC_STATUS_OK, database);
+
+                dbHelper.close();
+
+            }//Fin del segundo try
+
+
+            catch (JSONException e) {
+
+
+
+                Log.e("TSFB", "Parser JSON "+ e.toString());
+
+
+
+            }//Fin del catch
+
+
+
+
+        }//Fin del for(hasta jsonClientes.length)
+
+
+
+
+
+        finish();
+
+
+
+
+        DbHelper dbHelper = new DbHelper(getApplicationContext());
+
+        SQLiteDatabase database = dbHelper.getWritableDatabase();
+
+
+        // INSERTA LOS DATOS DEL USUARIO EN LA TABLA USUARIO
+
+        dbHelper.saveToLocalDatabase(Integer.parseInt(dni), Integer.parseInt(id),mEmail,mPassword, DbContract.SYNC_STATUS_OK, database);
+
+        dbHelper.close();
+
+
+
+
+
+
+    }/************************ FIN DE LA FUNCIÓN LeerClientesDelResponse() *************************/
 
 
 
