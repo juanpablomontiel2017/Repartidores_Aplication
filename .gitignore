@@ -41,6 +41,10 @@ captures/
 .idea/dictionaries
 .idea/libraries
 .idea/caches
+.idea/misc.xml
+.idea/Project.xml
+
+
 
 # Keystore files
 # Uncomment the following line if you do not want to check your keystore files in.
@@ -63,3 +67,6 @@ fastlane/Preview.html
 fastlane/screenshots
 fastlane/test_output
 fastlane/readme.md
+
+# Protege los datos como credenciales o accesos al servidor
+repartidores_aplication/vault.java
