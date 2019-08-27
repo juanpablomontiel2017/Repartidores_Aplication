@@ -28,7 +28,7 @@
 
             android:id="@+id/layout_vertical"
             android:layout_width="match_parent"
-            android:layout_height="400dp"
+            android:layout_height="500dp"
             android:orientation="vertical">
 
             <LinearLayout
@@ -36,8 +36,8 @@
                 android:id="@+id/llv_contenedor_para_bordes"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:background="@drawable/borde_linear_layout">
+                android:background="@drawable/borde_linear_layout"
+                android:orientation="vertical">
 
 
                 <!--#################################################-->
@@ -77,6 +77,7 @@
                     tools:visibility="visible">
 
 
+
                     <TextView
 
                         android:id="@+id/articulos"
@@ -88,12 +89,15 @@
                         android:textSize="15sp" />
 
 
+
+
                     <ImageView
 
                         android:id="@+id/img_carga"
                         android:layout_width="30dp"
                         android:layout_height="wrap_content"
                         android:src="@drawable/ic_carga" />
+
 
                     <TextView
                         android:id="@+id/cargas"
@@ -106,12 +110,18 @@
                         android:textSize="15sp" />
 
 
+
+
                     <ImageView
 
                         android:id="@+id/img_descarga"
                         android:layout_width="30dp"
                         android:layout_height="wrap_content"
                         android:src="@drawable/ic_descarga" />
+
+
+
+
 
                     <TextView
                         android:id="@+id/descargas"
@@ -144,6 +154,8 @@
                         android:orientation="horizontal"
                         android:weightSum="1">
 
+
+
                         <ImageButton
 
                             android:id="@+id/add_art"
@@ -165,6 +177,8 @@
                         </Spinner>
 
 
+
+
                         <EditText
 
                             android:id="@+id/edtx_carga"
@@ -173,7 +187,7 @@
                             android:gravity="center"
                             android:hint="Cantidad"
                             android:imeOptions="actionNext"
-                            android:inputType="number"/>
+                            android:inputType="number" />
 
                         <EditText
 
@@ -185,12 +199,10 @@
                             android:imeOptions="actionNext"
                             android:inputType="number" />
 
+
+
                     </LinearLayout>
 
-
-                    <!--#######################################################################-->
-                    <!--#########Agregaremos 6 (seis) LLH para los demás articulos#############-->
-                    <!--#######################################################################-->
 
 
                 </LinearLayout> <!--Fin del "layout_vertical_tercer_tupla"-->
@@ -206,6 +218,7 @@
                     android:layout_height="wrap_content"
                     android:orientation="horizontal"
                     android:weightSum="2">
+
 
 
                     <ImageView
@@ -237,6 +250,8 @@
                         android:hint="$"
                         android:imeOptions="actionDone"
                         android:inputType="number" />
+
+
 
                 </LinearLayout>
 

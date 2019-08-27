@@ -20,6 +20,7 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
@@ -59,6 +60,11 @@ public class EntregaRetiroEnvasesPatrocinio extends AppCompatActivity {
     ArrayList<View> ArrayListVueltas = new ArrayList<View>();
 
 
+
+
+    /******Variables Cerrojos********/
+
+    boolean Estado_Evento = true;
 
 
 
@@ -141,9 +147,19 @@ public class EntregaRetiroEnvasesPatrocinio extends AppCompatActivity {
 
 
 
-
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
+
+
+
+
+        Estado_Evento = Boolean.parseBoolean(LeerConfiguracionDeActivityEnUnSharedPreferencesPatrocinio("EstadoEvento"));
+
+
+
+
+        String FechaActualDelSistema = UtilidadFecha.getFecha("dd-MM-yyyy");
 
 
 
@@ -157,8 +173,13 @@ public class EntregaRetiroEnvasesPatrocinio extends AppCompatActivity {
 
 
 
-        /* Guardaremos las "Nuevas Vueltas" creadas en ArrayVueltas, donde esas vueltas se ubicarán en el Layout Vertical Padre */
+        /* Guardaremos las "Nuevas Vueltas" creadas en ArrayVueltas */
         ArrayListVueltas.add(LinearLayoutVerticalHijo_Patrocinio);
+
+
+
+
+
 
 
 
@@ -191,16 +212,15 @@ public class EntregaRetiroEnvasesPatrocinio extends AppCompatActivity {
 
 
 
-
-
-
-        /* Llamada a la función: */
+        /*Llamada a la función:  */
         MostrarValoresDelSharedPreferencesPatrocinio();
 
 
 
 
-        /*CASO ESPECIAL: Si estamos parados en la Primer Tanda, el botón flotante para añadir una nueva
+
+
+        /*CASO ESPECIAL: Si estamos parados en la Primer Vuelta, el botón flotante para añadir una nueva
          vuelta no debería ser visible */
 
         if (ArrayListVueltas.size() > 1) {
@@ -257,7 +277,7 @@ public class EntregaRetiroEnvasesPatrocinio extends AppCompatActivity {
 
 
                 /*Llamada a la función: */
-                //EliminarCualquierTanda(v);
+                EliminarCualquierVuelta(v);
 
 
                 return false;
@@ -360,6 +380,376 @@ public class EntregaRetiroEnvasesPatrocinio extends AppCompatActivity {
     /***************************************************************************************************/
     /***************************************************************************************************/
     /***************************************************************************************************/
+
+
+
+
+
+
+
+
+
+
+
+    public void EliminarCualquierVuelta(final View v){
+
+
+
+
+
+            AlertDialog.Builder builder = new AlertDialog.Builder(EntregaRetiroEnvasesPatrocinio.this);
+            builder.setIcon(R.drawable.ic_msj_alerta);
+            builder.setTitle("Desea eliminar la vuelta seleccionada?!");
+            builder.setMessage("Al presionar el botón 'Eliminar Vuelta' se borrará la vuelta que fue seleccionada. ¿Desea continuar?");
+
+
+            builder.setPositiveButton("Eliminar Vuelta", new DialogInterface.OnClickListener() {
+
+                public void onClick(DialogInterface dialog, int id) {
+
+
+
+
+
+
+                    if (ArrayListVueltas.size() > 1) {
+
+                        int ValorDeLaPosicion;
+
+                        ValorDeLaPosicion = EncontrarPosicionDeVuelta(v);
+
+
+
+                        if(ValorDeLaPosicion != 99){
+
+
+
+                            /*Llamada a la función:  */
+                            BorrarValoresDelSharedPreferencesPatrocinio();
+
+
+
+                            ArrayListVueltas.remove(v);
+
+
+
+
+                            LinearLayoutVerticalPadre_Patrocinio.removeAllViews();
+
+
+
+                            /*Llamada a la función:  */
+                            GuardarValoresEnSharedPreferencesPatrocinio();
+
+
+
+                            vuelta_numero = 0;
+
+
+                            ArrayListVueltas.clear();
+
+
+                            /*Llamada a la función:  */
+                            RefrescarVueltasEnPantalla();
+
+
+
+
+                            /****Tener en cuenta las siguientes condiciones al momento de eliminar la vuelta: **/
+
+                            fab_nueva_vuelta.setVisibility(View.VISIBLE);
+
+                            fab_cancelar_vuelta.setVisibility(GONE);
+
+                            DeshabilitarVistasDeLasVueltasAlGuardarCambios(true);
+
+
+                            Toast.makeText(EntregaRetiroEnvasesPatrocinio.this, "La vuelta ha sido eliminada", Toast.LENGTH_LONG).show();
+
+
+
+
+
+
+
+
+                        } else {
+
+
+                            Toast.makeText(EntregaRetiroEnvasesPatrocinio.this, "Posicion: " + ValorDeLaPosicion, Toast.LENGTH_LONG).show();
+
+
+                        }
+
+
+                    } else {
+
+                        Toast.makeText(EntregaRetiroEnvasesPatrocinio.this, "¡No es posible eliminar la primer vuelta. Por favor, tenga en cuenta crear una nueva vuelta!", Toast.LENGTH_LONG).show();
+
+                    }
+
+
+                }
+            });
+
+
+            builder.setNegativeButton("Cancelar", new DialogInterface.OnClickListener() {
+                public void onClick(DialogInterface dialog, int id) {
+
+                    dialog.dismiss();
+                }
+            });
+
+
+            AlertDialog dialog = builder.create();
+            dialog.show();
+
+
+
+
+
+    }/*********************************FIN DE LA FUNCIÓN EliminarCualquierVuelta()*******************************************/
+
+
+
+
+
+
+
+    /***************************************************************************************************/
+    /***************************************************************************************************/
+    /***************************************************************************************************/
+    /***************************************************************************************************/
+    /***************************************************************************************************/
+    /***************************************************************************************************/
+    /***************************************************************************************************/
+    /***************************************************************************************************/
+    /***************************************************************************************************/
+    /***************************************************************************************************/
+
+
+
+
+
+
+
+    public int  EncontrarPosicionDeVuelta(View v){
+
+        int posicion_vuelta = 99;
+
+        for(int i = 0 ; i < ArrayListVueltas.size(); i++ ){
+
+            if(ArrayListVueltas.get(i) == v ){
+
+                posicion_vuelta = i;
+
+                break;
+
+            }//Fin del if
+
+
+        }//Fin del for
+
+
+        return posicion_vuelta;
+
+
+    }/*********************************FIN DE LA FUNCIÓN EncontrarPosicionDeVuelta()*******************************************/
+
+
+
+
+    /***************************************************************************************************/
+    /***************************************************************************************************/
+    /***************************************************************************************************/
+    /***************************************************************************************************/
+    /***************************************************************************************************/
+    /***************************************************************************************************/
+    /***************************************************************************************************/
+    /***************************************************************************************************/
+    /***************************************************************************************************/
+    /***************************************************************************************************/
+
+
+
+
+
+
+    public void RefrescarVueltasEnPantalla(){
+
+
+        SharedPreferences preferences = getSharedPreferences("Datos", MODE_PRIVATE);
+
+
+
+        String DimensionArrayNuevasVueltas = preferences.getString("DimensionArrayNuevasVueltas", "");
+
+
+
+        if (DimensionArrayNuevasVueltas != "") {
+
+            for (int indice_vueltas = 0; indice_vueltas < Integer.valueOf(DimensionArrayNuevasVueltas); indice_vueltas++) {
+
+
+
+                String ElementoSeleccionadoSpinnerFijo = preferences.getString("ElementoSeleccionadoSpinnerFijo - " + "Vuelta Numero: " + indice_vueltas, "");
+                String ValorEntregaArticulosFijo = preferences.getString("CantidadEntregaArticuloFijo - " + "Vuelta Numero: " + indice_vueltas, "");
+                String ValorRetiroArticulosFijo = preferences.getString("CantidadRetiroArticuloFijo - " + "Vuelta Numero: " + indice_vueltas, "");
+
+
+                /* Llamada a la función: */
+                ObtenerNuevaVuelta(ElementoSeleccionadoSpinnerFijo,ValorEntregaArticulosFijo, ValorRetiroArticulosFijo);
+
+
+
+                String DimensionArticulosProgramaticos = preferences.getString("DimensionArticulosProgramaticos - VueltaNumero: " + indice_vueltas, "");
+
+                if (DimensionArticulosProgramaticos != "") {
+
+                    for (int j = 1; j <= Integer.valueOf(DimensionArticulosProgramaticos); j++) {
+
+
+
+                        String ElementoSeleccionadoSpinnerProgramatico = preferences.getString("ElementoSeleccionadoSpinnerProgramatico - " + "Vuelta Numero: " + indice_vueltas + " - " + "Posicion: " + j, "");
+                        String ValorEntregaNuevoArticuloProgramatico = preferences.getString("CantidadDeEntregaNuevoArticuloProgramatico - " + "Vuelta Numero: " + indice_vueltas + " - " + "Posicion: " + j, "");
+                        String ValorRetiroNuevoArticuloProgramatico = preferences.getString("CantidadDeRetiroNuevoArticuloProgramatico - " + "Vuelta Numero: " + indice_vueltas + " - " + "Posicion: " + j, "");
+
+
+                        if (ValorEntregaNuevoArticuloProgramatico != "" && ValorRetiroNuevoArticuloProgramatico != "") {
+
+                            final View vuelta = ArrayListVueltas.get(indice_vueltas);
+
+                            final LinearLayout tercerTuplaProgramatica = (LinearLayout) vuelta.findViewById(R.id.layout_vertical_tercer_tupla_erep);
+
+
+                            /*Llamada a la función */
+                            ObtenerNuevoArticuloEntregaRetiroPorPatrocinio(ElementoSeleccionadoSpinnerProgramatico,
+                                    ValorEntregaNuevoArticuloProgramatico, ValorRetiroNuevoArticuloProgramatico, tercerTuplaProgramatica);
+
+
+                        } //Fin del if
+
+                    } //Fin del for
+
+
+
+                } //Fin del primer if
+
+
+
+
+
+            } //Fin del primer for
+
+
+        } //Fin del primer if
+
+
+
+
+
+
+
+
+
+
+
+    }/*****************FIN DE LA FUNCIÓN RefrescarVueltasEnPantalla()**************************/
+
+
+
+
+
+
+
+
+
+    /***************************************************************************************************/
+    /***************************************************************************************************/
+    /***************************************************************************************************/
+    /***************************************************************************************************/
+    /***************************************************************************************************/
+    /***************************************************************************************************/
+    /***************************************************************************************************/
+    /***************************************************************************************************/
+    /***************************************************************************************************/
+    /***************************************************************************************************/
+
+
+
+
+
+    public void EliminarVueltaEnElSharedPreferences(View vuelta, SharedPreferences.Editor editor, int i) {
+
+
+
+        int tope_de_articulos = 0;
+
+
+        editor.remove("ElementoSeleccionadoSpinnerFijo - " + "Vuelta Numero: " + i).commit();
+
+        editor.remove("CantidadEntregaArticuloFijo - " + "Vuelta Numero: " + i).commit();
+
+        editor.remove("CantidadRetiroArticuloFijo - " + "Vuelta Numero: " + i).commit();
+
+
+
+        final LinearLayout LLV_Tercer_Tupla_Vuelta = (LinearLayout) vuelta.findViewById(R.id.layout_vertical_tercer_tupla_erep);
+
+
+        tope_de_articulos = LLV_Tercer_Tupla_Vuelta.getChildCount()-1;
+
+
+
+
+        for(int j = 1 ; j < LLV_Tercer_Tupla_Vuelta.getChildCount() ; j++){
+
+
+
+            editor.remove("ElementoSeleccionadoSpinnerProgramatico - " + "Vuelta Numero: " + i + " - " + "Posicion: " + j).commit();
+
+            editor.remove("CantidadDeEntregaNuevoArticuloProgramatico - " + "Vuelta Numero: " + i + " - " + "Posicion: " + j).commit();
+
+            editor.remove("CantidadDeRetiroNuevoArticuloProgramatico - " + "Vuelta Numero: " + i + " - " + "Posicion: " + j).commit();
+
+
+
+        } //Fin del for del "j" ("Articulos Programáticos")
+
+
+
+
+
+
+        editor.remove("DimensionArticulosProgramaticos - VueltaNumero: " + i).commit();
+
+
+
+
+    }/*********************************FIN DE LA FUNCIÓN EliminarVueltaEnElSharedPreferences()*******************************************/
+
+
+
+
+
+
+
+    /***************************************************************************************************/
+    /***************************************************************************************************/
+    /***************************************************************************************************/
+    /***************************************************************************************************/
+    /***************************************************************************************************/
+    /***************************************************************************************************/
+    /***************************************************************************************************/
+    /***************************************************************************************************/
+    /***************************************************************************************************/
+    /***************************************************************************************************/
+
+
+
+
+
+
 
 
 
@@ -1091,6 +1481,26 @@ public class EntregaRetiroEnvasesPatrocinio extends AppCompatActivity {
 
 
 
+        InflatedView.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(final View v) {
+
+                /*Llamada a la función: */
+                EliminarCualquierVuelta(v);
+
+                return false;
+
+
+            }/**Fin del evento onLongClick() */
+
+
+        });  /**Fin del evento setOnLongClickListener() */
+
+
+
+
+
+
 
         ChildNuevaVuelta = LinearLayoutVerticalPadre_Patrocinio.getChildCount();
 
@@ -1619,16 +2029,16 @@ public class EntregaRetiroEnvasesPatrocinio extends AppCompatActivity {
             for (int indice_vueltas = 0; indice_vueltas < Integer.valueOf(DimensionArrayNuevasVueltas); indice_vueltas++) {
 
 
-                String ElementoSeleccionadoSpinnerFijo = preferences.getString("ElementoSeleccionado - " + "Vuelta Numero: " + indice_vueltas, "");
-                String ValorEntregaArticulosNuevaVuelta = preferences.getString("CantidadEntregaArticuloNuevaVuelta - " + "Vuelta Numero: " + indice_vueltas, "");
-                String ValorRetiroArticulosNuevaVuelta = preferences.getString("CantidadRetiroArticuloNuevaVuelta - " + "Vuelta Numero: " + indice_vueltas, "");
+                String ElementoSeleccionadoSpinnerFijo = preferences.getString("ElementoSeleccionadoSpinnerFijo - " + "Vuelta Numero: " + indice_vueltas, "");
+                String ValorEntregaArticulosFijo = preferences.getString("CantidadEntregaArticuloFijo - " + "Vuelta Numero: " + indice_vueltas, "");
+                String ValorRetiroArticulosFijo = preferences.getString("CantidadRetiroArticuloFijo - " + "Vuelta Numero: " + indice_vueltas, "");
 
 
                 if(indice_vueltas == 0){
 
                     spinner_para_patrocinio.setSelection(Utils_Spinner.ObtenerPosicionDelElementoEnElSpinner(ElementoSeleccionadoSpinnerFijo,spinner_para_patrocinio));
-                    eTcantEntrega.setText(ValorEntregaArticulosNuevaVuelta);
-                    eTcantRetiro.setText(ValorRetiroArticulosNuevaVuelta);
+                    eTcantEntrega.setText(ValorEntregaArticulosFijo);
+                    eTcantRetiro.setText(ValorRetiroArticulosFijo);
 
 
 
@@ -1637,7 +2047,7 @@ public class EntregaRetiroEnvasesPatrocinio extends AppCompatActivity {
 
 
                     /* Llamada a la función: */
-                    ObtenerNuevaVuelta(ElementoSeleccionadoSpinnerFijo,ValorEntregaArticulosNuevaVuelta, ValorRetiroArticulosNuevaVuelta);
+                    ObtenerNuevaVuelta(ElementoSeleccionadoSpinnerFijo,ValorEntregaArticulosFijo, ValorRetiroArticulosFijo);
 
 
                 }
@@ -1655,12 +2065,12 @@ public class EntregaRetiroEnvasesPatrocinio extends AppCompatActivity {
                     for (int j = 1; j <= Integer.valueOf(DimensionArticulosProgramaticos); j++) {
 
 
-                        String ElementoSeleccionadoSpinnerProgramatico = preferences.getString("ElementoSeleccionado_NUEVA_VUELTA - " + "Vuelta Numero: " + indice_vueltas + " - " + "Posicion: " + j, "");
-                        String ValorEntregaNuevoArticuloNuevaVuelta = preferences.getString("CantidadDeEntregaNuevoArticuloProgramatico_NUEVA_VUELTA - " + "Vuelta Numero: " + indice_vueltas + " - " + "Posicion: " + j, "");
-                        String ValorRetiroNuevoArticuloNuevaVuelta = preferences.getString("CantidadDeRetiroNuevoArticuloProgramatico_NUEVA_VUELTA - " + "Vuelta Numero: " + indice_vueltas + " - " + "Posicion: " + j, "");
+                        String ElementoSeleccionadoSpinnerProgramatico = preferences.getString("ElementoSeleccionadoSpinnerProgramatico - " + "Vuelta Numero: " + indice_vueltas + " - " + "Posicion: " + j, "");
+                        String ValorEntregaNuevoArticuloProgramatico = preferences.getString("CantidadDeEntregaNuevoArticuloProgramatico - " + "Vuelta Numero: " + indice_vueltas + " - " + "Posicion: " + j, "");
+                        String ValorRetiroNuevoArticuloProgramatico = preferences.getString("CantidadDeRetiroNuevoArticuloProgramatico - " + "Vuelta Numero: " + indice_vueltas + " - " + "Posicion: " + j, "");
 
 
-                        if (ValorEntregaNuevoArticuloNuevaVuelta != "" && ValorRetiroNuevoArticuloNuevaVuelta != "") {
+                        if (ValorEntregaNuevoArticuloProgramatico != "" && ValorRetiroNuevoArticuloProgramatico != "") {
 
                             final View tanda = ArrayListVueltas.get(indice_vueltas);
 
@@ -1673,7 +2083,7 @@ public class EntregaRetiroEnvasesPatrocinio extends AppCompatActivity {
                                 Utils_Spinner.contador_de_inicializacion--;
 
 
-                                ObtenerNuevoArticuloEntregaRetiroPorPatrocinio(ElementoSeleccionadoSpinnerProgramatico,ValorEntregaNuevoArticuloNuevaVuelta, ValorRetiroNuevoArticuloNuevaVuelta, tercerTuplaNuevaVuelta);
+                                ObtenerNuevoArticuloEntregaRetiroPorPatrocinio(ElementoSeleccionadoSpinnerProgramatico,ValorEntregaNuevoArticuloProgramatico, ValorRetiroNuevoArticuloProgramatico, tercerTuplaNuevaVuelta);
 
                             } else{
 
@@ -1681,7 +2091,7 @@ public class EntregaRetiroEnvasesPatrocinio extends AppCompatActivity {
                                 Utils_Spinner.contador_de_inicializacion--;
 
 
-                                ObtenerNuevoArticuloEntregaRetiroPorPatrocinio(ElementoSeleccionadoSpinnerProgramatico,ValorEntregaNuevoArticuloNuevaVuelta, ValorRetiroNuevoArticuloNuevaVuelta, tercerTuplaNuevaVuelta);
+                                ObtenerNuevoArticuloEntregaRetiroPorPatrocinio(ElementoSeleccionadoSpinnerProgramatico,ValorEntregaNuevoArticuloProgramatico, ValorRetiroNuevoArticuloProgramatico, tercerTuplaNuevaVuelta);
 
                             }
 
@@ -1762,11 +2172,11 @@ public class EntregaRetiroEnvasesPatrocinio extends AppCompatActivity {
 
             String ArticuloSeleccionado =  spinner_fijo.getSelectedItem().toString();
 
-            editor.putString("ElementoSeleccionado - " + "Vuelta Numero: " + i, ArticuloSeleccionado);
+            editor.putString("ElementoSeleccionadoSpinnerFijo - " + "Vuelta Numero: " + i, ArticuloSeleccionado);
 
-            editor.putString("CantidadEntregaArticuloNuevaVuelta - " + "Vuelta Numero: " + i, editText_entrega.getText().toString());
+            editor.putString("CantidadEntregaArticuloFijo - " + "Vuelta Numero: " + i, editText_entrega.getText().toString());
 
-            editor.putString("CantidadRetiroArticuloNuevaVuelta - " + "Vuelta Numero: " + i, editText_retiro.getText().toString());
+            editor.putString("CantidadRetiroArticuloFijo - " + "Vuelta Numero: " + i, editText_retiro.getText().toString());
 
 
 
@@ -1787,20 +2197,20 @@ public class EntregaRetiroEnvasesPatrocinio extends AppCompatActivity {
 
                 final Spinner spinner_nuevos_articulos = (Spinner) LLH_Nuevo_Articulo.findViewById(R.id.sp_new_art);
 
-                final EditText et_entrega_del_nuevo_articulo_nueva_vuelta = (EditText) LLH_Nuevo_Articulo.findViewById(R.id.edtx_carga_new_art);
+                final EditText et_entrega_del_nuevo_articulo = (EditText) LLH_Nuevo_Articulo.findViewById(R.id.edtx_carga_new_art);
 
-                final EditText et_retiro_del_nuevo_articulo_nueva_vuelta = (EditText) LLH_Nuevo_Articulo.findViewById(R.id.edtx_descarga_new_art);
+                final EditText et_retiro_del_nuevo_articulo = (EditText) LLH_Nuevo_Articulo.findViewById(R.id.edtx_descarga_new_art);
 
 
 
 
                 String ArticuloSeleccionadoSpinnerProgramatico =  spinner_nuevos_articulos.getSelectedItem().toString();
 
-                editor.putString("ElementoSeleccionado_NUEVA_VUELTA - " + "Vuelta Numero: " + i + " - " + "Posicion: " + j, ArticuloSeleccionadoSpinnerProgramatico);
+                editor.putString("ElementoSeleccionadoSpinnerProgramatico - " + "Vuelta Numero: " + i + " - " + "Posicion: " + j, ArticuloSeleccionadoSpinnerProgramatico);
 
-                editor.putString("CantidadDeEntregaNuevoArticuloProgramatico_NUEVA_VUELTA - " + "Vuelta Numero: " + i + " - " + "Posicion: " + j, et_entrega_del_nuevo_articulo_nueva_vuelta.getText().toString());
+                editor.putString("CantidadDeEntregaNuevoArticuloProgramatico - " + "Vuelta Numero: " + i + " - " + "Posicion: " + j, et_entrega_del_nuevo_articulo.getText().toString());
 
-                editor.putString("CantidadDeRetiroNuevoArticuloProgramatico_NUEVA_VUELTA - " + "Vuelta Numero: " + i + " - " + "Posicion: " + j, et_retiro_del_nuevo_articulo_nueva_vuelta.getText().toString());
+                editor.putString("CantidadDeRetiroNuevoArticuloProgramatico - " + "Vuelta Numero: " + i + " - " + "Posicion: " + j, et_retiro_del_nuevo_articulo.getText().toString());
 
 
             } //Fin del for del "j" ("Articulos Programáticos")
@@ -1834,10 +2244,172 @@ public class EntregaRetiroEnvasesPatrocinio extends AppCompatActivity {
 
 
 
+    /***************************************************************************************************/
+    /***************************************************************************************************/
+    /***************************************************************************************************/
+    /***************************************************************************************************/
+    /***************************************************************************************************/
+    /***************************************************************************************************/
+    /***************************************************************************************************/
+    /***************************************************************************************************/
+    /***************************************************************************************************/
+    /***************************************************************************************************/
+
+
+
+
+
+
+
+
+    public void BorrarValoresDelSharedPreferencesPatrocinio(){
+
+        SharedPreferences sharedPreferences = getSharedPreferences("Datos", MODE_PRIVATE);
+
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+
+
+
+        editor.remove("flag_nueva_vuelta").commit();
+
+
+        for (int i = 0; i < ArrayListVueltas.size(); i++) {
+
+
+            /*Llamada a la función */
+            EliminarVueltaEnElSharedPreferences(ArrayListVueltas.get(i),editor,i);
+
+
+        } //Fin del primer for "i" = Vueltas
+
+
+        editor.remove("DimensionArrayNuevasVueltas").commit();
+
+        editor.remove("GuardarLasVistasDeLasVueltasDeshabilitadas").commit();
+
+
+
+
+    }/*******************************FIN DE LA FUNCION BorrarValoresDelSharedPreferenceasPatrocinio()******************************/
+
+
+
+
+
+    /***************************************************************************************************/
+    /***************************************************************************************************/
+    /***************************************************************************************************/
+    /***************************************************************************************************/
+    /***************************************************************************************************/
+    /***************************************************************************************************/
+    /***************************************************************************************************/
+    /***************************************************************************************************/
+    /***************************************************************************************************/
+    /***************************************************************************************************/
+
+
+
+
+
+
+    public String LeerConfiguracionDeActivityEnUnSharedPreferencesPatrocinio(String clave){
+
+        SharedPreferences preferences = getSharedPreferences("ConfiguracionActivityEntregaRetiroEnvasesPatrocinio", MODE_PRIVATE);
+
+        return preferences.getString(clave, "true");
+
+
+    }/*******************************FIN DE LA FUNCION LeerConfiguracionDeActivityEnUnSharedPreferencesPatrocinio()******************************/
+
+
+
+
+/***************************************************************************************************/
+/***************************************************************************************************/
+/***************************************************************************************************/
+/***************************************************************************************************/
+/***************************************************************************************************/
+/***************************************************************************************************/
+/***************************************************************************************************/
+/***************************************************************************************************/
+/***************************************************************************************************/
+    /***************************************************************************************************/
+
+
+
+
+    public void GuardarConfiguracionDeActivityEnUnSharedPreferencesPatrocinio(String clave, String valor){
+
+        SharedPreferences sharedPreferences = getSharedPreferences("ConfiguracionActivityEntregaRetiroEnvasesPatrocinio", MODE_PRIVATE);
+
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+
+        editor.putString(clave,valor);
+
+        editor.commit();
+
+
+
+    }/*******************************FIN DE LA FUNCION GuardarConfiguracionDeActivityEnUnSharedPreferencesPatrocinio()******************************/
+
+
+
+
+
+
+    /***************************************************************************************************/
+    /***************************************************************************************************/
+    /***************************************************************************************************/
+    /***************************************************************************************************/
+    /***************************************************************************************************/
+    /***************************************************************************************************/
+    /***************************************************************************************************/
+    /***************************************************************************************************/
+    /***************************************************************************************************/
+    /***************************************************************************************************/
+
+
+
+
+
+
+
+
+
+
+
+    MenuItem BotonGuardar, BotonEditar, BotonFinEvento;
+
+
     @Override
     public boolean onCreateOptionsMenu (Menu menu){
+
+
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_entrega_retiro_envases_patrocinio, menu);
+
+
+        if(!Estado_Evento) {
+
+
+            fab_nueva_vuelta.setVisibility(GONE);
+
+            menu.findItem(R.id.action_save_vuelta).setVisible(false);
+
+            menu.findItem(R.id.action_edit_vuelta).setVisible(false);
+
+            menu.findItem(R.id.action_finish_evento).setVisible(false);
+
+
+        }//Fin del if
+
+
+
+        BotonGuardar = menu.findItem(R.id.action_save_tanda);
+
+        BotonEditar = menu.findItem(R.id.action_edit_vuelta);
+
+        BotonFinEvento = menu.findItem(R.id.action_finish_evento);
 
 
 
@@ -1939,16 +2511,19 @@ public class EntregaRetiroEnvasesPatrocinio extends AppCompatActivity {
 
             AlertDialog.Builder builder = new AlertDialog.Builder(EntregaRetiroEnvasesPatrocinio.this);
             builder.setIcon(R.drawable.ic_msj_alerta);
-            builder.setTitle("¿Desea modificar algunas de las tandas realizadas?");
-            builder.setMessage("Presione 'SI' en caso que desee editar los campos de algunas de las tandas.");
+            builder.setTitle("¿Desea modificar algunas de las vueltas realizadas?");
+            builder.setMessage("Presione 'SI' en caso que desee editar los campos de algunas de las vueltas.");
 
 
             builder.setPositiveButton("SI", new DialogInterface.OnClickListener() {
                 public void onClick(DialogInterface dialog, int id) {
 
 
-                    /*Llamada a la función: */
-                    EditarVueltas(true);
+
+                        /*Llamada a la función:  */
+                        EditarVueltas(true);
+
+
 
                 }
             });
@@ -1988,6 +2563,111 @@ public class EntregaRetiroEnvasesPatrocinio extends AppCompatActivity {
 
 
 
+
+        if(id == R.id.action_finish_evento){
+
+
+            AlertDialog.Builder builder = new AlertDialog.Builder(EntregaRetiroEnvasesPatrocinio.this);
+            builder.setIcon(R.drawable.ic_msj_alerta);
+            builder.setTitle("Importante!");
+            builder.setMessage("Está a punto de finalizar el evento. ¿Desea continuar?");
+
+
+            builder.setPositiveButton("Confirmar", new DialogInterface.OnClickListener() {
+                public void onClick(DialogInterface dialog, int id) {
+
+
+
+                    /**Si el evento se cierra sin INCONSISTENCIAS **/
+
+
+                    //Debería salir de esta activity, desactivar los botones: flotante, guardar, editar y el propio finalizar.
+
+
+                    SharedPreferences preferences = getSharedPreferences("Datos", MODE_PRIVATE);
+
+                    Integer DimensionArrayNuevasVueltas = Integer.parseInt(preferences.getString("DimensionArrayNuevasVueltas", "0"));
+
+
+
+                    if(ArrayListVueltas.size() == DimensionArrayNuevasVueltas ){
+
+
+
+                        if(DeshabilitarVistasDeLasVueltasAlGuardarCambios(ValidarTodosLosCamposParaGuardarCambiosEnCadaVuelta())){
+
+
+                            /*Llamada a la función: */
+                            GuardarConfiguracionDeActivityEnUnSharedPreferencesPatrocinio("EstadoEvento","false");
+
+
+                            /*Llamada a la función: */
+                            GuardarValoresEnSharedPreferencesPatrocinio();
+
+
+
+                            //Evento finalizado:
+                            Button btnEventoFinalizado = BuscarResponsableParaPatrocinio.btnResponsableActivo;
+                            btnEventoFinalizado.setBackgroundColor(Color.GRAY);
+
+
+                            finish();
+
+                        }
+
+
+
+                    }//Fin del primer if
+
+
+                    else{
+
+
+
+                        Toast.makeText(getApplicationContext(), "Error! No es posible cerrar el evento." +
+                                " Por favor, recuerde guardar los cambios realizados", Toast.LENGTH_LONG).show();
+
+
+                    }//Fin del else
+
+
+
+
+                }
+            });
+
+
+
+            builder.setNegativeButton("Cancelar", new DialogInterface.OnClickListener() {
+
+                public void onClick(DialogInterface dialog, int id) {
+
+                    dialog.dismiss();
+
+
+                }
+            });
+
+
+
+            AlertDialog dialog = builder.create();
+            dialog.show();
+
+
+
+            return true;
+
+
+        }//FIN DEL if(id == R.id.action_finish_evento)
+
+
+
+
+
+
+
+
+
         return super.onOptionsItemSelected(item);
 
 
@@ -2014,4 +2694,5 @@ public class EntregaRetiroEnvasesPatrocinio extends AppCompatActivity {
 
 
 
-}/*******************************FIN DE LA Activity******************************/
+
+}/******************************* FIN DE LA ACTIVITY EntregaRetiroEnvasesPatrocinio ******************************/
