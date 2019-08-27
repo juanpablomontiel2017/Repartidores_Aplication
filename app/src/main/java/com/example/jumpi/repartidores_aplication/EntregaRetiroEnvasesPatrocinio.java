@@ -394,7 +394,7 @@ public class EntregaRetiroEnvasesPatrocinio extends AppCompatActivity {
     public void EliminarCualquierVuelta(final View v){
 
 
-
+        if(Estado_Evento){
 
 
             AlertDialog.Builder builder = new AlertDialog.Builder(EntregaRetiroEnvasesPatrocinio.this);
@@ -505,6 +505,7 @@ public class EntregaRetiroEnvasesPatrocinio extends AppCompatActivity {
             dialog.show();
 
 
+        }//Fin del primer if
 
 
 
