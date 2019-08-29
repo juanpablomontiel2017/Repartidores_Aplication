@@ -9,7 +9,7 @@
     android:orientation="vertical"
     android:weightSum="1"
 
-    tools:context="com.example.jumpi.repartidores_aplication.StockDisponibleFragment">
+    tools:context="com.example.jumpi.repartidores_aplication.StockEnVehiculoFragment">
 
 
 

@@ -8,7 +8,7 @@ import android.view.ViewGroup;
 import android.widget.ScrollView;
 
 
-public class StockDisponibleFragment extends Fragment {
+public class StockEnVehiculoFragment extends Fragment {
 
 
 
@@ -24,13 +24,13 @@ public class StockDisponibleFragment extends Fragment {
     /**********************************************************************************************/
 
 
-    public StockDisponibleFragment() {
+    public StockEnVehiculoFragment() {
 
 
         // Required empty public constructor
 
 
-    }/************* FIN DEL CONSTRUCTOR StockDisponibleFragment() *****************/
+    }/************* FIN DEL CONSTRUCTOR StockEnVehiculoFragment() *****************/
 
 
 
@@ -59,7 +59,7 @@ public class StockDisponibleFragment extends Fragment {
 
 
         // Inflate the layout for this fragment
-        View view = inflater.inflate(R.layout.fragment_stock_disponible, container, false);
+        View view = inflater.inflate(R.layout.fragment_stock_en_vehiculo, container, false);
 
         scrollView = (ScrollView) view.findViewById(R.id.scrll);
 
@@ -133,4 +133,4 @@ public class StockDisponibleFragment extends Fragment {
 
 
 
-}/************ FIN DEL Fragment StockDisponibleFragment **************/
+}/************ FIN DEL Fragment StockEnVehiculoFragment **************/
