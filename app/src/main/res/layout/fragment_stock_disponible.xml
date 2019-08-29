@@ -5,300 +5,661 @@
     android:id="@+id/fragment_stock_disponible_id"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_marginLeft="25dp"
-
-
-    android:layout_marginTop="25dp"
-    android:layout_marginRight="25dp"
-    android:layout_marginBottom="25dp"
     android:background="#FFF"
-    android:gravity="center"
     android:orientation="vertical"
+    android:weightSum="1"
+
     tools:context="com.example.jumpi.repartidores_aplication.StockDisponibleFragment">
 
 
-    <Button
-        android:id="@+id/titulo_envases_stock_disponible"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="#304ffe"
-        android:text="Envases"
-        android:textAlignment="center"
-        android:textColor="#FFF"
-        android:textSize="24sp"
-        android:textStyle="bold" />
+
+ <ScrollView
+     android:layout_weight="1"
+     android:id="@+id/scrll"
+     android:layout_width="match_parent"
+     android:layout_height="match_parent">
 
 
-    <!--LinearLayout Horizontal de ENVASES -->
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="#FFF"
-        android:orientation="horizontal"
-        android:weightSum="2">
+     <LinearLayout
 
-        <TextView
-            android:id="@+id/envases_llenos_stock_disponible"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="Llenos:"
-            android:textAlignment="center"
-            android:textColor="#000"
-            android:textSize="24sp"
-            android:textStyle="bold" />
+         android:id="@+id/linear_layout_vertical_hijo"
+         android:layout_width="match_parent"
+         android:layout_height="wrap_content"
+         android:orientation="vertical"
+         android:weightSum="4">
+
+         <!-- ######################################################## -->
 
 
-        <TextView
-            android:id="@+id/numero_envases_llenos_stock_disponible"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:textAlignment="center"
-            android:textColorHint="#000"
-            android:textSize="24sp"
-            android:textStyle="bold" />
+         <LinearLayout
 
-    </LinearLayout>
-
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
+             android:id="@+id/llh_contenedor_envases"
+             android:layout_width="match_parent"
+             android:layout_height="wrap_content"
+             android:layout_marginLeft="10dp"
+             android:layout_marginTop="10dp"
+             android:layout_marginRight="10dp"
+             android:layout_marginBottom="10dp"
+             android:layout_weight="1"
+             android:background="#e0e0e0"
+             android:orientation="horizontal">
 
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="#FFF"
-            android:orientation="horizontal"
-            android:weightSum="2">
 
 
-            <TextView
-                android:id="@+id/envases_vacios_stock_disponible"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="Vacíos:"
-                android:textAlignment="center"
-                android:textColor="#000"
-                android:textSize="24sp"
-                android:textStyle="bold" />
+             <View
+                 android:layout_width="10dp"
+                 android:layout_height="match_parent"
+                 android:layout_marginLeft="10dp"
+                 android:layout_marginTop="10dp"
+                 android:layout_marginRight="10dp"
+                 android:layout_marginBottom="10dp"
+                 android:background="#ff3d00">
 
-            <TextView
-                android:id="@+id/numero_envases_vacios_stock_disponible"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:textAlignment="center"
-                android:textColorHint="#000"
-                android:textSize="24sp"
-                android:textStyle="bold" />
-
-        </LinearLayout>
+             </View>
 
 
-        <Button
-            android:id="@+id/titulo_dinero_stock_disponible"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="#304ffe"
-            android:text="Dinero"
-            android:textAlignment="center"
-            android:textColor="#FFF"
-            android:textSize="24sp"
-            android:textStyle="bold" />
+
+             <LinearLayout
+
+                 android:id="@+id/llv_contenedor_hijo_de_envases"
+                 android:layout_width="match_parent"
+                 android:layout_height="wrap_content"
+                 android:orientation="vertical"
+                 android:weightSum="3">
 
 
-        <LinearLayout
-
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="#FFF"
-            android:orientation="horizontal"
-            android:weightSum="2">
-
-            <TextView
-                android:id="@+id/billetera_stock_disponible"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:background="#FFF"
-                android:text="En tu billetera:"
-                android:textAlignment="center"
-                android:textColor="#000"
-                android:textSize="24sp"
-                android:textStyle="bold" />
+                 <TextView
+                     android:layout_width="match_parent"
+                     android:layout_height="wrap_content"
+                     android:layout_marginTop="10dp"
+                     android:layout_marginRight="10dp"
+                     android:layout_marginBottom="15dp"
+                     android:background="#b0bec5"
+                     android:gravity="center"
+                     android:text="ENVASES"
+                     android:textColor="#000"
+                     android:textSize="24sp"
+                     android:textStyle="bold|italic" />
 
 
-            <TextView
-                android:id="@+id/numero_dinero_billetera_stock_disponible"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:textAlignment="center"
-                android:textColorHint="#000"
-                android:textSize="24sp"
-                android:textStyle="bold" />
+                 <LinearLayout
+
+                     android:id="@+id/llh_envases_llenos"
+                     android:layout_width="match_parent"
+                     android:layout_height="wrap_content"
+                     android:layout_marginBottom="10dp"
+                     android:layout_weight="1"
+                     android:orientation="horizontal"
+                     android:weightSum="2">
+
+                     <TextView
+
+                         android:layout_width="match_parent"
+                         android:layout_height="wrap_content"
+                         android:layout_weight="1"
+                         android:gravity="center"
+                         android:text="LLENOS: "
+                         android:textColor="#000"
+                         android:textSize="25sp"
+                         android:textStyle="bold" />
 
 
-        </LinearLayout>
+                     <TextView
+
+                         android:layout_width="match_parent"
+                         android:layout_height="wrap_content"
+                         android:layout_weight="1"
+                         android:gravity="center"
+                         android:text="Cantidad"
+                         android:textColorHint="#e0e0e0"
+                         android:textSize="25sp"
+                         android:textStyle="bold" />
 
 
-        <Button
-            android:id="@+id/titulo_otros_articulos_stock_disponible"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="#304ffe"
-            android:text="OTROS ARTÍCULOS"
-            android:textAlignment="center"
-            android:textColor="#FFF"
-            android:textSize="24sp"
-            android:textStyle="bold" />
+                 </LinearLayout>
 
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="#FFF"
-            android:orientation="horizontal"
-            android:weightSum="2">
+                 <LinearLayout
+
+                     android:id="@+id/llh_envases_vacios"
+                     android:layout_width="match_parent"
+                     android:layout_height="wrap_content"
+                     android:layout_marginBottom="10dp"
+                     android:layout_weight="1"
+                     android:orientation="horizontal"
+                     android:weightSum="2">
+
+                     <TextView
+
+                         android:layout_width="match_parent"
+                         android:layout_height="wrap_content"
+                         android:layout_weight="1"
+                         android:gravity="center"
+                         android:text="VACÍOS: "
+                         android:textColor="#000"
+                         android:textSize="25sp"
+                         android:textStyle="bold" />
 
 
-            <TextView
-                android:id="@+id/dispenser_plastico_stock_disponible"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:background="#FFF"
-                android:text="Dispenser Plastico:"
-                android:textAlignment="center"
-                android:textColor="#000"
-                android:textSize="24sp"
-                android:textStyle="bold" />
+                     <TextView
 
-            <TextView
-                android:id="@+id/numero_dispenser_plastico_stock_disponible"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:background="#FFF"
-                android:textAlignment="center"
-                android:textColorHint="#000"
-                android:textSize="24sp"
-                android:textStyle="bold" />
+                         android:layout_width="match_parent"
+                         android:layout_height="wrap_content"
+                         android:layout_weight="1"
+                         android:gravity="center"
+                         android:text="Cantidad"
+                         android:textColorHint="#e0e0e0"
+                         android:textSize="25sp"
+                         android:textStyle="bold" />
 
 
-        </LinearLayout>
+                 </LinearLayout>
 
 
-        <LinearLayout
+                 <LinearLayout
 
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="#FFF"
-            android:orientation="horizontal"
-            android:weightSum="2">
-
-
-            <TextView
-                android:id="@+id/dispenser_electrico_stock_disponible"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:background="#FFF"
-                android:text="Dispenser Electrico:"
-                android:textAlignment="center"
-                android:textColor="#000"
-                android:textSize="24sp"
-                android:textStyle="bold" />
+                     android:id="@+id/llh_btn_detalle_envases"
+                     android:layout_width="match_parent"
+                     android:layout_height="wrap_content"
+                     android:layout_marginRight="10dp"
+                     android:layout_marginBottom="5dp"
+                     android:layout_weight="1"
+                     android:background="#2962ff"
+                     android:orientation="horizontal">
 
 
-            <TextView
-                android:id="@+id/numero_dispenser_electrico_stock_disponible"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:background="#FFF"
-                android:textAlignment="center"
-                android:textColorHint="#000"
-                android:textSize="24sp"
-                android:textStyle="bold" />
-        </LinearLayout>
+                     <Button
+
+                         android:layout_width="match_parent"
+                         android:layout_height="wrap_content"
+                         android:backgroundTint="#2962ff"
+                         android:drawableLeft="@drawable/ic_detalle_stock_vehiculo"
+                         android:gravity="center"
+                         android:text="VER DETALLE"
+                         android:textColor="#FFFF"
+                         android:textSize="25sp"
+                         android:textStyle="bold" />
 
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="#FFF"
-            android:orientation="horizontal"
-            android:weightSum="2">
+                 </LinearLayout>
 
 
-            <TextView
-                android:id="@+id/canillas_stock_disponible"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:background="#FFF"
-                android:text="Canillas:"
-                android:textAlignment="center"
-                android:textColor="#000"
-                android:textSize="24sp"
-                android:textStyle="bold" />
 
 
-            <TextView
-                android:id="@+id/numero_canillas_stock_disponible"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:background="#FFF"
-                android:textAlignment="center"
-                android:textColorHint="#000"
-                android:textSize="24sp"
-                android:textStyle="bold" />
+             </LinearLayout> <!-- FIN DEL llv_contenedor_hijo_de_envases -->
 
 
-        </LinearLayout>
+         </LinearLayout> <!-- FIN DEL llh_contenedor_envases -->
 
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="120dp"
-            android:background="@color/colorAccent"
-            android:orientation="horizontal"
-            android:weightSum="2">
-
-            <TextView
-                android:id="@+id/faltante_sobrante_envases_stock_disponible"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="Faltante/Sobrante:"
-                android:textAlignment="center"
-                android:textColor="#FFFFFF"
-                android:textSize="24sp"
-                android:textStyle="bold" />
+         <!-- ######################################################################## -->
 
 
-            <TextView
-                android:id="@+id/numero_faltante_sobrante_envases_stock_disponible"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:textAlignment="center"
-                android:textColorHint="#000"
-                android:textSize="24sp"
-                android:textStyle="bold" />
+         <LinearLayout
 
-        </LinearLayout>
+             android:id="@+id/llh_contenedor_dinero"
+             android:layout_width="match_parent"
+             android:layout_height="wrap_content"
+             android:layout_marginLeft="10dp"
+             android:layout_marginTop="10dp"
+             android:layout_marginRight="10dp"
+             android:layout_marginBottom="10dp"
+             android:layout_weight="1"
+             android:background="#e0e0e0"
+             android:orientation="horizontal">
 
 
-    </LinearLayout>  <!--Aquí termina el LinearLayout "Vertical" -->
+
+
+
+             <View
+                 android:layout_width="10dp"
+                 android:layout_height="match_parent"
+                 android:layout_marginLeft="10dp"
+                 android:layout_marginTop="10dp"
+                 android:layout_marginRight="10dp"
+                 android:layout_marginBottom="10dp"
+                 android:background="#ff3d00">
+
+             </View>
+
+
+
+             <LinearLayout
+
+                 android:id="@+id/llv_contenedor_hijo_de_dinero"
+                 android:layout_width="match_parent"
+                 android:layout_height="wrap_content"
+                 android:orientation="vertical"
+                 android:weightSum="2">
+
+
+
+
+                 <TextView
+                     android:layout_width="match_parent"
+                     android:layout_height="wrap_content"
+                     android:layout_marginTop="10dp"
+                     android:layout_marginRight="10dp"
+                     android:layout_marginBottom="15dp"
+                     android:background="#b0bec5"
+                     android:gravity="center"
+                     android:text="DINERO"
+                     android:textColor="#000"
+                     android:textSize="24sp"
+                     android:textStyle="bold|italic" />
+
+
+                 <LinearLayout
+
+                     android:id="@+id/llh_dinero_en_tu_billetera"
+                     android:layout_width="match_parent"
+                     android:layout_height="wrap_content"
+                     android:layout_marginBottom="10dp"
+                     android:layout_weight="1"
+                     android:gravity="center"
+                     android:orientation="horizontal"
+                     android:weightSum="2">
+
+                     <TextView
+
+                         android:layout_width="match_parent"
+                         android:layout_height="wrap_content"
+                         android:layout_weight="1"
+                         android:gravity="center"
+                         android:text="EN TU BILLETERA: "
+                         android:textColor="#000"
+                         android:textSize="25sp"
+                         android:textStyle="bold" />
+
+
+                     <TextView
+
+                         android:layout_width="match_parent"
+                         android:layout_height="wrap_content"
+                         android:layout_weight="1"
+                         android:gravity="center"
+                         android:text="Cantidad"
+                         android:textColorHint="#e0e0e0"
+                         android:textSize="25sp"
+                         android:textStyle="bold" />
+
+
+                 </LinearLayout>
+
+
+                 <LinearLayout
+
+                     android:id="@+id/llh_btn_detalle_dinero"
+                     android:layout_width="match_parent"
+                     android:layout_height="wrap_content"
+                     android:layout_marginRight="10dp"
+                     android:layout_marginBottom="5dp"
+                     android:layout_weight="1"
+                     android:background="#2962ff"
+                     android:orientation="horizontal">
+
+
+                     <Button
+
+                         android:layout_width="match_parent"
+                         android:layout_height="wrap_content"
+                         android:backgroundTint="#2962ff"
+                         android:drawableLeft="@drawable/ic_detalle_stock_vehiculo"
+                         android:gravity="center"
+                         android:text="VER DETALLE"
+                         android:textColor="#FFFF"
+                         android:textSize="25sp"
+                         android:textStyle="bold" />
+
+
+                 </LinearLayout>
+
+             </LinearLayout> <!-- FIN DEL llv_contenedor_hijo_de_dinero -->
+
+
+         </LinearLayout> <!-- FIN DEL llh_contenedor_dinero -->
+
+
+         <!-- ######################################################### -->
+
+
+         <LinearLayout
+
+             android:id="@+id/llh_contenedor_otros_articulos"
+             android:layout_width="match_parent"
+             android:layout_height="wrap_content"
+             android:layout_marginLeft="10dp"
+             android:layout_marginTop="10dp"
+             android:layout_marginRight="10dp"
+             android:layout_marginBottom="10dp"
+             android:layout_weight="1"
+             android:background="#e0e0e0"
+             android:orientation="horizontal">
+
+
+
+             <View
+                 android:layout_width="10dp"
+                 android:layout_height="match_parent"
+                 android:layout_marginLeft="10dp"
+                 android:layout_marginTop="10dp"
+                 android:layout_marginRight="10dp"
+                 android:layout_marginBottom="10dp"
+                 android:background="#ff3d00">
+
+             </View>
+
+
+             <LinearLayout
+
+                 android:id="@+id/llv_contenedor_hijo_de_otros_articulos"
+                 android:layout_width="match_parent"
+                 android:layout_height="wrap_content"
+                 android:orientation="vertical"
+                 android:weightSum="4">
+
+
+
+                 <TextView
+                     android:layout_width="match_parent"
+                     android:layout_height="wrap_content"
+                     android:layout_marginTop="10dp"
+                     android:layout_marginRight="10dp"
+                     android:layout_marginBottom="15dp"
+                     android:background="#b0bec5"
+                     android:gravity="center"
+                     android:text="OTROS ARTÍCULOS"
+                     android:textColor="#000"
+                     android:textSize="24sp"
+                     android:textStyle="bold|italic" />
+
+
+                 <LinearLayout
+
+                     android:id="@+id/llh_dispenser_plastico"
+                     android:layout_width="match_parent"
+                     android:layout_height="wrap_content"
+                     android:layout_marginBottom="10dp"
+                     android:layout_weight="1"
+                     android:gravity="center"
+                     android:orientation="horizontal"
+                     android:weightSum="2">
+
+                     <TextView
+
+                         android:layout_width="match_parent"
+                         android:layout_height="wrap_content"
+                         android:layout_weight="1"
+                         android:gravity="center"
+                         android:text="DISPENSER PLÁSTICO: "
+                         android:textColor="#000"
+                         android:textSize="25sp"
+                         android:textStyle="bold" />
+
+
+                     <TextView
+
+                         android:layout_width="match_parent"
+                         android:layout_height="wrap_content"
+                         android:layout_weight="1"
+                         android:gravity="center"
+                         android:text="Cantidad"
+                         android:textColorHint="#e0e0e0"
+                         android:textSize="25sp"
+                         android:textStyle="bold" />
+
+
+                 </LinearLayout>
+
+
+                 <LinearLayout
+
+                     android:id="@+id/llh_canillas"
+                     android:layout_width="match_parent"
+                     android:layout_height="wrap_content"
+                     android:layout_marginBottom="10dp"
+                     android:layout_weight="1"
+                     android:gravity="center"
+                     android:orientation="horizontal"
+                     android:weightSum="2">
+
+                     <TextView
+
+                         android:layout_width="match_parent"
+                         android:layout_height="wrap_content"
+                         android:layout_weight="1"
+                         android:gravity="center"
+                         android:text="CANILLAS: "
+                         android:textColor="#000"
+                         android:textSize="25sp"
+                         android:textStyle="bold" />
+
+
+                     <TextView
+
+                         android:layout_width="match_parent"
+                         android:layout_height="wrap_content"
+                         android:layout_weight="1"
+                         android:gravity="center"
+                         android:text="Cantidad"
+                         android:textColorHint="#e0e0e0"
+                         android:textSize="25sp"
+                         android:textStyle="bold" />
+
+
+                 </LinearLayout>
+
+
+                 <LinearLayout
+
+                     android:id="@+id/llh_dispenser_electrico"
+                     android:layout_width="match_parent"
+                     android:layout_height="wrap_content"
+                     android:layout_marginBottom="10dp"
+                     android:layout_weight="1"
+                     android:gravity="center"
+                     android:orientation="horizontal"
+                     android:weightSum="2">
+
+                     <TextView
+
+                         android:layout_width="match_parent"
+                         android:layout_height="wrap_content"
+                         android:layout_weight="1"
+                         android:gravity="center"
+                         android:text="DISPENSER ELÉCTRICO: "
+                         android:textColor="#000"
+                         android:textSize="25sp"
+                         android:textStyle="bold" />
+
+
+                     <TextView
+
+                         android:layout_width="match_parent"
+                         android:layout_height="wrap_content"
+                         android:layout_weight="1"
+                         android:gravity="center"
+                         android:text="Cantidad"
+                         android:textColorHint="#e0e0e0"
+                         android:textSize="25sp"
+                         android:textStyle="bold" />
+
+
+                 </LinearLayout>
+
+
+                 <LinearLayout
+
+                     android:id="@+id/llh_btn_detalle_otros_articulos"
+                     android:layout_width="match_parent"
+                     android:layout_height="wrap_content"
+                     android:layout_marginRight="10dp"
+                     android:layout_marginBottom="5dp"
+                     android:layout_weight="1"
+                     android:background="#2962ff"
+                     android:orientation="horizontal">
+
+
+                     <Button
+
+                         android:layout_width="match_parent"
+                         android:layout_height="wrap_content"
+                         android:backgroundTint="#2962ff"
+                         android:drawableLeft="@drawable/ic_detalle_stock_vehiculo"
+                         android:gravity="center"
+                         android:text="VER DETALLE"
+                         android:textColor="#FFFF"
+                         android:textSize="25sp"
+                         android:textStyle="bold" />
+
+
+                 </LinearLayout>
+
+
+
+             </LinearLayout> <!-- FIN DEL llv_contenedor_hijo_de_envases -->
+
+
+         </LinearLayout> <!-- FIN DEL llh_contenedor_otros_articulos -->
+
+
+         <!-- ######################################################## -->
+
+
+         <LinearLayout
+
+             android:id="@+id/llh_contenedor_faltante_sobrante"
+             android:layout_width="match_parent"
+             android:layout_height="match_parent"
+             android:layout_marginLeft="10dp"
+             android:layout_marginTop="10dp"
+             android:layout_marginRight="10dp"
+             android:layout_marginBottom="70dp"
+             android:layout_weight="1"
+             android:background="#e0e0e0"
+             android:orientation="horizontal">
+
+
+             <View
+                 android:layout_width="10dp"
+                 android:layout_height="match_parent"
+                 android:layout_marginLeft="10dp"
+                 android:layout_marginTop="10dp"
+                 android:layout_marginRight="10dp"
+                 android:layout_marginBottom="10dp"
+                 android:background="#ff3d00">
+
+             </View>
+
+
+             <LinearLayout
+
+                 android:id="@+id/llv_contenedor_hijo_de_faltante_sobrante"
+                 android:layout_width="match_parent"
+                 android:layout_height="wrap_content"
+                 android:orientation="vertical"
+                 android:weightSum="2">
+
+
+
+
+                 <TextView
+                     android:layout_width="match_parent"
+                     android:layout_height="wrap_content"
+                     android:layout_marginTop="10dp"
+                     android:layout_marginRight="10dp"
+                     android:layout_marginBottom="15dp"
+                     android:background="#b0bec5"
+                     android:gravity="center"
+                     android:text="FALTANTE Y/O SOBRANTE DE ENVASES"
+                     android:textColor="#000"
+                     android:textSize="24sp"
+                     android:textStyle="bold|italic" />
+
+
+                 <LinearLayout
+
+                     android:id="@+id/llh_faltante_sobrante"
+                     android:layout_width="match_parent"
+                     android:layout_height="wrap_content"
+                     android:layout_marginBottom="10dp"
+                     android:layout_weight="1"
+                     android:gravity="center"
+                     android:orientation="horizontal"
+                     android:weightSum="2">
+
+
+                     <TextView
+
+                         android:layout_width="match_parent"
+                         android:layout_height="wrap_content"
+                         android:layout_weight="1"
+                         android:gravity="center"
+                         android:text="FALTANTE Y/O SOBRANTE: "
+                         android:textColor="#000"
+                         android:textSize="25sp"
+                         android:textStyle="bold" />
+
+
+                     <TextView
+
+                         android:layout_width="match_parent"
+                         android:layout_height="wrap_content"
+                         android:layout_weight="1"
+                         android:gravity="center"
+                         android:text="Cantidad"
+                         android:textColorHint="#e0e0e0"
+                         android:textSize="25sp"
+                         android:textStyle="bold" />
+
+
+                 </LinearLayout>
+
+
+                 <LinearLayout
+
+                     android:id="@+id/llh_btn_detalle_faltante_sobrante"
+                     android:layout_width="match_parent"
+                     android:layout_height="wrap_content"
+                     android:layout_marginRight="10dp"
+                     android:layout_marginBottom="5dp"
+                     android:layout_weight="1"
+                     android:background="#2962ff"
+                     android:orientation="horizontal">
+
+
+                     <Button
+
+                         android:layout_width="match_parent"
+                         android:layout_height="wrap_content"
+                         android:backgroundTint="#2962ff"
+                         android:drawableLeft="@drawable/ic_detalle_stock_vehiculo"
+                         android:gravity="center"
+                         android:text="VER DETALLE"
+                         android:textColor="#FFFF"
+                         android:textSize="25sp"
+                         android:textStyle="bold" />
+
+
+                 </LinearLayout>
+
+
+             </LinearLayout> <!-- FIN DEL llv_contenedor_hijo_de_faltante_sobrante -->
+
+
+         </LinearLayout> <!-- FIN DEL llh_contenedor_faltante_sobrante -->
+
+
+     </LinearLayout> <!-- FIN DEL linear_layout_hijo -->
+
+
+
+
+ </ScrollView>
+
+
 
 
 </LinearLayout>
