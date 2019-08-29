@@ -1,13 +1,11 @@
 package com.example.jumpi.repartidores_aplication;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
-
+import android.widget.ScrollView;
 
 
 public class StockDisponibleFragment extends Fragment {
@@ -51,6 +49,10 @@ public class StockDisponibleFragment extends Fragment {
 
 
 
+
+    ScrollView scrollView;
+
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -59,7 +61,10 @@ public class StockDisponibleFragment extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_stock_disponible, container, false);
 
+        scrollView = (ScrollView) view.findViewById(R.id.scrll);
 
+
+        /*
         final Button buttonCD= (Button) view.findViewById(R.id.titulo_envases_stock_disponible);
 
         buttonCD.setOnClickListener(new View.OnClickListener() {
@@ -101,7 +106,7 @@ public class StockDisponibleFragment extends Fragment {
             }
         });
 
-
+*/
 
 
         return view;
