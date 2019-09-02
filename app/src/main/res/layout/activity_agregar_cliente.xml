@@ -1,13 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout
+
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+
+
     android:id="@+id/agregar_clientes_id"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginTop="90dp"
+    android:background="#FFFF"
+
     android:orientation="horizontal"
-    android:paddingLeft="60dp"
     tools:context=".AgregarCliente">
 
 
@@ -19,130 +23,166 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="40dp"
             android:orientation="vertical">
 
-
-            <ImageView
-                android:id="@+id/img_cliente_agregar"
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginRight="250dp"
-                android:src="@mipmap/ic_launcher_round" />
+                android:gravity="right"
+                android:orientation="horizontal">
+
+
+                <ImageView
+                    android:id="@+id/img_cliente_agregar"
+                    android:layout_width="match_parent"
+                    android:layout_height="100dp"
+                    android:layout_marginBottom="20dp"
+                    android:src="@mipmap/ic_img_nuevo_cliente_repartidor" />
+
+
+            </LinearLayout>
 
 
             <LinearLayout
-                android:layout_width="271dp"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="16dp"
+                android:layout_marginBottom="50dp"
                 android:orientation="vertical">
 
-                <EditText
-                    android:id="@+id/apellido_cliente_agregar"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:hint="Apellido del Cliente"
-                    android:inputType="text"
-                    android:textStyle="bold" />
-
-
-                <EditText
-                    android:id="@+id/nombre_cliente_agregar"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:hint="Nombre del Cliente"
-                    android:inputType="text"
-                    android:textStyle="bold" />
-
-
-                <EditText
-                    android:id="@+id/direccion_cliente_agregar"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:hint="Dirección"
-                    android:inputType="text"
-                    android:textStyle="bold" />
-
-
-                <EditText
-                    android:id="@+id/barrio_cliente_agregar"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:hint="Barrio"
-                    android:inputType="text"
-                    android:textStyle="bold" />
-
-                <EditText
-                    android:id="@+id/telefono_cliente_agregar"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:hint="Telefono"
-                    android:inputType="text"
-                    android:textStyle="bold" />
-
-                <EditText
-                    android:id="@+id/correo_cliente_agregar"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:hint="Correo"
-                    android:inputType="textEmailAddress"
-                    android:textStyle="bold" />
-
-                <EditText
-                    android:id="@+id/dni_cliente_agregar"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:hint="DNI del Cliente"
-                    android:inputType="number"
-                    android:textStyle="bold" />
-
-
-                <EditText
-                    android:id="@+id/referencia_cliente_agregar"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:hint="Referencia"
-                    android:inputType="textMultiLine"
-                    android:textStyle="bold" />
-
-
-
-
-
-
-                <!--CheckBox de "días de la semana" -->
 
                 <LinearLayout
+
+                    android:id="@+id/llh_apellido"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:weightSum="3">
+                    android:layout_marginBottom="10dp"
+                    android:orientation="horizontal">
 
-                    <CheckBox
-                        android:id="@+id/idcheckbox_lunes"
+
+                    <EditText
+                        android:id="@+id/apellido_cliente_agregar"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:text="Lunes"
-                        android:textSize="12sp"
+                        android:layout_marginTop="10dp"
+                        android:gravity="center"
+                        android:hint="APELLIDO"
+                        android:inputType="text"
+                        android:textColor="#FFFF"
+                        android:textColorHint="#000"
+                        android:textStyle="bold" />
+
+                </LinearLayout>
+
+
+                <LinearLayout
+
+                    android:id="@+id/llh_nombre"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="10dp"
+                    android:orientation="horizontal">
+
+                    <EditText
+                        android:id="@+id/nombre_cliente_agregar"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:hint="NOMBRE"
+                        android:inputType="text"
+                        android:textColor="#FFFF"
+                        android:textColorHint="#000"
+                        android:textStyle="bold" />
+
+                </LinearLayout>
+
+
+                <LinearLayout
+
+                    android:id="@+id/llh_direccion"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="10dp"
+                    android:orientation="horizontal">
+
+
+                    <EditText
+                        android:id="@+id/direccion_cliente_agregar"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:hint="DIRECCIÓN"
+                        android:inputType="text"
+                        android:textColor="#FFFF"
+                        android:textColorHint="#000"
+                        android:textStyle="bold" />
+
+                </LinearLayout>
+
+
+                <LinearLayout
+
+                    android:id="@+id/llh_barrio"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="10dp"
+                    android:orientation="horizontal">
+
+                    <EditText
+                        android:id="@+id/barrio_cliente_agregar"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:hint="BARRIO"
+                        android:inputType="text"
+                        android:textColor="#FFFF"
+                        android:textColorHint="#000"
+                        android:textStyle="bold" />
+
+                </LinearLayout>
+
+
+                <LinearLayout
+
+                    android:id="@+id/llh_telefono"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="10dp"
+                    android:orientation="horizontal">
+
+
+                    <EditText
+                        android:id="@+id/telefono_cliente_agregar"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:hint="TELÉFONO"
+                        android:inputType="text"
+                        android:textColor="#FFFF"
+                        android:textColorHint="#000"
                         android:textStyle="bold" />
 
 
-                    <CheckBox
-                        android:id="@+id/idcheckbox_miercoles"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:text="Miércoles"
-                        android:textSize="12sp"
-                        android:textStyle="bold" />
+                </LinearLayout>
 
-                    <CheckBox
-                        android:id="@+id/idcheckbox_viernes"
+                <LinearLayout
+
+                    android:id="@+id/llh_correo"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="10dp"
+                    android:orientation="horizontal">
+
+
+                    <EditText
+                        android:id="@+id/correo_cliente_agregar"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:text="Viernes"
-                        android:textSize="12sp"
+                        android:gravity="center"
+                        android:hint="CORREO"
+                        android:inputType="textEmailAddress"
+                        android:textColor="#FFFF"
+                        android:textColorHint="#000"
                         android:textStyle="bold" />
 
 
@@ -150,36 +190,45 @@
 
 
                 <LinearLayout
+
+                    android:id="@+id/llh_dni"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginBottom="10dp"
                     android:orientation="horizontal">
 
-                    <CheckBox
-                        android:id="@+id/idcheckbox_martes"
+                    <EditText
+                        android:id="@+id/dni_cliente_agregar"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:text="Martes"
-                        android:textSize="12sp"
+                        android:gravity="center"
+                        android:hint="DNI "
+                        android:inputType="number"
+                        android:textColor="#FFFF"
+                        android:textColorHint="#000"
                         android:textStyle="bold" />
 
+                </LinearLayout>
 
-                    <CheckBox
-                        android:id="@+id/idcheckbox_jueves"
+                <LinearLayout
+
+                    android:id="@+id/llh_referencia"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="10dp"
+                    android:orientation="horizontal">
+
+
+                    <EditText
+                        android:id="@+id/referencia_cliente_agregar"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:text="Jueves"
-                        android:textSize="12sp"
-                        android:textStyle="bold" />
-
-                    <CheckBox
-                        android:id="@+id/idcheckbox_sabado"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:text="Sábado"
-                        android:textSize="12sp"
+                        android:layout_gravity="center"
+                        android:gravity="center"
+                        android:hint="REFERENCIA"
+                        android:inputType="textMultiLine"
+                        android:textColor="#FFFF"
+                        android:textColorHint="#000"
                         android:textStyle="bold" />
 
 
@@ -190,6 +239,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
+                    android:gravity="center"
                     android:orientation="horizontal"
                     android:weightSum="2">
 
@@ -198,30 +248,32 @@
                         android:id="@+id/button_cancelar_AC"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1"
                         android:layout_margin="@dimen/appbar_padding_top"
                         android:layout_marginTop="10dp"
-                        android:background="#304ffe"
+                        android:layout_weight="1"
+                        android:background="#d50000"
                         android:drawablePadding="0dp"
                         android:padding="0dp"
                         android:text="Cancelar"
-                        android:textColor="@android:color/white" />
+                        android:textColor="#FFFF"
+                        android:textStyle="bold" />
 
 
                     <Button
                         android:id="@+id/button_agregar_AC"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1"
                         android:layout_margin="@dimen/appbar_padding_top"
-
-
                         android:layout_marginTop="10dp"
-                        android:background="#304ffe"
-                        android:padding="0dp"
-                        android:text="Agregar"
 
-                        android:textColor="@android:color/white" />
+
+                        android:layout_weight="1"
+                        android:background="#43a047"
+                        android:padding="0dp"
+
+                        android:text="Agregar"
+                        android:textColor="#FFFF"
+                        android:textStyle="bold" />
 
                 </LinearLayout>
 

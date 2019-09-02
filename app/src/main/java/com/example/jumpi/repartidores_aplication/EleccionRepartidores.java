@@ -21,7 +21,6 @@ public class EleccionRepartidores extends AppCompatActivity {
 
     private GridView gridView;
     private AdaptadorDeRepartidores adaptador;
-    private String SelectedItem;
 
     String ActivityProvenienteDe;
 
