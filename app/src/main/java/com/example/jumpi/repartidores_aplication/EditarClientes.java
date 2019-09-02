@@ -1,16 +1,10 @@
 package com.example.jumpi.repartidores_aplication;
 
-import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
-import android.view.View;
-import android.widget.Button;
+import android.support.v7.app.AppCompatActivity;
 import android.widget.CheckBox;
 import android.widget.EditText;
-import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 public class EditarClientes extends AppCompatActivity {
 
@@ -64,7 +58,7 @@ public class EditarClientes extends AppCompatActivity {
 
 
 
-
+/*
 
         final Button buttonCancelarEditarCliente = (Button) findViewById(R.id.button_cancelar_EC);
 
@@ -108,10 +102,8 @@ public class EditarClientes extends AppCompatActivity {
 
 
 
-                /***COLOCAR ESTO EN UNA FUNCION DE VALIDACION ***/
 
 
-                //Estructuras selectivas utilizadas para comprobar que ningún campo importante como el 'Apellido' 'Nombre' 'Dirección' 'Barrio' y 'Referencia' quede vacío.
 
                 if (AuxiliarApellidoE.isEmpty() && AuxiliarNombreE.isEmpty() && AuxiliarDireccionE.isEmpty() && AuxiliarBarrioE.isEmpty() && AuxiliarTelefonoE.isEmpty() && AuxiliarCorreoE.isEmpty() && AuxiliarReferenciaE.isEmpty() ) {
 
@@ -153,7 +145,6 @@ public class EditarClientes extends AppCompatActivity {
 
                     Toast.makeText(getApplicationContext(),"Error! El campo 'referencia' está vacío. Por favor complete el campo correspondiente con datos válidos !",Toast.LENGTH_LONG).show();
 
-                //Para que ningun CheckBox quede sin seleccionar
                 } else if (c1.isChecked() == false && c2.isChecked() == false && c3.isChecked()==false && c4.isChecked()==false && c5.isChecked()==false && c6.isChecked()==false ){
 
 
@@ -176,34 +167,33 @@ public class EditarClientes extends AppCompatActivity {
             }
         });
 
-
+*/
 
 
         //Recibir los párametros de los clientes desde el RecyclerViewAdapter
 
 
         //Pasar el apellido del cliente a la actividad de "Editar_Cliente"
-        Apellido_Cliente_EditarCliente  = (TextView) findViewById(R.id.apellido_cliente_editar);
+       // Apellido_Cliente_EditarCliente  = (TextView) findViewById(R.id.apellido_cliente_editar);
 
-        String extrasTextos = getIntent().getStringExtra("ApellidoEC");
+        //String extrasTextos = getIntent().getStringExtra("ApellidoEC");
 
-        Apellido_Cliente_EditarCliente.setText(extrasTextos);
+        //Apellido_Cliente_EditarCliente.setText(extrasTextos);
 
 
 
 
 
         //Pasar el nombre del cliente a la actividad de "Editar_Cliente"
-        Nombre_Cliente_EditarCliente  = (TextView) findViewById(R.id.nombre_cliente_editar);
+        //Nombre_Cliente_EditarCliente  = (TextView) findViewById(R.id.nombre_cliente_editar);
 
-        extrasTextos = getIntent().getStringExtra("NombreEC");
+        //extrasTextos = getIntent().getStringExtra("NombreEC");
 
-        Nombre_Cliente_EditarCliente.setText(extrasTextos);
+        //Nombre_Cliente_EditarCliente.setText(extrasTextos);
+
+/*
 
 
-
-
-        //Pasar la dirección del cliente a la actividad de "Editar_Cliente"
         Direccion_Cliente_EditarCliente  = (TextView) findViewById(R.id.direccion_cliente_editar);
 
         extrasTextos = getIntent().getStringExtra("DireccionEC");
@@ -212,7 +202,6 @@ public class EditarClientes extends AppCompatActivity {
 
 
 
-        //Pasar el barrio del cliente a la actividad de "Editar_Cliente"
         Barrio_Cliente_EditarCliente  = (TextView) findViewById(R.id.barrio_cliente_editar);
 
         extrasTextos = getIntent().getStringExtra("BarrioEC");
@@ -221,7 +210,6 @@ public class EditarClientes extends AppCompatActivity {
 
 
 
-        //Pasar el teléfono del cliente a la actividad de "Editar_Cliente"
         Telefono_Cliente_EditarCliente  = (TextView) findViewById(R.id.telefono_cliente_editar);
 
         extrasTextos = getIntent().getStringExtra("TelefonoEC");
@@ -230,7 +218,6 @@ public class EditarClientes extends AppCompatActivity {
 
 
 
-        //Pasar el correo del cliente a la actividad de "Editar_Cliente"
         Correo_Cliente_EditarCliente  = (TextView) findViewById(R.id.correo_cliente_editar);
 
         extrasTextos = getIntent().getStringExtra("CorreoEC");
@@ -239,7 +226,6 @@ public class EditarClientes extends AppCompatActivity {
 
 
 
-        //Pasar la referencia del cliente a la actividad de "Editar_Cliente"
         Referencia_Cliente_EditarCliente  = (TextView) findViewById(R.id.referencia_cliente_editar);
 
         extrasTextos = getIntent().getStringExtra("ReferenciaEC");
@@ -247,12 +233,6 @@ public class EditarClientes extends AppCompatActivity {
         Referencia_Cliente_EditarCliente.setText(extrasTextos);
 
 
-        c1 = (CheckBox) findViewById(R.id.idcheckbox_lunes);
-        c2 = (CheckBox) findViewById(R.id.idcheckbox_martes);
-        c3 = (CheckBox) findViewById(R.id.idcheckbox_miercoles);
-        c4 = (CheckBox) findViewById(R.id.idcheckbox_jueves);
-        c5 = (CheckBox) findViewById(R.id.idcheckbox_viernes);
-        c6 = (CheckBox) findViewById(R.id.idcheckbox_sabado);
 
 
 
@@ -272,28 +252,28 @@ public class EditarClientes extends AppCompatActivity {
         eTReferencia = (EditText) findViewById(R.id.referencia_cliente_editar);
 
 
-
-
-    }
-
-
-
-    public void onclick (View view) {
-
-        if (view.getId()==R.id.button_aceptar_EC) {
-
-            MethodEditarC();
-        } //Fin de la sentencia 'if'
+*/
 
     }
 
 
-    private void MethodEditarC(){
+
+    //public void onclick (View view) {
+
+        //if (view.getId()==R.id.button_aceptar_EC) {
+
+        //    MethodEditarC();
+       // } //Fin de la sentencia 'if'
+
+   // }
+
+
+//    private void MethodEditarC(){
 
 
 
 
-    } //Fin del método
+  //  } //Fin del método
 
 
 
