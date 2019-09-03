@@ -1,14 +1,11 @@
 package com.example.jumpi.repartidores_aplication;
 
-import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
-import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.Toast;
-import android.widget.Toolbar;
 
 public class AgregarCliente extends AppCompatActivity {
 
@@ -16,8 +13,6 @@ public class AgregarCliente extends AppCompatActivity {
     /*************** DECLARACIÓN DE VARIABLES GLOBALES *****************/
 
 
-    //Declaración de variables para cada CheckBox correspondiente a los 6 días laborales
-    CheckBox c1, c2, c3, c4, c5, c6;
 
 
     EditText eTApellidoAC, eTNombreAC, eTDireccionAC, eTBarrioAC, eTTelefonoAC, eTCorreoAC, eTdniAC, eTReferenciaAC;
@@ -27,6 +22,8 @@ public class AgregarCliente extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_agregar_cliente);
+
+
 
 
 
@@ -118,12 +115,7 @@ public class AgregarCliente extends AppCompatActivity {
                     Toast.makeText(getApplicationContext(),"Error! El campo 'referencia' está vacío. Por favor complete el campo correspondiente con datos válidos !",Toast.LENGTH_LONG).show();
 
                     //Para que ningun CheckBox quede sin seleccionar
-                } else if (c1.isChecked() == false && c2.isChecked() == false && c3.isChecked()==false && c4.isChecked()==false && c5.isChecked()==false && c6.isChecked()==false ){
-
-
-                    Toast.makeText(getApplicationContext(),"Error! No ha seleccionado un día de reparto. Por favor, seleccione al menos uno",Toast.LENGTH_LONG).show();
-
-                } else {
+                }  else {
 
                     /*
                 Intent buttonAgregarA = new Intent(AgregarCliente.this, Ventas_Activity.class);
@@ -145,12 +137,6 @@ public class AgregarCliente extends AppCompatActivity {
         });
 
 
-        c1 = (CheckBox) findViewById(R.id.idcheckbox_lunes);
-        c2 = (CheckBox) findViewById(R.id.idcheckbox_martes);
-        c3 = (CheckBox) findViewById(R.id.idcheckbox_miercoles);
-        c4 = (CheckBox) findViewById(R.id.idcheckbox_jueves);
-        c5 = (CheckBox) findViewById(R.id.idcheckbox_viernes);
-        c6 = (CheckBox) findViewById(R.id.idcheckbox_sabado);
 
 
         eTApellidoAC = (EditText) findViewById(R.id.apellido_cliente_agregar);

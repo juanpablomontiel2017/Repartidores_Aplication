@@ -82,20 +82,12 @@ public class Clientes {
         return IdPersona;
     }
 
-    public void setIdPersona(int idPersona) {
-        IdPersona = idPersona;
-    }
-
-    public int getDNI() {
-        return DNI;
-    }
-
-    public void setDNI(int DNI) {
-        this.DNI = DNI;
-    }
-
     public int getFoto() {
         return Foto;
+    }
+
+    public String getApellido() {
+        return Apellido;
     }
 
     public String getNombre() {
@@ -110,11 +102,17 @@ public class Clientes {
         return Barrio;
     }
 
-    public String getReferencia() {return Referencia;}
-
     public String getTelefono() {return Telefono;}
 
     public String getCorreo() {return Correo;}
+
+    public int getDNI() {
+        return DNI;
+    }
+
+    public String getReferencia() {return Referencia;}
+
+
 
 
 
@@ -141,8 +139,16 @@ public class Clientes {
 
     /************ Método Setter ************/
 
+    public void setIdPersona(int idPersona) {
+        IdPersona = idPersona;
+    }
+
     public void setFoto(int foto) {
         Foto = foto;
+    }
+
+    public void setApellido(String apellido) {
+        Apellido = apellido;
     }
 
     public void setNombre(String nombre) {
@@ -157,10 +163,6 @@ public class Clientes {
         Barrio = barrio;
     }
 
-    public void setReferencia(String referencia) {
-        Referencia = referencia;
-
-    }
     public void setTelefono (String telefono) {
         Telefono = telefono;
     }
@@ -169,13 +171,16 @@ public class Clientes {
         Correo = correo;
     }
 
-    public String getApellido() {
-        return Apellido;
+    public void setDNI(int DNI) {
+        this.DNI = DNI;
     }
 
-    public void setApellido(String apellido) {
-        Apellido = apellido;
+    public void setReferencia(String referencia) {
+        Referencia = referencia;
+
     }
+
+
 
 
 
