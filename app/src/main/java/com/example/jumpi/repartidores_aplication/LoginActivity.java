@@ -1316,7 +1316,6 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
 
 
 
-           // LoginRequest loginRequest = new LoginRequest(mEmail, mPassword, "true", responseListener);
             utilsRequest request = utilsRequest.loginRequest(mEmail,mPassword, "true", responseListener);
             MySingleton.getInstance(getApplicationContext()).addToRequestQueue(request);
 
@@ -1745,7 +1744,6 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
 
             //En ésta parte del código se crea el reponse para enviarlo al servidor
 
-            //LoginRequest loginRequest = new LoginRequest(mEmail, mPassword, "false", responseListener);
             utilsRequest request = utilsRequest.loginRequest(mEmail,mPassword, "false", responseListener);
             MySingleton.getInstance(getApplicationContext()).addToRequestQueue(request);
 
@@ -2314,7 +2312,6 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
 
             //En ésta parte del código se crea el reponse para enviarlo al servidor
 
-            //LoginRequest loginRequest = new LoginRequest(mEmail, mPassword,"true", responseListener);
             utilsRequest request = utilsRequest.loginRequest(mEmail,mPassword, "true", responseListener);
             MySingleton.getInstance(getApplicationContext()).addToRequestQueue(request);
 
