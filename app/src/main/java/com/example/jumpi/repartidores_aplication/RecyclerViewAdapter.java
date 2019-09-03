@@ -212,6 +212,8 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
 
                         intentEditar.putExtra("CorreoEC",  mData.get(vHolder.getAdapterPosition()).getCorreo());
 
+                        intentEditar.putExtra("DNIEC",  mData.get(vHolder.getAdapterPosition()).getDNI());
+
                         intentEditar.putExtra("ReferenciaEC", mData.get(vHolder.getAdapterPosition()).getReferencia());
 
                         mContext.startActivity(intentEditar);

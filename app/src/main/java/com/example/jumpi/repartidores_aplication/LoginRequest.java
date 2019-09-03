@@ -12,9 +12,9 @@ public class LoginRequest extends StringRequest {
 
 
 
-    //private static final String LOGIN_REQUEST_URL = "https://aquavital.000webhostapp.com/login/login2deprueba.php";
+    private static final String LOGIN_REQUEST_URL = "https://aquavital.000webhostapp.com/login/login2deprueba.php";
 
-    private static final String LOGIN_REQUEST_URL = "http://192.168.1.13/av/login/login2deprueba.php";
+    //private static final String LOGIN_REQUEST_URL = "http://192.168.1.13/av/login/login2deprueba.php";
 
     private Map<String, String> params;
 
