@@ -1316,15 +1316,9 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
 
 
 
-
-            /**
-             * En ésta parte del código se crea el reponse para enviarlo al servidor
-             **/
-
-
-            LoginRequest loginRequest = new LoginRequest(mEmail, mPassword, "true", responseListener);
-
-            MySingleton.getInstance(getApplicationContext()).addToRequestQueue(loginRequest);
+           // LoginRequest loginRequest = new LoginRequest(mEmail, mPassword, "true", responseListener);
+            utilsRequest request = utilsRequest.loginRequest(mEmail,mPassword, "true", responseListener);
+            MySingleton.getInstance(getApplicationContext()).addToRequestQueue(request);
 
 
 
@@ -1751,10 +1745,9 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
 
             //En ésta parte del código se crea el reponse para enviarlo al servidor
 
-            LoginRequest loginRequest = new LoginRequest(mEmail, mPassword, "false", responseListener);
-
-
-            MySingleton.getInstance(getApplicationContext()).addToRequestQueue(loginRequest);
+            //LoginRequest loginRequest = new LoginRequest(mEmail, mPassword, "false", responseListener);
+            utilsRequest request = utilsRequest.loginRequest(mEmail,mPassword, "false", responseListener);
+            MySingleton.getInstance(getApplicationContext()).addToRequestQueue(request);
 
 
             Log.d("TFSB", "Se crea la solicitud al servidor. Usuario: "+mEmail+" Pass: "+mPassword);
@@ -2321,10 +2314,9 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
 
             //En ésta parte del código se crea el reponse para enviarlo al servidor
 
-            LoginRequest loginRequest = new LoginRequest(mEmail, mPassword,"true", responseListener);
-
-
-            MySingleton.getInstance(getApplicationContext()).addToRequestQueue(loginRequest);
+            //LoginRequest loginRequest = new LoginRequest(mEmail, mPassword,"true", responseListener);
+            utilsRequest request = utilsRequest.loginRequest(mEmail,mPassword, "true", responseListener);
+            MySingleton.getInstance(getApplicationContext()).addToRequestQueue(request);
 
 
             Log.d("TFSB", "DbUserLogin/ Se crea la solicitud al servidor. Usuario: "+mEmail+" pass: "+mPassword);
