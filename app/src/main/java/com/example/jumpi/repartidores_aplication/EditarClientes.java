@@ -26,7 +26,7 @@ public class EditarClientes extends AppCompatActivity {
     TextView Recibir_Referencia_Cliente_EditarCliente;
 
 
-
+    TextView Titulo_EditarCliente;
     TextView Titulo_Apellido_Cliente_EditarCliente;
     TextView Titulo_Nombre_Cliente_EditarCliente;
     TextView Titulo_Direccion_Cliente_EditarCliente;
@@ -83,44 +83,48 @@ public class EditarClientes extends AppCompatActivity {
 
 
 
+        Titulo_EditarCliente = (TextView) findViewById(R.id.tv_editar_cliente_titulo);
+        Typeface face0=Typeface.createFromAsset(getAssets(),"fonts/RobotoCondensed-BoldItalic.ttf");
+        Titulo_EditarCliente.setTypeface(face0);
+
 
         Titulo_Apellido_Cliente_EditarCliente = (TextView) findViewById(R.id.tv_apellido_ec);
-        Typeface face=Typeface.createFromAsset(getAssets(),"fonts/Roboto_Bold.ttf");
+        Typeface face=Typeface.createFromAsset(getAssets(),"fonts/RobotoCondensed-BoldItalic.ttf");
         Titulo_Apellido_Cliente_EditarCliente.setTypeface(face);
 
 
         Titulo_Nombre_Cliente_EditarCliente = (TextView) findViewById(R.id.tv_nombre_ec);
-        Typeface face1 = Typeface.createFromAsset(getAssets(),"fonts/Roboto_Bold.ttf");
+        Typeface face1 = Typeface.createFromAsset(getAssets(),"fonts/RobotoCondensed-BoldItalic.ttf");
         Titulo_Nombre_Cliente_EditarCliente.setTypeface(face1);
 
 
         Titulo_Direccion_Cliente_EditarCliente = (TextView) findViewById(R.id.tv_direccion_ec);
-        Typeface face2 = Typeface.createFromAsset(getAssets(),"fonts/Roboto_Bold.ttf");
+        Typeface face2 = Typeface.createFromAsset(getAssets(),"fonts/RobotoCondensed-BoldItalic.ttf");
         Titulo_Direccion_Cliente_EditarCliente.setTypeface(face2);
 
 
         Titulo_Barrio_Cliente_EditarCliente = (TextView) findViewById(R.id.tv_barrio_ec);
-        Typeface face3 = Typeface.createFromAsset(getAssets(),"fonts/Roboto_Bold.ttf");
+        Typeface face3 = Typeface.createFromAsset(getAssets(),"fonts/RobotoCondensed-BoldItalic.ttf");
         Titulo_Barrio_Cliente_EditarCliente.setTypeface(face3);
 
 
         Titulo_Telefono_Cliente_EditarCliente = (TextView) findViewById(R.id.tv_telefono_ec);
-        Typeface face4 = Typeface.createFromAsset(getAssets(),"fonts/Roboto_Bold.ttf");
+        Typeface face4 = Typeface.createFromAsset(getAssets(),"fonts/RobotoCondensed-BoldItalic.ttf");
         Titulo_Telefono_Cliente_EditarCliente.setTypeface(face4);
 
 
         Titulo_Correo_Cliente_EditarCliente = (TextView) findViewById(R.id.tv_correo_ec);
-        Typeface face5 = Typeface.createFromAsset(getAssets(),"fonts/Roboto_Bold.ttf");
+        Typeface face5 = Typeface.createFromAsset(getAssets(),"fonts/RobotoCondensed-BoldItalic.ttf");
         Titulo_Correo_Cliente_EditarCliente.setTypeface(face5);
 
 
         Titulo_DNI_Cliente_EditarCliente = (TextView) findViewById(R.id.tv_dni_ec);
-        Typeface face6 = Typeface.createFromAsset(getAssets(),"fonts/Roboto_Bold.ttf");
+        Typeface face6 = Typeface.createFromAsset(getAssets(),"fonts/RobotoCondensed-BoldItalic.ttf");
         Titulo_DNI_Cliente_EditarCliente.setTypeface(face6);
 
 
         Titulo_Referencia_Cliente_EditarCliente = (TextView) findViewById(R.id.tv_referencia_ec);
-        Typeface face7 = Typeface.createFromAsset(getAssets(),"fonts/Roboto_Bold.ttf");
+        Typeface face7 = Typeface.createFromAsset(getAssets(),"fonts/RobotoCondensed-BoldItalic.ttf");
         Titulo_Referencia_Cliente_EditarCliente.setTypeface(face7);
 
 
