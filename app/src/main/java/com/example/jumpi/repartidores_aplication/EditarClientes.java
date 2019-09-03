@@ -1,14 +1,11 @@
 package com.example.jumpi.repartidores_aplication;
 
-import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
+import android.graphics.Typeface;
 import android.os.Bundle;
-import android.util.Log;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
-import android.widget.CheckBox;
 import android.widget.EditText;
-import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -19,16 +16,28 @@ public class EditarClientes extends AppCompatActivity {
 
 
 
-    TextView Apellido_Cliente_EditarCliente;
-    TextView Nombre_Cliente_EditarCliente;
-    TextView Direccion_Cliente_EditarCliente;
-    TextView Barrio_Cliente_EditarCliente;
-    TextView Telefono_Cliente_EditarCliente;
-    TextView Correo_Cliente_EditarCliente;
-    TextView Referencia_Cliente_EditarCliente;
+    TextView Recibir_Apellido_Cliente_EditarCliente;
+    TextView Recibir_Nombre_Cliente_EditarCliente;
+    TextView Recibir_Direccion_Cliente_EditarCliente;
+    TextView Recibir_Barrio_Cliente_EditarCliente;
+    TextView Recibir_Telefono_Cliente_EditarCliente;
+    TextView Recibir_Correo_Cliente_EditarCliente;
+    TextView Recibir_DNI_Cliente_EditarCliente;
+    TextView Recibir_Referencia_Cliente_EditarCliente;
 
 
-    CheckBox c1, c2, c3, c4, c5, c6;
+    TextView Titulo_EditarCliente;
+    TextView Titulo_Apellido_Cliente_EditarCliente;
+    TextView Titulo_Nombre_Cliente_EditarCliente;
+    TextView Titulo_Direccion_Cliente_EditarCliente;
+    TextView Titulo_Barrio_Cliente_EditarCliente;
+    TextView Titulo_Telefono_Cliente_EditarCliente;
+    TextView Titulo_Correo_Cliente_EditarCliente;
+    TextView Titulo_DNI_Cliente_EditarCliente;
+    TextView Titulo_Referencia_Cliente_EditarCliente;
+
+
+
 
 
     EditText eTApellido;
@@ -37,7 +46,14 @@ public class EditarClientes extends AppCompatActivity {
     EditText eTBarrio;
     EditText eTTelefono;
     EditText eTCorreo;
+    EditText eTDNI;
     EditText eTReferencia;
+
+
+
+    Button buttonCancelarEditarCliente, buttonGuardarCambiosEditarCliente;
+
+
 
 
 
@@ -66,7 +82,107 @@ public class EditarClientes extends AppCompatActivity {
 
 
 
-        final Button buttonCancelarEditarCliente = (Button) findViewById(R.id.button_cancelar_EC);
+
+        Titulo_EditarCliente = (TextView) findViewById(R.id.tv_editar_cliente_titulo);
+        Typeface face0=Typeface.createFromAsset(getAssets(),"fonts/RobotoCondensed-BoldItalic.ttf");
+        Titulo_EditarCliente.setTypeface(face0);
+
+
+        Titulo_Apellido_Cliente_EditarCliente = (TextView) findViewById(R.id.tv_apellido_ec);
+        Typeface face=Typeface.createFromAsset(getAssets(),"fonts/RobotoCondensed-BoldItalic.ttf");
+        Titulo_Apellido_Cliente_EditarCliente.setTypeface(face);
+
+
+        Titulo_Nombre_Cliente_EditarCliente = (TextView) findViewById(R.id.tv_nombre_ec);
+        Typeface face1 = Typeface.createFromAsset(getAssets(),"fonts/RobotoCondensed-BoldItalic.ttf");
+        Titulo_Nombre_Cliente_EditarCliente.setTypeface(face1);
+
+
+        Titulo_Direccion_Cliente_EditarCliente = (TextView) findViewById(R.id.tv_direccion_ec);
+        Typeface face2 = Typeface.createFromAsset(getAssets(),"fonts/RobotoCondensed-BoldItalic.ttf");
+        Titulo_Direccion_Cliente_EditarCliente.setTypeface(face2);
+
+
+        Titulo_Barrio_Cliente_EditarCliente = (TextView) findViewById(R.id.tv_barrio_ec);
+        Typeface face3 = Typeface.createFromAsset(getAssets(),"fonts/RobotoCondensed-BoldItalic.ttf");
+        Titulo_Barrio_Cliente_EditarCliente.setTypeface(face3);
+
+
+        Titulo_Telefono_Cliente_EditarCliente = (TextView) findViewById(R.id.tv_telefono_ec);
+        Typeface face4 = Typeface.createFromAsset(getAssets(),"fonts/RobotoCondensed-BoldItalic.ttf");
+        Titulo_Telefono_Cliente_EditarCliente.setTypeface(face4);
+
+
+        Titulo_Correo_Cliente_EditarCliente = (TextView) findViewById(R.id.tv_correo_ec);
+        Typeface face5 = Typeface.createFromAsset(getAssets(),"fonts/RobotoCondensed-BoldItalic.ttf");
+        Titulo_Correo_Cliente_EditarCliente.setTypeface(face5);
+
+
+        Titulo_DNI_Cliente_EditarCliente = (TextView) findViewById(R.id.tv_dni_ec);
+        Typeface face6 = Typeface.createFromAsset(getAssets(),"fonts/RobotoCondensed-BoldItalic.ttf");
+        Titulo_DNI_Cliente_EditarCliente.setTypeface(face6);
+
+
+        Titulo_Referencia_Cliente_EditarCliente = (TextView) findViewById(R.id.tv_referencia_ec);
+        Typeface face7 = Typeface.createFromAsset(getAssets(),"fonts/RobotoCondensed-BoldItalic.ttf");
+        Titulo_Referencia_Cliente_EditarCliente.setTypeface(face7);
+
+
+
+
+
+
+
+
+
+
+
+        eTApellido = (EditText) findViewById(R.id.et_apellido_cliente_editar);
+
+        eTNombre = (EditText) findViewById(R.id.et_nombre_cliente_editar);
+
+        eTDireccion = (EditText) findViewById(R.id.et_direccion_cliente_editar);
+
+        eTBarrio = (EditText) findViewById(R.id.et_barrio_cliente_editar);
+
+        eTTelefono = (EditText) findViewById(R.id.et_telefono_cliente_editar);
+
+        eTCorreo = (EditText) findViewById(R.id.et_correo_cliente_editar);
+
+        eTDNI = (EditText) findViewById(R.id.et_dni_cliente_editar);
+
+        eTReferencia = (EditText) findViewById(R.id.et_referencia_cliente_editar);
+
+
+
+
+        /*Llamada a la función: */
+        RecibirDatosPersonalesDelClienteEC();
+
+
+
+        buttonGuardarCambiosEditarCliente = (Button) findViewById(R.id.button_guardar_cambios_ec);
+
+        buttonGuardarCambiosEditarCliente.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View view) {
+
+
+                /*Llamada a la función: */
+                ValidarCamposParaGuardarCambiosEditarCliente();
+
+
+
+            }
+        });
+
+
+
+
+
+
+        buttonCancelarEditarCliente = (Button) findViewById(R.id.button_cancelar_ec);
 
         buttonCancelarEditarCliente.setOnClickListener(new View.OnClickListener() {
 
@@ -82,219 +198,177 @@ public class EditarClientes extends AppCompatActivity {
 
 
 
-
-        final Button buttonAceptarEditarCliente = (Button) findViewById(R.id.button_aceptar_EC);
-
-        buttonAceptarEditarCliente.setOnClickListener(new View.OnClickListener() {
-
-            @Override
-            public void onClick(View view) {
-
-                String AuxiliarApellidoE = eTApellido.getText().toString();
-
-                String AuxiliarNombreE = eTNombre.getText().toString();
-
-                String AuxiliarDireccionE = eTDireccion.getText().toString();
-
-                String AuxiliarBarrioE = eTBarrio.getText().toString();
-
-                String AuxiliarTelefonoE = eTTelefono.getText().toString();
-
-                String AuxiliarCorreoE = eTCorreo.getText().toString();
-
-                String AuxiliarReferenciaE = eTReferencia.getText().toString();
+    }/***************************** FIN DEL onCreate()*******************************/
 
 
 
 
 
-                /***COLOCAR ESTO EN UNA FUNCION DE VALIDACION ***/
 
 
-                //Estructuras selectivas utilizadas para comprobar que ningún campo importante como el 'Apellido' 'Nombre' 'Dirección' 'Barrio' y 'Referencia' quede vacío.
-
-                if (AuxiliarApellidoE.isEmpty() && AuxiliarNombreE.isEmpty() && AuxiliarDireccionE.isEmpty() && AuxiliarBarrioE.isEmpty() && AuxiliarTelefonoE.isEmpty() && AuxiliarCorreoE.isEmpty() && AuxiliarReferenciaE.isEmpty() ) {
-
-                    Toast.makeText(getApplicationContext(),"Error! Todos los campos estan vacios. Por favor, complete los campos correspondientes con datos válidos",Toast.LENGTH_LONG).show();
-                }
+    public void RecibirDatosPersonalesDelClienteEC(){
 
 
+         Recibir_Apellido_Cliente_EditarCliente  = (TextView) findViewById(R.id.et_apellido_cliente_editar);
 
+         String extrasTextos = getIntent().getStringExtra("ApellidoEC");
 
-                else if (AuxiliarApellidoE.isEmpty() && AuxiliarNombreE.isEmpty() && AuxiliarDireccionE.isEmpty() && AuxiliarBarrioE.isEmpty() && AuxiliarReferenciaE.isEmpty()){
-
-                    Toast.makeText(getApplicationContext(),"Error! Los campos: Apellido, nombre, dirección, barrio y referencia son obligatorios. Por favor, verifíquelos!",Toast.LENGTH_LONG).show();
+         Recibir_Apellido_Cliente_EditarCliente.setText(extrasTextos);
 
 
 
 
 
-                } else  if (AuxiliarApellidoE.isEmpty() ) {
+         Recibir_Nombre_Cliente_EditarCliente  = (TextView) findViewById(R.id.et_nombre_cliente_editar);
 
+         extrasTextos = getIntent().getStringExtra("NombreEC");
 
-                Toast.makeText(getApplicationContext(),"Error! El campo 'apellido' está vacío. Por favor complete el campo correspondiente con datos válidos !",Toast.LENGTH_LONG).show();
-
-
-            } else if (AuxiliarNombreE.isEmpty()) {
-
-
-                    Toast.makeText(getApplicationContext(),"Error! El campo 'nombre' está vacío. Por favor complete el campo correspondiente con datos válidos !",Toast.LENGTH_LONG).show();
-
-                } else if (AuxiliarDireccionE.isEmpty()) {
-
-
-                    Toast.makeText(getApplicationContext(),"Error! El campo 'dirección' está vacío. Por favor complete el campo correspondiente con datos válidos !",Toast.LENGTH_LONG).show();
-
-                } else  if (AuxiliarBarrioE.isEmpty()) {
-
-                    Toast.makeText(getApplicationContext(),"Error! El campo 'barrio' está vacío. Por favor complete el campo correspondiente con datos válidos !",Toast.LENGTH_LONG).show();
-
-                } else if (AuxiliarReferenciaE.isEmpty()){
-
-                    Toast.makeText(getApplicationContext(),"Error! El campo 'referencia' está vacío. Por favor complete el campo correspondiente con datos válidos !",Toast.LENGTH_LONG).show();
-
-                //Para que ningun CheckBox quede sin seleccionar
-                } else if (c1.isChecked() == false && c2.isChecked() == false && c3.isChecked()==false && c4.isChecked()==false && c5.isChecked()==false && c6.isChecked()==false ){
-
-
-                    Toast.makeText(getApplicationContext(),"Error! No ha seleccionado un día de reparto. Por favor, seleccione al menos uno",Toast.LENGTH_LONG).show();
-
-                } else {
+         Recibir_Nombre_Cliente_EditarCliente.setText(extrasTextos);
 
 
 
 
-                    Toast.makeText(getApplicationContext(),"Edición Exitosa",Toast.LENGTH_LONG).show();
+         Recibir_Direccion_Cliente_EditarCliente  = (TextView) findViewById(R.id.et_direccion_cliente_editar);
 
-                    finish();
-                }
+         extrasTextos = getIntent().getStringExtra("DireccionEC");
+
+         Recibir_Direccion_Cliente_EditarCliente.setText(extrasTextos);
+
+
+
+         Recibir_Barrio_Cliente_EditarCliente  = (TextView) findViewById(R.id.et_barrio_cliente_editar);
+
+         extrasTextos = getIntent().getStringExtra("BarrioEC");
+
+         Recibir_Barrio_Cliente_EditarCliente.setText(extrasTextos);
+
+
+
+         Recibir_Telefono_Cliente_EditarCliente  = (TextView) findViewById(R.id.et_telefono_cliente_editar);
+
+         extrasTextos = getIntent().getStringExtra("TelefonoEC");
+
+         Recibir_Telefono_Cliente_EditarCliente.setText(extrasTextos);
+
+
+
+         Recibir_Correo_Cliente_EditarCliente  = (TextView) findViewById(R.id.et_correo_cliente_editar);
+
+         extrasTextos = getIntent().getStringExtra("CorreoEC");
+
+         Recibir_Correo_Cliente_EditarCliente.setText(extrasTextos);
 
 
 
 
+         Recibir_DNI_Cliente_EditarCliente  = (TextView) findViewById(R.id.et_dni_cliente_editar);
+
+         extrasTextos = getIntent().getStringExtra("DNIEC");
+
+         Recibir_DNI_Cliente_EditarCliente.setText(extrasTextos);
+
+
+         Recibir_Referencia_Cliente_EditarCliente  = (TextView) findViewById(R.id.et_referencia_cliente_editar);
+
+         extrasTextos = getIntent().getStringExtra("ReferenciaEC");
+
+         Recibir_Referencia_Cliente_EditarCliente.setText(extrasTextos);
+
+
+    }/**********************FIN DE LA FUNCIÓN RecibirDatosPersonalesDelClienteEC()********************************/
+
+
+
+
+
+
+
+
+
+
+    boolean flag_validacion_campos_editar_cliente = false;
+
+    public boolean ValidarCamposParaGuardarCambiosEditarCliente(){
+
+
+        String AuxiliarApellidoE = eTApellido.getText().toString();
+
+        String AuxiliarNombreE = eTNombre.getText().toString();
+
+        String AuxiliarDireccionE = eTDireccion.getText().toString();
+
+        String AuxiliarBarrioE = eTBarrio.getText().toString();
+
+        String AuxiliarTelefonoE = eTTelefono.getText().toString();
+
+        String AuxiliarCorreoE = eTCorreo.getText().toString();
+
+        String AuxiliarDNIE = eTDNI.getText().toString();
+
+        String AuxiliarReferenciaE = eTReferencia.getText().toString();
+
+
+
+
+        //Estructura repetitiva para duplicar el tiempo de duración del Toast
+        for (int i = 0; i < 2; i++) {
+
+        /**Primer Validación: todos los campos obligatorios deben estar rellenados**/
+
+            if (!AuxiliarApellidoE.isEmpty() || !AuxiliarNombreE.toString().isEmpty() || !AuxiliarDireccionE.toString().isEmpty()
+                || !AuxiliarBarrioE.toString().isEmpty() || !AuxiliarTelefonoE.toString().isEmpty()
+                || !AuxiliarDNIE.toString().isEmpty() || !AuxiliarReferenciaE.toString().isEmpty() ){
+
+            flag_validacion_campos_editar_cliente = true;
 
             }
-        });
 
+            else{
 
+                Toast.makeText(getApplicationContext(), "¡Error! Recuerde completar todos los campos que sean obligatorios.", Toast.LENGTH_LONG).show();
 
 
-        //Recibir los párametros de los clientes desde el RecyclerViewAdapter
+                flag_validacion_campos_editar_cliente = false;
 
+            }
 
-        //Pasar el apellido del cliente a la actividad de "Editar_Cliente"
-        Apellido_Cliente_EditarCliente  = (TextView) findViewById(R.id.apellido_cliente_editar);
 
-        String extrasTextos = getIntent().getStringExtra("ApellidoEC");
 
-        Apellido_Cliente_EditarCliente.setText(extrasTextos);
 
+        if (flag_validacion_campos_editar_cliente) {
 
+            finish();
 
+            Toast.makeText(getApplicationContext(), "¡Los cambios fueron realizados con éxito!", Toast.LENGTH_LONG).show();
 
 
-        //Pasar el nombre del cliente a la actividad de "Editar_Cliente"
-        Nombre_Cliente_EditarCliente  = (TextView) findViewById(R.id.nombre_cliente_editar);
+        } //Fin del if (flag_validacion_campos_editar_cliente){}
 
-        extrasTextos = getIntent().getStringExtra("NombreEC");
 
-        Nombre_Cliente_EditarCliente.setText(extrasTextos);
 
 
 
+        } /*Fin del 'for'*/
 
-        //Pasar la dirección del cliente a la actividad de "Editar_Cliente"
-        Direccion_Cliente_EditarCliente  = (TextView) findViewById(R.id.direccion_cliente_editar);
+        return flag_validacion_campos_editar_cliente;
 
-        extrasTextos = getIntent().getStringExtra("DireccionEC");
 
-        Direccion_Cliente_EditarCliente.setText(extrasTextos);
 
 
 
-        //Pasar el barrio del cliente a la actividad de "Editar_Cliente"
-        Barrio_Cliente_EditarCliente  = (TextView) findViewById(R.id.barrio_cliente_editar);
+}/********** FIN DE LA FUNCIÓN ValidarCamposParaGuardarCambiosEditarCliente() ***********/
 
-        extrasTextos = getIntent().getStringExtra("BarrioEC");
 
-        Barrio_Cliente_EditarCliente.setText(extrasTextos);
 
 
 
-        //Pasar el teléfono del cliente a la actividad de "Editar_Cliente"
-        Telefono_Cliente_EditarCliente  = (TextView) findViewById(R.id.telefono_cliente_editar);
 
-        extrasTextos = getIntent().getStringExtra("TelefonoEC");
 
-        Telefono_Cliente_EditarCliente.setText(extrasTextos);
 
 
 
-        //Pasar el correo del cliente a la actividad de "Editar_Cliente"
-        Correo_Cliente_EditarCliente  = (TextView) findViewById(R.id.correo_cliente_editar);
 
-        extrasTextos = getIntent().getStringExtra("CorreoEC");
 
-        Correo_Cliente_EditarCliente.setText(extrasTextos);
 
 
-
-        //Pasar la referencia del cliente a la actividad de "Editar_Cliente"
-        Referencia_Cliente_EditarCliente  = (TextView) findViewById(R.id.referencia_cliente_editar);
-
-        extrasTextos = getIntent().getStringExtra("ReferenciaEC");
-
-        Referencia_Cliente_EditarCliente.setText(extrasTextos);
-
-
-        c1 = (CheckBox) findViewById(R.id.idcheckbox_lunes);
-        c2 = (CheckBox) findViewById(R.id.idcheckbox_martes);
-        c3 = (CheckBox) findViewById(R.id.idcheckbox_miercoles);
-        c4 = (CheckBox) findViewById(R.id.idcheckbox_jueves);
-        c5 = (CheckBox) findViewById(R.id.idcheckbox_viernes);
-        c6 = (CheckBox) findViewById(R.id.idcheckbox_sabado);
-
-
-
-
-        eTApellido = (EditText) findViewById(R.id.apellido_cliente_editar);
-
-        eTNombre = (EditText) findViewById(R.id.nombre_cliente_editar);
-
-        eTDireccion = (EditText) findViewById(R.id.direccion_cliente_editar);
-
-        eTBarrio = (EditText) findViewById(R.id.barrio_cliente_editar);
-
-        eTTelefono = (EditText) findViewById(R.id.telefono_cliente_editar);
-
-        eTCorreo = (EditText) findViewById(R.id.correo_cliente_editar);
-
-        eTReferencia = (EditText) findViewById(R.id.referencia_cliente_editar);
-
-
-
-
-    }
-
-
-
-    public void onclick (View view) {
-
-        if (view.getId()==R.id.button_aceptar_EC) {
-
-            MethodEditarC();
-        } //Fin de la sentencia 'if'
-
-    }
-
-
-    private void MethodEditarC(){
-
-
-
-
-    } //Fin del método
-
-
-
-}
+}/******************************** FIN DE LA ACTIVITY EditarClientes *******************************/

@@ -107,7 +107,7 @@ public class Repartidores_Main_Activity extends AppCompatActivity {
         adapter = new ViewPagerAdapter(getSupportFragmentManager());
 
         //Add Fragment Here
-        adapter.AddFragment (new StockDisponibleFragment(),"Registro de ventas");
+        adapter.AddFragment (new StockEnVehiculoFragment(),"Registro de ventas");
 
 
         adapter.AddFragment (clientesFragment,"Clientes");
@@ -326,10 +326,10 @@ public class Repartidores_Main_Activity extends AppCompatActivity {
                 case 0:
 
 
-                    StockDisponibleFragment stock_disponible_fragment = new StockDisponibleFragment();
+                    StockEnVehiculoFragment stock_en_vehiculo_fragment = new StockEnVehiculoFragment();
 
 
-                    return stock_disponible_fragment;
+                    return stock_en_vehiculo_fragment;
 
 
                 case 1:
