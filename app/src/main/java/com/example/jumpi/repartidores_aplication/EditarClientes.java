@@ -315,9 +315,9 @@ public class EditarClientes extends AppCompatActivity {
 
         /**Primer Validación: todos los campos obligatorios deben estar rellenados**/
 
-            if (!AuxiliarApellidoE.isEmpty() || !AuxiliarNombreE.toString().isEmpty() || !AuxiliarDireccionE.toString().isEmpty()
-                || !AuxiliarBarrioE.toString().isEmpty() || !AuxiliarTelefonoE.toString().isEmpty()
-                || !AuxiliarDNIE.toString().isEmpty() || !AuxiliarReferenciaE.toString().isEmpty() ){
+            if (!AuxiliarApellidoE.isEmpty() && !AuxiliarNombreE.toString().isEmpty() && !AuxiliarDireccionE.toString().isEmpty()
+                && !AuxiliarBarrioE.toString().isEmpty() && !AuxiliarTelefonoE.toString().isEmpty()
+                && !AuxiliarDNIE.toString().isEmpty() && !AuxiliarReferenciaE.toString().isEmpty() ){
 
             flag_validacion_campos_editar_cliente = true;
 

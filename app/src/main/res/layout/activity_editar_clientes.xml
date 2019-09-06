@@ -113,6 +113,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:gravity="center|left"
+                        android:hint="OBLIGATORIO"
                         android:inputType="textMultiLine"
                         android:textColor="#03a9f4"
                         android:textSize="24sp"
@@ -155,6 +156,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:gravity="center|left"
+                        android:hint="OBLIGATORIO"
                         android:inputType="textMultiLine"
                         android:textColor="#03a9f4"
                         android:textSize="24sp"
@@ -199,6 +201,7 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="left"
                         android:gravity="center|left"
+                        android:hint="OBLIGATORIO"
                         android:inputType="textMultiLine"
                         android:textColor="#03a9f4"
                         android:textSize="24sp"
@@ -242,6 +245,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:gravity="center|left"
+                        android:hint="OBLIGATORIO"
                         android:inputType="textMultiLine"
                         android:textColor="#03a9f4"
                         android:textSize="24sp"
@@ -285,6 +289,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:gravity="center|left"
+                        android:hint="OBLIGATORIO"
                         android:inputType="textMultiLine|number"
                         android:textColor="#03a9f4"
                         android:textSize="24sp"
@@ -329,8 +334,10 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:gravity="center|left"
+                        android:hint="OPCIONAL"
                         android:inputType="textMultiLine|textEmailAddress"
                         android:textColor="#03a9f4"
+                        android:textColorHint="#18ffff"
                         android:textSize="24sp"
                         android:textStyle="bold" />
 
@@ -373,6 +380,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:gravity="center|left"
+                        android:hint="OBLIGATORIO"
                         android:inputType="number"
                         android:maxLength="8"
                         android:textColor="#03a9f4"
@@ -395,9 +403,11 @@
                         android:id="@+id/tv_referencia_ec"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:hint="OBLIGATORIO"
                         android:text="REFERENCIA"
                         android:textColor="#FFFF"
-                        android:textSize="24sp"/>
+                        android:textColorHint="#18ffff"
+                        android:textSize="24sp" />
 
 
                 </LinearLayout>
