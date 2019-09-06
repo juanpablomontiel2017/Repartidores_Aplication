@@ -2,6 +2,7 @@ package com.example.jumpi.repartidores_aplication;
 
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.res.ColorStateList;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
@@ -35,6 +36,13 @@ public class BuscarResponsableParaPatrocinio extends AppCompatActivity implement
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_buscar_responsable_para_patrocinio);
+
+
+
+
+
+
+
 
 
 
@@ -269,6 +277,33 @@ public class BuscarResponsableParaPatrocinio extends AppCompatActivity implement
 
         });/*********** FIN DEL EVENTO setOnClickListener() ****************/
 
+
+
+
+
+
+
+        /** Pregunta si el usuario es un "repartidor" entonces habrá un cambio de colores en las activity's
+         * de Patrocinio**/
+
+        Usuario usuario = new Usuario();
+
+        usuario.LeerUsuarioEnUnSharedPreferences(this);
+
+        if(usuario.getTipo_de_Usuario().equals("repartidor")){
+
+            // finally change the color
+            window.setStatusBarColor(Color.parseColor("#303F9F"));
+
+
+            toolbar.setBackgroundColor(Color.parseColor("#3F51B5"));
+            setSupportActionBar(toolbar);
+
+
+            fab.setBackgroundTintList(ColorStateList.valueOf(Color
+                    .parseColor("#03a9f4")));
+
+        }
 
 
 
