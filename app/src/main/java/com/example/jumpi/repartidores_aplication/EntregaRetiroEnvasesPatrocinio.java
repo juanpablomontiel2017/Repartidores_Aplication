@@ -33,7 +33,6 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 import static android.view.View.GONE;
-import static com.example.jumpi.repartidores_aplication.Utils_Spinner.RefrescarOtrosSpinner;
 
 public class EntregaRetiroEnvasesPatrocinio extends AppCompatActivity {
 
@@ -49,8 +48,8 @@ public class EntregaRetiroEnvasesPatrocinio extends AppCompatActivity {
 
 
     /** Variables tipo LinearLayout*/
-    LinearLayout LinearLayoutVerticalPadre_Patrocinio, LinearLayoutVerticalHijo_Patrocinio, LinearLayoutVerticalTercerTupla_Patrocinio;
-
+    LinearLayout LinearLayoutVerticalPadre_Patrocinio, LinearLayoutVerticalHijo_Patrocinio, LinearLayoutVerticalTercerTupla_Patrocinio,
+                 LinearLayoutVerticalBorde, LinearLayoutHorizontalSegundaTupla;
 
 
     /******ArrayList<>********/
@@ -78,7 +77,7 @@ public class EntregaRetiroEnvasesPatrocinio extends AppCompatActivity {
 
     /** Matríz Clásica tipo Cadena */
 
-    String [] ListaDeArticulosParaPatrocinio =  {"Bidones", "Dispenser plástico", "Canillas", "Dispenser eléctrico","Envases rotos/pinchados","Dispenser plástico roto","Dispenser eléctrico descompuesto"};
+    String [] ListaDeArticulosParaPatrocinio =  {"Bidones", "Dispenser plástico", "Canillas", "Dispenser eléctrico","Envases rotos/pinchados","Dispenser plástico roto","Dispenser eléctrico \n averiado"};
 
 
 
@@ -131,7 +130,19 @@ public class EntregaRetiroEnvasesPatrocinio extends AppCompatActivity {
 
 
 
-        /**Añadir "manualmente" color al StatusBar **/
+
+
+
+        ArrayAdapter <String> adaptador = new ArrayAdapter<String>(this, R.layout.spinner_para_carga_descarga_y_patrocinio, ListaDeArticulosParaPatrocinio);
+
+
+
+
+
+
+
+
+            /**Añadir "manualmente" color al StatusBar **/
 
         Window window = this.getWindow();
 
@@ -165,8 +176,12 @@ public class EntregaRetiroEnvasesPatrocinio extends AppCompatActivity {
 
 
 
+
         /*Llamada a la función:  */
-        CargarReferenciasPrimerVuelta();
+        CargarReferenciasPrimerVuelta(window,toolbar);
+
+
+
 
 
 
@@ -177,43 +192,18 @@ public class EntregaRetiroEnvasesPatrocinio extends AppCompatActivity {
         ArrayListVueltas.add(LinearLayoutVerticalHijo_Patrocinio);
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        fab_nueva_vuelta = findViewById(R.id.fab_nueva_entrega_retiro);
-
-        fab_nueva_vuelta.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                Utils_Spinner.contador_de_inicializacion--;
-
-                ObtenerNuevaVuelta("","", "");
-
-            }
-        });
-
-
-
-        fab_cancelar_vuelta = findViewById(R.id.fab_cancelar_entrega_retiro);
-
-
-
-
-
         /*Llamada a la función:  */
         MostrarValoresDelSharedPreferencesPatrocinio();
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -229,9 +219,6 @@ public class EntregaRetiroEnvasesPatrocinio extends AppCompatActivity {
             fab_cancelar_vuelta.setVisibility(GONE);
 
         }
-
-
-
 
 
 
@@ -260,7 +247,7 @@ public class EntregaRetiroEnvasesPatrocinio extends AppCompatActivity {
 
 
 
-    public void CargarReferenciasPrimerVuelta(){
+    public void CargarReferenciasPrimerVuelta(Window window, Toolbar toolbar){
 
 
         parent_scrollView_erep = (ScrollView) findViewById(R.id.scroll_parent_erep);
@@ -289,6 +276,9 @@ public class EntregaRetiroEnvasesPatrocinio extends AppCompatActivity {
         });
 
 
+        LinearLayoutVerticalBorde = (LinearLayout) findViewById(R.id.llv_contenedor_para_bordes_erep);
+
+        LinearLayoutHorizontalSegundaTupla = (LinearLayout) findViewById(R.id.layout_horizontal_segunda_tupla_erep);
 
         LinearLayoutVerticalTercerTupla_Patrocinio = (LinearLayout) findViewById(R.id.layout_vertical_tercer_tupla_erep);
 
@@ -346,6 +336,7 @@ public class EntregaRetiroEnvasesPatrocinio extends AppCompatActivity {
         spinner_para_patrocinio = (Spinner) findViewById(R.id.sp_art_erep);
 
 
+
         eTcantEntrega = (EditText) findViewById(R.id.edtx_entrega_erep);
         eTcantEntrega.requestFocus();
 
@@ -358,6 +349,61 @@ public class EntregaRetiroEnvasesPatrocinio extends AppCompatActivity {
 
         /*Llamada a la función: */
         setSpinner(spinner_para_patrocinio, eTcantEntrega,true);
+
+
+
+        fab_nueva_vuelta = findViewById(R.id.fab_nueva_entrega_retiro);
+
+        fab_nueva_vuelta.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Utils_Spinner.contador_de_inicializacion--;
+
+                ObtenerNuevaVuelta("","", "");
+
+            }
+        });
+
+
+
+        fab_cancelar_vuelta = findViewById(R.id.fab_cancelar_entrega_retiro);
+
+
+
+
+
+
+
+
+
+        /** Pregunta si el usuario es un "repartidor" entonces habrá un cambio de colores en las activity's
+         * de Patrocinio**/
+
+        Usuario usuario = new Usuario();
+
+        usuario.LeerUsuarioEnUnSharedPreferences(this);
+
+        if(usuario.getTipo_de_Usuario().equals("repartidor")){
+
+            // finally change the color
+            window.setStatusBarColor(Color.parseColor("#303F9F"));
+
+
+            toolbar.setBackgroundColor(Color.parseColor("#3F51B5"));
+            setSupportActionBar(toolbar);
+
+            LinearLayoutVerticalBorde.setBackgroundDrawable(getDrawable(R.drawable.borde_linear_layout_entrega_retiro_patrocinio_repartidores));
+
+            textViewVuelta.setBackgroundColor(Color.parseColor("#2962ff"));
+
+            LinearLayoutHorizontalSegundaTupla.setBackgroundColor(Color.parseColor("#0091ea"));
+
+
+        }//Fin del if
+
+
+
 
 
 
@@ -380,8 +426,6 @@ public class EntregaRetiroEnvasesPatrocinio extends AppCompatActivity {
     /***************************************************************************************************/
     /***************************************************************************************************/
     /***************************************************************************************************/
-
-
 
 
 
@@ -768,7 +812,7 @@ public class EntregaRetiroEnvasesPatrocinio extends AppCompatActivity {
 
 
 
-        for(int i=0; i<ArrayListVueltas.size();i++){
+        for(int i = 0; i < ArrayListVueltas.size();i++){
 
 
             final EditText editText_entrega = (EditText) ArrayListVueltas.get(i).findViewById(R.id.edtx_entrega_erep);
@@ -923,6 +967,7 @@ public class EntregaRetiroEnvasesPatrocinio extends AppCompatActivity {
 
         /** Instanciamos las vistas del diseño XML: "nuevo_articulo.xml" **/
 
+
         final ImageButton btnEliminarArticuloPatrocinio = (ImageButton) NuevoArticuloInfladoPatrocinio.findViewById(R.id.delete_art);
 
         btnEliminarArticuloPatrocinio.setOnClickListener(new View.OnClickListener() {
@@ -1003,9 +1048,6 @@ public class EntregaRetiroEnvasesPatrocinio extends AppCompatActivity {
 
 
         }
-
-
-
 
 
 
@@ -1173,7 +1215,7 @@ public class EntregaRetiroEnvasesPatrocinio extends AppCompatActivity {
 
 
 
-            adaptador = new ArrayAdapter<String>(this, R.layout.spinner, ListaDeArticulosParaPatrocinio);
+            adaptador = new ArrayAdapter<String>(this, R.layout.spinner_para_carga_descarga_y_patrocinio, ListaDeArticulosParaPatrocinio);
 
 
 
@@ -1191,7 +1233,7 @@ public class EntregaRetiroEnvasesPatrocinio extends AppCompatActivity {
             ArticulosReducidos = Utils_Spinner.ReducirListaDeArticulos(spinner, ArticulosReducidos);
 
 
-            adaptador = new ArrayAdapter<String>(this, R.layout.spinner, ArticulosReducidos);
+            adaptador = new ArrayAdapter<String>(this, R.layout.spinner_para_carga_descarga_y_patrocinio, ArticulosReducidos);
 
 
 
@@ -1227,7 +1269,7 @@ public class EntregaRetiroEnvasesPatrocinio extends AppCompatActivity {
 
 
         /*Llamada a la función: */
-        RefrescarOtrosSpinner(spinner ,null, ArticuloSeleccionado, this);
+        Utils_Spinner.RefrescarOtrosSpinner(spinner ,null, ArticuloSeleccionado, this);
 
 
 
@@ -1354,7 +1396,7 @@ public class EntregaRetiroEnvasesPatrocinio extends AppCompatActivity {
 
 
         if (ArticuloSeleccionadoText == "Envases rotos/pinchados" || ArticuloSeleccionadoText == "Dispenser plástico roto"
-        || ArticuloSeleccionadoText == "Dispenser eléctrico descompuesto") {
+        || ArticuloSeleccionadoText == "Dispenser eléctrico \n averiado") {
 
             EditTextEntrega.setEnabled(false);
             EditTextEntrega.setHint("");
@@ -1410,6 +1452,10 @@ public class EntregaRetiroEnvasesPatrocinio extends AppCompatActivity {
         ArrayListVueltas.add(NuevaVueltaInflada);
 
 
+
+        final LinearLayout LinearLayoutVerticalProgramaticoConBorde = (LinearLayout) findViewById(R.id.llv_contenedor_para_bordes_erep);
+
+        final LinearLayout LinearLayoutSegundaTuplaProgramatica_Patrocinio = (LinearLayout) findViewById(R.id.layout_horizontal_segunda_tupla_erep);
 
         final LinearLayout LinearLayoutTercerTuplaProgramatica_Patrocinio = (LinearLayout) NuevaVueltaInflada.findViewById(R.id.layout_vertical_tercer_tupla_erep);
 
@@ -1488,6 +1534,33 @@ public class EntregaRetiroEnvasesPatrocinio extends AppCompatActivity {
 
 
         ArticuloSeleccionadoAnterior = spinner_fijo_nueva_vuelta.getSelectedItem().toString();
+
+
+
+
+
+
+        /** Pregunta si el usuario es un "repartidor" entonces habrá un cambio de colores en las activity's
+         * de Patrocinio**/
+
+        Usuario usuario = new Usuario();
+
+        usuario.LeerUsuarioEnUnSharedPreferences(this);
+
+        if(usuario.getTipo_de_Usuario().equals("repartidor")){
+
+            LinearLayoutVerticalProgramaticoConBorde.setBackgroundDrawable(getDrawable(R.drawable.borde_linear_layout_entrega_retiro_patrocinio_repartidores));
+
+            textViewNuevaVuelta.setBackgroundColor(Color.parseColor("#2962ff"));
+
+            LinearLayoutSegundaTuplaProgramatica_Patrocinio.setBackgroundColor(Color.parseColor("#0091ea"));
+
+
+        }//Fin del if
+
+
+
+
 
 
 
@@ -1961,7 +2034,7 @@ public class EntregaRetiroEnvasesPatrocinio extends AppCompatActivity {
 
 
                 if(text_spinner_fijo == "Envases rotos/pinchados" || text_spinner_fijo == "Dispenser plástico roto"
-                   || text_spinner_fijo == "Dispenser eléctrico descompuesto"){
+                   || text_spinner_fijo == "Dispenser eléctrico \n averiado"){
 
 
                     editText_entrega_vuelta.setEnabled(false);
@@ -2034,7 +2107,7 @@ public class EntregaRetiroEnvasesPatrocinio extends AppCompatActivity {
 
                     if(text_spinner_programatico == "Envases rotos/pinchados" ||
                             text_spinner_programatico == "Dispenser plástico roto" ||
-                            text_spinner_programatico == "Dispenser eléctrico descompuesto"){
+                            text_spinner_programatico == "Dispenser eléctrico averiado"){
 
 
                         et_entrega_del_nuevo_articulo.setEnabled(false);

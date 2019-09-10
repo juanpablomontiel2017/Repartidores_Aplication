@@ -5,26 +5,29 @@
     android:id="@+id/parent_layout_horizontal"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:orientation="horizontal">
+    android:orientation="horizontal"
+    android:gravity="center"
+    android:weightSum="2">
 
 
     <ImageButton
 
         android:id="@+id/delete_art"
-        android:layout_width="40dp"
+        android:layout_width="30dp"
         android:layout_height="wrap_content"
         android:background="@android:color/transparent"
-        android:focusable="false"
         android:onClick="EliminarNuevoArticulo"
         android:src="@drawable/ic_menos_art" />
 
     <Spinner
 
         android:id="@+id/sp_new_art"
-        android:layout_width="match_parent"
+        style="@style/Widget.AppCompat.Spinner.DropDown"
+        android:layout_width="150dp"
         android:layout_height="wrap_content"
-        android:layout_weight="1"
         android:gravity="center"
+        android:inputType="number"
+        android:popupElevation="16dp"
         android:prompt="@string/title_spinner"
         android:spinnerMode="dialog">
 
@@ -33,8 +36,9 @@
 
     <EditText
 
+        android:layout_weight="1"
         android:id="@+id/edtx_carga_new_art"
-        android:layout_width="95dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
         android:hint="Cantidad"
@@ -43,8 +47,9 @@
 
     <EditText
 
+        android:layout_weight="1"
         android:id="@+id/edtx_descarga_new_art"
-        android:layout_width="95dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
         android:hint="Cantidad"
@@ -54,3 +59,8 @@
 
 
     </LinearLayout>
+
+
+
+
+

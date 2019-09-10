@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<TextView xmlns:android="http://schemas.android.com/apk/res/android"
+
+
+    android:id="@+id/tv_spinner_para_carga_descarga_y_patrocinio"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:gravity="center"
+    android:padding="5dp"
+    android:textAlignment="center"
+    android:textColor="#000000"
+    android:textSize="17sp">
+
+
+</TextView>
+
+<!--    android:layout_alignParentLeft="true"
+            android:singleLine="false"
+
+ -->
