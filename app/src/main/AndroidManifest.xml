@@ -128,7 +128,7 @@
 
 
         <activity android:name=".NuevoResponsablePatrocinio"
-                  android:label="Nuevo Responsable"
+                  android:label=""
                   android:theme="@style/AppTheme.NoActionBar"/>
 
 

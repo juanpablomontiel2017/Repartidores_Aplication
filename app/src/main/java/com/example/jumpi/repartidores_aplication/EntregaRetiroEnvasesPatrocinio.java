@@ -130,18 +130,6 @@ public class EntregaRetiroEnvasesPatrocinio extends AppCompatActivity {
 
 
 
-
-
-
-        ArrayAdapter <String> adaptador = new ArrayAdapter<String>(this, R.layout.spinner_para_carga_descarga_y_patrocinio, ListaDeArticulosParaPatrocinio);
-
-
-
-
-
-
-
-
             /**Añadir "manualmente" color al StatusBar **/
 
         Window window = this.getWindow();
@@ -1215,7 +1203,7 @@ public class EntregaRetiroEnvasesPatrocinio extends AppCompatActivity {
 
 
 
-            adaptador = new ArrayAdapter<String>(this, R.layout.spinner_para_carga_descarga_y_patrocinio, ListaDeArticulosParaPatrocinio);
+            adaptador = new ArrayAdapter<String>(this, R.layout.spinner, ListaDeArticulosParaPatrocinio);
 
 
 
@@ -1233,7 +1221,7 @@ public class EntregaRetiroEnvasesPatrocinio extends AppCompatActivity {
             ArticulosReducidos = Utils_Spinner.ReducirListaDeArticulos(spinner, ArticulosReducidos);
 
 
-            adaptador = new ArrayAdapter<String>(this, R.layout.spinner_para_carga_descarga_y_patrocinio, ArticulosReducidos);
+            adaptador = new ArrayAdapter<String>(this, R.layout.spinner, ArticulosReducidos);
 
 
 

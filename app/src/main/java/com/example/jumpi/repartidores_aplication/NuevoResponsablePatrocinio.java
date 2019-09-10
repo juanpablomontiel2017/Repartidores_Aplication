@@ -5,7 +5,6 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Patterns;
@@ -14,6 +13,7 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.regex.Pattern;
@@ -36,6 +36,7 @@ public class NuevoResponsablePatrocinio extends AppCompatActivity {
     Button btn_confirmar_nuevo_responsable_del_evento_supervisor, btn_cancelar_nuevo_responsable_del_evento_supervisor;
 
 
+    TextView tv_datos_responsable, tv_datos_evento;
 
 
 
@@ -65,13 +66,6 @@ public class NuevoResponsablePatrocinio extends AppCompatActivity {
         window.setStatusBarColor(Color.parseColor("#b71c1c"));
 
 
-
-
-
-        /*Inicialización del Toolbar */
-        Toolbar toolbar = findViewById(R.id.toolbar);
-        toolbar.setTitleTextColor(Color.WHITE);
-        setSupportActionBar(toolbar);
 
 
 
@@ -289,8 +283,33 @@ public class NuevoResponsablePatrocinio extends AppCompatActivity {
         });/*******************FIN DEL EVENTO setOnClickListener()**************************/
 
 
+        tv_datos_responsable = (TextView) findViewById(R.id.datos_personales_responsable);
+
+        tv_datos_evento = (TextView) findViewById(R.id.tv_evento_formulario_patrocinio);
 
 
+
+
+
+        /** Pregunta si el usuario es un "repartidor" entonces habrá un cambio de colores en las activity's
+         * de Patrocinio**/
+
+        Usuario usuario = new Usuario();
+
+        usuario.LeerUsuarioEnUnSharedPreferences(this);
+
+        if(usuario.getTipo_de_Usuario().equals("repartidor")){
+
+            // finally change the color
+            window.setStatusBarColor(Color.parseColor("#303F9F"));
+
+            tv_datos_responsable.setBackgroundColor(Color.parseColor("#2962ff"));
+            tv_datos_evento.setBackgroundColor(Color.parseColor("#2962ff"));
+
+
+
+
+        }//Fin del if
 
 
 
