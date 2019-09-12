@@ -2,10 +2,10 @@ package com.example.jumpi.repartidores_aplication;
 
 import android.content.DialogInterface;
 import android.graphics.Color;
+import android.graphics.PorterDuff;
 import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
@@ -63,24 +63,20 @@ public class NuevoEventoPatrocinio extends AppCompatActivity {
         window.setStatusBarColor(Color.parseColor("#b71c1c"));
 
 
-        /*Inicialización del Toolbar */
-        Toolbar toolbar = findViewById(R.id.toolbar);
-        toolbar.setTitleTextColor(Color.WHITE);
-        setSupportActionBar(toolbar);
 
 
 
 
 
 
-        linearlayout_vertical_datos_nuevo_evento_patrocinio_supervisor = (LinearLayout) findViewById(R.id.llv_datos_nuevo_evento_patrocinio_supervisor);
-        linearlayout_horizontal_titulo_nuevo_evento_patrocinio_supervisor = (LinearLayout) findViewById(R.id.llh_titulo_nuevo_evento_patrocinio_supervisor);
-        linearlayout_horizontal_nombre_nuevo_evento_patrocinio_supervisor = (LinearLayout) findViewById(R.id.llh_nombre_nuevo_evento_patrocinio_supervisor);
-        linearlayout_horizontal_direccion_nuevo_evento_patrocinio_supervisor = (LinearLayout) findViewById(R.id.llh_direccion_nuevo_evento_patrocinio_supervisor);
-        linearlayout_horizontal_barrio_nuevo_evento_patrocinio_supervisor = (LinearLayout) findViewById(R.id.llh_barrio_nuevo_evento_patrocinio_supervisor);
+        linearlayout_vertical_datos_nuevo_evento_patrocinio_supervisor = (LinearLayout) findViewById(R.id.llv_datos_nuevo_evento_patrocinio);
+        linearlayout_horizontal_titulo_nuevo_evento_patrocinio_supervisor = (LinearLayout) findViewById(R.id.llh_titulo_nuevo_evento_patrocinio);
+        linearlayout_horizontal_nombre_nuevo_evento_patrocinio_supervisor = (LinearLayout) findViewById(R.id.llh_nombre_nuevo_evento_patrocinio);
+        linearlayout_horizontal_direccion_nuevo_evento_patrocinio_supervisor = (LinearLayout) findViewById(R.id.llh_direccion_nuevo_evento_patrocinio);
+        linearlayout_horizontal_barrio_nuevo_evento_patrocinio_supervisor = (LinearLayout) findViewById(R.id.llh_barrio_nuevo_evento_patrocinio);
         linearlayout_horizontal_referencia_nuevo_evento_patrocinio_supervisor = (LinearLayout) findViewById(R.id.llh_referencia_nuevo_evento_patrocinio_supervisor);
-        linearlayout_horizontal_fecha_inicio_nuevo_evento_patrocinio_supervisor = (LinearLayout) findViewById(R.id.llh_fecha_inicio_nuevo_evento_patrocinio_supervisor);
-        linearlayout_horizontal_fecha_fin_nuevo_evento_patrocinio_supervisor = (LinearLayout) findViewById(R.id.llh_fecha_fin_nuevo_evento_patrocinio_supervisor);
+        linearlayout_horizontal_fecha_inicio_nuevo_evento_patrocinio_supervisor = (LinearLayout) findViewById(R.id.llh_fecha_inicio_nuevo_evento_patrocinio);
+        linearlayout_horizontal_fecha_fin_nuevo_evento_patrocinio_supervisor = (LinearLayout) findViewById(R.id.llh_fecha_fin_nuevo_evento_patrocinio);
 
 
 
@@ -89,12 +85,12 @@ public class NuevoEventoPatrocinio extends AppCompatActivity {
 
 
 
-        et_nombre_nuevo_evento_patrocinio_supervisor = (EditText) findViewById(R.id.et_nombre_nuevo_evento_patrocinio_supervisor);
-        et_direccion_nuevo_evento_patrocinio_supervisor = (EditText) findViewById(R.id.et_direccion_nuevo_evento_patrocinio_supervisor);
-        et_barrio_nuevo_evento_patrocinio_supervisor = (EditText) findViewById(R.id.et_barrio_nuevo_evento_patrocinio_supervisor);
-        et_referencia_nuevo_evento_patrocinio_supervisor = (EditText) findViewById(R.id.et_referencia_nuevo_evento_patrocinio_supervisor);
-        et_fecha_inicio_nuevo_evento_patrocinio_supervisor = (EditText) findViewById(R.id.et_fecha_inicio_nuevo_evento_patrocinio_supervisor);
-        et_fecha_fin_nuevo_evento_patrocinio_supervisor = (EditText) findViewById(R.id.et_fecha_fin_nuevo_evento_patrocinio_supervisor);
+        et_nombre_nuevo_evento_patrocinio_supervisor = (EditText) findViewById(R.id.et_nombre_nuevo_evento_patrocinio);
+        et_direccion_nuevo_evento_patrocinio_supervisor = (EditText) findViewById(R.id.et_direccion_nuevo_evento_patrocinio);
+        et_barrio_nuevo_evento_patrocinio_supervisor = (EditText) findViewById(R.id.et_barrio_nuevo_evento_patrocinio);
+        et_referencia_nuevo_evento_patrocinio_supervisor = (EditText) findViewById(R.id.et_referencia_nuevo_evento_patrocinio);
+        et_fecha_inicio_nuevo_evento_patrocinio_supervisor = (EditText) findViewById(R.id.et_fecha_inicio_nuevo_evento_patrocinio);
+        et_fecha_fin_nuevo_evento_patrocinio_supervisor = (EditText) findViewById(R.id.et_fecha_fin_nuevo_evento_patrocinio);
 
 
 
@@ -102,7 +98,7 @@ public class NuevoEventoPatrocinio extends AppCompatActivity {
 
 
 
-        btn_cancelar_nuevo_evento_patrocinio_supervisor = (Button) findViewById(R.id.btn_cancelar_nuevo_evento_patrocinio_supervisor);
+        btn_cancelar_nuevo_evento_patrocinio_supervisor = (Button) findViewById(R.id.btn_cancelar_nuevo_evento_patrocinio);
 
 
         btn_cancelar_nuevo_evento_patrocinio_supervisor.setOnClickListener(new View.OnClickListener() {
@@ -189,7 +185,7 @@ public class NuevoEventoPatrocinio extends AppCompatActivity {
 
 
 
-        btn_confirmar_nuevo_evento_patrocinio_supervisor = (Button) findViewById(R.id.btn_confirmar_nuevo_evento_patrocinio_supervisor);
+        btn_confirmar_nuevo_evento_patrocinio_supervisor = (Button) findViewById(R.id.btn_confirmar_nuevo_evento_patrocinio);
 
         btn_confirmar_nuevo_evento_patrocinio_supervisor.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -225,18 +221,26 @@ public class NuevoEventoPatrocinio extends AppCompatActivity {
             window.setStatusBarColor(Color.parseColor("#303F9F"));
 
 
-            toolbar.setBackgroundColor(Color.parseColor("#3F51B5"));
-            setSupportActionBar(toolbar);
 
 
-            linearlayout_vertical_datos_nuevo_evento_patrocinio_supervisor.setBackgroundColor(Color.WHITE);
-            linearlayout_horizontal_titulo_nuevo_evento_patrocinio_supervisor.setBackgroundColor(Color.parseColor("#283593"));
-            linearlayout_horizontal_nombre_nuevo_evento_patrocinio_supervisor.setBackgroundColor(Color.parseColor("#03a9f4"));
-            linearlayout_horizontal_direccion_nuevo_evento_patrocinio_supervisor.setBackgroundColor(Color.parseColor("#03a9f4"));
-            linearlayout_horizontal_barrio_nuevo_evento_patrocinio_supervisor.setBackgroundColor(Color.parseColor("#03a9f4"));
-            linearlayout_horizontal_referencia_nuevo_evento_patrocinio_supervisor.setBackgroundColor(Color.parseColor("#03a9f4"));
-            linearlayout_horizontal_fecha_inicio_nuevo_evento_patrocinio_supervisor.setBackgroundColor(Color.parseColor("#03a9f4"));
-            linearlayout_horizontal_fecha_fin_nuevo_evento_patrocinio_supervisor.setBackgroundColor(Color.parseColor("#03a9f4"));
+
+
+            linearlayout_vertical_datos_nuevo_evento_patrocinio_supervisor.setBackgroundColor(Color.parseColor("#0277bd"));
+
+            linearlayout_horizontal_nombre_nuevo_evento_patrocinio_supervisor.setBackground(getDrawable(R.drawable.contenedor_et_nuevo_evento_patrocinio));
+            linearlayout_horizontal_direccion_nuevo_evento_patrocinio_supervisor.setBackground(getDrawable(R.drawable.contenedor_et_nuevo_evento_patrocinio));
+            linearlayout_horizontal_barrio_nuevo_evento_patrocinio_supervisor.setBackground(getDrawable(R.drawable.contenedor_et_nuevo_evento_patrocinio));
+            linearlayout_horizontal_referencia_nuevo_evento_patrocinio_supervisor.setBackground(getDrawable(R.drawable.contenedor_et_nuevo_evento_patrocinio));
+            linearlayout_horizontal_fecha_inicio_nuevo_evento_patrocinio_supervisor.setBackground(getDrawable(R.drawable.contenedor_et_nuevo_evento_patrocinio));
+            linearlayout_horizontal_fecha_fin_nuevo_evento_patrocinio_supervisor.setBackground(getDrawable(R.drawable.contenedor_et_nuevo_evento_patrocinio));
+
+
+            btn_confirmar_nuevo_evento_patrocinio_supervisor.setBackground(getDrawable(R.drawable.btn_borde_redondeado));
+            btn_confirmar_nuevo_evento_patrocinio_supervisor.getBackground().setColorFilter(Color.parseColor("#00bcd4"), PorterDuff.Mode.SRC_ATOP);
+
+
+            btn_cancelar_nuevo_evento_patrocinio_supervisor.setBackground(getDrawable(R.drawable.btn_borde_redondeado));
+            btn_cancelar_nuevo_evento_patrocinio_supervisor.getBackground().setColorFilter(Color.parseColor("#283593"), PorterDuff.Mode.SRC_ATOP);
 
 
 

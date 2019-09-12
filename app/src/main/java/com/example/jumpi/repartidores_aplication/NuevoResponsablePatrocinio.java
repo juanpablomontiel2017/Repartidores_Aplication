@@ -13,6 +13,8 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -39,6 +41,30 @@ public class NuevoResponsablePatrocinio extends AppCompatActivity {
     TextView tv_datos_responsable, tv_datos_evento;
 
 
+    LinearLayout LinearLayout_Horizontal_DNI_Responsable, LinearLayout_Horizontal_Nombre_Apellido_Responsable,
+                 LinearLayout_Horizontal_Telefono_Responsable, LinearLayout_Horizontal_Direccion_Responsable,
+                 LinearLayout_Horizontal_Barrio_Responsable, LinearLayout_Horizontal_Correo_Responsable,
+                 LinearLayout_Horizontal_Referencia_Responsable,
+
+                 LinearLayout_Horizontal_Nombre_Evento_Responsable, LinearLayout_Horizontal_Direccion_Evento_Responsable,
+                 LinearLayout_Horizontal_Barrio_Evento_Responsable, LinearLayout_Horizontal_Referencia_Evento_Responsable,
+                 LinearLayout_Horizontal_Fecha_Inicio_Evento_Responsable, LinearLayout_Horizontal_Fecha_Fin_Evento_Responsable;
+
+
+    ImageView img_ic_dni_nrp_repartidor, img_ic_nombre_apellido_nrp_repartidor, img_ic_telefono_nrp_repartidor,
+              img_ic_direccion_nrp_repartidor, img_ic_barrio_nrp_repartidor, img_ic_correo_nrp_repartidor,
+              img_ic_referencia_nrp_repartidor,
+
+              img_ic_nombre_evento_nrp_repartidor, img_ic_direccion_evento_nrp_repartidor, img_ic_barrio_evento_nrp_repartidor,
+              img_ic_referencia_evento_nrp_repartidor, img_ic_fecha_inicio_evento_nrp_repartidor,img_ic_fecha_fin_evento_nrp_repartidor;
+
+
+    View view_separador_dni_repartidor, view_separador_nombre_apellido_repartidor,view_separador_telefono_repartidor,
+         view_separador_direccion_repartidor, view_separador_barrio_repartidor, view_separador_correo_repartidor,
+         view_separador_referencia_repartidor,
+
+         view_separador_nombre_evento_repartidor, view_separador_direccion_evento_repartidor, view_separador_barrio_evento_repartidor,
+         view_separador_referencia_evento_repartidor, view_separador_fecha_inicio_evento_repartidor, view_separador_fecha_fin_evento_repartidor;
 
 
 
@@ -289,6 +315,79 @@ public class NuevoResponsablePatrocinio extends AppCompatActivity {
 
 
 
+        LinearLayout_Horizontal_DNI_Responsable = (LinearLayout) findViewById(R.id.llh_dni_formulario_patrocinio);
+        LinearLayout_Horizontal_Nombre_Apellido_Responsable = (LinearLayout) findViewById(R.id.llh_nombre_apellido_formulario_patrocinio);
+        LinearLayout_Horizontal_Telefono_Responsable = (LinearLayout) findViewById(R.id.llh_telefono_formulario_patrocinio);
+        LinearLayout_Horizontal_Direccion_Responsable = (LinearLayout) findViewById(R.id.llh_direccion_formulario_patrocinio);
+        LinearLayout_Horizontal_Barrio_Responsable = (LinearLayout) findViewById(R.id.llh_barrio_formulario_patrocinio);
+        LinearLayout_Horizontal_Correo_Responsable = (LinearLayout) findViewById(R.id.llh_email_formulario_patrocinio);
+        LinearLayout_Horizontal_Referencia_Responsable = (LinearLayout) findViewById(R.id.llh_referencia_formulario_patrocinio);
+
+
+        LinearLayout_Horizontal_Nombre_Evento_Responsable = (LinearLayout) findViewById(R.id.llh_nombre_evento_formulario_patrocinio);
+        LinearLayout_Horizontal_Direccion_Evento_Responsable = (LinearLayout) findViewById(R.id.llh_direccion_evento_formulario_patrocinio);
+        LinearLayout_Horizontal_Barrio_Evento_Responsable = (LinearLayout) findViewById(R.id.llh_barrio_evento_formulario_patrocinio);
+        LinearLayout_Horizontal_Referencia_Evento_Responsable = (LinearLayout) findViewById(R.id.llh_referencia_evento_formulario_patrocinio);
+        LinearLayout_Horizontal_Fecha_Inicio_Evento_Responsable = (LinearLayout) findViewById(R.id.llh_fecha_inicio_formulario_patrocinio);
+        LinearLayout_Horizontal_Fecha_Fin_Evento_Responsable = (LinearLayout) findViewById(R.id.llh_fecha_fin_formulario_patrocinio);
+
+
+
+
+
+
+
+
+        img_ic_dni_nrp_repartidor = (ImageView) findViewById(R.id.img_dni_nrp);
+        img_ic_nombre_apellido_nrp_repartidor = (ImageView) findViewById(R.id.img_nombre_apellido_nrp);
+        img_ic_telefono_nrp_repartidor = (ImageView) findViewById(R.id.img_telefono_nrp);
+        img_ic_direccion_nrp_repartidor = (ImageView) findViewById(R.id.img_direccion_nrp);
+        img_ic_barrio_nrp_repartidor = (ImageView) findViewById(R.id.img_barrio_nrp);
+        img_ic_correo_nrp_repartidor = (ImageView) findViewById(R.id.img_correo_nrp);
+        img_ic_referencia_nrp_repartidor = (ImageView) findViewById(R.id.img_referencia_nrp);
+
+
+        img_ic_nombre_evento_nrp_repartidor = (ImageView) findViewById(R.id.img_nombre_evento_nrp);
+        img_ic_direccion_evento_nrp_repartidor = (ImageView) findViewById(R.id.img_direccion_evento_nrp);
+        img_ic_barrio_evento_nrp_repartidor = (ImageView) findViewById(R.id.img_barrio_evento_nrp);
+        img_ic_referencia_evento_nrp_repartidor = (ImageView) findViewById(R.id.img_referencia_evento_nrp);
+        img_ic_fecha_inicio_evento_nrp_repartidor = (ImageView) findViewById(R.id.img_fecha_inicio_evento_nrp);
+        img_ic_fecha_fin_evento_nrp_repartidor = (ImageView) findViewById(R.id.img_fecha_fin_evento_nrp);
+
+
+
+
+
+
+
+
+
+        view_separador_dni_repartidor = (View) findViewById(R.id.separador_dni);
+        view_separador_nombre_apellido_repartidor = (View) findViewById(R.id.separador_nombre_apellido);
+        view_separador_telefono_repartidor = (View) findViewById(R.id.separador_telefono);
+        view_separador_direccion_repartidor = (View) findViewById(R.id.separador_direccion);
+        view_separador_barrio_repartidor = (View) findViewById(R.id.separador_barrio);
+        view_separador_correo_repartidor = (View) findViewById(R.id.separador_correo);
+        view_separador_referencia_repartidor = (View) findViewById(R.id.separador_referencia);
+
+
+        view_separador_nombre_evento_repartidor = (View) findViewById(R.id.separador_nombre_evento_nrp);
+        view_separador_direccion_evento_repartidor = (View) findViewById(R.id.separador_direccion_evento_nrp);
+        view_separador_barrio_evento_repartidor = (View) findViewById(R.id.separador_barrio_evento_nrp);
+        view_separador_referencia_evento_repartidor = (View) findViewById(R.id.separador_referencia_evento_nrp);
+        view_separador_fecha_inicio_evento_repartidor = (View) findViewById(R.id.separador_fecha_inicio_evento_nrp);
+        view_separador_fecha_fin_evento_repartidor = (View) findViewById(R.id.separador_fecha_fin_evento_nrp);
+
+
+
+
+
+
+
+
+
+
+
 
 
         /** Pregunta si el usuario es un "repartidor" entonces habrá un cambio de colores en las activity's
@@ -303,11 +402,81 @@ public class NuevoResponsablePatrocinio extends AppCompatActivity {
             // finally change the color
             window.setStatusBarColor(Color.parseColor("#303F9F"));
 
-            tv_datos_responsable.setBackgroundColor(Color.parseColor("#2962ff"));
-            tv_datos_evento.setBackgroundColor(Color.parseColor("#2962ff"));
+            tv_datos_responsable.setBackgroundColor(Color.parseColor("#283593"));
+            tv_datos_evento.setBackgroundColor(Color.parseColor("#283593"));
 
 
 
+            LinearLayout_Horizontal_DNI_Responsable.setBackground(getDrawable(R.drawable.contenedor_llh_nuevo_responsable_repartidor));
+            LinearLayout_Horizontal_Nombre_Apellido_Responsable.setBackground(getDrawable(R.drawable.contenedor_llh_nuevo_responsable_repartidor));
+            LinearLayout_Horizontal_Telefono_Responsable.setBackground(getDrawable(R.drawable.contenedor_llh_nuevo_responsable_repartidor));
+            LinearLayout_Horizontal_Direccion_Responsable.setBackground(getDrawable(R.drawable.contenedor_llh_nuevo_responsable_repartidor));
+            LinearLayout_Horizontal_Barrio_Responsable.setBackground(getDrawable(R.drawable.contenedor_llh_nuevo_responsable_repartidor));
+            LinearLayout_Horizontal_Correo_Responsable.setBackground(getDrawable(R.drawable.contenedor_llh_nuevo_responsable_repartidor));
+            LinearLayout_Horizontal_Referencia_Responsable.setBackground(getDrawable(R.drawable.contenedor_llh_nuevo_responsable_repartidor));
+
+
+            LinearLayout_Horizontal_Nombre_Evento_Responsable.setBackground(getDrawable(R.drawable.contenedor_llh_nuevo_responsable_repartidor));
+            LinearLayout_Horizontal_Direccion_Evento_Responsable.setBackground(getDrawable(R.drawable.contenedor_llh_nuevo_responsable_repartidor));
+            LinearLayout_Horizontal_Barrio_Evento_Responsable.setBackground(getDrawable(R.drawable.contenedor_llh_nuevo_responsable_repartidor));
+            LinearLayout_Horizontal_Referencia_Evento_Responsable.setBackground(getDrawable(R.drawable.contenedor_llh_nuevo_responsable_repartidor));
+            LinearLayout_Horizontal_Fecha_Inicio_Evento_Responsable.setBackground(getDrawable(R.drawable.contenedor_llh_nuevo_responsable_repartidor));
+            LinearLayout_Horizontal_Fecha_Fin_Evento_Responsable.setBackground(getDrawable(R.drawable.contenedor_llh_nuevo_responsable_repartidor));
+
+
+
+
+
+            img_ic_dni_nrp_repartidor.setImageResource(R.drawable.ic_dni_nrp);
+            img_ic_nombre_apellido_nrp_repartidor.setImageResource(R.drawable.ic_nombre_apellido_nrp);
+            img_ic_telefono_nrp_repartidor.setImageResource(R.drawable.ic_telefono_nrp);
+            img_ic_direccion_nrp_repartidor.setImageResource(R.drawable.ic_direccion_nrp);
+            img_ic_barrio_nrp_repartidor.setImageResource(R.drawable.ic_barrio_nrp);
+            img_ic_correo_nrp_repartidor.setImageResource(R.drawable.ic_correo_nrp);
+            img_ic_referencia_nrp_repartidor.setImageResource(R.drawable.ic_referencia_nrp);
+
+
+            img_ic_nombre_evento_nrp_repartidor.setImageResource(R.drawable.ic_nombre_evento_nrp);
+            img_ic_direccion_evento_nrp_repartidor.setImageResource(R.drawable.ic_direccion_nrp);
+            img_ic_barrio_evento_nrp_repartidor.setImageResource(R.drawable.ic_barrio_nrp);
+            img_ic_referencia_evento_nrp_repartidor.setImageResource(R.drawable.ic_referencia_nrp);
+            img_ic_fecha_inicio_evento_nrp_repartidor.setImageResource(R.drawable.ic_fecha_inicio_nrp);
+            img_ic_fecha_fin_evento_nrp_repartidor.setImageResource(R.drawable.ic_fecha_fin_nrp);
+
+
+
+
+
+
+
+
+            view_separador_dni_repartidor.setBackgroundColor(Color.parseColor("#283593"));
+            view_separador_nombre_apellido_repartidor.setBackgroundColor(Color.parseColor("#283593"));
+            view_separador_telefono_repartidor.setBackgroundColor(Color.parseColor("#283593"));
+            view_separador_direccion_repartidor.setBackgroundColor(Color.parseColor("#283593"));
+            view_separador_barrio_repartidor.setBackgroundColor(Color.parseColor("#283593"));
+            view_separador_correo_repartidor.setBackgroundColor(Color.parseColor("#283593"));
+            view_separador_referencia_repartidor.setBackgroundColor(Color.parseColor("#283593"));
+
+
+            view_separador_nombre_evento_repartidor.setBackgroundColor(Color.parseColor("#283593"));
+            view_separador_direccion_evento_repartidor.setBackgroundColor(Color.parseColor("#283593"));
+            view_separador_barrio_evento_repartidor.setBackgroundColor(Color.parseColor("#283593"));
+            view_separador_referencia_evento_repartidor.setBackgroundColor(Color.parseColor("#283593"));
+            view_separador_fecha_inicio_evento_repartidor.setBackgroundColor(Color.parseColor("#283593"));
+            view_separador_fecha_fin_evento_repartidor.setBackgroundColor(Color.parseColor("#283593"));
+
+
+
+
+
+
+
+
+
+
+
+            btn_confirmar_nuevo_responsable_del_evento_supervisor.setBackground(getDrawable(R.drawable.btn_confirmar_nuevo_responsable_esquinas_con_bordes_repartidor));
 
         }//Fin del if
 

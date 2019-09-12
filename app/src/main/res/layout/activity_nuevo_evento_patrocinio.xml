@@ -12,14 +12,6 @@
     tools:context=".NuevoEventoPatrocinio">
 
 
-    <android.support.v7.widget.Toolbar
-        android:id="@+id/toolbar"
-        android:layout_width="match_parent"
-        android:layout_height="?attr/actionBarSize"
-        android:background="#d50000"
-        app:popupTheme="@style/AppTheme.PopupOverlay" />
-
-
 
     <ScrollView
         android:layout_width="match_parent"
@@ -27,32 +19,31 @@
 
         <LinearLayout
 
-            android:id="@+id/parent_llv_activity_nuevo_evento_patrocinio_supervisor"
+            android:id="@+id/parent_llv_activity_nuevo_evento_patrocinio"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="#FFF"
             android:orientation="vertical"
             android:weightSum="2">
 
 
             <LinearLayout
 
-                android:id="@+id/llv_datos_personales_responsable_nuevo_evento_patrocinio_supervisor"
+                android:id="@+id/llv_datos_personales_responsable_nuevo_evento_patrocinio"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:background="#FFF"
+                android:background="#FFFF"
                 android:orientation="vertical"
                 android:weightSum="9">
 
 
                 <LinearLayout
 
-                    android:id="@+id/llh_imagen_responsable_nuevo_evento_patrocinio_supervisor"
+                    android:id="@+id/llh_imagen_responsable_nuevo_evento_patrocinio"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="5dp"
-                    android:layout_marginBottom="5dp"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginBottom="10dp"
                     android:layout_weight="1"
                     android:gravity="center"
                     android:orientation="horizontal">
@@ -60,17 +51,17 @@
 
                     <ImageView
 
-                        android:id="@+id/img_responsable_nuevo_evento_patrocinio_supervisor"
+                        android:id="@+id/img_responsable_nuevo_evento_patrocinio"
                         android:layout_width="match_parent"
                         android:layout_height="100dp"
-                        android:src="@mipmap/ic_img_cliente_round" />
+                        android:src="@mipmap/img_hombre_uno" />
 
                 </LinearLayout>
 
 
                 <LinearLayout
 
-                    android:id="@+id/llh_dni_responsable_nuevo_evento_patrocinio_supervisor"
+                    android:id="@+id/llh_dni_responsable_nuevo_evento_patrocinio"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="5dp"
@@ -80,7 +71,7 @@
 
                     <TextView
 
-                        android:id="@+id/dni_responsable_nuevo_evento_patrocinio_supervisor"
+                        android:id="@+id/dni_responsable_nuevo_evento_patrocinio"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:text="DNI"
@@ -94,7 +85,7 @@
 
                 <LinearLayout
 
-                    android:id="@+id/llh_nombre_apellido_responsable_nuevo_evento_patrocinio_supervisor"
+                    android:id="@+id/llh_nombre_apellido_responsable_nuevo_evento_patrocinio"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="5dp"
@@ -104,7 +95,7 @@
 
                     <TextView
 
-                        android:id="@+id/nombre_apellido_responsable_nuevo_evento_patrocinio_supervisor"
+                        android:id="@+id/nombre_apellido_responsable_nuevo_evento_patrocinio"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:text="NOMBRE Y APELLIDO"
@@ -118,7 +109,7 @@
 
                 <LinearLayout
 
-                    android:id="@+id/llh_telefono_responsable_nuevo_evento_patrocinio_supervisor"
+                    android:id="@+id/llh_telefono_responsable_nuevo_evento_patrocinio"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="5dp"
@@ -128,7 +119,7 @@
 
                     <TextView
 
-                        android:id="@+id/telefono_responsable_nuevo_evento_patrocinio_supervisor"
+                        android:id="@+id/telefono_responsable_nuevo_evento_patrocinio"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:text="TELÉFONO"
@@ -142,7 +133,7 @@
 
                 <LinearLayout
 
-                    android:id="@+id/llh_direccion_responsable_nuevo_evento_patrocinio_supervisor"
+                    android:id="@+id/llh_direccion_responsable_nuevo_evento_patrocinio"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="5dp"
@@ -151,7 +142,7 @@
 
 
                     <TextView
-                        android:id="@+id/direccion_responsable_nuevo_evento_patrocinio_supervisor"
+                        android:id="@+id/direccion_responsable_nuevo_evento_patrocinio"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:text="DIRECCIÓN"
@@ -165,7 +156,7 @@
 
                 <LinearLayout
 
-                    android:id="@+id/llh_barrio_responsable_nuevo_evento_patrocinio_supervisor"
+                    android:id="@+id/llh_barrio_responsable_nuevo_evento_patrocinio"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="5dp"
@@ -174,7 +165,7 @@
 
 
                     <TextView
-                        android:id="@+id/barrio_responsable_nuevo_evento_patrocinio_supervisor"
+                        android:id="@+id/barrio_responsable_nuevo_evento_patrocinio"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:text="BARRIO"
@@ -188,7 +179,7 @@
 
                 <LinearLayout
 
-                    android:id="@+id/llh_email_responsable_nuevo_evento_patrocinio_supervisor"
+                    android:id="@+id/llh_email_responsable_nuevo_evento_patrocinio"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="5dp"
@@ -198,7 +189,7 @@
 
                     <TextView
 
-                        android:id="@+id/email_responsable_nuevo_evento_patrocinio_supervisor"
+                        android:id="@+id/email_responsable_nuevo_evento_patrocinio"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:text="CORREO"
@@ -212,7 +203,7 @@
 
                 <LinearLayout
 
-                    android:id="@+id/llh_referencia_responsable_nuevo_evento_patrocinio_supervisor"
+                    android:id="@+id/llh_referencia_responsable_nuevo_evento_patrocinio"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="10dp"
@@ -222,7 +213,7 @@
 
                     <TextView
 
-                        android:id="@+id/referencia_responsable_nuevo_evento_patrocinio_supervisor"
+                        android:id="@+id/referencia_responsable_nuevo_evento_patrocinio"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:text="REFERENCIA"
@@ -243,23 +234,44 @@
             <LinearLayout
 
 
-                android:id="@+id/llv_datos_nuevo_evento_patrocinio_supervisor"
+                android:id="@+id/llv_datos_nuevo_evento_patrocinio"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:background="#FFFF"
+                android:background="#d50000"
                 android:orientation="vertical"
-                android:weightSum="7">
+                android:weightSum="8">
+
+
+                <LinearLayout
+
+                    android:id="@+id/llh_imagen_evento_nuevo_evento_patrocinio"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginBottom="20dp"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:orientation="horizontal">
+
+
+                    <ImageView
+
+                        android:id="@+id/img_evento_nuevo_evento_patrocinio"
+                        android:layout_width="match_parent"
+                        android:layout_height="100dp"
+                        android:src="@mipmap/calendario" />
+
+                </LinearLayout>
 
 
                 <LinearLayout
 
 
-                    android:id="@+id/llh_titulo_nuevo_evento_patrocinio_supervisor"
+                    android:id="@+id/llh_titulo_nuevo_evento_patrocinio"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
-                    android:background="#d50000"
                     android:gravity="center"
                     android:orientation="horizontal"
                     android:weightSum="1">
@@ -267,103 +279,168 @@
 
                     <TextView
 
-                        android:id="@+id/titulo_nuevo_evento_patrocinio_supervisor"
+                        android:id="@+id/titulo_nuevo_evento_patrocinio"
                         android:layout_width="match_parent"
                         android:layout_height="50dp"
+                        android:layout_marginBottom="10dp"
                         android:layout_weight="1"
                         android:gravity="center"
                         android:text="NUEVO EVENTO"
                         android:textAlignment="center"
                         android:textColor="#FFFF"
-                        android:textSize="25sp"
+                        android:textSize="35sp"
                         android:textStyle="bold" />
 
 
                 </LinearLayout>
 
-                <LinearLayout
 
-                    android:id="@+id/llh_nombre_nuevo_evento_patrocinio_supervisor"
+
+
+                <TextView
+
+                    android:id="@+id/nombre_nuevo_evento_patrocinio"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:text="NOMBRE"
+                    android:textColor="#FFFF"
+                    android:textSize="25sp"
+                    android:textStyle="bold" />
+
+                <LinearLayout
+
+                    android:id="@+id/llh_nombre_nuevo_evento_patrocinio"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
                     android:layout_marginBottom="5dp"
                     android:layout_weight="1"
-                    android:background="#ff5722"
+                    android:background="@drawable/contenedor_et_nuevo_evento_patrocinio"
                     android:gravity="center"
                     android:orientation="horizontal"
                     android:weightSum="2">
 
 
-                    <TextView
 
-                        android:id="@+id/nombre_nuevo_evento_patrocinio_supervisor"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
+
+
+                    <ImageView
+
+                        android:id="@+id/img_nombre_nuevo_evento_patrocinio"
+                        android:layout_width="120dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginLeft="20dp"
                         android:layout_weight="1"
-                        android:gravity="center"
-                        android:text="NOMBRE:"
-                        android:textAlignment="center"
-                        android:textColor="#FFFF"
-                        android:textSize="25sp"
-                        android:textStyle="bold" />
+                        android:src="@drawable/ic_nombre_nuevo_evento_nep" />
+
+
+                    <View
+
+                        android:id="@+id/separador_nombre_nuevo_evento"
+                        android:layout_width="1dp"
+                        android:layout_height="match_parent"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginRight="10dp"
+                        android:layout_marginBottom="10dp"
+                        android:background="#FFFF">
+
+                    </View>
 
 
                     <EditText
 
-                        android:id="@+id/et_nombre_nuevo_evento_patrocinio_supervisor"
+                        android:id="@+id/et_nombre_nuevo_evento_patrocinio"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
+                        android:layout_marginRight="10dp"
                         android:layout_weight="1"
                         android:gravity="center"
                         android:hint="(Obligatorio)"
                         android:inputType="textMultiLine"
                         android:textColor="#FFFF"
+                        android:textColorHint="#e0e0e0"
                         android:textSize="25sp"
                         android:textStyle="bold" />
-
 
                 </LinearLayout>
 
 
-                <LinearLayout
 
-                    android:id="@+id/llh_direccion_nuevo_evento_patrocinio_supervisor"
+                <TextView
+
+                    android:id="@+id/direccion_nuevo_evento_patrocinio"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:text="DIRECCIÓN"
+                    android:textColor="#FFFF"
+                    android:textSize="25sp"
+                    android:textStyle="bold" />
+
+
+
+                <LinearLayout
+
+                    android:id="@+id/llh_direccion_nuevo_evento_patrocinio"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
                     android:layout_marginBottom="5dp"
                     android:layout_weight="1"
-                    android:background="#ff5722"
+                    android:background="@drawable/contenedor_et_nuevo_evento_patrocinio"
                     android:gravity="center"
                     android:orientation="horizontal"
                     android:weightSum="2">
 
 
-                    <TextView
 
-                        android:id="@+id/direccion_nuevo_evento_patrocinio_supervisor"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
+
+                    <ImageView
+
+                        android:id="@+id/img_direccion_nuevo_evento_patrocinio"
+                        android:layout_width="120dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginLeft="20dp"
                         android:layout_weight="1"
-                        android:gravity="center"
-                        android:text="DIRECCIÓN:"
-                        android:textAlignment="center"
-                        android:textColor="#FFFF"
-                        android:textSize="25sp"
-                        android:textStyle="bold" />
+                        android:src="@drawable/ic_direccion_nuevo_evento_nep" />
+
+
+                    <View
+
+                        android:id="@+id/separador_direccion_nuevo_evento"
+                        android:layout_width="1dp"
+                        android:layout_height="match_parent"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginRight="10dp"
+                        android:layout_marginBottom="10dp"
+                        android:background="#FFFF">
+
+                    </View>
 
 
                     <EditText
 
-                        android:id="@+id/et_direccion_nuevo_evento_patrocinio_supervisor"
+                        android:id="@+id/et_direccion_nuevo_evento_patrocinio"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
+                        android:layout_marginRight="10dp"
                         android:layout_weight="1"
                         android:gravity="center"
                         android:hint="(Obligatorio)"
                         android:inputType="textMultiLine"
                         android:textColor="#FFFF"
+                        android:textColorHint="#e0e0e0"
                         android:textSize="25sp"
                         android:textStyle="bold" />
 
@@ -371,48 +448,93 @@
                 </LinearLayout>
 
 
-                <LinearLayout
+                <TextView
 
-                    android:id="@+id/llh_barrio_nuevo_evento_patrocinio_supervisor"
+                    android:id="@+id/barrio_nuevo_evento_patrocinio"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:text="BARRIO"
+                    android:textColor="#FFFF"
+                    android:textSize="25sp"
+                    android:textStyle="bold" />
+
+                <LinearLayout
+
+                    android:id="@+id/llh_barrio_nuevo_evento_patrocinio"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
                     android:layout_marginBottom="5dp"
                     android:layout_weight="1"
-                    android:background="#ff5722"
+                    android:background="@drawable/contenedor_et_nuevo_evento_patrocinio"
                     android:gravity="center"
                     android:orientation="horizontal"
                     android:weightSum="2">
 
 
-                    <TextView
 
-                        android:id="@+id/barrio_nuevo_evento_patrocinio_supervisor"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
+
+
+                    <ImageView
+
+                        android:id="@+id/img_barrio_nuevo_evento_patrocinio"
+                        android:layout_width="120dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginLeft="20dp"
                         android:layout_weight="1"
-                        android:gravity="center"
-                        android:text="BARRIO:"
-                        android:textAlignment="center"
-                        android:textColor="#FFFF"
-                        android:textSize="25sp"
-                        android:textStyle="bold" />
+                        android:src="@drawable/ic_barrio_nuevo_evento_nep" />
+
+
+                    <View
+
+                        android:id="@+id/separador_barrio_nuevo_evento"
+                        android:layout_width="1dp"
+                        android:layout_height="match_parent"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginRight="10dp"
+                        android:layout_marginBottom="10dp"
+                        android:background="#FFFF">
+
+                    </View>
 
 
                     <EditText
 
-                        android:id="@+id/et_barrio_nuevo_evento_patrocinio_supervisor"
+                        android:id="@+id/et_barrio_nuevo_evento_patrocinio"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
+                        android:layout_marginRight="10dp"
                         android:layout_weight="1"
                         android:gravity="center"
                         android:hint="(Obligatorio)"
                         android:inputType="textMultiLine"
                         android:textColor="#FFFF"
+                        android:textColorHint="#e0e0e0"
                         android:textSize="25sp"
                         android:textStyle="bold" />
 
                 </LinearLayout>
+
+
+
+                <TextView
+
+                    android:id="@+id/tv_referencia_nuevo_evento_patrocinio_supervisor"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:text="REFERENCIA"
+                    android:textColor="#FFFF"
+                    android:textSize="25sp"
+                    android:textStyle="bold" />
+
 
 
                 <LinearLayout
@@ -420,39 +542,61 @@
                     android:id="@+id/llh_referencia_nuevo_evento_patrocinio_supervisor"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
                     android:layout_marginBottom="5dp"
                     android:layout_weight="1"
-                    android:background="#ff5722"
+                    android:background="@drawable/contenedor_et_nuevo_evento_patrocinio"
                     android:gravity="center"
                     android:orientation="horizontal"
                     android:weightSum="2">
 
 
-                    <TextView
 
-                        android:id="@+id/tv_referencia_nuevo_evento_patrocinio_supervisor"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
+                    <ImageView
+
+                        android:id="@+id/img_referencia_nuevo_evento_patrocinio"
+                        android:layout_width="120dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginLeft="20dp"
                         android:layout_weight="1"
-                        android:gravity="center"
-                        android:text="REFERENCIA:"
-                        android:textColor="#FFFF"
-                        android:textSize="25sp"
-                        android:textStyle="bold" />
+                        android:src="@drawable/ic_referencia_nuevo_evento_nep" />
+
+
+                    <View
+
+                        android:id="@+id/separador_referencia_nuevo_evento"
+                        android:layout_width="1dp"
+                        android:layout_height="match_parent"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginRight="10dp"
+                        android:layout_marginBottom="10dp"
+                        android:background="#FFFF">
+
+                    </View>
+
+
+
 
                     <EditText
 
-                        android:id="@+id/et_referencia_nuevo_evento_patrocinio_supervisor"
+                        android:id="@+id/et_referencia_nuevo_evento_patrocinio"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:layout_gravity="center"
+                        android:layout_marginRight="10dp"
                         android:layout_weight="1"
                         android:gravity="center"
                         android:hint="(Obligatorio)"
                         android:inputType="textMultiLine"
                         android:textColor="#FFFF"
+                        android:textColorHint="#e0e0e0"
                         android:textSize="25sp"
                         android:textStyle="bold" />
+
+
 
 
                 </LinearLayout>
@@ -461,95 +605,158 @@
 
 
 
+                <TextView
 
-
-
-
+                    android:id="@+id/fecha_inicio_nuevo_evento_patrocinio"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:text="FECHA DE INICIO"
+                    android:textColor="#FFFF"
+                    android:textSize="25sp"
+                    android:textStyle="bold" />
 
 
                 <LinearLayout
 
-                    android:id="@+id/llh_fecha_inicio_nuevo_evento_patrocinio_supervisor"
+                    android:id="@+id/llh_fecha_inicio_nuevo_evento_patrocinio"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
                     android:layout_marginBottom="5dp"
                     android:layout_weight="1"
-                    android:background="#ff5722"
+                    android:background="@drawable/contenedor_et_nuevo_evento_patrocinio"
                     android:gravity="center"
                     android:orientation="horizontal"
                     android:weightSum="2">
 
 
-                    <TextView
 
-                        android:id="@+id/fecha_inicio_nuevo_evento_patrocinio_supervisor"
-                        android:layout_width="match_parent"
+                    <ImageView
+
+                        android:id="@+id/img_fecha_inicio_nuevo_evento_patrocinio"
+                        android:layout_width="120dp"
                         android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginLeft="20dp"
                         android:layout_weight="1"
-                        android:text="FECHA DE INICIO:"
-                        android:textAlignment="center"
-                        android:textColor="#FFFF"
-                        android:textSize="25sp"
-                        android:textStyle="bold" />
+                        android:src="@drawable/ic_fecha_inicio_nuevo_evento_nep" />
+
+
+                    <View
+
+                        android:id="@+id/separador_fecha_inicio_nuevo_evento"
+                        android:layout_width="1dp"
+                        android:layout_height="match_parent"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginRight="10dp"
+                        android:layout_marginBottom="10dp"
+                        android:background="#FFFF">
+
+                    </View>
+
+
+
+
 
 
                     <EditText
 
-                        android:id="@+id/et_fecha_inicio_nuevo_evento_patrocinio_supervisor"
+                        android:id="@+id/et_fecha_inicio_nuevo_evento_patrocinio"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
+                        android:layout_marginRight="10dp"
                         android:layout_weight="1"
                         android:gravity="center"
                         android:hint="(Obligatorio)"
                         android:inputType="datetime"
                         android:maxLength="10"
                         android:textColor="#FFFF"
+                        android:textColorHint="#e0e0e0"
                         android:textSize="25sp"
                         android:textStyle="bold" />
+
 
                 </LinearLayout>
 
 
+
+
+
+                <TextView
+
+                    android:id="@+id/fecha_fin_nuevo_evento_patrocinio"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:text="FECHA DE FIN ESTIMADA"
+                    android:textColor="#FFFF"
+                    android:textSize="25sp"
+                    android:textStyle="bold" />
+
                 <LinearLayout
 
 
-                    android:id="@+id/llh_fecha_fin_nuevo_evento_patrocinio_supervisor"
+                    android:id="@+id/llh_fecha_fin_nuevo_evento_patrocinio"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:layout_marginBottom="5dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_marginBottom="50dp"
                     android:layout_weight="1"
-                    android:background="#ff5722"
+                    android:background="@drawable/contenedor_et_nuevo_evento_patrocinio"
                     android:gravity="center"
                     android:orientation="horizontal"
                     android:weightSum="2">
 
 
-                    <TextView
 
-                        android:id="@+id/fecha_fin_nuevo_evento_patrocinio_supervisor"
-                        android:layout_width="match_parent"
+
+                    <ImageView
+
+                        android:id="@+id/img_fecha_fin_nuevo_evento_patrocinio"
+                        android:layout_width="120dp"
                         android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginLeft="20dp"
                         android:layout_weight="1"
-                        android:text="FECHA DE FIN ESTIMADA:"
-                        android:textAlignment="center"
-                        android:textColor="#FFFF"
-                        android:textSize="25sp"
-                        android:textStyle="bold" />
+                        android:src="@drawable/ic_fecha_fin_nuevo_evento_nep" />
+
+
+                    <View
+
+                        android:id="@+id/separador_fecha_fin_nuevo_evento"
+                        android:layout_width="1dp"
+                        android:layout_height="match_parent"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginRight="10dp"
+                        android:layout_marginBottom="10dp"
+                        android:background="#FFFF">
+
+                    </View>
+
 
 
                     <EditText
 
-                        android:id="@+id/et_fecha_fin_nuevo_evento_patrocinio_supervisor"
+                        android:id="@+id/et_fecha_fin_nuevo_evento_patrocinio"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
+                        android:layout_marginRight="10dp"
                         android:layout_weight="1"
                         android:gravity="center"
                         android:hint="(Obligatorio)"
                         android:inputType="datetime"
                         android:maxLength="10"
                         android:textColor="#FFFF"
+                        android:textColorHint="#e0e0e0"
                         android:textSize="25sp"
                         android:textStyle="bold" />
 
@@ -558,40 +765,49 @@
 
                 <LinearLayout
 
-                    android:id="@+id/llh_botones_nuevo_evento_patrocinio_supervisor"
+                    android:id="@+id/llh_boton_confirmar_nuevo_evento_patrocinio"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:layout_marginBottom="10dp"
-                    android:background="#FFF"
-                    android:orientation="horizontal"
-                    android:weightSum="2">
-
+                    android:layout_marginBottom="30dp"
+                    android:orientation="horizontal">
 
                     <Button
 
-                        android:id="@+id/btn_cancelar_nuevo_evento_patrocinio_supervisor"
+                        android:id="@+id/btn_confirmar_nuevo_evento_patrocinio"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
+                        android:layout_height="60dp"
                         android:layout_marginLeft="10dp"
                         android:layout_marginRight="10dp"
-                        android:layout_weight="1"
-                        android:background="#d50000"
+                        android:background="@drawable/btn_borde_redondeado"
+                        android:backgroundTint="#ff5722"
                         android:gravity="center"
-                        android:text="CANCELAR"
+                        android:text="CONFIRMAR"
                         android:textColor="#FFF"
                         android:textSize="24sp"
                         android:textStyle="bold" />
 
+                </LinearLayout>
+
+                <LinearLayout
+
+                    android:id="@+id/llh_boton_cancelar_nuevo_evento_patrocinio"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginBottom="30dp"
+                    android:orientation="horizontal">
+
+
                     <Button
 
-                        android:id="@+id/btn_confirmar_nuevo_evento_patrocinio_supervisor"
+                        android:id="@+id/btn_cancelar_nuevo_evento_patrocinio"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
+                        android:layout_height="60dp"
+                        android:layout_marginLeft="10dp"
                         android:layout_marginRight="10dp"
-                        android:layout_weight="1"
-                        android:background="#43a047"
+                        android:background="@drawable/btn_borde_redondeado"
+                        android:backgroundTint="#000"
                         android:gravity="center"
-                        android:text="CONFIRMAR"
+                        android:text="CANCELAR"
                         android:textColor="#FFF"
                         android:textSize="24sp"
                         android:textStyle="bold" />
