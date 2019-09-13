@@ -39,6 +39,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static android.Manifest.permission.READ_CONTACTS;
+import static java.lang.Integer.parseInt;
 
 
 public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<Cursor> {
@@ -1061,6 +1062,12 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
 
 
 
+                            Usuario usuario = new Usuario(parseInt(id),dni,mEmail,mPassword,msj);
+
+                            usuario.GuardarUsuarioEnUnSharedPreferences(LoginActivity.this);
+
+
+
                             if (TextUtils.equals(msj, "repartidor")){
 
 
@@ -1483,6 +1490,12 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
 
                             String idbd = null;
 
+
+                            Usuario usuario = new Usuario(parseInt(id),dni,mEmail,mPassword,msj);
+
+                            usuario.GuardarUsuarioEnUnSharedPreferences(LoginActivity.this);
+
+
                             if (TextUtils.equals(msj, "repartidor")){
 
 
@@ -1824,6 +1837,11 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
 
 
 
+                            Usuario usuario = new Usuario(parseInt(id),dni,mEmail,mPassword,msj);
+
+                            usuario.GuardarUsuarioEnUnSharedPreferences(LoginActivity.this);
+
+
                             if (TextUtils.equals(msj, "repartidor")){
 
 
@@ -2010,7 +2028,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
 
 
 
-                                            dbHelper.saveToLocalDatabaseZonaReparto(Integer.parseInt(dniDB), Integer.parseInt(idDB), apellidoDB, nombreDB, direccionDB, barrioDB,referenciaDB, telefonoDB, emailDB, R.drawable.leomessi, lunes, martes, miercoles, jueves, viernes, sabado, DbContract.SYNC_STATUS_OK, database);
+                                            dbHelper.saveToLocalDatabaseZonaReparto(parseInt(dniDB), parseInt(idDB), apellidoDB, nombreDB, direccionDB, barrioDB,referenciaDB, telefonoDB, emailDB, R.drawable.leomessi, lunes, martes, miercoles, jueves, viernes, sabado, DbContract.SYNC_STATUS_OK, database);
 
                                             dbHelper.close();
 
@@ -2049,7 +2067,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
 
                                 // INSERTA LOS DATOS DEL USUARIO EN LA TABLA USUARIO
 
-                                dbHelper.saveToLocalDatabase(Integer.parseInt(dni), Integer.parseInt(id),mEmail,mPassword, DbContract.SYNC_STATUS_OK, database);
+                                dbHelper.saveToLocalDatabase(parseInt(dni), parseInt(id),mEmail,mPassword, DbContract.SYNC_STATUS_OK, database);
 
                                 dbHelper.close();
 
@@ -2256,7 +2274,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
 
                                     // INSERTA LOS DATOS DEL USUARIO EN LA TABLA USUARIO
 
-                                    dbHelper.saveToLocalDatabase(Integer.parseInt(dni), Integer.parseInt(id),mEmail,mPassword, DbContract.SYNC_STATUS_OK, database);
+                                    dbHelper.saveToLocalDatabase(parseInt(dni), parseInt(id),mEmail,mPassword, DbContract.SYNC_STATUS_OK, database);
 
                                     dbHelper.close();
 
@@ -2517,7 +2535,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
                                      */
 
 
-                dbHelper.saveToLocalDatabaseZonaReparto(Integer.parseInt(dniDB), Integer.parseInt(idDB), apellidoDB, nombreDB, direccionDB, barrioDB,referenciaDB, telefonoDB, emailDB, R.drawable.leomessi, lunes, martes, miercoles, jueves, viernes, sabado, DbContract.SYNC_STATUS_OK, database);
+                dbHelper.saveToLocalDatabaseZonaReparto(parseInt(dniDB), parseInt(idDB), apellidoDB, nombreDB, direccionDB, barrioDB,referenciaDB, telefonoDB, emailDB, R.drawable.leomessi, lunes, martes, miercoles, jueves, viernes, sabado, DbContract.SYNC_STATUS_OK, database);
 
                 dbHelper.close();
 
@@ -2555,7 +2573,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
 
         // INSERTA LOS DATOS DEL USUARIO EN LA TABLA USUARIO
 
-        dbHelper.saveToLocalDatabase(Integer.parseInt(dni), Integer.parseInt(id),mEmail,mPassword, DbContract.SYNC_STATUS_OK, database);
+        dbHelper.saveToLocalDatabase(parseInt(dni), parseInt(id),mEmail,mPassword, DbContract.SYNC_STATUS_OK, database);
 
         dbHelper.close();
 

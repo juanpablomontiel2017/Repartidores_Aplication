@@ -48,16 +48,19 @@
                     android:id="@+id/layout_horizontal_primer_tupla"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:background="#dd2c00"
+                    android:gravity="center"
                     android:orientation="horizontal">
 
 
                     <TextView
                         android:id="@+id/tandas"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
+                        android:layout_height="40dp"
+                        android:layout_marginLeft="2dp"
+                        android:layout_marginRight="2dp"
+                        android:background="#ff3d00"
                         android:gravity="bottom|center"
-                        android:text="Tanda N°:"
+                        android:text="Tanda N°"
                         android:textColor="@android:color/background_light"
                         android:textSize="24sp" />
 
@@ -70,57 +73,35 @@
                 <LinearLayout
                     android:id="@+id/layout_horizontal_segunda_tupla"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:background="#ff5722"
+                    android:layout_height="40dp"
+                    android:layout_marginLeft="2dp"
+                    android:layout_marginRight="2dp"
+                    android:background="#ff6d00"
+                    android:gravity="center"
                     android:orientation="horizontal"
-                    android:weightSum="2"
+                    android:weightSum="1"
                     tools:visibility="visible">
-
 
 
                     <TextView
 
                         android:id="@+id/articulos"
-                        android:layout_width="155dp"
+                        android:layout_width="145dp"
                         android:layout_height="wrap_content"
                         android:gravity="center"
                         android:text="Artículos"
                         android:textColor="#FFFF"
-                        android:textSize="15sp" />
-
-
-
-
-                    <ImageView
-
-                        android:id="@+id/img_carga"
-                        android:layout_width="30dp"
-                        android:layout_height="wrap_content"
-                        android:src="@drawable/ic_carga" />
+                        android:textSize="18sp" />
 
 
                     <TextView
                         android:id="@+id/cargas"
-                        android:layout_width="match_parent"
+                        android:layout_width="100dp"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:gravity="center|left"
+                        android:drawableLeft="@drawable/ic_carga"
                         android:text="Carga"
                         android:textColor="#FFFF"
-                        android:textSize="15sp" />
-
-
-
-
-                    <ImageView
-
-                        android:id="@+id/img_descarga"
-                        android:layout_width="30dp"
-                        android:layout_height="wrap_content"
-                        android:src="@drawable/ic_descarga" />
-
-
-
+                        android:textSize="18sp" />
 
 
                     <TextView
@@ -128,10 +109,10 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:gravity="left"
+                        android:drawableLeft="@drawable/ic_descarga"
                         android:text="Descarga"
                         android:textColor="#FFFF"
-                        android:textSize="15sp" />
+                        android:textSize="18sp" />
 
                 </LinearLayout>
 
@@ -151,55 +132,63 @@
                         android:id="@+id/layout_horizontal_tercera_tupla"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
+                        android:layout_marginTop="10dp"
+                        android:gravity="center"
                         android:orientation="horizontal"
-                        android:weightSum="1">
+                        android:weightSum="2">
+
+
 
 
 
                         <ImageButton
 
                             android:id="@+id/add_art"
-                            android:layout_width="40dp"
+                            android:layout_width="30dp"
                             android:layout_height="wrap_content"
+                            android:layout_gravity="center"
                             android:background="@android:color/transparent"
                             android:src="@drawable/ic_add_new_art" />
+
 
                         <Spinner
 
                             android:id="@+id/sp_art"
-                            android:layout_width="match_parent"
+                            style="@style/Widget.AppCompat.Spinner.DropDown"
+                            android:layout_width="165dp"
                             android:layout_height="wrap_content"
-                            android:layout_weight="1"
+                            android:dropDownWidth="wrap_content"
                             android:gravity="center"
+                            android:popupElevation="16dp"
                             android:prompt="@string/title_spinner"
                             android:spinnerMode="dialog">
 
                         </Spinner>
 
 
-
-
                         <EditText
 
                             android:id="@+id/edtx_carga"
-                            android:layout_width="95dp"
+                            android:layout_width="match_parent"
                             android:layout_height="wrap_content"
+                            android:layout_weight="1"
                             android:gravity="center"
                             android:hint="Cantidad"
                             android:imeOptions="actionNext"
                             android:inputType="number" />
+
 
                         <EditText
 
                             android:id="@+id/edtx_descarga"
-                            android:layout_width="95dp"
+                            android:layout_width="match_parent"
                             android:layout_height="wrap_content"
+                            android:layout_weight="1"
                             android:gravity="center"
                             android:hint="Cantidad"
                             android:imeOptions="actionNext"
-                            android:inputType="number" />
-
-
+                            android:inputType="number"
+                            android:textSize="17sp" />
 
                     </LinearLayout>
 
@@ -215,10 +204,9 @@
 
                     android:id="@+id/layout_horizontal_cuarta_tupla"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="70dp"
                     android:orientation="horizontal"
                     android:weightSum="2">
-
 
 
                     <ImageView
@@ -227,7 +215,9 @@
                         android:layout_width="165dp"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
-                        android:src="@drawable/ic_money" />
+                        android:src="@mipmap/dinero" />
+
+
 
                     <EditText
 
@@ -239,6 +229,7 @@
                         android:hint="$"
                         android:imeOptions="actionNext"
                         android:inputType="number" />
+
 
                     <EditText
 

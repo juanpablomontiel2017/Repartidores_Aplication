@@ -103,7 +103,7 @@
 
 
         <activity android:name=".NuevoEventoPatrocinio"
-                  android:label="Nuevo Evento"
+                  android:label=""
                   android:theme="@style/AppTheme.NoActionBar">
 
         </activity>
@@ -128,7 +128,7 @@
 
 
         <activity android:name=".NuevoResponsablePatrocinio"
-                  android:label="Nuevo Responsable"
+                  android:label=""
                   android:theme="@style/AppTheme.NoActionBar"/>
 
 

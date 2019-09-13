@@ -2,21 +2,31 @@ package com.example.jumpi.repartidores_aplication;
 
 import android.content.DialogInterface;
 import android.graphics.Color;
+import android.graphics.PorterDuff;
+import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
-import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.Toast;
 
 public class NuevoEventoPatrocinio extends AppCompatActivity {
 
 
     /**********************DECLARACIÓN DE VARIABLES GLOBALES***********************/
+
+
+    LinearLayout linearlayout_vertical_datos_nuevo_evento_patrocinio_supervisor, linearlayout_horizontal_titulo_nuevo_evento_patrocinio_supervisor,
+                 linearlayout_horizontal_nombre_nuevo_evento_patrocinio_supervisor, linearlayout_horizontal_direccion_nuevo_evento_patrocinio_supervisor,
+                 linearlayout_horizontal_barrio_nuevo_evento_patrocinio_supervisor,linearlayout_horizontal_referencia_nuevo_evento_patrocinio_supervisor,
+                 linearlayout_horizontal_fecha_inicio_nuevo_evento_patrocinio_supervisor,linearlayout_horizontal_fecha_fin_nuevo_evento_patrocinio_supervisor;
+
+
+
 
     EditText et_nombre_nuevo_evento_patrocinio_supervisor, et_direccion_nuevo_evento_patrocinio_supervisor,
             et_barrio_nuevo_evento_patrocinio_supervisor, et_referencia_nuevo_evento_patrocinio_supervisor,
@@ -25,6 +35,7 @@ public class NuevoEventoPatrocinio extends AppCompatActivity {
 
 
     Button btn_confirmar_nuevo_evento_patrocinio_supervisor, btn_cancelar_nuevo_evento_patrocinio_supervisor;
+
 
 
 
@@ -52,22 +63,20 @@ public class NuevoEventoPatrocinio extends AppCompatActivity {
         window.setStatusBarColor(Color.parseColor("#b71c1c"));
 
 
-        /*Inicialización del Toolbar */
-        Toolbar toolbar = findViewById(R.id.toolbar);
-        toolbar.setTitleTextColor(Color.WHITE);
-        setSupportActionBar(toolbar);
 
 
 
 
 
 
-        et_nombre_nuevo_evento_patrocinio_supervisor = (EditText) findViewById(R.id.et_nombre_nuevo_evento_patrocinio_supervisor);
-        et_direccion_nuevo_evento_patrocinio_supervisor = (EditText) findViewById(R.id.et_direccion_nuevo_evento_patrocinio_supervisor);
-        et_barrio_nuevo_evento_patrocinio_supervisor = (EditText) findViewById(R.id.et_barrio_nuevo_evento_patrocinio_supervisor);
-        et_referencia_nuevo_evento_patrocinio_supervisor = (EditText) findViewById(R.id.et_referencia_nuevo_evento_patrocinio_supervisor);
-        et_fecha_inicio_nuevo_evento_patrocinio_supervisor = (EditText) findViewById(R.id.et_fecha_inicio_nuevo_evento_patrocinio_supervisor);
-        et_fecha_fin_nuevo_evento_patrocinio_supervisor = (EditText) findViewById(R.id.et_fecha_fin_nuevo_evento_patrocinio_supervisor);
+        linearlayout_vertical_datos_nuevo_evento_patrocinio_supervisor = (LinearLayout) findViewById(R.id.llv_datos_nuevo_evento_patrocinio);
+        linearlayout_horizontal_titulo_nuevo_evento_patrocinio_supervisor = (LinearLayout) findViewById(R.id.llh_titulo_nuevo_evento_patrocinio);
+        linearlayout_horizontal_nombre_nuevo_evento_patrocinio_supervisor = (LinearLayout) findViewById(R.id.llh_nombre_nuevo_evento_patrocinio);
+        linearlayout_horizontal_direccion_nuevo_evento_patrocinio_supervisor = (LinearLayout) findViewById(R.id.llh_direccion_nuevo_evento_patrocinio);
+        linearlayout_horizontal_barrio_nuevo_evento_patrocinio_supervisor = (LinearLayout) findViewById(R.id.llh_barrio_nuevo_evento_patrocinio);
+        linearlayout_horizontal_referencia_nuevo_evento_patrocinio_supervisor = (LinearLayout) findViewById(R.id.llh_referencia_nuevo_evento_patrocinio_supervisor);
+        linearlayout_horizontal_fecha_inicio_nuevo_evento_patrocinio_supervisor = (LinearLayout) findViewById(R.id.llh_fecha_inicio_nuevo_evento_patrocinio);
+        linearlayout_horizontal_fecha_fin_nuevo_evento_patrocinio_supervisor = (LinearLayout) findViewById(R.id.llh_fecha_fin_nuevo_evento_patrocinio);
 
 
 
@@ -75,7 +84,21 @@ public class NuevoEventoPatrocinio extends AppCompatActivity {
 
 
 
-        btn_cancelar_nuevo_evento_patrocinio_supervisor = (Button) findViewById(R.id.btn_cancelar_nuevo_evento_patrocinio_supervisor);
+
+        et_nombre_nuevo_evento_patrocinio_supervisor = (EditText) findViewById(R.id.et_nombre_nuevo_evento_patrocinio);
+        et_direccion_nuevo_evento_patrocinio_supervisor = (EditText) findViewById(R.id.et_direccion_nuevo_evento_patrocinio);
+        et_barrio_nuevo_evento_patrocinio_supervisor = (EditText) findViewById(R.id.et_barrio_nuevo_evento_patrocinio);
+        et_referencia_nuevo_evento_patrocinio_supervisor = (EditText) findViewById(R.id.et_referencia_nuevo_evento_patrocinio);
+        et_fecha_inicio_nuevo_evento_patrocinio_supervisor = (EditText) findViewById(R.id.et_fecha_inicio_nuevo_evento_patrocinio);
+        et_fecha_fin_nuevo_evento_patrocinio_supervisor = (EditText) findViewById(R.id.et_fecha_fin_nuevo_evento_patrocinio);
+
+
+
+
+
+
+
+        btn_cancelar_nuevo_evento_patrocinio_supervisor = (Button) findViewById(R.id.btn_cancelar_nuevo_evento_patrocinio);
 
 
         btn_cancelar_nuevo_evento_patrocinio_supervisor.setOnClickListener(new View.OnClickListener() {
@@ -162,7 +185,7 @@ public class NuevoEventoPatrocinio extends AppCompatActivity {
 
 
 
-        btn_confirmar_nuevo_evento_patrocinio_supervisor = (Button) findViewById(R.id.btn_confirmar_nuevo_evento_patrocinio_supervisor);
+        btn_confirmar_nuevo_evento_patrocinio_supervisor = (Button) findViewById(R.id.btn_confirmar_nuevo_evento_patrocinio);
 
         btn_confirmar_nuevo_evento_patrocinio_supervisor.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -177,6 +200,51 @@ public class NuevoEventoPatrocinio extends AppCompatActivity {
 
         });/*******************FIN DEL EVENTO setOnClickListener()**************************/
 
+
+
+
+
+
+
+
+
+        /** Pregunta si el usuario es un "repartidor" entonces habrá un cambio de colores en las activity's
+         * de Patrocinio**/
+
+        Usuario usuario = new Usuario();
+
+        usuario.LeerUsuarioEnUnSharedPreferences(this);
+
+        if(usuario.getTipo_de_Usuario().equals("repartidor")){
+
+            // finally change the color
+            window.setStatusBarColor(Color.parseColor("#303F9F"));
+
+
+
+
+
+
+            linearlayout_vertical_datos_nuevo_evento_patrocinio_supervisor.setBackgroundColor(Color.parseColor("#0277bd"));
+
+            linearlayout_horizontal_nombre_nuevo_evento_patrocinio_supervisor.setBackground(getDrawable(R.drawable.contenedor_et_nuevo_evento_patrocinio));
+            linearlayout_horizontal_direccion_nuevo_evento_patrocinio_supervisor.setBackground(getDrawable(R.drawable.contenedor_et_nuevo_evento_patrocinio));
+            linearlayout_horizontal_barrio_nuevo_evento_patrocinio_supervisor.setBackground(getDrawable(R.drawable.contenedor_et_nuevo_evento_patrocinio));
+            linearlayout_horizontal_referencia_nuevo_evento_patrocinio_supervisor.setBackground(getDrawable(R.drawable.contenedor_et_nuevo_evento_patrocinio));
+            linearlayout_horizontal_fecha_inicio_nuevo_evento_patrocinio_supervisor.setBackground(getDrawable(R.drawable.contenedor_et_nuevo_evento_patrocinio));
+            linearlayout_horizontal_fecha_fin_nuevo_evento_patrocinio_supervisor.setBackground(getDrawable(R.drawable.contenedor_et_nuevo_evento_patrocinio));
+
+
+            btn_confirmar_nuevo_evento_patrocinio_supervisor.setBackground(getDrawable(R.drawable.btn_borde_redondeado));
+            btn_confirmar_nuevo_evento_patrocinio_supervisor.getBackground().setColorFilter(Color.parseColor("#00bcd4"), PorterDuff.Mode.SRC_ATOP);
+
+
+            btn_cancelar_nuevo_evento_patrocinio_supervisor.setBackground(getDrawable(R.drawable.btn_borde_redondeado));
+            btn_cancelar_nuevo_evento_patrocinio_supervisor.getBackground().setColorFilter(Color.parseColor("#283593"), PorterDuff.Mode.SRC_ATOP);
+
+
+
+        }//Fin del if
 
 
 

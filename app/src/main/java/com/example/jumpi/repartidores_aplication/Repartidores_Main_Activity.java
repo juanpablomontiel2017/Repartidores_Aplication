@@ -194,8 +194,12 @@ public class Repartidores_Main_Activity extends AppCompatActivity {
 
 
         //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings_second) {
+        if (id == R.id.action_erep) {
 
+
+            Intent intent = new Intent (Repartidores_Main_Activity.this, BuscarResponsableParaPatrocinio.class);
+
+            startActivity(intent);
 
             return true;
 

@@ -717,7 +717,7 @@ public class RealizarVentasClientesSupervisor extends AppCompatActivity {
 
 
 
-    } /*************************************FIN DE LA FUNCIÓN EliminarNuevoArticulo()***********************************************/
+    } /*************************************FIN DE LA FUNCIÓN EliminarNuevoArticuloVentasSupervisores()***********************************************/
 
 
 
@@ -820,7 +820,7 @@ public class RealizarVentasClientesSupervisor extends AppCompatActivity {
 
                     bandera_boleana = false;
 
-                    Toast.makeText(getApplicationContext(), "Error! el primer campo de los artículos a la venta está vaciío. Por favor, complete el campo correspondiente.", Toast.LENGTH_LONG).show();
+                    Toast.makeText(getApplicationContext(), "Error! el primer campo de los artículos a la venta está vacío. Por favor, complete el campo correspondiente.", Toast.LENGTH_LONG).show();
 
 
                 }
@@ -863,7 +863,7 @@ public class RealizarVentasClientesSupervisor extends AppCompatActivity {
         }
 
 
-    }/*************************************FIN DE LA FUNCIÓN ValidarCamposParaAñadirNuevoArticuloVentasSupervisor()()***********************************************/
+    }/*************************************FIN DE LA FUNCIÓN ValidarCamposParaAñadirNuevoArticuloVentasSupervisor()***********************************************/
 
 
 
@@ -1236,7 +1236,6 @@ public class RealizarVentasClientesSupervisor extends AppCompatActivity {
         SharedPreferences.Editor editor = sharedPreferences.edit();
 
 
-        /*****Guardar valor de Carga y Descarga de artículos y dinero, incluyendo los "nuevos artículos" de todas las Tandas*****/
 
 
 

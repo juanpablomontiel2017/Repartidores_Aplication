@@ -13,8 +13,6 @@ import java.util.ArrayList;
 public class Utils_Spinner {
 
 
-    //public static Context context;
-
 
 
 
@@ -38,8 +36,6 @@ public class Utils_Spinner {
     public Utils_Spinner(Context context) {
 
 
-
-        //this.context = context;
 
     }
 
