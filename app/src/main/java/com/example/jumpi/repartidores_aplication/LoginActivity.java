@@ -45,18 +45,11 @@ import static java.lang.Integer.parseInt;
 public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<Cursor> {
 
 
-
-
     private static final int REQUEST_READ_CONTACTS = 0;
 
     ArrayList<Usuario> ListaUsuario = new ArrayList<>();
 
 
-
-
-
-
-
     /**********************************************************************************************/
     /**********************************************************************************************/
     /**********************************************************************************************/
@@ -67,7 +60,6 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
     /**********************************************************************************************/
     /**********************************************************************************************/
     /**********************************************************************************************/
-
 
 
     private static final String[] DUMMY_CREDENTIALS = new String[]{
@@ -75,9 +67,6 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
     };
 
 
-
-
-
     /**********************************************************************************************/
     /**********************************************************************************************/
     /**********************************************************************************************/
@@ -88,24 +77,11 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
     /**********************************************************************************************/
     /**********************************************************************************************/
     /**********************************************************************************************/
-
-
-
-
-
-
-
-
 
 
     private UserLoginTask mAuthTask = null;
     private DbUserLogin mAuthDb = null;
     private boolean flag = false;
-
-
-
-
-
 
 
     // UI references.
@@ -115,11 +91,6 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
     private View mLoginFormView;
 
 
-
-
-
-
-
     /**********************************************************************************************/
     /**********************************************************************************************/
     /**********************************************************************************************/
@@ -130,14 +101,6 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
     /**********************************************************************************************/
     /**********************************************************************************************/
     /**********************************************************************************************/
-
-
-
-
-
-
-
-
 
 
     /******************COMIENZO DEL onCreate()**************************/
@@ -154,9 +117,6 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
         setContentView(R.layout.activity_login);
 
 
-
-
-
         // Set up the login form.
         mEmailView = (AutoCompleteTextView) findViewById(R.id.email);
 
@@ -166,24 +126,22 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
         mPasswordView = (EditText) findViewById(R.id.password);
 
 
-
         DbHelper dbHelper = new DbHelper(getApplicationContext());
 
         SQLiteDatabase database = dbHelper.getReadableDatabase();
 
         Cursor cursor = dbHelper.readFromLocalDatabase(database);
 
-        if (dbHelper.checkForTableExists(database, "usuario")){
+        if (dbHelper.checkForTableExists(database, "usuario")) {
 
 
             Log.d("TFSB", "existen datos de usuario");
 
-            String usuario=null;
+            String usuario = null;
 
-            String password=null;
+            String password = null;
 
-            while (cursor.moveToNext())
-            {
+            while (cursor.moveToNext()) {
                 usuario = cursor.getString(cursor.getColumnIndex(DbContract.USUARIO));
                 password = cursor.getString(cursor.getColumnIndex(DbContract.PASSWORD));
 
@@ -209,8 +167,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
 
             String resultado = sb.toString();
 
-            Log.d("TFSB", "Existe un usuario: "+resultado+ " se autocompletaran los datos");
-
+            Log.d("TFSB", "Existe un usuario: " + resultado + " se autocompletaran los datos");
 
 
         }
@@ -238,8 +195,6 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
         });/***************FIN DEL EVENTO setOnEditorActionListener()****************/
 
 
-
-
         Button mEmailSignInButton = (Button) findViewById(R.id.email_sign_in_button);
 
 
@@ -258,15 +213,15 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
 
                 Cursor cursor = dbHelper.readFromLocalDatabase(database);
 
-                if (dbHelper.checkForTableExists(database, "usuario")){
+                if (dbHelper.checkForTableExists(database, "usuario")) {
 
 
                     Log.d("TFSB", "Se comprueba nuevamente que el usuario existe");
 
 
-                    String usuario=null;
+                    String usuario = null;
 
-                    String password=null;
+                    String password = null;
 
                     while (cursor.moveToNext()) {
 
@@ -284,7 +239,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
                     Log.d("TFSB", "onClick/ obtiene los datos del usuario");
 
 
-                    if (TextUtils.equals(usuario,mEmailView.getText().toString()) && TextUtils.equals(password,mPasswordView.getText().toString()) ){
+                    if (TextUtils.equals(usuario, mEmailView.getText().toString()) && TextUtils.equals(password, mPasswordView.getText().toString())) {
 
                         Log.d("TFSB", "onClick/ el usuario y password a enviar se encuentra registrado");
                         mAuthDb = new DbUserLogin(usuario, password);
@@ -304,7 +259,6 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
                         Log.d("TFSB", "onClick/ existe un usuario registrado pero se loguea con otra cuenta");
 
 
-
                         /**
                          * EN ESTA PARTE SE DEBE INVOCAR UN MÉTODO DIFERENTE DE ATTEMPTLOGIN
                          * NO SOLO DEBE LOGUEAR SI NO TAMBIÉN  BORRAR LAS TABLAS PERTENECIENTES A LA CUENTA VIEJA
@@ -315,7 +269,6 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
                         mAuthDb.newUserlogin();
 
                     }//Fin del else
-
 
 
                 } //Fin del primer if
@@ -333,24 +286,14 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
         });/***************FIN DEL EVENTO setOnClickListener()****************/
 
 
-
-
-
         mLoginFormView = findViewById(R.id.login_form);
 
         mProgressView = findViewById(R.id.login_progress);
 
 
-
-
-
-
     }/************************FIN DEL onCreate()*****************************/
 
 
-
-
-
     /**********************************************************************************************/
     /**********************************************************************************************/
     /**********************************************************************************************/
@@ -361,7 +304,6 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
     /**********************************************************************************************/
     /**********************************************************************************************/
     /**********************************************************************************************/
-
 
 
     private void populateAutoComplete() {
@@ -373,7 +315,6 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
             return;
 
 
-
         }
 
         getLoaderManager().initLoader(0, null, this);
@@ -382,11 +323,6 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
     }/************************FIN DE LA FUNCIÓN populateAutoComplete()*****************************/
 
 
-
-
-
-
-
     /**********************************************************************************************/
     /**********************************************************************************************/
     /**********************************************************************************************/
@@ -397,9 +333,6 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
     /**********************************************************************************************/
     /**********************************************************************************************/
     /**********************************************************************************************/
-
-
-
 
 
     private boolean mayRequestContacts() {
@@ -412,13 +345,11 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
         }
 
 
-
         if (checkSelfPermission(READ_CONTACTS) == PackageManager.PERMISSION_GRANTED) {
 
             return true;
 
         }
-
 
 
         if (shouldShowRequestPermissionRationale(READ_CONTACTS)) {
@@ -436,11 +367,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
                     });
 
 
-
-        }
-
-
-        else {
+        } else {
 
 
             requestPermissions(new String[]{READ_CONTACTS}, REQUEST_READ_CONTACTS);
@@ -449,16 +376,12 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
         }
 
 
-
         return false;
 
 
     }/***********************FIN DE LA FUNCIÓN mayRequestContacts()*************************/
 
 
-
-
-
     /**********************************************************************************************/
     /**********************************************************************************************/
     /**********************************************************************************************/
@@ -469,16 +392,6 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
     /**********************************************************************************************/
     /**********************************************************************************************/
     /**********************************************************************************************/
-
-
-
-
-
-
-
-
-
-
 
 
     /**
@@ -487,7 +400,6 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions,
                                            @NonNull int[] grantResults) {
-
 
 
         if (requestCode == REQUEST_READ_CONTACTS) {
@@ -507,8 +419,6 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
     }/**************************FIN DE LA FUNCIÓN onRequestPermissionsResult()*********************/
 
 
-
-
     /**********************************************************************************************/
     /**********************************************************************************************/
     /**********************************************************************************************/
@@ -519,12 +429,6 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
     /**********************************************************************************************/
     /**********************************************************************************************/
     /**********************************************************************************************/
-
-
-
-
-
-
 
 
     /**
@@ -543,11 +447,9 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
         }
 
 
-
         // Reset errors.
         mEmailView.setError(null);
         mPasswordView.setError(null);
-
 
 
         // Store values at the time of the login attempt.
@@ -555,10 +457,8 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
         String password = mPasswordView.getText().toString();
 
 
-
         boolean cancel = false;
         View focusView = null;
-
 
 
         if (cancel) {
@@ -569,10 +469,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
             focusView.requestFocus();
 
 
-        }
-
-
-        else {
+        } else {
             // Show a progress spinner, and kick off a background task to
             // perform the user login attempt.
 
@@ -586,15 +483,9 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
         }//Fin del else
 
 
-
     }/************************FIN DE LA FUNCIÓN attemptLogin()*************************/
 
 
-
-
-
-
-
     /**********************************************************************************************/
     /**********************************************************************************************/
     /**********************************************************************************************/
@@ -605,10 +496,6 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
     /**********************************************************************************************/
     /**********************************************************************************************/
     /**********************************************************************************************/
-
-
-
-
 
 
     private boolean isEmailValid(String email) {
@@ -620,9 +507,6 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
 
 
     }/************************FIN DE LA FUNCIÓN isEmailValid()*************************/
-
-
-
 
 
     /**********************************************************************************************/
@@ -648,9 +532,6 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
     }/************************FIN DE LA FUNCIÓN isPasswordValid()*************************/
 
 
-
-
-
     /**********************************************************************************************/
     /**********************************************************************************************/
     /**********************************************************************************************/
@@ -661,7 +542,6 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
     /**********************************************************************************************/
     /**********************************************************************************************/
     /**********************************************************************************************/
-
 
 
     /**
@@ -669,10 +549,8 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
      */
 
 
-
     @TargetApi(Build.VERSION_CODES.HONEYCOMB_MR2)
     private void showProgress(final boolean show) {
-
 
 
         // On Honeycomb MR2 we have the ViewPropertyAnimator APIs, which allow
@@ -680,14 +558,10 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
         // the progress spinner.
 
 
-
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB_MR2) {
 
 
-
             int shortAnimTime = getResources().getInteger(android.R.integer.config_shortAnimTime);
-
-
 
 
             mLoginFormView.setVisibility(show ? View.GONE : View.VISIBLE);
@@ -704,14 +578,10 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
                     mLoginFormView.setVisibility(show ? View.GONE : View.VISIBLE);
 
 
-
-
                 }/******************FIN DEL EVENTO onAnimationEnd()****************/
 
 
             });/******************FIN DEL EVENTO setListener()****************/
-
-
 
 
             mProgressView.setVisibility(show ? View.VISIBLE : View.GONE);
@@ -734,7 +604,6 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
         }//Fin del if
 
 
-
         else {
 
 
@@ -748,14 +617,9 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
         }//Fin del else
 
 
-
-
-
     }/************************FIN DE LA FUNCIÓN showProgress()*************************/
 
 
-
-
     /**********************************************************************************************/
     /**********************************************************************************************/
     /**********************************************************************************************/
@@ -766,10 +630,6 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
     /**********************************************************************************************/
     /**********************************************************************************************/
     /**********************************************************************************************/
-
-
-
-
 
 
     @Override
@@ -793,18 +653,9 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
                 ContactsContract.Contacts.Data.IS_PRIMARY + " DESC");
 
 
-
-
     }/************************FIN DE LA FUNCIÓN onCreateLoader()*************************/
 
 
-
-
-
-
-
-
-
     /**********************************************************************************************/
     /**********************************************************************************************/
     /**********************************************************************************************/
@@ -815,12 +666,6 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
     /**********************************************************************************************/
     /**********************************************************************************************/
     /**********************************************************************************************/
-
-
-
-
-
-
 
 
     @Override
@@ -845,10 +690,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
         addEmailsToAutoComplete(emails);
 
 
-
     }/************************FIN DE LA FUNCIÓN onLoadFinished()*************************/
-
-
 
 
     /**********************************************************************************************/
@@ -867,8 +709,6 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
     public void onLoaderReset(Loader<Cursor> cursorLoader) {
 
     }
-
-
 
 
     /**********************************************************************************************/
@@ -894,12 +734,9 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
         mEmailView.setAdapter(adapter);
 
 
-
     }/************************FIN DE LA FUNCIÓN addEmailsToAutoComplete()*************************/
 
 
-
-
     /**********************************************************************************************/
     /**********************************************************************************************/
     /**********************************************************************************************/
@@ -910,7 +747,6 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
     /**********************************************************************************************/
     /**********************************************************************************************/
     /**********************************************************************************************/
-
 
 
     private interface ProfileQuery {
@@ -923,21 +759,14 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
         };
 
 
-
         int ADDRESS = 0;
 
         int IS_PRIMARY = 1;
 
 
-
     }/************************FIN DE LA FUNCIÓN ProfileQuery()*************************/
 
 
-
-
-
-
-
     /**********************************************************************************************/
     /**********************************************************************************************/
     /**********************************************************************************************/
@@ -948,16 +777,6 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
     /**********************************************************************************************/
     /**********************************************************************************************/
     /**********************************************************************************************/
-
-
-
-
-
-
-
-
-
-
 
 
     /**
@@ -966,36 +785,38 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
      */
 
 
-    public class UserLoginTask  {
-
+    public class UserLoginTask {
 
 
         private final String mEmail;
 
         private final String mPassword;
 
-        private  String id = null;
+        private String id = null;
 
-        private  String dni = null;
+        private String dni = null;
 
-        private  String msj = null;
+        private String msj = null;
 
-        int lunes =DbContract.DIA_FAIL;
+        private String dniRepartidor = null;
 
-        int martes =DbContract.DIA_FAIL;
+        private String idRepartidor = null;
 
-        int miercoles =DbContract.DIA_FAIL;
+        private String nombreRepartidor = null;
 
-        int jueves =DbContract.DIA_FAIL;
+        private String apellidoRepartidor = null;
 
-        int viernes =DbContract.DIA_FAIL;
+        int lunes = DbContract.DIA_FAIL;
 
-        int sabado =DbContract.DIA_FAIL;
+        int martes = DbContract.DIA_FAIL;
 
+        int miercoles = DbContract.DIA_FAIL;
 
+        int jueves = DbContract.DIA_FAIL;
 
+        int viernes = DbContract.DIA_FAIL;
 
-
+        int sabado = DbContract.DIA_FAIL;
 
 
         UserLoginTask(String email, String password) {
@@ -1009,15 +830,14 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
             Log.d("TFSB", "se crea el objeto userlogin, email y password");
 
 
+        }
 
-        }/************************FIN DEL CONSTRUCTOR UserLoginTask()*************************/
-
+        /************************FIN DEL CONSTRUCTOR UserLoginTask()*************************/
 
 
         private void doInBackground() {
             // TODO: attempt authentication against a network service.
             Log.d("TFSB", "ingresa a doInBackground ");
-
 
 
             Response.Listener<String> responseListener = new Response.Listener<String>() {
@@ -1047,7 +867,6 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
                         Log.d("TFSB", String.valueOf(response));
 
 
-
                         /** SI SUCCESS ES = TRUE ENTONCES USUARIO Y CONTRASEÑA VÁLIDA**/
 
                         if (success) {
@@ -1061,20 +880,17 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
                             msj = jsonData.getString("msj");
 
 
-
-                            Usuario usuario = new Usuario(parseInt(id),dni,mEmail,mPassword,msj);
+                            Usuario usuario = new Usuario(parseInt(id), dni, mEmail, mPassword, msj);
 
                             usuario.GuardarUsuarioEnUnSharedPreferences(LoginActivity.this);
 
 
-
-                            if (TextUtils.equals(msj, "repartidor")){
+                            if (TextUtils.equals(msj, "repartidor")) {
 
 
                                 /*Llamada a la función: */
-                                LeerClientesDelResponse(jsonData,lunes,martes,miercoles,jueves
-                                                        ,viernes,sabado,id,dni,msj, mEmail,mPassword);
-
+                                LeerClientesDelResponse(jsonData, lunes, martes, miercoles, jueves
+                                        , viernes, sabado, id, dni, msj, mEmail, mPassword);
 
 
                                 // Ingresas a otra activity de la app. Logueo exitoso
@@ -1095,19 +911,16 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
                                 Cursor cursor = dbHelperRead.readFromLocalDatabase(databaseRead);
 
 
-                                String usuariobd=null;
+                                String usuariobd = null;
 
-                                String passwordbd=null;
+                                String passwordbd = null;
 
-                                String dnibd=null;
+                                String dnibd = null;
 
-                                String idbd=null;
+                                String idbd = null;
 
 
-
-                                while (cursor.moveToNext())
-
-                                {
+                                while (cursor.moveToNext()) {
                                     usuariobd = cursor.getString(cursor.getColumnIndex(DbContract.USUARIO));
 
                                     passwordbd = cursor.getString(cursor.getColumnIndex(DbContract.PASSWORD));
@@ -1117,8 +930,6 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
                                     idbd = cursor.getString(cursor.getColumnIndex(DbContract.ID));
 
 
-
-
                                 }//Fin del while
 
                                 dbHelperRead.close();
@@ -1126,7 +937,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
                                 cursor.close();
 
 
-                                Log.d("TFSB", "PRUEBA PARA SABER SI GUARDA LOS DATOS DEL USUARIO -> DNI: "+dnibd+" ID: "+idbd+" USUARIO: "+usuariobd+" PASSWORD: "+passwordbd);
+                                Log.d("TFSB", "PRUEBA PARA SABER SI GUARDA LOS DATOS DEL USUARIO -> DNI: " + dnibd + " ID: " + idbd + " USUARIO: " + usuariobd + " PASSWORD: " + passwordbd);
 
 
                                 /**
@@ -1143,20 +954,16 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
                                 Log.d("TFSB", "  PRUEBA PARA SABER SI GUARDA LOS DATOS DE LOS CLIENTES");
                                 Log.d("TFSB", "                               ");
 
-                                dnibd=null;
+                                dnibd = null;
 
-                                idbd=null;
-
-
+                                idbd = null;
 
 
-                                while (cursor.moveToNext())
-                                {
+                                while (cursor.moveToNext()) {
 
                                     dnibd = cursor.getString(cursor.getColumnIndex(DbContract.DNI));
 
                                     idbd = cursor.getString(cursor.getColumnIndex(DbContract.ID));
-
 
 
                                     String apellidoDB = cursor.getString(cursor.getColumnIndex(DbContract.APELLIDO));
@@ -1186,7 +993,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
                                     String sabado = cursor.getString(cursor.getColumnIndex(DbContract.SABADO));
 
 
-                                    Log.d("TFSB", "DNI: "+dnibd+" ID: "+idbd+" APELLIDO: "+apellidoDB+" NOMBRE: "+nombreDB+" LUNES:"+ lunes+" MARTES:"+ martes+" MIERCOLES:"+ miercoles+" JUEVES:"+ jueves+" VIERNES:"+ viernes+" SABADO:"+ sabado);
+                                    Log.d("TFSB", "DNI: " + dnibd + " ID: " + idbd + " APELLIDO: " + apellidoDB + " NOMBRE: " + nombreDB + " LUNES:" + lunes + " MARTES:" + martes + " MIERCOLES:" + miercoles + " JUEVES:" + jueves + " VIERNES:" + viernes + " SABADO:" + sabado);
 
 
                                 }//Fin del while
@@ -1197,26 +1004,14 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
                                 cursor.close();
 
 
-
-
-
-
-
-
-                                Intent myIntent = new Intent(LoginActivity.this,Repartidores_Main_Activity.class);
+                                Intent myIntent = new Intent(LoginActivity.this, Repartidores_Main_Activity.class);
 
                                 Bundle bundle = new Bundle();
 
 
-
-
-
                                 String dia = UtilidadFecha.getNombreDelDia();
 
-                                bundle.putString("dia",dia);
-
-
-
+                                bundle.putString("dia", dia);
 
 
                                 myIntent.putExtras(bundle);
@@ -1229,22 +1024,25 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
                                 LoginActivity.this.startActivity(myIntent);
 
 
-
                             }//Fin del if (TextUtils.equals(msj,"repartidor")
 
 
                             else {
 
 
-                                if (TextUtils.equals(msj, "supervisor")){
+                                if (TextUtils.equals(msj, "supervisor")) {
 
 
                                     Log.d("TFSB", "response true. Ingresa a Main Supervisor");
 
-                                    // Crear el intent y pasar a una activity supervisor
+
+                                    guardarDatosDeRepartidores(jsonData);
 
 
-                                    Intent myIntent = new Intent(LoginActivity.this,MainActivity.class);
+
+
+
+                                    Intent myIntent = new Intent(LoginActivity.this, MainActivity.class);
 
 
                                     Bundle bundle = new Bundle();
@@ -1253,7 +1051,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
                                     String dia = UtilidadFecha.getNombreDelDia();
 
 
-                                    bundle.putString("dia",dia);
+                                    bundle.putString("dia", dia);
 
 
                                     myIntent.putExtras(bundle);
@@ -1268,24 +1066,16 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
                                     LoginActivity.this.startActivity(myIntent);
 
 
-
-
                                 }//Fin del if
 
 
-
                             }//Fin del else
-
-
-
-
 
 
                         }//Fin del if(success)
 
 
                         else {
-
 
 
                             Log.d("TFSB", "response FALSE");
@@ -1296,7 +1086,6 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
 
 
                             Log.d("TFSB", "incorrect password ");
-
 
 
                         }//Fin del else
@@ -1311,25 +1100,17 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
                     }
 
 
-
                 }/*************************FIN DEL EVENTO onResponse()******************************/
-
 
 
             };/*************************FIN DEL EVENTO Response.Listener()******************************/
 
 
-
-
-
-
-            utilsRequest request = utilsRequest.loginRequest(mEmail,mPassword, "true", responseListener);
+            utilsRequest request = utilsRequest.loginRequest(mEmail, mPassword, "true", responseListener);
             MySingleton.getInstance(getApplicationContext()).addToRequestQueue(request);
 
 
-
-            Log.d("TFSB", "Se crea la solicitud al servidor. Usuario: "+mEmail+" Pass: "+mPassword);
-
+            Log.d("TFSB", "Se crea la solicitud al servidor. Usuario: " + mEmail + " Pass: " + mPassword);
 
 
         }/***********************FIN DE LA FUNCIÓN doInBackground()************************/
@@ -1338,16 +1119,6 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
     }/**************************************** FIN DE LA CLASE UserLoginTask() ********************************/
 
 
-
-
-
-
-
-
-
-
-
-
     /**********************************************************************************************/
     /**********************************************************************************************/
     /**********************************************************************************************/
@@ -1360,40 +1131,31 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
     /**********************************************************************************************/
 
 
-
-
-
-
-
-
-
-    public class DbUserLogin  {
+    public class DbUserLogin {
 
 
         private final String mEmail;
 
         private final String mPassword;
 
-        private  String id = null;
+        private String id = null;
 
-        private  String dni = null;
+        private String dni = null;
 
-        private  String msj = null;
-
-
-        int lunes =DbContract.DIA_FAIL;
-
-        int martes =DbContract.DIA_FAIL;
-
-        int miercoles =DbContract.DIA_FAIL;
-
-        int jueves =DbContract.DIA_FAIL;
-
-        int viernes =DbContract.DIA_FAIL;
-
-        int sabado =DbContract.DIA_FAIL;
+        private String msj = null;
 
 
+        int lunes = DbContract.DIA_FAIL;
+
+        int martes = DbContract.DIA_FAIL;
+
+        int miercoles = DbContract.DIA_FAIL;
+
+        int jueves = DbContract.DIA_FAIL;
+
+        int viernes = DbContract.DIA_FAIL;
+
+        int sabado = DbContract.DIA_FAIL;
 
 
         DbUserLogin(String usuario, String password) {
@@ -1407,17 +1169,9 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
             Log.d("TFSB", "se crea el objeto userlogin, email y password");
 
 
+        }
 
-
-        }/***FIN DEL CONSTRUCTOR DbUserLogin() ****/
-
-
-
-
-
-
-
-
+        /***FIN DEL CONSTRUCTOR DbUserLogin() ****/
 
 
         private void execute() {
@@ -1429,7 +1183,6 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
             Log.d("TFSB", "Execute/ ingresa a execute ");
 
 
-
             Response.Listener<String> responseListener = new Response.Listener<String>() {
                 // Se realiza una acción cuando se recibe el response
 
@@ -1437,7 +1190,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
                 @Override
                 public void onResponse(String response) {
 
-                    Log.d("TFSB", "Execute/ "+String.valueOf(response));
+                    Log.d("TFSB", "Execute/ " + String.valueOf(response));
 
                     Log.d("TFSB", "Execute/ ingresa a onResponse");
 
@@ -1450,14 +1203,9 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
                     try {
 
 
-
                         JSONObject jsonResponse = new JSONObject(String.valueOf(response));
 
                         boolean success = jsonResponse.getBoolean("exito");
-
-
-
-
 
 
                         if (success) {
@@ -1471,10 +1219,6 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
                             dni = jsonData.getString("dni");
 
                             msj = jsonData.getString("msj");
-
-
-
-
 
 
                             //Ingresa a otra activity de la app. Logueo exitoso
@@ -1491,16 +1235,15 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
                             String idbd = null;
 
 
-                            Usuario usuario = new Usuario(parseInt(id),dni,mEmail,mPassword,msj);
+                            Usuario usuario = new Usuario(parseInt(id), dni, mEmail, mPassword, msj);
 
                             usuario.GuardarUsuarioEnUnSharedPreferences(LoginActivity.this);
 
 
-                            if (TextUtils.equals(msj, "repartidor")){
+                            if (TextUtils.equals(msj, "repartidor")) {
 
 
                                 Log.d("TFSB", "Execute/ response true. Ingresa a Main Repartidor");
-
 
 
                                 // prueba para saber si guarda los datos del repartidor en la BD
@@ -1510,9 +1253,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
                                 Cursor cursor = dbHelperRead.readFromLocalDatabase(databaseRead);
 
 
-
-                                while (cursor.moveToNext())
-                                {
+                                while (cursor.moveToNext()) {
 
                                     usuariobd = cursor.getString(cursor.getColumnIndex(DbContract.USUARIO));
 
@@ -1524,9 +1265,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
                                     idbd = cursor.getString(cursor.getColumnIndex(DbContract.ID));
 
 
-
                                 }//Fin del while
-
 
 
                                 cursor.close();
@@ -1548,7 +1287,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
 
                                 String resultado = sb.toString();
 
-                                Log.d("TFSB","Execute/ resultado en la BD " + resultado);
+                                Log.d("TFSB", "Execute/ resultado en la BD " + resultado);
 
 
                                 /**
@@ -1563,20 +1302,17 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
                                 cursor = dbHelperRead.readFromLocalDatabaseZonaReparto(databaseRead);
 
 
-
                                 Log.d("TFSB", "                               ");
                                 Log.d("TFSB", "  PRUEBA PARA SABER SI GUARDA LOS DATOS DE LOS CLIENTES");
                                 Log.d("TFSB", "                               ");
 
 
-                                dnibd=null;
+                                dnibd = null;
 
-                                idbd=null;
+                                idbd = null;
 
 
-
-                                while (cursor.moveToNext())
-                                {
+                                while (cursor.moveToNext()) {
 
 
                                     dnibd = cursor.getString(cursor.getColumnIndex(DbContract.DNI));
@@ -1599,7 +1335,6 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
                                     String foto = cursor.getString(cursor.getColumnIndex(DbContract.FOTO));
 
 
-
                                     String lunes = cursor.getString(cursor.getColumnIndex(DbContract.LUNES));
 
                                     String martes = cursor.getString(cursor.getColumnIndex(DbContract.MARTES));
@@ -1613,8 +1348,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
                                     String sabado = cursor.getString(cursor.getColumnIndex(DbContract.SABADO));
 
 
-
-                                    Log.d("TFSB", "DNI: "+dnibd+" ID: "+idbd+" APELLIDO: "+apellidoDB+" NOMBRE: "+nombreDB+" LUNES:"+ lunes+" MARTES:"+ martes+" MIERCOLES:"+ miercoles+" JUEVES:"+ jueves+" VIERNES:"+ viernes+" SABADO:"+ sabado);
+                                    Log.d("TFSB", "DNI: " + dnibd + " ID: " + idbd + " APELLIDO: " + apellidoDB + " NOMBRE: " + nombreDB + " LUNES:" + lunes + " MARTES:" + martes + " MIERCOLES:" + miercoles + " JUEVES:" + jueves + " VIERNES:" + viernes + " SABADO:" + sabado);
 
 
                                 }//Fin del while(cursor.moveToNext)
@@ -1625,16 +1359,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
                                 cursor.close();
 
 
-
-
-
-
-
-
-
-
-
-                                Intent myIntent = new Intent(LoginActivity.this,Repartidores_Main_Activity.class);
+                                Intent myIntent = new Intent(LoginActivity.this, Repartidores_Main_Activity.class);
 
 
                                 Bundle bundle = new Bundle();
@@ -1643,7 +1368,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
                                 String dia = UtilidadFecha.getNombreDelDia();
 
 
-                                bundle.putString("dia",dia);
+                                bundle.putString("dia", dia);
 
 
                                 myIntent.putExtras(bundle);
@@ -1658,26 +1383,21 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
                                 LoginActivity.this.startActivity(myIntent);
 
 
-
-
                             }//Fin del if(TextUtils.equals(msj,"repartidor"))
 
 
                             else {
 
 
-
-
-
-                                if (TextUtils.equals(msj, "supervisor")){
+                                if (TextUtils.equals(msj, "supervisor")) {
 
 
                                     Log.d("TFSB", "Execute/ response true/exitoso. Ingresa a Main Supervisor");
-
+                                    guardarDatosDeRepartidores(jsonData);
 
                                     // Crear el intent y pasar a una activity supervisor
 
-                                    Intent myIntent = new Intent(LoginActivity.this,MainActivity.class);
+                                    Intent myIntent = new Intent(LoginActivity.this, MainActivity.class);
 
 
                                     Bundle bundle = new Bundle();
@@ -1686,7 +1406,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
                                     String dia = UtilidadFecha.getNombreDelDia();
 
 
-                                    bundle.putString("dia",dia);
+                                    bundle.putString("dia", dia);
 
 
                                     myIntent.putExtras(bundle);
@@ -1701,20 +1421,10 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
                                     LoginActivity.this.startActivity(myIntent);
 
 
-
-
-
-
-
-
-
                                 }//Fin del if
 
 
-
                             }//Fin el else
-
-
 
 
                         } else {
@@ -1731,7 +1441,6 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
                         }//Fin del else
 
 
-
                     }//Fin del try
 
 
@@ -1742,49 +1451,32 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
                     }
 
 
-
-
-
-
                 }/**********************FIN DEL EVENTO onResponse()*****************/
-
 
 
             };/**********************FIN DEL EVENTO Response.Listener()*****************/
 
 
-
-
             //En ésta parte del código se crea el reponse para enviarlo al servidor
 
-            utilsRequest request = utilsRequest.loginRequest(mEmail,mPassword, "false", responseListener);
+            utilsRequest request = utilsRequest.loginRequest(mEmail, mPassword, "false", responseListener);
             MySingleton.getInstance(getApplicationContext()).addToRequestQueue(request);
 
 
-            Log.d("TFSB", "Se crea la solicitud al servidor. Usuario: "+mEmail+" Pass: "+mPassword);
+            Log.d("TFSB", "Se crea la solicitud al servidor. Usuario: " + mEmail + " Pass: " + mPassword);
 
 
+        }
 
-        }/***************** FIN DE LA FUNCIÓN execute() ********************/
-
-
-
+        /***************** FIN DE LA FUNCIÓN execute() ********************/
 
 
-
-
-
-
-
-
-
-        private void newUserlogin(){
+        private void newUserlogin() {
 
             // TODO: attempt authentication against a network service.
 
 
             Log.d("TFSB", "DbUserLogin/ ingresa a newUserlogin. Se loguea un nuevo usuario ");
-
 
 
             Response.Listener<String> responseListener = new Response.Listener<String>() {
@@ -1820,10 +1512,9 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
                             DbHelper db = new DbHelper(getApplicationContext());
                             SQLiteDatabase sql = db.getReadableDatabase();
 
-                            db.onUpgrade(sql,1,1);
+                            db.onUpgrade(sql, 1, 1);
 
                             db.close();
-
 
 
                             JSONObject jsonData = jsonResponse.getJSONObject("data");
@@ -1836,22 +1527,19 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
                             msj = jsonData.getString("msj");
 
 
-
-                            Usuario usuario = new Usuario(parseInt(id),dni,mEmail,mPassword,msj);
+                            Usuario usuario = new Usuario(parseInt(id), dni, mEmail, mPassword, msj);
 
                             usuario.GuardarUsuarioEnUnSharedPreferences(LoginActivity.this);
 
 
-                            if (TextUtils.equals(msj, "repartidor")){
+                            if (TextUtils.equals(msj, "repartidor")) {
 
 
                                 DbHelper dbHelper = new DbHelper(getApplicationContext());
 
                                 SQLiteDatabase databaseRead = dbHelper.getReadableDatabase();
 
-                                dbHelper.onUpgrade(databaseRead,1,1);
-
-
+                                dbHelper.onUpgrade(databaseRead, 1, 1);
 
 
                                 /*** OBTENGO LOS DATOS RECIBIDOS DE LA KEY "DATA" ***/
@@ -1864,9 +1552,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
                                     JSONObject jsonClientesDatos;
 
 
-
-                                    for (int i = 0; i < jsonClientes.length(); i++)
-                                    {
+                                    for (int i = 0; i < jsonClientes.length(); i++) {
 
 
                                         try {
@@ -1894,21 +1580,17 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
                                             String barrioDB = jsonClientesDatos.optString("Barrio");
 
 
+                                            lunes = DbContract.DIA_FAIL;
 
+                                            martes = DbContract.DIA_FAIL;
 
-                                            lunes =DbContract.DIA_FAIL;
+                                            miercoles = DbContract.DIA_FAIL;
 
-                                            martes =DbContract.DIA_FAIL;
+                                            jueves = DbContract.DIA_FAIL;
 
-                                            miercoles =DbContract.DIA_FAIL;
+                                            viernes = DbContract.DIA_FAIL;
 
-                                            jueves =DbContract.DIA_FAIL;
-
-                                            viernes =DbContract.DIA_FAIL;
-
-                                            sabado =DbContract.DIA_FAIL;
-
-
+                                            sabado = DbContract.DIA_FAIL;
 
 
                                             if (jsonClientesDatos.has("Dia")) {
@@ -1919,14 +1601,10 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
                                                 JSONObject jsonDiaDatos;
 
 
-
-                                                for (int j = 0; j < jsonDia.length(); j++)
-                                                {
+                                                for (int j = 0; j < jsonDia.length(); j++) {
 
 
-
-
-                                                    try{
+                                                    try {
 
 
                                                         jsonDiaDatos = jsonDia.getJSONObject(j);
@@ -1937,8 +1615,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
                                                             String Dia = jsonDiaDatos.optString("Dia");
 
 
-
-                                                            if (TextUtils.equals(Dia, "LUNES")){
+                                                            if (TextUtils.equals(Dia, "LUNES")) {
 
                                                                 lunes = DbContract.DIA_OK;
 
@@ -1946,74 +1623,57 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
                                                             } //Fin del  if
 
 
-
-                                                            if (TextUtils.equals(Dia, "MARTES")){
+                                                            if (TextUtils.equals(Dia, "MARTES")) {
 
                                                                 martes = DbContract.DIA_OK;
 
                                                             } //Fin del if
 
 
-
-                                                            if (TextUtils.equals(Dia, "MIERCOLES")){
+                                                            if (TextUtils.equals(Dia, "MIERCOLES")) {
 
                                                                 miercoles = DbContract.DIA_OK;
 
                                                             } //Fin del if
 
 
-
-                                                            if (TextUtils.equals(Dia, "JUEVES")){
+                                                            if (TextUtils.equals(Dia, "JUEVES")) {
 
                                                                 jueves = DbContract.DIA_OK;
 
                                                             } //Fin del if
 
 
-
-                                                            if (TextUtils.equals(Dia, "VIERNES")){
+                                                            if (TextUtils.equals(Dia, "VIERNES")) {
 
                                                                 viernes = DbContract.DIA_OK;
 
                                                             } //Fin del if
 
 
-
-                                                            if (TextUtils.equals(Dia, "SABADO")){
+                                                            if (TextUtils.equals(Dia, "SABADO")) {
 
                                                                 sabado = DbContract.DIA_OK;
 
                                                             } //Fin del if
 
 
-
-
                                                         }//Fin del if (jsonDiaDatos.has("Dia"))
-
-
-
 
 
                                                     }//Fin del try
 
 
-
-                                                    catch (JSONException a){
-                                                        Log.e("TSFB", "Parser JSON DIA DATOS  "+ a.toString());
+                                                    catch (JSONException a) {
+                                                        Log.e("TSFB", "Parser JSON DIA DATOS  " + a.toString());
 
                                                     }
-
-
-
 
 
                                                 }//Fin del for (hasta jsonDia.length)
 
 
-
-
                                             }// FIN DEL if (jsonClientesDatos.has("Dia"))
-
 
 
                                             dbHelper = new DbHelper(getApplicationContext());
@@ -2027,8 +1687,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
                                      */
 
 
-
-                                            dbHelper.saveToLocalDatabaseZonaReparto(parseInt(dniDB), parseInt(idDB), apellidoDB, nombreDB, direccionDB, barrioDB,referenciaDB, telefonoDB, emailDB, R.drawable.leomessi, lunes, martes, miercoles, jueves, viernes, sabado, DbContract.SYNC_STATUS_OK, database);
+                                            dbHelper.saveToLocalDatabaseZonaReparto(parseInt(dniDB), parseInt(idDB), apellidoDB, nombreDB, direccionDB, barrioDB, referenciaDB, telefonoDB, emailDB, R.drawable.leomessi, lunes, martes, miercoles, jueves, viernes, sabado, DbContract.SYNC_STATUS_OK, database);
 
                                             dbHelper.close();
 
@@ -2038,23 +1697,14 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
                                         catch (JSONException e) {
 
 
-                                            Log.e("TSFB", "Parser JSON "+ e.toString());
+                                            Log.e("TSFB", "Parser JSON " + e.toString());
                                         }
-
 
 
                                     }//Fin del for (hasta jsonClientes.length)
 
 
-
-
-
                                 }//Fin del if (jsonData.has("clientes"))
-
-
-
-
-
 
 
                                 finish();
@@ -2067,7 +1717,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
 
                                 // INSERTA LOS DATOS DEL USUARIO EN LA TABLA USUARIO
 
-                                dbHelper.saveToLocalDatabase(parseInt(dni), parseInt(id),mEmail,mPassword, DbContract.SYNC_STATUS_OK, database);
+                                dbHelper.saveToLocalDatabase(parseInt(dni), parseInt(id), mEmail, mPassword, DbContract.SYNC_STATUS_OK, database);
 
                                 dbHelper.close();
 
@@ -2088,18 +1738,16 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
                                 Cursor cursor = dbHelperRead.readFromLocalDatabase(databaseRead);
 
 
-                                String usuariobd=null;
+                                String usuariobd = null;
 
-                                String passwordbd=null;
+                                String passwordbd = null;
 
-                                String dnibd=null;
+                                String dnibd = null;
 
-                                String idbd=null;
+                                String idbd = null;
 
 
-
-                                while (cursor.moveToNext())
-                                {
+                                while (cursor.moveToNext()) {
 
                                     usuariobd = cursor.getString(cursor.getColumnIndex(DbContract.USUARIO));
 
@@ -2110,10 +1758,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
                                     idbd = cursor.getString(cursor.getColumnIndex(DbContract.ID));
 
 
-
-
                                 }//Fin del while
-
 
 
                                 dbHelperRead.close();
@@ -2121,8 +1766,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
                                 cursor.close();
 
 
-
-                                Log.d("TFSB", "PRUEBA PARA SABER SI GUARDA LOS DATOS DEL USUARIO -> DNI: "+dnibd+" ID: "+idbd+" USUARIO: "+usuariobd+" PASSWORD: "+passwordbd);
+                                Log.d("TFSB", "PRUEBA PARA SABER SI GUARDA LOS DATOS DEL USUARIO -> DNI: " + dnibd + " ID: " + idbd + " USUARIO: " + usuariobd + " PASSWORD: " + passwordbd);
 
 
                                 /**
@@ -2136,19 +1780,17 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
                                 cursor = dbHelperRead.readFromLocalDatabaseZonaReparto(databaseRead);
 
 
-
                                 Log.d("TFSB", "                               ");
 
                                 Log.d("TFSB", "  PRUEBA PARA SABER SI GUARDA LOS DATOS DE LOS CLIENTES");
 
                                 Log.d("TFSB", "                               ");
 
-                                dnibd=null;
+                                dnibd = null;
 
-                                idbd=null;
+                                idbd = null;
 
-                                while (cursor.moveToNext())
-                                {
+                                while (cursor.moveToNext()) {
 
 
                                     dnibd = cursor.getString(cursor.getColumnIndex(DbContract.DNI));
@@ -2171,8 +1813,6 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
                                     String foto = cursor.getString(cursor.getColumnIndex(DbContract.FOTO));
 
 
-
-
                                     String lunes = cursor.getString(cursor.getColumnIndex(DbContract.LUNES));
 
                                     String martes = cursor.getString(cursor.getColumnIndex(DbContract.MARTES));
@@ -2186,12 +1826,10 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
                                     String sabado = cursor.getString(cursor.getColumnIndex(DbContract.SABADO));
 
 
-
-                                    Log.d("TFSB", "DNI: "+dnibd+" ID: "+idbd+" APELLIDO: "+apellidoDB+" NOMBRE: "+nombreDB);
+                                    Log.d("TFSB", "DNI: " + dnibd + " ID: " + idbd + " APELLIDO: " + apellidoDB + " NOMBRE: " + nombreDB);
 
 
                                 }//Fin del while (cursor.moveToNext)
-
 
 
                                 dbHelperRead.close();
@@ -2199,24 +1837,15 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
                                 cursor.close();
 
 
-
-
-
-
-
-                                Intent myIntent = new Intent(LoginActivity.this,Repartidores_Main_Activity.class);
+                                Intent myIntent = new Intent(LoginActivity.this, Repartidores_Main_Activity.class);
 
 
                                 Bundle bundle = new Bundle();
 
 
-
-
                                 String dia = UtilidadFecha.getNombreDelDia();
 
-                                bundle.putString("dia",dia);
-
-
+                                bundle.putString("dia", dia);
 
 
                                 myIntent.putExtras(bundle);
@@ -2231,20 +1860,18 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
                             }//Fin del if (TextUtils.equals(msj,"repartidor"))
 
 
-
-
                             else {
 
 
-                                if (TextUtils.equals(msj, "supervisor")){
+                                if (TextUtils.equals(msj, "supervisor")) {
 
 
                                     Log.d("TFSB", "response true. Ingresa a Main Supervisor");
 
                                     // Crea el intent y pasar a una activity supervisor
 
-
-                                    Intent myIntent = new Intent(LoginActivity.this,MainActivity.class);
+                                    guardarDatosDeRepartidores(jsonData);
+                                    Intent myIntent = new Intent(LoginActivity.this, MainActivity.class);
 
 
                                     Bundle bundle = new Bundle();
@@ -2253,7 +1880,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
                                     String dia = UtilidadFecha.getNombreDelDia();
 
 
-                                    bundle.putString("dia",dia);
+                                    bundle.putString("dia", dia);
 
 
                                     myIntent.putExtras(bundle);
@@ -2265,8 +1892,6 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
                                     myIntent.putExtra("dni", dni);
 
 
-
-
                                     DbHelper dbHelper = new DbHelper(getApplicationContext());
 
                                     SQLiteDatabase database = dbHelper.getWritableDatabase();
@@ -2274,15 +1899,12 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
 
                                     // INSERTA LOS DATOS DEL USUARIO EN LA TABLA USUARIO
 
-                                    dbHelper.saveToLocalDatabase(parseInt(dni), parseInt(id),mEmail,mPassword, DbContract.SYNC_STATUS_OK, database);
+                                    dbHelper.saveToLocalDatabase(parseInt(dni), parseInt(id), mEmail, mPassword, DbContract.SYNC_STATUS_OK, database);
 
                                     dbHelper.close();
 
 
-
-
                                     LoginActivity.this.startActivity(myIntent);
-
 
 
                                 }//Fin del if
@@ -2291,11 +1913,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
                             }//Fin del else
 
 
-
-
                         }//Fin del if (success)
-
-
 
 
                         else {
@@ -2308,8 +1926,6 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
                         }
 
 
-
-
                     }//Fin del primer try
 
 
@@ -2320,53 +1936,25 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
                     }
 
 
-
                 }
             }; /************** FIN DEL EVENTO Response.Listener() *******/
 
 
-
-
-
             //En ésta parte del código se crea el reponse para enviarlo al servidor
 
-            utilsRequest request = utilsRequest.loginRequest(mEmail,mPassword, "true", responseListener);
+            utilsRequest request = utilsRequest.loginRequest(mEmail, mPassword, "true", responseListener);
             MySingleton.getInstance(getApplicationContext()).addToRequestQueue(request);
 
 
-            Log.d("TFSB", "DbUserLogin/ Se crea la solicitud al servidor. Usuario: "+mEmail+" pass: "+mPassword);
-
-
+            Log.d("TFSB", "DbUserLogin/ Se crea la solicitud al servidor. Usuario: " + mEmail + " pass: " + mPassword);
 
 
         }/********************* FIN DE LA FUNCIÓN NewUserLogin() *********************/
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     }/******************************************* FIN DE LA CLASE DbUserLogin() ************************************/
 
 
-
-
-
-
-
-
-
     /**********************************************************************************************/
     /**********************************************************************************************/
     /**********************************************************************************************/
@@ -2379,13 +1967,9 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
     /**********************************************************************************************/
 
 
-
-
-    public void LeerClientesDelResponse(JSONObject jsonData, int lunes,int martes,int miercoles,int jueves
-                                        ,int viernes,int sabado,String id,String dni,String msj
-                                        ,String mEmail,String mPassword) throws JSONException {
-
-
+    public void LeerClientesDelResponse(JSONObject jsonData, int lunes, int martes, int miercoles, int jueves
+            , int viernes, int sabado, String id, String dni, String msj
+            , String mEmail, String mPassword) throws JSONException {
 
 
         /**
@@ -2393,15 +1977,12 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
          */
 
 
-
         JSONArray jsonClientes = jsonData.getJSONArray("clientes");
 
         JSONObject jsonClientesDatos;
 
 
-
-        for (int i = 0; i < jsonClientes.length(); i++)
-        {
+        for (int i = 0; i < jsonClientes.length(); i++) {
 
 
             try {
@@ -2428,19 +2009,17 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
                 String barrioDB = jsonClientesDatos.optString("Barrio");
 
 
+                lunes = DbContract.DIA_FAIL;
 
-                lunes =DbContract.DIA_FAIL;
+                martes = DbContract.DIA_FAIL;
 
-                martes =DbContract.DIA_FAIL;
+                miercoles = DbContract.DIA_FAIL;
 
-                miercoles =DbContract.DIA_FAIL;
+                jueves = DbContract.DIA_FAIL;
 
-                jueves =DbContract.DIA_FAIL;
+                viernes = DbContract.DIA_FAIL;
 
-                viernes =DbContract.DIA_FAIL;
-
-                sabado =DbContract.DIA_FAIL;
-
+                sabado = DbContract.DIA_FAIL;
 
 
                 if (jsonClientesDatos.has("Dia")) {
@@ -2452,9 +2031,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
                     JSONObject jsonDiaDatos;
 
 
-
-                    for (int j = 0; j < jsonDia.length(); j++)
-                    {
+                    for (int j = 0; j < jsonDia.length(); j++) {
 
                         try {
 
@@ -2462,37 +2039,36 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
                             jsonDiaDatos = jsonDia.getJSONObject(j);
 
 
-
                             if (jsonDiaDatos.has("Dia")) {
                                 String Dia = jsonDiaDatos.optString("Dia");
 
 
-                                if (TextUtils.equals(Dia, "LUNES")){
+                                if (TextUtils.equals(Dia, "LUNES")) {
                                     lunes = DbContract.DIA_OK;
                                 }
 
 
-                                if (TextUtils.equals(Dia, "MARTES")){
+                                if (TextUtils.equals(Dia, "MARTES")) {
                                     martes = DbContract.DIA_OK;
                                 }
 
 
-                                if (TextUtils.equals(Dia, "MIERCOLES")){
+                                if (TextUtils.equals(Dia, "MIERCOLES")) {
                                     miercoles = DbContract.DIA_OK;
                                 }
 
 
-                                if (TextUtils.equals(Dia, "JUEVES")){
+                                if (TextUtils.equals(Dia, "JUEVES")) {
                                     jueves = DbContract.DIA_OK;
                                 }
 
 
-                                if (TextUtils.equals(Dia, "VIERNES")){
+                                if (TextUtils.equals(Dia, "VIERNES")) {
                                     viernes = DbContract.DIA_OK;
                                 }
 
 
-                                if (TextUtils.equals(Dia, "SABADO")){
+                                if (TextUtils.equals(Dia, "SABADO")) {
                                     sabado = DbContract.DIA_OK;
                                 }
 
@@ -2500,31 +2076,19 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
                             }//Fin del if(jsonDiaDatos.has("Dia"))
 
 
-
-
-
                         }//Fin del try
 
 
-
-
-                        catch (JSONException a){
-                            Log.e("TSFB", "Parser JSON DIA DATOS  "+ a.toString());
+                        catch (JSONException a) {
+                            Log.e("TSFB", "Parser JSON DIA DATOS  " + a.toString());
 
                         }//Fin del catch
-
-
 
 
                     }//Fin del for (hasta jsonDia)
 
 
-
-
                 }//Fin del if(jsonClientesDatos.has("Dia"))
-
-
-
 
 
                 DbHelper dbHelper = new DbHelper(getApplicationContext());
@@ -2535,7 +2099,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
                                      */
 
 
-                dbHelper.saveToLocalDatabaseZonaReparto(parseInt(dniDB), parseInt(idDB), apellidoDB, nombreDB, direccionDB, barrioDB,referenciaDB, telefonoDB, emailDB, R.drawable.leomessi, lunes, martes, miercoles, jueves, viernes, sabado, DbContract.SYNC_STATUS_OK, database);
+                dbHelper.saveToLocalDatabaseZonaReparto(parseInt(dniDB), parseInt(idDB), apellidoDB, nombreDB, direccionDB, barrioDB, referenciaDB, telefonoDB, emailDB, R.drawable.leomessi, lunes, martes, miercoles, jueves, viernes, sabado, DbContract.SYNC_STATUS_OK, database);
 
                 dbHelper.close();
 
@@ -2545,25 +2109,16 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
             catch (JSONException e) {
 
 
-
-                Log.e("TSFB", "Parser JSON "+ e.toString());
-
+                Log.e("TSFB", "Parser JSON " + e.toString());
 
 
             }//Fin del catch
 
 
-
-
         }//Fin del for(hasta jsonClientes.length)
 
 
-
-
-
         finish();
-
-
 
 
         DbHelper dbHelper = new DbHelper(getApplicationContext());
@@ -2573,21 +2128,75 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
 
         // INSERTA LOS DATOS DEL USUARIO EN LA TABLA USUARIO
 
-        dbHelper.saveToLocalDatabase(parseInt(dni), parseInt(id),mEmail,mPassword, DbContract.SYNC_STATUS_OK, database);
+        dbHelper.saveToLocalDatabase(parseInt(dni), parseInt(id), mEmail, mPassword, DbContract.SYNC_STATUS_OK, database);
 
         dbHelper.close();
 
 
+    }
 
+    /************************ FIN DE LA FUNCIÓN LeerClientesDelResponse() *************************/
+
+
+    public void guardarDatosDeRepartidores(JSONObject jsonData) throws JSONException {
+
+
+        /**
+         * OBTENGO LOS DATOS RECIBIDOS DE LA KEY "DATA"
+         */
+
+        if (jsonData.has("repartidores")) {
+
+
+            JSONArray jsonArrayRepartidores = jsonData.getJSONArray("repartidores");
+
+            JSONObject jsonRepartidor;
+
+
+            for (int i = 0; i < jsonArrayRepartidores.length(); i++) {
+
+
+                try {
+
+
+                    jsonRepartidor = jsonArrayRepartidores.getJSONObject(i);
+
+                    String idRepartidor = jsonRepartidor.getString("Persona_IdRepartidor");
+
+                    String dniRepartidor = jsonRepartidor.getString("Persona_DNIRepartidor");
+
+                    String apellidoRepartidor = jsonRepartidor.getString("Apellido");
+
+                    String nombreRepartidor = jsonRepartidor.getString("Nombre");
+
+                    Repartidores repartidores = new Repartidores(nombreRepartidor + ' ' + apellidoRepartidor, R.mipmap.messi, parseInt(idRepartidor), parseInt(dniRepartidor));
+
+                    repartidores.GuardarRepartidoresEnUnSharedPreferences(LoginActivity.this, i);
+
+
+
+                }//Fin del segundo try
+
+
+                catch (JSONException e) {
+
+
+                    Log.e("TSFB", "Parser JSON " + e.toString());
+
+
+                }//Fin del catch
+
+
+            }//Fin del for(hasta jsonClientes.length)
+
+        }
+        else{
+            Log.e("TSFB", "No existe array repartidores en jsonObject data ");
+        }
 
 
 
     }/************************ FIN DE LA FUNCIÓN LeerClientesDelResponse() *************************/
-
-
-
-
-
 
 
 

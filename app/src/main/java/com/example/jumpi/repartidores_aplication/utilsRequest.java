@@ -50,4 +50,40 @@ public class utilsRequest extends StringRequest {
 
     }
 
+
+    public static utilsRequest cargaDescarga(String idSupervisor,
+                                             String dniSupervisor,
+                                             String fecha,
+                                             String idRepartidor,
+                                             String dniRepartidor,
+                                             String plata,
+                                             String carga,
+                                             String descarga,
+                                             String idArticulo,
+                                             Response.Listener<String> listener) {
+
+        String dirServer = vault.DIR_SERVER+vault.CARGA_DESCARGA_REQUEST;
+        utilsRequest request;
+
+
+        Map<String, String> parametro;
+
+        parametro = new HashMap<>();
+        parametro.put("idSupervisor", idSupervisor);
+        parametro.put("dniSupervisor", dniSupervisor);
+        parametro.put("idRepartidor", idRepartidor);
+        parametro.put("dniRepartidor", dniRepartidor);
+        parametro.put("plata", plata);
+        parametro.put("carga", carga);
+        parametro.put("descarga", descarga);
+        parametro.put("idArticulo", idArticulo);
+
+
+
+        request = new utilsRequest(Request.Method.POST, dirServer, listener, null, parametro);
+
+        return request;
+
+    }
+
 }
