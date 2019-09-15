@@ -888,6 +888,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
                             if (TextUtils.equals(msj, "repartidor")) {
 
 
+
                                 /*Llamada a la función: */
                                 LeerClientesDelResponse(jsonData, lunes, martes, miercoles, jueves
                                         , viernes, sabado, id, dni, msj, mEmail, mPassword);
@@ -1036,9 +1037,9 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
                                     Log.d("TFSB", "response true. Ingresa a Main Supervisor");
 
 
+
                                     guardarDatosDeRepartidores(jsonData);
-
-
+                                    guardarDatosDeArticulos(jsonData);
 
 
 
@@ -1394,6 +1395,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
 
                                     Log.d("TFSB", "Execute/ response true/exitoso. Ingresa a Main Supervisor");
                                     guardarDatosDeRepartidores(jsonData);
+                                    guardarDatosDeArticulos(jsonData);
 
                                     // Crear el intent y pasar a una activity supervisor
 
@@ -1871,6 +1873,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
                                     // Crea el intent y pasar a una activity supervisor
 
                                     guardarDatosDeRepartidores(jsonData);
+                                    guardarDatosDeArticulos(jsonData);
                                     Intent myIntent = new Intent(LoginActivity.this, MainActivity.class);
 
 
@@ -2140,7 +2143,6 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
 
     public void guardarDatosDeRepartidores(JSONObject jsonData) throws JSONException {
 
-
         /**
          * OBTENGO LOS DATOS RECIBIDOS DE LA KEY "DATA"
          */
@@ -2169,6 +2171,8 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
 
                     String nombreRepartidor = jsonRepartidor.getString("Nombre");
 
+
+
                     Repartidores repartidores = new Repartidores(nombreRepartidor + ' ' + apellidoRepartidor, R.mipmap.messi, parseInt(idRepartidor), parseInt(dniRepartidor));
 
                     repartidores.GuardarRepartidoresEnUnSharedPreferences(LoginActivity.this, i);
@@ -2181,7 +2185,69 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
                 catch (JSONException e) {
 
 
-                    Log.e("TSFB", "Parser JSON " + e.toString());
+                    Log.d("TSFB", "Parser JSON " + e.toString());
+
+
+                }//Fin del catch
+
+
+            }//Fin del for(hasta jsonClientes.length)
+
+        }
+        else{
+            Log.e("TSFB", "No existe array repartidores en jsonObject data ");
+        }
+
+
+
+    }/************************ FIN DE LA FUNCIÓN LeerClientesDelResponse() *************************/
+
+
+    public void guardarDatosDeArticulos(JSONObject jsonData) throws JSONException {
+
+        /**
+         * OBTENGO LOS DATOS RECIBIDOS DE LA KEY "DATA"
+         */
+
+        if (jsonData.has("articulos")) {
+
+
+            JSONArray jsonArrayArticulos= jsonData.getJSONArray("articulos");
+
+            JSONObject jsonArticulo;
+
+
+            for (int i = 0; i < jsonArrayArticulos.length(); i++) {
+
+
+                try {
+
+
+                    jsonArticulo = jsonArrayArticulos.getJSONObject(i);
+
+                    String idArticulo = jsonArticulo.getString("IdArticulo");
+
+                    String nombreArticulo = jsonArticulo.getString("Nombre");
+
+                    String precioArticulo = jsonArticulo.getString("Precio");
+
+
+
+
+
+                    articulo articulo = new articulo(parseInt(idArticulo), nombreArticulo, Float.parseFloat(precioArticulo));
+
+                    articulo.guardarArticulosEnUnSharedPreferences(LoginActivity.this, i);
+
+
+
+                }//Fin del segundo try
+
+
+                catch (JSONException e) {
+
+
+                    Log.d("TFSB", "Parser JSON " + e.toString());
 
 
                 }//Fin del catch

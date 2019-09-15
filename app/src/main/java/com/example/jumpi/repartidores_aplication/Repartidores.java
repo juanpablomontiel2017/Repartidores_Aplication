@@ -2,6 +2,7 @@ package com.example.jumpi.repartidores_aplication;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.util.Log;
 
 import static android.content.Context.MODE_PRIVATE;
 
@@ -44,6 +45,8 @@ public class Repartidores {
 
         editor.putString("nombreApellido_"+indice,this.getNombreApellido());
         editor.commit();
+
+
 
 
 
