@@ -81,6 +81,8 @@ public class Cargas_Descargas extends AppCompatActivity {
 
     String nombre_apellido_recibir;
 
+    Integer idRepartidor;
+
 
     /******EditText********/
 
@@ -165,6 +167,7 @@ public class Cargas_Descargas extends AppCompatActivity {
 
         nombre_apellido_recibir = getIntent().getStringExtra("nombre_apellido_repartidor");
 
+        idRepartidor = Integer.parseInt(getIntent().getStringExtra("idRepartidor"));
 
         Estado_Tanda = Boolean.parseBoolean(LeerConfiguracionDeActivityEnUnSharedPreferences("EstadoTanda" + nombre_apellido_recibir));
 

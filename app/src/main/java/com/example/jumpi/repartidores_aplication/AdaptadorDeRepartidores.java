@@ -31,7 +31,7 @@ public class AdaptadorDeRepartidores extends BaseAdapter {
 
     @Override
     public int getCount() {
-        return Repartidores.ITEMS.length;
+        return Repartidores.ITEMS.size();
     }
 
 
@@ -41,7 +41,7 @@ public class AdaptadorDeRepartidores extends BaseAdapter {
 
     @Override
     public Repartidores  getItem(int position) {
-        return Repartidores.ITEMS[position];
+        return Repartidores.ITEMS.get(position);
     }
 
 

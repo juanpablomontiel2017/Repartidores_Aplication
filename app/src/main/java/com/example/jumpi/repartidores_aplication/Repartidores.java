@@ -4,6 +4,8 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.util.Log;
 
+import java.util.ArrayList;
+
 import static android.content.Context.MODE_PRIVATE;
 
 public class Repartidores {
@@ -47,7 +49,7 @@ public class Repartidores {
         editor.commit();
 
 
-
+        ITEMS.add(this);
 
 
 
@@ -94,7 +96,7 @@ public class Repartidores {
 
 
 
-
+/**
     public static Repartidores[] ITEMS = {
 
             new Repartidores("Samuel Arévalo", R.mipmap.belasteguin, 3, 27353531),
@@ -104,9 +106,9 @@ public class Repartidores {
 
     };
 
+*/
 
-
-
+    public static ArrayList<Repartidores> ITEMS = new ArrayList<Repartidores>();
 
 
 
