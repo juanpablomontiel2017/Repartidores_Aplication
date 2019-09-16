@@ -2,15 +2,21 @@ package com.example.jumpi.repartidores_aplication;
 
 import android.content.Intent;
 import android.graphics.Color;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
-import android.widget.Button;
+import android.widget.ImageButton;
+import android.widget.LinearLayout;
 
 public class OpcionesEstadisticas extends AppCompatActivity {
+
+
+    LinearLayout LinearLayoutVerticalComisiones, LinearLayoutVerticalCombustible;
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,9 +53,30 @@ public class OpcionesEstadisticas extends AppCompatActivity {
 
 
 
-        Button btn_comisiones = (Button) findViewById(R.id.btn_comisiones);
 
-        btn_comisiones.setOnClickListener(new View.OnClickListener() {
+        LinearLayoutVerticalComisiones = (LinearLayout) findViewById(R.id.llv_uno_punto_uno);
+
+        LinearLayoutVerticalComisiones.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+
+                Intent intent = new Intent (OpcionesEstadisticas.this, EleccionRepartidores.class);
+
+                intent.putExtra("activity","ComisionesEstadisticas");
+
+                startActivity(intent);
+
+
+
+            }
+        });
+
+
+
+        ImageButton img_btn_comisiones = (ImageButton) findViewById(R.id.img_btn_comisiones);
+
+        img_btn_comisiones.setOnClickListener(new View.OnClickListener() {
 
 
             @Override
@@ -75,9 +102,31 @@ public class OpcionesEstadisticas extends AppCompatActivity {
 
 
 
-        Button btn_combustible = (Button) findViewById(R.id.btn_combustible);
 
-        btn_combustible.setOnClickListener(new View.OnClickListener() {
+
+
+        LinearLayoutVerticalCombustible = (LinearLayout) findViewById(R.id.llv_uno_punto_dos);
+
+        LinearLayoutVerticalCombustible.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+
+                Intent intent = new Intent (OpcionesEstadisticas.this, CombustibleEstadisticas.class);
+
+                startActivity(intent);
+
+
+
+            }
+        });
+
+
+
+
+        ImageButton img_btn_combustible = (ImageButton) findViewById(R.id.img_btn_combustible);
+
+        img_btn_combustible.setOnClickListener(new View.OnClickListener() {
 
 
             @Override
