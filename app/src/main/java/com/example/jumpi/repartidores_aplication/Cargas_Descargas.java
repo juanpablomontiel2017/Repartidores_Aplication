@@ -71,7 +71,7 @@ public class Cargas_Descargas extends AppCompatActivity {
 
     /******Matriz clásica********/
 
-    String[] ArticulosDelArrayClasico = {"Bidones", "Dispenser plástico", "Canillas", "Dispenser eléctrico", "Envases rotos/pinchados", "Envases estropeados","Combustible"};
+    String[] ArticulosDelArrayClasico = {"Bidones", "Dispenser plástico", "Canillas", "Dispenser eléctrico", "Envases rotos/pinchados", "Envases \n estro- \n peados","Combus- \n tible"};
 
 
     /******Variables tipo String********/
@@ -364,7 +364,7 @@ public class Cargas_Descargas extends AppCompatActivity {
         /*Inicialización de la variable de tipo TextView creada en XML para hacer referencia al número de tanda en el que estamos parados */
         TextView textViewTanda = (TextView) findViewById(R.id.tandas);
         tanda_numero++;
-        textViewTanda.setText("Tanda N°: " + tanda_numero);
+        textViewTanda.setText("Tanda N° " + tanda_numero);
 
 
 
@@ -1131,8 +1131,7 @@ public class Cargas_Descargas extends AppCompatActivity {
 
 
 
-
-        if (ArticuloSeleccionadoText == "Envases rotos/pinchados" || ArticuloSeleccionadoText == "Envases estropeados") {
+        if (ArticuloSeleccionadoText == "Envases rotos/pinchados" || ArticuloSeleccionadoText == "Envases \n estro- \n peados") {
 
             EditTextCarga.setEnabled(false);
             EditTextCarga.setHint(" ");
@@ -1151,15 +1150,14 @@ public class Cargas_Descargas extends AppCompatActivity {
 
 
 
-
-        if (ArticuloSeleccionadoText == "Combustible") {
+        if (ArticuloSeleccionadoText == "Combus- \n tible") {
 
             EditTextCarga.setHint("$");
             EditTextDescarga.setEnabled(false);
             EditTextDescarga.setHint("");
             EditTextDescarga.setText("");
 
-            EditTextDescarga.setBackgroundDrawable(getDrawable(R.drawable.ic_combustible));
+            EditTextDescarga.setBackgroundDrawable(getDrawable(R.mipmap.gas_64px));
 
 
         } else {
@@ -1618,7 +1616,7 @@ public void ObtenerNuevoArticulo(String ValorElementoSeleccionadoSpinnerPrograma
 
         TextView textViewNuevaTanda = (TextView) NuevaTandaInflada.findViewById(R.id.tandas);
         tanda_numero++;
-        textViewNuevaTanda.setText("Tanda N°: " + tanda_numero);
+        textViewNuevaTanda.setText("Tanda N° " + tanda_numero);
 
 
 
@@ -2243,12 +2241,12 @@ public void ObtenerNuevoArticulo(String ValorElementoSeleccionadoSpinnerPrograma
                     editText_carga_nueva_tanda.setBackgroundColor(Color.TRANSPARENT);
 
 
-                    if(text_spinner_fijo == "Combustible"){
+                    if(text_spinner_fijo == "Combus- \n tible"){
 
                         editText_descarga_nueva_tanda.setFocusable(false);
                         editText_descarga_nueva_tanda.setHint("");
                         editText_descarga_nueva_tanda.setHintTextColor(Color.parseColor("#fafafa"));
-                        editText_descarga_nueva_tanda.setBackgroundDrawable(getDrawable(R.drawable.ic_combustible));
+                        editText_descarga_nueva_tanda.setBackgroundDrawable(getDrawable(R.mipmap.gas_64px));
 
 
 
@@ -2313,12 +2311,12 @@ public void ObtenerNuevoArticulo(String ValorElementoSeleccionadoSpinnerPrograma
 
 
 
-                        if(text_spinner_programatico == "Combustible"){
+                        if(text_spinner_programatico == "Combus- \n tible"){
 
                             et_descarga_del_nuevo_articulo.setFocusable(false);
                             et_descarga_del_nuevo_articulo.setHint("");
                             et_descarga_del_nuevo_articulo.setHintTextColor(Color.parseColor("#fafafa"));
-                            et_descarga_del_nuevo_articulo.setBackgroundDrawable(getDrawable(R.drawable.ic_combustible));
+                            et_descarga_del_nuevo_articulo.setBackgroundDrawable(getDrawable(R.mipmap.gas_64px));
 
 
 
@@ -2406,7 +2404,8 @@ public void ObtenerNuevoArticulo(String ValorElementoSeleccionadoSpinnerPrograma
                 String text_spinner_fijo = sp_nueva_tanda.getSelectedItem().toString();
 
 
-                if(text_spinner_fijo == "Envases rotos/pinchados" || text_spinner_fijo == "Envases estropeados"){
+
+                if(text_spinner_fijo == "Envases rotos/pinchados" || text_spinner_fijo == "Envases \n estro- \n peados"){
 
 
                     editText_carga.setEnabled(false);
@@ -2438,7 +2437,7 @@ public void ObtenerNuevoArticulo(String ValorElementoSeleccionadoSpinnerPrograma
                 }
 
 
-                if (text_spinner_fijo == "Combustible") {
+                if (text_spinner_fijo == "Combus- \n tible") {
 
                     editText_carga.setHint("$");
                     editText_descarga.setEnabled(false);
@@ -2505,7 +2504,7 @@ public void ObtenerNuevoArticulo(String ValorElementoSeleccionadoSpinnerPrograma
                     String text_spinner_programatico = sp_nuevo_del_articulo.getSelectedItem().toString();
 
 
-                    if(text_spinner_programatico == "Envases rotos/pinchados" || text_spinner_programatico == "Envases estropeados"){
+                    if(text_spinner_programatico == "Envases rotos/pinchados" || text_spinner_programatico == "Envases \n estro- \n peados"){
 
 
                         et_carga_del_nuevo_articulo.setEnabled(false);
@@ -2541,7 +2540,7 @@ public void ObtenerNuevoArticulo(String ValorElementoSeleccionadoSpinnerPrograma
 
 
 
-                    if (text_spinner_programatico == "Combustible") {
+                    if (text_spinner_programatico == "Combus- \n tible") {
 
                         et_carga_del_nuevo_articulo.setHint("$");
                         et_descarga_del_nuevo_articulo.setEnabled(false);

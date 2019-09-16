@@ -2,37 +2,23 @@ package com.example.jumpi.repartidores_aplication;
 
 import android.app.AlertDialog;
 import android.app.Dialog;
-import android.app.DialogFragment;
-import android.app.FragmentManager;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
-import android.os.Bundle;
-import android.os.Parcelable;
 import android.support.annotation.NonNull;
-
 import android.support.v4.view.MotionEventCompat;
-
-import android.support.v4.app.Fragment;
-
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import org.w3c.dom.Text;
-
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
@@ -163,7 +149,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
                         public void onClick(View view) {
 
 
-                            Intent intentVentas = new Intent(mContext, Ventas_Activity.class);
+                            Intent intentVentas = new Intent(mContext, RealizarVentasClientesSupervisor.class);
 
                             intentVentas.putExtra("Apellido", dialog_apellido_tv.getText());
 
