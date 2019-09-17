@@ -1,5 +1,7 @@
 package com.example.jumpi.repartidores_aplication;
 
+import android.annotation.SuppressLint;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.res.ColorStateList;
@@ -11,21 +13,26 @@ import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.SearchView;
 import android.support.v7.widget.Toolbar;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
+import android.widget.LinearLayout;
+import android.widget.TextView;
 
 public class BuscarResponsableParaPatrocinio extends AppCompatActivity implements SearchView.OnQueryTextListener {
 
 
 
     Button btnResponsableInactivo;
+
     public static Button btnResponsableActivo;
 
 
+    LinearLayout LinearLayoutVerticalPadre;
 
 
 
@@ -72,9 +79,12 @@ public class BuscarResponsableParaPatrocinio extends AppCompatActivity implement
 
 
 
+        LinearLayoutVerticalPadre = (LinearLayout) findViewById(R.id.parent_layout_vertical_buscador_evento);
 
 
 
+
+        /*
 
 
         btnResponsableInactivo = (Button) findViewById(R.id.btn_responsable_inactivo);
@@ -124,18 +134,18 @@ public class BuscarResponsableParaPatrocinio extends AppCompatActivity implement
                 dialog.show();
 
 
-            }/*********** FIN DEL EVENTO onClick() ****************/
+            }
 
 
-        }); /*********** FIN DEL EVENTO setOnClickListener() ****************/
-
-
-
+        }); */
 
 
 
 
 
+
+
+/*
 
 
         btnResponsableActivo = (Button) findViewById(R.id.btn_responsable_activo);
@@ -154,13 +164,16 @@ public class BuscarResponsableParaPatrocinio extends AppCompatActivity implement
 
 
 
-            }/*********** FIN DEL EVENTO onClick() ****************/
+            }
 
 
 
-        });/*********** FIN DEL EVENTO setOnClickListener() ****************/
+        });
 
 
+*/
+
+/*
 
         btnResponsableActivo.setOnLongClickListener(new View.OnLongClickListener() {
             @Override
@@ -213,11 +226,11 @@ public class BuscarResponsableParaPatrocinio extends AppCompatActivity implement
 
 
                 return false;
-            }/*********** FIN DEL EVENTO onLongClick() ****************/
+            }
 
 
 
-        });/*********** FIN DEL EVENTO setOnLongListener() ****************/
+        });   */
 
 
 
@@ -415,6 +428,79 @@ public class BuscarResponsableParaPatrocinio extends AppCompatActivity implement
     /************************************************************************/
     /************************************************************************/
     /************************************************************************/
+
+
+
+
+    @SuppressLint("RestrictedApi")
+    public View AgregarItemEvento(){
+
+
+        LayoutInflater inflateItemEvento = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+
+        final View InflatedView = inflateItemEvento.inflate(R.layout.item_evento, null, true);
+
+
+        LinearLayoutVerticalPadre.addView(InflatedView,0);
+
+
+
+
+
+        /*InflatedView.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(final View v) {
+
+                EliminarCualquierVuelta(v);
+
+                return false;
+
+
+            }
+
+
+        });*/
+
+
+
+
+
+        return InflatedView;
+
+
+    } /***************************FIN DE LA FUNCIÓN AgregarItemEvento()*****************************/
+
+
+
+
+    public void RecibirDatosDelNuevoResponsableEvento(TextView tv_nombre_del_evento, TextView tv_nombre_apellido_responsable
+                                                        , TextView tv_fecha_del_evento){
+
+        String extras = getIntent().getStringExtra("NombreEvento");
+
+        tv_nombre_del_evento.setText(extras);
+
+
+
+        extras = getIntent().getStringExtra("ApellidoNombre");
+
+       //Direccion_Cliente_Ventas_Supervisor.setText(extras);
+
+
+        extras = getIntent().getStringExtra("FechaInicioEvento");
+
+       //Direccion_Cliente_Ventas_Supervisor.setText(extras);
+
+
+
+        extras = getIntent().getStringExtra("FechaFinEvento");
+
+        //Direccion_Cliente_Ventas_Supervisor.setText(extras);
+
+
+
+
+    }/***************** FIN DE LA FUNCIÓN RecibirDatosDelNuevoResponsableEvento ****************/
 
 
 
