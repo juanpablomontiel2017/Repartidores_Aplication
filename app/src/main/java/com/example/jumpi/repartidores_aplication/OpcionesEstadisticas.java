@@ -14,7 +14,7 @@ import android.widget.LinearLayout;
 public class OpcionesEstadisticas extends AppCompatActivity {
 
 
-    LinearLayout LinearLayoutVerticalComisiones, LinearLayoutVerticalCombustible;
+    LinearLayout LinearLayoutVerticalComisiones, LinearLayoutVerticalCombustible,LinearLayoutVerticalVentaBidones;
 
 
 
@@ -39,16 +39,6 @@ public class OpcionesEstadisticas extends AppCompatActivity {
         window.setStatusBarColor(Color.parseColor("#b71c1c"));
 
 
-
-
-
-
-
-
-        /*Inicialización del Toolbar */
-        Toolbar toolbar = findViewById(R.id.toolbar);
-        toolbar.setTitleTextColor(Color.WHITE);
-        setSupportActionBar(toolbar);
 
 
 
@@ -145,6 +135,47 @@ public class OpcionesEstadisticas extends AppCompatActivity {
         });/*********FIN DEL EVENTO setOnClickListener()*************/
 
 
+
+
+
+        LinearLayoutVerticalVentaBidones = (LinearLayout) findViewById(R.id.llv_dos_punto_uno);
+
+        LinearLayoutVerticalVentaBidones.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+
+                Intent intent = new Intent (OpcionesEstadisticas.this, VentaBidonesEstadisticas.class);
+
+                startActivity(intent);
+
+
+
+            }
+        });
+
+
+
+
+        ImageButton img_btn_venta_bidones = (ImageButton) findViewById(R.id.img_btn_venta_bidones);
+
+        img_btn_venta_bidones.setOnClickListener(new View.OnClickListener() {
+
+
+            @Override
+            public void onClick(View v) {
+
+
+                Intent intent = new Intent (OpcionesEstadisticas.this, VentaBidonesEstadisticas.class);
+
+                startActivity(intent);
+
+
+            }
+
+
+
+        });/*********FIN DEL EVENTO setOnClickListener()*************/
 
 
 

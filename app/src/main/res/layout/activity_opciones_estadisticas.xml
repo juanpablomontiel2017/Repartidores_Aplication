@@ -18,38 +18,24 @@
     tools:context=".OpcionesEstadisticas">
 
 
-
-
-    <android.support.v7.widget.Toolbar
-        android:id="@+id/toolbar"
-        android:layout_width="match_parent"
-        android:layout_height="?attr/actionBarSize"
-        android:background="#d50000"
-        app:popupTheme="@style/AppTheme.PopupOverlay" />
-
-
     <LinearLayout
 
-        android:layout_weight="1"
         android:id="@+id/llh_1"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginTop="10dp"
+        android:layout_weight="1"
         android:orientation="horizontal">
-
-
-
 
 
         <LinearLayout
 
-            android:layout_weight="1"
             android:id="@+id/llv_uno_punto_uno"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_marginBottom="10dp"
-            android:weightSum="2"
-            android:orientation="vertical">
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:weightSum="2">
 
 
             <ImageButton
@@ -57,9 +43,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginRight="10dp"
+                android:layout_weight="1"
                 android:background="#ff3d00"
-                android:src="@mipmap/chanchito_comisiones_128px"
-                android:layout_weight="1"/>
+                android:src="@mipmap/ic_comision_128px" />
 
 
             <TextView
@@ -80,25 +66,25 @@
         </LinearLayout>
 
 
-
-
         <LinearLayout
 
-            android:layout_weight="1"
             android:id="@+id/llv_uno_punto_dos"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_marginBottom="10dp"
-            android:weightSum="2"
-            android:orientation="vertical">
+            android:layout_weight="1"
+            android:background="#ff3d00"
+            android:orientation="vertical"
+            android:weightSum="2">
 
 
             <ImageButton
                 android:id="@+id/img_btn_combustible"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="300dp"
+                android:layout_gravity="center"
                 android:layout_weight="1"
-                android:background="#ff3d00"
+                android:backgroundTint="#ff3d00"
                 android:src="@mipmap/gasolinera_estadisticas_128px" />
 
 
@@ -107,17 +93,15 @@
                 android:id="@+id/main_tv_combustible"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:layout_weight="1"
                 android:background="#ff3d00"
-                android:gravity="center|top"
+                android:gravity="center"
                 android:text="GASTO EN COMBUSTIBLE"
                 android:textColor="#FFFF"
                 android:textSize="24sp"
-                android:textStyle="bold"
-                android:layout_weight="1"/>
+                android:textStyle="bold" />
 
         </LinearLayout>
-
-
 
 
     </LinearLayout>
@@ -140,24 +124,20 @@
         android:orientation="horizontal">
 
 
-
-
-
         <LinearLayout
 
-            android:layout_weight="1"
             android:id="@+id/llv_dos_punto_uno"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:weightSum="2"
-            android:orientation="vertical">
-
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:weightSum="2">
 
 
             <ImageButton
                 android:id="@+id/img_btn_venta_bidones"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="400dp"
                 android:layout_marginRight="10dp"
                 android:layout_weight="1"
                 android:background="#ff3d00"
@@ -170,10 +150,10 @@
                 android:id="@+id/main_tv_venta_bidones"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_weight="1"
                 android:layout_marginRight="10dp"
+                android:layout_weight="1"
                 android:background="#ff3d00"
-                android:gravity="center|top"
+                android:gravity="center"
                 android:text="VENTA DE BIDONES"
                 android:textColor="#FFFF"
                 android:textSize="24sp"
@@ -196,7 +176,7 @@
             <ImageButton
                 android:id="@+id/img_btn_frecuencia_llamadas_clientes"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="300dp"
                 android:layout_weight="1"
                 android:background="#ff3d00"
                 android:src="@drawable/ic_main_mapa">
@@ -211,7 +191,7 @@
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:background="#ff3d00"
-                android:gravity="center|top"
+                android:gravity="center"
                 android:text="FRECUENCIA DE LLAMADAS DE CLIENTES"
                 android:textColor="#FFFF"
                 android:textSize="24sp"
