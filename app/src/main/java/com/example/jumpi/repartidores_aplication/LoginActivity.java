@@ -7,6 +7,7 @@ import android.app.LoaderManager.LoaderCallbacks;
 import android.content.CursorLoader;
 import android.content.Intent;
 import android.content.Loader;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
@@ -2145,6 +2146,9 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
 
         /**
          * OBTENGO LOS DATOS RECIBIDOS DE LA KEY "DATA"
+         *
+         * TODO: refactorizar. Probar con enviar jsonArrayRepartidores y no con cada elemento
+         *
          */
 
         if (jsonData.has("repartidores")) {
@@ -2193,6 +2197,14 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
 
             }//Fin del for(hasta jsonClientes.length)
 
+            SharedPreferences sharedPreferences = this.getSharedPreferences("Datos_Repartidores", MODE_PRIVATE);
+
+            SharedPreferences.Editor editor = sharedPreferences.edit();
+
+
+            editor.putString("dimensionRepartidores",String.valueOf(jsonArrayRepartidores.length()));
+            editor.commit();
+
         }
         else{
             Log.e("TSFB", "No existe array repartidores en jsonObject data ");
@@ -2207,6 +2219,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
 
         /**
          * OBTENGO LOS DATOS RECIBIDOS DE LA KEY "DATA"
+         *          * TODO: refactorizar. Probar con enviar jsonArrayArticulos y no con cada elemento
          */
 
         if (jsonData.has("articulos")) {
@@ -2241,6 +2254,8 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
 
 
 
+
+
                 }//Fin del segundo try
 
 
@@ -2254,6 +2269,15 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
 
 
             }//Fin del for(hasta jsonClientes.length)
+
+            SharedPreferences sharedPreferences = this.getSharedPreferences("Datos_Articulos", MODE_PRIVATE);
+
+            SharedPreferences.Editor editor = sharedPreferences.edit();
+
+
+            editor.putInt("dimensionArticulos",jsonArrayArticulos.length());
+            editor.commit();
+
 
         }
         else{

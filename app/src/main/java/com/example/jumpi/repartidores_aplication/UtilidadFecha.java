@@ -136,7 +136,7 @@ public final class UtilidadFecha {
         calendar.set(Calendar.DAY_OF_MONTH, Dia);
 
 
-        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd/MM/yyyy");
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy/mm/dd");
 
         String dateFechaDeArranque = simpleDateFormat.format(calendar.getTime());
 

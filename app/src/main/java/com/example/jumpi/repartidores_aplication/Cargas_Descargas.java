@@ -71,7 +71,8 @@ public class Cargas_Descargas extends AppCompatActivity {
 
     /******Matriz clásica********/
 
-    String[] ArticulosDelArrayClasico = {"Bidones", "Dispenser plástico", "Canillas", "Dispenser eléctrico", "Envases rotos/pinchados", "Envases estropeados","Combustible"};
+    //String[] ArticulosDelArrayClasico = {};
+    public  ArrayList<String> articulosParaSpinner = new ArrayList<String>();
 
 
     /******Variables tipo String********/
@@ -82,6 +83,8 @@ public class Cargas_Descargas extends AppCompatActivity {
     String nombre_apellido_recibir;
 
     Integer idRepartidor;
+
+    Integer dniRepartidor;
 
 
     /******EditText********/
@@ -169,10 +172,12 @@ public class Cargas_Descargas extends AppCompatActivity {
 
         idRepartidor = Integer.parseInt(getIntent().getStringExtra("idRepartidor"));
 
+        dniRepartidor = Integer.parseInt(getIntent().getStringExtra("dniRepartidor"));
+
         Estado_Tanda = Boolean.parseBoolean(LeerConfiguracionDeActivityEnUnSharedPreferences("EstadoTanda" + nombre_apellido_recibir));
 
 
-        String FechaActualDelSistema = UtilidadFecha.getFecha("dd/MM/yyyy");
+        String FechaActualDelSistema = UtilidadFecha.getFecha("yyyy/MM/dd");
 
 
 
@@ -447,6 +452,22 @@ public class Cargas_Descargas extends AppCompatActivity {
     /***************************************************************************************************/
     /***************************************************************************************************/
 
+
+    public void obtenerArticulosParaSpinner(){
+
+        SharedPreferences preferences = getSharedPreferences("Datos_Articulos", MODE_PRIVATE);
+
+        int dimension = preferences.getInt("dimensionArticulos",0);
+
+
+        for (int i = 0 ; i < dimension; i++){
+
+            articulosParaSpinner.add(preferences.getString("nombreArticulo_",""));
+
+
+        }
+
+    }
 
     public void CierreDeTanda(final String FechaActualDelSistema){
 
@@ -944,7 +965,7 @@ public class Cargas_Descargas extends AppCompatActivity {
 
 
 
-            adaptador = new ArrayAdapter<String>(this, R.layout.spinner, ArticulosDelArrayClasico);
+            adaptador = new ArrayAdapter<String>(this, R.layout.spinner, articulosParaSpinner);
 
 
 
@@ -953,8 +974,8 @@ public class Cargas_Descargas extends AppCompatActivity {
 
 
 
-            ArrayList<String> ArticulosReducidos = new ArrayList<String>(Arrays.asList(ArticulosDelArrayClasico));
-
+           // ArrayList<String> ArticulosReducidos = new ArrayList<String>(Arrays.asList(ArticulosDelArrayClasico));
+            ArrayList<String> ArticulosReducidos = articulosParaSpinner;
 
             /*Llamada a la función: */
             ArticulosReducidos = Utils_Spinner.ReducirListaDeArticulos(spinner, ArticulosReducidos);

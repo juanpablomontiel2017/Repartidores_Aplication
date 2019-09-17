@@ -135,6 +135,8 @@ public class EleccionRepartidores extends AppCompatActivity {
     public void IniciarActivityCargaDescarga(View view, int position){
 
         int idRepartidor = adaptador.getItem(position).getIdRepartidor();
+
+        int dniRepartidor = adaptador.getItem(position).getDniRepartidor();
         TextView nombre_apellido_repartidor = (TextView) view.findViewById(R.id.nombre_apellido_repartidor);
 
         String nombre_apellido_repartidor_enviar = nombre_apellido_repartidor.getText().toString();
@@ -158,6 +160,8 @@ public class EleccionRepartidores extends AppCompatActivity {
             intent.putExtra("nombre_apellido_repartidor",nombre_apellido_repartidor_enviar);
 
             intent.putExtra("idRepartidor",idRepartidor);
+
+            intent.putExtra("dniRepartidor",dniRepartidor);
 
             startActivity(intent);
 

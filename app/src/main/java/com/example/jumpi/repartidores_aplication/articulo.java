@@ -52,6 +52,8 @@ public class articulo {
 
 
 
+
+
     }/********************* FIN DE LA FUNCIÓN GuardarUsuarioEnUnSharedPreferences()***********************/
 
 
