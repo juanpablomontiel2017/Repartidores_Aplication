@@ -2,9 +2,9 @@ package com.example.jumpi.repartidores_aplication;
 
 import android.graphics.Color;
 import android.net.Uri;
+import android.os.Bundle;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -12,16 +12,12 @@ import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 
-public class CombustibleEstadisticas extends AppCompatActivity implements View.OnClickListener, GastoCombustiblePorMes_Fragment.OnFragmentInteractionListener, GastoCombustibleSemestral_Fragment.OnFragmentInteractionListener, GastoCombustibleAnual_Fragment.OnFragmentInteractionListener {
-
-
-
+public class VentaBidonesEstadisticas extends AppCompatActivity implements View.OnClickListener, VentaBidonesMensual_Fragment.OnFragmentInteractionListener, VentaBidonesSemestral_Fragment.OnFragmentInteractionListener, VentaBidonesAnual_Fragment.OnFragmentInteractionListener {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_combustible_estadisticas);
-
+        setContentView(R.layout.activity_venta_bidones_estadisticas);
 
 
         /**Añadir "manualmente" color al StatusBar **/
@@ -50,16 +46,14 @@ public class CombustibleEstadisticas extends AppCompatActivity implements View.O
 
 
 
+        VentaBidonesMensual_Fragment fragment_vbm= new VentaBidonesMensual_Fragment();
 
-
-        GastoCombustiblePorMes_Fragment fragment_gcm = new GastoCombustiblePorMes_Fragment();
-
-        getSupportFragmentManager().beginTransaction().add(R.id.contenedor_para_fragment, fragment_gcm).commit();
-
+        getSupportFragmentManager().beginTransaction().add(R.id.contenedor_para_fragment_venta_bidones, fragment_vbm).commit();
 
 
 
-    }
+    }/******************************* FIN DEL onCreate() *******************************/
+
 
 
 
@@ -68,6 +62,7 @@ public class CombustibleEstadisticas extends AppCompatActivity implements View.O
 
 
     }
+
 
 
 
@@ -86,7 +81,7 @@ public class CombustibleEstadisticas extends AppCompatActivity implements View.O
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_filtro_gc, menu);
+        getMenuInflater().inflate(R.menu.menu_filtro_vb, menu);
 
 
 
@@ -108,14 +103,14 @@ public class CombustibleEstadisticas extends AppCompatActivity implements View.O
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
-        if (id == R.id.action_gasto_combustible_por_mes) {
+        if (id == R.id.action_venta_bidones_por_mes) {
 
 
-            GastoCombustiblePorMes_Fragment fragment_gcm = new GastoCombustiblePorMes_Fragment();
+            VentaBidonesMensual_Fragment fragment_vbm = new VentaBidonesMensual_Fragment();
 
             FragmentTransaction transition = getSupportFragmentManager().beginTransaction();
 
-            transition.replace(R.id.contenedor_para_fragment,fragment_gcm);
+            transition.replace(R.id.contenedor_para_fragment_venta_bidones,fragment_vbm);
 
             transition.commit();
 
@@ -131,15 +126,15 @@ public class CombustibleEstadisticas extends AppCompatActivity implements View.O
 
 
 
-        if (id == R.id.action_gasto_combustible_por_seis_meses) {
+        if (id == R.id.action_venta_bidones_por_seis_meses) {
 
 
 
-            GastoCombustibleSemestral_Fragment fragment_gcs = new GastoCombustibleSemestral_Fragment();
+            VentaBidonesSemestral_Fragment fragment_vbs = new VentaBidonesSemestral_Fragment();
 
             FragmentTransaction transition1 = getSupportFragmentManager().beginTransaction();
 
-            transition1.replace(R.id.contenedor_para_fragment,fragment_gcs);
+            transition1.replace(R.id.contenedor_para_fragment_venta_bidones,fragment_vbs);
 
             transition1.commit();
 
@@ -152,17 +147,17 @@ public class CombustibleEstadisticas extends AppCompatActivity implements View.O
 
 
 
-        if (id == R.id.action_gasto_combustible_por_anio) {
+        if (id == R.id.action_venta_bidones_por_anio) {
 
 
 
 
 
-            GastoCombustibleAnual_Fragment fragment_gca = new GastoCombustibleAnual_Fragment();
+            VentaBidonesAnual_Fragment fragment_vba = new VentaBidonesAnual_Fragment();
 
             FragmentTransaction transition2 = getSupportFragmentManager().beginTransaction();
 
-            transition2.replace(R.id.contenedor_para_fragment,fragment_gca);
+            transition2.replace(R.id.contenedor_para_fragment_venta_bidones,fragment_vba);
 
             transition2.commit();
 
@@ -184,5 +179,4 @@ public class CombustibleEstadisticas extends AppCompatActivity implements View.O
 
 
 
-
-}/****************************** FIN DE LA Activity CombustibleEstadisticas ***************************/
+}/********* FIN DE LA ACTIVITY VentaBidonesEstadisticas *******/

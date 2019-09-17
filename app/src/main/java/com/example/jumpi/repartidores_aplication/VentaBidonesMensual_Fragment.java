@@ -28,9 +28,9 @@ import java.util.ArrayList;
 /**
  * A simple {@link Fragment} subclass.
  * Activities that contain this fragment must implement the
- * {@link OnFragmentInteractionListener} interface
+ * {@link VentaBidonesMensual_Fragment.OnFragmentInteractionListener} interface
  * to handle interaction events.
- * Use the {@link GastoCombustibleAnual_Fragment#newInstance} factory method to
+ * Use the {@link VentaBidonesMensual_Fragment#newInstance} factory method to
  * create an instance of this fragment.
  */
 
@@ -38,8 +38,9 @@ import java.util.ArrayList;
 
 
 
-public class GastoCombustibleAnual_Fragment extends Fragment {
 
+
+public class VentaBidonesMensual_Fragment extends Fragment {
 
 
 
@@ -49,15 +50,16 @@ public class GastoCombustibleAnual_Fragment extends Fragment {
 
     private BarChart barChart;
 
-    private String[] Meses_Anio = new String[]{"Enero","Febrero","Marzo","Abril","Mayo","Junio","Julio",
-            "Agosto","Septiembre","Octubre","Noviembre","Diciembre"};
+    private String[] Semanas = new String[]{"Semana 1","Semana 2","Semana 3","Semana 4"};
 
-    private int[] Costo_Combustible = new int[] {25,30,38,10,15,5,9,20,40,35,27,32};
+    private int[] Ventas_Bidones = new int[] {25,30,38,10};
 
-    private int[] colors = new int[] {Color.BLACK,Color.RED,Color.GREEN,Color.BLUE,Color.YELLOW,Color.MAGENTA,
-            Color.CYAN,Color.parseColor("#b388ff"),Color.parseColor("#00695c"),
-            Color.parseColor("#ef6c00"), Color.parseColor("#7b1fa2"),
-            Color.parseColor("#795548")};
+    private int[] colors = new int[] {Color.BLACK,Color.RED,Color.GREEN,Color.BLUE};
+
+
+
+
+
 
 
 
@@ -70,9 +72,7 @@ public class GastoCombustibleAnual_Fragment extends Fragment {
     private static final String ARG_PARAM2 = "param2";
 
 
-
     // TODO: Rename and change types of parameters
-
     private String mParam1;
     private String mParam2;
 
@@ -81,14 +81,17 @@ public class GastoCombustibleAnual_Fragment extends Fragment {
 
 
 
-    public GastoCombustibleAnual_Fragment() {
+
+
+
+    public VentaBidonesMensual_Fragment() {
 
 
         // Required empty public constructor
 
+    }/******************* FIN DEL CONSTRUCTOR VentaBidonesMensual_Fragment() **********************/
 
 
-    }/******************* FIN DEL CONSTRUCTOR GastoCombustibleAnual_Fragment() **********************/
 
 
 
@@ -101,17 +104,17 @@ public class GastoCombustibleAnual_Fragment extends Fragment {
      *
      * @param param1 Parameter 1.
      * @param param2 Parameter 2.
-     * @return A new instance of fragment GastoCombustibleAnual_Fragment.
+     * @return A new instance of fragment VentaBidonesMensual_Fragment.
      */
-
-
-
-
     // TODO: Rename and change types and number of parameters
 
-    public static GastoCombustibleAnual_Fragment newInstance(String param1, String param2) {
 
-        GastoCombustibleAnual_Fragment fragment = new GastoCombustibleAnual_Fragment();
+
+
+
+    public static VentaBidonesMensual_Fragment newInstance(String param1, String param2) {
+
+        VentaBidonesMensual_Fragment fragment = new VentaBidonesMensual_Fragment();
 
         Bundle args = new Bundle();
 
@@ -124,8 +127,8 @@ public class GastoCombustibleAnual_Fragment extends Fragment {
         return fragment;
 
 
-    } /**************** FIN DE MÉTODO newInstance() ***************/
 
+    } /**************** FIN DE MÉTODO newInstance() ***************/
 
 
 
@@ -133,24 +136,18 @@ public class GastoCombustibleAnual_Fragment extends Fragment {
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
-
         super.onCreate(savedInstanceState);
 
-
         if (getArguments() != null) {
-
 
             mParam1 = getArguments().getString(ARG_PARAM1);
 
             mParam2 = getArguments().getString(ARG_PARAM2);
 
-
-        }//Fin del if
-
+        }
 
 
     }/************* FIN DEL onCreate() **********************/
-
 
 
 
@@ -160,16 +157,15 @@ public class GastoCombustibleAnual_Fragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
-        // Inflate the layout for this fragment
-        View view = inflater.inflate(R.layout.fragment_gasto_combustible_anual, container, false);
 
+
+        // Inflate the layout for this fragment
+        View view = inflater.inflate(R.layout.fragment_venta_bidones_mensual, container, false);
 
 
 
 
         barChart = (BarChart) view.findViewById(R.id.barChart);
-
-
 
 
 
@@ -183,38 +179,22 @@ public class GastoCombustibleAnual_Fragment extends Fragment {
         return view;
 
 
+
     }/******************* FIN DEL onCreateView() *******************/
 
 
 
 
-
-
-
-
-
-
-
-
     // TODO: Rename method, update argument and hook method into UI event
-
     public void onButtonPressed(Uri uri) {
-
 
         if (mListener != null) {
 
-
             mListener.onFragmentInteraction(uri);
 
-
-        }//Fin del if
-
+        }
 
     }/******************** FIN DEL MÉTODO onButtonPressed() ***********************/
-
-
-
-
 
 
 
@@ -226,27 +206,19 @@ public class GastoCombustibleAnual_Fragment extends Fragment {
 
         if (context instanceof OnFragmentInteractionListener) {
 
+
             mListener = (OnFragmentInteractionListener) context;
 
 
         } else {
 
-
             throw new RuntimeException(context.toString()
                     + " must implement OnFragmentInteractionListener");
-
 
         }
 
 
-
     }/**************************** FIN DEL MÉTODO onAttach() *******************************/
-
-
-
-
-
-
 
 
 
@@ -259,10 +231,6 @@ public class GastoCombustibleAnual_Fragment extends Fragment {
 
 
     }/************************ FIN DEL MÉTODO onDetach()***********************/
-
-
-
-
 
 
 
@@ -280,9 +248,6 @@ public class GastoCombustibleAnual_Fragment extends Fragment {
 
 
 
-
-
-
     public interface OnFragmentInteractionListener {
 
         // TODO: Update argument type and name
@@ -290,7 +255,7 @@ public class GastoCombustibleAnual_Fragment extends Fragment {
         void onFragmentInteraction(Uri uri);
 
 
-    }/********* FIN DEL MÉTODO OnFragmentInteractionListener() ***********************/
+    }/***************** FIN DEL MÉTODO OnFragmentInteractionListener() ***********************/
 
 
 
@@ -314,8 +279,6 @@ public class GastoCombustibleAnual_Fragment extends Fragment {
     /********COMIENZO DE LAS FUNCIONES PARA AGREGAR EL GRÁFICO DE BARRAS ************/
 
 
-
-
     private Chart getSameChart(Chart chart, String descripcion, int textColor, int background, int animateY){
 
 
@@ -326,6 +289,7 @@ public class GastoCombustibleAnual_Fragment extends Fragment {
         chart.setBackgroundColor(background);
 
         chart.animateY(animateY);
+
 
 
 
@@ -360,11 +324,7 @@ public class GastoCombustibleAnual_Fragment extends Fragment {
 
 
 
-    /******** Leyenda en blanco  ********/
-
     private void Leyenda(Chart chart){
-
-
 
 
         Legend legend = chart.getLegend();
@@ -373,14 +333,13 @@ public class GastoCombustibleAnual_Fragment extends Fragment {
 
         LegendEntry entry = new LegendEntry();
 
-        entry.formColor = Color.WHITE;
+        entry.formColor = Color.BLACK;
 
         entries.add(entry);
 
 
 
         legend.setCustom(entries);
-
 
 
     }/***************************FIN DE LA FUNCIÓN Leyenda()*************************************/
@@ -413,9 +372,9 @@ public class GastoCombustibleAnual_Fragment extends Fragment {
 
 
 
-        for(int i = 0; i < Costo_Combustible.length; i++){
+        for(int i = 0; i < Ventas_Bidones.length; i++){
 
-            entries.add(new BarEntry(i,Costo_Combustible[i]));
+            entries.add(new BarEntry(i,Ventas_Bidones[i]));
 
 
         }//Fin del for
@@ -452,15 +411,13 @@ public class GastoCombustibleAnual_Fragment extends Fragment {
 
         axis.setPosition(XAxis.XAxisPosition.BOTTOM);
 
-        axis.setValueFormatter(new IndexAxisValueFormatter(Meses_Anio));
-
+        axis.setValueFormatter(new IndexAxisValueFormatter(Semanas));
 
         axis.setTextSize(30);
 
-        axis.setTextColor(Color.BLACK);
+        axis.setTextColor(Color.WHITE);
 
         axis.setTypeface(Typeface.DEFAULT_BOLD);
-
 
 
     }/***************************FIN DE LA FUNCIÓN axisX()*************************************/
@@ -493,6 +450,11 @@ public class GastoCombustibleAnual_Fragment extends Fragment {
         axis.setAxisMinimum(0);
 
         axis.setTextSize(20);
+
+        axis.setTextColor(Color.WHITE);
+
+
+
 
     }/***************************FIN DE LA FUNCIÓN axisLeft()*************************************/
 
@@ -547,20 +509,19 @@ public class GastoCombustibleAnual_Fragment extends Fragment {
     public void createCharts(){
 
 
-        barChart = (BarChart) getSameChart(barChart,"",Color.RED,Color.WHITE,3000);
+        barChart = (BarChart) getSameChart(barChart,"",Color.RED,Color.BLACK,3000);
 
         barChart.setDrawGridBackground(true);
 
         barChart.setDrawBarShadow(true);
 
+
+
+
         /*Llamada a la función: */
         barChart.setData(getBarData());
 
         barChart.invalidate();
-
-        barChart.zoom(2.5f,2.5f,2.5f,2.5f);
-
-
 
 
         /*Llamadas a las siguientes funciones: */
@@ -654,7 +615,7 @@ public class GastoCombustibleAnual_Fragment extends Fragment {
 
         BarData barData = new BarData(barDataSet);
 
-        barData.setBarWidth(0.75f);
+        barData.setBarWidth(0.45f);
 
 
 
@@ -693,4 +654,11 @@ public class GastoCombustibleAnual_Fragment extends Fragment {
 
 
 
-}/****************************** FIN DE LA CLASE GastoCombustibleAnual_Fragment *******************************/
+
+
+
+
+}/****************************** FIN DE LA CLASE VentaBdionesMensual_Fragment *******************************/
+
+
+

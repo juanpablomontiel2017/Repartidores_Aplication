@@ -173,7 +173,6 @@ public class GastoCombustibleSemestral_Fragment extends Fragment {
 
         // Inflate the layout for this fragment
 
-
         View view = inflater.inflate(R.layout.fragment_gasto_combustible_semestral_, container, false);
 
 
@@ -290,7 +289,7 @@ public class GastoCombustibleSemestral_Fragment extends Fragment {
         void onFragmentInteraction(Uri uri);
 
 
-    }/********* FIN DEL MÉTODO interface() ***********************/
+    }/********* FIN DEL MÉTODO OnFragmentInteractionListener() ***********************/
 
 
 

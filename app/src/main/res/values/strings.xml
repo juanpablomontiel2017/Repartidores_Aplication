@@ -95,13 +95,13 @@
     <string name="action_gc_anio">Gasto Anual</string>
 
 
-    <!--Menu: prueba.xml -->
+    <!--Menu: menu_filtro_vb.xml -->
 
-    <string name="action_gc_mes_prueba">Gasto Mensual</string>
+    <string name="action_vb_mes">Venta Mensual</string>
 
-    <string name="action_gc_seis_meses_prueba">Gasto Semestral</string>
+    <string name="action_vb_seis_meses">Venta Semestral</string>
 
-    <string name="action_gc_anio_prueba">Gasto Anual</string>
+    <string name="action_vb_anio">Venta Anual</string>
 
 
     <!--Menu: entrega_retiro_envases_patrocinio.xml -->
