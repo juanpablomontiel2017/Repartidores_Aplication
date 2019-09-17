@@ -1,6 +1,8 @@
 package com.example.jumpi.repartidores_aplication;
 
 import android.content.DialogInterface;
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
@@ -68,6 +70,10 @@ public class NuevoResponsablePatrocinio extends AppCompatActivity {
 
 
 
+
+
+
+    /**************************** COMIENZO DEL onCreate() ********************************/
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -641,6 +647,81 @@ public class NuevoResponsablePatrocinio extends AppCompatActivity {
     /***************************************************************************************************/
     /***************************************************************************************************/
     /***************************************************************************************************/
+
+
+
+    public void EnviarDatosConfirmadosDelNuevoResponsableEvento(){
+
+
+
+        Intent intent = new Intent(this, BuscarResponsableParaPatrocinio.class);
+
+        intent.putExtra("NombreEvento", et_nombre_del_evento_nuevo_responsable.getText());
+
+        intent.putExtra("ApellidoNombre", et_nombre_apellido_nuevo_responsable.getText());
+
+        intent.putExtra("FechaInicioEvento", et_fecha_inicio_del_evento_nuevo_responsable.getText());
+
+        intent.putExtra("FechaFinEvento", et_fecha_fin_del_evento_nuevo_responsable.getText());
+
+        startActivity(intent);
+
+
+
+
+
+
+
+    }/******************** FIN DE LA FUNCIÓN EnviarDatosConfirmadosDelNuevoResponsableEvento() *******************/
+
+
+
+
+    public void GuardarEventoEnSharedPreferences(){
+
+        SharedPreferences sharedPreferences = getSharedPreferences("Datos_Evento_Responsable", MODE_PRIVATE);
+
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+
+        editor.putString("DNI_Responsable", et_dni_nuevo_responsable.getText().toString());
+
+        editor.putString("Nombre_Apellido_Responsable", et_nombre_apellido_nuevo_responsable.getText().toString());
+
+        editor.putString("Telefono_Responsable", et_telefono_nuevo_responsable.getText().toString());
+
+        editor.putString("Direccion_Responsable", et_direccion_nuevo_responsable.getText().toString());
+
+        editor.putString("Barrio_Responsable", et_barrio_nuevo_responsable.getText().toString());
+
+        editor.putString("Correo_Responsable", et_correo_nuevo_responsable.getText().toString());
+
+        editor.putString("Referencia_Responsable", et_referencia_nuevo_responsable.getText().toString());
+
+
+
+
+        editor.putString("Nombre_Evento", et_nombre_del_evento_nuevo_responsable.getText().toString());
+
+        editor.putString("Direccion_Evento", et_direccion_del_evento_nuevo_responsable.getText().toString());
+
+        editor.putString("Barrio_Evento", et_barrio_del_evento_nuevo_responsable.getText().toString());
+
+        editor.putString("Referencia_Evento", et_referencia_del_evento_nuevo_responsable.getText().toString());
+
+        editor.putString("Fecha_Inicio_Evento", et_fecha_inicio_del_evento_nuevo_responsable.getText().toString());
+
+        editor.putString("Fecha_Fin_Evento", et_fecha_fin_del_evento_nuevo_responsable.getText().toString());
+
+
+
+
+
+
+
+
+    }
+
+
 
 
 

@@ -84,9 +84,9 @@ public class RealizarVentasClientesSupervisor extends AppCompatActivity {
 
 
 
-
     /** Variables tipo LinearLayout*/
-    LinearLayout LinearLayoutVerticalVentas;
+    LinearLayout LinearLayoutVerticalDatosPersonales,LinearLayoutVerticalVentas,LinearLayoutHorizontalContenedorSpinner,
+                 LinearLayoutVerticalImporteEntregaVentas;
 
 
 
@@ -141,10 +141,13 @@ public class RealizarVentasClientesSupervisor extends AppCompatActivity {
 
 
 
+        LinearLayoutVerticalDatosPersonales = (LinearLayout) findViewById(R.id.llv_datos_personales);
 
         LinearLayoutVerticalVentas = (LinearLayout) findViewById(R.id.layout_vertical_ventas_supervisor);
 
+        LinearLayoutHorizontalContenedorSpinner = (LinearLayout) findViewById(R.id.llh_contenedor_spinner);
 
+        LinearLayoutVerticalImporteEntregaVentas = (LinearLayout) findViewById(R.id.llv_importe_entrega_venta_supervisor);
 
 
 
@@ -214,6 +217,38 @@ public class RealizarVentasClientesSupervisor extends AppCompatActivity {
         ActualizarColorDelCheckBoton();
 
 
+
+
+
+
+
+
+        /** Pregunta si el usuario es un "repartidor" entonces habrá un cambio de colores en las activity's
+         * de Patrocinio**/
+
+        Usuario usuario = new Usuario();
+
+        usuario.LeerUsuarioEnUnSharedPreferences(this);
+
+        if(usuario.getTipo_de_Usuario().equals("repartidor")){
+
+            // finally change the color
+            window.setStatusBarColor(Color.parseColor("#303F9F"));
+
+
+            toolbar.setBackgroundColor(Color.parseColor("#3F51B5"));
+            setSupportActionBar(toolbar);
+
+            LinearLayoutVerticalDatosPersonales.setBackgroundColor(Color.parseColor("#283593"));
+
+            LinearLayoutHorizontalContenedorSpinner.setBackgroundDrawable(getDrawable(R.drawable.spinner_style_ventas_repartidor));
+
+
+            LinearLayoutVerticalImporteEntregaVentas.setBackgroundColor(Color.parseColor("#283593"));
+
+
+
+        }//Fin del if
 
 
 
@@ -474,12 +509,15 @@ public class RealizarVentasClientesSupervisor extends AppCompatActivity {
         NuevoArticuloInfladoVentasSupervisores = AgregarNuevoArticuloParaVentasSupervisores(llv);
 
 
-        /** Instanciamos las vistas del diseño XML: "nuevo_articulo.xml" **/
+        /** Instanciamos las vistas del diseño XML: "nuevo_articulo_ventas.xml" **/
+
+
+
+
+        final LinearLayout LinearLayoutHorizontalContenedorSpinnerProgramatico = (LinearLayout) findViewById(R.id.llh_contenedor_spinner_nuevo_articulo_supervisor);
+
 
         final ImageButton btnEliminarArticuloVentasSupervisores = (ImageButton) NuevoArticuloInfladoVentasSupervisores.findViewById(R.id.delete_art_ventas_supervisor);
-
-
-
 
 
 
@@ -614,7 +652,29 @@ public class RealizarVentasClientesSupervisor extends AppCompatActivity {
 
 
 
-    } /**************************************FIN DE LA FUNCION ObtenerNuevoArticuloParaVentasSupervisores()*******************************************/
+
+
+        /** Pregunta si el usuario es un "repartidor" entonces habrá un cambio de colores en las activity's
+         * de Patrocinio**/
+
+        Usuario usuario = new Usuario();
+
+        usuario.LeerUsuarioEnUnSharedPreferences(this);
+
+        if(usuario.getTipo_de_Usuario().equals("repartidor")){
+
+
+            LinearLayoutHorizontalContenedorSpinnerProgramatico.setBackgroundDrawable(getDrawable(R.drawable.spinner_style_ventas_repartidor));
+
+
+
+        }//Fin del if
+
+
+
+
+
+    } /**************************************FIN DE LA FUNCIÓN ObtenerNuevoArticuloParaVentasSupervisores()*******************************************/
 
 
 
@@ -636,16 +696,21 @@ public class RealizarVentasClientesSupervisor extends AppCompatActivity {
     public View AgregarNuevoArticuloParaVentasSupervisores(final LinearLayout LayoutVertical) {
 
 
+
+
+
         LayoutInflater inflater = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 
-        final View InflatedViewVentasSupervisores = inflater.inflate(R.layout.nuevo_articulo_ventas_supervisor, null, true);
+        final View InflatedViewVentas = inflater.inflate(R.layout.nuevo_articulo_ventas_supervisor, null, true);
 
-        LayoutVertical.addView(InflatedViewVentasSupervisores);
+        LayoutVertical.addView(InflatedViewVentas);
 
         ChildNuevoArticuloVentasSupervisores = LayoutVertical.getChildCount();
 
 
-        return InflatedViewVentasSupervisores;
+
+
+        return InflatedViewVentas;
 
 
 

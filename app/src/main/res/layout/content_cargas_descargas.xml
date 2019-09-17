@@ -48,23 +48,24 @@
                     android:id="@+id/layout_horizontal_primer_tupla"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:gravity="center"
                     android:orientation="horizontal">
 
 
                     <TextView
                         android:id="@+id/tandas"
                         android:layout_width="match_parent"
-                        android:layout_height="40dp"
+                        android:layout_height="wrap_content"
                         android:layout_marginLeft="2dp"
+                        android:layout_marginTop="2dp"
                         android:layout_marginRight="2dp"
                         android:background="#ff3d00"
                         android:gravity="bottom|center"
-                        android:text="Tanda N°"
+                        android:text="Tanda N° "
                         android:textColor="@android:color/background_light"
                         android:textSize="24sp" />
 
                 </LinearLayout>
+
 
 
                 <!--#################################################-->
@@ -73,48 +74,69 @@
                 <LinearLayout
                     android:id="@+id/layout_horizontal_segunda_tupla"
                     android:layout_width="match_parent"
-                    android:layout_height="40dp"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
                     android:layout_marginLeft="2dp"
                     android:layout_marginRight="2dp"
                     android:background="#ff6d00"
-                    android:gravity="center"
-                    android:orientation="horizontal"
-                    android:weightSum="1"
-                    tools:visibility="visible">
+                    tools:visibility="visible"
+                    android:weightSum="1">
 
 
                     <TextView
 
                         android:id="@+id/articulos"
-                        android:layout_width="145dp"
+                        android:layout_width="150dp"
                         android:layout_height="wrap_content"
                         android:gravity="center"
                         android:text="Artículos"
                         android:textColor="#FFFF"
-                        android:textSize="18sp" />
+                        android:textSize="20sp" />
+
+
+
+
+
+                    <ImageView
+
+                        android:id="@+id/img_carga"
+                        android:layout_width="30dp"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/ic_carga" />
 
 
                     <TextView
-                        android:id="@+id/cargas"
-                        android:layout_width="100dp"
+
+                        android:id="@+id/tv_carga"
+                        android:layout_width="60dp"
                         android:layout_height="wrap_content"
-                        android:drawableLeft="@drawable/ic_carga"
+                        android:gravity="center|left"
                         android:text="Carga"
                         android:textColor="#FFFF"
-                        android:textSize="18sp" />
+                        android:textSize="20sp" />
+
+
+                    <ImageView
+
+                        android:id="@+id/img_descarga"
+                        android:layout_width="30dp"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/ic_descarga" />
 
 
                     <TextView
-                        android:id="@+id/descargas"
+
+                        android:layout_weight="1"
+                        android:id="@+id/tv_descarga"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:drawableLeft="@drawable/ic_descarga"
+                        android:gravity="left"
                         android:text="Descarga"
                         android:textColor="#FFFF"
-                        android:textSize="18sp" />
+                        android:textSize="20sp" />
 
                 </LinearLayout>
+
 
 
                 <!--#######################################################################-->
@@ -133,7 +155,6 @@
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:layout_marginTop="10dp"
-                        android:gravity="center"
                         android:orientation="horizontal"
                         android:weightSum="2">
 
@@ -155,7 +176,7 @@
 
                             android:id="@+id/sp_art"
                             style="@style/Widget.AppCompat.Spinner.DropDown"
-                            android:layout_width="165dp"
+                            android:layout_width="155dp"
                             android:layout_height="wrap_content"
                             android:dropDownWidth="wrap_content"
                             android:gravity="center"
@@ -180,15 +201,14 @@
 
                         <EditText
 
+                            android:layout_weight="1"
                             android:id="@+id/edtx_descarga"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_weight="1"
                             android:gravity="center"
                             android:hint="Cantidad"
                             android:imeOptions="actionNext"
-                            android:inputType="number"
-                            android:textSize="17sp" />
+                            android:inputType="number"/>
 
                     </LinearLayout>
 
@@ -206,6 +226,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="70dp"
                     android:orientation="horizontal"
+                    android:layout_marginTop="20dp"
                     android:weightSum="2">
 
 

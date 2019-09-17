@@ -62,7 +62,7 @@
                         android:layout_marginLeft="2dp"
                         android:layout_marginTop="2dp"
                         android:layout_marginRight="2dp"
-                        android:background="#ef6c00"
+                        android:background="#b71c1c"
                         android:gravity="bottom|center"
                         android:text="Vuelta N° "
                         android:textColor="@android:color/background_light"
@@ -80,7 +80,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="2dp"
                     android:layout_marginRight="2dp"
-                    android:background="#ff9800"
+                    android:background="#d32f2f"
                     android:orientation="horizontal"
                     tools:visibility="visible"
                     android:weightSum="2">
@@ -125,7 +125,7 @@
                         android:id="@+id/img_retiro_erep"
                         android:layout_width="30dp"
                         android:layout_height="wrap_content"
-                        android:src="@drawable/ic_descarga" />
+                        android:src="@drawable/ic_retiro_erep" />
 
 
                     <TextView
