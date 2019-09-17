@@ -16,31 +16,27 @@
 
 
 
+    <LinearLayout
 
-
-
-
-
-
-
-    <Button
-
-        android:id="@+id/btn_responsable_inactivo"
+        android:id="@+id/parent_layout_vertical_buscador_evento"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="100dp"
-        android:layout_marginBottom="50dp"
-        android:background="#ff5722"
-        android:text="Ema Aguirre" />
+        android:orientation="vertical">
 
 
 
-    <Button
 
-        android:id="@+id/btn_responsable_activo"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Karancho"
-        android:background="@color/img_confirmar_venta_supervisor"/>
+
+
+
+
+    </LinearLayout>     <!-- Fin del "parent_layout_vertical_buscador_evento" -->
+
+
+
+
+
+
+
 
 </LinearLayout>
