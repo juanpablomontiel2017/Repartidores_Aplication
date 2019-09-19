@@ -4,6 +4,7 @@ import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.res.ColorStateList;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -23,6 +24,8 @@ import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import java.util.ArrayList;
+
 public class BuscarResponsableParaPatrocinio extends AppCompatActivity implements SearchView.OnQueryTextListener {
 
 
@@ -33,6 +36,9 @@ public class BuscarResponsableParaPatrocinio extends AppCompatActivity implement
 
 
     LinearLayout LinearLayoutVerticalPadre;
+
+
+    ArrayList<View> ArrayListItemEvento = new ArrayList<View>();
 
 
 
@@ -323,6 +329,14 @@ public class BuscarResponsableParaPatrocinio extends AppCompatActivity implement
 
 
 
+
+        CargaItemDeEvento();
+
+
+
+
+
+
     }/******************************* FIN DEL onCreate() ***********************************/
 
 
@@ -416,6 +430,133 @@ public class BuscarResponsableParaPatrocinio extends AppCompatActivity implement
 
 
 
+    public void CargaItemDeEvento(){
+
+        int dimension = 0;
+
+        SharedPreferences preferences = getSharedPreferences("Datos_Evento_Responsable", MODE_PRIVATE);
+
+        String DimensionEvento = preferences.getString("DimensionDeEvento", "");
+
+        if(DimensionEvento != ""){
+
+            dimension = Integer.parseInt(DimensionEvento);
+
+            for(int i=0; i < dimension;i++){
+
+
+                ObtenerItemEvento(i);
+
+
+            }//Fin del for
+
+
+
+        }//Fin del if
+
+
+
+
+    }
+
+
+
+
+
+    /************************************************************************/
+    /************************************************************************/
+    /************************************************************************/
+    /************************************************************************/
+    /************************************************************************/
+    /************************************************************************/
+    /************************************************************************/
+    /************************************************************************/
+    /************************************************************************/
+    /************************************************************************/
+
+
+
+    int ChildNuevoItemEvento = 0;
+
+    public  void ObtenerItemEvento(int indice){
+
+
+        View NuevoItemInflado;
+
+        /*Llamada a la función: */
+        NuevoItemInflado = AgregarItemEvento();
+
+        ArrayListItemEvento.add(NuevoItemInflado);
+
+
+
+
+
+        final View view_estado_evento = (View) NuevoItemInflado.findViewById(R.id.view_estado_evento);
+
+
+        final LinearLayout LinearLayoutVerticalContenedorHijo = (LinearLayout) NuevoItemInflado.findViewById(R.id.llv_contenedor_hijo_de_evento);
+
+
+        final TextView TV_Nombre_Evento = (TextView) NuevoItemInflado.findViewById(R.id.tv_nombre_evento_recibir);
+
+
+        final TextView TV_Nombre_Apellido_Responsable_Evento = (TextView) NuevoItemInflado.findViewById(R.id.tv_nombre_apellido_responsable_recibir);
+
+
+        final LinearLayout LinearLayoutHorizontalFechaInicio = (LinearLayout) NuevoItemInflado.findViewById(R.id.llh_fecha_inicio);
+
+
+        final TextView TV_Fecha_Inicio_Evento = (TextView) NuevoItemInflado.findViewById(R.id.tv_fecha_inicio_recibir);
+
+
+        final TextView TV_Valor_Fecha_Inicio_Evento = (TextView) NuevoItemInflado.findViewById(R.id.tv_valor_fecha_inicio_recibir);
+
+
+        final LinearLayout LinearLayoutHorizontalFechaFin = (LinearLayout) NuevoItemInflado.findViewById(R.id.llh_fecha_fin);
+
+
+        final TextView TV_Fecha_Fin_Evento = (TextView) NuevoItemInflado.findViewById(R.id.tv_fecha_fin_recibir);
+
+
+        final TextView TV_Valor_Fecha_Fin_Evento = (TextView) NuevoItemInflado.findViewById(R.id.tv_valor_fecha_fin_recibir);
+
+
+
+
+
+        SharedPreferences preferences = getSharedPreferences("Datos_Evento_Responsable", MODE_PRIVATE);
+
+
+
+
+
+
+
+        String Nombre_Evento = preferences.getString("Nombre_Evento" + indice, "");
+        String Nombre_Apellido_Responsable = preferences.getString("Nombre_Apellido_Responsable" + indice, "");
+        String Fecha_Inicio_Evento = preferences.getString("Fecha_Inicio_Evento" + indice, "");
+        String Fecha_Fin_Evento = preferences.getString("Fecha_Fin_Evento" + indice, "");
+
+
+
+
+        TV_Nombre_Evento.setText(Nombre_Evento);
+        TV_Nombre_Apellido_Responsable_Evento.setText(Nombre_Apellido_Responsable);
+        TV_Fecha_Inicio_Evento.setText(Fecha_Inicio_Evento);
+        TV_Fecha_Fin_Evento.setText(Fecha_Fin_Evento);
+
+
+
+
+
+
+
+
+    }/***************************FIN DE LA FUNCIÓN ObtenerItemEvento()*****************************/
+
+
+
 
 
     /************************************************************************/
@@ -440,29 +581,9 @@ public class BuscarResponsableParaPatrocinio extends AppCompatActivity implement
 
         final View InflatedView = inflateItemEvento.inflate(R.layout.item_evento, null, true);
 
-
         LinearLayoutVerticalPadre.addView(InflatedView,0);
 
-
-
-
-
-        /*InflatedView.setOnLongClickListener(new View.OnLongClickListener() {
-            @Override
-            public boolean onLongClick(final View v) {
-
-                EliminarCualquierVuelta(v);
-
-                return false;
-
-
-            }
-
-
-        });*/
-
-
-
+        ChildNuevoItemEvento = LinearLayoutVerticalPadre.getChildCount();
 
 
         return InflatedView;
@@ -473,34 +594,63 @@ public class BuscarResponsableParaPatrocinio extends AppCompatActivity implement
 
 
 
-    public void RecibirDatosDelNuevoResponsableEvento(TextView tv_nombre_del_evento, TextView tv_nombre_apellido_responsable
-                                                        , TextView tv_fecha_del_evento){
-
-        String extras = getIntent().getStringExtra("NombreEvento");
-
-        tv_nombre_del_evento.setText(extras);
-
-
-
-        extras = getIntent().getStringExtra("ApellidoNombre");
-
-       //Direccion_Cliente_Ventas_Supervisor.setText(extras);
+    /************************************************************************/
+    /************************************************************************/
+    /************************************************************************/
+    /************************************************************************/
+    /************************************************************************/
+    /************************************************************************/
+    /************************************************************************/
+    /************************************************************************/
+    /************************************************************************/
+    /************************************************************************/
 
 
-        extras = getIntent().getStringExtra("FechaInicioEvento");
+    public void LeerEventoEnSharedPreferences(){
 
-       //Direccion_Cliente_Ventas_Supervisor.setText(extras);
+        SharedPreferences preferences = getSharedPreferences("Datos_Evento_Responsable", MODE_PRIVATE);
 
 
 
-        extras = getIntent().getStringExtra("FechaFinEvento");
+        String DNI_Responsable = preferences.getString("DNI_Responsable", "");
 
-        //Direccion_Cliente_Ventas_Supervisor.setText(extras);
+        String Nombre_Apellido_Responsable =  preferences.getString("Nombre_Apellido_Responsable", "");
+
+        String Telefono_Responsable = preferences.getString("Telefono_Responsable", "");
+
+        String Direccion_Responsable = preferences.getString("Direccion_Responsable", "");
+
+        String Barrio_Responsable = preferences.getString("Barrio_Responsable", "");
+
+        String Correo_Responsable = preferences.getString("Correo_Responsable", "");
+
+        String Referencia_Responsable = preferences.getString("Referencia_Responsable", "");
 
 
 
 
-    }/***************** FIN DE LA FUNCIÓN RecibirDatosDelNuevoResponsableEvento ****************/
+        String Nombre_Evento = preferences.getString("Nombre_Evento", "");
+
+        String Direccion_Evento = preferences.getString("Direccion_Evento", "");
+
+        String Barrio_Evento = preferences.getString("Barrio_Evento", "");
+
+        String Referencia_Evento = preferences.getString("Referencia_Evento", "");
+
+        String Fecha_Inicio_Evento = preferences.getString("Fecha_Inicio_Evento", "");
+
+        String Fecha_Fin_Evento = preferences.getString("Fecha_Fin_Evento", "");
+
+
+
+
+
+
+    }/******************** FIN DE LA FUNCIÓN LeerEventoEnSharedPreferences() *******************/
+
+
+
+
 
 
 
