@@ -2,7 +2,6 @@ package com.example.jumpi.repartidores_aplication;
 
 import android.content.Context;
 import android.content.SharedPreferences;
-import android.util.Log;
 
 import static android.content.Context.MODE_PRIVATE;
 
@@ -12,14 +11,14 @@ public class articulo {
 
     private int idArticulo;
     private String  nombreArticulo;
-    private float precio;
+    private String precio;
 
 
     public articulo(){
 
     }
 
-    public articulo(int idArticulo, String nombreArticulo, float precio){
+    public articulo(int idArticulo, String nombreArticulo, String precio){
         this.setIdArticulo(idArticulo);
         this.setNombreArticulo(nombreArticulo);
         this.setPrecio(precio);
@@ -42,7 +41,7 @@ public class articulo {
         editor.putString("nombreArticulo_"+indice,this.getNombreArticulo());
         editor.commit();
 
-        editor.putString("precioArticulo_"+indice,Float.toString(getPrecio()));
+        editor.putString("precioArticulo_"+indice, this.getPrecio());
         editor.commit();
 
 
@@ -86,11 +85,11 @@ public class articulo {
         this.nombreArticulo = nombreArticulo;
     }
 
-    public float getPrecio() {
+    public String getPrecio() {
         return precio;
     }
 
-    public void setPrecio(float Precio) {
-        precio = precio;
+    public void setPrecio(String  Precio) {
+        precio = Precio;
     }
 }

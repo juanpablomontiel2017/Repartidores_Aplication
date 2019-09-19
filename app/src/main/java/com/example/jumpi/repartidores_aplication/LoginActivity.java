@@ -2248,7 +2248,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
 
 
 
-                    articulo articulo = new articulo(parseInt(idArticulo), nombreArticulo, Float.parseFloat(precioArticulo));
+                    articulo articulo = new articulo(parseInt(idArticulo), nombreArticulo, precioArticulo);
 
                     articulo.guardarArticulosEnUnSharedPreferences(LoginActivity.this, i);
 
@@ -2275,7 +2275,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
             SharedPreferences.Editor editor = sharedPreferences.edit();
 
 
-            editor.putInt("dimensionArticulos",jsonArrayArticulos.length());
+            editor.putString("dimensionArticulos",String.valueOf(jsonArrayArticulos.length()));
             editor.commit();
 
 

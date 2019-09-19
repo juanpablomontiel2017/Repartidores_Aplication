@@ -11,6 +11,7 @@ import android.support.design.widget.Snackbar;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -131,6 +132,8 @@ public class Cargas_Descargas extends AppCompatActivity {
     @SuppressLint("RestrictedApi")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        obtenerArticulosParaSpinner();
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cargas_descargas);
 
@@ -170,15 +173,16 @@ public class Cargas_Descargas extends AppCompatActivity {
 
         nombre_apellido_recibir = getIntent().getStringExtra("nombre_apellido_repartidor");
 
-        idRepartidor = Integer.parseInt(getIntent().getStringExtra("idRepartidor"));
 
-        dniRepartidor = Integer.parseInt(getIntent().getStringExtra("dniRepartidor"));
+
+        idRepartidor = getIntent().getIntExtra("idRepartidor",0);
+
+        dniRepartidor = getIntent().getIntExtra("dniRepartidor",0);
 
         Estado_Tanda = Boolean.parseBoolean(LeerConfiguracionDeActivityEnUnSharedPreferences("EstadoTanda" + nombre_apellido_recibir));
 
 
         String FechaActualDelSistema = UtilidadFecha.getFecha("yyyy/MM/dd");
-
 
 
 
@@ -320,6 +324,8 @@ public class Cargas_Descargas extends AppCompatActivity {
 
 
 
+
+
     } /*********************************FIN DEL onCreate()*******************************************/
 
 
@@ -457,15 +463,19 @@ public class Cargas_Descargas extends AppCompatActivity {
 
         SharedPreferences preferences = getSharedPreferences("Datos_Articulos", MODE_PRIVATE);
 
-        int dimension = preferences.getInt("dimensionArticulos",0);
+        String dimension = preferences.getString("dimensionArticulos","");
+
+        if (dimension!=""){
+
+            for (int i = 0 ; i < Integer.valueOf(dimension); i++){
+
+                articulosParaSpinner.add(preferences.getString("nombreArticulo_"+i,""));
 
 
-        for (int i = 0 ; i < dimension; i++){
-
-            articulosParaSpinner.add(preferences.getString("nombreArticulo_",""));
-
+            }
 
         }
+
 
     }
 
