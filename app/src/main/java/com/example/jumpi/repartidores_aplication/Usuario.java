@@ -8,7 +8,7 @@ import static android.content.Context.MODE_PRIVATE;
 public class Usuario {
 
 
-    private int IdPersona;
+    private String IdPersona;
 
     private String DNI;
 
@@ -39,7 +39,7 @@ public class Usuario {
     }
 
 
-    Usuario(int IdPersona, String DNI, String Usuario, String Password,String Tipo_de_Usuario){
+    Usuario(String IdPersona, String DNI, String Usuario, String Password,String Tipo_de_Usuario){
 
         this.setIdPersona(IdPersona);
 
@@ -75,7 +75,7 @@ public class Usuario {
         SharedPreferences.Editor editor = sharedPreferences.edit();
 
 
-        editor.putInt("IdPersona",this.getIdPersona());
+        editor.putString("IdPersona",this.getIdPersona());
         editor.commit();
 
 
@@ -116,7 +116,7 @@ public class Usuario {
         SharedPreferences preferences = context.getSharedPreferences("Datos_Usuario", MODE_PRIVATE);
 
 
-        this.setIdPersona(preferences.getInt("IdPersona",0));
+        this.setIdPersona(preferences.getString("IdPersona",""));
 
         this.setDNI(preferences.getString("DNI",""));
 
@@ -147,7 +147,7 @@ public class Usuario {
 
 
 
-    public int getIdPersona() {
+    public String getIdPersona() {
 
         return IdPersona;
 
@@ -170,7 +170,7 @@ public class Usuario {
 
 
 
-    public void setIdPersona(int idPersona) {
+    public void setIdPersona(String idPersona) {
 
         IdPersona = idPersona;
 

@@ -1,5 +1,7 @@
 package com.example.jumpi.repartidores_aplication;
 
+import android.util.Log;
+
 import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.toolbox.StringRequest;
@@ -71,7 +73,8 @@ public class utilsRequest extends StringRequest {
         parametro = new HashMap<>();
         parametro.put("idSupervisor", idSupervisor);
         parametro.put("dniSupervisor", dniSupervisor);
-        parametro.put("idRepartidor", idRepartidor);
+        parametro.put("dniSupervisor", fecha);
+        parametro.put("fecha", idRepartidor);
         parametro.put("dniRepartidor", dniRepartidor);
         parametro.put("plata", plata);
         parametro.put("carga", carga);
@@ -81,8 +84,9 @@ public class utilsRequest extends StringRequest {
 
 
         request = new utilsRequest(Request.Method.POST, dirServer, listener, null, parametro);
-
+        Log.d("TFSB", "retorna request");
         return request;
+
 
     }
 

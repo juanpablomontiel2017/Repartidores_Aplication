@@ -4,6 +4,7 @@ import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.annotation.TargetApi;
 import android.app.LoaderManager.LoaderCallbacks;
+import android.content.Context;
 import android.content.CursorLoader;
 import android.content.Intent;
 import android.content.Loader;
@@ -109,6 +110,12 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
+
+
+
+
+
 
         Log.d("TFSB", "***************************");
         Log.d("TFSB", "                           ");
@@ -872,6 +879,9 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
 
                         if (success) {
 
+                            articulo.borrarArticulosDelSharedPreferences(getApplication());
+                            Repartidores.borrarRepartidoresDelSharedPreferences(getApplication());
+
                             JSONObject jsonData = jsonResponse.getJSONObject("data");
 
                             id = jsonData.getString("id");
@@ -881,7 +891,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
                             msj = jsonData.getString("msj");
 
 
-                            Usuario usuario = new Usuario(parseInt(id), dni, mEmail, mPassword, msj);
+                            Usuario usuario = new Usuario(id, dni, mEmail, mPassword, msj);
 
                             usuario.GuardarUsuarioEnUnSharedPreferences(LoginActivity.this);
 
@@ -1212,7 +1222,8 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
 
                         if (success) {
 
-
+                           articulo.borrarArticulosDelSharedPreferences(getApplication());
+                            Repartidores.borrarRepartidoresDelSharedPreferences(getApplication());
                             JSONObject jsonData = jsonResponse.getJSONObject("data");
 
 
@@ -1237,7 +1248,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
                             String idbd = null;
 
 
-                            Usuario usuario = new Usuario(parseInt(id), dni, mEmail, mPassword, msj);
+                            Usuario usuario = new Usuario(id, dni, mEmail, mPassword, msj);
 
                             usuario.GuardarUsuarioEnUnSharedPreferences(LoginActivity.this);
 
@@ -1512,6 +1523,8 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
 
                         if (success) {
 
+                            articulo.borrarArticulosDelSharedPreferences(getApplication());
+                            Repartidores.borrarRepartidoresDelSharedPreferences(getApplication());
                             DbHelper db = new DbHelper(getApplicationContext());
                             SQLiteDatabase sql = db.getReadableDatabase();
 
@@ -1530,7 +1543,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
                             msj = jsonData.getString("msj");
 
 
-                            Usuario usuario = new Usuario(parseInt(id), dni, mEmail, mPassword, msj);
+                            Usuario usuario = new Usuario(id, dni, mEmail, mPassword, msj);
 
                             usuario.GuardarUsuarioEnUnSharedPreferences(LoginActivity.this);
 
@@ -2248,7 +2261,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
 
 
 
-                    articulo articulo = new articulo(parseInt(idArticulo), nombreArticulo, precioArticulo);
+                    articulo articulo = new articulo(idArticulo, nombreArticulo, precioArticulo);
 
                     articulo.guardarArticulosEnUnSharedPreferences(LoginActivity.this, i);
 
@@ -2286,9 +2299,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
 
 
 
-    }/************************ FIN DE LA FUNCIÓN LeerClientesDelResponse() *************************/
-
-
+    }
 
 
 }/*****************************************FIN DE LA Activity LoginActivity ***************************************************/

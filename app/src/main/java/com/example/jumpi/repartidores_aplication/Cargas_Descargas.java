@@ -12,6 +12,7 @@ import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -28,6 +29,12 @@ import android.widget.ScrollView;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.android.volley.Response;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -83,9 +90,9 @@ public class Cargas_Descargas extends AppCompatActivity {
 
     String nombre_apellido_recibir;
 
-    Integer idRepartidor;
+    String idRepartidor;
 
-    Integer dniRepartidor;
+    String dniRepartidor;
 
 
     /******EditText********/
@@ -175,9 +182,9 @@ public class Cargas_Descargas extends AppCompatActivity {
 
 
 
-        idRepartidor = getIntent().getIntExtra("idRepartidor",0);
+        idRepartidor = getIntent().getStringExtra("idRepartidor");
 
-        dniRepartidor = getIntent().getIntExtra("dniRepartidor",0);
+        dniRepartidor = getIntent().getStringExtra("dniRepartidor");
 
         Estado_Tanda = Boolean.parseBoolean(LeerConfiguracionDeActivityEnUnSharedPreferences("EstadoTanda" + nombre_apellido_recibir));
 
@@ -459,6 +466,87 @@ public class Cargas_Descargas extends AppCompatActivity {
     /***************************************************************************************************/
 
 
+    public void enviarTandasAlServidor(){
+
+        Log.d("TFSB", "entró a enviarTandasAlServidor");
+
+        final Spinner spinner_fijo = (Spinner) ArrayListTandas.get(0).findViewById(R.id.sp_art);
+
+        final EditText editText_carga = (EditText) ArrayListTandas.get(0).findViewById(R.id.edtx_carga);
+
+        final EditText editText_descarga = (EditText) ArrayListTandas.get(0).findViewById(R.id.edtx_descarga);
+
+        final EditText et_carga_money = (EditText)  ArrayListTandas.get(0).findViewById(R.id.edtx_carga_money);
+
+        final EditText et_descarga_money = (EditText)  ArrayListTandas.get(0).findViewById(R.id.edtx_descarga_money);
+
+
+
+        String ArticuloSeleccionado =  spinner_fijo.getSelectedItem().toString();
+
+        String idArticulo = obtenerIdDeArticuloSeleccionado(ArticuloSeleccionado);
+
+
+        String carga = editText_carga.getText().toString();
+        String descarga = editText_descarga.getText().toString();
+        String plataCarga = et_carga_money.getText().toString();
+        //String platadescarga = et_descarga_money.getText().toString();
+
+
+        Usuario usuario = new Usuario();
+        usuario.LeerUsuarioEnUnSharedPreferences(this);
+        if (usuario.getTipo_de_Usuario().equals("supervisor")){
+
+            String dniSupervisor = usuario.getDNI();
+            String idSupervisor = usuario.getIdPersona();
+
+
+            Response.Listener<String> responseListener = new Response.Listener<String>() {
+                @Override
+                public void onResponse(String response) {
+                    Log.d("TFSB", "response del server");
+
+                    try{
+
+                        JSONObject jsonResponse = new JSONObject(String.valueOf(response));
+
+                        boolean success = jsonResponse.getBoolean("exito");
+                        if (success){
+                            JSONObject jsonData = jsonResponse.getJSONObject("data");
+
+                            if (jsonData.has("resultado")) {
+
+
+                                JSONArray jsonResultado = jsonData.getJSONArray("resultado");
+
+                                String resultado = jsonResultado.getString(0);
+
+                                Log.d("TFSB", "Resultado: "+resultado);
+                            }
+
+                            }else{
+
+                        }
+
+                    }catch (JSONException a){
+                        Log.e("TSFB", "Parser JSON DIA DATOS  " + a.toString());
+
+                    }
+                }
+            };
+
+            utilsRequest request = utilsRequest.cargaDescarga(idSupervisor,dniSupervisor, UtilidadFecha.getFecha("yyyy/MM/dd"),idRepartidor,dniRepartidor,plataCarga,carga,descarga,idArticulo, responseListener);
+            MySingleton.getInstance(getApplicationContext()).addToRequestQueue(request);
+
+
+
+        }
+
+
+
+
+    }
+
     public void obtenerArticulosParaSpinner(){
 
         SharedPreferences preferences = getSharedPreferences("Datos_Articulos", MODE_PRIVATE);
@@ -470,11 +558,54 @@ public class Cargas_Descargas extends AppCompatActivity {
             for (int i = 0 ; i < Integer.valueOf(dimension); i++){
 
                 articulosParaSpinner.add(preferences.getString("nombreArticulo_"+i,""));
-
-
             }
 
         }
+
+
+    }
+
+
+
+    public String obtenerIdDeArticuloSeleccionado(String nombreArticulo){
+        ArrayList <articulo> arrayDeArticulos = crearArrayDeArticulos();
+
+        for (int i=0; i < arrayDeArticulos.size(); i++) {
+            if (arrayDeArticulos.get(i).getNombreArticulo().equals(nombreArticulo)){
+                return arrayDeArticulos.get(i).getIdArticulo();
+            }
+
+        }
+    return null;
+    }
+
+    public ArrayList <articulo>  crearArrayDeArticulos(){
+        ArrayList <articulo> arrayDeArticulos = new ArrayList<>();
+        if (esExisteDimensionEnSharedPreferences("Datos_Articulos","dimensionArticulos")){
+
+            int dimension = Integer.parseInt(obtenerValorDelSharedPreferences("Datos_Articulos","dimensionArticulos"));
+            for (int i=0; i<dimension; i++){
+                articulo articulo = new articulo();
+                articulo.obtenerArticuloPorIndice(this,i);
+                arrayDeArticulos.add(articulo);
+            }
+        }
+
+        return arrayDeArticulos;
+    }
+
+    public boolean esExisteDimensionEnSharedPreferences(String nombreColeccion, String dimension){
+        SharedPreferences preferences = getSharedPreferences( nombreColeccion, MODE_PRIVATE);
+
+        return (preferences.getString(dimension,"") != "");
+
+
+    }
+
+    public String obtenerValorDelSharedPreferences(String nombreColeccion, String clave){
+
+        SharedPreferences preferences = getSharedPreferences( nombreColeccion, MODE_PRIVATE);
+        return preferences.getString(clave,"");
 
 
     }
@@ -637,7 +768,7 @@ public class Cargas_Descargas extends AppCompatActivity {
                                 /*Llamada a la función:  */
                                 GuardarValoresEnSharedPreferences();
 
-
+                                enviarTandasAlServidor();
 
                                 tanda_numero = 0;
 
@@ -2925,6 +3056,8 @@ public void ObtenerNuevoArticulo(String ValorElementoSeleccionadoSpinnerPrograma
 
                             /*Llamada a la función: */
                             GuardarValoresEnSharedPreferences();
+                            enviarTandasAlServidor();
+
 
                         }
 
@@ -3092,6 +3225,7 @@ public void ObtenerNuevoArticulo(String ValorElementoSeleccionadoSpinnerPrograma
 
                                 /*Llamada a la función: */
                                 GuardarValoresEnSharedPreferences();
+                                enviarTandasAlServidor();
 
                                 finish();
 

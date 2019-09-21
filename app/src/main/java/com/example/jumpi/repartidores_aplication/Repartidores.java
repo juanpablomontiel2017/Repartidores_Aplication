@@ -58,6 +58,34 @@ public class Repartidores {
     }/********************* FIN DE LA FUNCIÓN GuardarUsuarioEnUnSharedPreferences()***********************/
 
 
+    public static void borrarRepartidoresDelSharedPreferences(Context context){
+
+        SharedPreferences sharedPreferences = context.getSharedPreferences("Datos_Repartidores", MODE_PRIVATE);
+
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+
+        String dimension = sharedPreferences.getString("dimensionRepartidores","");
+
+        if (dimension!=""){
+
+            for (int i = 0 ; i < Integer.valueOf(dimension); i++){
+
+                editor.remove("IdPersona_"+i).commit();
+                editor.remove("dni_"+i).commit();
+                editor.remove("imgRepartidor_"+i).commit();
+                editor.remove("nombreApellido_"+i).commit();
+            }
+
+        }
+
+
+
+
+
+        editor.remove("dimensionRepartidores").commit();
+        ITEMS.removeAll(ITEMS);
+    }
+
 
 
 

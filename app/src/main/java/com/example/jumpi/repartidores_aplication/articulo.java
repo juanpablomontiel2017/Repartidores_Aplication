@@ -9,7 +9,7 @@ public class articulo {
 
 
 
-    private int idArticulo;
+    private String idArticulo;
     private String  nombreArticulo;
     private String precio;
 
@@ -18,7 +18,7 @@ public class articulo {
 
     }
 
-    public articulo(int idArticulo, String nombreArticulo, String precio){
+    public articulo(String idArticulo, String nombreArticulo, String precio){
         this.setIdArticulo(idArticulo);
         this.setNombreArticulo(nombreArticulo);
         this.setPrecio(precio);
@@ -34,7 +34,7 @@ public class articulo {
         SharedPreferences.Editor editor = sharedPreferences.edit();
 
 
-        editor.putString("idArticulo_"+indice,Integer.toString(getIdArticulo()));
+        editor.putString("idArticulo_"+indice,getIdArticulo());
         editor.commit();
 
 
@@ -53,7 +53,51 @@ public class articulo {
 
 
 
-    }/********************* FIN DE LA FUNCIÓN GuardarUsuarioEnUnSharedPreferences()***********************/
+    }
+    public  static void borrarArticulosDelSharedPreferences(Context context){
+
+        SharedPreferences sharedPreferences = context.getSharedPreferences("Datos_Articulos", MODE_PRIVATE);
+
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+
+        String dimension = sharedPreferences.getString("dimensionArticulos","");
+
+        if (dimension!=""){
+
+            for (int i = 0 ; i < Integer.valueOf(dimension); i++){
+
+                editor.remove("nombreArticulo_"+i).commit();
+                editor.remove("idArticulo_"+i).commit();
+                editor.remove("precioArticulo_"+i).commit();
+            }
+
+        }
+
+        editor.remove("dimensionArticulos").commit();
+    }
+
+
+
+    public articulo obtenerArticuloPorIndice(Context context, int índice){
+
+        SharedPreferences preferences = context.getSharedPreferences("Datos_Articulos", MODE_PRIVATE);
+
+        if (preferences.getString("dimensionArticulos","") != ""){
+
+            this.setIdArticulo(preferences.getString("idArticulo_"+índice,""));
+            this.setNombreArticulo(preferences.getString("nombreArticulo_"+índice,""));
+            this.setPrecio(preferences.getString("precioArticulo_"+índice,""));
+            return this;
+
+        }else{
+            return null;
+
+        }
+
+
+
+
+    }
 
 
 
@@ -63,17 +107,11 @@ public class articulo {
 
 
 
-
-
-
-
-
-
-    public int getIdArticulo() {
+    public String getIdArticulo() {
         return idArticulo;
     }
 
-    public void setIdArticulo(int idArticulo) {
+    public void setIdArticulo(String idArticulo) {
         this.idArticulo = idArticulo;
     }
 
