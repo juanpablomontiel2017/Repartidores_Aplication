@@ -20,13 +20,19 @@
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-        </activity> <!-- #################### Para REPARTIDORES ########################### -->
+        </activity>
+
+
+
+        <!-- #################### Para REPARTIDORES ########################### -->
+
+
         <activity
             android:name=".Repartidores_Main_Activity"
             android:label=" "
             android:parentActivityName=".LoginActivity"
             android:theme="@style/AppTheme.NoActionBar">
-    </activity>
+        </activity>
 
 
         <activity

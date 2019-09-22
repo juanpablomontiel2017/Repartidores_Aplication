@@ -249,7 +249,7 @@ public class AgregarCliente extends AppCompatActivity {
             // finally change the color
             window.setStatusBarColor(Color.parseColor("#303F9F"));
 
-            tv_titulo_nuevo_cliente.setBackgroundColor(Color.parseColor("#283593"));
+            tv_titulo_nuevo_cliente.setTextColor(Color.parseColor("#283593"));
 
 
 

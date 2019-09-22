@@ -41,22 +41,11 @@
              android:layout_marginRight="10dp"
              android:layout_marginBottom="10dp"
              android:layout_weight="1"
-             android:background="#e0e0e0"
+             android:background="@drawable/contenedor_items_stock_vehiculo"
              android:orientation="horizontal">
 
 
 
-
-             <View
-                 android:layout_width="10dp"
-                 android:layout_height="match_parent"
-                 android:layout_marginLeft="10dp"
-                 android:layout_marginTop="10dp"
-                 android:layout_marginRight="10dp"
-                 android:layout_marginBottom="10dp"
-                 android:background="#ff3d00">
-
-             </View>
 
 
 
@@ -72,10 +61,10 @@
                  <TextView
                      android:layout_width="match_parent"
                      android:layout_height="wrap_content"
-                     android:layout_marginTop="10dp"
-                     android:layout_marginRight="10dp"
+                     android:layout_marginTop="0dp"
+                     android:layout_marginRight="0dp"
                      android:layout_marginBottom="15dp"
-                     android:background="#b0bec5"
+                     android:background="@drawable/contenedor_titulos_stock_vehiculo"
                      android:gravity="center"
                      android:text="ENVASES"
                      android:textColor="#000"
@@ -162,18 +151,22 @@
                      android:id="@+id/llh_btn_detalle_envases"
                      android:layout_width="match_parent"
                      android:layout_height="wrap_content"
-                     android:layout_marginRight="10dp"
-                     android:layout_marginBottom="5dp"
+                     android:layout_marginLeft="3dp"
+                     android:layout_marginRight="3dp"
+                     android:layout_marginBottom="3dp"
+                     android:background="#0d47a1"
                      android:layout_weight="1"
-                     android:background="#2962ff"
                      android:orientation="horizontal">
+
+                     <!--android:background="#2962ff"-->
+
 
 
                      <Button
 
                          android:layout_width="match_parent"
                          android:layout_height="wrap_content"
-                         android:backgroundTint="#2962ff"
+                         android:backgroundTint="#0091ea"
                          android:drawableLeft="@drawable/ic_detalle_stock_vehiculo"
                          android:gravity="center"
                          android:text="VER DETALLE"
