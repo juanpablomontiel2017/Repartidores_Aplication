@@ -39,11 +39,13 @@
 
 
             <TextView
+
+                android:id="@+id/tv_nuevo_cliente_titulo"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="20dp"
                 android:text="NUEVO CLIENTE"
-                android:textColor="#283593"
+                android:textColor="#d50000"
                 android:textSize="25sp"
                 android:textStyle="bold" />
 
@@ -104,30 +106,32 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="10dp"
-                    android:background="@drawable/contenedor_edittext_ac"
+                    android:background="@drawable/contenedor_llh_nuevo_responsable_supervisor"
                     android:orientation="horizontal"
                     android:weightSum="2">
 
 
                     <ImageView
 
+                        android:id="@+id/img_apellido_ac"
                         android:layout_width="100dp"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
                         android:layout_marginLeft="5dp"
                         android:layout_weight="1"
-                        android:src="@drawable/ic_apellido_y_nombre_ac" />
+                        android:src="@drawable/ic_nombre_apellido_nrp_supervisor" />
 
 
                     <View
 
+                        android:id="@+id/view_apellido_ac"
                         android:layout_width="1dp"
                         android:layout_height="match_parent"
                         android:layout_marginLeft="10dp"
                         android:layout_marginTop="10dp"
                         android:layout_marginRight="10dp"
                         android:layout_marginBottom="10dp"
-                        android:background="#03a9f4">
+                        android:background="#ff5722">
 
                     </View>
 
@@ -141,7 +145,7 @@
                         android:layout_height="wrap_content"
                         android:gravity="center|left"
                         android:inputType="textMultiLine"
-                        android:textColor="#283593"
+                        android:textColor="#000"
                         android:textSize="24sp"
                         android:textStyle="bold" />
 
@@ -178,30 +182,32 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="10dp"
-                    android:background="@drawable/contenedor_edittext_ac"
+                    android:background="@drawable/contenedor_llh_nuevo_responsable_supervisor"
                     android:orientation="horizontal"
                     android:weightSum="2">
 
 
                     <ImageView
 
+                        android:id="@+id/img_nombre_ac"
                         android:layout_width="100dp"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
                         android:layout_marginLeft="5dp"
                         android:layout_weight="1"
-                        android:src="@drawable/ic_apellido_y_nombre_ac" />
+                        android:src="@drawable/ic_nombre_apellido_nrp_supervisor" />
 
 
                     <View
 
+                        android:id="@+id/view_nombre_ac"
                         android:layout_width="1dp"
                         android:layout_height="match_parent"
                         android:layout_marginLeft="10dp"
                         android:layout_marginTop="10dp"
                         android:layout_marginRight="10dp"
                         android:layout_marginBottom="10dp"
-                        android:background="#03a9f4">
+                        android:background="#ff5722">
                     </View>
 
 
@@ -213,7 +219,7 @@
                         android:layout_height="wrap_content"
                         android:gravity="center|left"
                         android:inputType="textMultiLine"
-                        android:textColor="#283593"
+                        android:textColor="#000"
                         android:textSize="24sp"
                         android:textStyle="bold"/>
 
@@ -250,30 +256,32 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="10dp"
-                    android:background="@drawable/contenedor_edittext_ac"
+                    android:background="@drawable/contenedor_llh_nuevo_responsable_supervisor"
                     android:orientation="horizontal"
                     android:weightSum="2">
 
 
                     <ImageView
 
+                        android:id="@+id/img_direccion_ac"
                         android:layout_width="100dp"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
                         android:layout_marginLeft="5dp"
                         android:layout_weight="1"
-                        android:src="@drawable/ic_direccion_ac" />
+                        android:src="@drawable/ic_direccion_nrp_supervisor" />
 
 
                     <View
 
+                        android:id="@+id/view_direccion_ac"
                         android:layout_width="1dp"
                         android:layout_height="match_parent"
                         android:layout_marginLeft="10dp"
                         android:layout_marginTop="10dp"
                         android:layout_marginRight="10dp"
                         android:layout_marginBottom="10dp"
-                        android:background="#03a9f4">
+                        android:background="#ff5722">
 
                     </View>
 
@@ -288,7 +296,7 @@
                         android:layout_gravity="left"
                         android:gravity="center|left"
                         android:inputType="textMultiLine"
-                        android:textColor="#283593"
+                        android:textColor="#000"
                         android:textSize="24sp"
                         android:textStyle="bold" />
 
@@ -325,29 +333,31 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="10dp"
-                    android:background="@drawable/contenedor_edittext_ac"
+                    android:background="@drawable/contenedor_llh_nuevo_responsable_supervisor"
                     android:orientation="horizontal"
                     android:weightSum="2">
 
 
                     <ImageView
 
+                        android:id="@+id/img_barrio_ac"
                         android:layout_width="100dp"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
                         android:layout_marginLeft="5dp"
                         android:layout_weight="1"
-                        android:src="@drawable/ic_barrio_ac" />
+                        android:src="@drawable/ic_barrio_nrp_supervisor" />
 
                     <View
 
+                        android:id="@+id/view_barrio_ac"
                         android:layout_width="1dp"
                         android:layout_height="match_parent"
                         android:layout_marginLeft="10dp"
                         android:layout_marginTop="10dp"
                         android:layout_marginRight="10dp"
                         android:layout_marginBottom="10dp"
-                        android:background="#03a9f4">
+                        android:background="#ff5722">
 
                     </View>
 
@@ -359,7 +369,7 @@
                         android:layout_height="wrap_content"
                         android:gravity="center|left"
                         android:inputType="textMultiLine"
-                        android:textColor="#283593"
+                        android:textColor="#000"
                         android:textSize="24sp"
                         android:textStyle="bold" />
 
@@ -396,28 +406,30 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="10dp"
-                    android:background="@drawable/contenedor_edittext_ac"
+                    android:background="@drawable/contenedor_llh_nuevo_responsable_supervisor"
                     android:orientation="horizontal"
                     android:weightSum="2">
 
                     <ImageView
 
+                        android:id="@+id/img_telefono_ac"
                         android:layout_width="100dp"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
                         android:layout_marginLeft="5dp"
                         android:layout_weight="1"
-                        android:src="@drawable/ic_telefono_ac" />
+                        android:src="@drawable/ic_telefono_nrp_supervisor" />
 
                     <View
 
+                        android:id="@+id/view_telefono_ac"
                         android:layout_width="1dp"
                         android:layout_height="match_parent"
                         android:layout_marginLeft="10dp"
                         android:layout_marginTop="10dp"
                         android:layout_marginRight="10dp"
                         android:layout_marginBottom="10dp"
-                        android:background="#03a9f4">
+                        android:background="#ff5722">
 
                     </View>
 
@@ -431,7 +443,7 @@
                         android:layout_height="wrap_content"
                         android:gravity="center|left"
                         android:inputType="textMultiLine|number"
-                        android:textColor="#283593"
+                        android:textColor="#000"
                         android:textSize="24sp"
                         android:textStyle="bold" />
 
@@ -467,29 +479,31 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="10dp"
-                    android:background="@drawable/contenedor_edittext_ac"
+                    android:background="@drawable/contenedor_llh_nuevo_responsable_supervisor"
                     android:orientation="horizontal"
                     android:weightSum="2">
 
 
                     <ImageView
 
+                        android:id="@+id/img_correo_ac"
                         android:layout_width="100dp"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
                         android:layout_marginLeft="5dp"
                         android:layout_weight="1"
-                        android:src="@drawable/ic_correo_ac" />
+                        android:src="@drawable/ic_correo_nrp_supervisor" />
 
                     <View
 
+                        android:id="@+id/view_correo_ac"
                         android:layout_width="1dp"
                         android:layout_height="match_parent"
                         android:layout_marginLeft="10dp"
                         android:layout_marginTop="10dp"
                         android:layout_marginRight="10dp"
                         android:layout_marginBottom="10dp"
-                        android:background="#03a9f4">
+                        android:background="#ff5722">
 
                     </View>
 
@@ -503,7 +517,7 @@
                         android:layout_height="wrap_content"
                         android:gravity="center|left"
                         android:inputType="textMultiLine|textEmailAddress"
-                        android:textColor="#283593"
+                        android:textColor="#000"
                         android:textSize="24sp"
                         android:textStyle="bold" />
 
@@ -539,29 +553,31 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="10dp"
-                    android:background="@drawable/contenedor_edittext_ac"
+                    android:background="@drawable/contenedor_llh_nuevo_responsable_supervisor"
                     android:orientation="horizontal"
                     android:weightSum="2">
 
 
                     <ImageView
 
+                        android:id="@+id/img_dni_ac"
                         android:layout_width="100dp"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
                         android:layout_marginLeft="5dp"
                         android:layout_weight="1"
-                        android:src="@drawable/ic_dni_ac" />
+                        android:src="@drawable/ic_dni_nrp_supervisor" />
 
                     <View
 
+                        android:id="@+id/view_dni_ac"
                         android:layout_width="1dp"
                         android:layout_height="match_parent"
                         android:layout_marginLeft="10dp"
                         android:layout_marginTop="10dp"
                         android:layout_marginRight="10dp"
                         android:layout_marginBottom="10dp"
-                        android:background="#03a9f4">
+                        android:background="#ff5722">
 
                     </View>
 
@@ -575,7 +591,7 @@
                         android:gravity="center|left"
                         android:inputType="number"
                         android:maxLength="8"
-                        android:textColor="#283593"
+                        android:textColor="#000"
                         android:textSize="24sp"
                         android:textStyle="bold" />
 
@@ -610,29 +626,31 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="10dp"
-                    android:background="@drawable/contenedor_edittext_ac"
+                    android:background="@drawable/contenedor_llh_nuevo_responsable_supervisor"
                     android:orientation="horizontal"
                     android:weightSum="2">
 
 
                     <ImageView
 
+                        android:id="@+id/img_referencia_ac"
                         android:layout_width="100dp"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
                         android:layout_marginLeft="5dp"
                         android:layout_weight="1"
-                        android:src="@drawable/ic_referencia_ac" />
+                        android:src="@drawable/ic_referencia_nrp_supervisor" />
 
                     <View
 
+                        android:id="@+id/view_referencia_ac"
                         android:layout_width="1dp"
                         android:layout_height="match_parent"
                         android:layout_marginLeft="10dp"
                         android:layout_marginTop="10dp"
                         android:layout_marginRight="10dp"
                         android:layout_marginBottom="10dp"
-                        android:background="#03a9f4">
+                        android:background="#ff5722">
 
                     </View>
 
@@ -646,7 +664,7 @@
                         android:layout_gravity="center"
                         android:gravity="center|left"
                         android:inputType="textMultiLine"
-                        android:textColor="#283593"
+                        android:textColor="#000"
                         android:textSize="24sp"
                         android:textStyle="bold" />
 
@@ -674,7 +692,7 @@
                         android:layout_margin="@dimen/appbar_padding_top"
                         android:layout_marginTop="10dp"
                         android:background="@drawable/btn_borde_redondeado"
-                        android:backgroundTint="#03a9f4"
+                        android:backgroundTint="#ff5722"
                         android:text="CONFIRMAR"
                         android:textColor="#FFFF"
                         android:textSize="20sp"
@@ -703,7 +721,7 @@
                         android:layout_margin="@dimen/appbar_padding_top"
                         android:layout_marginTop="10dp"
                         android:background="@drawable/btn_borde_redondeado"
-                        android:backgroundTint="#283593"
+                        android:backgroundTint="#d50000"
                         android:text="CANCELAR"
                         android:textColor="#FFFF"
                         android:textStyle="bold" />

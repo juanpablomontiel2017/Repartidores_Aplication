@@ -60,6 +60,8 @@
 
     <string name="action_entrega_retiro_envases_patrocinio">Patrocinio</string>
 
+    <string name="action_agregar_cliente">Nuevo Cliente </string>
+
 
     <!--Cargas_Descargas Activity y su respectivo Menu-->
 

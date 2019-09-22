@@ -476,16 +476,9 @@ public class NuevoResponsablePatrocinio extends AppCompatActivity {
             view_separador_fecha_fin_evento_repartidor.setBackgroundColor(Color.parseColor("#283593"));
 
 
-
-
-
-
-
-
-
-
-
             btn_confirmar_nuevo_responsable_del_evento_supervisor.setBackground(getDrawable(R.drawable.btn_confirmar_nuevo_responsable_esquinas_con_bordes_repartidor));
+
+
 
         }//Fin del if
 

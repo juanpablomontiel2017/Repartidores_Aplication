@@ -273,7 +273,26 @@ public class MainActivity extends AppCompatActivity {
 
 
             return true;
+
         }
+
+
+
+        if (id == R.id.action_ac) {
+
+
+
+            Intent intent = new Intent (MainActivity.this, AgregarCliente.class);
+
+            startActivity(intent);
+
+
+            return true;
+
+        }
+
+
+
 
         return super.onOptionsItemSelected(item);
 
