@@ -73,10 +73,10 @@ public class utilsRequest extends StringRequest {
         parametro = new HashMap<>();
         parametro.put("idSupervisor", idSupervisor);
         parametro.put("dniSupervisor", dniSupervisor);
-        parametro.put("dniSupervisor", fecha);
-        parametro.put("fecha", idRepartidor);
+        parametro.put("fecha", fecha);
+        parametro.put("idRepartidor", idRepartidor);
         parametro.put("dniRepartidor", dniRepartidor);
-        parametro.put("plata", plata);
+        parametro.put("plataCarga", plata);
         parametro.put("carga", carga);
         parametro.put("descarga", descarga);
         parametro.put("idArticulo", idArticulo);

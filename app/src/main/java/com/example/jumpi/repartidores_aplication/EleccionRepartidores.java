@@ -160,9 +160,9 @@ public class EleccionRepartidores extends AppCompatActivity {
 
             intent.putExtra("nombre_apellido_repartidor",nombre_apellido_repartidor_enviar);
 
-            intent.putExtra("idRepartidor",idRepartidor);
+            intent.putExtra("idRepartidor",Integer.toString(idRepartidor));
 
-            intent.putExtra("dniRepartidor",dniRepartidor);
+            intent.putExtra("dniRepartidor",Integer.toString(dniRepartidor));
 
             startActivity(intent);
 
