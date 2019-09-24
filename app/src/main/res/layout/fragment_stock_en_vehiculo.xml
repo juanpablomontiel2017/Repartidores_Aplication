@@ -61,15 +61,17 @@
                  <TextView
                      android:layout_width="match_parent"
                      android:layout_height="wrap_content"
-                     android:layout_marginTop="0dp"
-                     android:layout_marginRight="0dp"
+                     android:layout_marginTop="10dp"
+                     android:layout_marginRight="3dp"
+                     android:layout_marginLeft="3dp"
                      android:layout_marginBottom="15dp"
-                     android:background="@drawable/contenedor_titulos_stock_vehiculo"
                      android:gravity="center"
                      android:text="ENVASES"
-                     android:textColor="#000"
-                     android:textSize="24sp"
+                     android:textColor="#283593"
+                     android:textSize="30sp"
                      android:textStyle="bold|italic" />
+
+
 
 
                  <LinearLayout
@@ -88,7 +90,7 @@
                          android:layout_height="wrap_content"
                          android:layout_weight="1"
                          android:gravity="center"
-                         android:text="LLENOS: "
+                         android:text="LLENOS "
                          android:textColor="#000"
                          android:textSize="25sp"
                          android:textStyle="bold" />
@@ -125,7 +127,7 @@
                          android:layout_height="wrap_content"
                          android:layout_weight="1"
                          android:gravity="center"
-                         android:text="VACÍOS: "
+                         android:text="VACÍOS "
                          android:textColor="#000"
                          android:textSize="25sp"
                          android:textStyle="bold" />
@@ -151,14 +153,11 @@
                      android:id="@+id/llh_btn_detalle_envases"
                      android:layout_width="match_parent"
                      android:layout_height="wrap_content"
-                     android:layout_marginLeft="3dp"
-                     android:layout_marginRight="3dp"
-                     android:layout_marginBottom="3dp"
-                     android:background="#0d47a1"
+                     android:layout_marginLeft="2dp"
+                     android:layout_marginRight="2dp"
+                     android:layout_marginBottom="2dp"
                      android:layout_weight="1"
                      android:orientation="horizontal">
-
-                     <!--android:background="#2962ff"-->
 
 
 
@@ -166,9 +165,15 @@
 
                          android:layout_width="match_parent"
                          android:layout_height="wrap_content"
+                         android:layout_marginLeft="6dp"
+                         android:layout_marginTop="3dp"
+                         android:layout_marginRight="6dp"
+                         android:layout_marginBottom="10dp"
+                         android:background="@drawable/contenedor_boton_detalle_stock_vehiculo"
                          android:backgroundTint="#0091ea"
                          android:drawableLeft="@drawable/ic_detalle_stock_vehiculo"
                          android:gravity="center"
+                         android:paddingLeft="30dp"
                          android:text="VER DETALLE"
                          android:textColor="#FFFF"
                          android:textSize="25sp"
@@ -199,23 +204,11 @@
              android:layout_marginRight="10dp"
              android:layout_marginBottom="10dp"
              android:layout_weight="1"
-             android:background="#e0e0e0"
+             android:background="@drawable/contenedor_items_stock_vehiculo"
              android:orientation="horizontal">
 
 
 
-
-
-             <View
-                 android:layout_width="10dp"
-                 android:layout_height="match_parent"
-                 android:layout_marginLeft="10dp"
-                 android:layout_marginTop="10dp"
-                 android:layout_marginRight="10dp"
-                 android:layout_marginBottom="10dp"
-                 android:background="#ff3d00">
-
-             </View>
 
 
 
@@ -225,7 +218,9 @@
                  android:layout_width="match_parent"
                  android:layout_height="wrap_content"
                  android:orientation="vertical"
-                 android:weightSum="2">
+                 android:weightSum="3">
+
+
 
 
 
@@ -234,14 +229,20 @@
                      android:layout_width="match_parent"
                      android:layout_height="wrap_content"
                      android:layout_marginTop="10dp"
-                     android:layout_marginRight="10dp"
+                     android:layout_marginRight="3dp"
+                     android:layout_marginLeft="3dp"
                      android:layout_marginBottom="15dp"
-                     android:background="#b0bec5"
                      android:gravity="center"
                      android:text="DINERO"
-                     android:textColor="#000"
-                     android:textSize="24sp"
+                     android:textColor="#283593"
+                     android:textSize="30sp"
                      android:textStyle="bold|italic" />
+
+
+
+
+
+
 
 
                  <LinearLayout
@@ -261,7 +262,7 @@
                          android:layout_height="wrap_content"
                          android:layout_weight="1"
                          android:gravity="center"
-                         android:text="EN TU BILLETERA: "
+                         android:text="EN TU BILLETERA "
                          android:textColor="#000"
                          android:textSize="25sp"
                          android:textStyle="bold" />
@@ -282,15 +283,17 @@
                  </LinearLayout>
 
 
+
+
                  <LinearLayout
 
                      android:id="@+id/llh_btn_detalle_dinero"
                      android:layout_width="match_parent"
                      android:layout_height="wrap_content"
-                     android:layout_marginRight="10dp"
-                     android:layout_marginBottom="5dp"
+                     android:layout_marginLeft="2dp"
+                     android:layout_marginRight="2dp"
+                     android:layout_marginBottom="2dp"
                      android:layout_weight="1"
-                     android:background="#2962ff"
                      android:orientation="horizontal">
 
 
@@ -298,10 +301,16 @@
 
                          android:layout_width="match_parent"
                          android:layout_height="wrap_content"
-                         android:backgroundTint="#2962ff"
+                         android:layout_marginLeft="6dp"
+                         android:layout_marginTop="3dp"
+                         android:layout_marginRight="6dp"
+                         android:layout_marginBottom="10dp"
+                         android:background="@drawable/contenedor_boton_detalle_stock_vehiculo"
+                         android:backgroundTint="#0091ea"
                          android:drawableLeft="@drawable/ic_detalle_stock_vehiculo"
                          android:gravity="center"
                          android:text="VER DETALLE"
+                         android:paddingLeft="30dp"
                          android:textColor="#FFFF"
                          android:textSize="25sp"
                          android:textStyle="bold" />
@@ -328,21 +337,9 @@
              android:layout_marginRight="10dp"
              android:layout_marginBottom="10dp"
              android:layout_weight="1"
-             android:background="#e0e0e0"
+             android:background="@drawable/contenedor_items_stock_vehiculo"
              android:orientation="horizontal">
 
-
-
-             <View
-                 android:layout_width="10dp"
-                 android:layout_height="match_parent"
-                 android:layout_marginLeft="10dp"
-                 android:layout_marginTop="10dp"
-                 android:layout_marginRight="10dp"
-                 android:layout_marginBottom="10dp"
-                 android:background="#ff3d00">
-
-             </View>
 
 
              <LinearLayout
@@ -355,18 +352,24 @@
 
 
 
+
+
                  <TextView
                      android:layout_width="match_parent"
                      android:layout_height="wrap_content"
                      android:layout_marginTop="10dp"
-                     android:layout_marginRight="10dp"
+                     android:layout_marginRight="3dp"
+                     android:layout_marginLeft="3dp"
                      android:layout_marginBottom="15dp"
-                     android:background="#b0bec5"
                      android:gravity="center"
                      android:text="OTROS ARTÍCULOS"
-                     android:textColor="#000"
-                     android:textSize="24sp"
+                     android:textColor="#283593"
+                     android:textSize="30sp"
                      android:textStyle="bold|italic" />
+
+
+
+
 
 
                  <LinearLayout
@@ -386,7 +389,7 @@
                          android:layout_height="wrap_content"
                          android:layout_weight="1"
                          android:gravity="center"
-                         android:text="DISPENSER PLÁSTICO: "
+                         android:text="DISPENSER PLÁSTICO "
                          android:textColor="#000"
                          android:textSize="25sp"
                          android:textStyle="bold" />
@@ -424,7 +427,7 @@
                          android:layout_height="wrap_content"
                          android:layout_weight="1"
                          android:gravity="center"
-                         android:text="CANILLAS: "
+                         android:text="CANILLAS "
                          android:textColor="#000"
                          android:textSize="25sp"
                          android:textStyle="bold" />
@@ -462,7 +465,7 @@
                          android:layout_height="wrap_content"
                          android:layout_weight="1"
                          android:gravity="center"
-                         android:text="DISPENSER ELÉCTRICO: "
+                         android:text="DISPENSER ELÉCTRICO "
                          android:textColor="#000"
                          android:textSize="25sp"
                          android:textStyle="bold" />
@@ -488,10 +491,10 @@
                      android:id="@+id/llh_btn_detalle_otros_articulos"
                      android:layout_width="match_parent"
                      android:layout_height="wrap_content"
-                     android:layout_marginRight="10dp"
-                     android:layout_marginBottom="5dp"
+                     android:layout_marginLeft="2dp"
+                     android:layout_marginRight="2dp"
+                     android:layout_marginBottom="2dp"
                      android:layout_weight="1"
-                     android:background="#2962ff"
                      android:orientation="horizontal">
 
 
@@ -499,20 +502,28 @@
 
                          android:layout_width="match_parent"
                          android:layout_height="wrap_content"
-                         android:backgroundTint="#2962ff"
+                         android:layout_marginLeft="6dp"
+                         android:layout_marginTop="3dp"
+                         android:layout_marginRight="6dp"
+                         android:layout_marginBottom="10dp"
+                         android:background="@drawable/contenedor_boton_detalle_stock_vehiculo"
+                         android:backgroundTint="#0091ea"
                          android:drawableLeft="@drawable/ic_detalle_stock_vehiculo"
                          android:gravity="center"
                          android:text="VER DETALLE"
+                         android:paddingLeft="30dp"
                          android:textColor="#FFFF"
                          android:textSize="25sp"
-                         android:textStyle="bold" />
+                         android:textStyle="bold"/>
+
+
 
 
                  </LinearLayout>
 
 
 
-             </LinearLayout> <!-- FIN DEL llv_contenedor_hijo_de_envases -->
+             </LinearLayout> <!-- FIN DEL llv_contenedor_hijo_de_otros_articulos -->
 
 
          </LinearLayout> <!-- FIN DEL llh_contenedor_otros_articulos -->
@@ -529,22 +540,14 @@
              android:layout_marginLeft="10dp"
              android:layout_marginTop="10dp"
              android:layout_marginRight="10dp"
-             android:layout_marginBottom="70dp"
+             android:layout_marginBottom="80dp"
              android:layout_weight="1"
-             android:background="#e0e0e0"
+             android:background="@drawable/contenedor_items_stock_vehiculo"
              android:orientation="horizontal">
 
 
-             <View
-                 android:layout_width="10dp"
-                 android:layout_height="match_parent"
-                 android:layout_marginLeft="10dp"
-                 android:layout_marginTop="10dp"
-                 android:layout_marginRight="10dp"
-                 android:layout_marginBottom="10dp"
-                 android:background="#ff3d00">
 
-             </View>
+
 
 
              <LinearLayout
@@ -562,14 +565,15 @@
                      android:layout_width="match_parent"
                      android:layout_height="wrap_content"
                      android:layout_marginTop="10dp"
-                     android:layout_marginRight="10dp"
+                     android:layout_marginRight="3dp"
+                     android:layout_marginLeft="3dp"
                      android:layout_marginBottom="15dp"
-                     android:background="#b0bec5"
                      android:gravity="center"
                      android:text="FALTANTE Y/O SOBRANTE DE ENVASES"
-                     android:textColor="#000"
-                     android:textSize="24sp"
+                     android:textColor="#283593"
+                     android:textSize="30sp"
                      android:textStyle="bold|italic" />
+
 
 
                  <LinearLayout
@@ -589,8 +593,9 @@
                          android:layout_width="match_parent"
                          android:layout_height="wrap_content"
                          android:layout_weight="1"
+                         android:layout_marginLeft="3dp"
                          android:gravity="center"
-                         android:text="FALTANTE Y/O SOBRANTE: "
+                         android:text="FALTANTE Y/O SOBRANTE "
                          android:textColor="#000"
                          android:textSize="25sp"
                          android:textStyle="bold" />
@@ -616,21 +621,30 @@
                      android:id="@+id/llh_btn_detalle_faltante_sobrante"
                      android:layout_width="match_parent"
                      android:layout_height="wrap_content"
-                     android:layout_marginRight="10dp"
-                     android:layout_marginBottom="5dp"
+                     android:layout_marginLeft="2dp"
+                     android:layout_marginRight="2dp"
+                     android:layout_marginBottom="2dp"
                      android:layout_weight="1"
-                     android:background="#2962ff"
                      android:orientation="horizontal">
 
 
-                     <Button
+
+
+
+                         <Button
 
                          android:layout_width="match_parent"
                          android:layout_height="wrap_content"
-                         android:backgroundTint="#2962ff"
+                         android:layout_marginLeft="6dp"
+                         android:layout_marginTop="3dp"
+                         android:layout_marginRight="6dp"
+                         android:layout_marginBottom="10dp"
+                         android:background="@drawable/contenedor_boton_detalle_stock_vehiculo"
+                         android:backgroundTint="#0091ea"
                          android:drawableLeft="@drawable/ic_detalle_stock_vehiculo"
                          android:gravity="center"
                          android:text="VER DETALLE"
+                         android:paddingLeft="30dp"
                          android:textColor="#FFFF"
                          android:textSize="25sp"
                          android:textStyle="bold" />

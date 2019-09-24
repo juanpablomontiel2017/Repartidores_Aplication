@@ -5,8 +5,8 @@
 
 
 
-    <stroke android:width="2dip"
-        android:color="#03a9f4" />
+    <stroke android:width="4dip"
+        android:color="#283593" />
 
     <padding android:left="0dp"
         android:top="0dp"
@@ -14,7 +14,8 @@
         android:bottom="0dp"/>
 
 
-    <corners android:radius="10px" android:topLeftRadius="10dp" android:topRightRadius="10dp"/>
+    <corners android:radius="10px" android:topLeftRadius="10dp" android:topRightRadius="10dp"
+        android:bottomLeftRadius="10px" android:bottomRightRadius="10px"/>
 
 
 
