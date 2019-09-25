@@ -58,7 +58,8 @@ public class utilsRequest extends StringRequest {
                                              String fecha,
                                              String idRepartidor,
                                              String dniRepartidor,
-                                             String plata,
+                                             String plataCarga,
+                                             String plataDescarga,
                                              String carga,
                                              String descarga,
                                              String idArticulo,
@@ -76,7 +77,8 @@ public class utilsRequest extends StringRequest {
         parametro.put("fecha", fecha);
         parametro.put("idRepartidor", idRepartidor);
         parametro.put("dniRepartidor", dniRepartidor);
-        parametro.put("plataCarga", plata);
+        parametro.put("plataCarga", plataCarga);
+        parametro.put("plataDescarga", plataDescarga);
         parametro.put("carga", carga);
         parametro.put("descarga", descarga);
         parametro.put("idArticulo", idArticulo);

@@ -499,7 +499,7 @@ public class Cargas_Descargas extends AppCompatActivity {
         String carga = editText_carga.getText().toString();
         String descarga = editText_descarga.getText().toString();
         String plataCarga = et_carga_money.getText().toString();
-        //String platadescarga = et_descarga_money.getText().toString();
+        String plataDescarga = et_descarga_money.getText().toString();
 
 
         Usuario usuario = new Usuario();
@@ -544,7 +544,7 @@ public class Cargas_Descargas extends AppCompatActivity {
                 }
             };
 
-            utilsRequest request = utilsRequest.cargaDescarga(idSupervisor,dniSupervisor, UtilidadFecha.getFecha("yyyy/MM/dd"),idRepartidor,dniRepartidor,plataCarga,carga,descarga,idArticulo, responseListener);
+            utilsRequest request = utilsRequest.cargaDescarga(idSupervisor,dniSupervisor, UtilidadFecha.getFecha("yyyy/MM/dd"),idRepartidor,dniRepartidor,plataCarga,plataDescarga,carga,descarga,idArticulo, responseListener);
             MySingleton.getInstance(getApplicationContext()).addToRequestQueue(request);
 
 
@@ -605,6 +605,13 @@ public class Cargas_Descargas extends AppCompatActivity {
 
         return arrayDeArticulos;
     }
+
+    /**
+     *
+     * @param nombreColeccion del sharedPreferences
+     * @param dimension clave
+     * @return true | false
+     */
 
     public boolean esExisteDimensionEnSharedPreferences(String nombreColeccion, String dimension){
         SharedPreferences preferences = getSharedPreferences( nombreColeccion, MODE_PRIVATE);
