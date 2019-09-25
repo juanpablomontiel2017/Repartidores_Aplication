@@ -163,6 +163,7 @@
 
                      <Button
 
+                         android:id="@+id/button_detalle_envases"
                          android:layout_width="match_parent"
                          android:layout_height="wrap_content"
                          android:layout_marginLeft="6dp"
@@ -299,6 +300,7 @@
 
                      <Button
 
+                         android:id="@+id/button_detalle_dinero"
                          android:layout_width="match_parent"
                          android:layout_height="wrap_content"
                          android:layout_marginLeft="6dp"
@@ -500,6 +502,7 @@
 
                      <Button
 
+                         android:id="@+id/button_detalle_articulos"
                          android:layout_width="match_parent"
                          android:layout_height="wrap_content"
                          android:layout_marginLeft="6dp"
@@ -633,21 +636,22 @@
 
                          <Button
 
-                         android:layout_width="match_parent"
-                         android:layout_height="wrap_content"
-                         android:layout_marginLeft="6dp"
-                         android:layout_marginTop="3dp"
-                         android:layout_marginRight="6dp"
-                         android:layout_marginBottom="10dp"
-                         android:background="@drawable/contenedor_boton_detalle_stock_vehiculo"
-                         android:backgroundTint="#0091ea"
-                         android:drawableLeft="@drawable/ic_detalle_stock_vehiculo"
-                         android:gravity="center"
-                         android:text="VER DETALLE"
-                         android:paddingLeft="30dp"
-                         android:textColor="#FFFF"
-                         android:textSize="25sp"
-                         android:textStyle="bold" />
+                             android:id="@+id/button_detalle_faltante_sobrante"
+                             android:layout_width="match_parent"
+                             android:layout_height="wrap_content"
+                             android:layout_marginLeft="6dp"
+                             android:layout_marginTop="3dp"
+                             android:layout_marginRight="6dp"
+                             android:layout_marginBottom="10dp"
+                             android:background="@drawable/contenedor_boton_detalle_stock_vehiculo"
+                             android:backgroundTint="#0091ea"
+                             android:drawableLeft="@drawable/ic_detalle_stock_vehiculo"
+                             android:gravity="center"
+                             android:text="VER DETALLE"
+                             android:paddingLeft="30dp"
+                             android:textColor="#FFFF"
+                             android:textSize="25sp"
+                             android:textStyle="bold" />
 
 
                  </LinearLayout>

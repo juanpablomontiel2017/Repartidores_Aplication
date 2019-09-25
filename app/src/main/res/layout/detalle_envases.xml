@@ -12,39 +12,82 @@
     tools:context=".Detalle_Envases">
 
 
-    <LinearLayout
+    <TextView
+
+        android:id="@+id/tv_detalle_envasestitulo"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="20dp"
+        android:text="DETALLE DE ENVASES"
+        android:gravity="center"
+        android:textColor="#303f9f"
+        android:textSize="25sp"
+        android:textStyle="bold" />
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="#283593"
         android:orientation="horizontal"
-        android:background="#303f9f"
         android:weightSum="3">
 
 
         <TextView
             android:id="@+id/tv_tandas_detalle_envases"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Tandas"
+            android:layout_height="match_parent"
             android:layout_weight="1"
+            android:gravity="center"
+            android:text="TANDAS"
             android:textAlignment="center"
             android:textColor="#FFF"
-            android:textSize="30sp"
+            android:textSize="20sp"
             android:textStyle="bold" />
 
 
         <ImageView
-            android:id="@+id/img_cargas_detalle_envases"
+
+            android:id="@+id/img_carga_detalle_envases"
+            android:layout_width="30dp"
+            android:layout_height="match_parent"
+            android:src="@drawable/ic_carga" />
+
+
+        <TextView
+
+            android:id="@+id/tv_carga_detalle_envases"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:layout_weight="1"
-            android:src="@mipmap/ic_launcher_cargass_ventas" />
+            android:gravity="center|left"
+            android:text="ENTREGA"
+            android:textColor="#FFFF"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
 
         <ImageView
-            android:id="@+id/img_descargas_detalle_envases"
+
+            android:id="@+id/img_descarga_detalle_envases"
+            android:layout_width="30dp"
+            android:layout_height="match_parent"
+            android:src="@drawable/ic_retiro_erep" />
+
+
+        <TextView
+
+            android:id="@+id/tv_descarga_detalle_envases"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:layout_weight="1"
-            android:src="@mipmap/ic_launcher_descargas_ventas" />
+            android:gravity="center|left"
+            android:text="RETIRO"
+            android:textColor="#FFFF"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
 
     </LinearLayout>
 

@@ -45,13 +45,16 @@
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".Detalle_Envases"
-            android:label="Detalle de Cargas y Descargas" />
+            android:label=""
+            android:theme="@style/AppTheme.NoActionBar"/>
         <activity
             android:name=".Detalle_Articulos"
-            android:label="Detalle de Cargas y Descargas" />
+            android:label=""
+            android:theme="@style/AppTheme.NoActionBar"/>
         <activity
             android:name=".Detalle_Dinero"
-            android:label="Detalle de Entregas de Dinero" />
+            android:label=""
+            android:theme="@style/AppTheme.NoActionBar"/>
 
 
 

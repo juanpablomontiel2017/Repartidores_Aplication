@@ -1,14 +1,24 @@
 package com.example.jumpi.repartidores_aplication;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ScrollView;
 
 
 public class StockEnVehiculoFragment extends Fragment {
+
+
+    /********************* DECLARACIÓN DE VARIABLES GLOBALES ************************/
+
+    ScrollView scrollView;
+
+    Button btn_detalle_envases, btn_detalle_dinero, btn_detalle_articulos, btn_detalle_faltante_sobrante;
+
 
 
 
@@ -50,7 +60,6 @@ public class StockEnVehiculoFragment extends Fragment {
 
 
 
-    ScrollView scrollView;
 
 
     @Override
@@ -64,49 +73,49 @@ public class StockEnVehiculoFragment extends Fragment {
         scrollView = (ScrollView) view.findViewById(R.id.scrll);
 
 
-        /*
-        final Button buttonCD= (Button) view.findViewById(R.id.titulo_envases_stock_disponible);
 
-        buttonCD.setOnClickListener(new View.OnClickListener() {
+        btn_detalle_envases= (Button) view.findViewById(R.id.button_detalle_envases);
+
+        btn_detalle_envases.setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View view) {
 
-                Intent buttonCDR = new Intent(getActivity(), Detalle_Envases.class);
-                startActivity(buttonCDR);
+                Intent intent = new Intent(getActivity(), Detalle_Envases.class);
+                startActivity(intent);
 
             }
         });
 
 
-        final Button buttonD= (Button) view.findViewById(R.id.titulo_dinero_stock_disponible);
+        btn_detalle_dinero = (Button) view.findViewById(R.id.button_detalle_dinero);
 
-        buttonD.setOnClickListener(new View.OnClickListener() {
+        btn_detalle_dinero.setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View view) {
 
-                Intent buttonDR = new Intent(getActivity(), Detalle_Dinero.class);
-                startActivity(buttonDR);
+                Intent intent = new Intent(getActivity(), Detalle_Dinero.class);
+                startActivity(intent);
 
             }
         });
 
 
-        final Button buttonA= (Button) view.findViewById(R.id.titulo_otros_articulos_stock_disponible);
+        btn_detalle_articulos = (Button) view.findViewById(R.id.button_detalle_articulos);
 
-        buttonA.setOnClickListener(new View.OnClickListener() {
+        btn_detalle_articulos.setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View view) {
 
-                Intent buttonAR = new Intent(getActivity(), Detalle_Articulos.class);
-                startActivity(buttonAR);
+                Intent intent = new Intent(getActivity(), Detalle_Articulos.class);
+                startActivity(intent);
 
             }
         });
 
-*/
+
 
 
         return view;

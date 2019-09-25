@@ -6,65 +6,82 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:gravity="center"
     android:background="#FFF"
 
 
     tools:context=".Detalle_Dinero">
 
 
-    <LinearLayout
-        android:orientation="vertical"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
-
-
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="50dp"
             android:background="#2962ff"
             android:orientation="horizontal"
             android:weightSum="3">
 
+
+
             <TextView
                 android:id="@+id/tandas_detalle_dinero"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:text="Tandas"
+                android:gravity="center"
+                android:text="TANDAS"
                 android:textAlignment="center"
                 android:textColor="#FFFF"
-                android:textSize="26sp"
-                android:textStyle="bold"
-                android:typeface="sans" />
+                android:textSize="20sp"
+                android:textStyle="bold"/>
+
+
+            <ImageView
+
+                android:id="@+id/img_detalle_dinero_recibido"
+                android:layout_width="30dp"
+                android:layout_height="match_parent"
+                android:src="@drawable/ic_dinero_recibido" />
+
+
 
 
             <TextView
                 android:id="@+id/recibiste_detalle_dinero"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:text="Recibiste"
-                android:textAlignment="center"
+                android:gravity="center|left"
+                android:text="RECIBISTE"
                 android:textColor="#FFF"
-                android:textSize="25sp"
+                android:textSize="20sp"
                 android:textStyle="bold" />
+
+
+            <ImageView
+
+                android:id="@+id/img_detalle_dinero_entregado"
+                android:layout_width="30dp"
+                android:layout_height="match_parent"
+                android:src="@drawable/ic_dinero_entregado" />
+
+
 
             <TextView
                 android:id="@+id/entregaste_detalle_dinero"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:layout_weight="1"
+                android:gravity="center|left"
                 android:text="Entregaste"
-                android:textAlignment="center"
                 android:textColor="#FFF"
-                android:textSize="25sp"
+                android:textSize="20sp"
                 android:textStyle="bold" />
+
+
+
 
         </LinearLayout>
 
 
-    </LinearLayout>
 
 
 

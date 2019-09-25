@@ -26,7 +26,7 @@ tools:context=".Detalle_Articulos">
 
             android:id="@+id/layout_horizontal_tandas"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="40dp"
             android:background="#00b0ff"
             android:orientation="horizontal">
 
@@ -34,11 +34,12 @@ tools:context=".Detalle_Articulos">
             <TextView
                 android:id="@+id/tanda"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="bottom|center"
+                android:layout_height="match_parent"
+                android:gravity="center"
                 android:text="Tanda N°:"
-                android:textColor="@android:color/background_light"
-                android:textSize="24sp" />
+                android:textColor="#FFFF"
+                android:textSize="24sp"
+                android:textStyle="normal|bold" />
 
         </LinearLayout>
 
@@ -46,60 +47,76 @@ tools:context=".Detalle_Articulos">
         <!--#################################################-->
 
 
-        <LinearLayout
-            android:id="@+id/layout_horizontal_articulos_cd"
+    <LinearLayout
+
+        android:id="@+id/layout_horizontal_segunda_tupla_erep"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="2dp"
+        android:layout_marginRight="2dp"
+        android:background="#d32f2f"
+        android:orientation="horizontal"
+        tools:visibility="visible"
+        android:weightSum="2">
+
+
+        <TextView
+
+            android:id="@+id/articulos_erep"
+            android:layout_width="155dp"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="Artículos"
+            android:textColor="#FFFF"
+            android:textSize="20sp" />
+
+
+
+
+
+        <ImageView
+
+            android:id="@+id/img_entrega_erep"
+            android:layout_width="30dp"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_carga_detalle_articulo" />
+
+
+        <TextView
+
+            android:layout_weight="1"
+            android:id="@+id/entrega_erep"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="?attr/colorControlHighlight"
-            android:orientation="horizontal"
-            android:weightSum="2"
-            tools:visibility="visible">
+            android:gravity="center|left"
+            android:text="Entrega"
+            android:textColor="#FFFF"
+            android:textSize="20sp" />
 
 
-            <TextView
+        <ImageView
 
-                android:id="@+id/articulos_detalle_art"
-                android:layout_width="155dp"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                android:text="Artículos"
-                android:textSize="15sp" />
+            android:id="@+id/img_retiro_erep"
+            android:layout_width="30dp"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_descarga_detalle_articulo" />
 
 
-            <ImageView
+        <TextView
 
-                android:id="@+id/img_carga_detalle_art"
-                android:layout_width="30dp"
-                android:layout_height="wrap_content"
-                android:src="@drawable/ic_carga_detalle_articulo" />
+            android:layout_weight="1"
+            android:id="@+id/retiro_erep"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="left"
+            android:text="Retiro"
+            android:textColor="#FFFF"
+            android:textSize="20sp" />
 
-            <TextView
-                android:id="@+id/cargas_detalle_art"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:gravity="center|left"
-                android:text="Carga"
-                android:textSize="15sp" />
+    </LinearLayout>
 
 
-            <ImageView
 
-                android:id="@+id/img_descarga_detalle_art"
-                android:layout_width="30dp"
-                android:layout_height="wrap_content"
-                android:src="@drawable/ic_descarga_detalle_articulo" />
-
-            <TextView
-                android:id="@+id/descargas_detalle_art"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:gravity="left"
-                android:text="Descarga"
-                android:textSize="15sp" />
-
-        </LinearLayout>
 
 </LinearLayout>
 
