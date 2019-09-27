@@ -12,7 +12,12 @@ app:layout_behavior="@string/appbar_scrolling_view_behavior"
 tools:context=".Detalle_Articulos">
 
 
-<LinearLayout
+
+
+
+
+
+    <LinearLayout
 
     android:id="@+id/layout_vertical_padre_detalle_art"
     android:layout_width="match_parent"
@@ -21,103 +26,290 @@ tools:context=".Detalle_Articulos">
 
 
 
+        <TextView
+
+            android:id="@+id/tv_detalle_articulos_titulo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="20dp"
+            android:text="DETALLE DE OTROS ARTICULOS"
+            android:gravity="center"
+            android:textColor="#283593"
+            android:textSize="25sp"
+            android:textStyle="bold" />
+
+
 
         <LinearLayout
 
-            android:id="@+id/layout_horizontal_tandas"
+            android:id="@+id/layout_vertical_hijo_detalle_art"
             android:layout_width="match_parent"
-            android:layout_height="40dp"
-            android:background="#00b0ff"
-            android:orientation="horizontal">
+            android:layout_height="500dp"
+            android:orientation="vertical">
 
 
-            <TextView
-                android:id="@+id/tanda"
+
+
+            <LinearLayout
+
+                android:id="@+id/llv_contenedor_para_bordes_detalle_art"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:gravity="center"
-                android:text="Tanda N°:"
-                android:textColor="#FFFF"
-                android:textSize="24sp"
-                android:textStyle="normal|bold" />
-
-        </LinearLayout>
-
-
-        <!--#################################################-->
-
-
-    <LinearLayout
-
-        android:id="@+id/layout_horizontal_segunda_tupla_erep"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="2dp"
-        android:layout_marginRight="2dp"
-        android:background="#d32f2f"
-        android:orientation="horizontal"
-        tools:visibility="visible"
-        android:weightSum="2">
-
-
-        <TextView
-
-            android:id="@+id/articulos_erep"
-            android:layout_width="155dp"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:text="Artículos"
-            android:textColor="#FFFF"
-            android:textSize="20sp" />
+                android:layout_height="wrap_content"
+                android:background="@drawable/borde_linear_layout"
+                android:orientation="vertical">
 
 
 
+                <LinearLayout
+
+                        android:id="@+id/layout_horizontal_tandas"
+                        android:layout_width="match_parent"
+                        android:layout_height="40dp"
+                        android:background="#283593"
+                        android:layout_marginLeft="2dp"
+                        android:layout_marginRight="2dp"
+                        android:layout_marginTop="2dp"
+                        android:orientation="horizontal">
 
 
-        <ImageView
+                    <TextView
+                        android:id="@+id/tanda"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:gravity="center"
+                        android:text="Tanda N°"
+                        android:textColor="#FFFF"
+                        android:textSize="30sp"
+                        android:textStyle="normal|bold" />
 
-            android:id="@+id/img_entrega_erep"
-            android:layout_width="30dp"
-            android:layout_height="wrap_content"
-            android:src="@drawable/ic_carga_detalle_articulo" />
-
-
-        <TextView
-
-            android:layout_weight="1"
-            android:id="@+id/entrega_erep"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center|left"
-            android:text="Entrega"
-            android:textColor="#FFFF"
-            android:textSize="20sp" />
+                </LinearLayout>
 
 
-        <ImageView
-
-            android:id="@+id/img_retiro_erep"
-            android:layout_width="30dp"
-            android:layout_height="wrap_content"
-            android:src="@drawable/ic_descarga_detalle_articulo" />
+                <!--#################################################-->
 
 
-        <TextView
+                <LinearLayout
 
-            android:layout_weight="1"
-            android:id="@+id/retiro_erep"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="left"
-            android:text="Retiro"
-            android:textColor="#FFFF"
-            android:textSize="20sp" />
-
-    </LinearLayout>
-
+                    android:id="@+id/layout_horizontal_segunda_tupla_erep"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="2dp"
+                    android:layout_marginRight="2dp"
+                    android:background="#304ffe"
+                    android:orientation="horizontal"
+                    android:weightSum="1"
+                    tools:visibility="visible">
 
 
+                    <TextView
 
-</LinearLayout>
+                        android:id="@+id/titulo_articulos"
+                        android:layout_width="110dp"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:text="Artículos"
+                        android:textColor="#FFFF"
+                        android:textSize="24sp" />
+
+
+                    <ImageView
+
+                        android:id="@+id/img_carga_detalle_articulos"
+                        android:layout_width="30dp"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/ic_carga_detalle_articulo" />
+
+
+                    <TextView
+
+                        android:id="@+id/tv_carga_detalle_articulos"
+                        android:layout_width="80dp"
+                        android:layout_height="wrap_content"
+                        android:gravity="center|left"
+                        android:text="Carga"
+                        android:textColor="#FFFF"
+                        android:textSize="24sp" />
+
+
+                    <ImageView
+
+                        android:id="@+id/img_descarga_detalle_articulos"
+                        android:layout_width="30dp"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/ic_descarga_detalle_articulo" />
+
+
+                    <TextView
+
+                        android:id="@+id/tv_descrga_detalle_articulos"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="left"
+                        android:text="Descarga"
+                        android:textColor="#FFFF"
+                        android:textSize="24sp" />
+
+                </LinearLayout>
+
+
+
+                <LinearLayout
+
+                    android:id="@+id/layout_horizontal_tupla_dispenser_plastico_detalle_art"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="2dp"
+                    android:layout_marginRight="2dp"
+                    android:layout_marginBottom="5dp"
+                    android:orientation="horizontal"
+                    android:weightSum="3"
+                    tools:visibility="visible">
+
+
+                    <TextView
+
+                        android:id="@+id/tv_nombre_disp_plastico_detalle_art"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:text="Dispenser plástico"
+                        android:textColor="#000"
+                        android:textSize="20sp" />
+
+
+                    <TextView
+
+                        android:id="@+id/tv_cantidad_carga_disp_platistico_detalle_art"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:hint="Cantidad"
+                        android:textSize="20sp" />
+
+                    <TextView
+
+                        android:id="@+id/tv_cantidad_descarga_disp_platistico_detalle_art"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:hint="Cantidad"
+                        android:textSize="20sp" />
+
+
+                </LinearLayout>
+
+
+
+                <LinearLayout
+
+                    android:id="@+id/layout_horizontal_tupla_canillas_detalle_art"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="2dp"
+                    android:layout_marginRight="2dp"
+                    android:layout_marginBottom="5dp"
+                    android:orientation="horizontal"
+                    android:weightSum="3"
+                    tools:visibility="visible">
+
+
+                    <TextView
+
+                        android:id="@+id/tv_nombre_canillas_detalle_art"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:text="Canillas"
+                        android:textColor="#000"
+                        android:textSize="20sp" />
+
+
+                    <TextView
+
+                        android:id="@+id/tv_cantidad_carga_canillas_detalle_art"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:hint="Cantidad"
+                        android:textSize="20sp" />
+                    <TextView
+
+                        android:id="@+id/tv_cantidad_descarga_canillas_detalle_art"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:hint="Cantidad"
+                        android:textSize="20sp" />
+
+
+                </LinearLayout>
+
+
+
+                <LinearLayout
+
+                    android:id="@+id/layout_horizontal_tupla_disp_electrico_detalle_art"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="2dp"
+                    android:layout_marginRight="2dp"
+                    android:orientation="horizontal"
+                    android:weightSum="3"
+                    tools:visibility="visible">
+
+
+                    <TextView
+
+                        android:id="@+id/tv_nombre_disp_electrico_detalle_art"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:text="Dispenser eléctrico"
+                        android:textColor="#000"
+                        android:textSize="20sp" />
+
+
+                    <TextView
+
+                        android:id="@+id/tv_cantidad_carga_disp_electrico_detalle_art"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:hint="Cantidad"
+                        android:textSize="20sp" />
+
+                    <TextView
+
+                        android:id="@+id/tv_cantidad_descarga_disp_electrico_detalle_art"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:hint="Cantidad"
+                        android:textSize="20sp" />
+
+
+                </LinearLayout>
+
+
+
+
+            </LinearLayout> <!--FIN DEL llv_contenedor_para_bordes_detalle_art-->
+
+        </LinearLayout> <!--FIN DEL layout_vertical_hijo_detalle_art-->
+
+    </LinearLayout> <!--FIN DEL layout_vertical_padre_detalle_art-->
+
+
 
 </ScrollView>

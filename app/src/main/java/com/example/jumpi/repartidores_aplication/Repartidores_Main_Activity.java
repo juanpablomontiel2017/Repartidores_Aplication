@@ -129,7 +129,7 @@ public class Repartidores_Main_Activity extends AppCompatActivity {
 
         ActionBar actionBar = getSupportActionBar();
 
-        actionBar.setDisplayHomeAsUpEnabled(true);
+        actionBar.setDisplayHomeAsUpEnabled(false);
 
 
 
