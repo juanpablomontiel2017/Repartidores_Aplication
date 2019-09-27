@@ -329,7 +329,8 @@ public class Utils_Spinner {
         LinearLayout linearLayoutVerticalContenedorArticulos = (LinearLayout) linearLayoutHorizontalArticulo.getParent();
 
 
-
+        // Recorre los linearlayout de los artículos uno por uno para encontrar los spinner. Se saltea el linearlayout propio porque no
+        //queremos cambiarlo
         for (int itemPos = 0; itemPos < linearLayoutVerticalContenedorArticulos.getChildCount(); itemPos++) {
 
 
@@ -338,7 +339,7 @@ public class Utils_Spinner {
 
 
 
-
+            // falso cuando el linearlayout dónde estamos parados
             if (view != linearLayoutHorizontalArticulo) {
 
 

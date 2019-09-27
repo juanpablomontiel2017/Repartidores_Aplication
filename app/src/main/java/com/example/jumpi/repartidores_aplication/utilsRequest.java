@@ -6,6 +6,7 @@ import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.toolbox.StringRequest;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -60,16 +61,14 @@ public class utilsRequest extends StringRequest {
                                              String dniRepartidor,
                                              String plataCarga,
                                              String plataDescarga,
-                                             String carga,
-                                             String descarga,
-                                             String idArticulo,
+                                             ArrayList arrayTandas,
                                              Response.Listener<String> listener) {
 
         String dirServer = vault.DIR_SERVER+vault.CARGA_DESCARGA_REQUEST;
         utilsRequest request;
 
 
-        Map<String, String> parametro;
+        Map parametro;
 
         parametro = new HashMap<>();
         parametro.put("idSupervisor", idSupervisor);
@@ -79,10 +78,13 @@ public class utilsRequest extends StringRequest {
         parametro.put("dniRepartidor", dniRepartidor);
         parametro.put("plataCarga", plataCarga);
         parametro.put("plataDescarga", plataDescarga);
+        parametro.put("tandas", arrayTandas);
+
+        /**
         parametro.put("carga", carga);
         parametro.put("descarga", descarga);
         parametro.put("idArticulo", idArticulo);
-
+*/
 
 
         request = new utilsRequest(Request.Method.POST, dirServer, listener, null, parametro);

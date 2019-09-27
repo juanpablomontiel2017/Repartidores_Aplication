@@ -473,7 +473,7 @@ public class Cargas_Descargas extends AppCompatActivity {
     /***************************************************************************************************/
     /***************************************************************************************************/
     /***************************************************************************************************/
-
+/**
 
     public void enviarTandasAlServidor(){
 
@@ -558,6 +558,7 @@ public class Cargas_Descargas extends AppCompatActivity {
 
 
     }
+ */
 
     public void obtenerArticulosParaSpinner(){
 
@@ -787,7 +788,9 @@ public class Cargas_Descargas extends AppCompatActivity {
                                 /*Llamada a la función:  */
                                 GuardarValoresEnSharedPreferences();
 
-                                enviarTandasAlServidor();
+                                //enviarTandasAlServidor();
+
+                                //obtenerCargasDescargasParaEnviarAlSErvidor();
 
                                 tanda_numero = 0;
 
@@ -1135,7 +1138,8 @@ public class Cargas_Descargas extends AppCompatActivity {
 
 
            // ArrayList<String> ArticulosReducidos = new ArrayList<String>(Arrays.asList(ArticulosDelArrayClasico));
-            ArrayList<String> ArticulosReducidos = articulosParaSpinner;
+            ArrayList<String> ArticulosReducidos = new ArrayList<String>(articulosParaSpinner);
+
 
             /*Llamada a la función: */
             ArticulosReducidos = Utils_Spinner.ReducirListaDeArticulos(spinner, ArticulosReducidos);
@@ -1371,6 +1375,135 @@ public class Cargas_Descargas extends AppCompatActivity {
     /***************************************************************************************************/
     /***************************************************************************************************/
     /***************************************************************************************************/
+
+
+    @SuppressLint("RestrictedApi")
+    public ArrayList obtenerCargasDescargasParaEnviarAlSErvidor() {
+
+
+        ArrayList arrayTandas = new ArrayList();
+
+
+        SharedPreferences preferences = getSharedPreferences("Datos_Cargas_Descargas", MODE_PRIVATE);
+
+
+
+        if (preferences.getBoolean("Repartidor: " + nombre_apellido_recibir + "flag_nueva_tanda", false)) {
+
+            //fab_nueva_tanda.setVisibility(View.VISIBLE);
+
+        }
+
+
+
+
+
+        /******>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>###########<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<******/
+        /******************* Leer  los valores de los campos que permanecen fijos de las nuevas tandas****************/
+        /******>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>###########<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<******/
+
+
+        String DimensionArrayNuevasTandas = preferences.getString("Repartidor: " + nombre_apellido_recibir + "DimensionArrayNuevasTandas", "");
+
+
+
+        if (DimensionArrayNuevasTandas != "") {
+
+
+            for (int indice_tandas = 0; indice_tandas < Integer.valueOf(DimensionArrayNuevasTandas); indice_tandas++) {
+
+                ArrayList <Map> arrayDeArticulos= new ArrayList();
+
+                Map plata;
+
+                plata = new HashMap<>();
+
+
+                String ElementoSeleccionadoSpinnerFijo = preferences.getString("Repartidor: " + nombre_apellido_recibir + "ElementoSeleccionado - " + "Tanda Numero: " + indice_tandas, "");
+                String ValorCargaArticulosNuevaTanda = preferences.getString("Repartidor: " + nombre_apellido_recibir + "CantidadCargaArticuloNuevaTanda - " + "Tanda Numero: " + indice_tandas, "");
+                String ValorDescargaArticulosNuevaTanda = preferences.getString("Repartidor: " + nombre_apellido_recibir + "CantidadDescargaArticuloNuevaTanda - " + "Tanda Numero: " + indice_tandas, "");
+                String ValorCargaMoneyNuevaTanda = preferences.getString("Repartidor: " + nombre_apellido_recibir + "CantidadCargaMoneyNuevaTanda - " + "Tanda Numero: " + indice_tandas, "");
+                String ValorDescargaMoneyNuevaTanda = preferences.getString("Repartidor: " + nombre_apellido_recibir + "CantidadDescargaMoneyNuevaTanda - " + "Tanda Numero: " + indice_tandas, "");
+
+
+                plata.put("plataCarga", ValorCargaMoneyNuevaTanda);
+                plata.put("plataDescarga", ValorDescargaMoneyNuevaTanda);
+
+
+                arrayDeArticulos.add(plata);
+
+
+
+                Map artículo;
+
+                artículo = new HashMap<>();
+
+                String idArtículo = obtenerIdDeArticuloSeleccionado(ElementoSeleccionadoSpinnerFijo);
+
+                artículo.put("idArtículo", idArtículo);
+                artículo.put("carga", ValorCargaArticulosNuevaTanda);
+                artículo.put("descarga", ValorDescargaArticulosNuevaTanda);
+
+                arrayDeArticulos.add(artículo);
+
+
+
+
+
+
+
+
+
+                /******>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>###########<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<******/
+                /******* Leer los valores de los campos de los nuevos artículos*******/
+                /******>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>###########<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<******/
+
+
+                String DimensionArticulosProgramaticos = preferences.getString("Repartidor: " + nombre_apellido_recibir + "DimensionArticulosProgramaticos - TandaNumero: " + indice_tandas, "");
+
+                if (DimensionArticulosProgramaticos != "") {
+
+                    for (int j = 1; j <= Integer.valueOf(DimensionArticulosProgramaticos); j++) {
+
+
+
+                        String ElementoSeleccionadoSpinnerProgramatico = preferences.getString("Repartidor: " + nombre_apellido_recibir + "ElementoSeleccionado_NUEVA_TANDA - " + "Tanda Numero: " + indice_tandas + " - " + "Posicion: " + j, "");
+                        String ValorCargaNuevoArticuloNuevaTanda = preferences.getString("Repartidor: " + nombre_apellido_recibir + "CantidadDeCargaNuevoArticuloProgramatico_NUEVA_TANDA - " + "Tanda Numero: " + indice_tandas + " - " + "Posicion: " + j, "");
+                        String ValorDescargaNuevoArticuloNuevaTanda = preferences.getString("Repartidor: " + nombre_apellido_recibir + "CantidadDeDescargaNuevoArticuloProgramatico_NUEVA_TANDA - " + "Tanda Numero: " + indice_tandas + " - " + "Posicion: " + j, "");
+
+                        Map artículoProgramático;
+
+                        artículoProgramático = new HashMap<>();
+
+                        String idArtículoProgramático = obtenerIdDeArticuloSeleccionado(ElementoSeleccionadoSpinnerProgramatico);
+
+                        artículoProgramático.put("idArtículo", idArtículoProgramático);
+                        artículoProgramático.put("carga", ValorCargaNuevoArticuloNuevaTanda);
+                        artículoProgramático.put("descarga", ValorDescargaNuevoArticuloNuevaTanda);
+
+                        arrayDeArticulos.add(artículoProgramático);
+
+                    } //Fin del for
+
+                } //Fin del primer if
+
+
+                arrayTandas.add(arrayDeArticulos);
+
+
+            } //Fin del primer for
+
+
+
+        } //Fin del primer if
+
+
+
+
+     return arrayTandas;
+
+
+    }  /*****************FIN DE LA FUNCION MostrarValoresDelSharedPreferences()*******************/
 
 
 
@@ -3075,8 +3208,9 @@ public void ObtenerNuevoArticulo(String ValorElementoSeleccionadoSpinnerPrograma
 
                             /*Llamada a la función: */
                             GuardarValoresEnSharedPreferences();
-                            enviarTandasAlServidor();
+                           // enviarTandasAlServidor();
 
+                         //   obtenerCargasDescargasParaEnviarAlSErvidor();
 
                         }
 
@@ -3244,7 +3378,9 @@ public void ObtenerNuevoArticulo(String ValorElementoSeleccionadoSpinnerPrograma
 
                                 /*Llamada a la función: */
                                 GuardarValoresEnSharedPreferences();
-                                enviarTandasAlServidor();
+                               // enviarTandasAlServidor();
+
+                               // obtenerCargasDescargasParaEnviarAlSErvidor();
 
                                 finish();
 
