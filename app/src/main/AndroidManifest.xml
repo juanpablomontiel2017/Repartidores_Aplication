@@ -20,7 +20,8 @@
 
         <activity
             android:name=".LoginActivity"
-            android:label="Beta 3.2.3">
+            android:label=""
+            android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

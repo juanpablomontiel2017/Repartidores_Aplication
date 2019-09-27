@@ -27,6 +27,11 @@
             android:id="@+id/linear_layout_vertical_padre"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginLeft="2dp"
+            android:layout_marginTop="2dp"
+            android:layout_marginRight="2dp"
+            android:layout_marginBottom="2dp"
+            android:background="#d50000"
             android:orientation="vertical"
             android:weightSum="5">
 
@@ -43,16 +48,14 @@
                 android:layout_marginRight="10dp"
                 android:layout_marginBottom="10dp"
                 android:layout_weight="1"
-                android:background="#e0e0e0"
+                android:background="#eeeeee"
                 android:orientation="horizontal">
-
-
 
 
                 <View
 
                     android:id="@+id/view_estado_evento"
-                    android:layout_width="10dp"
+                    android:layout_width="15dp"
                     android:layout_height="match_parent"
                     android:layout_marginLeft="10dp"
                     android:layout_marginTop="10dp"
@@ -62,7 +65,7 @@
 
                 </View>
 
-                 <!--#ff3d00-->
+                <!--#ff3d00-->
 
                 <LinearLayout
 
@@ -81,14 +84,11 @@
                         android:layout_marginTop="10dp"
                         android:layout_marginRight="10dp"
                         android:layout_marginBottom="15dp"
-                        android:background="#ffc400"
                         android:gravity="center"
                         android:text="TORNEO DE VOLEY - MORAVA"
-                        android:textColor="#000"
+                        android:textColor="#d50000"
                         android:textSize="24sp"
                         android:textStyle="bold|italic" />
-
-
 
 
                     <TextView
@@ -98,16 +98,12 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="10dp"
                         android:layout_marginRight="10dp"
-                        android:layout_marginBottom="15dp"
-                        android:background="#ffca28"
+                        android:layout_marginBottom="20dp"
                         android:gravity="center"
                         android:text="PINTOS FRANCO"
-                        android:textColor="#000"
+                        android:textColor="#dd2c00"
                         android:textSize="24sp"
                         android:textStyle="bold|italic" />
-
-
-
 
 
                     <LinearLayout
@@ -196,7 +192,7 @@
                         android:layout_marginRight="10dp"
                         android:layout_marginBottom="5dp"
                         android:layout_weight="1"
-                        android:background="#b71c1c"
+                        android:background="#dd2c00"
                         android:orientation="horizontal">
 
 
@@ -204,7 +200,11 @@
 
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:backgroundTint="#d50000"
+                            android:layout_marginLeft="5dp"
+                            android:layout_marginTop="5dp"
+                            android:layout_marginRight="5dp"
+                            android:layout_marginBottom="5dp"
+                            android:backgroundTint="#dd2c00"
                             android:drawableLeft="@drawable/ic_detalle_stock_vehiculo"
                             android:gravity="center"
                             android:text="VER DETALLE"
@@ -214,8 +214,6 @@
 
 
                     </LinearLayout>
-
-
 
 
                 </LinearLayout> <!-- FIN DEL llv_contenedor_hijo_de_envases -->
