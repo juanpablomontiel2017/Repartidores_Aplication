@@ -1,6 +1,7 @@
 package com.example.jumpi.repartidores_aplication;
 
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -66,6 +67,8 @@ public class NuevoResponsablePatrocinio extends AppCompatActivity {
 
          view_separador_nombre_evento_repartidor, view_separador_direccion_evento_repartidor, view_separador_barrio_evento_repartidor,
          view_separador_referencia_evento_repartidor, view_separador_fecha_inicio_evento_repartidor, view_separador_fecha_fin_evento_repartidor;
+
+
 
 
 
@@ -178,12 +181,12 @@ public class NuevoResponsablePatrocinio extends AppCompatActivity {
             }
         });
 
+        /*Instanciamos los campos de los DATOS PERSONALES del nuevo responsable */
+
 
 
         et_referencia_nuevo_responsable = (EditText) findViewById(R.id.et_referencia_nuevo_responsable_formulario_patrocinio_supervisor);
 
-
-        /*Instanciamos los campos de los DATOS PERSONALES del nuevo responsable */
 
         et_nombre_del_evento_nuevo_responsable = (EditText) findViewById(R.id.et_nuevo_responsable_nombre_evento_formulario_patrocinio_supervisor);
 
@@ -306,6 +309,16 @@ public class NuevoResponsablePatrocinio extends AppCompatActivity {
 
 
                 ValidarCamposDelFormularioAntesDeConfirmarNuevoResponsable();
+
+                GuardarEventoEnSharedPreferences();
+
+
+
+                Intent intent = new Intent (NuevoResponsablePatrocinio.this, BuscarResponsableParaPatrocinio.class);
+
+                startActivity(intent);
+
+
 
                 finish();
 
@@ -719,6 +732,7 @@ public class NuevoResponsablePatrocinio extends AppCompatActivity {
 
 
     public void LeerEventoEnSharedPreferences(){
+
 
         SharedPreferences preferences = getSharedPreferences("Datos_Evento_Responsable", MODE_PRIVATE);
 

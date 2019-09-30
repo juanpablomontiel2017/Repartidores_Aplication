@@ -22,6 +22,7 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.LinearLayout;
+import android.widget.ScrollView;
 import android.widget.TextView;
 
 import java.util.ArrayList;
@@ -33,6 +34,8 @@ public class BuscarResponsableParaPatrocinio extends AppCompatActivity implement
     Button btnResponsableInactivo;
 
     public static Button btnResponsableActivo;
+
+    private ScrollView parent_scrollView;
 
 
     LinearLayout LinearLayoutVerticalPadre;
@@ -84,6 +87,8 @@ public class BuscarResponsableParaPatrocinio extends AppCompatActivity implement
         setSupportActionBar(toolbar);
 
 
+
+        parent_scrollView = (ScrollView) findViewById(R.id.scroll_parent_brpp);
 
         LinearLayoutVerticalPadre = (LinearLayout) findViewById(R.id.parent_layout_vertical_buscador_evento);
 
@@ -332,6 +337,7 @@ public class BuscarResponsableParaPatrocinio extends AppCompatActivity implement
 
         CargaItemDeEvento();
 
+        //ObtenerItemEvento(0);
 
 
 
@@ -430,6 +436,20 @@ public class BuscarResponsableParaPatrocinio extends AppCompatActivity implement
 
 
 
+    /************************************************************************/
+    /************************************************************************/
+    /************************************************************************/
+    /************************************************************************/
+    /************************************************************************/
+    /************************************************************************/
+    /************************************************************************/
+    /************************************************************************/
+    /************************************************************************/
+    /************************************************************************/
+
+
+
+
     public void CargaItemDeEvento(){
 
         int dimension = 0;
@@ -442,7 +462,7 @@ public class BuscarResponsableParaPatrocinio extends AppCompatActivity implement
 
             dimension = Integer.parseInt(DimensionEvento);
 
-            for(int i=0; i < dimension;i++){
+            for(int i=0; i <= dimension; i++){
 
 
                 ObtenerItemEvento(i);
@@ -457,7 +477,7 @@ public class BuscarResponsableParaPatrocinio extends AppCompatActivity implement
 
 
 
-    }
+    }/******************************* FIN DE LA FUNCIÓN CargaItemDeEvento() ***********************************/
 
 
 
@@ -526,10 +546,6 @@ public class BuscarResponsableParaPatrocinio extends AppCompatActivity implement
 
 
         SharedPreferences preferences = getSharedPreferences("Datos_Evento_Responsable", MODE_PRIVATE);
-
-
-
-
 
 
 

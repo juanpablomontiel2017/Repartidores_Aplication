@@ -5,6 +5,7 @@
 
 
     android:orientation="vertical"
+    android:id="@+id/llv_contenedor_principal_item"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#FFF"
@@ -14,12 +15,6 @@
 
 
 
-
-    <ScrollView
-        android:layout_weight="1"
-        android:id="@+id/scrll"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
 
 
         <LinearLayout
@@ -65,7 +60,6 @@
 
                 </View>
 
-                <!--#ff3d00-->
 
                 <LinearLayout
 
@@ -86,9 +80,9 @@
                         android:layout_marginBottom="15dp"
                         android:gravity="center"
                         android:text="TORNEO DE VOLEY - MORAVA"
-                        android:textColor="#d50000"
-                        android:textSize="24sp"
-                        android:textStyle="bold|italic" />
+                        android:textColor="#000"
+                        android:textSize="30sp"
+                        android:textStyle="bold" />
 
 
                     <TextView
@@ -98,12 +92,12 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="10dp"
                         android:layout_marginRight="10dp"
-                        android:layout_marginBottom="20dp"
+                        android:layout_marginBottom="25dp"
                         android:gravity="center"
                         android:text="PINTOS FRANCO"
-                        android:textColor="#dd2c00"
-                        android:textSize="24sp"
-                        android:textStyle="bold|italic" />
+                        android:textColor="#000"
+                        android:textSize="30sp"
+                        android:textStyle="bold" />
 
 
                     <LinearLayout
@@ -222,22 +216,6 @@
             </LinearLayout> <!-- FIN DEL llh_contenedor_envases -->
 
 
-            <!-- ######################################################################## -->
-
-
-            <!-- FIN DEL llh_contenedor_dinero -->
-
-
-            <!-- ######################################################### -->
-
-
-            <!-- FIN DEL llh_contenedor_otros_articulos -->
-
-
-            <!-- ######################################################## -->
-
-
-            <!-- FIN DEL llh_contenedor_faltante_sobrante -->
 
 
         </LinearLayout> <!-- FIN DEL linear_layout_hijo -->
@@ -245,7 +223,6 @@
 
 
 
-    </ScrollView>
 
 
 
