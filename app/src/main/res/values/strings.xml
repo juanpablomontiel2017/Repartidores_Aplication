@@ -71,8 +71,6 @@
 
     <string name="action_finish_tanda">Cerrar Tandas</string>
 
-    <!-- <string name="title_spinner">Artículos</string> -->
-
     <string name="action_editar_tanda">Editar Tandas</string>
 
     <!--Envases Activity-->
@@ -84,9 +82,14 @@
     <string name="nombre_transicion_imagen">imagen_compartida</string>
 
 
-    <!--Menu: buscar_cliente_para_realizar_venta.xml -->
+    <!--Menu: buscar_responsable_para_patrocinio.xml -->
 
     <string name="hint_search">Buscar</string>
+
+    <string name="action_editar_item_evento">Editar Evento</string>
+
+
+
 
     <!--Menu: filtros_gasto_en_combustible.xml -->
 
@@ -119,9 +122,17 @@
     <!-- <string name="hello_blank_fragment">Hello blank fragment</string> -->
     <string name="title_activity_entrega_retiro_envases_patrocinio">EntregaRetiroEnvasesPatrocinio
     </string>
+
+
+
+
     <string name="title_activity_buscar_responsable_para_patrocinio">
         BuscarResponsableParaPatrocinio
     </string>
+
+
+
+
 
 
 </resources>

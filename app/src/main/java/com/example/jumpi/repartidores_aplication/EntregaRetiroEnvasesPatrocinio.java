@@ -146,9 +146,24 @@ public class EntregaRetiroEnvasesPatrocinio extends AppCompatActivity {
 
 
 
-        Toolbar toolbar = findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
 
+        final TextView tv_nombre_evento_recibir = (TextView) findViewById(R.id.tv_evento_titulo);
+
+        String extras = getIntent().getStringExtra("Nombre_del_evento");
+
+        tv_nombre_evento_recibir.setText(extras);
+
+        String Extras_NyA_Responsable = getIntent().getStringExtra("Nombre_del_responsable");
+
+
+
+
+        Toolbar toolbar = findViewById(R.id.toolbar);
+
+        /*Recibir como parámetro el nombre_&_apellido del repartidor */
+        toolbar.setTitle(Extras_NyA_Responsable);
+
+        setSupportActionBar(toolbar);
 
 
 

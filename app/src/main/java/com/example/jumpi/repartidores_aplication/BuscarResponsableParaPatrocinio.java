@@ -337,7 +337,6 @@ public class BuscarResponsableParaPatrocinio extends AppCompatActivity implement
 
         CargaItemDeEvento();
 
-        //ObtenerItemEvento(0);
 
 
 
@@ -559,14 +558,28 @@ public class BuscarResponsableParaPatrocinio extends AppCompatActivity implement
 
         TV_Nombre_Evento.setText(Nombre_Evento);
         TV_Nombre_Apellido_Responsable_Evento.setText(Nombre_Apellido_Responsable);
-        TV_Fecha_Inicio_Evento.setText(Fecha_Inicio_Evento);
-        TV_Fecha_Fin_Evento.setText(Fecha_Fin_Evento);
+        TV_Valor_Fecha_Inicio_Evento.setText(Fecha_Inicio_Evento);
+        TV_Valor_Fecha_Fin_Evento.setText(Fecha_Fin_Evento);
 
 
 
+        final Button btn_ver_detalle_entrega_retiro_envases_patrocinio = (Button) NuevoItemInflado.findViewById(R.id.btn_ver_detalle_item_evento);
+        btn_ver_detalle_entrega_retiro_envases_patrocinio.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
 
 
+                Intent intent = new Intent (BuscarResponsableParaPatrocinio.this, EntregaRetiroEnvasesPatrocinio.class);
 
+                intent.putExtra("Nombre_del_evento", TV_Nombre_Evento.getText());
+
+                intent.putExtra("Nombre_del_responsable", TV_Nombre_Apellido_Responsable_Evento.getText());
+
+
+                startActivity(intent);
+
+            }
+        });
 
 
     }/***************************FIN DE LA FUNCIÓN ObtenerItemEvento()*****************************/

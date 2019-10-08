@@ -12,213 +12,220 @@
     android:weightSum="1">
 
 
+    <LinearLayout
 
+        android:id="@+id/linear_layout_vertical_padre"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="2dp"
+        android:layout_marginTop="2dp"
+        android:layout_marginRight="2dp"
+        android:layout_marginBottom="2dp"
+        android:background="#d50000"
+        android:orientation="vertical"
+        android:weightSum="5">
 
-
+        <!-- ######################################################## -->
 
 
         <LinearLayout
 
-            android:id="@+id/linear_layout_vertical_padre"
+            android:id="@+id/llh_contenedor_evento"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="2dp"
-            android:layout_marginTop="2dp"
-            android:layout_marginRight="2dp"
-            android:layout_marginBottom="2dp"
-            android:background="#d50000"
-            android:orientation="vertical"
-            android:weightSum="5">
-
-            <!-- ######################################################## -->
+            android:layout_marginLeft="5dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginRight="5dp"
+            android:layout_marginBottom="5dp"
+            android:layout_weight="1"
+            android:background="#eeeeee"
+            android:orientation="horizontal">
 
 
-            <LinearLayout
+            <View
 
-                android:id="@+id/llh_contenedor_evento"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:id="@+id/view_estado_evento"
+                android:layout_width="15dp"
+                android:layout_height="match_parent"
                 android:layout_marginLeft="10dp"
                 android:layout_marginTop="10dp"
                 android:layout_marginRight="10dp"
                 android:layout_marginBottom="10dp"
-                android:layout_weight="1"
-                android:background="#eeeeee"
-                android:orientation="horizontal">
+                android:background="#43a047">
 
+            </View>
+
+
+            <LinearLayout
+
+                android:id="@+id/llv_contenedor_hijo_de_evento"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:weightSum="4">
+
+
+                <TextView
+
+                    android:id="@+id/tv_nombre_evento_recibir"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_marginBottom="15dp"
+                    android:gravity="center"
+                    android:text="TORNEO DE VOLEY - MORAVA"
+                    android:textColor="#000"
+                    android:textSize="30sp"
+                    android:textStyle="bold" />
+
+
+                <TextView
+
+                    android:id="@+id/tv_nombre_apellido_responsable_recibir"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_marginBottom="0dp"
+                    android:gravity="center"
+                    android:text="PINTOS FRANCO"
+                    android:textColor="#000"
+                    android:textSize="30sp"
+                    android:textStyle="bold" />
 
                 <View
 
-                    android:id="@+id/view_estado_evento"
-                    android:layout_width="15dp"
-                    android:layout_height="match_parent"
+                    android:id="@+id/view_separador_uno"
+                    android:layout_width="match_parent"
+                    android:layout_height="3dp"
                     android:layout_marginLeft="10dp"
                     android:layout_marginTop="10dp"
                     android:layout_marginRight="10dp"
-                    android:layout_marginBottom="10dp"
-                    android:background="#76ff03">
+                    android:layout_marginBottom="0dp"
+                    android:background="#e0e0e0">
 
                 </View>
+
+                <LinearLayout
+
+                    android:id="@+id/llh_fecha_inicio"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="10dp"
+                    android:layout_weight="1"
+                    android:orientation="horizontal"
+                    android:weightSum="2">
+
+                    <TextView
+
+                        android:id="@+id/tv_fecha_inicio_recibir"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:text="FECHA DE INICIO "
+                        android:textColor="#000"
+                        android:textSize="25sp"
+                        android:textStyle="bold" />
+
+
+                    <TextView
+
+                        android:id="@+id/tv_valor_fecha_inicio_recibir"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:text="Fecha"
+                        android:textColor="#000"
+                        android:textSize="25sp"
+                        android:textStyle="bold" />
+
+
+                </LinearLayout>
 
 
                 <LinearLayout
 
-                    android:id="@+id/llv_contenedor_hijo_de_evento"
+                    android:id="@+id/llh_fecha_fin"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:weightSum="4">
-
+                    android:layout_marginBottom="10dp"
+                    android:layout_weight="1"
+                    android:orientation="horizontal"
+                    android:weightSum="2">
 
                     <TextView
 
-                        android:id="@+id/tv_nombre_evento_recibir"
+                        android:id="@+id/tv_fecha_fin_recibir"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="10dp"
-                        android:layout_marginRight="10dp"
-                        android:layout_marginBottom="15dp"
+                        android:layout_weight="1"
                         android:gravity="center"
-                        android:text="TORNEO DE VOLEY - MORAVA"
+                        android:text="FECHA DE FIN ESTIMADA "
                         android:textColor="#000"
-                        android:textSize="30sp"
+                        android:textSize="25sp"
                         android:textStyle="bold" />
 
 
                     <TextView
 
-                        android:id="@+id/tv_nombre_apellido_responsable_recibir"
+                        android:id="@+id/tv_valor_fecha_fin_recibir"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="10dp"
-                        android:layout_marginRight="10dp"
-                        android:layout_marginBottom="25dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
                         android:gravity="center"
-                        android:text="PINTOS FRANCO"
+                        android:text="Fecha"
                         android:textColor="#000"
-                        android:textSize="30sp"
+                        android:textSize="25sp"
                         android:textStyle="bold" />
 
 
-                    <LinearLayout
+                </LinearLayout>
 
-                        android:id="@+id/llh_fecha_inicio"
+
+                <LinearLayout
+
+                    android:id="@+id/llh_btn_ver_detalles_evento_responsable"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="10dp"
+                    android:layout_marginBottom="5dp"
+                    android:layout_weight="1"
+                    android:orientation="horizontal">
+
+
+                    <Button
+
+                        android:id="@+id/btn_ver_detalle_item_evento"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginBottom="10dp"
-                        android:layout_weight="1"
-                        android:orientation="horizontal"
-                        android:weightSum="2">
-
-                        <TextView
-
-                            android:id="@+id/tv_fecha_inicio_recibir"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:gravity="center"
-                            android:text="FECHA DE INICIO "
-                            android:textColor="#000"
-                            android:textSize="25sp"
-                            android:textStyle="bold" />
-
-
-                        <TextView
-
-                            android:id="@+id/tv_valor_fecha_inicio_recibir"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:gravity="center"
-                            android:text="Fecha"
-                            android:textColorHint="#e0e0e0"
-                            android:textSize="25sp"
-                            android:textStyle="bold" />
-
-
-                    </LinearLayout>
-
-
-                    <LinearLayout
-
-                        android:id="@+id/llh_fecha_fin"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginBottom="10dp"
-                        android:layout_weight="1"
-                        android:orientation="horizontal"
-                        android:weightSum="2">
-
-                        <TextView
-
-                            android:id="@+id/tv_fecha_fin_recibir"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:gravity="center"
-                            android:text="FECHA DE FIN ESTIMADA "
-                            android:textColor="#000"
-                            android:textSize="25sp"
-                            android:textStyle="bold" />
-
-
-                        <TextView
-
-                            android:id="@+id/tv_valor_fecha_fin_recibir"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:gravity="center"
-                            android:text="Fecha"
-                            android:textColorHint="#e0e0e0"
-                            android:textSize="25sp"
-                            android:textStyle="bold" />
-
-
-                    </LinearLayout>
-
-
-                    <LinearLayout
-
-                        android:id="@+id/llh_btn_ver_detalles_evento_responsable"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginRight="10dp"
+                        android:layout_marginLeft="5dp"
+                        android:layout_marginTop="5dp"
+                        android:layout_marginRight="5dp"
                         android:layout_marginBottom="5dp"
-                        android:layout_weight="1"
-                        android:background="#dd2c00"
-                        android:orientation="horizontal">
+                        android:background="@drawable/contenedor_boton_detalle_stock_vehiculo"
+                        android:backgroundTint="#dd2c00"
+                        android:drawableLeft="@drawable/ic_detalle_stock_vehiculo"
+                        android:gravity="center"
+                        android:paddingLeft="30dp"
+                        android:text="VER DETALLE"
+                        android:textColor="#FFFF"
+                        android:textSize="25sp"
+                        android:textStyle="bold" />
 
 
-                        <Button
-
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginLeft="5dp"
-                            android:layout_marginTop="5dp"
-                            android:layout_marginRight="5dp"
-                            android:layout_marginBottom="5dp"
-                            android:backgroundTint="#dd2c00"
-                            android:drawableLeft="@drawable/ic_detalle_stock_vehiculo"
-                            android:gravity="center"
-                            android:text="VER DETALLE"
-                            android:textColor="#FFFF"
-                            android:textSize="25sp"
-                            android:textStyle="bold" />
+                </LinearLayout>
 
 
-                    </LinearLayout>
+            </LinearLayout> <!-- FIN DEL llv_contenedor_hijo_de_envases -->
 
 
-                </LinearLayout> <!-- FIN DEL llv_contenedor_hijo_de_envases -->
+        </LinearLayout> <!-- FIN DEL llh_contenedor_envases -->
 
 
-            </LinearLayout> <!-- FIN DEL llh_contenedor_envases -->
-
-
-
-
-        </LinearLayout> <!-- FIN DEL linear_layout_hijo -->
+    </LinearLayout> <!-- FIN DEL linear_layout_hijo -->
 
 
 

@@ -17,6 +17,28 @@
 
 
 
+    <LinearLayout
+
+        android:id="@+id/layout_vertical_contenedor_titulo_evento_erep"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+
+        <TextView
+
+            android:id="@+id/tv_evento_titulo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="0dp"
+            android:gravity="center"
+            android:textColor="#d50000"
+            android:textSize="30sp"
+            android:textStyle="bold" />
+
+
+
+
 
 
     <LinearLayout
@@ -27,12 +49,17 @@
         android:orientation="vertical">
 
 
+
+
+
         <LinearLayout
 
             android:id="@+id/layout_vertical_erep"
             android:layout_width="match_parent"
             android:layout_height="500dp"
             android:orientation="vertical">
+
+
 
             <LinearLayout
 
@@ -41,6 +68,7 @@
                 android:layout_height="wrap_content"
                 android:background="@drawable/borde_linear_layout"
                 android:orientation="vertical">
+
 
 
                 <!--#################################################-->
@@ -241,6 +269,7 @@
 
 
 
+    </LinearLayout>
 
 
 
