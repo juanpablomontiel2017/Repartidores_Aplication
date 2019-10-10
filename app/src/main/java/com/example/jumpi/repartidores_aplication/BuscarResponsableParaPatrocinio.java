@@ -14,20 +14,23 @@ import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.SearchView;
 import android.support.v7.widget.Toolbar;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.LinearLayout;
+import android.widget.ListView;
 import android.widget.ScrollView;
 import android.widget.TextView;
 
 import java.util.ArrayList;
 
-public class BuscarResponsableParaPatrocinio extends AppCompatActivity implements SearchView.OnQueryTextListener {
+public class BuscarResponsableParaPatrocinio extends AppCompatActivity implements SearchView.OnQueryTextListener{
 
 
 
@@ -42,6 +45,15 @@ public class BuscarResponsableParaPatrocinio extends AppCompatActivity implement
 
 
     ArrayList<View> ArrayListItemEvento = new ArrayList<View>();
+
+    private ListView lv;
+
+    private SearchView searchView;
+
+    ArrayAdapter<String> adapter;
+
+    // Arreglo de nombres de responsables
+    String tokens[] = {"Almagro José","Gonzalez Alfredo","Ricardo Martinez","Andrada Esteban","Mendez Luis","Aldino Sebastián"};
 
 
 
@@ -88,160 +100,10 @@ public class BuscarResponsableParaPatrocinio extends AppCompatActivity implement
 
 
 
-        parent_scrollView = (ScrollView) findViewById(R.id.scroll_parent_brpp);
+        //parent_scrollView = (ScrollView) findViewById(R.id.scroll_parent_brpp);
 
         LinearLayoutVerticalPadre = (LinearLayout) findViewById(R.id.parent_layout_vertical_buscador_evento);
 
-
-
-
-        /*
-
-
-        btnResponsableInactivo = (Button) findViewById(R.id.btn_responsable_inactivo);
-
-        btnResponsableInactivo.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-
-
-
-                AlertDialog.Builder builder = new AlertDialog.Builder(BuscarResponsableParaPatrocinio.this);
-                builder.setIcon(R.drawable.ic_notificacion_nuevo_evento);
-                builder.setTitle("¿Desea añadir un nuevo evento para esta persona?");
-                builder.setMessage("Presione el botón 'ACEPTAR' para completar los datos necesarios del nuevo evento.");
-
-
-                builder.setPositiveButton("ACEPTAR", new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog, int id) {
-
-
-
-                        Intent intent = new Intent (BuscarResponsableParaPatrocinio.this, NuevoEventoPatrocinio.class);
-
-                        startActivity(intent);
-
-                    }
-                });
-
-
-
-
-
-                builder.setNegativeButton("CANCELAR", new DialogInterface.OnClickListener() {
-
-
-                    public void onClick(DialogInterface dialog, int id) {
-
-                        dialog.dismiss();
-
-                    }
-                });
-
-
-
-                AlertDialog dialog = builder.create();
-                dialog.show();
-
-
-            }
-
-
-        }); */
-
-
-
-
-
-
-
-/*
-
-
-        btnResponsableActivo = (Button) findViewById(R.id.btn_responsable_activo);
-
-        btnResponsableActivo.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-
-
-
-                Intent intent = new Intent (BuscarResponsableParaPatrocinio.this, EntregaRetiroEnvasesPatrocinio.class);
-
-                startActivity(intent);
-
-
-
-
-            }
-
-
-
-        });
-
-
-*/
-
-/*
-
-        btnResponsableActivo.setOnLongClickListener(new View.OnLongClickListener() {
-            @Override
-            public boolean onLongClick(View v) {
-
-
-
-                AlertDialog.Builder builder = new AlertDialog.Builder(BuscarResponsableParaPatrocinio.this);
-                builder.setIcon(R.drawable.ic_notificacion_nuevo_evento);
-                builder.setTitle("¿Desea añadir un nuevo evento para esta persona?");
-                builder.setMessage("Presione el botón 'ACEPTAR' para completar los datos necesarios del nuevo evento.");
-
-
-                builder.setPositiveButton("ACEPTAR", new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog, int id) {
-
-
-
-                        Intent intent = new Intent (BuscarResponsableParaPatrocinio.this, NuevoEventoPatrocinio.class);
-
-                        startActivity(intent);
-
-                    }
-
-
-                });
-
-
-
-
-
-                builder.setNegativeButton("CANCELAR", new DialogInterface.OnClickListener() {
-
-
-                    public void onClick(DialogInterface dialog, int id) {
-
-                        dialog.dismiss();
-
-                    }
-                });
-
-
-
-                AlertDialog dialog = builder.create();
-                dialog.show();
-
-
-
-
-
-
-                return false;
-            }
-
-
-
-        });   */
 
 
 
@@ -332,9 +194,7 @@ public class BuscarResponsableParaPatrocinio extends AppCompatActivity implement
 
 
 
-
-
-
+        /*Llamada a la función: */
         CargaItemDeEvento();
 
 
@@ -342,8 +202,22 @@ public class BuscarResponsableParaPatrocinio extends AppCompatActivity implement
 
 
 
-    }/******************************* FIN DEL onCreate() ***********************************/
+        lv = (ListView) findViewById(R.id.list_view);
 
+        searchView = (SearchView) findViewById(R.id.search);
+
+        adapter = new ArrayAdapter<String>(this,R.layout.list_nombres_responsables_item, R.id.codigo_token,tokens);
+
+        lv.setAdapter(adapter);
+
+        lv.setTextFilterEnabled(true);
+
+
+
+
+
+
+    }/******************************* FIN DEL onCreate() ***********************************/
 
 
 
@@ -372,6 +246,8 @@ public class BuscarResponsableParaPatrocinio extends AppCompatActivity implement
 
         SearchView searchView = (SearchView) MenuItemCompat.getActionView(searchItem);
 
+
+
         searchView.setOnQueryTextListener(this);
 
         searchView.setIconified(false);
@@ -396,10 +272,17 @@ public class BuscarResponsableParaPatrocinio extends AppCompatActivity implement
 
 
 
+
+
     @Override
     public boolean onQueryTextSubmit(String query) {
 
         // User pressed the search button
+
+        //BuscarResponsableParaPatrocinio.this.adapter.getFilter().filter(query.toString());
+        //lv.setVisibility(View.VISIBLE);
+
+
         return false;
 
     }
@@ -429,9 +312,29 @@ public class BuscarResponsableParaPatrocinio extends AppCompatActivity implement
     public boolean onQueryTextChange(String newText) {
 
         // User changed the text
+
+
+        if(newText.equals("") ) {
+
+            lv.setVisibility(View.GONE);
+
+
+        } else {
+
+            BuscarResponsableParaPatrocinio.this.adapter.getFilter().filter(newText.toString());
+            lv.setVisibility(View.VISIBLE);
+
+
+       }
+
+
+
         return false;
 
     }
+
+
+
 
 
 

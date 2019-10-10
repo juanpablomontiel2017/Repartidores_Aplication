@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView
+<LinearLayout
 
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
 
-    android:id="@+id/scroll_parent_brpp"
+
+    android:id="@+id/parent_layout_vertical_buscador_evento"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
@@ -17,21 +18,17 @@
 
 
 
-    <LinearLayout
-
-        android:id="@+id/parent_layout_vertical_buscador_evento"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical">
-
-
-    </LinearLayout>     <!-- Fin del "parent_layout_vertical_buscador_evento" -->
+        <!-- List View de elementos  -->
+        <ListView
+            android:id="@+id/list_view"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:visibility="gone"/>
 
 
 
 
 
 
-
-
-</ScrollView>
+</LinearLayout> <!-- Fin del "parent_layout_vertical_buscador_evento" -->
