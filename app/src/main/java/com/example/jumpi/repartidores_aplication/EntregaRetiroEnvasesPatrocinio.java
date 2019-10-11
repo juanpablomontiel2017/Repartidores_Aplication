@@ -87,8 +87,9 @@ public class EntregaRetiroEnvasesPatrocinio extends AppCompatActivity {
 
 
 
+    /**Variables tipo TextView*/
 
-
+    TextView TV_Titulo_Evento;
 
     /**Variables tipo EditText*/
 
@@ -147,6 +148,7 @@ public class EntregaRetiroEnvasesPatrocinio extends AppCompatActivity {
 
 
 
+
         final TextView tv_nombre_evento_recibir = (TextView) findViewById(R.id.tv_evento_titulo);
 
         String extras = getIntent().getStringExtra("Nombre_del_evento");
@@ -154,6 +156,7 @@ public class EntregaRetiroEnvasesPatrocinio extends AppCompatActivity {
         tv_nombre_evento_recibir.setText(extras);
 
         String Extras_NyA_Responsable = getIntent().getStringExtra("Nombre_del_responsable");
+
 
 
 
@@ -289,6 +292,7 @@ public class EntregaRetiroEnvasesPatrocinio extends AppCompatActivity {
 
 
 
+        TV_Titulo_Evento = (TextView) findViewById(R.id.tv_evento_titulo);
 
 
 
@@ -396,9 +400,14 @@ public class EntregaRetiroEnvasesPatrocinio extends AppCompatActivity {
             toolbar.setBackgroundColor(Color.parseColor("#3F51B5"));
             setSupportActionBar(toolbar);
 
+            TV_Titulo_Evento.setTextColor(Color.parseColor("#1a237e"));
+
+
             LinearLayoutVerticalBorde.setBackgroundDrawable(getDrawable(R.drawable.borde_linear_layout_entrega_retiro_patrocinio_repartidores));
 
+
             textViewVuelta.setBackgroundColor(Color.parseColor("#2962ff"));
+
 
             LinearLayoutHorizontalSegundaTupla.setBackgroundColor(Color.parseColor("#0091ea"));
 

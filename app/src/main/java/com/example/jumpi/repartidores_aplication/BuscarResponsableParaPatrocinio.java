@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.ColorStateList;
 import android.graphics.Color;
+import android.graphics.PorterDuff;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.view.MenuItemCompat;
@@ -21,24 +22,25 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.ScrollView;
+import android.widget.Spinner;
 import android.widget.TextView;
 
 import java.util.ArrayList;
+
+import static android.view.View.GONE;
 
 public class BuscarResponsableParaPatrocinio extends AppCompatActivity implements SearchView.OnQueryTextListener{
 
 
 
-    Button btnResponsableInactivo;
-
     public static Button btnResponsableActivo;
-
-    private ScrollView parent_scrollView;
 
 
     LinearLayout LinearLayoutVerticalPadre;
@@ -47,8 +49,6 @@ public class BuscarResponsableParaPatrocinio extends AppCompatActivity implement
     ArrayList<View> ArrayListItemEvento = new ArrayList<View>();
 
     private ListView lv;
-
-    private SearchView searchView;
 
     ArrayAdapter<String> adapter;
 
@@ -99,8 +99,6 @@ public class BuscarResponsableParaPatrocinio extends AppCompatActivity implement
         setSupportActionBar(toolbar);
 
 
-
-        //parent_scrollView = (ScrollView) findViewById(R.id.scroll_parent_brpp);
 
         LinearLayoutVerticalPadre = (LinearLayout) findViewById(R.id.parent_layout_vertical_buscador_evento);
 
@@ -204,8 +202,6 @@ public class BuscarResponsableParaPatrocinio extends AppCompatActivity implement
 
         lv = (ListView) findViewById(R.id.list_view);
 
-        searchView = (SearchView) findViewById(R.id.search);
-
         adapter = new ArrayAdapter<String>(this,R.layout.list_nombres_responsables_item, R.id.codigo_token,tokens);
 
         lv.setAdapter(adapter);
@@ -246,8 +242,6 @@ public class BuscarResponsableParaPatrocinio extends AppCompatActivity implement
 
         SearchView searchView = (SearchView) MenuItemCompat.getActionView(searchItem);
 
-
-
         searchView.setOnQueryTextListener(this);
 
         searchView.setIconified(false);
@@ -257,6 +251,77 @@ public class BuscarResponsableParaPatrocinio extends AppCompatActivity implement
 
     }
 
+
+
+
+
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+
+
+        int id = item.getItemId();
+
+
+        //noinspection SimplifiableIfStatement
+        if (id == R.id.editar_item_evento) {
+
+
+
+            AlertDialog.Builder builder = new AlertDialog.Builder(BuscarResponsableParaPatrocinio.this);
+            builder.setIcon(R.drawable.ic_msj_alerta);
+            builder.setTitle("¿Desea modificar algunas de las tandas realizadas?");
+            builder.setMessage("Presione 'SI' en caso que desee editar los campos de algunas de las tandas.");
+
+
+            builder.setPositiveButton("SI", new DialogInterface.OnClickListener() {
+                public void onClick(DialogInterface dialog, int id) {
+
+
+
+
+                        /*Llamada a la función:  */
+                        EditarDatosItemEvento(true);
+
+
+
+
+                }
+            });
+
+
+
+
+
+
+
+
+            builder.setNegativeButton("NO", new DialogInterface.OnClickListener() {
+
+                public void onClick(DialogInterface dialog, int id) {
+
+                    dialog.dismiss();
+
+                }
+            });
+
+
+
+            AlertDialog dialog = builder.create();
+            dialog.show();
+
+
+            return true;
+
+
+
+        }//FIN DEL if(id == R.id.editar_item_evento
+
+
+        return super.onOptionsItemSelected(item);
+
+
+    } /***** FIN DEL onOptionsItemSelected()******/
 
 
     /************************************************************************/
@@ -278,9 +343,6 @@ public class BuscarResponsableParaPatrocinio extends AppCompatActivity implement
     public boolean onQueryTextSubmit(String query) {
 
         // User pressed the search button
-
-        //BuscarResponsableParaPatrocinio.this.adapter.getFilter().filter(query.toString());
-        //lv.setVisibility(View.VISIBLE);
 
 
         return false;
@@ -313,7 +375,6 @@ public class BuscarResponsableParaPatrocinio extends AppCompatActivity implement
 
         // User changed the text
 
-
         if(newText.equals("") ) {
 
             lv.setVisibility(View.GONE);
@@ -323,6 +384,37 @@ public class BuscarResponsableParaPatrocinio extends AppCompatActivity implement
 
             BuscarResponsableParaPatrocinio.this.adapter.getFilter().filter(newText.toString());
             lv.setVisibility(View.VISIBLE);
+
+
+
+            lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+
+                public void onItemClick(AdapterView<?> parent, View view,int position, long id) {
+
+                    Intent intent = new Intent (BuscarResponsableParaPatrocinio.this, NuevoEventoPatrocinio.class);
+
+                    intent.putExtra("DNI_Responsable_Enviar", "38.765.245");
+
+                    intent.putExtra("Nombre_Apellido_Responsable_Enviar", "Juan Pablo Montiel");
+
+                    intent.putExtra("Telefono_Responsable_Enviar", "3734-446587");
+
+                    intent.putExtra("Direccion_Responsable_Enviar", "Calle 6 entre 11 y 13");
+
+                    intent.putExtra("Barrio_Responsable_Enviar", "Centro");
+
+                    intent.putExtra("Referencia_Responsable_Enviar", "Al lado de una funeraria");
+
+                    intent.putExtra("Correo_Responsable_Enviar", "juanpablomontiel2015@gmail.com");
+
+
+
+
+
+                    startActivity(intent);
+                }
+            });
+
 
 
        }
@@ -417,13 +509,16 @@ public class BuscarResponsableParaPatrocinio extends AppCompatActivity implement
         final View view_estado_evento = (View) NuevoItemInflado.findViewById(R.id.view_estado_evento);
 
 
+        final LinearLayout LinearLayoutVerticalPadre = (LinearLayout) findViewById(R.id.linear_layout_vertical_padre);
+
+
         final LinearLayout LinearLayoutVerticalContenedorHijo = (LinearLayout) NuevoItemInflado.findViewById(R.id.llv_contenedor_hijo_de_evento);
 
 
-        final TextView TV_Nombre_Evento = (TextView) NuevoItemInflado.findViewById(R.id.tv_nombre_evento_recibir);
+        final EditText ET_Nombre_Evento = (EditText) NuevoItemInflado.findViewById(R.id.et_nombre_evento_recibir);
 
 
-        final TextView TV_Nombre_Apellido_Responsable_Evento = (TextView) NuevoItemInflado.findViewById(R.id.tv_nombre_apellido_responsable_recibir);
+        final EditText ET_Nombre_Apellido_Responsable_Evento = (EditText) NuevoItemInflado.findViewById(R.id.et_nombre_apellido_responsable_recibir);
 
 
         final LinearLayout LinearLayoutHorizontalFechaInicio = (LinearLayout) NuevoItemInflado.findViewById(R.id.llh_fecha_inicio);
@@ -432,7 +527,7 @@ public class BuscarResponsableParaPatrocinio extends AppCompatActivity implement
         final TextView TV_Fecha_Inicio_Evento = (TextView) NuevoItemInflado.findViewById(R.id.tv_fecha_inicio_recibir);
 
 
-        final TextView TV_Valor_Fecha_Inicio_Evento = (TextView) NuevoItemInflado.findViewById(R.id.tv_valor_fecha_inicio_recibir);
+        final EditText ET_Valor_Fecha_Inicio_Evento = (EditText) NuevoItemInflado.findViewById(R.id.et_valor_fecha_inicio_recibir);
 
 
         final LinearLayout LinearLayoutHorizontalFechaFin = (LinearLayout) NuevoItemInflado.findViewById(R.id.llh_fecha_fin);
@@ -441,7 +536,7 @@ public class BuscarResponsableParaPatrocinio extends AppCompatActivity implement
         final TextView TV_Fecha_Fin_Evento = (TextView) NuevoItemInflado.findViewById(R.id.tv_fecha_fin_recibir);
 
 
-        final TextView TV_Valor_Fecha_Fin_Evento = (TextView) NuevoItemInflado.findViewById(R.id.tv_valor_fecha_fin_recibir);
+        final EditText ET_Valor_Fecha_Fin_Evento = (EditText) NuevoItemInflado.findViewById(R.id.et_valor_fecha_fin_recibir);
 
 
 
@@ -459,10 +554,10 @@ public class BuscarResponsableParaPatrocinio extends AppCompatActivity implement
 
 
 
-        TV_Nombre_Evento.setText(Nombre_Evento);
-        TV_Nombre_Apellido_Responsable_Evento.setText(Nombre_Apellido_Responsable);
-        TV_Valor_Fecha_Inicio_Evento.setText(Fecha_Inicio_Evento);
-        TV_Valor_Fecha_Fin_Evento.setText(Fecha_Fin_Evento);
+        ET_Nombre_Evento.setText(Nombre_Evento);
+        ET_Nombre_Apellido_Responsable_Evento.setText(Nombre_Apellido_Responsable);
+        ET_Valor_Fecha_Inicio_Evento.setText(Fecha_Inicio_Evento);
+        ET_Valor_Fecha_Fin_Evento.setText(Fecha_Fin_Evento);
 
 
 
@@ -474,15 +569,36 @@ public class BuscarResponsableParaPatrocinio extends AppCompatActivity implement
 
                 Intent intent = new Intent (BuscarResponsableParaPatrocinio.this, EntregaRetiroEnvasesPatrocinio.class);
 
-                intent.putExtra("Nombre_del_evento", TV_Nombre_Evento.getText());
+                intent.putExtra("Nombre_del_evento", ET_Nombre_Evento.getText());
 
-                intent.putExtra("Nombre_del_responsable", TV_Nombre_Apellido_Responsable_Evento.getText());
+                intent.putExtra("Nombre_del_responsable", ET_Nombre_Apellido_Responsable_Evento.getText());
 
 
                 startActivity(intent);
 
             }
         });
+
+
+
+
+        /** Pregunta si el usuario es un "repartidor" entonces habrá un cambio de colores en las activity's
+         * de Patrocinio**/
+
+        Usuario usuario = new Usuario();
+
+        usuario.LeerUsuarioEnUnSharedPreferences(this);
+
+        if(usuario.getTipo_de_Usuario().equals("repartidor")){
+
+            LinearLayoutVerticalPadre.setBackgroundColor(Color.parseColor("#2962ff"));
+
+            btn_ver_detalle_entrega_retiro_envases_patrocinio.getBackground().setColorFilter(Color.parseColor("#0d47a1"), PorterDuff.Mode.SRC_ATOP);
+
+        }
+
+
+
 
 
     }/***************************FIN DE LA FUNCIÓN ObtenerItemEvento()*****************************/
@@ -522,6 +638,64 @@ public class BuscarResponsableParaPatrocinio extends AppCompatActivity implement
 
 
     } /***************************FIN DE LA FUNCIÓN AgregarItemEvento()*****************************/
+
+
+
+
+
+    /************************************************************************/
+    /************************************************************************/
+    /************************************************************************/
+    /************************************************************************/
+    /************************************************************************/
+    /************************************************************************/
+    /************************************************************************/
+    /************************************************************************/
+    /************************************************************************/
+    /************************************************************************/
+
+
+
+
+    public void EditarDatosItemEvento(boolean flag){
+
+
+        if(flag){
+
+
+            final EditText ET_Nombre_Evento = (EditText) findViewById(R.id.et_nombre_evento_recibir);
+
+            final EditText ET_Nombre_Apellido_Responsable_Evento = (EditText) findViewById(R.id.et_nombre_apellido_responsable_recibir);
+
+            final EditText ET_Valor_Fecha_Inicio_Evento = (EditText) findViewById(R.id.et_valor_fecha_inicio_recibir);
+
+            final EditText ET_Valor_Fecha_Fin_Evento = (EditText) findViewById(R.id.et_valor_fecha_fin_recibir);
+
+
+            ET_Nombre_Evento.setFocusableInTouchMode(true);
+            ET_Nombre_Evento.requestFocus();
+            ET_Nombre_Evento.setCursorVisible(true);
+
+
+            ET_Nombre_Apellido_Responsable_Evento.setFocusableInTouchMode(true);
+            ET_Nombre_Apellido_Responsable_Evento.setCursorVisible(true);
+
+
+            ET_Valor_Fecha_Inicio_Evento.setFocusableInTouchMode(true);
+            ET_Valor_Fecha_Inicio_Evento.setCursorVisible(true);
+
+
+            ET_Valor_Fecha_Fin_Evento.setFocusableInTouchMode(true);
+            ET_Valor_Fecha_Fin_Evento.setCursorVisible(true);
+
+
+        }//FIN flag
+
+
+
+    }/*******FIN DE LA FUNCIÓN EditarDatosItemEvento() ********/
+
+
 
 
 
@@ -580,6 +754,98 @@ public class BuscarResponsableParaPatrocinio extends AppCompatActivity implement
 
     }/******************** FIN DE LA FUNCIÓN LeerEventoEnSharedPreferences() *******************/
 
+
+
+    /************************************************************************/
+    /************************************************************************/
+    /************************************************************************/
+    /************************************************************************/
+    /************************************************************************/
+    /************************************************************************/
+    /************************************************************************/
+    /************************************************************************/
+    /************************************************************************/
+    /************************************************************************/
+
+
+/*
+    public void GuardarCambiosEnElEventoEnUnSharedPreferences(){
+
+        int indice = 0;
+
+        SharedPreferences sharedPreferences = getSharedPreferences("Datos_Item_Evento_Responsable", MODE_PRIVATE);
+
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+
+
+        String DimensionEvento = sharedPreferences.getString("DimensionItemDelEvento", "");
+
+        if(DimensionEvento == ""){
+
+            indice = 0;
+
+
+        }//Fin del if
+
+
+        else {
+
+            indice = Integer.parseInt(DimensionEvento) + 1;
+
+        }//Fin del else
+
+        //editor.putString("DNI_Responsable" + indice, et_dni_nuevo_responsable.getText().toString());
+
+        editor.putString("Nombre_Apellido_Responsable" + indice, et_nombre_apellido_nuevo_responsable.getText().toString());
+
+        //editor.putString("Telefono_Responsable" + indice, et_telefono_nuevo_responsable.getText().toString());
+
+        //editor.putString("Direccion_Responsable" + indice, et_direccion_nuevo_responsable.getText().toString());
+
+        //editor.putString("Barrio_Responsable" + indice, et_barrio_nuevo_responsable.getText().toString());
+
+        //editor.putString("Correo_Responsable" + indice, et_correo_nuevo_responsable.getText().toString());
+
+        //editor.putString("Referencia_Responsable" + indice, et_referencia_nuevo_responsable.getText().toString());
+
+
+
+
+        editor.putString("Nombre_Evento" + indice, et_nombre_del_evento_nuevo_responsable.getText().toString());
+
+        //editor.putString("Direccion_Evento" + indice, et_direccion_del_evento_nuevo_responsable.getText().toString());
+
+        //editor.putString("Barrio_Evento" + indice, et_barrio_del_evento_nuevo_responsable.getText().toString());
+
+        //editor.putString("Referencia_Evento" + indice, et_referencia_del_evento_nuevo_responsable.getText().toString());
+
+        editor.putString("Fecha_Inicio_Evento" + indice, et_fecha_inicio_del_evento_nuevo_responsable.getText().toString());
+
+        editor.putString("Fecha_Fin_Evento" + indice, et_fecha_fin_del_evento_nuevo_responsable.getText().toString());
+
+
+        editor.putString("DimensionDeEvento", String.valueOf(indice));
+
+        editor.commit();
+
+
+
+    } */ /******************** FIN DE LA FUNCIÓN GuardarEventoEnSharedPreferences() *******************/
+
+
+
+
+
+    /************************************************************************/
+    /************************************************************************/
+    /************************************************************************/
+    /************************************************************************/
+    /************************************************************************/
+    /************************************************************************/
+    /************************************************************************/
+    /************************************************************************/
+    /************************************************************************/
+    /************************************************************************/
 
 
 
