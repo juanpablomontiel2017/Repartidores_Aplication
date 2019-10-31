@@ -26,6 +26,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.ScrollView;
@@ -89,7 +90,8 @@ public class BuscarResponsableParaPatrocinio extends AppCompatActivity implement
         window.setStatusBarColor(Color.parseColor("#b71c1c"));
 
 
-
+        /* Para cambiar el color del puntero o "burbuja" del EditText */
+        setTheme(R.style.AppTheme_Cursor);
 
 
 
@@ -569,9 +571,9 @@ public class BuscarResponsableParaPatrocinio extends AppCompatActivity implement
 
                 Intent intent = new Intent (BuscarResponsableParaPatrocinio.this, EntregaRetiroEnvasesPatrocinio.class);
 
-                intent.putExtra("Nombre_del_evento", ET_Nombre_Evento.getText());
+                intent.putExtra("Nombre_del_evento", ET_Nombre_Evento.getText().toString());
 
-                intent.putExtra("Nombre_del_responsable", ET_Nombre_Apellido_Responsable_Evento.getText());
+                intent.putExtra("Nombre_del_responsable", ET_Nombre_Apellido_Responsable_Evento.getText().toString());
 
 
                 startActivity(intent);
@@ -662,34 +664,51 @@ public class BuscarResponsableParaPatrocinio extends AppCompatActivity implement
 
         if(flag){
 
-
-            final EditText ET_Nombre_Evento = (EditText) findViewById(R.id.et_nombre_evento_recibir);
-
-            final EditText ET_Nombre_Apellido_Responsable_Evento = (EditText) findViewById(R.id.et_nombre_apellido_responsable_recibir);
-
-            final EditText ET_Valor_Fecha_Inicio_Evento = (EditText) findViewById(R.id.et_valor_fecha_inicio_recibir);
-
-            final EditText ET_Valor_Fecha_Fin_Evento = (EditText) findViewById(R.id.et_valor_fecha_fin_recibir);
+            for(int k=0; k < ArrayListItemEvento.size(); k++) {
 
 
-            ET_Nombre_Evento.setFocusableInTouchMode(true);
-            ET_Nombre_Evento.requestFocus();
-            ET_Nombre_Evento.setCursorVisible(true);
+                final EditText ET_Nombre_Evento = (EditText) ArrayListItemEvento.get(k).findViewById(R.id.et_nombre_evento_recibir);
+
+                final EditText ET_Nombre_Apellido_Responsable_Evento = (EditText) ArrayListItemEvento.get(k).findViewById(R.id.et_nombre_apellido_responsable_recibir);
+
+                final EditText ET_Valor_Fecha_Inicio_Evento = (EditText) ArrayListItemEvento.get(k).findViewById(R.id.et_valor_fecha_inicio_recibir);
+
+                final EditText ET_Valor_Fecha_Fin_Evento = (EditText) ArrayListItemEvento.get(k).findViewById(R.id.et_valor_fecha_fin_recibir);
 
 
-            ET_Nombre_Apellido_Responsable_Evento.setFocusableInTouchMode(true);
-            ET_Nombre_Apellido_Responsable_Evento.setCursorVisible(true);
+                ET_Nombre_Evento.setFocusableInTouchMode(true);
+                ET_Nombre_Evento.requestFocus();
+                ET_Nombre_Evento.setCursorVisible(true);
+                ET_Nombre_Evento.setBackgroundDrawable(getDrawable(R.drawable.edit_text_material_customizado));
 
 
-            ET_Valor_Fecha_Inicio_Evento.setFocusableInTouchMode(true);
-            ET_Valor_Fecha_Inicio_Evento.setCursorVisible(true);
 
 
-            ET_Valor_Fecha_Fin_Evento.setFocusableInTouchMode(true);
-            ET_Valor_Fecha_Fin_Evento.setCursorVisible(true);
+                ET_Nombre_Apellido_Responsable_Evento.setFocusableInTouchMode(true);
+                ET_Nombre_Apellido_Responsable_Evento.setCursorVisible(true);
+                ET_Nombre_Apellido_Responsable_Evento.setBackgroundDrawable(getDrawable(R.drawable.edit_text_material_customizado));
 
 
-        }//FIN flag
+                ET_Valor_Fecha_Inicio_Evento.setFocusableInTouchMode(true);
+                ET_Valor_Fecha_Inicio_Evento.setCursorVisible(true);
+                ET_Valor_Fecha_Inicio_Evento.setBackgroundDrawable(getDrawable(R.drawable.edit_text_material_customizado));
+
+
+                ET_Valor_Fecha_Fin_Evento.setFocusableInTouchMode(true);
+                ET_Valor_Fecha_Fin_Evento.setCursorVisible(true);
+                ET_Valor_Fecha_Fin_Evento.setBackgroundDrawable(getDrawable(R.drawable.edit_text_material_customizado));
+
+
+
+            }//Fin del for
+
+
+
+
+
+
+
+        }//Fin flag
 
 
 

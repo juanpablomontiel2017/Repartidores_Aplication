@@ -24,8 +24,10 @@
         <item>
             <nine-patch
                 android:src="@drawable/abc_textfield_activated_mtrl_alpha"
-                android:tint="?attr/colorControlActivated" />
+                android:tint="#ff9100" />
         </item>
     </selector>
 
 </inset>
+
+<!--android:tint="?attr/colorControlActivated" -->

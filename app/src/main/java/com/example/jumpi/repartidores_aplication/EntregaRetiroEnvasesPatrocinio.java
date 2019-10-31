@@ -155,11 +155,12 @@ public class EntregaRetiroEnvasesPatrocinio extends AppCompatActivity {
 
         tv_nombre_evento_recibir.setText(extras);
 
+
+
+
+
+
         String Extras_NyA_Responsable = getIntent().getStringExtra("Nombre_del_responsable");
-
-
-
-
 
         Toolbar toolbar = findViewById(R.id.toolbar);
 
