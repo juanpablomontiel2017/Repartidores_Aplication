@@ -53,14 +53,13 @@
     <string name="title_activity_ventas__por__patrocinio">Ventas_Por_Patrocinio</string>
 
 
+
+
+
+
+
+
     <!--//////////////////////////Values Strings para Supervisores//////////////////////////////-->
-
-
-    <!--MainActivity y su respectivo Menu-->
-
-    <string name="action_entrega_retiro_envases_patrocinio">Patrocinio</string>
-
-    <string name="action_agregar_cliente">Nuevo Cliente </string>
 
 
     <!--Cargas_Descargas Activity y su respectivo Menu-->
@@ -82,12 +81,26 @@
     <string name="nombre_transicion_imagen">imagen_compartida</string>
 
 
+
+
+
+
+
+    <!--MainActivity y su respectivo Menu-->
+
+    <string name="action_entrega_retiro_envases_patrocinio">Patrocinio</string>
+
+    <string name="action_agregar_cliente">Nuevo Cliente </string>
+
+
+
     <!--Menu: buscar_responsable_para_patrocinio.xml -->
 
     <string name="hint_search">Buscar</string>
 
-    <string name="action_editar_item_evento">Editar Evento</string>
+    <string name="action_save_changes_erep">Guardar Cambios</string>
 
+    <string name="action_editar_item_evento">Editar Evento</string>
 
 
 

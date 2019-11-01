@@ -32,6 +32,7 @@ import android.widget.ListView;
 import android.widget.ScrollView;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 
@@ -233,6 +234,8 @@ public class BuscarResponsableParaPatrocinio extends AppCompatActivity implement
 
 
 
+    MenuItem BotonGuardar;
+
 
 
     @Override
@@ -246,12 +249,25 @@ public class BuscarResponsableParaPatrocinio extends AppCompatActivity implement
 
         searchView.setOnQueryTextListener(this);
 
-        searchView.setIconified(false);
+        /* Aparece una "lupa" en el lado derecho */
+        searchView.setIconifiedByDefault(false);
 
+        //searchView.setIconified(false);
+
+        /* Ingresar a la activity con el buscador "activado" */
+        searchItem.expandActionView();
+
+
+
+
+        //Ocultar al comienzo el botón "Guardar Cambios"
+        menu.findItem(R.id.action_save_changes).setVisible(false);
+
+        BotonGuardar = menu.findItem(R.id.action_save_changes);
 
         return true;
 
-    }
+    } /************** Fin del método onCreateOptionsMenu() ******************/
 
 
 
@@ -263,6 +279,70 @@ public class BuscarResponsableParaPatrocinio extends AppCompatActivity implement
 
 
         int id = item.getItemId();
+
+
+
+        if(id == R.id.action_save_changes){
+
+
+
+            AlertDialog.Builder builder = new AlertDialog.Builder(BuscarResponsableParaPatrocinio.this);
+            builder.setIcon(R.drawable.ic_msj_alerta);
+            builder.setTitle("Desea guardar los cambios realizados?!");
+            builder.setMessage("Al presionar el botón 'Guardar' se guardarán los cambios realizados en cada tanda. ¿Desea continuar?");
+
+
+            builder.setPositiveButton("Guardar", new DialogInterface.OnClickListener() {
+                public void onClick(DialogInterface dialog, int id) {
+
+                    if(DeshabilitarVistasDeCadaItemAlGuardarCambios(true)){
+
+                        /*Llamada a la función: */
+
+                        GuardarCambiosDeCadaItemEnUnSharedPreferences();
+
+                        Toast.makeText(getApplicationContext(), "Los cambios fueron guardados con éxito", Toast.LENGTH_LONG).show();
+
+
+                    }
+
+
+
+                }
+            });
+
+
+
+
+
+
+            builder.setNegativeButton("Cancelar", new DialogInterface.OnClickListener() {
+
+
+                public void onClick(DialogInterface dialog, int id) {
+
+                    dialog.dismiss();
+
+                }
+            });
+
+
+
+            AlertDialog dialog = builder.create();
+            dialog.show();
+
+
+            return true;
+
+
+
+        }//FIN DEL if(id == R.id.action_save_changes)
+
+
+
+
+
+
 
 
         //noinspection SimplifiableIfStatement
@@ -284,6 +364,9 @@ public class BuscarResponsableParaPatrocinio extends AppCompatActivity implement
 
                         /*Llamada a la función:  */
                         EditarDatosItemEvento(true);
+
+                        BotonGuardar.setVisible(true);
+
 
 
 
@@ -317,7 +400,7 @@ public class BuscarResponsableParaPatrocinio extends AppCompatActivity implement
 
 
 
-        }//FIN DEL if(id == R.id.editar_item_evento
+        }//FIN DEL if(id == R.id.editar_item_evento)
 
 
         return super.onOptionsItemSelected(item);
@@ -731,6 +814,256 @@ public class BuscarResponsableParaPatrocinio extends AppCompatActivity implement
     /************************************************************************/
 
 
+
+
+    public boolean DeshabilitarVistasDeCadaItemAlGuardarCambios(boolean flag_enabled){
+
+        if (flag_enabled) {
+
+
+
+            for(int k=0; k < ArrayListItemEvento.size(); k++){
+
+
+
+                final EditText ET_Nombre_Evento = (EditText) ArrayListItemEvento.get(k).findViewById(R.id.et_nombre_evento_recibir);
+
+                final EditText ET_Nombre_Apellido_Responsable_Evento = (EditText) ArrayListItemEvento.get(k).findViewById(R.id.et_nombre_apellido_responsable_recibir);
+
+                final EditText ET_Valor_Fecha_Inicio_Evento = (EditText) ArrayListItemEvento.get(k).findViewById(R.id.et_valor_fecha_inicio_recibir);
+
+                final EditText ET_Valor_Fecha_Fin_Evento = (EditText) ArrayListItemEvento.get(k).findViewById(R.id.et_valor_fecha_fin_recibir);
+
+
+
+
+
+
+                ET_Nombre_Evento.setFocusable(false);
+                ET_Nombre_Evento.setCursorVisible(false);
+                ET_Nombre_Evento.setBackgroundColor(Color.TRANSPARENT);
+
+
+
+                ET_Nombre_Apellido_Responsable_Evento.setFocusable(false);
+                ET_Nombre_Apellido_Responsable_Evento.setCursorVisible(false);
+                ET_Nombre_Apellido_Responsable_Evento.setBackgroundColor(Color.TRANSPARENT);
+
+
+
+                ET_Valor_Fecha_Inicio_Evento.setFocusable(false);
+                ET_Valor_Fecha_Inicio_Evento.setCursorVisible(false);
+                ET_Valor_Fecha_Inicio_Evento.setBackgroundColor(Color.TRANSPARENT);
+
+
+
+                ET_Valor_Fecha_Fin_Evento.setFocusable(false);
+                ET_Valor_Fecha_Fin_Evento.setCursorVisible(false);
+                ET_Valor_Fecha_Fin_Evento.setBackgroundColor(Color.TRANSPARENT);
+
+
+
+
+            } //Fin del for
+
+
+        }  /*Fin del primer if (flag_enabled) {}*/
+
+
+
+        return flag_enabled;
+
+
+
+    }/*******FIN DE LA FUNCIÓN DeshabilitarVistasDeCadaItemAlGuardarCambios() ********/
+
+
+
+
+
+    /************************************************************************/
+    /************************************************************************/
+    /************************************************************************/
+    /************************************************************************/
+    /************************************************************************/
+    /************************************************************************/
+    /************************************************************************/
+    /************************************************************************/
+    /************************************************************************/
+    /************************************************************************/
+
+
+
+
+
+
+    @SuppressLint("RestrictedApi")
+    public void MostrarEnPantallaValoresEditadosDelEvento() {
+
+
+        SharedPreferences preferences = getSharedPreferences("Datos_Item_Evento", MODE_PRIVATE);
+
+
+
+        String DimensionArrayItemEvento = preferences.getString("DimensionArrayItemEvento", "");
+
+
+        final EditText ET_Nombre_Evento = (EditText) findViewById(R.id.et_nombre_evento_recibir);
+
+        final EditText ET_Nombre_Apellido_Responsable_Evento = (EditText) findViewById(R.id.et_nombre_apellido_responsable_recibir);
+
+        final EditText ET_Valor_Fecha_Inicio_Evento = (EditText) findViewById(R.id.et_valor_fecha_inicio_recibir);
+
+        final EditText ET_Valor_Fecha_Fin_Evento = (EditText) findViewById(R.id.et_valor_fecha_fin_recibir);
+
+
+
+
+
+        if (DimensionArrayItemEvento != "") {
+
+            for (int indice_item = 0; indice_item < Integer.valueOf(DimensionArrayItemEvento); indice_item++) {
+
+
+
+                String ValorNombreEvento = preferences.getString("Nombre_Evento_Editado", "");
+                String ValorNombreApellidoResponsableEvento = preferences.getString("Nombre_Apellido_Responsable_Editado", "");
+                String ValorFechaInicioEvento = preferences.getString("Valor_Fecha_Inicio_Evento_Editado", "");
+                String ValorFechaFinEstimadaEvento = preferences.getString("Valor_Fecha_Fin_Estimada_Evento_Editado", "");
+
+
+
+                //No hace nada
+                ET_Nombre_Evento.setText(ValorNombreEvento);
+                ET_Nombre_Apellido_Responsable_Evento.setText(ValorNombreApellidoResponsableEvento);
+                ET_Valor_Fecha_Inicio_Evento.setText(ValorFechaInicioEvento);
+                ET_Valor_Fecha_Fin_Evento.setText(ValorFechaFinEstimadaEvento);
+
+
+
+
+
+
+
+            } //Fin del for
+
+
+        } //Fin del if
+
+
+
+
+        if(preferences.getBoolean("GuardarLasVistasDeLosItemDeshabilitados",false)){
+
+            DeshabilitarVistasDeCadaItemAlGuardarCambios(true);
+
+        }
+
+
+
+
+
+
+    }  /*****************FIN DE LA FUNCION MostrarValoresDelSharedPreferences()*******************
+
+
+
+
+
+
+
+
+
+
+
+    /************************************************************************/
+    /************************************************************************/
+    /************************************************************************/
+    /************************************************************************/
+    /************************************************************************/
+    /************************************************************************/
+    /************************************************************************/
+    /************************************************************************/
+    /************************************************************************/
+    /************************************************************************/
+
+
+
+    public void GuardarCambiosDeCadaItemEnUnSharedPreferences() {
+
+        SharedPreferences sharedPreferences = getSharedPreferences("Datos_Item_Evento", MODE_PRIVATE);
+
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+
+
+
+        for (int k = 0; k < ArrayListItemEvento.size(); k++) {
+
+
+
+            final EditText ET_Nombre_Evento = (EditText) ArrayListItemEvento.get(k).findViewById(R.id.et_nombre_evento_recibir);
+
+            final EditText ET_Nombre_Apellido_Responsable_Evento = (EditText) ArrayListItemEvento.get(k).findViewById(R.id.et_nombre_apellido_responsable_recibir);
+
+            final EditText ET_Valor_Fecha_Inicio_Evento = (EditText) ArrayListItemEvento.get(k).findViewById(R.id.et_valor_fecha_inicio_recibir);
+
+            final EditText ET_Valor_Fecha_Fin_Evento = (EditText) ArrayListItemEvento.get(k).findViewById(R.id.et_valor_fecha_fin_recibir);
+
+
+
+            editor.putString("Nombre_Evento_Editado", ET_Nombre_Evento.getText().toString());
+
+            editor.putString("Nombre_Apellido_Responsable_Editado", ET_Nombre_Apellido_Responsable_Evento.getText().toString());
+
+            editor.putString("Valor_Fecha_Inicio_Evento_Editado", ET_Valor_Fecha_Inicio_Evento.getText().toString());
+
+            editor.putString("Valor_Fecha_Fin_Estimada_Evento_Editado", ET_Valor_Fecha_Fin_Evento.getText().toString());
+
+
+
+
+        } //Fin del primer for "k" = Item's
+
+
+
+
+        editor.putString("DimensionArrayItemEvento", String.valueOf(ArrayListItemEvento.size()));
+        editor.commit();
+
+
+        editor.putBoolean("GuardarLasVistasDeLosItemDeshabilitados", true);
+        editor.commit();
+
+
+
+
+
+
+    }/*******************************FIN DE LA FUNCIÓN GuardarCambiosDeCadaItemEnUnSharedPreferences()******************************/
+
+
+
+
+
+
+
+
+    /************************************************************************/
+    /************************************************************************/
+    /************************************************************************/
+    /************************************************************************/
+    /************************************************************************/
+    /************************************************************************/
+    /************************************************************************/
+    /************************************************************************/
+    /************************************************************************/
+    /************************************************************************/
+
+
+
+
+    /*
+
     public void LeerEventoEnSharedPreferences(){
 
         SharedPreferences preferences = getSharedPreferences("Datos_Evento_Responsable", MODE_PRIVATE);
@@ -771,10 +1104,11 @@ public class BuscarResponsableParaPatrocinio extends AppCompatActivity implement
 
 
 
-    }/******************** FIN DE LA FUNCIÓN LeerEventoEnSharedPreferences() *******************/
+    } */ /******************** FIN DE LA FUNCIÓN LeerEventoEnSharedPreferences() *******************/
 
 
 
+
     /************************************************************************/
     /************************************************************************/
     /************************************************************************/
@@ -785,10 +1119,12 @@ public class BuscarResponsableParaPatrocinio extends AppCompatActivity implement
     /************************************************************************/
     /************************************************************************/
     /************************************************************************/
+
+
 
 
 /*
-    public void GuardarCambiosEnElEventoEnUnSharedPreferences(){
+    public void GuardarCambiosDelEventoEnUnSharedPreferences(){
 
         int indice = 0;
 
