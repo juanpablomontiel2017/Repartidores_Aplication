@@ -78,7 +78,9 @@ public class NuevoResponsablePatrocinio extends AppCompatActivity {
 
 
 
-
+    String afterTextChanged = "";
+    String beforeTextChanged = "";
+    String onTextChanged = "";
 
 
 
@@ -208,6 +210,18 @@ public class NuevoResponsablePatrocinio extends AppCompatActivity {
 
         et_codigo_area_nuevo_responsable = (EditText) findViewById(R.id.et_codigo_area_nuevo_responsable_formulario_patrocinio_supervisor);
 
+        et_telefono_nuevo_responsable = (EditText) findViewById(R.id.et_telefono_nuevo_responsable_formulario_patrocinio_supervisor);
+
+        /**Deshabilitar el ET al comienzo solo si el código de área tiene dígitos válidos **/
+        et_telefono_nuevo_responsable.setFocusable(false);
+        et_telefono_nuevo_responsable.setCursorVisible(false);
+        et_telefono_nuevo_responsable.setHint("");
+        et_telefono_nuevo_responsable.setText("");
+        et_telefono_nuevo_responsable.setBackgroundColor(Color.TRANSPARENT);
+
+
+        /*
+
         et_codigo_area_nuevo_responsable.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
             public void onFocusChange(View view, boolean hasFocus) {
@@ -221,14 +235,99 @@ public class NuevoResponsablePatrocinio extends AppCompatActivity {
                         myIconCheck.setBounds(0, 0, myIconCheck.getIntrinsicWidth(), myIconCheck.getIntrinsicHeight());
                         et_codigo_area_nuevo_responsable.setError("Código de área válido", myIconCheck);
 
+
+                        et_telefono_nuevo_responsable.setFocusableInTouchMode(true);
+                        et_telefono_nuevo_responsable.setCursorVisible(true);
+                        et_telefono_nuevo_responsable.setHint("Obligatorio");
+                        et_telefono_nuevo_responsable.setBackgroundDrawable(getDrawable(R.drawable.edit_text_material_customizado));
+                        et_telefono_nuevo_responsable.setHint(R.string.edittext_hint);
+                        //et_telefono_nuevo_responsable.setError("¡Escriba el número de teléfono!");
+
+
+
                     } else {
 
-                        et_codigo_area_nuevo_responsable.setError("Código de área válido");
+
+                        et_codigo_area_nuevo_responsable.setError("Código de área no válido");
+
+
+                        et_telefono_nuevo_responsable.setFocusable(false);
+                        et_telefono_nuevo_responsable.setCursorVisible(false);
+                        et_telefono_nuevo_responsable.setHint("");
+                        et_telefono_nuevo_responsable.setText("");
+                        et_telefono_nuevo_responsable.setBackgroundColor(Color.TRANSPARENT);
+
+
+                        //et_telefono_nuevo_responsable.setError("¡Escriba un código de área válido!");
 
 
                     }
 
                 }
+            }
+        });
+
+
+*/
+
+
+
+
+        et_codigo_area_nuevo_responsable.addTextChangedListener(new TextWatcher() {
+
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+
+
+                if(Utils_Codigo_Area_Telefonico_Argentina.Prueba(NuevoResponsablePatrocinio.this,et_codigo_area_nuevo_responsable.getText().toString())){
+
+
+                    Drawable myIconCheck = getResources().getDrawable(R.drawable.et_checkgood);
+                    myIconCheck.setBounds(0, 0, myIconCheck.getIntrinsicWidth(), myIconCheck.getIntrinsicHeight());
+                    et_codigo_area_nuevo_responsable.setError("Código de área válido", myIconCheck);
+
+
+                    et_telefono_nuevo_responsable.setFocusableInTouchMode(true);
+                    et_telefono_nuevo_responsable.setCursorVisible(true);
+                    et_telefono_nuevo_responsable.setHint("Obligatorio");
+                    et_telefono_nuevo_responsable.setBackgroundDrawable(getDrawable(R.drawable.edit_text_material_customizado));
+                    et_telefono_nuevo_responsable.setHint(R.string.edittext_hint);
+                    //et_telefono_nuevo_responsable.setError("¡Escriba el número de teléfono!");
+
+
+
+                } else {
+
+
+                    et_codigo_area_nuevo_responsable.setError("Código de área no válido");
+
+
+                    et_telefono_nuevo_responsable.setFocusable(false);
+                    et_telefono_nuevo_responsable.setCursorVisible(false);
+                    et_telefono_nuevo_responsable.setHint("");
+                    et_telefono_nuevo_responsable.setText("");
+                    et_telefono_nuevo_responsable.setBackgroundColor(Color.TRANSPARENT);
+
+
+                    //et_telefono_nuevo_responsable.setError("¡Escriba un código de área válido!");
+
+
+                }
+
+
+
+
+
             }
         });
 
@@ -241,11 +340,7 @@ public class NuevoResponsablePatrocinio extends AppCompatActivity {
 
 
 
-        et_telefono_nuevo_responsable = (EditText) findViewById(R.id.et_telefono_nuevo_responsable_formulario_patrocinio_supervisor);
-
-
-
-                et_telefono_nuevo_responsable.addTextChangedListener(new TextWatcher() {
+        et_telefono_nuevo_responsable.addTextChangedListener(new TextWatcher() {
 
                 @Override
                 public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
@@ -354,22 +449,17 @@ public class NuevoResponsablePatrocinio extends AppCompatActivity {
 
 
 
-                            //int longitud_codigo_area = et_codigo_area_nuevo_responsable.getText().toString().length();
 
-                            //int longitud_maxima_telefono = 10;
-
-                            //int longitud_numero_telefono = longitud_maxima_telefono - longitud_codigo_area;
-
-
-                            //setEditTextMaxLength(et_telefono_nuevo_responsable,longitud_numero_telefono);
-
+                            /******** CASO N°1: Relación adecuada o correcta entre la cantidad de
+                             * dígitos del código de área con la cantidad de dígitos del número de
+                             * teléfono. Pero si se escribe o añade otro dígito en el código de área, entonces
+                             * debería borrarse el último dígito del campo de número de teléfono.********/
 
 
                             if (et_codigo_area_nuevo_responsable.getText().toString().length() > 2
                                     && et_codigo_area_nuevo_responsable.getText().toString().length() < 4
                                     && et_telefono_nuevo_responsable.getText().toString().length() == 8){
 
-                                //setEditTextMaxLength(et_telefono_nuevo_responsable,8);
 
 
                                 et_telefono_nuevo_responsable.setText(BorrarUltimoCaracter(et_telefono_nuevo_responsable.getText().toString()));
@@ -381,12 +471,13 @@ public class NuevoResponsablePatrocinio extends AppCompatActivity {
 
 
                             }
+
+
 
                             else if (et_codigo_area_nuevo_responsable.getText().toString().length() > 3
                                     && et_codigo_area_nuevo_responsable.getText().toString().length() < 5
                                     && et_telefono_nuevo_responsable.getText().toString().length() == 7){
 
-                                //setEditTextMaxLength(et_telefono_nuevo_responsable,7);
 
 
                                 et_telefono_nuevo_responsable.setText(BorrarUltimoCaracter(et_telefono_nuevo_responsable.getText().toString()));
@@ -399,14 +490,65 @@ public class NuevoResponsablePatrocinio extends AppCompatActivity {
                             }
 
 
-                            else if (et_codigo_area_nuevo_responsable.getText().toString().length() > 4
+
+
+
+                            /******** CASO N°2: Se establece un relación incorrecta entre la cantidad
+                             * de dígitos del código de área con la cantidad de dígitos del número
+                             * de télefono, arrojando un msj de error.********/
+
+
+                            else if (et_codigo_area_nuevo_responsable.getText().toString().length() > 2
+                                    && et_codigo_area_nuevo_responsable.getText().toString().length() < 4
+                                    && et_telefono_nuevo_responsable.getText().toString().length() == 6){
+
+
+                                et_telefono_nuevo_responsable.setError("¡Número de teléfono no válido!");
+
+                            }
+
+
+
+                            else if (et_codigo_area_nuevo_responsable.getText().toString().length() > 0
+                                    && et_codigo_area_nuevo_responsable.getText().toString().length() < 3
+                                    && et_telefono_nuevo_responsable.getText().toString().length() == 7){
+
+                                et_telefono_nuevo_responsable.setError("¡Número de teléfono no válido!");
+
+                            }
+
+
+
+
+
+
+                            /******** CASO N°3: Relación adecuada o correcta entre la cantidad de
+                             * dígitos del código de área con la cantidad de dígitos del número de
+                             * teléfono.********/
+
+
+                            else if (et_codigo_area_nuevo_responsable.getText().toString().length() > 2
+                                    && et_codigo_area_nuevo_responsable.getText().toString().length() < 4
+                                    && et_telefono_nuevo_responsable.getText().toString().length() == 7){
+
+
+
+
+                                Drawable myIconCheck = getResources().getDrawable(R.drawable.et_checkgood);
+                                myIconCheck.setBounds(0, 0, myIconCheck.getIntrinsicWidth(), myIconCheck.getIntrinsicHeight());
+                                et_telefono_nuevo_responsable.setError("Número de teléfono valido", myIconCheck);
+
+
+                            }
+
+
+
+                            else if (et_codigo_area_nuevo_responsable.getText().toString().length() > 3
                                     && et_codigo_area_nuevo_responsable.getText().toString().length() < 5
                                     && et_telefono_nuevo_responsable.getText().toString().length() == 6){
 
-                                //setEditTextMaxLength(et_telefono_nuevo_responsable,8);
 
 
-                                et_telefono_nuevo_responsable.setText(BorrarUltimoCaracter(et_telefono_nuevo_responsable.getText().toString()));
 
                                 Drawable myIconCheck = getResources().getDrawable(R.drawable.et_checkgood);
                                 myIconCheck.setBounds(0, 0, myIconCheck.getIntrinsicWidth(), myIconCheck.getIntrinsicHeight());
@@ -414,13 +556,6 @@ public class NuevoResponsablePatrocinio extends AppCompatActivity {
 
 
                             }
-
-
-                           // else{
-
-                             //   et_telefono_nuevo_responsable.setError("¡Número de teléfono no válido!");
-
-                            //}
 
 
                         }
@@ -511,21 +646,33 @@ public class NuevoResponsablePatrocinio extends AppCompatActivity {
 
         et_correo_nuevo_responsable = (EditText) findViewById(R.id.et_email_nuevo_responsable_formulario_patrocinio_supervisor);
 
+
+
         et_correo_nuevo_responsable.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+                beforeTextChanged = et_correo_nuevo_responsable.getText().toString();
 
             }
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
 
+                onTextChanged = et_correo_nuevo_responsable.getText().toString();
+
             }
 
             @Override
             public void afterTextChanged(Editable s) {
 
+                afterTextChanged = et_correo_nuevo_responsable.getText().toString();
+                Toast.makeText(NuevoResponsablePatrocinio.this, "before: " + beforeTextChanged
+                                + '\n' + "on: " + onTextChanged
+                                + '\n' + "after: " + afterTextChanged
+                        ,Toast.LENGTH_SHORT).show();
 
+                /*
 
                 if (s.toString().length() > 0 &&!ValidarEmail(et_correo_nuevo_responsable.getText().toString())){
 
@@ -540,6 +687,9 @@ public class NuevoResponsablePatrocinio extends AppCompatActivity {
 
 
                 }
+
+
+                */
 
 
             }

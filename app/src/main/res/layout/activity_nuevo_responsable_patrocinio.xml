@@ -400,6 +400,7 @@
                         </View>
 
 
+
                         <EditText
 
                             android:id="@+id/et_codigo_area_nuevo_responsable_formulario_patrocinio_supervisor"
@@ -408,10 +409,11 @@
                             android:layout_weight="1"
                             android:gravity="center"
                             android:hint="@string/edittext_hint"
-                            android:inputType="phone"
+                            android:inputType="number"
                             android:maxLength="4"
                             android:textSize="20sp"
-                            android:textStyle="bold"/>
+                            android:textStyle="bold"
+                            android:imeOptions="actionNext"/>
 
 
                     </LinearLayout>
@@ -467,7 +469,7 @@
                             android:layout_weight="1"
                             android:gravity="center"
                             android:hint="@string/edittext_hint"
-                            android:inputType="phone"
+                            android:inputType="number"
                             android:textSize="20sp"
                             android:textStyle="bold" />
 
