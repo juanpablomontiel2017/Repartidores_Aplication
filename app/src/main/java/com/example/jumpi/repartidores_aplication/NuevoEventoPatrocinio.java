@@ -27,9 +27,10 @@ public class NuevoEventoPatrocinio extends AppCompatActivity {
                  linearlayout_horizontal_fecha_inicio_nuevo_evento_patrocinio_supervisor,linearlayout_horizontal_fecha_fin_nuevo_evento_patrocinio_supervisor;
 
 
-    TextView tv_dni_responsable_nuevo_evento_patrocinio, tv_nombre_apellido_responsable_nuevo_evento_patrocinio,
-             tv_telefono_responsable_nuevo_evento_patrocinio, tv_direccion_responsable_nuevo_evento_patrocinio,
-             tv_barrio_responsable_nuevo_evento_patrocinio, tv_correo_responsable_nuevo_evento_patrocinio,
+    TextView tv_dni_responsable_nuevo_evento_patrocinio, tv_nombre_responsable_nuevo_evento_patrocinio,
+             tv_apellido_responsable_nuevo_evento_patrocinio,tv_codigo_area_responsable_nuevo_evento_patrocinio,
+             tv_telefono_responsable_nuevo_evento_patrocinio,tv_direccion_responsable_nuevo_evento_patrocinio,
+             tv_barrio_responsable_nuevo_evento_patrocinio,tv_correo_responsable_nuevo_evento_patrocinio,
              tv_referencia_responsable_nuevo_evento_patrocinio;
 
 
@@ -86,7 +87,9 @@ public class NuevoEventoPatrocinio extends AppCompatActivity {
 
 
         tv_dni_responsable_nuevo_evento_patrocinio = (TextView) findViewById(R.id.dni_responsable_nuevo_evento_patrocinio);
-        tv_nombre_apellido_responsable_nuevo_evento_patrocinio = (TextView) findViewById(R.id.nombre_apellido_responsable_nuevo_evento_patrocinio);
+        tv_nombre_responsable_nuevo_evento_patrocinio = (TextView) findViewById(R.id.nombre_responsable_nuevo_evento_patrocinio);
+        tv_apellido_responsable_nuevo_evento_patrocinio = (TextView) findViewById(R.id.apellido_responsable_nuevo_evento_patrocinio);
+        tv_codigo_area_responsable_nuevo_evento_patrocinio = (TextView) findViewById(R.id.codigo_area_responsable_nuevo_evento_patrocinio);
         tv_telefono_responsable_nuevo_evento_patrocinio = (TextView) findViewById(R.id.telefono_responsable_nuevo_evento_patrocinio);
         tv_direccion_responsable_nuevo_evento_patrocinio = (TextView) findViewById(R.id.direccion_responsable_nuevo_evento_patrocinio);
         tv_barrio_responsable_nuevo_evento_patrocinio = (TextView) findViewById(R.id.barrio_responsable_nuevo_evento_patrocinio);
@@ -223,8 +226,14 @@ public class NuevoEventoPatrocinio extends AppCompatActivity {
         String dni_responsable_recibir = getIntent().getStringExtra("DNI_Responsable_Enviar");
         tv_dni_responsable_nuevo_evento_patrocinio.setText(dni_responsable_recibir);
 
-        String nombre_apellido_responsable_recibir = getIntent().getStringExtra("Nombre_Apellido_Responsable_Enviar");
-        tv_nombre_apellido_responsable_nuevo_evento_patrocinio.setText(nombre_apellido_responsable_recibir);
+        String nombre_responsable_recibir = getIntent().getStringExtra("Nombre_Responsable_Enviar");
+        tv_nombre_responsable_nuevo_evento_patrocinio.setText(nombre_responsable_recibir);
+
+        String apellido_responsable_recibir = getIntent().getStringExtra("Apellido_Responsable_Enviar");
+        tv_apellido_responsable_nuevo_evento_patrocinio.setText(apellido_responsable_recibir);
+
+        String codigo_area_responsable_recibir = getIntent().getStringExtra("Codigo_Area_Responsable_Enviar");
+        tv_codigo_area_responsable_nuevo_evento_patrocinio.setText(codigo_area_responsable_recibir);
 
         String telefono_responsable_recibir = getIntent().getStringExtra("Telefono_Responsable_Enviar");
         tv_telefono_responsable_nuevo_evento_patrocinio.setText(telefono_responsable_recibir);

@@ -153,7 +153,7 @@
                         android:gravity="center"
                         android:hint="(Obligatorio)"
                         android:inputType="number"
-                        android:maxLength="10"
+                        android:maxLength="8"
                         android:textSize="20sp"
                         android:textStyle="bold" />
 
@@ -163,12 +163,12 @@
 
                 <TextView
 
-                    android:id="@+id/tv_nombre_apellido_formulario_patrocinio"
+                    android:id="@+id/tv_nombre_formulario_patrocinio"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="5dp"
                     android:layout_marginRight="5dp"
-                    android:text="NOMBRE Y APELLIDO"
+                    android:text="NOMBRE"
                     android:textColor="#000000"
                     android:textSize="24sp"
                     android:textStyle="bold" />
@@ -176,7 +176,7 @@
 
                 <LinearLayout
 
-                    android:id="@+id/llh_nombre_apellido_formulario_patrocinio"
+                    android:id="@+id/llh_nombre_formulario_patrocinio"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_marginLeft="5dp"
@@ -192,7 +192,7 @@
 
                     <ImageView
 
-                        android:id="@+id/img_nombre_apellido_nrp"
+                        android:id="@+id/img_nombre_nrp"
                         android:layout_width="100dp"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
@@ -203,7 +203,7 @@
 
                     <View
 
-                        android:id="@+id/separador_nombre_apellido"
+                        android:id="@+id/separador_nombre"
                         android:layout_width="1dp"
                         android:layout_height="match_parent"
                         android:layout_marginLeft="10dp"
@@ -217,7 +217,7 @@
 
                     <EditText
 
-                        android:id="@+id/et_nombre_apellido_nuevo_responsable_formulario_patrocinio_supervisor"
+                        android:id="@+id/et_nombre_nuevo_responsable_formulario_patrocinio_supervisor"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
@@ -225,6 +225,7 @@
                         android:gravity="center"
                         android:hint="(Obligatorio)"
                         android:inputType="textMultiLine"
+                        android:maxLength="45"
                         android:textSize="20sp"
                         android:textStyle="bold" />
 
@@ -232,14 +233,17 @@
                 </LinearLayout>
 
 
+
+
+
                 <TextView
 
-                    android:id="@+id/tv_telefono_formulario_patrocinio"
+                    android:id="@+id/tv_apellido_formulario_patrocinio"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="5dp"
                     android:layout_marginRight="5dp"
-                    android:text="TELÉFONO"
+                    android:text="APELLIDO"
                     android:textColor="#000000"
                     android:textSize="24sp"
                     android:textStyle="bold" />
@@ -247,7 +251,7 @@
 
                 <LinearLayout
 
-                    android:id="@+id/llh_telefono_formulario_patrocinio"
+                    android:id="@+id/llh_apellido_formulario_patrocinio"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_marginLeft="5dp"
@@ -263,18 +267,18 @@
 
                     <ImageView
 
-                        android:id="@+id/img_telefono_nrp"
+                        android:id="@+id/img_apellido_nrp"
                         android:layout_width="100dp"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
                         android:layout_marginLeft="5dp"
                         android:layout_weight="1"
-                        android:src="@drawable/ic_telefono_nrp_supervisor" />
+                        android:src="@drawable/ic_nombre_apellido_nrp_supervisor" />
 
 
                     <View
 
-                        android:id="@+id/separador_telefono"
+                        android:id="@+id/separador_apellido"
                         android:layout_width="1dp"
                         android:layout_height="match_parent"
                         android:layout_marginLeft="10dp"
@@ -286,19 +290,189 @@
                     </View>
 
 
-
                     <EditText
 
-                        android:id="@+id/et_telefono_nuevo_responsable_formulario_patrocinio_supervisor"
+                        android:id="@+id/et_apellido_nuevo_responsable_formulario_patrocinio_supervisor"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:layout_gravity="center"
                         android:layout_weight="1"
                         android:gravity="center"
                         android:hint="(Obligatorio)"
-                        android:inputType="phone"
-                        android:maxLength="11"
+                        android:inputType="textMultiLine"
+                        android:maxLength="45"
                         android:textSize="20sp"
                         android:textStyle="bold" />
+
+
+                </LinearLayout>
+
+
+
+                <LinearLayout
+
+                    android:id="@+id/llh_contenedor_textos_cod_and_tel"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:weightSum="2">
+
+
+                    <TextView
+
+                        android:id="@+id/tv_codigo_area_formulario_patrocinio"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="5dp"
+                        android:layout_marginRight="5dp"
+                        android:text="CÓDIGO DE ÁREA"
+                        android:textColor="#000000"
+                        android:textSize="24sp"
+                        android:textStyle="bold"
+                        android:layout_weight="1" />
+
+                    <TextView
+
+                        android:id="@+id/tv_telefono_formulario_patrocinio"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="5dp"
+                        android:layout_marginRight="5dp"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:text="TELÉFONO"
+                        android:textColor="#000000"
+                        android:textSize="24sp"
+                        android:textStyle="bold" />
+
+                </LinearLayout>
+
+
+                <LinearLayout
+
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:weightSum="2">
+
+
+
+
+                    <LinearLayout
+
+                        android:layout_weight="1"
+                        android:id="@+id/llh_codigo_area_formulario_patrocinio"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginLeft="5dp"
+                        android:layout_marginRight="5dp"
+                        android:layout_marginBottom="20dp"
+                        android:background="@drawable/contenedor_llh_nuevo_responsable_supervisor"
+                        android:gravity="center"
+                        android:orientation="horizontal"
+                        android:weightSum="2">
+
+
+
+
+                        <ImageView
+
+                            android:id="@+id/img_codigo_area_nrp"
+                            android:layout_width="100dp"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:layout_marginLeft="5dp"
+                            android:layout_weight="1"
+                            android:src="@drawable/ic_cod_area_nrp" />
+
+
+                        <View
+
+                            android:id="@+id/separador_codigo_area"
+                            android:layout_width="1dp"
+                            android:layout_height="match_parent"
+                            android:layout_marginLeft="10dp"
+                            android:layout_marginTop="10dp"
+                            android:layout_marginRight="10dp"
+                            android:layout_marginBottom="10dp"
+                            android:background="#ff5722">
+
+                        </View>
+
+
+                        <EditText
+
+                            android:id="@+id/et_codigo_area_nuevo_responsable_formulario_patrocinio_supervisor"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:gravity="center"
+                            android:hint="@string/edittext_hint"
+                            android:inputType="phone"
+                            android:maxLength="4"
+                            android:textSize="20sp"
+                            android:textStyle="bold"/>
+
+
+                    </LinearLayout>
+
+
+                    <LinearLayout
+
+                        android:layout_weight="1"
+                        android:id="@+id/llh_telefono_formulario_patrocinio"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginLeft="5dp"
+                        android:layout_marginRight="5dp"
+                        android:layout_marginBottom="20dp"
+                        android:background="@drawable/contenedor_llh_nuevo_responsable_supervisor"
+                        android:gravity="center"
+                        android:orientation="horizontal"
+                        android:weightSum="2">
+
+
+
+
+                        <ImageView
+
+                            android:id="@+id/img_telefono_nrp"
+                            android:layout_width="100dp"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:layout_marginLeft="5dp"
+                            android:layout_weight="1"
+                            android:src="@drawable/ic_telefono_nrp_supervisor" />
+
+
+                        <View
+
+                            android:id="@+id/separador_telefono"
+                            android:layout_width="1dp"
+                            android:layout_height="match_parent"
+                            android:layout_marginLeft="10dp"
+                            android:layout_marginTop="10dp"
+                            android:layout_marginRight="10dp"
+                            android:layout_marginBottom="10dp"
+                            android:background="#ff5722">
+
+                        </View>
+
+
+                        <EditText
+
+                            android:id="@+id/et_telefono_nuevo_responsable_formulario_patrocinio_supervisor"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:gravity="center"
+                            android:hint="@string/edittext_hint"
+                            android:inputType="phone"
+                            android:textSize="20sp"
+                            android:textStyle="bold" />
+
+
+                </LinearLayout>
 
 
                 </LinearLayout>
@@ -367,6 +541,7 @@
                         android:gravity="center"
                         android:hint="(Obligatorio)"
                         android:inputType="textMultiLine"
+                        android:maxLength="150"
                         android:textSize="20sp"
                         android:textStyle="bold" />
 
@@ -435,6 +610,7 @@
                         android:gravity="center"
                         android:hint="(Obligatorio)"
                         android:inputType="textMultiLine"
+                        android:maxLength="100"
                         android:textSize="20sp"
                         android:textStyle="bold" />
 
@@ -497,7 +673,6 @@
                     </View>
 
 
-
                     <EditText
 
                         android:id="@+id/et_email_nuevo_responsable_formulario_patrocinio_supervisor"
@@ -507,6 +682,7 @@
                         android:gravity="center"
                         android:hint=""
                         android:inputType="textMultiLine|textEmailAddress"
+                        android:maxLength="45"
                         android:textSize="20sp"
                         android:textStyle="bold" />
 
@@ -574,8 +750,9 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:gravity="center"
-                        android:hint=""
+                        android:hint="(Obligatorio)"
                         android:inputType="textMultiLine"
+                        android:maxLength="150"
                         android:textSize="20sp"
                         android:textStyle="bold" />
 
@@ -734,6 +911,7 @@
                         android:gravity="center"
                         android:hint="(Obligatorio)"
                         android:inputType="textMultiLine"
+                        android:maxLength="100"
                         android:textSize="20sp"
                         android:textStyle="bold" />
 
@@ -807,6 +985,7 @@
                         android:gravity="center"
                         android:hint="(Obligatorio)"
                         android:inputType="textMultiLine"
+                        android:maxLength="150"
                         android:textSize="20sp"
                         android:textStyle="bold" />
 
@@ -877,6 +1056,7 @@
                         android:gravity="center"
                         android:hint="(Obligatorio)"
                         android:inputType="textMultiLine"
+                        android:maxLength="100"
                         android:textSize="20sp"
                         android:textStyle="bold" />
 
@@ -950,6 +1130,7 @@
                         android:gravity="center"
                         android:hint="(Obligatorio)"
                         android:inputType="textMultiLine"
+                        android:maxLength="150"
                         android:textSize="20sp"
                         android:textStyle="bold" />
 

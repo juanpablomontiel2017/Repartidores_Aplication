@@ -216,6 +216,7 @@ public class BuscarResponsableParaPatrocinio extends AppCompatActivity implement
 
 
 
+
     }/******************************* FIN DEL onCreate() ***********************************/
 
 
@@ -298,8 +299,6 @@ public class BuscarResponsableParaPatrocinio extends AppCompatActivity implement
                     if(DeshabilitarVistasDeCadaItemAlGuardarCambios(true)){
 
                         /*Llamada a la función: */
-
-                        GuardarCambiosDeCadaItemEnUnSharedPreferences();
 
                         Toast.makeText(getApplicationContext(), "Los cambios fueron guardados con éxito", Toast.LENGTH_LONG).show();
 
@@ -480,9 +479,13 @@ public class BuscarResponsableParaPatrocinio extends AppCompatActivity implement
 
                     intent.putExtra("DNI_Responsable_Enviar", "38.765.245");
 
-                    intent.putExtra("Nombre_Apellido_Responsable_Enviar", "Juan Pablo Montiel");
+                    intent.putExtra("Nombre_Responsable_Enviar", "Juan Pablo");
 
-                    intent.putExtra("Telefono_Responsable_Enviar", "3734-446587");
+                    intent.putExtra("Apellido_Responsable_Enviar", "Montiel");
+
+                    intent.putExtra("Codigo_Area_Responsable_Enviar", "373");
+
+                    intent.putExtra("Telefono_Responsable_Enviar", "444-6587");
 
                     intent.putExtra("Direccion_Responsable_Enviar", "Calle 6 entre 11 y 13");
 
@@ -603,7 +606,10 @@ public class BuscarResponsableParaPatrocinio extends AppCompatActivity implement
         final EditText ET_Nombre_Evento = (EditText) NuevoItemInflado.findViewById(R.id.et_nombre_evento_recibir);
 
 
-        final EditText ET_Nombre_Apellido_Responsable_Evento = (EditText) NuevoItemInflado.findViewById(R.id.et_nombre_apellido_responsable_recibir);
+        final EditText ET_Nombre_Responsable_Evento = (EditText) NuevoItemInflado.findViewById(R.id.et_nombre_responsable_recibir);
+
+
+        final EditText ET_Apellido_Responsable_Evento = (EditText) NuevoItemInflado.findViewById(R.id.et_apellido_responsable_recibir);
 
 
         final LinearLayout LinearLayoutHorizontalFechaInicio = (LinearLayout) NuevoItemInflado.findViewById(R.id.llh_fecha_inicio);
@@ -627,12 +633,14 @@ public class BuscarResponsableParaPatrocinio extends AppCompatActivity implement
 
 
 
+        /*Aca leemos los valores que nos interesan y que están guardados en el SharedPreferences de la otra Activity */
+
         SharedPreferences preferences = getSharedPreferences("Datos_Evento_Responsable", MODE_PRIVATE);
 
 
-
         String Nombre_Evento = preferences.getString("Nombre_Evento" + indice, "");
-        String Nombre_Apellido_Responsable = preferences.getString("Nombre_Apellido_Responsable" + indice, "");
+        String Nombre_Responsable = preferences.getString("Nombre_Responsable" + indice, "");
+        String Apellido_Responsable = preferences.getString("Apellido_Responsable" + indice, "");
         String Fecha_Inicio_Evento = preferences.getString("Fecha_Inicio_Evento" + indice, "");
         String Fecha_Fin_Evento = preferences.getString("Fecha_Fin_Evento" + indice, "");
 
@@ -640,7 +648,8 @@ public class BuscarResponsableParaPatrocinio extends AppCompatActivity implement
 
 
         ET_Nombre_Evento.setText(Nombre_Evento);
-        ET_Nombre_Apellido_Responsable_Evento.setText(Nombre_Apellido_Responsable);
+        ET_Nombre_Responsable_Evento.setText(Nombre_Responsable);
+        ET_Apellido_Responsable_Evento.setText(Apellido_Responsable);
         ET_Valor_Fecha_Inicio_Evento.setText(Fecha_Inicio_Evento);
         ET_Valor_Fecha_Fin_Evento.setText(Fecha_Fin_Evento);
 
@@ -656,8 +665,9 @@ public class BuscarResponsableParaPatrocinio extends AppCompatActivity implement
 
                 intent.putExtra("Nombre_del_evento", ET_Nombre_Evento.getText().toString());
 
-                intent.putExtra("Nombre_del_responsable", ET_Nombre_Apellido_Responsable_Evento.getText().toString());
+                intent.putExtra("Nombre_del_responsable", ET_Nombre_Responsable_Evento.getText().toString());
 
+                intent.putExtra("Apellido_del_responsable", ET_Apellido_Responsable_Evento.getText().toString());
 
                 startActivity(intent);
 
@@ -752,7 +762,9 @@ public class BuscarResponsableParaPatrocinio extends AppCompatActivity implement
 
                 final EditText ET_Nombre_Evento = (EditText) ArrayListItemEvento.get(k).findViewById(R.id.et_nombre_evento_recibir);
 
-                final EditText ET_Nombre_Apellido_Responsable_Evento = (EditText) ArrayListItemEvento.get(k).findViewById(R.id.et_nombre_apellido_responsable_recibir);
+                final EditText ET_Nombre_Responsable_Evento = (EditText) ArrayListItemEvento.get(k).findViewById(R.id.et_nombre_responsable_recibir);
+
+                final EditText ET_Apellido_Responsable_Evento = (EditText) ArrayListItemEvento.get(k).findViewById(R.id.et_apellido_responsable_recibir);
 
                 final EditText ET_Valor_Fecha_Inicio_Evento = (EditText) ArrayListItemEvento.get(k).findViewById(R.id.et_valor_fecha_inicio_recibir);
 
@@ -767,14 +779,25 @@ public class BuscarResponsableParaPatrocinio extends AppCompatActivity implement
 
 
 
-                ET_Nombre_Apellido_Responsable_Evento.setFocusableInTouchMode(true);
-                ET_Nombre_Apellido_Responsable_Evento.setCursorVisible(true);
-                ET_Nombre_Apellido_Responsable_Evento.setBackgroundDrawable(getDrawable(R.drawable.edit_text_material_customizado));
+                ET_Nombre_Responsable_Evento.setFocusableInTouchMode(true);
+                ET_Nombre_Responsable_Evento.setCursorVisible(true);
+                ET_Nombre_Responsable_Evento.setBackgroundDrawable(getDrawable(R.drawable.edit_text_material_customizado));
+
+
+
+
+                ET_Apellido_Responsable_Evento.setFocusableInTouchMode(true);
+                ET_Apellido_Responsable_Evento.setCursorVisible(true);
+                ET_Apellido_Responsable_Evento.setBackgroundDrawable(getDrawable(R.drawable.edit_text_material_customizado));
+
+
 
 
                 ET_Valor_Fecha_Inicio_Evento.setFocusableInTouchMode(true);
                 ET_Valor_Fecha_Inicio_Evento.setCursorVisible(true);
                 ET_Valor_Fecha_Inicio_Evento.setBackgroundDrawable(getDrawable(R.drawable.edit_text_material_customizado));
+
+
 
 
                 ET_Valor_Fecha_Fin_Evento.setFocusableInTouchMode(true);
@@ -828,7 +851,9 @@ public class BuscarResponsableParaPatrocinio extends AppCompatActivity implement
 
                 final EditText ET_Nombre_Evento = (EditText) ArrayListItemEvento.get(k).findViewById(R.id.et_nombre_evento_recibir);
 
-                final EditText ET_Nombre_Apellido_Responsable_Evento = (EditText) ArrayListItemEvento.get(k).findViewById(R.id.et_nombre_apellido_responsable_recibir);
+                final EditText ET_Nombre_Responsable_Evento = (EditText) ArrayListItemEvento.get(k).findViewById(R.id.et_nombre_responsable_recibir);
+
+                final EditText ET_Apellido_Responsable_Evento = (EditText) ArrayListItemEvento.get(k).findViewById(R.id.et_apellido_responsable_recibir);
 
                 final EditText ET_Valor_Fecha_Inicio_Evento = (EditText) ArrayListItemEvento.get(k).findViewById(R.id.et_valor_fecha_inicio_recibir);
 
@@ -845,9 +870,15 @@ public class BuscarResponsableParaPatrocinio extends AppCompatActivity implement
 
 
 
-                ET_Nombre_Apellido_Responsable_Evento.setFocusable(false);
-                ET_Nombre_Apellido_Responsable_Evento.setCursorVisible(false);
-                ET_Nombre_Apellido_Responsable_Evento.setBackgroundColor(Color.TRANSPARENT);
+                ET_Nombre_Responsable_Evento.setFocusable(false);
+                ET_Nombre_Responsable_Evento.setCursorVisible(false);
+                ET_Nombre_Responsable_Evento.setBackgroundColor(Color.TRANSPARENT);
+
+
+
+                ET_Apellido_Responsable_Evento.setFocusable(false);
+                ET_Apellido_Responsable_Evento.setCursorVisible(false);
+                ET_Apellido_Responsable_Evento.setBackgroundColor(Color.TRANSPARENT);
 
 
 
@@ -895,312 +926,6 @@ public class BuscarResponsableParaPatrocinio extends AppCompatActivity implement
 
 
 
-
-
-    @SuppressLint("RestrictedApi")
-    public void MostrarEnPantallaValoresEditadosDelEvento() {
-
-
-        SharedPreferences preferences = getSharedPreferences("Datos_Item_Evento", MODE_PRIVATE);
-
-
-
-        String DimensionArrayItemEvento = preferences.getString("DimensionArrayItemEvento", "");
-
-
-        final EditText ET_Nombre_Evento = (EditText) findViewById(R.id.et_nombre_evento_recibir);
-
-        final EditText ET_Nombre_Apellido_Responsable_Evento = (EditText) findViewById(R.id.et_nombre_apellido_responsable_recibir);
-
-        final EditText ET_Valor_Fecha_Inicio_Evento = (EditText) findViewById(R.id.et_valor_fecha_inicio_recibir);
-
-        final EditText ET_Valor_Fecha_Fin_Evento = (EditText) findViewById(R.id.et_valor_fecha_fin_recibir);
-
-
-
-
-
-        if (DimensionArrayItemEvento != "") {
-
-            for (int indice_item = 0; indice_item < Integer.valueOf(DimensionArrayItemEvento); indice_item++) {
-
-
-
-                String ValorNombreEvento = preferences.getString("Nombre_Evento_Editado", "");
-                String ValorNombreApellidoResponsableEvento = preferences.getString("Nombre_Apellido_Responsable_Editado", "");
-                String ValorFechaInicioEvento = preferences.getString("Valor_Fecha_Inicio_Evento_Editado", "");
-                String ValorFechaFinEstimadaEvento = preferences.getString("Valor_Fecha_Fin_Estimada_Evento_Editado", "");
-
-
-
-                //No hace nada
-                ET_Nombre_Evento.setText(ValorNombreEvento);
-                ET_Nombre_Apellido_Responsable_Evento.setText(ValorNombreApellidoResponsableEvento);
-                ET_Valor_Fecha_Inicio_Evento.setText(ValorFechaInicioEvento);
-                ET_Valor_Fecha_Fin_Evento.setText(ValorFechaFinEstimadaEvento);
-
-
-
-
-
-
-
-            } //Fin del for
-
-
-        } //Fin del if
-
-
-
-
-        if(preferences.getBoolean("GuardarLasVistasDeLosItemDeshabilitados",false)){
-
-            DeshabilitarVistasDeCadaItemAlGuardarCambios(true);
-
-        }
-
-
-
-
-
-
-    }  /*****************FIN DE LA FUNCION MostrarValoresDelSharedPreferences()*******************
-
-
-
-
-
-
-
-
-
-
-
-    /************************************************************************/
-    /************************************************************************/
-    /************************************************************************/
-    /************************************************************************/
-    /************************************************************************/
-    /************************************************************************/
-    /************************************************************************/
-    /************************************************************************/
-    /************************************************************************/
-    /************************************************************************/
-
-
-
-    public void GuardarCambiosDeCadaItemEnUnSharedPreferences() {
-
-        SharedPreferences sharedPreferences = getSharedPreferences("Datos_Item_Evento", MODE_PRIVATE);
-
-        SharedPreferences.Editor editor = sharedPreferences.edit();
-
-
-
-        for (int k = 0; k < ArrayListItemEvento.size(); k++) {
-
-
-
-            final EditText ET_Nombre_Evento = (EditText) ArrayListItemEvento.get(k).findViewById(R.id.et_nombre_evento_recibir);
-
-            final EditText ET_Nombre_Apellido_Responsable_Evento = (EditText) ArrayListItemEvento.get(k).findViewById(R.id.et_nombre_apellido_responsable_recibir);
-
-            final EditText ET_Valor_Fecha_Inicio_Evento = (EditText) ArrayListItemEvento.get(k).findViewById(R.id.et_valor_fecha_inicio_recibir);
-
-            final EditText ET_Valor_Fecha_Fin_Evento = (EditText) ArrayListItemEvento.get(k).findViewById(R.id.et_valor_fecha_fin_recibir);
-
-
-
-            editor.putString("Nombre_Evento_Editado", ET_Nombre_Evento.getText().toString());
-
-            editor.putString("Nombre_Apellido_Responsable_Editado", ET_Nombre_Apellido_Responsable_Evento.getText().toString());
-
-            editor.putString("Valor_Fecha_Inicio_Evento_Editado", ET_Valor_Fecha_Inicio_Evento.getText().toString());
-
-            editor.putString("Valor_Fecha_Fin_Estimada_Evento_Editado", ET_Valor_Fecha_Fin_Evento.getText().toString());
-
-
-
-
-        } //Fin del primer for "k" = Item's
-
-
-
-
-        editor.putString("DimensionArrayItemEvento", String.valueOf(ArrayListItemEvento.size()));
-        editor.commit();
-
-
-        editor.putBoolean("GuardarLasVistasDeLosItemDeshabilitados", true);
-        editor.commit();
-
-
-
-
-
-
-    }/*******************************FIN DE LA FUNCIÓN GuardarCambiosDeCadaItemEnUnSharedPreferences()******************************/
-
-
-
-
-
-
-
-
-    /************************************************************************/
-    /************************************************************************/
-    /************************************************************************/
-    /************************************************************************/
-    /************************************************************************/
-    /************************************************************************/
-    /************************************************************************/
-    /************************************************************************/
-    /************************************************************************/
-    /************************************************************************/
-
-
-
-
-    /*
-
-    public void LeerEventoEnSharedPreferences(){
-
-        SharedPreferences preferences = getSharedPreferences("Datos_Evento_Responsable", MODE_PRIVATE);
-
-
-
-        String DNI_Responsable = preferences.getString("DNI_Responsable", "");
-
-        String Nombre_Apellido_Responsable =  preferences.getString("Nombre_Apellido_Responsable", "");
-
-        String Telefono_Responsable = preferences.getString("Telefono_Responsable", "");
-
-        String Direccion_Responsable = preferences.getString("Direccion_Responsable", "");
-
-        String Barrio_Responsable = preferences.getString("Barrio_Responsable", "");
-
-        String Correo_Responsable = preferences.getString("Correo_Responsable", "");
-
-        String Referencia_Responsable = preferences.getString("Referencia_Responsable", "");
-
-
-
-
-        String Nombre_Evento = preferences.getString("Nombre_Evento", "");
-
-        String Direccion_Evento = preferences.getString("Direccion_Evento", "");
-
-        String Barrio_Evento = preferences.getString("Barrio_Evento", "");
-
-        String Referencia_Evento = preferences.getString("Referencia_Evento", "");
-
-        String Fecha_Inicio_Evento = preferences.getString("Fecha_Inicio_Evento", "");
-
-        String Fecha_Fin_Evento = preferences.getString("Fecha_Fin_Evento", "");
-
-
-
-
-
-
-    } */ /******************** FIN DE LA FUNCIÓN LeerEventoEnSharedPreferences() *******************/
-
-
-
-
-    /************************************************************************/
-    /************************************************************************/
-    /************************************************************************/
-    /************************************************************************/
-    /************************************************************************/
-    /************************************************************************/
-    /************************************************************************/
-    /************************************************************************/
-    /************************************************************************/
-    /************************************************************************/
-
-
-
-
-/*
-    public void GuardarCambiosDelEventoEnUnSharedPreferences(){
-
-        int indice = 0;
-
-        SharedPreferences sharedPreferences = getSharedPreferences("Datos_Item_Evento_Responsable", MODE_PRIVATE);
-
-        SharedPreferences.Editor editor = sharedPreferences.edit();
-
-
-        String DimensionEvento = sharedPreferences.getString("DimensionItemDelEvento", "");
-
-        if(DimensionEvento == ""){
-
-            indice = 0;
-
-
-        }//Fin del if
-
-
-        else {
-
-            indice = Integer.parseInt(DimensionEvento) + 1;
-
-        }//Fin del else
-
-        //editor.putString("DNI_Responsable" + indice, et_dni_nuevo_responsable.getText().toString());
-
-        editor.putString("Nombre_Apellido_Responsable" + indice, et_nombre_apellido_nuevo_responsable.getText().toString());
-
-        //editor.putString("Telefono_Responsable" + indice, et_telefono_nuevo_responsable.getText().toString());
-
-        //editor.putString("Direccion_Responsable" + indice, et_direccion_nuevo_responsable.getText().toString());
-
-        //editor.putString("Barrio_Responsable" + indice, et_barrio_nuevo_responsable.getText().toString());
-
-        //editor.putString("Correo_Responsable" + indice, et_correo_nuevo_responsable.getText().toString());
-
-        //editor.putString("Referencia_Responsable" + indice, et_referencia_nuevo_responsable.getText().toString());
-
-
-
-
-        editor.putString("Nombre_Evento" + indice, et_nombre_del_evento_nuevo_responsable.getText().toString());
-
-        //editor.putString("Direccion_Evento" + indice, et_direccion_del_evento_nuevo_responsable.getText().toString());
-
-        //editor.putString("Barrio_Evento" + indice, et_barrio_del_evento_nuevo_responsable.getText().toString());
-
-        //editor.putString("Referencia_Evento" + indice, et_referencia_del_evento_nuevo_responsable.getText().toString());
-
-        editor.putString("Fecha_Inicio_Evento" + indice, et_fecha_inicio_del_evento_nuevo_responsable.getText().toString());
-
-        editor.putString("Fecha_Fin_Evento" + indice, et_fecha_fin_del_evento_nuevo_responsable.getText().toString());
-
-
-        editor.putString("DimensionDeEvento", String.valueOf(indice));
-
-        editor.commit();
-
-
-
-    } */ /******************** FIN DE LA FUNCIÓN GuardarEventoEnSharedPreferences() *******************/
-
-
-
-
-
-    /************************************************************************/
-    /************************************************************************/
-    /************************************************************************/
-    /************************************************************************/
-    /************************************************************************/
-    /************************************************************************/
-    /************************************************************************/
-    /************************************************************************/
-    /************************************************************************/
-    /************************************************************************/
 
 
 

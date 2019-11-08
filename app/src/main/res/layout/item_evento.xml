@@ -87,14 +87,32 @@
 
                 <EditText
 
-                    android:id="@+id/et_nombre_apellido_responsable_recibir"
+                    android:id="@+id/et_nombre_responsable_recibir"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
                     android:layout_marginRight="10dp"
                     android:layout_marginBottom="0dp"
                     android:gravity="center"
-                    android:text="PINTOS FRANCO"
+                    android:text="FRANCO"
+                    android:textColor="#000"
+                    android:textCursorDrawable="@color/colorCursorSupervisores"
+                    android:textSize="30sp"
+                    android:textStyle="bold"
+                    android:focusable="false"
+                    android:cursorVisible="false"
+                    android:background="#eeeeee"/>
+
+                <EditText
+
+                    android:id="@+id/et_apellido_responsable_recibir"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_marginBottom="0dp"
+                    android:gravity="center"
+                    android:text="PINTOS"
                     android:textColor="#000"
                     android:textCursorDrawable="@color/colorCursorSupervisores"
                     android:textSize="30sp"

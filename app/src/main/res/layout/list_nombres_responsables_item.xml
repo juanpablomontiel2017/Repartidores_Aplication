@@ -10,7 +10,7 @@
 
 
 
-    <!-- Codigo de Proyecto  -->
+    <!-- Codigofgfg de Proyecto  -->
     <TextView android:id="@+id/codigo_token"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"

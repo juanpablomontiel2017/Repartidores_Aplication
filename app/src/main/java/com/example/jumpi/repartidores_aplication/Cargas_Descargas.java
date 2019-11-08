@@ -2349,7 +2349,7 @@ public void ObtenerNuevoArticulo(String ValorElementoSeleccionadoSpinnerPrograma
 
 
 
-        }/*******FIN DE LA FUNCION DeshabilitarVistasDeLasTandasAlGuardarCambios() ********/
+        }/*******FIN DE LA FUNCIÓN DeshabilitarVistasDeLasTandasAlGuardarCambios() ********/
 
 
 
@@ -2569,7 +2569,7 @@ public void ObtenerNuevoArticulo(String ValorElementoSeleccionadoSpinnerPrograma
 
         }  /*Fin del primer if (flag_edit) {}*/
 
-    }/*******FIN DE LA FUNCION EditarTandas() ********/
+    }/*******FIN DE LA FUNCIÓN EditarTandas() ********/
 
 
 

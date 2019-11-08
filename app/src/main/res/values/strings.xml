@@ -145,6 +145,13 @@
 
 
 
+    <!--Activity: NuevoResponsableParaPatrocinio -->
+
+    <string name="edittext_hint">
+
+        <font size="16">(Obligatorio)</font>
+
+    </string>
 
 
 
