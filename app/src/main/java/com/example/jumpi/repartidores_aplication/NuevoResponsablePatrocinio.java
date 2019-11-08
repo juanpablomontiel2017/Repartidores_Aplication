@@ -313,10 +313,6 @@ public class NuevoResponsablePatrocinio extends AppCompatActivity {
 
 
 
-
-
-
-
                     else{
 
                         et_telefono_nuevo_responsable.setError("¡Número de teléfono no válido!");
@@ -368,12 +364,12 @@ public class NuevoResponsablePatrocinio extends AppCompatActivity {
                             //setEditTextMaxLength(et_telefono_nuevo_responsable,longitud_numero_telefono);
 
 
+
                             if (et_codigo_area_nuevo_responsable.getText().toString().length() > 2
                                     && et_codigo_area_nuevo_responsable.getText().toString().length() < 4
                                     && et_telefono_nuevo_responsable.getText().toString().length() == 8){
 
-                                /*Llamada a la función: */
-                                setEditTextMaxLength(et_telefono_nuevo_responsable,8);
+                                //setEditTextMaxLength(et_telefono_nuevo_responsable,8);
 
 
                                 et_telefono_nuevo_responsable.setText(BorrarUltimoCaracter(et_telefono_nuevo_responsable.getText().toString()));
@@ -386,12 +382,11 @@ public class NuevoResponsablePatrocinio extends AppCompatActivity {
 
                             }
 
-                            if (et_codigo_area_nuevo_responsable.getText().toString().length() > 3
+                            else if (et_codigo_area_nuevo_responsable.getText().toString().length() > 3
                                     && et_codigo_area_nuevo_responsable.getText().toString().length() < 5
                                     && et_telefono_nuevo_responsable.getText().toString().length() == 7){
 
-                                /*Llamada a la función: */
-                                setEditTextMaxLength(et_telefono_nuevo_responsable,7);
+                                //setEditTextMaxLength(et_telefono_nuevo_responsable,7);
 
 
                                 et_telefono_nuevo_responsable.setText(BorrarUltimoCaracter(et_telefono_nuevo_responsable.getText().toString()));
@@ -404,11 +399,10 @@ public class NuevoResponsablePatrocinio extends AppCompatActivity {
                             }
 
 
-                            if (et_codigo_area_nuevo_responsable.getText().toString().length() > 4
+                            else if (et_codigo_area_nuevo_responsable.getText().toString().length() > 4
                                     && et_codigo_area_nuevo_responsable.getText().toString().length() < 5
                                     && et_telefono_nuevo_responsable.getText().toString().length() == 6){
 
-                                /*Llamada a la función: */
                                 //setEditTextMaxLength(et_telefono_nuevo_responsable,8);
 
 
@@ -422,6 +416,11 @@ public class NuevoResponsablePatrocinio extends AppCompatActivity {
                             }
 
 
+                           // else{
+
+                             //   et_telefono_nuevo_responsable.setError("¡Número de teléfono no válido!");
+
+                            //}
 
 
                         }
