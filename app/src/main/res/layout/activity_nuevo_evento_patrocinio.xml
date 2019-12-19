@@ -148,31 +148,33 @@
                     android:weightSum="2">
 
 
-
                     <TextView
 
-                        android:layout_weight="1"
                         android:id="@+id/codigo_area_responsable_nuevo_evento_patrocinio"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:text="CÓDIGO DE ÁREA"
+                        android:layout_marginLeft="100dp"
+                        android:layout_weight="1"
                         android:textAlignment="center"
                         android:textColor="#000"
                         android:textSize="25sp"
-                        android:textStyle="bold" />
+                        android:textStyle="bold"
+                        tools:text="CODIGO AREA" />
 
 
                     <TextView
 
-                        android:layout_weight="1"
                         android:id="@+id/telefono_responsable_nuevo_evento_patrocinio"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:text="TELÉFONO"
+                        android:layout_marginRight="80dp"
+                        android:layout_weight="1"
+                        android:gravity="left"
                         android:textAlignment="center"
                         android:textColor="#000"
                         android:textSize="25sp"
-                        android:textStyle="bold" />
+                        android:textStyle="bold"
+                        tools:text="TELEFONO" />
 
                 </LinearLayout>
 
@@ -421,7 +423,8 @@
                         android:textColor="#FFFF"
                         android:textColorHint="#e0e0e0"
                         android:textSize="25sp"
-                        android:textStyle="bold" />
+                        android:textStyle="bold"
+                        android:textCursorDrawable="@color/colorCursorSupervisoresNuevoEvento"/>
 
                 </LinearLayout>
 
@@ -497,8 +500,8 @@
                         android:textColor="#FFFF"
                         android:textColorHint="#e0e0e0"
                         android:textSize="25sp"
-                        android:textStyle="bold" />
-
+                        android:textStyle="bold"
+                        android:textCursorDrawable="@color/colorCursorSupervisoresNuevoEvento"/>
 
                 </LinearLayout>
 
@@ -572,7 +575,8 @@
                         android:textColor="#FFFF"
                         android:textColorHint="#e0e0e0"
                         android:textSize="25sp"
-                        android:textStyle="bold" />
+                        android:textStyle="bold"
+                        android:textCursorDrawable="@color/colorCursorSupervisoresNuevoEvento"/>
 
                 </LinearLayout>
 
@@ -649,7 +653,8 @@
                         android:textColor="#FFFF"
                         android:textColorHint="#e0e0e0"
                         android:textSize="25sp"
-                        android:textStyle="bold" />
+                        android:textStyle="bold"
+                        android:textCursorDrawable="@color/colorCursorSupervisoresNuevoEvento"/>
 
 
 
@@ -733,7 +738,8 @@
                         android:textColor="#FFFF"
                         android:textColorHint="#e0e0e0"
                         android:textSize="25sp"
-                        android:textStyle="bold" />
+                        android:textStyle="bold"
+                        android:textCursorDrawable="@color/colorCursorSupervisoresNuevoEvento"/>
 
 
                 </LinearLayout>
@@ -813,7 +819,9 @@
                         android:textColor="#FFFF"
                         android:textColorHint="#e0e0e0"
                         android:textSize="25sp"
-                        android:textStyle="bold" />
+                        android:textStyle="bold"
+                        android:textCursorDrawable="@color/colorCursorSupervisoresNuevoEvento"/>
+
 
                 </LinearLayout>
 

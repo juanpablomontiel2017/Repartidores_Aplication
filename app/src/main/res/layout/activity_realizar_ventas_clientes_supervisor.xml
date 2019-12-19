@@ -237,7 +237,8 @@
                             android:gravity="center"
                             android:hint="Cantidad"
                             android:imeOptions="actionNext"
-                            android:inputType="number" />
+                            android:inputType="number"
+                            android:textCursorDrawable="@color/colorCursorSupervisores"/>
 
                     </LinearLayout>
 
@@ -358,7 +359,8 @@
                         android:hint="$"
                         android:inputType="number"
                         android:textSize="24sp"
-                        android:textStyle="bold" />
+                        android:textStyle="bold"
+                        android:textCursorDrawable="@color/colorCursorSupervisores"/>
 
 
                 </LinearLayout>

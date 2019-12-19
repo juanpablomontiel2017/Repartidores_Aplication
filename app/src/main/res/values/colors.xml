@@ -9,6 +9,8 @@
     <color name="colorCursorSupervisores">#ff9100</color>
 
 
+    <color name="colorCursorSupervisoresNuevoEvento">#ffff</color>
+
 </resources>
 
 

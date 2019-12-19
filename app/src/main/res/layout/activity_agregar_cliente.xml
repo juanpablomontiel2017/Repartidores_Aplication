@@ -147,7 +147,8 @@
                         android:inputType="textMultiLine"
                         android:textColor="#000"
                         android:textSize="24sp"
-                        android:textStyle="bold" />
+                        android:textStyle="bold"
+                        android:textCursorDrawable="@color/colorCursorSupervisores"/>
 
 
 
@@ -221,7 +222,9 @@
                         android:inputType="textMultiLine"
                         android:textColor="#000"
                         android:textSize="24sp"
-                        android:textStyle="bold"/>
+                        android:textStyle="bold"
+                        android:textCursorDrawable="@color/colorCursorSupervisores"/>
+
 
 
 
@@ -298,7 +301,8 @@
                         android:inputType="textMultiLine"
                         android:textColor="#000"
                         android:textSize="24sp"
-                        android:textStyle="bold" />
+                        android:textStyle="bold"
+                        android:textCursorDrawable="@color/colorCursorSupervisores"/>
 
 
 
@@ -371,7 +375,8 @@
                         android:inputType="textMultiLine"
                         android:textColor="#000"
                         android:textSize="24sp"
-                        android:textStyle="bold" />
+                        android:textStyle="bold"
+                        android:textCursorDrawable="@color/colorCursorSupervisores"/>
 
 
 
@@ -445,7 +450,8 @@
                         android:inputType="textMultiLine|number"
                         android:textColor="#000"
                         android:textSize="24sp"
-                        android:textStyle="bold" />
+                        android:textStyle="bold"
+                        android:textCursorDrawable="@color/colorCursorSupervisores"/>
 
 
                 </LinearLayout>
@@ -519,7 +525,8 @@
                         android:inputType="textMultiLine|textEmailAddress"
                         android:textColor="#000"
                         android:textSize="24sp"
-                        android:textStyle="bold" />
+                        android:textStyle="bold"
+                        android:textCursorDrawable="@color/colorCursorSupervisores"/>
 
 
                 </LinearLayout>
@@ -593,7 +600,8 @@
                         android:maxLength="8"
                         android:textColor="#000"
                         android:textSize="24sp"
-                        android:textStyle="bold" />
+                        android:textStyle="bold"
+                        android:textCursorDrawable="@color/colorCursorSupervisores"/>
 
                 </LinearLayout>
 
@@ -666,7 +674,8 @@
                         android:inputType="textMultiLine"
                         android:textColor="#000"
                         android:textSize="24sp"
-                        android:textStyle="bold" />
+                        android:textStyle="bold"
+                        android:textCursorDrawable="@color/colorCursorSupervisores"/>
 
 
                 </LinearLayout>

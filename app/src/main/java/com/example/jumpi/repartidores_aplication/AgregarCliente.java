@@ -71,6 +71,8 @@ public class AgregarCliente extends AppCompatActivity {
 
 
 
+        /* Para cambiar el color del puntero o "burbuja" del EditText */
+        setTheme(R.style.AppTheme_Cursor);
 
 
 
@@ -78,20 +80,36 @@ public class AgregarCliente extends AppCompatActivity {
 
 
         eTApellidoAC = (EditText) findViewById(R.id.apellido_cliente_agregar);
+        eTApellidoAC.setBackgroundDrawable(getDrawable(R.drawable.edit_text_material_customizado));
+
 
         eTNombreAC = (EditText) findViewById(R.id.nombre_cliente_agregar);
+        eTNombreAC.setBackgroundDrawable(getDrawable(R.drawable.edit_text_material_customizado));
+
 
         eTDireccionAC = (EditText) findViewById(R.id.direccion_cliente_agregar);
+        eTDireccionAC.setBackgroundDrawable(getDrawable(R.drawable.edit_text_material_customizado));
+
 
         eTBarrioAC = (EditText) findViewById(R.id.barrio_cliente_agregar);
+        eTBarrioAC.setBackgroundDrawable(getDrawable(R.drawable.edit_text_material_customizado));
+
 
         eTTelefonoAC = (EditText) findViewById(R.id.telefono_cliente_agregar);
+        eTTelefonoAC.setBackgroundDrawable(getDrawable(R.drawable.edit_text_material_customizado));
+
 
         eTCorreoAC = (EditText) findViewById(R.id.correo_cliente_agregar);
+        eTCorreoAC.setBackgroundDrawable(getDrawable(R.drawable.edit_text_material_customizado));
+
 
         eTdniAC = (EditText) findViewById(R.id.dni_cliente_agregar);
+        eTdniAC.setBackgroundDrawable(getDrawable(R.drawable.edit_text_material_customizado));
+
 
         eTReferenciaAC = (EditText) findViewById(R.id.referencia_cliente_agregar);
+        eTReferenciaAC.setBackgroundDrawable(getDrawable(R.drawable.edit_text_material_customizado));
+
 
 
 

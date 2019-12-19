@@ -109,6 +109,8 @@ public class NuevoResponsablePatrocinio extends AppCompatActivity {
         window.setStatusBarColor(Color.parseColor("#b71c1c"));
 
 
+        /* Para cambiar el color del puntero o "burbuja" del EditText */
+        setTheme(R.style.AppTheme_Cursor);
 
 
 
@@ -118,6 +120,7 @@ public class NuevoResponsablePatrocinio extends AppCompatActivity {
 
         et_dni_nuevo_responsable = (EditText) findViewById(R.id.et_dni_nuevo_responsable_formulario_patrocinio_supervisor);
         et_dni_nuevo_responsable.requestFocus();
+        et_dni_nuevo_responsable.setBackgroundDrawable(getDrawable(R.drawable.edit_text_material_customizado));
 
         et_dni_nuevo_responsable.addTextChangedListener(new TextWatcher() {
             @Override
@@ -148,6 +151,8 @@ public class NuevoResponsablePatrocinio extends AppCompatActivity {
 
         et_nombre_nuevo_responsable = (EditText) findViewById(R.id.et_nombre_nuevo_responsable_formulario_patrocinio_supervisor);
 
+        et_nombre_nuevo_responsable.setBackgroundDrawable(getDrawable(R.drawable.edit_text_material_customizado));
+
         et_nombre_nuevo_responsable.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
@@ -175,6 +180,8 @@ public class NuevoResponsablePatrocinio extends AppCompatActivity {
 
 
         et_apellido_nuevo_responsable =  (EditText) findViewById(R.id.et_apellido_nuevo_responsable_formulario_patrocinio_supervisor);
+
+        et_apellido_nuevo_responsable.setBackgroundDrawable(getDrawable(R.drawable.edit_text_material_customizado));
 
         et_apellido_nuevo_responsable.addTextChangedListener(new TextWatcher() {
             @Override
@@ -207,7 +214,15 @@ public class NuevoResponsablePatrocinio extends AppCompatActivity {
 
         et_codigo_area_nuevo_responsable = (EditText) findViewById(R.id.et_codigo_area_nuevo_responsable_formulario_patrocinio_supervisor);
 
+        et_codigo_area_nuevo_responsable.setBackgroundDrawable(getDrawable(R.drawable.edit_text_material_customizado));
+
+
+
         et_telefono_nuevo_responsable = (EditText) findViewById(R.id.et_telefono_nuevo_responsable_formulario_patrocinio_supervisor);
+
+        et_telefono_nuevo_responsable.setBackgroundDrawable(getDrawable(R.drawable.edit_text_material_customizado));
+
+
 
         /**Deshabilitar el ET al comienzo solo si el código de área tiene dígitos válidos **/
         et_telefono_nuevo_responsable.setFocusable(false);
@@ -294,6 +309,11 @@ public class NuevoResponsablePatrocinio extends AppCompatActivity {
             public void afterTextChanged(Editable editable) {
 
 
+
+                ValidarCodigoArea();
+
+                /*
+
                 if(Utils_Codigo_Area_Telefonico_Argentina.Prueba(NuevoResponsablePatrocinio.this,et_codigo_area_nuevo_responsable.getText().toString())){
 
 
@@ -327,7 +347,7 @@ public class NuevoResponsablePatrocinio extends AppCompatActivity {
 
                 }
 
-
+*/
 
 
 
@@ -359,6 +379,10 @@ public class NuevoResponsablePatrocinio extends AppCompatActivity {
                 public void afterTextChanged(Editable editable) {
 
 
+                    ValidarTelefono();
+
+
+                    /*
 
 
                     if (et_codigo_area_nuevo_responsable.getText().toString().length() > 0
@@ -417,7 +441,7 @@ public class NuevoResponsablePatrocinio extends AppCompatActivity {
 
                     }
 
-
+                */
 
                 }
             });
@@ -584,16 +608,9 @@ public class NuevoResponsablePatrocinio extends AppCompatActivity {
 
 
 
-
-
-
-
-
-
-
-
-
         et_direccion_nuevo_responsable = (EditText) findViewById(R.id.et_direccion_nuevo_responsable_formulario_patrocinio_supervisor);
+
+        et_direccion_nuevo_responsable.setBackgroundDrawable(getDrawable(R.drawable.edit_text_material_customizado));
 
         et_direccion_nuevo_responsable.addTextChangedListener(new TextWatcher() {
             @Override
@@ -623,6 +640,8 @@ public class NuevoResponsablePatrocinio extends AppCompatActivity {
 
 
         et_barrio_nuevo_responsable = (EditText) findViewById(R.id.et_barrio_nuevo_responsable_formulario_patrocinio_supervisor);
+
+        et_barrio_nuevo_responsable.setBackgroundDrawable(getDrawable(R.drawable.edit_text_material_customizado));
 
         et_barrio_nuevo_responsable.addTextChangedListener(new TextWatcher() {
             @Override
@@ -654,6 +673,8 @@ public class NuevoResponsablePatrocinio extends AppCompatActivity {
 
         et_correo_nuevo_responsable = (EditText) findViewById(R.id.et_email_nuevo_responsable_formulario_patrocinio_supervisor);
 
+        et_correo_nuevo_responsable.setBackgroundDrawable(getDrawable(R.drawable.edit_text_material_customizado));
+
         et_correo_nuevo_responsable.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
@@ -672,8 +693,12 @@ public class NuevoResponsablePatrocinio extends AppCompatActivity {
 
 
 
+                ValidarEmail(et_correo_nuevo_responsable);
+
+                /*
+
                 if (s.toString().length() > 0
-                        && ValidarEmail(et_correo_nuevo_responsable.getText().toString())){
+                        && ObtenerEmailValido(et_correo_nuevo_responsable.getText().toString())){
 
 
 
@@ -695,6 +720,9 @@ public class NuevoResponsablePatrocinio extends AppCompatActivity {
 
 
 
+                 */
+
+
 
             }
         });
@@ -706,6 +734,8 @@ public class NuevoResponsablePatrocinio extends AppCompatActivity {
 
 
         et_referencia_nuevo_responsable = (EditText) findViewById(R.id.et_referencia_nuevo_responsable_formulario_patrocinio_supervisor);
+
+        et_referencia_nuevo_responsable.setBackgroundDrawable(getDrawable(R.drawable.edit_text_material_customizado));
 
         et_referencia_nuevo_responsable.addTextChangedListener(new TextWatcher() {
             @Override
@@ -739,6 +769,8 @@ public class NuevoResponsablePatrocinio extends AppCompatActivity {
 
         et_nombre_del_evento_nuevo_responsable = (EditText) findViewById(R.id.et_nuevo_responsable_nombre_evento_formulario_patrocinio_supervisor);
 
+        et_nombre_del_evento_nuevo_responsable.setBackgroundDrawable(getDrawable(R.drawable.edit_text_material_customizado));
+
         et_nombre_del_evento_nuevo_responsable.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
@@ -766,6 +798,8 @@ public class NuevoResponsablePatrocinio extends AppCompatActivity {
 
 
         et_direccion_del_evento_nuevo_responsable = (EditText) findViewById(R.id.et_nuevo_responsable_direccion_evento_formulario_patrocinio_supervisor);
+
+        et_direccion_del_evento_nuevo_responsable.setBackgroundDrawable(getDrawable(R.drawable.edit_text_material_customizado));
 
         et_direccion_del_evento_nuevo_responsable.addTextChangedListener(new TextWatcher() {
             @Override
@@ -795,6 +829,7 @@ public class NuevoResponsablePatrocinio extends AppCompatActivity {
 
         et_barrio_del_evento_nuevo_responsable = (EditText) findViewById(R.id.et_nuevo_responsable_barrio_evento_formulario_patrocinio_supervisor);
 
+        et_barrio_del_evento_nuevo_responsable.setBackgroundDrawable(getDrawable(R.drawable.edit_text_material_customizado));
 
         et_barrio_del_evento_nuevo_responsable.addTextChangedListener(new TextWatcher() {
             @Override
@@ -825,6 +860,8 @@ public class NuevoResponsablePatrocinio extends AppCompatActivity {
 
         et_referencia_del_evento_nuevo_responsable = (EditText) findViewById(R.id.et_nuevo_responsable_referencia_evento_formulario_patrocinio_supervisor);
 
+        et_referencia_del_evento_nuevo_responsable.setBackgroundDrawable(getDrawable(R.drawable.edit_text_material_customizado));
+
         et_referencia_del_evento_nuevo_responsable.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
@@ -853,11 +890,37 @@ public class NuevoResponsablePatrocinio extends AppCompatActivity {
 
         et_fecha_inicio_del_evento_nuevo_responsable = (EditText) findViewById(R.id.et_nuevo_responsable_fecha_inicio_evento_formulario_patrocinio_supervisor);
 
+        et_fecha_inicio_del_evento_nuevo_responsable.setBackgroundDrawable(getDrawable(R.drawable.edit_text_material_customizado));
+
         SimpleMaskFormatter smf = new SimpleMaskFormatter("NN/NN/NNNN");
 
         MaskTextWatcher mtw_fecha_inicio_evento = new MaskTextWatcher(et_fecha_inicio_del_evento_nuevo_responsable, smf);
 
         et_fecha_inicio_del_evento_nuevo_responsable.addTextChangedListener(mtw_fecha_inicio_evento);
+
+        et_fecha_inicio_del_evento_nuevo_responsable.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+
+                ValidarFechaInicioEvento();
+
+            }
+        });
+
+
+
+
 
 
 
@@ -868,12 +931,31 @@ public class NuevoResponsablePatrocinio extends AppCompatActivity {
 
         et_fecha_fin_del_evento_nuevo_responsable = (EditText) findViewById(R.id.et_nuevo_responsable_fecha_fin_evento_formulario_patrocinio);
 
+        et_fecha_fin_del_evento_nuevo_responsable.setBackgroundDrawable(getDrawable(R.drawable.edit_text_material_customizado));
+
         MaskTextWatcher mtw_fecha_fin_estimada_evento = new MaskTextWatcher(et_fecha_fin_del_evento_nuevo_responsable, smf);
 
         et_fecha_fin_del_evento_nuevo_responsable.addTextChangedListener(mtw_fecha_fin_estimada_evento);
 
+        et_fecha_fin_del_evento_nuevo_responsable.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
 
 
+                ValidarFechaFinEvento();
+
+            }
+        });
 
 
 
@@ -975,19 +1057,20 @@ public class NuevoResponsablePatrocinio extends AppCompatActivity {
             public void onClick(View v) {
 
 
-                ValidarCamposDelFormularioAntesDeConfirmarNuevoResponsable();
-
-                GuardarEventoEnSharedPreferences();
+                if(ValidarCamposDelFormularioAntesDeConfirmarNuevoResponsable()) {
 
 
+                    int Indice_Responsable = GuardarDatosResponsableEnSharedPreferences();
 
-                Intent intent = new Intent (NuevoResponsablePatrocinio.this, BuscarResponsableParaPatrocinio.class);
+                    GuardarDatosEventoEnSharedPreferences(Indice_Responsable);
 
-                startActivity(intent);
+                    Intent intent = new Intent (NuevoResponsablePatrocinio.this, BuscarResponsableParaPatrocinio.class);
 
+                    startActivity(intent);
 
+                    finish();
 
-                finish();
+                }
 
 
 
@@ -1288,22 +1371,30 @@ public class NuevoResponsablePatrocinio extends AppCompatActivity {
                     if (!et_dni_nuevo_responsable.getText().toString().isEmpty() && ValidarDocumento()
                             && !et_nombre_nuevo_responsable.getText().toString().isEmpty() && ValidarNombre()
                             && !et_apellido_nuevo_responsable.getText().toString().isEmpty() && ValidarApellido()
+                            && !et_codigo_area_nuevo_responsable.getText().toString().isEmpty() && ValidarCodigoArea()
+                            && !et_telefono_nuevo_responsable.getText().toString().isEmpty() && ValidarTelefono()
                             && !et_direccion_nuevo_responsable.getText().toString().isEmpty() && ValidarDireccion()
                             && !et_barrio_nuevo_responsable.getText().toString().isEmpty() && ValidarBarrio()
+                            && et_correo_nuevo_responsable.getText().toString().isEmpty() && !ValidarEmail(et_correo_nuevo_responsable)
+                            || ValidarEmail(et_correo_nuevo_responsable)
                             && !et_referencia_nuevo_responsable.getText().toString().isEmpty() && ValidarReferencia()
                             && !et_nombre_del_evento_nuevo_responsable.getText().toString().isEmpty() && ValidarNombreEvento()
                             && !et_direccion_del_evento_nuevo_responsable.getText().toString().isEmpty() && ValidarDireccionEvento()
                             && !et_barrio_del_evento_nuevo_responsable.getText().toString().isEmpty() && ValidarBarrioEvento()
-                            && !et_referencia_del_evento_nuevo_responsable.getText().toString().isEmpty() && ValidarReferenciaEvento()){
+                            && !et_referencia_del_evento_nuevo_responsable.getText().toString().isEmpty() && ValidarReferenciaEvento()
+                            && !et_fecha_inicio_del_evento_nuevo_responsable.getText().toString().isEmpty() && ValidarFechaInicioEvento()
+                            && !et_fecha_fin_del_evento_nuevo_responsable.getText().toString().isEmpty() && ValidarFechaFinEvento()){
+
 
                         flag_nuevo_responsable = true;
 
                     }
 
 
+
                     else {
 
-                    Toast.makeText(getApplicationContext(), "¡Error! Recuerde completar todos los campos que sean obligatorios.", Toast.LENGTH_LONG).show();
+                    Toast.makeText(getApplicationContext(), "¡Error! Recuerde completar todos los campos que sean obligatorios y con datos válidos.", Toast.LENGTH_LONG).show();
 
                     flag_nuevo_responsable = false;
 
@@ -1347,6 +1438,8 @@ public class NuevoResponsablePatrocinio extends AppCompatActivity {
 
 
 
+    boolean flag_dni = false;
+
     public boolean ValidarDocumento() {
 
 
@@ -1359,15 +1452,20 @@ public class NuevoResponsablePatrocinio extends AppCompatActivity {
             myIconCheck.setBounds(0, 0, myIconCheck.getIntrinsicWidth(), myIconCheck.getIntrinsicHeight());
             et_dni_nuevo_responsable.setError("DNI válido", myIconCheck);
 
+            flag_dni = true;
+
 
         } else {
 
+
             et_dni_nuevo_responsable.setError("DNI no válido");
+
+            flag_dni = false;
 
         }
 
 
-        return true;
+        return flag_dni;
  /*
 
 
@@ -1420,6 +1518,7 @@ public class NuevoResponsablePatrocinio extends AppCompatActivity {
 
 
 
+    boolean flag_nombre_responsable = false;
 
     public boolean ValidarNombre() {
 
@@ -1433,14 +1532,18 @@ public class NuevoResponsablePatrocinio extends AppCompatActivity {
             et_nombre_nuevo_responsable.setError("Nombre válido", myIconCheck);
 
 
+            flag_nombre_responsable = true;
+
         } else {
 
             et_nombre_nuevo_responsable.setError("Nombre no válido");
 
+            flag_nombre_responsable = false;
+
         }
 
 
-        return  true;
+        return flag_nombre_responsable;
 
 
     }   /**********************FIN DE LA FUNCIÓN ValidarNombre()*********************/
@@ -1460,6 +1563,9 @@ public class NuevoResponsablePatrocinio extends AppCompatActivity {
     /***************************************************************************************************/
 
 
+
+    boolean flag_apellido_responsable = false;
+
     public boolean ValidarApellido() {
 
 
@@ -1472,21 +1578,179 @@ public class NuevoResponsablePatrocinio extends AppCompatActivity {
             et_apellido_nuevo_responsable.setError("Apellido válido", myIconCheck);
 
 
+            flag_apellido_responsable = true;
+
         } else {
 
             et_apellido_nuevo_responsable.setError("Apellido no válido");
+
+            flag_apellido_responsable = false;
 
         }
 
 
 
-        return true;
+        return flag_apellido_responsable;
 
     }   /**********************FIN DE LA FUNCIÓN ValidarApellido()*********************/
 
 
 
 
+    /***************************************************************************************************/
+    /***************************************************************************************************/
+    /***************************************************************************************************/
+    /***************************************************************************************************/
+    /***************************************************************************************************/
+    /***************************************************************************************************/
+    /***************************************************************************************************/
+    /***************************************************************************************************/
+    /***************************************************************************************************/
+    /***************************************************************************************************/
+
+
+
+
+
+
+    boolean flag_codigo_area = false;
+
+    public boolean ValidarCodigoArea() {
+
+
+        if(Utils_Codigo_Area_Telefonico_Argentina.Prueba(NuevoResponsablePatrocinio.this,et_codigo_area_nuevo_responsable.getText().toString())){
+
+
+            Drawable myIconCheck = getResources().getDrawable(R.drawable.et_checkgood);
+            myIconCheck.setBounds(0, 0, myIconCheck.getIntrinsicWidth(), myIconCheck.getIntrinsicHeight());
+            et_codigo_area_nuevo_responsable.setError("Código de área válido", myIconCheck);
+
+
+            et_telefono_nuevo_responsable.setFocusableInTouchMode(true);
+            et_telefono_nuevo_responsable.setCursorVisible(true);
+            et_telefono_nuevo_responsable.setHint("Obligatorio");
+            et_telefono_nuevo_responsable.setBackgroundDrawable(getDrawable(R.drawable.edit_text_material_customizado));
+            et_telefono_nuevo_responsable.setHint(R.string.edittext_hint);
+
+            flag_codigo_area = true;
+
+
+        } else {
+
+
+            et_codigo_area_nuevo_responsable.setError("Código de área no válido");
+
+
+            et_telefono_nuevo_responsable.setFocusable(false);
+            et_telefono_nuevo_responsable.setCursorVisible(false);
+            et_telefono_nuevo_responsable.setHint("");
+            et_telefono_nuevo_responsable.setText("");
+            et_telefono_nuevo_responsable.setBackgroundColor(Color.TRANSPARENT);
+
+            flag_codigo_area = false;
+
+
+        }
+
+        return flag_codigo_area;
+
+
+    }   /**********************FIN DE LA FUNCIÓN ValidarCodigoArea()*********************/
+
+
+
+
+
+    /***************************************************************************************************/
+    /***************************************************************************************************/
+    /***************************************************************************************************/
+    /***************************************************************************************************/
+    /***************************************************************************************************/
+    /***************************************************************************************************/
+    /***************************************************************************************************/
+    /***************************************************************************************************/
+    /***************************************************************************************************/
+    /***************************************************************************************************/
+
+
+
+
+    boolean flag_telefono = false;
+
+    public boolean ValidarTelefono(){
+
+
+
+        if (et_codigo_area_nuevo_responsable.getText().toString().length() > 0
+                && et_codigo_area_nuevo_responsable.getText().toString().length() < 3
+                && et_telefono_nuevo_responsable.getText().toString().length() == 8){
+
+            setEditTextMaxLength(et_telefono_nuevo_responsable,8);
+
+
+            Drawable myIconCheck = getResources().getDrawable(R.drawable.et_checkgood);
+            myIconCheck.setBounds(0, 0, myIconCheck.getIntrinsicWidth(), myIconCheck.getIntrinsicHeight());
+            et_telefono_nuevo_responsable.setError("Número de teléfono valido", myIconCheck);
+
+
+            flag_telefono = true;
+
+
+        }
+
+
+
+        else if (et_codigo_area_nuevo_responsable.getText().toString().length() > 2
+                && et_codigo_area_nuevo_responsable.getText().toString().length() < 4
+                && et_telefono_nuevo_responsable.getText().toString().length() == 7){
+
+            setEditTextMaxLength(et_telefono_nuevo_responsable,8);
+
+
+            Drawable myIconCheck = getResources().getDrawable(R.drawable.et_checkgood);
+            myIconCheck.setBounds(0, 0, myIconCheck.getIntrinsicWidth(), myIconCheck.getIntrinsicHeight());
+            et_telefono_nuevo_responsable.setError("Número de teléfono valido", myIconCheck);
+
+
+            flag_telefono = true;
+
+
+        }
+
+
+
+        else if (et_codigo_area_nuevo_responsable.getText().toString().length() > 3
+                && et_codigo_area_nuevo_responsable.getText().toString().length() < 5
+                && et_telefono_nuevo_responsable.getText().toString().length() == 6){
+
+            setEditTextMaxLength(et_telefono_nuevo_responsable,8);
+
+
+            Drawable myIconCheck = getResources().getDrawable(R.drawable.et_checkgood);
+            myIconCheck.setBounds(0, 0, myIconCheck.getIntrinsicWidth(), myIconCheck.getIntrinsicHeight());
+            et_telefono_nuevo_responsable.setError("Número de teléfono valido", myIconCheck);
+
+
+            flag_telefono = true;
+
+        }
+
+
+
+
+
+        else{
+
+            et_telefono_nuevo_responsable.setError("¡Número de teléfono no válido!");
+
+            flag_telefono = false;
+
+        }
+
+
+        return flag_telefono;
+
+    }/**********************FIN DE LA FUNCIÓN ValidarTelefono()*********************/
 
 
 
@@ -1503,7 +1767,7 @@ public class NuevoResponsablePatrocinio extends AppCompatActivity {
 
 
 
-
+    boolean flag_direccion_responsable = false;
 
     public boolean ValidarDireccion() {
 
@@ -1517,14 +1781,18 @@ public class NuevoResponsablePatrocinio extends AppCompatActivity {
             et_direccion_nuevo_responsable.setError("Dirección válida", myIconCheck);
 
 
+            flag_direccion_responsable = true;
+
         } else {
 
             et_direccion_nuevo_responsable.setError("Dirección no válida");
 
+            flag_direccion_responsable = false;
+
         }
 
 
-        return true;
+        return flag_direccion_responsable;
 
 
     }   /**********************FIN DE LA FUNCIÓN ValidarDireccionResponsable()*********************/
@@ -1547,7 +1815,7 @@ public class NuevoResponsablePatrocinio extends AppCompatActivity {
 
 
 
-
+    boolean flag_barrio_responsable = false;
 
     public boolean ValidarBarrio() {
 
@@ -1559,15 +1827,18 @@ public class NuevoResponsablePatrocinio extends AppCompatActivity {
             myIconCheck.setBounds(0, 0, myIconCheck.getIntrinsicWidth(), myIconCheck.getIntrinsicHeight());
             et_barrio_nuevo_responsable.setError("Barrio válido", myIconCheck);
 
+            flag_barrio_responsable = true;
 
         } else {
 
             et_barrio_nuevo_responsable.setError("Barrio no válido");
 
+            flag_barrio_responsable = false;
+
         }
 
 
-        return true;
+        return flag_barrio_responsable;
 
     }   /**********************FIN DE LA FUNCIÓN ValidarBarrioResponsable()*********************/
 
@@ -1588,7 +1859,7 @@ public class NuevoResponsablePatrocinio extends AppCompatActivity {
 
 
 
-    private boolean ValidarEmail(String email) {
+    private boolean ObtenerEmailValido(String email) {
 
 
         if (email.endsWith(".com")
@@ -1597,6 +1868,7 @@ public class NuevoResponsablePatrocinio extends AppCompatActivity {
 
 
             Pattern pattern = Patterns.EMAIL_ADDRESS;
+
 
             return pattern.matcher(email).matches();
 
@@ -1610,13 +1882,10 @@ public class NuevoResponsablePatrocinio extends AppCompatActivity {
 
 
 
-     }  /**********************FIN DE LA FUNCIÓN ValidarEmail()*********************/
+     }  /**********************FIN DE LA FUNCIÓN ObtenerEmailValido()*********************/
 
 
 
-
-
-
     /***************************************************************************************************/
     /***************************************************************************************************/
     /***************************************************************************************************/
@@ -1630,6 +1899,54 @@ public class NuevoResponsablePatrocinio extends AppCompatActivity {
 
 
 
+    boolean flag_correo_responsable = false;
+
+    public boolean ValidarEmail(EditText et_correo_nuevo_responsable){
+
+
+        //et_correo_nuevo_responsable.toString().length() > 0
+
+         if (ObtenerEmailValido(et_correo_nuevo_responsable.getText().toString())){
+
+
+
+             Drawable myIconCheck = getResources().getDrawable(R.drawable.et_checkgood);
+             myIconCheck.setBounds(0, 0, myIconCheck.getIntrinsicWidth(), myIconCheck.getIntrinsicHeight());
+             et_correo_nuevo_responsable.setError("¡Correo válido!", myIconCheck);
+
+             flag_correo_responsable = true;
+
+         }
+
+
+
+         else {
+
+
+             et_correo_nuevo_responsable.setError("¡Correo no válido!");
+
+             flag_correo_responsable = false;
+
+         }
+
+         return flag_correo_responsable;
+
+    }/**********************FIN DE LA FUNCIÓN ValidarEmail()*********************/
+
+
+    /***************************************************************************************************/
+    /***************************************************************************************************/
+    /***************************************************************************************************/
+    /***************************************************************************************************/
+    /***************************************************************************************************/
+    /***************************************************************************************************/
+    /***************************************************************************************************/
+    /***************************************************************************************************/
+    /***************************************************************************************************/
+    /***************************************************************************************************/
+
+
+    boolean flag_referencia_responsable = false;
 
     public boolean ValidarReferencia() {
 
@@ -1642,14 +1959,18 @@ public class NuevoResponsablePatrocinio extends AppCompatActivity {
             myIconCheck.setBounds(0, 0, myIconCheck.getIntrinsicWidth(), myIconCheck.getIntrinsicHeight());
             et_referencia_nuevo_responsable.setError("Referencia válida", myIconCheck);
 
+            flag_referencia_responsable = true;
+
 
         } else {
 
             et_referencia_nuevo_responsable.setError("Referencia no válida");
 
+            flag_referencia_responsable = false;
+
         }
 
-        return true;
+        return flag_referencia_responsable;
 
 
     }   /**********************FIN DE LA FUNCIÓN ValidarReferencia()*********************/
@@ -1670,7 +1991,7 @@ public class NuevoResponsablePatrocinio extends AppCompatActivity {
 
 
 
-
+    boolean flag_nombre_evento = false;
 
     public boolean ValidarNombreEvento() {
 
@@ -1683,15 +2004,18 @@ public class NuevoResponsablePatrocinio extends AppCompatActivity {
             myIconCheck.setBounds(0, 0, myIconCheck.getIntrinsicWidth(), myIconCheck.getIntrinsicHeight());
             et_nombre_del_evento_nuevo_responsable.setError("Nombre de evento válido", myIconCheck);
 
+            flag_nombre_evento = true;
 
         } else {
 
             et_nombre_del_evento_nuevo_responsable.setError("Nombre de evento no válido");
 
+            flag_nombre_evento = false;
+
         }
 
 
-        return true;
+        return flag_nombre_evento;
 
     }   /**********************FIN DE LA FUNCIÓN ValidarNombreEvento()*********************/
 
@@ -1711,6 +2035,7 @@ public class NuevoResponsablePatrocinio extends AppCompatActivity {
 
 
 
+    boolean flag_direccion_evento = false;
 
     public boolean ValidarDireccionEvento() {
 
@@ -1723,15 +2048,19 @@ public class NuevoResponsablePatrocinio extends AppCompatActivity {
             myIconCheck.setBounds(0, 0, myIconCheck.getIntrinsicWidth(), myIconCheck.getIntrinsicHeight());
             et_direccion_del_evento_nuevo_responsable.setError("Dirección de evento válida", myIconCheck);
 
+            flag_direccion_evento = true;
 
         } else {
 
             et_direccion_del_evento_nuevo_responsable.setError("Dirección de evento no válida");
 
+            flag_direccion_evento = false;
+
+
         }
 
 
-        return true;
+        return flag_direccion_evento;
 
 
     }   /**********************FIN DE LA FUNCIÓN ValidarDireccionEvento()*********************/
@@ -1753,7 +2082,10 @@ public class NuevoResponsablePatrocinio extends AppCompatActivity {
 
 
 
+    boolean flag_barrio_evento = false;
+
     public boolean ValidarBarrioEvento() {
+
 
 
         if(et_barrio_del_evento_nuevo_responsable.getText().toString().length() > 4){
@@ -1763,15 +2095,17 @@ public class NuevoResponsablePatrocinio extends AppCompatActivity {
             myIconCheck.setBounds(0, 0, myIconCheck.getIntrinsicWidth(), myIconCheck.getIntrinsicHeight());
             et_barrio_del_evento_nuevo_responsable.setError("Barrio de evento válido", myIconCheck);
 
+            flag_barrio_evento = true;
 
         } else {
 
             et_barrio_del_evento_nuevo_responsable.setError("Barrio de evento no válido");
 
+            flag_barrio_evento = false;
         }
 
 
-        return true;
+        return flag_barrio_evento;
 
     }   /**********************FIN DE LA FUNCIÓN ValidarBarrioEvento()*********************/
 
@@ -1790,6 +2124,8 @@ public class NuevoResponsablePatrocinio extends AppCompatActivity {
     /***************************************************************************************************/
 
 
+    boolean flag_referencia_evento = false;
+
     public boolean ValidarReferenciaEvento() {
 
 
@@ -1801,14 +2137,16 @@ public class NuevoResponsablePatrocinio extends AppCompatActivity {
             myIconCheck.setBounds(0, 0, myIconCheck.getIntrinsicWidth(), myIconCheck.getIntrinsicHeight());
             et_referencia_del_evento_nuevo_responsable.setError("Referencia de evento válida", myIconCheck);
 
+            flag_referencia_evento = true;
 
         } else {
 
             et_referencia_del_evento_nuevo_responsable.setError("Referencia de evento no válida");
 
+            flag_referencia_evento = false;
         }
 
-        return true;
+        return flag_referencia_evento;
 
 
     }   /**********************FIN DE LA FUNCIÓN ValidarReferenciaEvento()*********************/
@@ -1827,16 +2165,126 @@ public class NuevoResponsablePatrocinio extends AppCompatActivity {
     /***************************************************************************************************/
 
 
-    public void GuardarEventoEnSharedPreferences(){
+
+    boolean flag_fecha_inicio = false;
+
+    public boolean ValidarFechaInicioEvento() {
+
+
+
+        if(et_fecha_inicio_del_evento_nuevo_responsable.getText().toString().length() > 0
+                && et_fecha_inicio_del_evento_nuevo_responsable.getText().toString().length() == 10){
+
+
+            Drawable myIconCheck = getResources().getDrawable(R.drawable.et_checkgood);
+            myIconCheck.setBounds(0, 0, myIconCheck.getIntrinsicWidth(), myIconCheck.getIntrinsicHeight());
+            et_fecha_inicio_del_evento_nuevo_responsable.setError("Fecha de inicio válida", myIconCheck);
+
+            flag_fecha_inicio = true;
+
+
+
+
+        } else {
+
+
+            et_fecha_inicio_del_evento_nuevo_responsable.setError("Fecha de inicio no válida");
+
+            flag_fecha_inicio = false;
+
+        }
+
+
+
+        return flag_fecha_inicio;
+
+
+    }   /**********************FIN DE LA FUNCIÓN ValidarFechaInicioEvento()*********************/
+
+
+
+
+
+
+    /***************************************************************************************************/
+    /***************************************************************************************************/
+    /***************************************************************************************************/
+    /***************************************************************************************************/
+    /***************************************************************************************************/
+    /***************************************************************************************************/
+    /***************************************************************************************************/
+    /***************************************************************************************************/
+    /***************************************************************************************************/
+    /***************************************************************************************************/
+
+
+
+
+
+
+
+    boolean flag_fecha_fin = false;
+
+    public boolean ValidarFechaFinEvento() {
+
+
+
+        if(et_fecha_fin_del_evento_nuevo_responsable.getText().toString().length() > 0
+                && et_fecha_fin_del_evento_nuevo_responsable.getText().toString().length() == 10){
+
+
+            Drawable myIconCheck = getResources().getDrawable(R.drawable.et_checkgood);
+            myIconCheck.setBounds(0, 0, myIconCheck.getIntrinsicWidth(), myIconCheck.getIntrinsicHeight());
+            et_fecha_fin_del_evento_nuevo_responsable.setError("Fecha de fin válida", myIconCheck);
+
+            flag_fecha_fin = true;
+
+
+
+
+        } else {
+
+
+            et_fecha_fin_del_evento_nuevo_responsable.setError("Fecha de fin no válida");
+
+            flag_fecha_fin = false;
+
+        }
+
+
+
+        return flag_fecha_fin;
+
+
+    }   /**********************FIN DE LA FUNCIÓN ValidarFechaFinEvento()*********************/
+
+
+
+
+    /***************************************************************************************************/
+    /***************************************************************************************************/
+    /***************************************************************************************************/
+    /***************************************************************************************************/
+    /***************************************************************************************************/
+    /***************************************************************************************************/
+    /***************************************************************************************************/
+    /***************************************************************************************************/
+    /***************************************************************************************************/
+    /***************************************************************************************************/
+
+
+
+
+    public int GuardarDatosResponsableEnSharedPreferences(){
 
         int indice = 0;
 
-        SharedPreferences sharedPreferences = getSharedPreferences("Datos_Evento_Responsable", MODE_PRIVATE);
+        SharedPreferences sharedPreferences = getSharedPreferences("Datos_Responsable", MODE_PRIVATE);
 
         SharedPreferences.Editor editor = sharedPreferences.edit();
 
 
-        String DimensionEvento = sharedPreferences.getString("DimensionDeEvento", "");
+        String DimensionEvento = sharedPreferences.getString("DimensionDeResponsable", "");
 
         if(DimensionEvento == ""){
 
@@ -1873,6 +2321,60 @@ public class NuevoResponsablePatrocinio extends AppCompatActivity {
 
 
 
+        editor.putString("DimensionDeResponsable", String.valueOf(indice));
+
+        editor.commit();
+
+        return indice;
+
+    }/******************** FIN DE LA FUNCIÓN GuardarDatosResponsableEnSharedPreferences() *******************/
+
+
+
+
+
+
+
+    /***************************************************************************************************/
+    /***************************************************************************************************/
+    /***************************************************************************************************/
+    /***************************************************************************************************/
+    /***************************************************************************************************/
+    /***************************************************************************************************/
+    /***************************************************************************************************/
+    /***************************************************************************************************/
+    /***************************************************************************************************/
+    /***************************************************************************************************/
+
+
+
+    public void GuardarDatosEventoEnSharedPreferences(int indice_responsable){
+
+        int indice = 0;
+
+        SharedPreferences sharedPreferences = getSharedPreferences("Datos_Evento", MODE_PRIVATE);
+
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+
+
+        String DimensionEvento = sharedPreferences.getString("DimensionDeEvento", "");
+
+        if(DimensionEvento == ""){
+
+            indice = 0;
+
+
+        }//Fin del if
+
+
+        else {
+
+            indice = Integer.parseInt(DimensionEvento) + 1;
+
+        }//Fin del else
+
+
+
         editor.putString("Nombre_Evento" + indice, et_nombre_del_evento_nuevo_responsable.getText().toString());
 
         editor.putString("Direccion_Evento" + indice, et_direccion_del_evento_nuevo_responsable.getText().toString());
@@ -1885,6 +2387,9 @@ public class NuevoResponsablePatrocinio extends AppCompatActivity {
 
         editor.putString("Fecha_Fin_Evento" + indice, et_fecha_fin_del_evento_nuevo_responsable.getText().toString());
 
+        editor.putInt("Indice_Responsable", indice_responsable);
+
+
 
         editor.putString("DimensionDeEvento", String.valueOf(indice));
 
@@ -1892,31 +2397,31 @@ public class NuevoResponsablePatrocinio extends AppCompatActivity {
 
 
 
-    }/******************** FIN DE LA FUNCIÓN GuardarEventoEnSharedPreferences() *******************/
+
+
+    }/******************** FIN DE LA FUNCIÓN GuardarDatosEventoEnSharedPreferences() *******************/
 
 
 
 
-
-    /**************************************************************************/
-    /**************************************************************************/
-    /**************************************************************************/
-    /**************************************************************************/
-    /**************************************************************************/
-    /**************************************************************************/
-    /**************************************************************************/
-    /**************************************************************************/
-    /**************************************************************************/
-    /**************************************************************************/
-
+    /***************************************************************************************************/
+    /***************************************************************************************************/
+    /***************************************************************************************************/
+    /***************************************************************************************************/
+    /***************************************************************************************************/
+    /***************************************************************************************************/
+    /***************************************************************************************************/
+    /***************************************************************************************************/
+    /***************************************************************************************************/
+    /***************************************************************************************************/
 
 
 
 
-    public void LeerEventoEnSharedPreferences(){
+    public void LeerDatosResponsableEnSharedPreferences(){
 
 
-        SharedPreferences preferences = getSharedPreferences("Datos_Evento_Responsable", MODE_PRIVATE);
+        SharedPreferences preferences = getSharedPreferences("Datos_Responsable", MODE_PRIVATE);
 
 
 
@@ -1941,6 +2446,32 @@ public class NuevoResponsablePatrocinio extends AppCompatActivity {
 
 
 
+
+    }/******************** FIN DE LA FUNCIÓN LeerDatosResponsableEnSharedPreferences() *******************/
+
+
+
+
+
+    /***************************************************************************************************/
+    /***************************************************************************************************/
+    /***************************************************************************************************/
+    /***************************************************************************************************/
+    /***************************************************************************************************/
+    /***************************************************************************************************/
+    /***************************************************************************************************/
+    /***************************************************************************************************/
+    /***************************************************************************************************/
+    /***************************************************************************************************/
+
+
+    public void LeerDatosEventoEnSharedPreferences(){
+
+
+        SharedPreferences preferences = getSharedPreferences("Datos_Evento_Responsable", MODE_PRIVATE);
+
+
+
         String Nombre_Evento = preferences.getString("Nombre_Evento", "");
 
         String Direccion_Evento = preferences.getString("Direccion_Evento", "");
@@ -1958,9 +2489,7 @@ public class NuevoResponsablePatrocinio extends AppCompatActivity {
 
 
 
-    }/******************** FIN DE LA FUNCIÓN LeerEventoEnSharedPreferences() *******************/
-
-
+    }/******************** FIN DE LA FUNCIÓN LeerDatosEventoEnSharedPreferences() *******************/
 
 
 

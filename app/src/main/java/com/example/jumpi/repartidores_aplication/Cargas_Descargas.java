@@ -2900,10 +2900,6 @@ public void ObtenerNuevoArticulo(String ValorElementoSeleccionadoSpinnerPrograma
                 });
 
 
-
-
-
-
                 builder.setNegativeButton("Cancelar", new DialogInterface.OnClickListener() {
 
 

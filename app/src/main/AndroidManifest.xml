@@ -22,25 +22,26 @@
             android:name=".LoginActivity"
             android:label=""
             android:theme="@style/AppTheme.NoActionBar">
-            <intent-filter>
+          <!--  <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
+            </intent-filter> -->
         </activity>
 
 
 
-
         <!-- #################### Para REPARTIDORES ########################### -->
-
-
-
         <activity
             android:name=".Repartidores_Main_Activity"
             android:label=" "
             android:parentActivityName=".LoginActivity"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar">
+
+        </activity>
+
+
+
         <activity
             android:name=".EditarClientes"
             android:label="Editar Clientes"
@@ -61,17 +62,31 @@
             android:name=".Detalle_Dinero"
             android:label=""
             android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".Detalle_Faltante_Sobrante_Envases"
+            android:label=""
+            android:theme="@style/AppTheme.NoActionBar"></activity>
 
 
-        <activity android:name=".Detalle_Faltante_Sobrante_Envases"
-                  android:label=""
-                  android:theme="@style/AppTheme.NoActionBar" >
+        <!-- ########################## Para SUPERVISORES ########################### -->
+
+
+        <activity
+            android:name=".MainActivity"
+            android:label=" "
+            android:parentActivityName=".LoginActivity"
+            android:theme="@style/AppTheme.NoActionBar">
+
+        <intent-filter>
+            <action android:name="android.intent.action.MAIN" />
+
+            <category android:name="android.intent.category.LAUNCHER" />
+        </intent-filter>
 
 
         </activity>
 
 
-        <!-- ########################## Para SUPERVISORES ########################### -->
         <activity
             android:name=".CombustibleEstadisticas"
             android:label=""
@@ -81,7 +96,7 @@
             android:name=".VentaBidonesEstadisticas"
             android:label=""
             android:screenOrientation="landscape"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".NuevoEventoPatrocinio"
             android:label=""
@@ -125,11 +140,17 @@
             android:label="@string/title_activity_cargas_descargas"
             android:theme="@style/AppTheme.NoActionBar"
             android:windowSoftInputMode="stateAlwaysVisible" />
+
+
         <activity
-            android:name=".MainActivity"
-            android:label=" "
-            android:parentActivityName=".LoginActivity"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:name=".DatosPersonalesResponsable"
+            android:label=""
+            android:theme="@style/AppTheme.NoActionBar">
+
+        </activity>
+
+
+
     </application>
 
 </manifest>

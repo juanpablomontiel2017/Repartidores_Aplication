@@ -70,6 +70,8 @@ public class NuevoEventoPatrocinio extends AppCompatActivity {
         window.setStatusBarColor(Color.parseColor("#b71c1c"));
 
 
+        /* Para cambiar el color del puntero o "burbuja" del EditText */
+        setTheme(R.style.AppTheme_CursorNuevoEvento);
 
 
 
@@ -101,11 +103,27 @@ public class NuevoEventoPatrocinio extends AppCompatActivity {
 
 
         et_nombre_nuevo_evento_patrocinio_supervisor = (EditText) findViewById(R.id.et_nombre_nuevo_evento_patrocinio);
+        et_nombre_nuevo_evento_patrocinio_supervisor.setBackgroundDrawable(getDrawable(R.drawable.edit_text_material_customizado_nuevo_evento_supervisor));
+
+
         et_direccion_nuevo_evento_patrocinio_supervisor = (EditText) findViewById(R.id.et_direccion_nuevo_evento_patrocinio);
+        et_direccion_nuevo_evento_patrocinio_supervisor.setBackgroundDrawable(getDrawable(R.drawable.edit_text_material_customizado_nuevo_evento_supervisor));
+
+
         et_barrio_nuevo_evento_patrocinio_supervisor = (EditText) findViewById(R.id.et_barrio_nuevo_evento_patrocinio);
+        et_barrio_nuevo_evento_patrocinio_supervisor.setBackgroundDrawable(getDrawable(R.drawable.edit_text_material_customizado_nuevo_evento_supervisor));
+
+
         et_referencia_nuevo_evento_patrocinio_supervisor = (EditText) findViewById(R.id.et_referencia_nuevo_evento_patrocinio);
+        et_referencia_nuevo_evento_patrocinio_supervisor.setBackgroundDrawable(getDrawable(R.drawable.edit_text_material_customizado_nuevo_evento_supervisor));
+
+
         et_fecha_inicio_nuevo_evento_patrocinio_supervisor = (EditText) findViewById(R.id.et_fecha_inicio_nuevo_evento_patrocinio);
+        et_fecha_inicio_nuevo_evento_patrocinio_supervisor.setBackgroundDrawable(getDrawable(R.drawable.edit_text_material_customizado_nuevo_evento_supervisor));
+
+
         et_fecha_fin_nuevo_evento_patrocinio_supervisor = (EditText) findViewById(R.id.et_fecha_fin_nuevo_evento_patrocinio);
+        et_fecha_fin_nuevo_evento_patrocinio_supervisor.setBackgroundDrawable(getDrawable(R.drawable.edit_text_material_customizado_nuevo_evento_supervisor));
 
 
 

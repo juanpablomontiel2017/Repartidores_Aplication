@@ -54,7 +54,7 @@ public class BuscarResponsableParaPatrocinio extends AppCompatActivity implement
 
     ArrayAdapter<String> adapter;
 
-    // Arreglo de nombres de responsables
+    // Arreglo de nombres y apellidos de todos los responsables
     String tokens[] = {"Almagro José","Gonzalez Alfredo","Ricardo Martinez","Andrada Esteban","Mendez Luis","Aldino Sebastián"};
 
 
@@ -66,11 +66,6 @@ public class BuscarResponsableParaPatrocinio extends AppCompatActivity implement
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_buscar_responsable_para_patrocinio);
-
-
-
-
-
 
 
 
@@ -89,6 +84,7 @@ public class BuscarResponsableParaPatrocinio extends AppCompatActivity implement
 
         // finally change the color
         window.setStatusBarColor(Color.parseColor("#b71c1c"));
+
 
 
         /* Para cambiar el color del puntero o "burbuja" del EditText */
@@ -205,7 +201,7 @@ public class BuscarResponsableParaPatrocinio extends AppCompatActivity implement
 
         lv = (ListView) findViewById(R.id.list_view);
 
-        adapter = new ArrayAdapter<String>(this,R.layout.list_nombres_responsables_item, R.id.codigo_token,tokens);
+        adapter = new ArrayAdapter<String>(this,R.layout.list_nombres_responsables_item, R.id.codigo_token, tokens);
 
         lv.setAdapter(adapter);
 
@@ -234,190 +230,6 @@ public class BuscarResponsableParaPatrocinio extends AppCompatActivity implement
 
 
 
-
-    MenuItem BotonGuardar;
-
-
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-
-        getMenuInflater().inflate(R.menu.menu_buscar_responsable_o_evento_por_patrocinio, menu);
-
-        MenuItem searchItem = menu.findItem(R.id.search);
-
-        SearchView searchView = (SearchView) MenuItemCompat.getActionView(searchItem);
-
-        searchView.setOnQueryTextListener(this);
-
-        /* Aparece una "lupa" en el lado derecho */
-        searchView.setIconifiedByDefault(false);
-
-        //searchView.setIconified(false);
-
-        /* Ingresar a la activity con el buscador "activado" */
-        searchItem.expandActionView();
-
-
-
-
-        //Ocultar al comienzo el botón "Guardar Cambios"
-        menu.findItem(R.id.action_save_changes).setVisible(false);
-
-        BotonGuardar = menu.findItem(R.id.action_save_changes);
-
-        return true;
-
-    } /************** Fin del método onCreateOptionsMenu() ******************/
-
-
-
-
-
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-
-
-        int id = item.getItemId();
-
-
-
-        if(id == R.id.action_save_changes){
-
-
-
-            AlertDialog.Builder builder = new AlertDialog.Builder(BuscarResponsableParaPatrocinio.this);
-            builder.setIcon(R.drawable.ic_msj_alerta);
-            builder.setTitle("Desea guardar los cambios realizados?!");
-            builder.setMessage("Al presionar el botón 'Guardar' se guardarán los cambios realizados en cada tanda. ¿Desea continuar?");
-
-
-            builder.setPositiveButton("Guardar", new DialogInterface.OnClickListener() {
-                public void onClick(DialogInterface dialog, int id) {
-
-                    if(DeshabilitarVistasDeCadaItemAlGuardarCambios(true)){
-
-                        /*Llamada a la función: */
-
-                        Toast.makeText(getApplicationContext(), "Los cambios fueron guardados con éxito", Toast.LENGTH_LONG).show();
-
-
-                    }
-
-
-
-                }
-            });
-
-
-
-
-
-
-            builder.setNegativeButton("Cancelar", new DialogInterface.OnClickListener() {
-
-
-                public void onClick(DialogInterface dialog, int id) {
-
-                    dialog.dismiss();
-
-                }
-            });
-
-
-
-            AlertDialog dialog = builder.create();
-            dialog.show();
-
-
-            return true;
-
-
-
-        }//FIN DEL if(id == R.id.action_save_changes)
-
-
-
-
-
-
-
-
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.editar_item_evento) {
-
-
-
-            AlertDialog.Builder builder = new AlertDialog.Builder(BuscarResponsableParaPatrocinio.this);
-            builder.setIcon(R.drawable.ic_msj_alerta);
-            builder.setTitle("¿Desea modificar algunas de las tandas realizadas?");
-            builder.setMessage("Presione 'SI' en caso que desee editar los campos de algunas de las tandas.");
-
-
-            builder.setPositiveButton("SI", new DialogInterface.OnClickListener() {
-                public void onClick(DialogInterface dialog, int id) {
-
-
-
-
-                        /*Llamada a la función:  */
-                        EditarDatosItemEvento(true);
-
-                        BotonGuardar.setVisible(true);
-
-
-
-
-
-                }
-            });
-
-
-
-
-
-
-
-
-            builder.setNegativeButton("NO", new DialogInterface.OnClickListener() {
-
-                public void onClick(DialogInterface dialog, int id) {
-
-                    dialog.dismiss();
-
-                }
-            });
-
-
-
-            AlertDialog dialog = builder.create();
-            dialog.show();
-
-
-            return true;
-
-
-
-        }//FIN DEL if(id == R.id.editar_item_evento)
-
-
-        return super.onOptionsItemSelected(item);
-
-
-    } /***** FIN DEL onOptionsItemSelected()******/
-
-
-    /************************************************************************/
-    /************************************************************************/
-    /************************************************************************/
-    /************************************************************************/
-    /************************************************************************/
-    /************************************************************************/
-    /************************************************************************/
-    /************************************************************************/
-    /************************************************************************/
-    /************************************************************************/
 
 
 
@@ -483,9 +295,9 @@ public class BuscarResponsableParaPatrocinio extends AppCompatActivity implement
 
                     intent.putExtra("Apellido_Responsable_Enviar", "Montiel");
 
-                    intent.putExtra("Codigo_Area_Responsable_Enviar", "373");
+                    intent.putExtra("Codigo_Area_Responsable_Enviar", "3734");
 
-                    intent.putExtra("Telefono_Responsable_Enviar", "444-6587");
+                    intent.putExtra("Telefono_Responsable_Enviar", "446587");
 
                     intent.putExtra("Direccion_Responsable_Enviar", "Calle 6 entre 11 y 13");
 
@@ -496,10 +308,10 @@ public class BuscarResponsableParaPatrocinio extends AppCompatActivity implement
                     intent.putExtra("Correo_Responsable_Enviar", "juanpablomontiel2015@gmail.com");
 
 
-
-
-
                     startActivity(intent);
+
+
+
                 }
             });
 
@@ -536,7 +348,7 @@ public class BuscarResponsableParaPatrocinio extends AppCompatActivity implement
 
         int dimension = 0;
 
-        SharedPreferences preferences = getSharedPreferences("Datos_Evento_Responsable", MODE_PRIVATE);
+        SharedPreferences preferences = getSharedPreferences("Datos_Evento", MODE_PRIVATE);
 
         String DimensionEvento = preferences.getString("DimensionDeEvento", "");
 
@@ -635,24 +447,32 @@ public class BuscarResponsableParaPatrocinio extends AppCompatActivity implement
 
         /*Aca leemos los valores que nos interesan y que están guardados en el SharedPreferences de la otra Activity */
 
-        SharedPreferences preferences = getSharedPreferences("Datos_Evento_Responsable", MODE_PRIVATE);
-
+        SharedPreferences preferences = getSharedPreferences("Datos_Evento", MODE_PRIVATE);
 
         String Nombre_Evento = preferences.getString("Nombre_Evento" + indice, "");
-        String Nombre_Responsable = preferences.getString("Nombre_Responsable" + indice, "");
-        String Apellido_Responsable = preferences.getString("Apellido_Responsable" + indice, "");
         String Fecha_Inicio_Evento = preferences.getString("Fecha_Inicio_Evento" + indice, "");
         String Fecha_Fin_Evento = preferences.getString("Fecha_Fin_Evento" + indice, "");
+        int Indice_Responsable = preferences.getInt("Indice_Responsable", 0);
+
+
+        ArrayList<String> NombreApellidoResponsable = new ArrayList<>();
+
+        NombreApellidoResponsable = ObtenerApellidoNombreResponsable(Indice_Responsable);
+
+
+
+
 
 
 
 
         ET_Nombre_Evento.setText(Nombre_Evento);
-        ET_Nombre_Responsable_Evento.setText(Nombre_Responsable);
-        ET_Apellido_Responsable_Evento.setText(Apellido_Responsable);
         ET_Valor_Fecha_Inicio_Evento.setText(Fecha_Inicio_Evento);
         ET_Valor_Fecha_Fin_Evento.setText(Fecha_Fin_Evento);
 
+
+        ET_Nombre_Responsable_Evento.setText(NombreApellidoResponsable.get(0));
+        ET_Apellido_Responsable_Evento.setText(NombreApellidoResponsable.get(1));
 
 
         final Button btn_ver_detalle_entrega_retiro_envases_patrocinio = (Button) NuevoItemInflado.findViewById(R.id.btn_ver_detalle_item_evento);
@@ -673,6 +493,33 @@ public class BuscarResponsableParaPatrocinio extends AppCompatActivity implement
 
             }
         });
+
+
+
+
+
+
+        final Button btn_ver_datos_personales_responsable_patrocinio = (Button) NuevoItemInflado.findViewById(R.id.btn_ver_datos_personales_item_evento);
+        btn_ver_datos_personales_responsable_patrocinio.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+
+                int ValorDeLaPosicion;
+
+                ValorDeLaPosicion = EncontrarPosicionDeItemEvento(view);
+
+                Intent intent = new Intent (BuscarResponsableParaPatrocinio.this, DatosPersonalesResponsable.class);
+
+                intent.putExtra("Indice_Item", ValorDeLaPosicion);
+
+                startActivity(intent);
+
+            }
+        });
+
+
+
 
 
 
@@ -733,6 +580,126 @@ public class BuscarResponsableParaPatrocinio extends AppCompatActivity implement
 
 
     } /***************************FIN DE LA FUNCIÓN AgregarItemEvento()*****************************/
+
+
+
+
+
+
+
+    /************************************************************************/
+    /************************************************************************/
+    /************************************************************************/
+    /************************************************************************/
+    /************************************************************************/
+    /************************************************************************/
+    /************************************************************************/
+    /************************************************************************/
+    /************************************************************************/
+    /************************************************************************/
+
+
+
+     public ArrayList<String> ObtenerApellidoNombreResponsable(int indice_responsable){
+
+
+         ArrayList<String> NombreApellidoResponsable = new ArrayList<>();
+
+         SharedPreferences preferences = getSharedPreferences("Datos_Responsable", MODE_PRIVATE);
+
+
+         NombreApellidoResponsable.add(preferences.getString("Nombre_Responsable" + indice_responsable, ""));
+         NombreApellidoResponsable.add(preferences.getString("Apellido_Responsable" + indice_responsable, ""));
+
+
+
+         return NombreApellidoResponsable;
+
+
+     }/***************************FIN DE LA FUNCIÓN ObtenerApellidoNombreResponsable()*****************************/
+
+
+
+    /************************************************************************/
+    /************************************************************************/
+    /************************************************************************/
+    /************************************************************************/
+    /************************************************************************/
+    /************************************************************************/
+    /************************************************************************/
+    /************************************************************************/
+    /************************************************************************/
+    /************************************************************************/
+
+
+
+
+
+    public int  EncontrarPosicionDeItemEvento(View button_ver_responsable){
+
+        int posicion_item = 99;
+
+        View Item = EncontrarItemPadre(button_ver_responsable);
+
+        for(int i = 0 ; i < ArrayListItemEvento.size(); i++ ){
+
+            if(ArrayListItemEvento.get(i) == Item ){
+
+                posicion_item = i;
+
+                break;
+
+            }//Fin del if
+
+
+        }//Fin del for
+
+
+        return posicion_item;
+
+
+    }/*********************************FIN DE LA FUNCIÓN EncontrarPosicionDeItemEvento()*******************************************/
+
+
+
+
+
+
+    /************************************************************************/
+    /************************************************************************/
+    /************************************************************************/
+    /************************************************************************/
+    /************************************************************************/
+    /************************************************************************/
+    /************************************************************************/
+    /************************************************************************/
+    /************************************************************************/
+    /************************************************************************/
+
+
+
+
+    public View EncontrarItemPadre (View button_ver_responsable){
+
+
+        LinearLayout linearLayoutHorizontalButtonVerResponsable = (LinearLayout) button_ver_responsable.getParent();
+
+        LinearLayout linearLayoutVerticalContenedorVistas = (LinearLayout) linearLayoutHorizontalButtonVerResponsable.getParent();
+
+        LinearLayout linearLayoutHorizontalPadreContenedorVistas = (LinearLayout) linearLayoutVerticalContenedorVistas.getParent();
+
+        LinearLayout linearLayoutVerticalPadredePadres = (LinearLayout) linearLayoutHorizontalPadreContenedorVistas.getParent();
+
+        LinearLayout linearLayoutVerticalContenedorDeTodoElItem = (LinearLayout) linearLayoutVerticalPadredePadres.getParent();
+
+
+
+
+        return linearLayoutVerticalContenedorDeTodoElItem;
+
+
+
+    } /******************************FIN DE LA FUNCION ReducirListaDeArticulos()*****************************/
 
 
 
@@ -926,10 +893,354 @@ public class BuscarResponsableParaPatrocinio extends AppCompatActivity implement
 
 
 
+    public void GuardarCambiosEnUnSharedPreferences(){
+
+        int indice = 0;
+
+        SharedPreferences sharedPreferences = getSharedPreferences("Datos_Evento_Responsable", MODE_PRIVATE);
+
+        SharedPreferences.Editor editor = sharedPreferences.edit();
 
 
 
 
+        final EditText ET_Nombre_Evento = (EditText) findViewById(R.id.et_nombre_evento_recibir);
+
+        final EditText ET_Nombre_Responsable_Evento = (EditText) findViewById(R.id.et_nombre_responsable_recibir);
+
+        final EditText ET_Apellido_Responsable_Evento = (EditText) findViewById(R.id.et_apellido_responsable_recibir);
+
+        final EditText ET_Valor_Fecha_Inicio_Evento = (EditText) findViewById(R.id.et_valor_fecha_inicio_recibir);
+
+        final EditText ET_Valor_Fecha_Fin_Evento = (EditText) findViewById(R.id.et_valor_fecha_fin_recibir);
+
+
+        /*String DimensionEvento = sharedPreferences.getString("DimensionDeEvento", "");
+
+
+        if(DimensionEvento == ""){
+
+            indice = 0;
+
+
+        }//Fin del if
+
+
+        else {
+
+            indice = Integer.parseInt(DimensionEvento) + 1;
+
+        }*/ //Fin del else
+
+
+        editor.putString("Nombre_Responsable" + indice, ET_Nombre_Responsable_Evento.getText().toString());
+
+        editor.putString("Apellido_Responsable" + indice, ET_Apellido_Responsable_Evento.getText().toString());
+
+        editor.putString("Nombre_Evento" + indice, ET_Nombre_Evento.getText().toString());
+
+        editor.putString("Fecha_Inicio_Evento" + indice, ET_Valor_Fecha_Inicio_Evento.getText().toString());
+
+        editor.putString("Fecha_Fin_Evento" + indice, ET_Valor_Fecha_Fin_Evento.getText().toString());
+
+
+        editor.putString("DimensionDeEvento", String.valueOf(indice));
+
+        editor.commit();
+
+
+
+    }/******************** FIN DE LA FUNCIÓN GuardarCambiosEnUnSharedPreferences() *******************/
+
+
+
+
+
+    /************************************************************************/
+    /************************************************************************/
+    /************************************************************************/
+    /************************************************************************/
+    /************************************************************************/
+    /************************************************************************/
+    /************************************************************************/
+    /************************************************************************/
+    /************************************************************************/
+    /************************************************************************/
+
+
+
+
+
+    public void MostrarNombreApellidoResponsable() {
+
+        int dimension = 0;
+
+        SharedPreferences preferences = getSharedPreferences("Datos_Evento_Responsable", MODE_PRIVATE);
+
+        String DimensionEvento = preferences.getString("DimensionDeEvento", "");
+
+        if (DimensionEvento != "") {
+
+            dimension = Integer.parseInt(DimensionEvento);
+
+            for (int i = 0; i <= dimension; i++) {
+
+
+                LeerNombreApellidoResponsable(i);
+
+
+
+            }//Fin del for
+
+
+        }//Fin del if
+
+
+    }/******************************* FIN DE LA FUNCIÓN MostrarNombreApellidoResponsable() ***********************************/
+
+
+    /***************************************************************************************************/
+    /***************************************************************************************************/
+    /***************************************************************************************************/
+    /***************************************************************************************************/
+    /***************************************************************************************************/
+    /***************************************************************************************************/
+    /***************************************************************************************************/
+    /***************************************************************************************************/
+    /***************************************************************************************************/
+    /***************************************************************************************************/
+
+
+    public void LeerNombreApellidoResponsable(int indice) {
+
+
+
+        final EditText ET_Nombre_Responsable = (EditText) findViewById(R.id.et_nombre_responsable);
+
+
+        final EditText ET_Apellido_Responsable = (EditText) findViewById(R.id.et_apellido_responsable);
+
+
+
+        /*Aca leemos los valores que nos interesan y que están guardados en el SharedPreferences de la otra Activity */
+
+        SharedPreferences preferences = getSharedPreferences("Datos_Evento_Responsable", MODE_PRIVATE);
+
+
+        String Nombre_Responsable = preferences.getString("Nombre_Responsable" + indice, "");
+        String Apellido_Responsable = preferences.getString("Apellido_Responsable" + indice, "");
+
+        ET_Nombre_Responsable.setText(Nombre_Responsable);
+        ET_Apellido_Responsable.setText(Apellido_Responsable);
+
+
+
+    }/***************************FIN DE LA FUNCIÓN LeerNombreApellidoResponsable()*****************************/
+
+
+
+
+
+
+    /************************************************************************/
+    /************************************************************************/
+    /************************************************************************/
+    /************************************************************************/
+    /************************************************************************/
+    /************************************************************************/
+    /************************************************************************/
+    /************************************************************************/
+    /************************************************************************/
+    /************************************************************************/
+
+
+
+
+
+    MenuItem BotonGuardar;
+
+
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+
+        getMenuInflater().inflate(R.menu.menu_buscar_responsable_o_evento_por_patrocinio, menu);
+
+        MenuItem searchItem = menu.findItem(R.id.search);
+
+        SearchView searchView = (SearchView) MenuItemCompat.getActionView(searchItem);
+
+        searchView.setOnQueryTextListener(this);
+
+        /* Aparece una "lupa" en el lado derecho */
+        searchView.setIconifiedByDefault(false);
+
+        //searchView.setIconified(false);
+
+        /* Ingresar a la activity con el buscador "activado" */
+        searchItem.expandActionView();
+
+
+
+
+        //Ocultar al comienzo el botón "Guardar Cambios"
+        menu.findItem(R.id.action_save_changes).setVisible(false);
+
+        BotonGuardar = menu.findItem(R.id.action_save_changes);
+
+        return true;
+
+    } /************** Fin del método onCreateOptionsMenu() ******************/
+
+
+
+
+
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+
+
+        int id = item.getItemId();
+
+
+
+        if(id == R.id.action_save_changes){
+
+
+
+            AlertDialog.Builder builder = new AlertDialog.Builder(BuscarResponsableParaPatrocinio.this);
+            builder.setIcon(R.drawable.ic_msj_alerta);
+            builder.setTitle("Desea guardar los cambios realizados?!");
+            builder.setMessage("Al presionar el botón 'Guardar' se guardarán los cambios realizados en cada tanda. ¿Desea continuar?");
+
+
+            builder.setPositiveButton("Guardar", new DialogInterface.OnClickListener() {
+                public void onClick(DialogInterface dialog, int id) {
+
+                    if(DeshabilitarVistasDeCadaItemAlGuardarCambios(true)){
+
+                        /*Llamada a la función: */
+                        GuardarCambiosEnUnSharedPreferences();
+
+                        Toast.makeText(getApplicationContext(), "Los cambios fueron guardados con éxito", Toast.LENGTH_LONG).show();
+
+
+                    }
+
+
+
+                }
+            });
+
+
+
+
+
+
+            builder.setNegativeButton("Cancelar", new DialogInterface.OnClickListener() {
+
+
+                public void onClick(DialogInterface dialog, int id) {
+
+                    dialog.dismiss();
+
+                }
+            });
+
+
+
+            AlertDialog dialog = builder.create();
+            dialog.show();
+
+
+            return true;
+
+
+
+        }//FIN DEL if(id == R.id.action_save_changes)
+
+
+
+
+
+
+
+
+        //noinspection SimplifiableIfStatement
+        if (id == R.id.editar_item_evento) {
+
+
+
+            AlertDialog.Builder builder = new AlertDialog.Builder(BuscarResponsableParaPatrocinio.this);
+            builder.setIcon(R.drawable.ic_msj_alerta);
+            builder.setTitle("¿Desea modificar algunas de las tandas realizadas?");
+            builder.setMessage("Presione 'SI' en caso que desee editar los campos de algunas de las tandas.");
+
+
+            builder.setPositiveButton("SI", new DialogInterface.OnClickListener() {
+                public void onClick(DialogInterface dialog, int id) {
+
+
+
+
+                    /*Llamada a la función:  */
+                    EditarDatosItemEvento(true);
+
+                    BotonGuardar.setVisible(true);
+
+
+
+
+
+                }
+            });
+
+
+
+
+
+
+
+
+            builder.setNegativeButton("NO", new DialogInterface.OnClickListener() {
+
+                public void onClick(DialogInterface dialog, int id) {
+
+                    dialog.dismiss();
+
+                }
+            });
+
+
+
+            AlertDialog dialog = builder.create();
+            dialog.show();
+
+
+            return true;
+
+
+
+        }//FIN DEL if(id == R.id.editar_item_evento)
+
+
+        return super.onOptionsItemSelected(item);
+
+
+    } /***** FIN DEL onOptionsItemSelected()******/
+
+
+    /************************************************************************/
+    /************************************************************************/
+    /************************************************************************/
+    /************************************************************************/
+    /************************************************************************/
+    /************************************************************************/
+    /************************************************************************/
+    /************************************************************************/
+    /************************************************************************/
+    /************************************************************************/
 
 
 
