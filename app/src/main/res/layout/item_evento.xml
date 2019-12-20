@@ -283,7 +283,7 @@
                         android:drawableLeft="@drawable/ic_ver_datos_personales_responsable"
                         android:gravity="center"
                         android:paddingLeft="30dp"
-                        android:text="VER RESPONSABLE"
+                        android:text="VER Y/O EDITAR RESPONSABLE"
                         android:textColor="#FFFF"
                         android:textSize="25sp"
                         android:textStyle="bold" />

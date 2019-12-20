@@ -16,6 +16,7 @@ import android.text.Editable;
 import android.text.InputFilter;
 import android.text.TextWatcher;
 import android.util.Patterns;
+import android.view.KeyEvent;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
@@ -241,6 +242,7 @@ public class DatosPersonalesResponsable extends AppCompatActivity {
         });
 
 
+
     }/*************************** FIN DEL onCreate() *******************************/
 
 
@@ -293,7 +295,7 @@ public class DatosPersonalesResponsable extends AppCompatActivity {
     /***************************************************************************************************/
 
 
-    public void LeerDatosPersonalesResponsable(int indice_responsable) {
+    public void LeerDatosPersonalesResponsable(int indice_evento) {
 
 
         final EditText ET_DNI_Responsable = (EditText) findViewById(R.id.et_dni_responsable);
@@ -342,33 +344,40 @@ public class DatosPersonalesResponsable extends AppCompatActivity {
 
 
 
+        SharedPreferences preferences_evento = getSharedPreferences("Datos_Evento", MODE_PRIVATE);
+
+        String Nombre_Evento = preferences_evento.getString("Nombre_Evento" + indice_evento, "");
+        String Direccion_Evento = preferences_evento.getString("Direccion_Evento" + indice_evento, "");
+        String Barrio_Evento = preferences_evento.getString("Barrio_Evento" + indice_evento, "");
+        String Referencia_Evento = preferences_evento.getString("Referencia_Evento" + indice_evento, "");
+        String Fecha_Inicio_Evento = preferences_evento.getString("Fecha_Inicio_Evento" + indice_evento, "");
+        String Fecha_Fin_Evento = preferences_evento.getString("Fecha_Fin_Evento" + indice_evento, "");
+
+        int Indice_Responsable = preferences_evento.getInt("Indice_Responsable" + indice_evento, 0);
+
+
+
+
 
         /*Aca leemos los valores que nos interesan y que están guardados en el SharedPreferences de la otra Activity */
 
         SharedPreferences preferences = getSharedPreferences("Datos_Responsable", MODE_PRIVATE);
 
-        String DNI_Responsable = preferences.getString("DNI_Responsable" + indice_responsable, "");
-        String Nombre_Responsable = preferences.getString("Nombre_Responsable" + indice_responsable, "");
-        String Apellido_Responsable = preferences.getString("Apellido_Responsable" + indice_responsable, "");
-        String Codigo_Area_Responsable = preferences.getString("Codigo_Area_Responsable" + indice_responsable, "");
-        String Telefono_Responsable = preferences.getString("Telefono_Responsable" + indice_responsable, "");
-        String Direccion_Responsable = preferences.getString("Direccion_Responsable" + indice_responsable, "");
-        String Barrio_Responsable = preferences.getString("Barrio_Responsable" + indice_responsable, "");
-        String Correo_Responsable = preferences.getString("Correo_Responsable" + indice_responsable, "");
-        String Referencia_Responsable = preferences.getString("Referencia_Responsable" + indice_responsable, "");
+        String DNI_Responsable = preferences.getString("DNI_Responsable" + Indice_Responsable, "");
+        String Nombre_Responsable = preferences.getString("Nombre_Responsable" + Indice_Responsable, "");
+        String Apellido_Responsable = preferences.getString("Apellido_Responsable" + Indice_Responsable, "");
+        String Codigo_Area_Responsable = preferences.getString("Codigo_Area_Responsable" + Indice_Responsable, "");
+        String Telefono_Responsable = preferences.getString("Telefono_Responsable" + Indice_Responsable, "");
+        String Direccion_Responsable = preferences.getString("Direccion_Responsable" + Indice_Responsable, "");
+        String Barrio_Responsable = preferences.getString("Barrio_Responsable" + Indice_Responsable, "");
+        String Correo_Responsable = preferences.getString("Correo_Responsable" + Indice_Responsable, "");
+        String Referencia_Responsable = preferences.getString("Referencia_Responsable" + Indice_Responsable, "");
 
 
 
 
 
-        SharedPreferences preferences_evento = getSharedPreferences("Datos_Evento", MODE_PRIVATE);
 
-        String Nombre_Evento = preferences_evento.getString("Nombre_Evento" + indice_responsable, "");
-        String Direccion_Evento = preferences_evento.getString("Direccion_Evento" + indice_responsable, "");
-        String Barrio_Evento = preferences_evento.getString("Barrio_Evento" + indice_responsable, "");
-        String Referencia_Evento = preferences_evento.getString("Referencia_Evento" + indice_responsable, "");
-        String Fecha_Inicio_Evento = preferences_evento.getString("Fecha_Inicio_Evento" + indice_responsable, "");
-        String Fecha_Fin_Evento = preferences_evento.getString("Fecha_Fin_Evento" + indice_responsable, "");
 
 
         ET_DNI_Responsable.setText(DNI_Responsable);
@@ -1212,8 +1221,14 @@ public class DatosPersonalesResponsable extends AppCompatActivity {
 
                                 btn_guardar_cambios.setEnabled(true);
 
-                                /*Llamada a la función: */
-                                GuardarCambiosEnUnSharedPreferences();
+
+                                GuardarCambiosDeEdicionDeEventoEnUnSharedPreferences(Indice_Item);
+
+                                SharedPreferences preferences_evento = getSharedPreferences("Datos_Evento", MODE_PRIVATE);
+
+                                int Indice_Responsable = preferences_evento.getInt("Indice_Responsable" + Indice_Item, 0);
+
+                                GuardarCambiosDeEdicionDeResponsableEnUnSharedPreferences(Indice_Responsable);
 
 
 
@@ -1247,72 +1262,82 @@ public class DatosPersonalesResponsable extends AppCompatActivity {
 
 
 
-    public void GuardarCambiosEnUnSharedPreferences(){
+    public void GuardarCambiosDeEdicionDeEventoEnUnSharedPreferences(int indice_evento){
 
-        int indice = 0;
 
-        SharedPreferences sharedPreferences = getSharedPreferences("Datos_Evento_Responsable", MODE_PRIVATE);
+        SharedPreferences sharedPreferences = getSharedPreferences("Datos_Evento", MODE_PRIVATE);
 
         SharedPreferences.Editor editor = sharedPreferences.edit();
 
 
-        String DimensionEvento = sharedPreferences.getString("DimensionDeEvento", "");
+        editor.putString("Nombre_Evento" + indice_evento, et_nombre_del_evento_responsable.getText().toString());
 
-        if(DimensionEvento == ""){
+        editor.putString("Direccion_Evento" + indice_evento, et_direccion_del_evento_responsable.getText().toString());
 
-            indice = 0;
+        editor.putString("Barrio_Evento" + indice_evento, et_barrio_del_evento_responsable.getText().toString());
 
+        editor.putString("Referencia_Evento" + indice_evento, et_referencia_del_evento_responsable.getText().toString());
 
-        }//Fin del if
+        editor.putString("Fecha_Inicio_Evento" + indice_evento, et_fecha_inicio_del_evento_responsable.getText().toString());
 
+        editor.putString("Fecha_Fin_Evento" + indice_evento, et_fecha_fin_del_evento_responsable.getText().toString());
 
-        else {
-
-            indice = Integer.parseInt(DimensionEvento) + 1;
-
-        }//Fin del else
-
-        editor.putString("DNI_Responsable" + indice, et_dni_responsable.getText().toString());
-
-        editor.putString("Nombre_Responsable" + indice, et_nombre_responsable.getText().toString());
-
-        editor.putString("Apellido_Responsable" + indice, et_apellido_responsable.getText().toString());
-
-        editor.putString("Codigo_Area_Responsable" + indice, et_codigo_area_responsable.getText().toString());
-
-        editor.putString("Telefono_Responsable" + indice, et_telefono_responsable.getText().toString());
-
-        editor.putString("Direccion_Responsable" + indice, et_direccion_responsable.getText().toString());
-
-        editor.putString("Barrio_Responsable" + indice, et_barrio_responsable.getText().toString());
-
-        editor.putString("Correo_Responsable" + indice, et_correo_responsable.getText().toString());
-
-        editor.putString("Referencia_Responsable" + indice, et_referencia_responsable.getText().toString());
-
-
-
-
-        editor.putString("Nombre_Evento" + indice, et_nombre_del_evento_responsable.getText().toString());
-
-        editor.putString("Direccion_Evento" + indice, et_direccion_del_evento_responsable.getText().toString());
-
-        editor.putString("Barrio_Evento" + indice, et_barrio_del_evento_responsable.getText().toString());
-
-        editor.putString("Referencia_Evento" + indice, et_referencia_del_evento_responsable.getText().toString());
-
-        editor.putString("Fecha_Inicio_Evento" + indice, et_fecha_inicio_del_evento_responsable.getText().toString());
-
-        editor.putString("Fecha_Fin_Evento" + indice, et_fecha_fin_del_evento_responsable.getText().toString());
-
-
-        editor.putString("DimensionDeEvento", String.valueOf(indice));
 
         editor.commit();
 
 
 
-    }/******************** FIN DE LA FUNCIÓN GuardarCambiosEnUnSharedPreferences() *******************/
+
+    }/******************** FIN DE LA FUNCIÓN GuardarCambiosDeEdicionDeEventoEnUnSharedPreferences() *******************/
+
+
+
+
+    /***************************************************************************************************/
+    /***************************************************************************************************/
+    /***************************************************************************************************/
+    /***************************************************************************************************/
+    /***************************************************************************************************/
+    /***************************************************************************************************/
+    /***************************************************************************************************/
+    /***************************************************************************************************/
+    /***************************************************************************************************/
+    /***************************************************************************************************/
+
+
+
+
+    public void GuardarCambiosDeEdicionDeResponsableEnUnSharedPreferences(int indice_responsable){
+
+
+        SharedPreferences sharedPreferences = getSharedPreferences("Datos_Responsable", MODE_PRIVATE);
+
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+
+
+        editor.putString("DNI_Responsable" + indice_responsable, et_dni_responsable.getText().toString());
+
+        editor.putString("Nombre_Responsable" + indice_responsable, et_nombre_responsable.getText().toString());
+
+        editor.putString("Apellido_Responsable" + indice_responsable, et_apellido_responsable.getText().toString());
+
+        editor.putString("Codigo_Area_Responsable" + indice_responsable, et_codigo_area_responsable.getText().toString());
+
+        editor.putString("Telefono_Responsable" + indice_responsable, et_telefono_responsable.getText().toString());
+
+        editor.putString("Direccion_Responsable" + indice_responsable, et_direccion_responsable.getText().toString());
+
+        editor.putString("Barrio_Responsable" + indice_responsable, et_barrio_responsable.getText().toString());
+
+        editor.putString("Correo_Responsable" + indice_responsable, et_correo_responsable.getText().toString());
+
+        editor.putString("Referencia_Responsable" + indice_responsable, et_referencia_responsable.getText().toString());
+
+
+        editor.commit();
+
+    }/******************** FIN DE LA FUNCIÓN GuardarCambiosDeEdicionDeResponsableEnUnSharedPreferences() *******************/
+
 
 
 
@@ -1416,6 +1441,8 @@ public class DatosPersonalesResponsable extends AppCompatActivity {
                     && !et_telefono_responsable.getText().toString().isEmpty() && ValidarTelefono()
                     && !et_direccion_responsable.getText().toString().isEmpty() && ValidarDireccion()
                     && !et_barrio_responsable.getText().toString().isEmpty() && ValidarBarrio()
+                    && et_correo_responsable.getText().toString().isEmpty() && !ValidarEmail(et_correo_responsable)
+                    || ValidarEmail(et_correo_responsable)
                     && !et_referencia_responsable.getText().toString().isEmpty() && ValidarReferencia()
                     && !et_nombre_del_evento_responsable.getText().toString().isEmpty() && ValidarNombreEvento()
                     && !et_direccion_del_evento_responsable.getText().toString().isEmpty() && ValidarDireccionEvento()
@@ -1943,8 +1970,7 @@ public class DatosPersonalesResponsable extends AppCompatActivity {
     public boolean ValidarEmail(EditText et_correo_nuevo_responsable){
 
 
-        if (et_correo_nuevo_responsable.toString().length() > 0
-                && ObtenerEmailValido(et_correo_nuevo_responsable.getText().toString())){
+        if (ObtenerEmailValido(et_correo_nuevo_responsable.getText().toString())){
 
 
 
@@ -2309,6 +2335,7 @@ public class DatosPersonalesResponsable extends AppCompatActivity {
     /***************************************************************************************************/
     /***************************************************************************************************/
     /***************************************************************************************************/
+
 
 
 

@@ -14,19 +14,6 @@
         android:orderInCategory="1"/>
 
 
-    <item
-        android:id="@+id/action_save_changes"
-        android:icon="@drawable/ic_save_tanda"
-        android:orderInCategory="2"
-        android:title="@string/action_save_changes_erep"
-        app:showAsAction="always|withText" />
-
-    <item
-        android:id="@+id/editar_item_evento"
-        android:icon="@drawable/ic_editar_tanda"
-        android:title="@string/action_editar_item_evento"
-        app:showAsAction="never"
-        android:orderInCategory="3"/>
 
 </menu>
 

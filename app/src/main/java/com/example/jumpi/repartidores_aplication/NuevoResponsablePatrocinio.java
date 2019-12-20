@@ -1904,7 +1904,6 @@ public class NuevoResponsablePatrocinio extends AppCompatActivity {
     public boolean ValidarEmail(EditText et_correo_nuevo_responsable){
 
 
-        //et_correo_nuevo_responsable.toString().length() > 0
 
          if (ObtenerEmailValido(et_correo_nuevo_responsable.getText().toString())){
 
@@ -2350,7 +2349,7 @@ public class NuevoResponsablePatrocinio extends AppCompatActivity {
 
     public void GuardarDatosEventoEnSharedPreferences(int indice_responsable){
 
-        int indice = 0;
+        int indice_evento = 0;
 
         SharedPreferences sharedPreferences = getSharedPreferences("Datos_Evento", MODE_PRIVATE);
 
@@ -2361,7 +2360,7 @@ public class NuevoResponsablePatrocinio extends AppCompatActivity {
 
         if(DimensionEvento == ""){
 
-            indice = 0;
+            indice_evento = 0;
 
 
         }//Fin del if
@@ -2369,29 +2368,29 @@ public class NuevoResponsablePatrocinio extends AppCompatActivity {
 
         else {
 
-            indice = Integer.parseInt(DimensionEvento) + 1;
+            indice_evento = Integer.parseInt(DimensionEvento) + 1;
 
         }//Fin del else
 
 
 
-        editor.putString("Nombre_Evento" + indice, et_nombre_del_evento_nuevo_responsable.getText().toString());
+        editor.putString("Nombre_Evento" + indice_evento, et_nombre_del_evento_nuevo_responsable.getText().toString());
 
-        editor.putString("Direccion_Evento" + indice, et_direccion_del_evento_nuevo_responsable.getText().toString());
+        editor.putString("Direccion_Evento" + indice_evento, et_direccion_del_evento_nuevo_responsable.getText().toString());
 
-        editor.putString("Barrio_Evento" + indice, et_barrio_del_evento_nuevo_responsable.getText().toString());
+        editor.putString("Barrio_Evento" + indice_evento, et_barrio_del_evento_nuevo_responsable.getText().toString());
 
-        editor.putString("Referencia_Evento" + indice, et_referencia_del_evento_nuevo_responsable.getText().toString());
+        editor.putString("Referencia_Evento" + indice_evento, et_referencia_del_evento_nuevo_responsable.getText().toString());
 
-        editor.putString("Fecha_Inicio_Evento" + indice, et_fecha_inicio_del_evento_nuevo_responsable.getText().toString());
+        editor.putString("Fecha_Inicio_Evento" + indice_evento, et_fecha_inicio_del_evento_nuevo_responsable.getText().toString());
 
-        editor.putString("Fecha_Fin_Evento" + indice, et_fecha_fin_del_evento_nuevo_responsable.getText().toString());
+        editor.putString("Fecha_Fin_Evento" + indice_evento, et_fecha_fin_del_evento_nuevo_responsable.getText().toString());
 
-        editor.putInt("Indice_Responsable", indice_responsable);
+        editor.putInt("Indice_Responsable" + indice_evento, indice_responsable);
 
 
 
-        editor.putString("DimensionDeEvento", String.valueOf(indice));
+        editor.putString("DimensionDeEvento", String.valueOf(indice_evento));
 
         editor.commit();
 
