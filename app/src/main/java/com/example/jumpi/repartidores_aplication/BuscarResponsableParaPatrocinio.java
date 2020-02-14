@@ -16,6 +16,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.SearchView;
 import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -954,6 +955,22 @@ public class BuscarResponsableParaPatrocinio extends AppCompatActivity implement
 
 
 
+
+
+
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+
+        // TODO Auto-generated method stub
+        if (keyCode == event.KEYCODE_BACK) {
+
+            Intent intent = new Intent (BuscarResponsableParaPatrocinio.this, MainActivity.class);
+
+            startActivity(intent);
+
+        }
+        return super.onKeyDown(keyCode, event);
+    }
 
 
 }/*************************** FIN DE LA ACTIVITY BuscarResponsableParaPatrocinio ******************************/
