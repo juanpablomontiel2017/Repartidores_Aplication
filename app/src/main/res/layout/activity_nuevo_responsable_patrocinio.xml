@@ -229,11 +229,11 @@
                         android:gravity="center"
                         android:hint="(Obligatorio)"
                         android:imeOptions="actionNext"
-                        android:inputType="textMultiLine"
+                        android:inputType="textAutoCorrect|textCapWords"
                         android:maxLength="45"
+                        android:textCursorDrawable="@color/colorCursorSupervisores"
                         android:textSize="20sp"
-                        android:textStyle="bold"
-                        android:textCursorDrawable="@color/colorCursorSupervisores"/>
+                        android:textStyle="bold" />
 
 
                 </LinearLayout>
@@ -306,11 +306,11 @@
                         android:gravity="center"
                         android:hint="(Obligatorio)"
                         android:imeOptions="actionNext"
-                        android:inputType="textMultiLine"
+                        android:inputType="textAutoCorrect|textCapWords"
                         android:maxLength="45"
+                        android:textCursorDrawable="@color/colorCursorSupervisores"
                         android:textSize="20sp"
-                        android:textStyle="bold"
-                        android:textCursorDrawable="@color/colorCursorSupervisores"/>
+                        android:textStyle="bold" />
 
 
                 </LinearLayout>
