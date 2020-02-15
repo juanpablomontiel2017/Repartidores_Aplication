@@ -166,6 +166,9 @@ public class EntregaRetiroEnvasesPatrocinio extends AppCompatActivity {
 
         Toolbar toolbar = findViewById(R.id.toolbar);
 
+
+
+
         /*Recibir como parámetro el nombre del repartidor */
         toolbar.setTitle(Recibir_Nombre_Responsable + " " + Recibir_Apellido_Responsable);
 

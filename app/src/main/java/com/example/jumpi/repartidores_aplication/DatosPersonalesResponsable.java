@@ -2339,6 +2339,23 @@ public class DatosPersonalesResponsable extends AppCompatActivity {
 
 
 
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+
+        // TODO Auto-generated method stub
+        if (keyCode == event.KEYCODE_BACK) {
+
+            Intent intent = new Intent (DatosPersonalesResponsable.this, BuscarResponsableParaPatrocinio.class);
+
+            startActivity(intent);
+
+        }
+        return super.onKeyDown(keyCode, event);
+    }
+
+
+
+
 
 
 }/**************************** FIN DE LA Activity DatosPersonalesResponsable *********************/
