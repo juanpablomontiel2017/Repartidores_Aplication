@@ -1,5 +1,7 @@
 package com.example.jumpi.repartidores_aplication;
 
+import android.app.DatePickerDialog;
+import android.app.Dialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -10,14 +12,13 @@ import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.text.Editable;
 import android.text.InputFilter;
-import android.text.TextUtils;
 import android.text.TextWatcher;
 import android.util.Patterns;
-import android.view.KeyEvent;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
+import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -27,11 +28,13 @@ import android.widget.Toast;
 import com.github.rtoshiro.util.format.SimpleMaskFormatter;
 import com.github.rtoshiro.util.format.text.MaskTextWatcher;
 
-import java.util.StringTokenizer;
-import java.util.logging.SimpleFormatter;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.Locale;
 import java.util.regex.Pattern;
 
-public class NuevoResponsablePatrocinio extends AppCompatActivity {
+public class NuevoResponsablePatrocinio extends AppCompatActivity  {
 
 
     /**********************DECLARACIÓN DE VARIABLES GLOBALES***********************/
@@ -81,6 +84,14 @@ public class NuevoResponsablePatrocinio extends AppCompatActivity {
 
 
 
+
+
+    final Calendar myCalendar = Calendar.getInstance();
+
+
+    private int pYear;
+    private int pMonth;
+    private int pDay;
 
 
 
@@ -894,37 +905,57 @@ public class NuevoResponsablePatrocinio extends AppCompatActivity {
 
 
 
+
+
+
+
         et_fecha_inicio_del_evento_nuevo_responsable = (EditText) findViewById(R.id.et_nuevo_responsable_fecha_inicio_evento_formulario_patrocinio_supervisor);
 
-        et_fecha_inicio_del_evento_nuevo_responsable.setBackgroundDrawable(getDrawable(R.drawable.edit_text_material_customizado));
 
-        SimpleMaskFormatter smf = new SimpleMaskFormatter("NN/NN/NNNN");
+        final DatePickerDialog.OnDateSetListener date_fecha_inicio = new DatePickerDialog.OnDateSetListener() {
 
-        MaskTextWatcher mtw_fecha_inicio_evento = new MaskTextWatcher(et_fecha_inicio_del_evento_nuevo_responsable, smf);
+                @Override
+                public void onDateSet(DatePicker view, int year, int monthOfYear,
+                                  int dayOfMonth) {
 
-        et_fecha_inicio_del_evento_nuevo_responsable.addTextChangedListener(mtw_fecha_inicio_evento);
 
-        et_fecha_inicio_del_evento_nuevo_responsable.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                    pYear = year;
+                    pMonth = monthOfYear;
+                    pDay = dayOfMonth;
+
+
+                    // TODO Auto-generated method stub
+                    myCalendar.set(Calendar.YEAR, pYear);
+                    myCalendar.set(Calendar.MONTH,pMonth);
+                    myCalendar.set(Calendar.DAY_OF_MONTH,dayOfMonth);
+                    updateLabelFechaInicio();
+
+
 
             }
 
+        };
+
+
+        final DatePickerDialog dialog_fecha_inicio = new DatePickerDialog(this, date_fecha_inicio, pYear, pMonth, pDay);
+        dialog_fecha_inicio.getDatePicker().setMinDate(new Date().getTime());
+
+
+
+        et_fecha_inicio_del_evento_nuevo_responsable.setOnClickListener(new View.OnClickListener() {
+
             @Override
-            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-
-            }
-
-            @Override
-            public void afterTextChanged(Editable s) {
+            public void onClick(View v) {
 
 
-                ValidarFechaInicioEvento();
+                dialog_fecha_inicio.show();
+
 
             }
         });
 
 
+        et_fecha_inicio_del_evento_nuevo_responsable.setBackgroundDrawable(getDrawable(R.drawable.edit_text_material_customizado));
 
 
 
@@ -934,6 +965,65 @@ public class NuevoResponsablePatrocinio extends AppCompatActivity {
 
 
 
+        et_fecha_fin_del_evento_nuevo_responsable = (EditText) findViewById(R.id.et_nuevo_responsable_fecha_fin_evento_formulario_patrocinio);
+
+        final DatePickerDialog.OnDateSetListener date_fecha_fin = new DatePickerDialog.OnDateSetListener() {
+
+            @Override
+            public void onDateSet(DatePicker view, int year, int monthOfYear,
+                                  int dayOfMonth) {
+
+
+                pYear = year;
+                pMonth = monthOfYear;
+                pDay = dayOfMonth;
+
+
+                // TODO Auto-generated method stub
+                myCalendar.set(Calendar.YEAR, pYear);
+                myCalendar.set(Calendar.MONTH,pMonth);
+                myCalendar.set(Calendar.DAY_OF_MONTH,dayOfMonth);
+                updateLabelFechaFin();
+
+
+
+
+
+            }
+
+        };
+
+
+        final DatePickerDialog dialog_fecha_fin = new DatePickerDialog(this, date_fecha_fin, pYear, pMonth, pDay);
+        dialog_fecha_fin.getDatePicker().setMinDate(new Date().getTime());
+
+
+
+
+
+        et_fecha_fin_del_evento_nuevo_responsable.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+
+
+                dialog_fecha_fin.show();
+
+
+
+            }
+        });
+
+        et_fecha_fin_del_evento_nuevo_responsable.setBackgroundDrawable(getDrawable(R.drawable.edit_text_material_customizado));
+
+
+
+
+
+
+        /*
+
+        SimpleMaskFormatter smf = new SimpleMaskFormatter("NN/NN/NNNN");
 
         et_fecha_fin_del_evento_nuevo_responsable = (EditText) findViewById(R.id.et_nuevo_responsable_fecha_fin_evento_formulario_patrocinio);
 
@@ -965,7 +1055,7 @@ public class NuevoResponsablePatrocinio extends AppCompatActivity {
 
 
 
-
+*/
 
 
         btn_cancelar_nuevo_responsable_del_evento_supervisor = (Button) findViewById(R.id.btn_cancelar_nuevo_responsable_del_evento_formulario_patrocinio_supervisor);
@@ -1275,18 +1365,17 @@ public class NuevoResponsablePatrocinio extends AppCompatActivity {
 
 
 
+    /***************************************************************************************************/
+    /***************************************************************************************************/
+    /***************************************************************************************************/
+    /***************************************************************************************************/
+    /***************************************************************************************************/
+    /***************************************************************************************************/
+    /***************************************************************************************************/
+    /***************************************************************************************************/
+    /***************************************************************************************************/
+    /***************************************************************************************************/
 
-
-    /***************************************************************************************************/
-    /***************************************************************************************************/
-    /***************************************************************************************************/
-    /***************************************************************************************************/
-    /***************************************************************************************************/
-    /***************************************************************************************************/
-    /***************************************************************************************************/
-    /***************************************************************************************************/
-    /***************************************************************************************************/
-    /***************************************************************************************************/
 
 
 
@@ -1359,12 +1448,6 @@ public class NuevoResponsablePatrocinio extends AppCompatActivity {
     boolean flag_nuevo_responsable = false;
 
     public boolean ValidarCamposDelFormularioAntesDeConfirmarNuevoResponsable(){
-
-
-        //Drawable myIconCheck = getResources().getDrawable(R.drawable.et_checkgood);
-        //myIconCheck.setBounds(0, 0, myIconCheck.getIntrinsicWidth(), myIconCheck.getIntrinsicHeight());
-
-        //et_nombre_nuevo_responsable.setError("Nombre válido", myIconCheck);
 
 
 
@@ -2493,7 +2576,48 @@ public class NuevoResponsablePatrocinio extends AppCompatActivity {
 
 
 
-    }/******************** FIN DE LA FUNCIÓN LeerDatosEventoEnSharedPreferences() *******************/
+    } /******************** FIN DE LA FUNCIÓN LeerDatosEventoEnSharedPreferences() *******************/
+
+
+
+
+    /***************************************************************************************************/
+    /***************************************************************************************************/
+    /***************************************************************************************************/
+    /***************************************************************************************************/
+    /***************************************************************************************************/
+    /***************************************************************************************************/
+    /***************************************************************************************************/
+    /***************************************************************************************************/
+    /***************************************************************************************************/
+    /***************************************************************************************************/
+
+
+
+
+    private void updateLabelFechaInicio() {
+
+        String myFormat = "dd/MM/yyyy"; //In which you need put here
+
+        SimpleDateFormat sdf = new SimpleDateFormat(myFormat, Locale.US);
+
+        et_fecha_inicio_del_evento_nuevo_responsable.setText(sdf.format(myCalendar.getTime()));
+
+    }
+
+
+
+
+    private void updateLabelFechaFin() {
+
+        String myFormat = "dd/MM/yyyy"; //In which you need put here
+
+        SimpleDateFormat sdf = new SimpleDateFormat(myFormat, Locale.US);
+
+        et_fecha_fin_del_evento_nuevo_responsable.setText(sdf.format(myCalendar.getTime()));
+
+    }
+
 
 
 

@@ -5,6 +5,7 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -301,6 +302,29 @@ public class MainActivity extends AppCompatActivity {
 
 
 
+
+
+
+
+
+    /**Con este bloque de código es posible salir de la aplicación al presionar el botón "volver atrás" **/
+
+
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if (keyCode == KeyEvent.KEYCODE_BACK && event.getRepeatCount() == 0) {
+            // Add your Dialogue or whatever to alert
+            moveTaskToBack(true);
+        }
+        return super.onKeyDown(keyCode, event);
+    }
+
+
+    @Override
+    public void onBackPressed() {
+
+        super.onBackPressed();
+        onKeyDown(KeyEvent.KEYCODE_BACK, null);
+    }
 
 
 }/*********************************FIN DE LA Activity************************************/

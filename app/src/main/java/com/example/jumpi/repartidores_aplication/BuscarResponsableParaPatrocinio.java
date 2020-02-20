@@ -374,6 +374,9 @@ public class BuscarResponsableParaPatrocinio extends AppCompatActivity implement
 
 
 
+
+
+
     /************************************************************************/
     /************************************************************************/
     /************************************************************************/
@@ -384,6 +387,8 @@ public class BuscarResponsableParaPatrocinio extends AppCompatActivity implement
     /************************************************************************/
     /************************************************************************/
     /************************************************************************/
+
+
 
 
 
@@ -969,6 +974,7 @@ public class BuscarResponsableParaPatrocinio extends AppCompatActivity implement
             startActivity(intent);
 
         }
+
         return super.onKeyDown(keyCode, event);
     }
 

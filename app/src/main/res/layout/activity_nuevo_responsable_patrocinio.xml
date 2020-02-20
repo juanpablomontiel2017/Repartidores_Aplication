@@ -1228,11 +1228,14 @@
                         android:layout_weight="1"
                         android:gravity="center"
                         android:hint="(Obligatorio)"
-                        android:inputType="datetime"
+                        android:inputType="date"
+                        android:focusable="false"
+                        android:clickable="true"
                         android:maxLength="10"
                         android:textSize="20sp"
                         android:textStyle="bold"
                         android:imeOptions="actionNext"
+                        android:maxLines="1"
                         android:textCursorDrawable="@color/colorCursorSupervisores"/>
 
 
@@ -1301,7 +1304,9 @@
                         android:layout_weight="1"
                         android:gravity="center"
                         android:hint="(Obligatorio)"
-                        android:inputType="datetime"
+                        android:inputType="date"
+                        android:focusable="false"
+                        android:clickable="true"
                         android:maxLength="10"
                         android:textSize="20sp"
                         android:textStyle="bold"

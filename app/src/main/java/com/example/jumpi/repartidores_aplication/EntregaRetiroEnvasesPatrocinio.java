@@ -149,6 +149,15 @@ public class EntregaRetiroEnvasesPatrocinio extends AppCompatActivity {
 
 
 
+        String Nombre_Dia = UtilidadFecha.getNombreDelDia();
+
+        Toast.makeText(EntregaRetiroEnvasesPatrocinio.this, "Dia: " + Nombre_Dia, Toast.LENGTH_LONG).show();
+
+
+
+
+
+
         final TextView tv_nombre_evento_recibir = (TextView) findViewById(R.id.tv_evento_titulo);
 
         String extras = getIntent().getStringExtra("Nombre_del_evento");
@@ -180,8 +189,6 @@ public class EntregaRetiroEnvasesPatrocinio extends AppCompatActivity {
         Estado_Evento = Boolean.parseBoolean(LeerConfiguracionDeActivityEnUnSharedPreferencesPatrocinio("EstadoEvento"));
 
 
-
-
         String FechaActualDelSistema = UtilidadFecha.getFecha("dd-MM-yyyy");
 
 
@@ -197,24 +204,65 @@ public class EntregaRetiroEnvasesPatrocinio extends AppCompatActivity {
 
 
 
-
-
-
         /* Guardaremos las "Nuevas Vueltas" creadas en ArrayVueltas */
         ArrayListVueltas.add(LinearLayoutVerticalHijo_Patrocinio);
 
 
+
+
+
+
+
+
+
+        String FechaGuardada;
+
+        if(LeerConfiguracionDeActivityEnUnSharedPreferencesPatrocinio("Fecha").equals("true")){
+
+            FechaGuardada = (UtilidadFecha.SetearFecha(2000,00,01));
+
+        }//Fin del if
+
+        else {
+
+            FechaGuardada = LeerConfiguracionDeActivityEnUnSharedPreferencesPatrocinio("Fecha");
+
+        } //Fin del else
+
+
+
+
+
+        if(FechaGuardada.equals(FechaActualDelSistema)) {
+
+
+            /* Llamada a la función: */
+            MostrarValoresDelSharedPreferencesPatrocinio();
+
+
+
+        } //Fin del primer if
+
+
+
+
+        else {
+
+
+            /*Llamada a la función: */
+            CierreDeVuelta(FechaActualDelSistema);
+
+
+
+        }//Fin del else
+
+
+
+
+
+
         /*Llamada a la función:  */
-        MostrarValoresDelSharedPreferencesPatrocinio();
-
-
-
-
-
-
-
-
-
+        //MostrarValoresDelSharedPreferencesPatrocinio();
 
 
 
@@ -445,6 +493,114 @@ public class EntregaRetiroEnvasesPatrocinio extends AppCompatActivity {
     /***************************************************************************************************/
     /***************************************************************************************************/
 
+
+
+
+
+
+
+
+    public void CierreDeVuelta(final String FechaActualDelSistema){
+
+
+
+        //Pregunta si la tanda no fue cerrada y se cumple el lapso de tiempo establecido, entonces la tanda se cerrará automáticamente
+        if(LeerConfiguracionDeActivityEnUnSharedPreferencesPatrocinio("EstadoEvento").equals("true")){
+
+
+
+            AlertDialog.Builder builder = new AlertDialog.Builder(EntregaRetiroEnvasesPatrocinio.this);
+            builder.setIcon(R.drawable.ic_msj_alerta);
+            builder.setTitle("La vuelta del día de ayer se ha cerrado abruptamente!");
+            builder.setMessage("¡Esto se debe porque ha comenzado un nuevo día laboral. Por favor verifique si existen incosistencias.!");
+
+
+            builder.setPositiveButton("ACEPTAR", new DialogInterface.OnClickListener() {
+
+                public void onClick(DialogInterface dialog, int id) {
+
+
+
+
+                    /* Llamada a la función: */
+                    BorrarValoresDelSharedPreferencesPatrocinio();
+
+
+                    /* Llamada a la función: */
+                    MostrarValoresDelSharedPreferencesPatrocinio();
+
+
+                    /* Llamada a la función: */
+                    GuardarConfiguracionDeActivityEnUnSharedPreferencesPatrocinio("Fecha",FechaActualDelSistema);
+
+
+                }
+
+
+            }); /**FIN DEL  builder.setPositiveButton()  **/
+
+
+            AlertDialog dialog = builder.create();
+            dialog.show();
+
+
+
+
+
+
+
+
+
+        }//Fin del if
+
+
+        //Si la tanda se ha cerrado:
+        else {
+
+
+
+            /* Llamada a la función: */
+            BorrarValoresDelSharedPreferencesPatrocinio();
+
+
+            /* Llamada a la función: */
+            MostrarValoresDelSharedPreferencesPatrocinio();
+
+
+            /* Llamada a la función: */
+            GuardarConfiguracionDeActivityEnUnSharedPreferencesPatrocinio("Fecha",FechaActualDelSistema);
+
+
+
+            Toast.makeText(EntregaRetiroEnvasesPatrocinio.this, "¡Buen día! Un nuevo día laboral ha comenzado. Consulte las" +
+                    "tandas del día de ayer si así lo requiera", Toast.LENGTH_LONG).show();
+
+
+
+        }//Fin del else
+
+
+
+
+
+
+    }/***********************FIN DE LA FUNCIÓN CierreDeVuelta()********************************/
+
+
+
+
+
+
+    /***************************************************************************************************/
+    /***************************************************************************************************/
+    /***************************************************************************************************/
+    /***************************************************************************************************/
+    /***************************************************************************************************/
+    /***************************************************************************************************/
+    /***************************************************************************************************/
+    /***************************************************************************************************/
+    /***************************************************************************************************/
+    /***************************************************************************************************/
 
 
 
@@ -1596,6 +1752,7 @@ public class EntregaRetiroEnvasesPatrocinio extends AppCompatActivity {
     /***************************************************************************************************/
     /***************************************************************************************************/
     /***************************************************************************************************/
+
 
 
 
