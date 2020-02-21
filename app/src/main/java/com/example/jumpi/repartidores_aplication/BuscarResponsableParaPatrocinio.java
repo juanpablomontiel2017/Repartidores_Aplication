@@ -394,163 +394,301 @@ public class BuscarResponsableParaPatrocinio extends AppCompatActivity implement
 
     int ChildNuevoItemEvento = 0;
 
-    public  void ObtenerItemEvento(int indice_evento){
+    public  void ObtenerItemEvento(final int indice_evento){
 
 
-        View NuevoItemInflado;
+        SharedPreferences preferences_estado_evento = getSharedPreferences("Datos_Evento", MODE_PRIVATE);
 
-        /*Llamada a la función: */
-        NuevoItemInflado = AgregarItemEvento();
-
-        ArrayListItemEvento.add(NuevoItemInflado);
+        if(preferences_estado_evento.getBoolean("Estado_Evento" + indice_evento, false)) {
 
 
+            View NuevoItemInflado;
+
+            /*Llamada a la función: */
+            NuevoItemInflado = AgregarItemEvento();
+
+            ArrayListItemEvento.add(NuevoItemInflado);
 
 
-
-        final View view_estado_evento = (View) NuevoItemInflado.findViewById(R.id.view_estado_evento);
-
-
-        final LinearLayout LinearLayoutVerticalPadre = (LinearLayout) findViewById(R.id.linear_layout_vertical_padre);
+            final View view_estado_evento = (View) NuevoItemInflado.findViewById(R.id.view_estado_evento);
 
 
-        final LinearLayout LinearLayoutVerticalContenedorHijo = (LinearLayout) NuevoItemInflado.findViewById(R.id.llv_contenedor_hijo_de_evento);
+            final LinearLayout LinearLayoutVerticalPadre = (LinearLayout) findViewById(R.id.linear_layout_vertical_padre);
 
 
-        final EditText ET_Nombre_Evento = (EditText) NuevoItemInflado.findViewById(R.id.et_nombre_evento_recibir);
+            final LinearLayout LinearLayoutVerticalContenedorHijo = (LinearLayout) NuevoItemInflado.findViewById(R.id.llv_contenedor_hijo_de_evento);
 
 
-        final EditText ET_Nombre_Responsable_Evento = (EditText) NuevoItemInflado.findViewById(R.id.et_nombre_responsable_recibir);
+            final EditText ET_Nombre_Evento = (EditText) NuevoItemInflado.findViewById(R.id.et_nombre_evento_recibir);
 
 
-        final EditText ET_Apellido_Responsable_Evento = (EditText) NuevoItemInflado.findViewById(R.id.et_apellido_responsable_recibir);
+            final EditText ET_Nombre_Responsable_Evento = (EditText) NuevoItemInflado.findViewById(R.id.et_nombre_responsable_recibir);
 
 
-        final LinearLayout LinearLayoutHorizontalFechaInicio = (LinearLayout) NuevoItemInflado.findViewById(R.id.llh_fecha_inicio);
+            final EditText ET_Apellido_Responsable_Evento = (EditText) NuevoItemInflado.findViewById(R.id.et_apellido_responsable_recibir);
 
 
-        final TextView TV_Fecha_Inicio_Evento = (TextView) NuevoItemInflado.findViewById(R.id.tv_fecha_inicio_recibir);
+            final LinearLayout LinearLayoutHorizontalFechaInicio = (LinearLayout) NuevoItemInflado.findViewById(R.id.llh_fecha_inicio);
 
 
-        final EditText ET_Valor_Fecha_Inicio_Evento = (EditText) NuevoItemInflado.findViewById(R.id.et_valor_fecha_inicio_recibir);
+            final TextView TV_Fecha_Inicio_Evento = (TextView) NuevoItemInflado.findViewById(R.id.tv_fecha_inicio_recibir);
 
 
-        final LinearLayout LinearLayoutHorizontalFechaFin = (LinearLayout) NuevoItemInflado.findViewById(R.id.llh_fecha_fin);
+            final EditText ET_Valor_Fecha_Inicio_Evento = (EditText) NuevoItemInflado.findViewById(R.id.et_valor_fecha_inicio_recibir);
 
 
-        final TextView TV_Fecha_Fin_Evento = (TextView) NuevoItemInflado.findViewById(R.id.tv_fecha_fin_recibir);
+            final LinearLayout LinearLayoutHorizontalFechaFin = (LinearLayout) NuevoItemInflado.findViewById(R.id.llh_fecha_fin);
 
 
-        final EditText ET_Valor_Fecha_Fin_Evento = (EditText) NuevoItemInflado.findViewById(R.id.et_valor_fecha_fin_recibir);
+            final TextView TV_Fecha_Fin_Evento = (TextView) NuevoItemInflado.findViewById(R.id.tv_fecha_fin_recibir);
 
 
-
-
-
-        /*Aca leemos los valores que nos interesan y que están guardados en el SharedPreferences de la otra Activity */
-
-        SharedPreferences preferences = getSharedPreferences("Datos_Evento", MODE_PRIVATE);
-
-        String Nombre_Evento = preferences.getString("Nombre_Evento" + indice_evento, "");
-        String Fecha_Inicio_Evento = preferences.getString("Fecha_Inicio_Evento" + indice_evento, "");
-        String Fecha_Fin_Evento = preferences.getString("Fecha_Fin_Evento" + indice_evento, "");
-        int Indice_Responsable = preferences.getInt("Indice_Responsable" + indice_evento, 0);
-
-
-        //ArrayList<String> NombreApellidoResponsable = new ArrayList<>();
-
-        //NombreApellidoResponsable = ObtenerApellidoNombreResponsable(Indice_Responsable);
+            final EditText ET_Valor_Fecha_Fin_Evento = (EditText) NuevoItemInflado.findViewById(R.id.et_valor_fecha_fin_recibir);
 
 
 
-        ET_Nombre_Evento.setText(Nombre_Evento);
-        ET_Valor_Fecha_Inicio_Evento.setText(Fecha_Inicio_Evento);
-        ET_Valor_Fecha_Fin_Evento.setText(Fecha_Fin_Evento);
 
 
-        /** De esta manera anduvo **/
+            /*Aca leemos los valores que nos interesan y que están guardados en el SharedPreferences de la otra Activity */
 
-        SharedPreferences preferences_responsable = getSharedPreferences("Datos_Responsable", MODE_PRIVATE);
+            SharedPreferences preferences = getSharedPreferences("Datos_Evento", MODE_PRIVATE);
 
-        String Nombre_Responsable = preferences_responsable.getString("Nombre_Responsable" + Indice_Responsable, "");
-        String Apellido_Responsable = preferences_responsable.getString("Apellido_Responsable" + Indice_Responsable, "");
-
-        ET_Nombre_Responsable_Evento.setText(Nombre_Responsable);
-        ET_Apellido_Responsable_Evento.setText(Apellido_Responsable);
-
-
-        /** DE ESTA FORMA MUESTRA EL NOMBRE Y APELLIDO DEL ÚLTIMO RESPONSABLE CREADO EN TODOS LOS ITEMS ***/
-
-        //ET_Nombre_Responsable_Evento.setText(NombreApellidoResponsable.get(0));
-        //ET_Apellido_Responsable_Evento.setText(NombreApellidoResponsable.get(1));
+            String Nombre_Evento = preferences.getString("Nombre_Evento" + indice_evento, "");
+            String Fecha_Inicio_Evento = preferences.getString("Fecha_Inicio_Evento" + indice_evento, "");
+            String Fecha_Fin_Evento = preferences.getString("Fecha_Fin_Evento" + indice_evento, "");
+            int Indice_Responsable = preferences.getInt("Indice_Responsable" + indice_evento, 0);
 
 
-        final Button btn_ver_detalle_entrega_retiro_envases_patrocinio = (Button) NuevoItemInflado.findViewById(R.id.btn_ver_detalle_item_evento);
-        btn_ver_detalle_entrega_retiro_envases_patrocinio.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
+            //ArrayList<String> NombreApellidoResponsable = new ArrayList<>();
+
+            //NombreApellidoResponsable = ObtenerApellidoNombreResponsable(Indice_Responsable);
 
 
-                Intent intent = new Intent (BuscarResponsableParaPatrocinio.this, EntregaRetiroEnvasesPatrocinio.class);
+            ET_Nombre_Evento.setText(Nombre_Evento);
+            ET_Valor_Fecha_Inicio_Evento.setText(Fecha_Inicio_Evento);
+            ET_Valor_Fecha_Fin_Evento.setText(Fecha_Fin_Evento);
 
-                intent.putExtra("Nombre_del_evento", ET_Nombre_Evento.getText().toString());
 
-                intent.putExtra("Nombre_del_responsable", ET_Nombre_Responsable_Evento.getText().toString());
+            /** De esta manera anduvo **/
 
-                intent.putExtra("Apellido_del_responsable", ET_Apellido_Responsable_Evento.getText().toString());
+            SharedPreferences preferences_responsable = getSharedPreferences("Datos_Responsable", MODE_PRIVATE);
 
-                startActivity(intent);
+            String Nombre_Responsable = preferences_responsable.getString("Nombre_Responsable" + Indice_Responsable, "");
+            String Apellido_Responsable = preferences_responsable.getString("Apellido_Responsable" + Indice_Responsable, "");
+
+            ET_Nombre_Responsable_Evento.setText(Nombre_Responsable);
+            ET_Apellido_Responsable_Evento.setText(Apellido_Responsable);
+
+
+            /** DE ESTA FORMA MUESTRA EL NOMBRE Y APELLIDO DEL ÚLTIMO RESPONSABLE CREADO EN TODOS LOS ITEMS ***/
+
+            //ET_Nombre_Responsable_Evento.setText(NombreApellidoResponsable.get(0));
+            //ET_Apellido_Responsable_Evento.setText(NombreApellidoResponsable.get(1));
+
+
+            final Button btn_ver_detalle_entrega_retiro_envases_patrocinio = (Button) NuevoItemInflado.findViewById(R.id.btn_ver_detalle_item_evento);
+            btn_ver_detalle_entrega_retiro_envases_patrocinio.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+
+
+                    Intent intent = new Intent(BuscarResponsableParaPatrocinio.this, EntregaRetiroEnvasesPatrocinio.class);
+
+                    intent.putExtra("Indice_Evento", indice_evento);
+
+                    intent.putExtra("Nombre_del_evento", ET_Nombre_Evento.getText().toString());
+
+                    intent.putExtra("Nombre_del_responsable", ET_Nombre_Responsable_Evento.getText().toString());
+
+                    intent.putExtra("Apellido_del_responsable", ET_Apellido_Responsable_Evento.getText().toString());
+
+
+                    startActivity(intent);
+
+                }
+            });
+
+
+            final Button btn_ver_datos_personales_responsable_patrocinio = (Button) NuevoItemInflado.findViewById(R.id.btn_ver_datos_personales_item_evento);
+            btn_ver_datos_personales_responsable_patrocinio.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+
+
+                    int ValorDeLaPosicion;
+
+                    ValorDeLaPosicion = EncontrarPosicionDeItemEvento(view);
+
+                    Intent intent = new Intent(BuscarResponsableParaPatrocinio.this, DatosPersonalesResponsable.class);
+
+                    intent.putExtra("Indice_Item", ValorDeLaPosicion);
+
+                    startActivity(intent);
+
+                }
+            });
+
+
+            /** Pregunta si el usuario es un "repartidor" entonces habrá un cambio de colores en las activity's
+             * de Patrocinio**/
+
+            Usuario usuario = new Usuario();
+
+            usuario.LeerUsuarioEnUnSharedPreferences(this);
+
+            if (usuario.getTipo_de_Usuario().equals("repartidor")) {
+
+                LinearLayoutVerticalPadre.setBackgroundColor(Color.parseColor("#2962ff"));
+
+                btn_ver_detalle_entrega_retiro_envases_patrocinio.getBackground().setColorFilter(Color.parseColor("#0d47a1"), PorterDuff.Mode.SRC_ATOP);
 
             }
-        });
+
+
+        }//FIN DEL if
+
+
+        else {
+
+
+
+
+            View NuevoItemInflado;
+
+            /*Llamada a la función: */
+            NuevoItemInflado = AgregarItemEvento();
+
+            ArrayListItemEvento.add(NuevoItemInflado);
+
+
+            final View view_estado_evento = (View) NuevoItemInflado.findViewById(R.id.view_estado_evento);
+
+            view_estado_evento.setBackgroundColor(Color.parseColor("#0d47a1"));
+
+
+            final LinearLayout LinearLayoutVerticalPadre = (LinearLayout) findViewById(R.id.linear_layout_vertical_padre);
+
+
+            final LinearLayout LinearLayoutVerticalContenedorHijo = (LinearLayout) NuevoItemInflado.findViewById(R.id.llv_contenedor_hijo_de_evento);
+
+
+            final EditText ET_Nombre_Evento = (EditText) NuevoItemInflado.findViewById(R.id.et_nombre_evento_recibir);
+
+
+            final EditText ET_Nombre_Responsable_Evento = (EditText) NuevoItemInflado.findViewById(R.id.et_nombre_responsable_recibir);
+
+
+            final EditText ET_Apellido_Responsable_Evento = (EditText) NuevoItemInflado.findViewById(R.id.et_apellido_responsable_recibir);
+
+
+            final LinearLayout LinearLayoutHorizontalFechaInicio = (LinearLayout) NuevoItemInflado.findViewById(R.id.llh_fecha_inicio);
+
+
+            final TextView TV_Fecha_Inicio_Evento = (TextView) NuevoItemInflado.findViewById(R.id.tv_fecha_inicio_recibir);
+
+
+            final EditText ET_Valor_Fecha_Inicio_Evento = (EditText) NuevoItemInflado.findViewById(R.id.et_valor_fecha_inicio_recibir);
+
+
+            final LinearLayout LinearLayoutHorizontalFechaFin = (LinearLayout) NuevoItemInflado.findViewById(R.id.llh_fecha_fin);
+
+
+            final TextView TV_Fecha_Fin_Evento = (TextView) NuevoItemInflado.findViewById(R.id.tv_fecha_fin_recibir);
+
+
+            final EditText ET_Valor_Fecha_Fin_Evento = (EditText) NuevoItemInflado.findViewById(R.id.et_valor_fecha_fin_recibir);
 
 
 
 
 
 
-        final Button btn_ver_datos_personales_responsable_patrocinio = (Button) NuevoItemInflado.findViewById(R.id.btn_ver_datos_personales_item_evento);
-        btn_ver_datos_personales_responsable_patrocinio.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
+            SharedPreferences preferences = getSharedPreferences("Datos_Evento", MODE_PRIVATE);
+
+            String Nombre_Evento = preferences.getString("Nombre_Evento" + indice_evento, "");
+            String Fecha_Inicio_Evento = preferences.getString("Fecha_Inicio_Evento" + indice_evento, "");
+            String Fecha_Fin_Evento = preferences.getString("Fecha_Fin_Evento" + indice_evento, "");
+            int Indice_Responsable = preferences.getInt("Indice_Responsable" + indice_evento, 0);
 
 
-                int ValorDeLaPosicion;
 
-                ValorDeLaPosicion = EncontrarPosicionDeItemEvento(view);
+            ET_Nombre_Evento.setText(Nombre_Evento);
+            ET_Valor_Fecha_Inicio_Evento.setText(Fecha_Inicio_Evento);
+            ET_Valor_Fecha_Fin_Evento.setText(Fecha_Fin_Evento);
 
-                Intent intent = new Intent (BuscarResponsableParaPatrocinio.this, DatosPersonalesResponsable.class);
 
-                intent.putExtra("Indice_Item", ValorDeLaPosicion);
 
-                startActivity(intent);
+
+            SharedPreferences preferences_responsable = getSharedPreferences("Datos_Responsable", MODE_PRIVATE);
+
+            String Nombre_Responsable = preferences_responsable.getString("Nombre_Responsable" + Indice_Responsable, "");
+            String Apellido_Responsable = preferences_responsable.getString("Apellido_Responsable" + Indice_Responsable, "");
+
+            ET_Nombre_Responsable_Evento.setText(Nombre_Responsable);
+            ET_Apellido_Responsable_Evento.setText(Apellido_Responsable);
+
+
+
+            final Button btn_ver_detalle_entrega_retiro_envases_patrocinio = (Button) NuevoItemInflado.findViewById(R.id.btn_ver_detalle_item_evento);
+            btn_ver_detalle_entrega_retiro_envases_patrocinio.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+
+
+                    Intent intent = new Intent(BuscarResponsableParaPatrocinio.this, EntregaRetiroEnvasesPatrocinio.class);
+
+                    intent.putExtra("Nombre_del_evento", ET_Nombre_Evento.getText().toString());
+
+                    intent.putExtra("Nombre_del_responsable", ET_Nombre_Responsable_Evento.getText().toString());
+
+                    intent.putExtra("Apellido_del_responsable", ET_Apellido_Responsable_Evento.getText().toString());
+
+
+                    startActivity(intent);
+
+                }
+            });
+
+
+            final Button btn_ver_datos_personales_responsable_patrocinio = (Button) NuevoItemInflado.findViewById(R.id.btn_ver_datos_personales_item_evento);
+            btn_ver_datos_personales_responsable_patrocinio.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+
+
+                    int ValorDeLaPosicion;
+
+                    ValorDeLaPosicion = EncontrarPosicionDeItemEvento(view);
+
+                    Intent intent = new Intent(BuscarResponsableParaPatrocinio.this, DatosPersonalesResponsable.class);
+
+                    intent.putExtra("Indice_Item", ValorDeLaPosicion);
+
+                    startActivity(intent);
+
+                }
+            });
+
+
+            /** Pregunta si el usuario es un "repartidor" entonces habrá un cambio de colores en las activity's
+             * de Patrocinio**/
+
+            Usuario usuario = new Usuario();
+
+            usuario.LeerUsuarioEnUnSharedPreferences(this);
+
+            if (usuario.getTipo_de_Usuario().equals("repartidor")) {
+
+                LinearLayoutVerticalPadre.setBackgroundColor(Color.parseColor("#2962ff"));
+
+                btn_ver_detalle_entrega_retiro_envases_patrocinio.getBackground().setColorFilter(Color.parseColor("#0d47a1"), PorterDuff.Mode.SRC_ATOP);
 
             }
-        });
 
 
 
 
-
-
-
-        /** Pregunta si el usuario es un "repartidor" entonces habrá un cambio de colores en las activity's
-         * de Patrocinio**/
-
-        Usuario usuario = new Usuario();
-
-        usuario.LeerUsuarioEnUnSharedPreferences(this);
-
-        if(usuario.getTipo_de_Usuario().equals("repartidor")){
-
-            LinearLayoutVerticalPadre.setBackgroundColor(Color.parseColor("#2962ff"));
-
-            btn_ver_detalle_entrega_retiro_envases_patrocinio.getBackground().setColorFilter(Color.parseColor("#0d47a1"), PorterDuff.Mode.SRC_ATOP);
-
-        }
-
-
-
+        }//FIN DEL else
 
 
     }/***************************FIN DE LA FUNCIÓN ObtenerItemEvento()*****************************/

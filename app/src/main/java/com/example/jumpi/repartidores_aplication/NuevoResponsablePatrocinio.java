@@ -932,9 +932,10 @@ public class NuevoResponsablePatrocinio extends AppCompatActivity  {
 
 
 
-            }
+                } /**** Fin del método onDataSet ****/
 
-        };
+        }; /*********** Fin del método setOnClickListener ***********/
+
 
 
         final DatePickerDialog dialog_fecha_inicio = new DatePickerDialog(this, date_fecha_inicio, pYear, pMonth, pDay);
@@ -951,8 +952,10 @@ public class NuevoResponsablePatrocinio extends AppCompatActivity  {
                 dialog_fecha_inicio.show();
 
 
-            }
-        });
+            } /**** Fin del método onClick ****/
+
+
+        }); /*********** Fin del método setOnClickListener ***********/
 
 
         et_fecha_inicio_del_evento_nuevo_responsable.setBackgroundDrawable(getDrawable(R.drawable.edit_text_material_customizado));
@@ -989,9 +992,10 @@ public class NuevoResponsablePatrocinio extends AppCompatActivity  {
 
 
 
-            }
+            } /**** Fin del método onDataSet ****/
 
-        };
+
+        }; /*********** Fin del método OnDateSetListener ***********/
 
 
         final DatePickerDialog dialog_fecha_fin = new DatePickerDialog(this, date_fecha_fin, pYear, pMonth, pDay);
@@ -1056,6 +1060,12 @@ public class NuevoResponsablePatrocinio extends AppCompatActivity  {
 
 
 */
+
+
+
+
+
+
 
 
         btn_cancelar_nuevo_responsable_del_evento_supervisor = (Button) findViewById(R.id.btn_cancelar_nuevo_responsable_del_evento_formulario_patrocinio_supervisor);
@@ -2476,6 +2486,8 @@ public class NuevoResponsablePatrocinio extends AppCompatActivity  {
 
         editor.putInt("Indice_Responsable" + indice_evento, indice_responsable);
 
+        editor.putBoolean("Estado_Evento" + indice_evento, true);
+
 
 
         editor.putString("DimensionDeEvento", String.valueOf(indice_evento));
@@ -2603,7 +2615,7 @@ public class NuevoResponsablePatrocinio extends AppCompatActivity  {
 
         et_fecha_inicio_del_evento_nuevo_responsable.setText(sdf.format(myCalendar.getTime()));
 
-    }
+    } /******************** FIN DE LA FUNCIÓN updateLabelFechaInicio() *******************/
 
 
 
@@ -2616,8 +2628,22 @@ public class NuevoResponsablePatrocinio extends AppCompatActivity  {
 
         et_fecha_fin_del_evento_nuevo_responsable.setText(sdf.format(myCalendar.getTime()));
 
-    }
+    } /******************** FIN DE LA FUNCIÓN updateLabelFechaFin() *******************/
 
+
+
+
+
+    /***************************************************************************************************/
+    /***************************************************************************************************/
+    /***************************************************************************************************/
+    /***************************************************************************************************/
+    /***************************************************************************************************/
+    /***************************************************************************************************/
+    /***************************************************************************************************/
+    /***************************************************************************************************/
+    /***************************************************************************************************/
+    /***************************************************************************************************/
 
 
 

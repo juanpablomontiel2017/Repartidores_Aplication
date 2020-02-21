@@ -113,7 +113,7 @@ public class EntregaRetiroEnvasesPatrocinio extends AppCompatActivity {
     private FloatingActionButton fab_nueva_vuelta;
     private FloatingActionButton fab_cancelar_vuelta;
 
-
+    int Indice_Evento;
 
 
 
@@ -149,12 +149,9 @@ public class EntregaRetiroEnvasesPatrocinio extends AppCompatActivity {
 
 
 
-        String Nombre_Dia = UtilidadFecha.getNombreDelDia();
+        /*Recibir los parámetros de la activity "BuscarResponsableParaPatrocinio */
 
-        Toast.makeText(EntregaRetiroEnvasesPatrocinio.this, "Dia: " + Nombre_Dia, Toast.LENGTH_LONG).show();
-
-
-
+        Indice_Evento = getIntent().getIntExtra("Indice_Evento",0);
 
 
 
@@ -168,28 +165,16 @@ public class EntregaRetiroEnvasesPatrocinio extends AppCompatActivity {
 
 
 
-
         String Recibir_Nombre_Responsable = getIntent().getStringExtra("Nombre_del_responsable");
 
         String Recibir_Apellido_Responsable = getIntent().getStringExtra("Apellido_del_responsable");
 
+
         Toolbar toolbar = findViewById(R.id.toolbar);
-
-
-
-
-        /*Recibir como parámetro el nombre del repartidor */
         toolbar.setTitle(Recibir_Nombre_Responsable + " " + Recibir_Apellido_Responsable);
-
         setSupportActionBar(toolbar);
 
 
-
-
-        Estado_Evento = Boolean.parseBoolean(LeerConfiguracionDeActivityEnUnSharedPreferencesPatrocinio("EstadoEvento"));
-
-
-        String FechaActualDelSistema = UtilidadFecha.getFecha("dd-MM-yyyy");
 
 
 
@@ -213,56 +198,8 @@ public class EntregaRetiroEnvasesPatrocinio extends AppCompatActivity {
 
 
 
-
-
-        String FechaGuardada;
-
-        if(LeerConfiguracionDeActivityEnUnSharedPreferencesPatrocinio("Fecha").equals("true")){
-
-            FechaGuardada = (UtilidadFecha.SetearFecha(2000,00,01));
-
-        }//Fin del if
-
-        else {
-
-            FechaGuardada = LeerConfiguracionDeActivityEnUnSharedPreferencesPatrocinio("Fecha");
-
-        } //Fin del else
-
-
-
-
-
-        if(FechaGuardada.equals(FechaActualDelSistema)) {
-
-
-            /* Llamada a la función: */
-            MostrarValoresDelSharedPreferencesPatrocinio();
-
-
-
-        } //Fin del primer if
-
-
-
-
-        else {
-
-
-            /*Llamada a la función: */
-            CierreDeVuelta(FechaActualDelSistema);
-
-
-
-        }//Fin del else
-
-
-
-
-
-
         /*Llamada a la función:  */
-        //MostrarValoresDelSharedPreferencesPatrocinio();
+        MostrarValoresDelSharedPreferencesPatrocinio();
 
 
 
@@ -500,12 +437,7 @@ public class EntregaRetiroEnvasesPatrocinio extends AppCompatActivity {
 
 
 
-    public void CierreDeVuelta(final String FechaActualDelSistema){
-
-
-
-        //Pregunta si la tanda no fue cerrada y se cumple el lapso de tiempo establecido, entonces la tanda se cerrará automáticamente
-        if(LeerConfiguracionDeActivityEnUnSharedPreferencesPatrocinio("EstadoEvento").equals("true")){
+    public void CierreDeEvento(int indice_evento) {
 
 
 
@@ -530,10 +462,6 @@ public class EntregaRetiroEnvasesPatrocinio extends AppCompatActivity {
                     MostrarValoresDelSharedPreferencesPatrocinio();
 
 
-                    /* Llamada a la función: */
-                    GuardarConfiguracionDeActivityEnUnSharedPreferencesPatrocinio("Fecha",FechaActualDelSistema);
-
-
                 }
 
 
@@ -547,44 +475,7 @@ public class EntregaRetiroEnvasesPatrocinio extends AppCompatActivity {
 
 
 
-
-
-
-
-        }//Fin del if
-
-
-        //Si la tanda se ha cerrado:
-        else {
-
-
-
-            /* Llamada a la función: */
-            BorrarValoresDelSharedPreferencesPatrocinio();
-
-
-            /* Llamada a la función: */
-            MostrarValoresDelSharedPreferencesPatrocinio();
-
-
-            /* Llamada a la función: */
-            GuardarConfiguracionDeActivityEnUnSharedPreferencesPatrocinio("Fecha",FechaActualDelSistema);
-
-
-
-            Toast.makeText(EntregaRetiroEnvasesPatrocinio.this, "¡Buen día! Un nuevo día laboral ha comenzado. Consulte las" +
-                    "tandas del día de ayer si así lo requiera", Toast.LENGTH_LONG).show();
-
-
-
-        }//Fin del else
-
-
-
-
-
-
-    }/***********************FIN DE LA FUNCIÓN CierreDeVuelta()********************************/
+    }/***********************FIN DE LA FUNCIÓN CierreDeEvento()********************************/
 
 
 
@@ -2350,7 +2241,7 @@ public class EntregaRetiroEnvasesPatrocinio extends AppCompatActivity {
 
 
 
-        if (preferences.getBoolean("flag_nueva_vuelta", false)) {
+        if (preferences.getBoolean("Indice_Evento" + Indice_Evento + "flag_nueva_vuelta", false)) {
 
             fab_nueva_vuelta.setVisibility(View.VISIBLE);
 
@@ -2358,7 +2249,7 @@ public class EntregaRetiroEnvasesPatrocinio extends AppCompatActivity {
 
 
 
-        String DimensionArrayNuevasVueltas = preferences.getString("DimensionArrayNuevasVueltas", "");
+        String DimensionArrayNuevasVueltas = preferences.getString("Indice_Evento" + Indice_Evento + "DimensionArrayNuevasVueltas", "");
 
 
 
@@ -2367,9 +2258,9 @@ public class EntregaRetiroEnvasesPatrocinio extends AppCompatActivity {
             for (int indice_vueltas = 0; indice_vueltas < Integer.valueOf(DimensionArrayNuevasVueltas); indice_vueltas++) {
 
 
-                String ElementoSeleccionadoSpinnerFijo = preferences.getString("ElementoSeleccionadoSpinnerFijo - " + "Vuelta Numero: " + indice_vueltas, "");
-                String ValorEntregaArticulosFijo = preferences.getString("CantidadEntregaArticuloFijo - " + "Vuelta Numero: " + indice_vueltas, "");
-                String ValorRetiroArticulosFijo = preferences.getString("CantidadRetiroArticuloFijo - " + "Vuelta Numero: " + indice_vueltas, "");
+                String ElementoSeleccionadoSpinnerFijo = preferences.getString("Indice_Evento" + Indice_Evento + "ElementoSeleccionadoSpinnerFijo - " + "Vuelta Numero: " + indice_vueltas, "");
+                String ValorEntregaArticulosFijo = preferences.getString("Indice_Evento" + Indice_Evento + "CantidadEntregaArticuloFijo - " + "Vuelta Numero: " + indice_vueltas, "");
+                String ValorRetiroArticulosFijo = preferences.getString("Indice_Evento" + Indice_Evento + "CantidadRetiroArticuloFijo - " + "Vuelta Numero: " + indice_vueltas, "");
 
 
                 if(indice_vueltas == 0){
@@ -2396,16 +2287,16 @@ public class EntregaRetiroEnvasesPatrocinio extends AppCompatActivity {
 
 
 
-                String DimensionArticulosProgramaticos = preferences.getString("DimensionArticulosProgramaticos - VueltaNumero: " + indice_vueltas, "");
+                String DimensionArticulosProgramaticos = preferences.getString("Indice_Evento" + Indice_Evento + "DimensionArticulosProgramaticos - VueltaNumero: " + indice_vueltas, "");
 
                 if (DimensionArticulosProgramaticos != "") {
 
                     for (int j = 1; j <= Integer.valueOf(DimensionArticulosProgramaticos); j++) {
 
 
-                        String ElementoSeleccionadoSpinnerProgramatico = preferences.getString("ElementoSeleccionadoSpinnerProgramatico - " + "Vuelta Numero: " + indice_vueltas + " - " + "Posicion: " + j, "");
-                        String ValorEntregaNuevoArticuloProgramatico = preferences.getString("CantidadDeEntregaNuevoArticuloProgramatico - " + "Vuelta Numero: " + indice_vueltas + " - " + "Posicion: " + j, "");
-                        String ValorRetiroNuevoArticuloProgramatico = preferences.getString("CantidadDeRetiroNuevoArticuloProgramatico - " + "Vuelta Numero: " + indice_vueltas + " - " + "Posicion: " + j, "");
+                        String ElementoSeleccionadoSpinnerProgramatico = preferences.getString("Indice_Evento" + Indice_Evento + "ElementoSeleccionadoSpinnerProgramatico - " + "Vuelta Numero: " + indice_vueltas + " - " + "Posicion: " + j, "");
+                        String ValorEntregaNuevoArticuloProgramatico = preferences.getString("Indice_Evento" + Indice_Evento + "CantidadDeEntregaNuevoArticuloProgramatico - " + "Vuelta Numero: " + indice_vueltas + " - " + "Posicion: " + j, "");
+                        String ValorRetiroNuevoArticuloProgramatico = preferences.getString("Indice_Evento" + Indice_Evento + "CantidadDeRetiroNuevoArticuloProgramatico - " + "Vuelta Numero: " + indice_vueltas + " - " + "Posicion: " + j, "");
 
 
                         if (ValorEntregaNuevoArticuloProgramatico != "" || ValorRetiroNuevoArticuloProgramatico != "") {
@@ -2451,7 +2342,7 @@ public class EntregaRetiroEnvasesPatrocinio extends AppCompatActivity {
 
 
 
-        if(preferences.getBoolean("GuardarLasVistasDeLasVueltasDeshabilitadas",false)){
+        if(preferences.getBoolean("Indice_Evento" + Indice_Evento + "GuardarLasVistasDeLasVueltasDeshabilitadas",false)){
 
             DeshabilitarVistasDeLasVueltasAlGuardarCambios(true);
 
@@ -2489,7 +2380,7 @@ public class EntregaRetiroEnvasesPatrocinio extends AppCompatActivity {
         SharedPreferences.Editor editor = sharedPreferences.edit();
 
 
-        editor.putBoolean("flag_nueva_vuelta", true);
+        editor.putBoolean("Indice_Evento" + Indice_Evento + "flag_nueva_vuelta", true);
         editor.commit();
 
 
@@ -2510,11 +2401,11 @@ public class EntregaRetiroEnvasesPatrocinio extends AppCompatActivity {
 
             String ArticuloSeleccionado =  spinner_fijo.getSelectedItem().toString();
 
-            editor.putString("ElementoSeleccionadoSpinnerFijo - " + "Vuelta Numero: " + i, ArticuloSeleccionado);
+            editor.putString("Indice_Evento" + Indice_Evento + "ElementoSeleccionadoSpinnerFijo - " + "Vuelta Numero: " + i, ArticuloSeleccionado);
 
-            editor.putString("CantidadEntregaArticuloFijo - " + "Vuelta Numero: " + i, editText_entrega.getText().toString());
+            editor.putString("Indice_Evento" + Indice_Evento + "CantidadEntregaArticuloFijo - " + "Vuelta Numero: " + i, editText_entrega.getText().toString());
 
-            editor.putString("CantidadRetiroArticuloFijo - " + "Vuelta Numero: " + i, editText_retiro.getText().toString());
+            editor.putString("Indice_Evento" + Indice_Evento + "CantidadRetiroArticuloFijo - " + "Vuelta Numero: " + i, editText_retiro.getText().toString());
 
 
 
@@ -2544,24 +2435,24 @@ public class EntregaRetiroEnvasesPatrocinio extends AppCompatActivity {
 
                 String ArticuloSeleccionadoSpinnerProgramatico =  spinner_nuevos_articulos.getSelectedItem().toString();
 
-                editor.putString("ElementoSeleccionadoSpinnerProgramatico - " + "Vuelta Numero: " + i + " - " + "Posicion: " + j, ArticuloSeleccionadoSpinnerProgramatico);
+                editor.putString("Indice_Evento" + Indice_Evento + "ElementoSeleccionadoSpinnerProgramatico - " + "Vuelta Numero: " + i + " - " + "Posicion: " + j, ArticuloSeleccionadoSpinnerProgramatico);
 
-                editor.putString("CantidadDeEntregaNuevoArticuloProgramatico - " + "Vuelta Numero: " + i + " - " + "Posicion: " + j, et_entrega_del_nuevo_articulo.getText().toString());
+                editor.putString("Indice_Evento" + Indice_Evento + "CantidadDeEntregaNuevoArticuloProgramatico - " + "Vuelta Numero: " + i + " - " + "Posicion: " + j, et_entrega_del_nuevo_articulo.getText().toString());
 
-                editor.putString("CantidadDeRetiroNuevoArticuloProgramatico - " + "Vuelta Numero: " + i + " - " + "Posicion: " + j, et_retiro_del_nuevo_articulo.getText().toString());
+                editor.putString("Indice_Evento" + Indice_Evento + "CantidadDeRetiroNuevoArticuloProgramatico - " + "Vuelta Numero: " + i + " - " + "Posicion: " + j, et_retiro_del_nuevo_articulo.getText().toString());
 
 
             } //Fin del for del "j" ("Articulos Programáticos")
 
-            editor.putString("DimensionArticulosProgramaticos - VueltaNumero: " + i, String.valueOf(tope_de_articulos));
+            editor.putString("Indice_Evento" + Indice_Evento + "DimensionArticulosProgramaticos - VueltaNumero: " + i, String.valueOf(tope_de_articulos));
 
         } //Fin del primer for
 
-        editor.putString("DimensionArrayNuevasVueltas", String.valueOf(ArrayListVueltas.size()));
+        editor.putString("Indice_Evento" + Indice_Evento + "DimensionArrayNuevasVueltas", String.valueOf(ArrayListVueltas.size()));
         editor.commit();
 
 
-        editor.putBoolean("GuardarLasVistasDeLasVueltasDeshabilitadas", true);
+        editor.putBoolean("Indice_Evento" + Indice_Evento + "GuardarLasVistasDeLasVueltasDeshabilitadas", true);
         editor.commit();
 
 
@@ -2688,7 +2579,7 @@ public class EntregaRetiroEnvasesPatrocinio extends AppCompatActivity {
 
 
 
-    }/*******************************FIN DE LA FUNCION GuardarConfiguracionDeActivityEnUnSharedPreferencesPatrocinio()******************************/
+    }/*******************************FIN DE LA FUNCIÓN GuardarConfiguracionDeActivityEnUnSharedPreferencesPatrocinio()******************************/
 
 
 
@@ -2945,8 +2836,8 @@ public class EntregaRetiroEnvasesPatrocinio extends AppCompatActivity {
 
 
                             //Evento finalizado:
-                            Button btnEventoFinalizado = BuscarResponsableParaPatrocinio.btnResponsableActivo;
-                            btnEventoFinalizado.setBackgroundColor(Color.GRAY);
+                            //Button btnEventoFinalizado = BuscarResponsableParaPatrocinio.btnResponsableActivo;
+                            //btnEventoFinalizado.setBackgroundColor(Color.GRAY);
 
 
                             finish();
