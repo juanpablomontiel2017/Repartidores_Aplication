@@ -48,7 +48,7 @@ public class Detalle_Articulos extends AppCompatActivity {
 
         LayoutInflater inflater = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 
-        final View InflatedView = inflater.inflate(R.layout.item_tandas, null, true);
+        final View InflatedView = inflater.inflate(R.layout.item_cantidad_stock_vehiculo, null, true);
 
         LayoutVerticalTercerTupla.addView(InflatedView);
 

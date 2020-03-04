@@ -9,7 +9,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:weightSum="2"
 
 
     tools:context=".ComisionesEstadisticas">
@@ -30,122 +29,188 @@
 
 
 
+  <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
 
     <LinearLayout
 
-        android:layout_weight="1"
-        android:id="@+id/llv_uno"
+        android:id="@+id/llv_padre"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:orientation="vertical"
         android:weightSum="2">
 
 
         <LinearLayout
 
-            android:id="@+id/llh_faltantes_sobrantes_dinero"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="20dp"
             android:layout_weight="1"
-            android:gravity="center"
-            android:orientation="horizontal"
-            android:weightSum="2">
+            android:id="@+id/llv_uno"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:weightSum="4">
 
 
             <TextView
 
+                android:layout_weight="1"
                 android:id="@+id/tv_faltantes_sobrantes_dinero"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:text="FALTANTE Y/O SOBRANTE DE DINERO: "
+                android:layout_marginTop="10dp"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
+                android:layout_marginBottom="10dp"
+                android:gravity="left"
+                android:text="FALTANTE Y/O SOBRANTE DE DINERO "
                 android:textColor="#000000"
                 android:textSize="20sp"
                 android:textStyle="bold" />
 
-            <TextView
+            <LinearLayout
 
-                android:id="@+id/textview_cantidad_faltantes_sobrantes_dinero"
+                android:layout_weight="1"
+                android:id="@+id/llh_faltantes_sobrantes_dinero"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_weight="1"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
+                android:layout_marginBottom="20dp"
+                android:background="@drawable/contenedor_llh_nuevo_responsable_supervisor"
                 android:gravity="center"
-                android:hint="Cantidad"
-                android:textSize="20sp"
-                android:textStyle="bold" />
+                android:orientation="horizontal"
+                android:weightSum="2">
+
+                <ImageView
+
+                    android:layout_weight="1"
+                    android:id="@+id/img_faltante_sobrante_dinero_comisiones"
+                    android:layout_width="100dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginLeft="5dp"
+                    android:src="@drawable/ic_faltante_sobrante_dinero_comisiones_estadisticas" />
+
+
+                <View
+
+                    android:id="@+id/separador_dni"
+                    android:layout_width="1dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_marginBottom="10dp"
+                    android:background="#ff5722"/>
+
+
+                <TextView
+
+                    android:id="@+id/textview_cantidad_faltantes_sobrantes_dinero"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:hint="Cantidad"
+                    android:textSize="20sp"
+                    android:textStyle="bold" />
 
 
         </LinearLayout>
 
 
-        <LinearLayout
-
-            android:id="@+id/llh_comision"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:gravity="center"
-            android:orientation="horizontal"
-            android:weightSum="2">
-
-
-            <TextView
-
-                android:id="@+id/tv_comision"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:text="COMISIÓN: "
-                android:textColor="#000000"
-                android:textSize="20sp"
-                android:textStyle="bold" />
-
-            <TextView
-
-                android:id="@+id/textview_cantidad_comision"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:hint="Cantidad"
-                android:textSize="20sp"
-                android:textStyle="bold" />
-
-
-        </LinearLayout>
-
-
-    </LinearLayout>
-
-    <LinearLayout
-
-        android:id="@+id/llh_otros_articulos"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="10dp"
-        android:orientation="horizontal">
 
 
         <TextView
 
-            android:id="@+id/tv_otros_articulos"
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
             android:layout_weight="1"
-            android:background="#ff5722"
-            android:gravity="center"
-            android:text="ARTÍCULOS VENDIDOS EN LA SEMANA"
-            android:textColor="#FFFF"
+            android:id="@+id/tv_comision"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:layout_marginBottom="10dp"
+            android:gravity="left"
+            android:text="COMISIÓN "
+            android:textColor="#000000"
             android:textSize="20sp"
             android:textStyle="bold" />
 
-    </LinearLayout>
+
+            <LinearLayout
+
+                android:id="@+id/llh_comision"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
+                android:layout_marginBottom="20dp"
+                android:layout_weight="1"
+                android:background="@drawable/contenedor_llh_nuevo_responsable_supervisor"
+                android:gravity="center"
+                android:orientation="horizontal"
+                android:weightSum="2">
 
 
+                <ImageView
+
+                    android:id="@+id/img_comisiones"
+                    android:layout_width="100dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginLeft="5dp"
+                    android:layout_weight="1"
+                    android:src="@drawable/ic_comisiones_estadisticas" />
+
+
+
+
+                <View
+
+                    android:id="@+id/separador_comisiones"
+                    android:layout_width="1dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_marginBottom="10dp"
+                    android:background="#ff5722" />
+
+                <TextView
+
+                    android:id="@+id/textview_cantidad_comision"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:hint="Cantidad"
+                    android:textSize="20sp"
+                    android:textStyle="bold" />
+
+
+            </LinearLayout>
+
+            <TextView
+
+                android:id="@+id/tv_otros_articulos"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_marginBottom="10dp"
+                android:background="#d50000"
+                android:gravity="center"
+                android:text="ARTÍCULOS VENDIDOS EN LA SEMANA"
+                android:textColor="#FFFF"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+
+
+
+
+        </LinearLayout> <!-- FIN llv_uno-->
 
 
 
@@ -156,36 +221,66 @@
         android:layout_weight="1"
         android:id="@+id/llv_dos"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:orientation="vertical"
-        android:weightSum="4">
+        android:weightSum="8">
+
+
+        <TextView
+
+            android:layout_weight="1"
+            android:id="@+id/tv_bidones_vendidos_semana"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:layout_marginBottom="10dp"
+            android:gravity="left"
+            android:text="BIDONES "
+            android:textColor="#000000"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
 
 
         <LinearLayout
 
+            android:layout_weight="1"
             android:id="@+id/llh_bidones_vendidos_semana"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginTop="10dp"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
             android:layout_marginBottom="20dp"
-            android:layout_weight="1"
+            android:background="@drawable/contenedor_llh_nuevo_responsable_supervisor"
+            android:layout_gravity="center"
             android:gravity="center"
             android:orientation="horizontal"
             android:weightSum="2">
 
 
-            <TextView
+            <ImageView
 
-                android:id="@+id/tv_bidones_vendidos_semana"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:gravity="center"
-                android:text="BIDONES: "
-                android:textColor="#000000"
-                android:textSize="20sp"
-                android:textStyle="bold" />
+                android:id="@+id/img_bidones_comision"
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginLeft="5dp"
+                android:src="@drawable/ic_otros_articulos_comision" />
+
+
+            <View
+
+                android:id="@+id/separador_bidones_comision"
+                android:layout_width="1dp"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginBottom="10dp"
+                android:background="#ff5722"/>
+
 
             <TextView
 
@@ -203,30 +298,65 @@
         </LinearLayout>
 
 
+
+        <TextView
+
+            android:layout_weight="1"
+            android:id="@+id/tv_dispenser_plasticos_vendidos_semana"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:layout_marginBottom="10dp"
+            android:gravity="left"
+            android:text="DISPENSER PLÁSTICO "
+            android:textColor="#000000"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
+
+
+
         <LinearLayout
 
+            android:layout_weight="1"
             android:id="@+id/llh_dispenser_plasticos_vendidos_semana"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="5dp"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
             android:layout_marginBottom="20dp"
-            android:layout_weight="1"
+            android:background="@drawable/contenedor_llh_nuevo_responsable_supervisor"
+            android:layout_gravity="center"
             android:gravity="center"
             android:orientation="horizontal"
             android:weightSum="2">
 
 
-            <TextView
 
-                android:id="@+id/tv_dispenser_plasticos_vendidos_semana"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+            <ImageView
+
                 android:layout_weight="1"
-                android:gravity="center"
-                android:text="DISPENSER PLÁSTICO: "
-                android:textColor="#000000"
-                android:textSize="20sp"
-                android:textStyle="bold" />
+                android:id="@+id/img_dispenser_plastico_comision"
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginLeft="5dp"
+                android:src="@drawable/ic_otros_articulos_comision" />
+
+
+            <View
+
+                android:id="@+id/separador_dispenser_plastico_comision"
+                android:layout_width="1dp"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginBottom="10dp"
+                android:background="#ff5722"/>
+
+
 
             <TextView
 
@@ -244,29 +374,63 @@
         </LinearLayout>
 
 
+
+        <TextView
+
+            android:layout_weight="1"
+            android:id="@+id/tv_dispenser_electricos_vendidos_semana"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:layout_marginBottom="10dp"
+            android:gravity="left"
+            android:text="DISPENSER ELÉCTRICO "
+            android:textColor="#000000"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
+
+
         <LinearLayout
 
+            android:layout_weight="1"
             android:id="@+id/llh_dispenser_electricos_vendidos_semana"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
             android:layout_marginBottom="20dp"
-            android:layout_weight="1"
+            android:background="@drawable/contenedor_llh_nuevo_responsable_supervisor"
+            android:layout_gravity="center"
             android:gravity="center"
             android:orientation="horizontal"
             android:weightSum="2">
 
 
-            <TextView
+            <ImageView
 
-                android:id="@+id/tv_dispenser_electricos_vendidos_semana"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:gravity="center"
-                android:text="DISPENSER ELÉCTRICO: "
-                android:textColor="#000000"
-                android:textSize="20sp"
-                android:textStyle="bold" />
+                android:id="@+id/img_dispenser_electrico_comision"
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginLeft="5dp"
+                android:src="@drawable/ic_otros_articulos_comision" />
+
+
+            <View
+
+                android:id="@+id/separador_dispenser_electrico_comision"
+                android:layout_width="1dp"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginBottom="10dp"
+                android:background="#ff5722"/>
+
+
 
             <TextView
 
@@ -284,29 +448,67 @@
         </LinearLayout>
 
 
+
+
+
+
+
+
+        <TextView
+
+            android:layout_weight="1"
+            android:id="@+id/tv_canillas_vendidas_semana"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:layout_marginBottom="10dp"
+            android:gravity="left"
+            android:text="CANILLAS "
+            android:textColor="#000000"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
         <LinearLayout
 
+            android:layout_weight="1"
             android:id="@+id/llh_canillas_vendidas_semana"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
             android:layout_marginBottom="20dp"
-            android:layout_weight="1"
+            android:background="@drawable/contenedor_llh_nuevo_responsable_supervisor"
+            android:layout_gravity="center"
             android:gravity="center"
             android:orientation="horizontal"
             android:weightSum="2">
 
 
-            <TextView
 
-                android:id="@+id/tv_canillas_vendidas_semana"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+
+            <ImageView
+
                 android:layout_weight="1"
-                android:gravity="center"
-                android:text="CANILLAS:"
-                android:textColor="#000000"
-                android:textSize="20sp"
-                android:textStyle="bold" />
+                android:id="@+id/img_canillas_comision"
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginLeft="5dp"
+                android:src="@drawable/ic_otros_articulos_comision" />
+
+
+            <View
+
+                android:id="@+id/separador_canillas_comision"
+                android:layout_width="1dp"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginBottom="10dp"
+                android:background="#ff5722"/>
+
 
             <TextView
 
@@ -326,8 +528,10 @@
 
 
 
-    </LinearLayout> <!-- Fin del 'llv_dos' -->
+    </LinearLayout> <!-- FIN del 'llv_dos' -->
 
+  </LinearLayout> <!-- FIN llv_padre -->
 
+ </ScrollView>
 
 </LinearLayout>

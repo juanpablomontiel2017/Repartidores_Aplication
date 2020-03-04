@@ -112,7 +112,8 @@ public class RealizarVentasClientesSupervisor extends AppCompatActivity {
         window.setStatusBarColor(Color.parseColor("#b71c1c"));
 
 
-
+        /* Para cambiar el color del puntero o "burbuja" del EditText */
+        setTheme(R.style.AppTheme_Cursor);
 
 
 
@@ -177,6 +178,8 @@ public class RealizarVentasClientesSupervisor extends AppCompatActivity {
 
         eTCantVentas = (EditText) findViewById(R.id.edtx_cantidad_productos_ventas_supervisor);
 
+        eTCantVentas.setBackgroundDrawable(getDrawable(R.drawable.edit_text_material_customizado));
+
 
 
 
@@ -211,6 +214,9 @@ public class RealizarVentasClientesSupervisor extends AppCompatActivity {
 
 
         eTEntrega = (EditText) findViewById(R.id.cantidad_entrega_productos_ventas_supervisor);
+
+        eTEntrega.setBackgroundDrawable(getDrawable(R.drawable.edit_text_material_customizado));
+
 
 
         /*Llamada a la función: */
@@ -523,6 +529,9 @@ public class RealizarVentasClientesSupervisor extends AppCompatActivity {
 
 
         final EditText EditText_Carga_Nuevo_Articulo_Ventas_Supervisores = (EditText) NuevoArticuloInfladoVentasSupervisores.findViewById(R.id.edtx_cantidad_ventas_new_art_supervisor);
+
+        EditText_Carga_Nuevo_Articulo_Ventas_Supervisores.setBackgroundDrawable(getDrawable(R.drawable.edit_text_material_customizado));
+
 
         EditText_Carga_Nuevo_Articulo_Ventas_Supervisores.addTextChangedListener(new TextWatcher() {
             @Override

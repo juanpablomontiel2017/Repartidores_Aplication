@@ -5,6 +5,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
 
+
+    android:id="@+id/contenedor_principal_layout_vertical_buscador_evento"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
@@ -18,23 +20,47 @@
 
     <LinearLayout
 
-        android:id="@+id/parent_layout_vertical_buscador_evento"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
 
 
+        <!-- List View de elementos  -->
+        <ListView
+            android:id="@+id/list_view"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:visibility="gone"/>
+
+    </LinearLayout>
 
 
 
 
+    <ScrollView
 
-    </LinearLayout>     <!-- Fin del "parent_layout_vertical_buscador_evento" -->
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
 
 
 
 
+        <LinearLayout
+
+            android:id="@+id/parent_layout_vertical_buscador_evento"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+
+        </LinearLayout> <!-- Fin del "parent_layout_vertical_buscador_evento" -->
+
+
+
+
+    </ScrollView>
 
 
 

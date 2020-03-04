@@ -9,5 +9,11 @@
         android:title="@string/action_entrega_retiro_envases_patrocinio"
         app:showAsAction="never" />
 
+    <item
+        android:id="@+id/action_ac"
+        android:orderInCategory="100"
+        android:title="@string/action_agregar_cliente"
+        app:showAsAction="never" />
+
 
 </menu>

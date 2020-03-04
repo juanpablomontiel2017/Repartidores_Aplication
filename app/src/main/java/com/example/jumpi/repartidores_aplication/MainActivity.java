@@ -5,6 +5,7 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -226,12 +227,40 @@ public class MainActivity extends AppCompatActivity {
 
     LinearLayoutVerticalVerMapa = (LinearLayout) findViewById(R.id.llv_dos_punto_dos);
 
+    LinearLayoutVerticalVerMapa.setOnClickListener(new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+
+
+                Intent intent = new Intent (MainActivity.this, Mapa_Supervisores.class);
+
+                startActivity(intent);
+
+
+
+        }
+
+
+    });
+
+
+
+
+
     img_btn_ver_mapa = (ImageButton) findViewById(R.id.img_btn_ver_mapa_supervisor);
 
+    img_btn_ver_mapa.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
 
 
+                Intent intent = new Intent (MainActivity.this, Mapa_Supervisores.class);
 
+                startActivity(intent);
 
+            }
+
+    });
 
 
     Toolbar toolbar = findViewById(R.id.toolbar);
@@ -273,7 +302,26 @@ public class MainActivity extends AppCompatActivity {
 
 
             return true;
+
         }
+
+
+
+        if (id == R.id.action_ac) {
+
+
+
+            Intent intent = new Intent (MainActivity.this, AgregarCliente.class);
+
+            startActivity(intent);
+
+
+            return true;
+
+        }
+
+
+
 
         return super.onOptionsItemSelected(item);
 
@@ -282,6 +330,29 @@ public class MainActivity extends AppCompatActivity {
 
 
 
+
+
+
+
+
+    /**Con este bloque de código es posible salir de la aplicación al presionar el botón "volver atrás" **/
+
+
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if (keyCode == KeyEvent.KEYCODE_BACK && event.getRepeatCount() == 0) {
+            // Add your Dialogue or whatever to alert
+            moveTaskToBack(true);
+        }
+        return super.onKeyDown(keyCode, event);
+    }
+
+
+    @Override
+    public void onBackPressed() {
+
+        super.onBackPressed();
+        onKeyDown(KeyEvent.KEYCODE_BACK, null);
+    }
 
 
 }/*********************************FIN DE LA Activity************************************/
