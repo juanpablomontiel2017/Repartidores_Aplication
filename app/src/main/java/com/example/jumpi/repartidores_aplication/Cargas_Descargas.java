@@ -272,16 +272,6 @@ public class Cargas_Descargas extends AppCompatActivity {
 
 
 
-
-
-
-
-
-
-
-
-
-
         /*CASO ESPECIAL: Si estamos parados en la Primer Tanda, el botón flotante "T" no debería ser visible */
 
         if (ArrayListTandas.size() > 1) {
@@ -290,12 +280,6 @@ public class Cargas_Descargas extends AppCompatActivity {
             fab_cancel_tanda.setVisibility(GONE);
 
         }
-
-
-
-
-
-
 
 
 

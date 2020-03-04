@@ -505,6 +505,7 @@ public class BuscarResponsableParaPatrocinio extends AppCompatActivity implement
 
                     startActivity(intent);
 
+
                 }
             });
 
@@ -548,9 +549,9 @@ public class BuscarResponsableParaPatrocinio extends AppCompatActivity implement
         }//FIN DEL if
 
 
+
+
         else {
-
-
 
 
             View NuevoItemInflado;
@@ -563,11 +564,12 @@ public class BuscarResponsableParaPatrocinio extends AppCompatActivity implement
 
             final View view_estado_evento = (View) NuevoItemInflado.findViewById(R.id.view_estado_evento);
 
-            view_estado_evento.setBackgroundColor(Color.parseColor("#0d47a1"));
+            view_estado_evento.setBackgroundColor(Color.parseColor("#78909c"));
 
 
             final LinearLayout LinearLayoutVerticalPadre = (LinearLayout) findViewById(R.id.linear_layout_vertical_padre);
 
+            LinearLayoutVerticalPadre.setBackgroundColor(Color.parseColor("#37474f"));
 
             final LinearLayout LinearLayoutVerticalContenedorHijo = (LinearLayout) NuevoItemInflado.findViewById(R.id.llv_contenedor_hijo_de_evento);
 
@@ -630,6 +632,10 @@ public class BuscarResponsableParaPatrocinio extends AppCompatActivity implement
 
 
             final Button btn_ver_detalle_entrega_retiro_envases_patrocinio = (Button) NuevoItemInflado.findViewById(R.id.btn_ver_detalle_item_evento);
+
+            btn_ver_detalle_entrega_retiro_envases_patrocinio.getBackground().setColorFilter(Color.parseColor("#616161"), PorterDuff.Mode.SRC_ATOP);
+
+
             btn_ver_detalle_entrega_retiro_envases_patrocinio.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
@@ -651,6 +657,9 @@ public class BuscarResponsableParaPatrocinio extends AppCompatActivity implement
 
 
             final Button btn_ver_datos_personales_responsable_patrocinio = (Button) NuevoItemInflado.findViewById(R.id.btn_ver_datos_personales_item_evento);
+
+            btn_ver_datos_personales_responsable_patrocinio.getBackground().setColorFilter(Color.parseColor("#424242"), PorterDuff.Mode.SRC_ATOP);
+
             btn_ver_datos_personales_responsable_patrocinio.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
@@ -668,6 +677,11 @@ public class BuscarResponsableParaPatrocinio extends AppCompatActivity implement
 
                 }
             });
+
+
+
+
+
 
 
             /** Pregunta si el usuario es un "repartidor" entonces habrá un cambio de colores en las activity's

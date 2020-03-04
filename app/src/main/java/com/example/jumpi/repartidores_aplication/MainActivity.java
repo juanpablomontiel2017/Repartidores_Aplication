@@ -227,12 +227,40 @@ public class MainActivity extends AppCompatActivity {
 
     LinearLayoutVerticalVerMapa = (LinearLayout) findViewById(R.id.llv_dos_punto_dos);
 
+    LinearLayoutVerticalVerMapa.setOnClickListener(new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+
+
+                Intent intent = new Intent (MainActivity.this, Mapa_Supervisores.class);
+
+                startActivity(intent);
+
+
+
+        }
+
+
+    });
+
+
+
+
+
     img_btn_ver_mapa = (ImageButton) findViewById(R.id.img_btn_ver_mapa_supervisor);
 
+    img_btn_ver_mapa.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
 
 
+                Intent intent = new Intent (MainActivity.this, Mapa_Supervisores.class);
 
+                startActivity(intent);
 
+            }
+
+    });
 
 
     Toolbar toolbar = findViewById(R.id.toolbar);

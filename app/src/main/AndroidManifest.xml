@@ -9,6 +9,10 @@
     <uses-permission android:name="android.permission.WAKE_LOCK" />
     <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
     <uses-permission android:name="android.permission.GET_ACCOUNTS" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+
+
+
 
     <application
         android:allowBackup="true"
@@ -17,16 +21,18 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
 
-
         <activity
             android:name=".LoginActivity"
             android:label=""
             android:theme="@style/AppTheme.NoActionBar">
-          <!--  <intent-filter>
+
+            <!--
+            <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter> -->
+            </intent-filter>
+            -->
         </activity>
 
 
@@ -36,12 +42,7 @@
             android:name=".Repartidores_Main_Activity"
             android:label=" "
             android:parentActivityName=".LoginActivity"
-            android:theme="@style/AppTheme.NoActionBar">
-
-        </activity>
-
-
-
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".EditarClientes"
             android:label="Editar Clientes"
@@ -65,28 +66,18 @@
         <activity
             android:name=".Detalle_Faltante_Sobrante_Envases"
             android:label=""
-            android:theme="@style/AppTheme.NoActionBar"></activity>
-
-
-        <!-- ########################## Para SUPERVISORES ########################### -->
-
-
+            android:theme="@style/AppTheme.NoActionBar" /> <!-- ########################## Para SUPERVISORES ########################### -->
         <activity
             android:name=".MainActivity"
             android:label=" "
             android:parentActivityName=".LoginActivity"
             android:theme="@style/AppTheme.NoActionBar">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
 
-        <intent-filter>
-            <action android:name="android.intent.action.MAIN" />
-
-            <category android:name="android.intent.category.LAUNCHER" />
-        </intent-filter>
-
-
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
-
-
         <activity
             android:name=".CombustibleEstadisticas"
             android:label=""
@@ -140,16 +131,16 @@
             android:label="@string/title_activity_cargas_descargas"
             android:theme="@style/AppTheme.NoActionBar"
             android:windowSoftInputMode="stateAlwaysVisible" />
-
-
         <activity
             android:name=".DatosPersonalesResponsable"
             android:label=""
-            android:theme="@style/AppTheme.NoActionBar">
-
-        </activity>
+            android:theme="@style/AppTheme.NoActionBar" />
 
 
+        <activity
+            android:name=".Mapa_Supervisores"
+            android:label=""
+            android:theme="@style/AppTheme.NoActionBar"></activity>
 
     </application>
 
