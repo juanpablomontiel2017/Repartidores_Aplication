@@ -130,8 +130,6 @@
             </LinearLayout>
 
 
-
-
             <Button
                 android:id="@+id/email_sign_in_button"
                 style="?android:textAppearanceSmall"
@@ -143,7 +141,6 @@
                 android:textColor="#FFFF"
                 android:textSize="24sp"
                 android:textStyle="bold" />
-
 
 
         </LinearLayout>

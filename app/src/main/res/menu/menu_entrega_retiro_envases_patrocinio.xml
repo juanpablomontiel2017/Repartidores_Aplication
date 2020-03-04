@@ -29,6 +29,12 @@
         app:showAsAction="never" />
 
 
+    <item
+        android:id="@+id/action_avaible_evento"
+        android:orderInCategory="100"
+        android:title="@string/action_avaible_evento"
+        app:showAsAction="never" />
+
 
 
 </menu>

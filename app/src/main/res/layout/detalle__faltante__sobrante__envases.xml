@@ -1,0 +1,188 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#FFF"
+
+
+    tools:context=".Detalle_Faltante_Sobrante_Envases">
+
+
+
+
+    <LinearLayout
+
+        android:id="@+id/layout_vertical_padre_detalle_fse"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+
+
+
+        <TextView
+
+            android:id="@+id/tv_detalle_fse_titulo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="20dp"
+            android:text="FALTANTES Y/O SOBRANTES EN LA SEMANA "
+            android:gravity="center"
+            android:textColor="#303f9f"
+            android:textSize="25sp"
+            android:textStyle="bold" />
+
+
+        <LinearLayout
+
+            android:id="@+id/layout_vertical_hijo_detalle_fse"
+            android:layout_width="match_parent"
+            android:layout_height="500dp"
+            android:orientation="vertical">
+
+
+
+
+            <LinearLayout
+
+                android:id="@+id/llv_contenedor_para_bordes_detalle_fse"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/borde_linear_layout"
+                android:orientation="vertical">
+
+
+                <LinearLayout
+
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:background="#283593"
+                    android:orientation="horizontal"
+                    android:layout_marginLeft="2dp"
+                    android:layout_marginRight="2dp"
+                    android:layout_marginTop="2dp"
+                    android:weightSum="1">
+
+
+                    <TextView
+
+                        android:id="@+id/dias_detalle_fse"
+                        android:layout_width="90dp"
+                        android:layout_height="match_parent"
+                        android:gravity="center"
+                        android:text="DÍAS"
+                        android:textAlignment="center"
+                        android:textColor="#FFFF"
+                        android:textSize="18sp"
+                        android:textStyle="bold" />
+
+
+                    <ImageView
+
+                        android:id="@+id/img_detalle_dinero_recibido"
+                        android:layout_width="30dp"
+                        android:layout_height="match_parent"
+                        android:src="@drawable/ic_sobrante_detalle_fse" />
+
+
+                    <TextView
+
+                        android:id="@+id/tv_sobrante_detalle_fse"
+                        android:layout_width="100dp"
+                        android:layout_height="match_parent"
+                        android:gravity="center|left"
+                        android:text="SOBRANTE"
+                        android:textColor="#FFF"
+                        android:textSize="18sp"
+                        android:textStyle="bold" />
+
+
+                    <ImageView
+
+                        android:id="@+id/img_detalle_fse"
+                        android:layout_width="30dp"
+                        android:layout_height="match_parent"
+                        android:src="@drawable/ic_faltante_detalle_fse" />
+
+
+                    <TextView
+
+                        android:id="@+id/tv_faltante_detalle_fse"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:gravity="center|left"
+                        android:text="FALTANTE"
+                        android:textColor="#FFF"
+                        android:textSize="18sp"
+                        android:textStyle="bold" />
+
+                </LinearLayout>
+
+
+                <LinearLayout
+
+                        android:layout_width="match_parent"
+                        android:layout_height="50dp"
+                        android:orientation="horizontal"
+                        android:weightSum="1">
+
+
+                        <TextView
+
+                            android:id="@+id/tv_numero_tanda_detalle_dinero"
+                            android:layout_width="90dp"
+                            android:layout_height="match_parent"
+                            android:gravity="center"
+                            android:hint="Lunes"
+                            android:textSize="20sp"
+                            android:textStyle="bold" />
+
+                        <TextView
+
+                            android:id="@+id/tv_cantidad_carga_detalle_dinero"
+                            android:layout_width="130dp"
+                            android:layout_height="match_parent"
+                            android:gravity="center"
+                            android:hint="Cantidad"
+                            android:textSize="20sp"
+                            android:textStyle="bold" />
+
+
+                        <TextView
+
+                            android:id="@+id/tv_cantidad_descarga_detalle_dinero"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:gravity="center"
+                            android:hint="Cantidad"
+                            android:textSize="20sp"
+                            android:textStyle="bold" />
+
+
+
+                </LinearLayout>
+
+
+            </LinearLayout> <!-- FIN DEL llv_contenedor_para_bordes_detalle_fse -->
+
+
+        </LinearLayout> <!-- FIN DEL layout_vertical_hijo_detalle_fse -->
+
+
+    </LinearLayout> <!-- FIN DEL layout_vertical_padre_detalle_fse -->
+
+
+
+
+
+
+
+</LinearLayout>

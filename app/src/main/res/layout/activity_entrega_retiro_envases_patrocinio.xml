@@ -40,9 +40,9 @@
             android:layout_height="wrap_content"
             android:layout_gravity="bottom|end"
             android:layout_margin="@dimen/fab_margin"
-            android:src="@drawable/ic_fab_nueva_er"
-            app:backgroundTint="#4caf50"
-            android:visibility="invisible" />
+            android:src="@mipmap/camion_entrega_retiro_512px"
+            app:backgroundTint="#ffa726"
+            android:visibility="invisible"/>
 
 
         <android.support.design.widget.FloatingActionButton
@@ -54,7 +54,7 @@
             android:onClick="CancelarNuevaVuelta"
             android:src="@drawable/ic_menos_tanda"
             android:visibility="gone"
-            app:backgroundTint="#263238" />
+            app:backgroundTint="#263238"/>
 
 
     </LinearLayout>

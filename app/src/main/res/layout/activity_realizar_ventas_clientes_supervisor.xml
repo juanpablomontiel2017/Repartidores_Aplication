@@ -22,11 +22,10 @@
 
     </android.support.v7.widget.Toolbar>
 
-    <ScrollView
 
+    <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent">
-
 
         <LinearLayout
 
@@ -34,7 +33,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical"
-            android:weightSum="2">
+            android:weightSum="4">
 
 
             <!--#################################################################-->
@@ -44,8 +43,9 @@
 
                 android:id="@+id/llv_datos_personales"
                 android:layout_width="match_parent"
-                android:layout_height="300dp"
+                android:layout_height="400dp"
                 android:layout_marginBottom="20dp"
+                android:layout_weight="1"
                 android:background="#ff5722"
                 android:orientation="vertical"
                 android:weightSum="5">
@@ -101,8 +101,6 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:orientation="horizontal">
-
-
 
 
                     <TextView
@@ -170,8 +168,10 @@
             <!--################################################################-->
 
             <ScrollView
+
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:layout_weight="1"
                 android:background="#FFFF">
 
                 <LinearLayout
@@ -208,8 +208,8 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
-                            android:orientation="horizontal"
-                            android:background="@drawable/spinner_style">
+                            android:background="@drawable/spinner_style"
+                            android:orientation="horizontal">
 
 
                             <Spinner
@@ -237,7 +237,8 @@
                             android:gravity="center"
                             android:hint="Cantidad"
                             android:imeOptions="actionNext"
-                            android:inputType="number" />
+                            android:inputType="number"
+                            android:textCursorDrawable="@color/colorCursorSupervisores"/>
 
                     </LinearLayout>
 
@@ -282,8 +283,6 @@
                         android:textStyle="bold" />
 
 
-
-
                     <ImageButton
 
                         android:id="@+id/img_button_confirmar_ventas_supervisor"
@@ -293,7 +292,6 @@
                         android:layout_weight="1"
                         android:background="@mipmap/contenedor_checkbox"
                         android:src="@drawable/ic_check_rojo" />
-
 
 
                     <TextView
@@ -361,7 +359,8 @@
                         android:hint="$"
                         android:inputType="number"
                         android:textSize="24sp"
-                        android:textStyle="bold" />
+                        android:textStyle="bold"
+                        android:textCursorDrawable="@color/colorCursorSupervisores"/>
 
 
                 </LinearLayout>
@@ -375,6 +374,5 @@
         </LinearLayout>
 
     </ScrollView>
-
 
 </LinearLayout>

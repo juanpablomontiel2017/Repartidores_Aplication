@@ -12,6 +12,7 @@ import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 public class NuevoEventoPatrocinio extends AppCompatActivity {
@@ -25,6 +26,12 @@ public class NuevoEventoPatrocinio extends AppCompatActivity {
                  linearlayout_horizontal_barrio_nuevo_evento_patrocinio_supervisor,linearlayout_horizontal_referencia_nuevo_evento_patrocinio_supervisor,
                  linearlayout_horizontal_fecha_inicio_nuevo_evento_patrocinio_supervisor,linearlayout_horizontal_fecha_fin_nuevo_evento_patrocinio_supervisor;
 
+
+    TextView tv_dni_responsable_nuevo_evento_patrocinio, tv_nombre_responsable_nuevo_evento_patrocinio,
+             tv_apellido_responsable_nuevo_evento_patrocinio,tv_codigo_area_responsable_nuevo_evento_patrocinio,
+             tv_telefono_responsable_nuevo_evento_patrocinio,tv_direccion_responsable_nuevo_evento_patrocinio,
+             tv_barrio_responsable_nuevo_evento_patrocinio,tv_correo_responsable_nuevo_evento_patrocinio,
+             tv_referencia_responsable_nuevo_evento_patrocinio;
 
 
 
@@ -63,6 +70,8 @@ public class NuevoEventoPatrocinio extends AppCompatActivity {
         window.setStatusBarColor(Color.parseColor("#b71c1c"));
 
 
+        /* Para cambiar el color del puntero o "burbuja" del EditText */
+        setTheme(R.style.AppTheme_CursorNuevoEvento);
 
 
 
@@ -79,18 +88,42 @@ public class NuevoEventoPatrocinio extends AppCompatActivity {
         linearlayout_horizontal_fecha_fin_nuevo_evento_patrocinio_supervisor = (LinearLayout) findViewById(R.id.llh_fecha_fin_nuevo_evento_patrocinio);
 
 
-
+        tv_dni_responsable_nuevo_evento_patrocinio = (TextView) findViewById(R.id.dni_responsable_nuevo_evento_patrocinio);
+        tv_nombre_responsable_nuevo_evento_patrocinio = (TextView) findViewById(R.id.nombre_responsable_nuevo_evento_patrocinio);
+        tv_apellido_responsable_nuevo_evento_patrocinio = (TextView) findViewById(R.id.apellido_responsable_nuevo_evento_patrocinio);
+        tv_codigo_area_responsable_nuevo_evento_patrocinio = (TextView) findViewById(R.id.codigo_area_responsable_nuevo_evento_patrocinio);
+        tv_telefono_responsable_nuevo_evento_patrocinio = (TextView) findViewById(R.id.telefono_responsable_nuevo_evento_patrocinio);
+        tv_direccion_responsable_nuevo_evento_patrocinio = (TextView) findViewById(R.id.direccion_responsable_nuevo_evento_patrocinio);
+        tv_barrio_responsable_nuevo_evento_patrocinio = (TextView) findViewById(R.id.barrio_responsable_nuevo_evento_patrocinio);
+        tv_correo_responsable_nuevo_evento_patrocinio = (TextView) findViewById(R.id.email_responsable_nuevo_evento_patrocinio);
+        tv_referencia_responsable_nuevo_evento_patrocinio = (TextView) findViewById(R.id.referencia_responsable_nuevo_evento_patrocinio);
 
 
 
 
 
         et_nombre_nuevo_evento_patrocinio_supervisor = (EditText) findViewById(R.id.et_nombre_nuevo_evento_patrocinio);
+        et_nombre_nuevo_evento_patrocinio_supervisor.setBackgroundDrawable(getDrawable(R.drawable.edit_text_material_customizado_nuevo_evento_supervisor));
+
+
         et_direccion_nuevo_evento_patrocinio_supervisor = (EditText) findViewById(R.id.et_direccion_nuevo_evento_patrocinio);
+        et_direccion_nuevo_evento_patrocinio_supervisor.setBackgroundDrawable(getDrawable(R.drawable.edit_text_material_customizado_nuevo_evento_supervisor));
+
+
         et_barrio_nuevo_evento_patrocinio_supervisor = (EditText) findViewById(R.id.et_barrio_nuevo_evento_patrocinio);
+        et_barrio_nuevo_evento_patrocinio_supervisor.setBackgroundDrawable(getDrawable(R.drawable.edit_text_material_customizado_nuevo_evento_supervisor));
+
+
         et_referencia_nuevo_evento_patrocinio_supervisor = (EditText) findViewById(R.id.et_referencia_nuevo_evento_patrocinio);
+        et_referencia_nuevo_evento_patrocinio_supervisor.setBackgroundDrawable(getDrawable(R.drawable.edit_text_material_customizado_nuevo_evento_supervisor));
+
+
         et_fecha_inicio_nuevo_evento_patrocinio_supervisor = (EditText) findViewById(R.id.et_fecha_inicio_nuevo_evento_patrocinio);
+        et_fecha_inicio_nuevo_evento_patrocinio_supervisor.setBackgroundDrawable(getDrawable(R.drawable.edit_text_material_customizado_nuevo_evento_supervisor));
+
+
         et_fecha_fin_nuevo_evento_patrocinio_supervisor = (EditText) findViewById(R.id.et_fecha_fin_nuevo_evento_patrocinio);
+        et_fecha_fin_nuevo_evento_patrocinio_supervisor.setBackgroundDrawable(getDrawable(R.drawable.edit_text_material_customizado_nuevo_evento_supervisor));
 
 
 
@@ -202,6 +235,38 @@ public class NuevoEventoPatrocinio extends AppCompatActivity {
 
 
 
+
+
+
+
+        /** Recibe los datos del responsable de la activity de BuscarResponsableParaPatrocinio **/
+
+        String dni_responsable_recibir = getIntent().getStringExtra("DNI_Responsable_Enviar");
+        tv_dni_responsable_nuevo_evento_patrocinio.setText(dni_responsable_recibir);
+
+        String nombre_responsable_recibir = getIntent().getStringExtra("Nombre_Responsable_Enviar");
+        tv_nombre_responsable_nuevo_evento_patrocinio.setText(nombre_responsable_recibir);
+
+        String apellido_responsable_recibir = getIntent().getStringExtra("Apellido_Responsable_Enviar");
+        tv_apellido_responsable_nuevo_evento_patrocinio.setText(apellido_responsable_recibir);
+
+        String codigo_area_responsable_recibir = getIntent().getStringExtra("Codigo_Area_Responsable_Enviar");
+        tv_codigo_area_responsable_nuevo_evento_patrocinio.setText(codigo_area_responsable_recibir);
+
+        String telefono_responsable_recibir = getIntent().getStringExtra("Telefono_Responsable_Enviar");
+        tv_telefono_responsable_nuevo_evento_patrocinio.setText(telefono_responsable_recibir);
+
+        String direccion_responsable_recibir = getIntent().getStringExtra("Direccion_Responsable_Enviar");
+        tv_direccion_responsable_nuevo_evento_patrocinio.setText(direccion_responsable_recibir);
+
+        String barrio_responsable_recibir = getIntent().getStringExtra("Barrio_Responsable_Enviar");
+        tv_barrio_responsable_nuevo_evento_patrocinio.setText(barrio_responsable_recibir);
+
+        String correo_responsable_recibir = getIntent().getStringExtra("Correo_Responsable_Enviar");
+        tv_correo_responsable_nuevo_evento_patrocinio.setText(correo_responsable_recibir);
+
+        String referencia_responsable_recibir = getIntent().getStringExtra("Referencia_Responsable_Enviar");
+        tv_referencia_responsable_nuevo_evento_patrocinio.setText(referencia_responsable_recibir);
 
 
 
