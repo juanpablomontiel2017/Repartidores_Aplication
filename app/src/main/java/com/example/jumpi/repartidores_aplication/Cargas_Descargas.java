@@ -502,7 +502,7 @@ public class Cargas_Descargas extends AppCompatActivity {
  *
  * */
 
-        ArrayList ArrayListCargas;
+        JSONArray ArrayListCargas;
 
         ArrayListCargas = obtenerCargasDescargasParaEnviarAlServidor();
 
@@ -530,7 +530,7 @@ public class Cargas_Descargas extends AppCompatActivity {
                         if (success){
                             JSONObject jsonData = jsonResponse.getJSONObject("data");
 
-                            if (jsonData.has("resultado")) {
+                            if (jsonData.has("tandas")) {
 
 
                                 JSONArray jsonResultado = jsonData.getJSONArray("resultado");
@@ -1385,11 +1385,11 @@ public class Cargas_Descargas extends AppCompatActivity {
 
 
     @SuppressLint("RestrictedApi")
-    public ArrayList obtenerCargasDescargasParaEnviarAlServidor() {
+    public JSONArray obtenerCargasDescargasParaEnviarAlServidor() {
 
 
-        ArrayList arrayTandas = new ArrayList();
-
+        //ArrayList arrayTandas = new ArrayList();
+        JSONArray arrayTandas = new JSONArray();
 
         SharedPreferences preferences = getSharedPreferences("Datos_Cargas_Descargas", MODE_PRIVATE);
 
@@ -1419,11 +1419,13 @@ public class Cargas_Descargas extends AppCompatActivity {
 
             for (int indice_tandas = 0; indice_tandas < Integer.valueOf(DimensionArrayNuevasTandas); indice_tandas++) {
 
-                ArrayList <Map> arrayDeArticulos= new ArrayList();
+                //ArrayList <Map> arrayDeArticulos= new ArrayList();
+                JSONArray arrayDeArticulos = new JSONArray();
 
-                Map plata;
 
-                plata = new HashMap<>();
+                //Map plata;
+                JSONObject plata = new JSONObject();
+                //plata = new HashMap<>();
 
 
                 String ElementoSeleccionadoSpinnerFijo = preferences.getString("Repartidor: " + nombre_apellido_recibir + "ElementoSeleccionado - " + "Tanda Numero: " + indice_tandas, "");
@@ -1433,25 +1435,36 @@ public class Cargas_Descargas extends AppCompatActivity {
                 String ValorDescargaMoneyNuevaTanda = preferences.getString("Repartidor: " + nombre_apellido_recibir + "CantidadDescargaMoneyNuevaTanda - " + "Tanda Numero: " + indice_tandas, "");
 
 
-                plata.put("plataCarga", ValorCargaMoneyNuevaTanda);
-                plata.put("plataDescarga", ValorDescargaMoneyNuevaTanda);
+                try {
+                    plata.put("plataCarga", ValorCargaMoneyNuevaTanda);
+                    plata.put("plataDescarga", ValorDescargaMoneyNuevaTanda);
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
 
 
-                arrayDeArticulos.add(plata);
+
+                arrayDeArticulos.put(plata);
 
 
 
-                Map artículo;
+                //Map artículo;
+                JSONObject artículo = new JSONObject();
 
-                artículo = new HashMap<>();
+                //artículo = new HashMap<>();
 
                 String idArtículo = obtenerIdDeArticuloSeleccionado(ElementoSeleccionadoSpinnerFijo);
 
-                artículo.put("idArtículo", idArtículo);
-                artículo.put("carga", ValorCargaArticulosNuevaTanda);
-                artículo.put("descarga", ValorDescargaArticulosNuevaTanda);
+                try {
+                    artículo.put("idArtículo", idArtículo);
+                    artículo.put("carga", ValorCargaArticulosNuevaTanda);
+                    artículo.put("descarga", ValorDescargaArticulosNuevaTanda);
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
 
-                arrayDeArticulos.add(artículo);
+
+                arrayDeArticulos.put(artículo);
 
 
 
@@ -1478,25 +1491,31 @@ public class Cargas_Descargas extends AppCompatActivity {
                         String ValorCargaNuevoArticuloNuevaTanda = preferences.getString("Repartidor: " + nombre_apellido_recibir + "CantidadDeCargaNuevoArticuloProgramatico_NUEVA_TANDA - " + "Tanda Numero: " + indice_tandas + " - " + "Posicion: " + j, "");
                         String ValorDescargaNuevoArticuloNuevaTanda = preferences.getString("Repartidor: " + nombre_apellido_recibir + "CantidadDeDescargaNuevoArticuloProgramatico_NUEVA_TANDA - " + "Tanda Numero: " + indice_tandas + " - " + "Posicion: " + j, "");
 
-                        Map artículoProgramático;
+                        //Map artículoProgramático;
+                        JSONObject artículoProgramático = new JSONObject();
 
-                        artículoProgramático = new HashMap<>();
+                        //artículoProgramático = new HashMap<>();
 
                         String idArtículoProgramático = obtenerIdDeArticuloSeleccionado(ElementoSeleccionadoSpinnerProgramatico);
 
-                        artículoProgramático.put("idArtículo", idArtículoProgramático);
-                        artículoProgramático.put("carga", ValorCargaNuevoArticuloNuevaTanda);
-                        artículoProgramático.put("descarga", ValorDescargaNuevoArticuloNuevaTanda);
+                        try {
+                            artículoProgramático.put("idArtículo", idArtículoProgramático);
+                            artículoProgramático.put("carga", ValorCargaNuevoArticuloNuevaTanda);
+                            artículoProgramático.put("descarga", ValorDescargaNuevoArticuloNuevaTanda);
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
 
-                        arrayDeArticulos.add(artículoProgramático);
+
+                        arrayDeArticulos.put(artículoProgramático);
 
                     } //Fin del for
 
                 } //Fin del primer if
 
 
-                arrayTandas.add(arrayDeArticulos);
-
+               // arrayTandas.add(arrayDeArticulos);
+                arrayTandas.put(arrayDeArticulos);
 
             } //Fin del primer for
 

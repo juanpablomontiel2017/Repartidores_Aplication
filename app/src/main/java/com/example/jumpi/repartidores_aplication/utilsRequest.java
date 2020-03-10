@@ -6,7 +6,8 @@ import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.toolbox.StringRequest;
 
-import java.util.ArrayList;
+import org.json.JSONArray;
+
 import java.util.HashMap;
 import java.util.Map;
 
@@ -59,7 +60,7 @@ public class utilsRequest extends StringRequest {
                                              String fecha,
                                              String idRepartidor,
                                              String dniRepartidor,
-                                             ArrayList arrayTandas,
+                                             JSONArray arrayTandas,
                                              Response.Listener<String> listener) {
 
         String dirServer = vault.DIR_SERVER+vault.CARGA_DESCARGA_REQUEST;
