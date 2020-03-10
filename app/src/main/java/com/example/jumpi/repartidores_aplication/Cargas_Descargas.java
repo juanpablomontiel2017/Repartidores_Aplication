@@ -473,7 +473,7 @@ public class Cargas_Descargas extends AppCompatActivity {
     /***************************************************************************************************/
     /***************************************************************************************************/
     /***************************************************************************************************/
-/**
+
 
     public void enviarTandasAlServidor(){
 
@@ -490,16 +490,23 @@ public class Cargas_Descargas extends AppCompatActivity {
         final EditText et_descarga_money = (EditText)  ArrayListTandas.get(0).findViewById(R.id.edtx_descarga_money);
 
 
-
         String ArticuloSeleccionado =  spinner_fijo.getSelectedItem().toString();
+/**
+ * String idArticulo = obtenerIdDeArticuloSeleccionado(ArticuloSeleccionado);
+ *
+ *
+ *         String carga = editText_carga.getText().toString();
+ *         String descarga = editText_descarga.getText().toString();
+ *         String plataCarga = et_carga_money.getText().toString();
+ *         String plataDescarga = et_descarga_money.getText().toString();
+ *
+ * */
 
-        String idArticulo = obtenerIdDeArticuloSeleccionado(ArticuloSeleccionado);
+        ArrayList ArrayListCargas = new ArrayList();
+
+        ArrayListCargas = obtenerCargasDescargasParaEnviarAlServidor();
 
 
-        String carga = editText_carga.getText().toString();
-        String descarga = editText_descarga.getText().toString();
-        String plataCarga = et_carga_money.getText().toString();
-        String plataDescarga = et_descarga_money.getText().toString();
 
 
         Usuario usuario = new Usuario();
@@ -544,7 +551,7 @@ public class Cargas_Descargas extends AppCompatActivity {
                 }
             };
 
-            utilsRequest request = utilsRequest.cargaDescarga(idSupervisor,dniSupervisor, UtilidadFecha.getFecha("yyyy/MM/dd"),idRepartidor,dniRepartidor,plataCarga,plataDescarga,carga,descarga,idArticulo, responseListener);
+            utilsRequest request = utilsRequest.cargaDescarga(idSupervisor,dniSupervisor, UtilidadFecha.getFecha("yyyy/MM/dd"),idRepartidor,dniRepartidor, ArrayListCargas, responseListener);
             MySingleton.getInstance(getApplicationContext()).addToRequestQueue(request);
 
 
@@ -558,7 +565,7 @@ public class Cargas_Descargas extends AppCompatActivity {
 
 
     }
- */
+
 
     public void obtenerArticulosParaSpinner(){
 
@@ -788,9 +795,9 @@ public class Cargas_Descargas extends AppCompatActivity {
                                 /*Llamada a la función:  */
                                 GuardarValoresEnSharedPreferences();
 
-                                //enviarTandasAlServidor();
+                                enviarTandasAlServidor();
 
-                                //obtenerCargasDescargasParaEnviarAlSErvidor();
+
 
                                 tanda_numero = 0;
 
@@ -1378,7 +1385,7 @@ public class Cargas_Descargas extends AppCompatActivity {
 
 
     @SuppressLint("RestrictedApi")
-    public ArrayList obtenerCargasDescargasParaEnviarAlSErvidor() {
+    public ArrayList obtenerCargasDescargasParaEnviarAlServidor() {
 
 
         ArrayList arrayTandas = new ArrayList();
@@ -3208,9 +3215,8 @@ public void ObtenerNuevoArticulo(String ValorElementoSeleccionadoSpinnerPrograma
 
                             /*Llamada a la función: */
                             GuardarValoresEnSharedPreferences();
-                           // enviarTandasAlServidor();
+                            enviarTandasAlServidor();
 
-                         //   obtenerCargasDescargasParaEnviarAlSErvidor();
 
                         }
 
@@ -3378,9 +3384,8 @@ public void ObtenerNuevoArticulo(String ValorElementoSeleccionadoSpinnerPrograma
 
                                 /*Llamada a la función: */
                                 GuardarValoresEnSharedPreferences();
-                               // enviarTandasAlServidor();
+                                enviarTandasAlServidor();
 
-                               // obtenerCargasDescargasParaEnviarAlSErvidor();
 
                                 finish();
 

@@ -59,8 +59,6 @@ public class utilsRequest extends StringRequest {
                                              String fecha,
                                              String idRepartidor,
                                              String dniRepartidor,
-                                             String plataCarga,
-                                             String plataDescarga,
                                              ArrayList arrayTandas,
                                              Response.Listener<String> listener) {
 
@@ -76,17 +74,10 @@ public class utilsRequest extends StringRequest {
         parametro.put("fecha", fecha);
         parametro.put("idRepartidor", idRepartidor);
         parametro.put("dniRepartidor", dniRepartidor);
-        parametro.put("plataCarga", plataCarga);
-        parametro.put("plataDescarga", plataDescarga);
+
         parametro.put("tandas", arrayTandas);
 
-        /**
-        parametro.put("carga", carga);
-        parametro.put("descarga", descarga);
-        parametro.put("idArticulo", idArticulo);
-*/
-
-
+  
         request = new utilsRequest(Request.Method.POST, dirServer, listener, null, parametro);
         Log.d("TFSB", "retorna request");
         return request;
