@@ -502,7 +502,7 @@ public class Cargas_Descargas extends AppCompatActivity {
  *
  * */
 
-        ArrayList ArrayListCargas = new ArrayList();
+        ArrayList ArrayListCargas;
 
         ArrayListCargas = obtenerCargasDescargasParaEnviarAlServidor();
 

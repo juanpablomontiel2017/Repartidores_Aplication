@@ -26,9 +26,9 @@ public class utilsRequest extends StringRequest {
 
 
 
-    private utilsRequest(int method, String url, Response.Listener<String> listener, Response.ErrorListener errorListener, Map<String, String> parametro) {
+    private utilsRequest(int method, String url, Response.Listener<String> listener, Response.ErrorListener errorListener, Map<String, String> params) {
         super(method, url, listener, errorListener);
-        this.setParams(parametro);
+        this.setParams(params);
 
 
 
@@ -66,19 +66,19 @@ public class utilsRequest extends StringRequest {
         utilsRequest request;
 
 
-        Map parametro;
+        Map params;
 
-        parametro = new HashMap<>();
-        parametro.put("idSupervisor", idSupervisor);
-        parametro.put("dniSupervisor", dniSupervisor);
-        parametro.put("fecha", fecha);
-        parametro.put("idRepartidor", idRepartidor);
-        parametro.put("dniRepartidor", dniRepartidor);
+        params = new HashMap<>();
+        params.put("idSupervisor", idSupervisor);
+        params.put("dniSupervisor", dniSupervisor);
+        params.put("fecha", fecha);
+        params.put("idRepartidor", idRepartidor);
+        params.put("dniRepartidor", dniRepartidor);
 
-        parametro.put("tandas", arrayTandas);
+        params.put("tandas", arrayTandas);
 
-  
-        request = new utilsRequest(Request.Method.POST, dirServer, listener, null, parametro);
+
+        request = new utilsRequest(Request.Method.POST, dirServer, listener, null, params);
         Log.d("TFSB", "retorna request");
         return request;
 
