@@ -4,7 +4,6 @@ import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.annotation.TargetApi;
 import android.app.LoaderManager.LoaderCallbacks;
-import android.content.Context;
 import android.content.CursorLoader;
 import android.content.Intent;
 import android.content.Loader;
@@ -848,12 +847,12 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
             Log.d("TFSB", "ingresa a doInBackground ");
 
 
-            Response.Listener<String> responseListener = new Response.Listener<String>() {
+            Response.Listener<JSONObject> responseListener = new Response.Listener<JSONObject>() {
                 // Se realiza una acción cuando se recibe el response
 
 
                 @Override
-                public void onResponse(String response) {
+                public void onResponse(JSONObject response) {
 
 
                     Log.d("TFSB", String.valueOf(response));
@@ -1195,12 +1194,12 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
             Log.d("TFSB", "Execute/ ingresa a execute ");
 
 
-            Response.Listener<String> responseListener = new Response.Listener<String>() {
+            Response.Listener<JSONObject> responseListener = new Response.Listener<JSONObject>() {
                 // Se realiza una acción cuando se recibe el response
 
 
                 @Override
-                public void onResponse(String response) {
+                public void onResponse(JSONObject response) {
 
                     Log.d("TFSB", "Execute/ " + String.valueOf(response));
 
@@ -1493,12 +1492,12 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
             Log.d("TFSB", "DbUserLogin/ ingresa a newUserlogin. Se loguea un nuevo usuario ");
 
 
-            Response.Listener<String> responseListener = new Response.Listener<String>() {
+            Response.Listener<JSONObject> responseListener = new Response.Listener<JSONObject>() {
                 // Se realiza una acción cuando se recibe el response
 
 
                 @Override
-                public void onResponse(String response) {
+                public void onResponse(JSONObject response) {
 
                     Log.d("TFSB", String.valueOf(response));
                     Log.d("TFSB", "DbUserLogin/onResponse ingresa a onResponse");

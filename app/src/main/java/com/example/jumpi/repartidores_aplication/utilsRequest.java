@@ -2,6 +2,7 @@ package com.example.jumpi.repartidores_aplication;
 
 import android.util.Log;
 
+import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.toolbox.JsonObjectRequest;
@@ -38,6 +39,14 @@ public class utilsRequest extends JsonObjectRequest {
 
 
 
+
+    }
+
+    @Override
+    public Map<String, String> getHeaders() throws AuthFailureError {
+        Map<String, String> params = new HashMap<String, String>();
+        params.put("Content-Type", "application/json");
+        return params;
     }
 
     public static utilsRequest loginRequest(String username, String password, String intento, Response.Listener<JSONObject> listener) {
