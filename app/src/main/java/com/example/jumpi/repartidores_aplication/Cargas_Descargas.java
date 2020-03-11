@@ -6,11 +6,6 @@ import android.content.DialogInterface;
 import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
-import android.support.v7.app.AlertDialog;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -27,6 +22,13 @@ import android.widget.ScrollView;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.android.material.snackbar.Snackbar;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -551,6 +553,7 @@ public class Cargas_Descargas extends AppCompatActivity {
 
                 builder.setPositiveButton("Eliminar Tanda", new DialogInterface.OnClickListener() {
 
+                    @SuppressLint("RestrictedApi")
                     public void onClick(DialogInterface dialog, int id) {
 
 
@@ -2805,6 +2808,7 @@ public void ObtenerNuevoArticulo(String ValorElementoSeleccionadoSpinnerPrograma
 
         MenuItem BotonGuardar;
 
+        @SuppressLint("RestrictedApi")
         @Override
         public boolean onCreateOptionsMenu (Menu menu){
             // Inflate the menu; this adds items to the action bar if it is present.
@@ -2927,6 +2931,7 @@ public void ObtenerNuevoArticulo(String ValorElementoSeleccionadoSpinnerPrograma
 
 
                 builder.setPositiveButton("SI", new DialogInterface.OnClickListener() {
+                    @SuppressLint("RestrictedApi")
                     public void onClick(DialogInterface dialog, int id) {
 
 

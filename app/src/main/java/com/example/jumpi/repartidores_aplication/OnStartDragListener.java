@@ -1,6 +1,7 @@
 package com.example.jumpi.repartidores_aplication;
 
-import android.support.v7.widget.RecyclerView;
+
+import androidx.recyclerview.widget.RecyclerView;
 
 public interface OnStartDragListener {
 

@@ -12,7 +12,7 @@
     tools:context=".RealizarVentasClientesSupervisor">
 
 
-    <android.support.v7.widget.Toolbar
+    <androidx.appcompat.widget.Toolbar
 
         android:id="@+id/toolbar_ventas_supervisor"
         android:layout_width="match_parent"
@@ -20,7 +20,7 @@
         android:background="#d50000"
         app:subtitleTextAppearance="@style/TextAppearance.AppCompat.Body1">
 
-    </android.support.v7.widget.Toolbar>
+    </androidx.appcompat.widget.Toolbar>
 
 
     <ScrollView

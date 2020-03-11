@@ -9,11 +9,7 @@ import android.graphics.Color;
 import android.graphics.ColorFilter;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
-import android.support.v7.app.AlertDialog;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
+
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -32,6 +28,13 @@ import android.widget.ScrollView;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.android.material.snackbar.Snackbar;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -183,6 +186,7 @@ public class EntregaRetiroEnvasesPatrocinio extends AppCompatActivity {
 
 
 
+    @SuppressLint("RestrictedApi")
     public void CargarVistasEventoHabilitado(){
 
 
@@ -925,6 +929,7 @@ public class EntregaRetiroEnvasesPatrocinio extends AppCompatActivity {
 
             builder.setPositiveButton("Eliminar Vuelta", new DialogInterface.OnClickListener() {
 
+                @SuppressLint("RestrictedApi")
                 public void onClick(DialogInterface dialog, int id) {
 
 
