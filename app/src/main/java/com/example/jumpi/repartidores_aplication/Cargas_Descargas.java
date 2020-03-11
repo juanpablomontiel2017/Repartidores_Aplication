@@ -533,11 +533,35 @@ public class Cargas_Descargas extends AppCompatActivity {
                             if (jsonData.has("tandas")) {
 
 
-                                JSONArray jsonResultado = jsonData.getJSONArray("resultado");
+                                JSONArray jsonArrayResultado = jsonData.getJSONArray("tandas");
+                                
 
-                                String resultado = jsonResultado.getString(0);
 
-                                Log.d("TFSB", "Resultado: "+resultado);
+                                for (int i = 0; i < jsonArrayResultado.length(); i++) {
+                                    JSONObject tanda = null;
+                                    try{
+                                        tanda = jsonArrayResultado.getJSONObject(i);
+                                        String idCarga = tanda.getString("idCarga");
+                                        JSONObject detalleCarga = tanda.getJSONObject("detalleCarga");
+                                        if (detalleCarga.has("id")){
+                                            JSONArray idsDetalleCarga = detalleCarga.getJSONArray("id");
+                                            for (int j = 0; i < idsDetalleCarga.length(); i++) {
+                                                // Recorre los id de los detalle de carga
+
+                                            }
+
+                                        }
+
+                                    }
+                                    catch (JSONException e) {
+                                    e.printStackTrace();
+                                    Log.d("TAG", "Error en response Carga Descarga. Falla en la lectura de la tanda" + e.toString());
+                                    Log.d("TAG", "Resultado: "+tanda);
+                                    }
+
+                                }
+
+                                
                             }
 
                             }else{
@@ -545,7 +569,7 @@ public class Cargas_Descargas extends AppCompatActivity {
                         }
 
                     }catch (JSONException a){
-                        Log.e("TSFB", "Parser JSON DIA DATOS  " + a.toString());
+                        Log.e("TAG", "Error en response Carga Descarga " + a.toString());
 
                     }
                 }

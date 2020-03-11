@@ -16,21 +16,10 @@ import java.util.Map;
 
 public class utilsRequest extends JsonObjectRequest {
 /**
-    private JSONObject params;
-
-
-    public JSONObject getParams() {
-
-        return params;
-    }
-
-    public void setParams(JSONObject params) {
-        this.params = params;
-    }
-
-*/
-
-
+ * Esta clase maneja todos las solicitudes al servidor
+ * Establece la forma y tipos de datos requeridos para conectarse con la api
+ * Utiliza Json para comunicarse con la api
+ * */
 
 
     private utilsRequest( String url, JSONObject params,  Response.Listener<JSONObject> listener, Response.ErrorListener errorListener) {
@@ -41,6 +30,11 @@ public class utilsRequest extends JsonObjectRequest {
 
 
     }
+
+    /**
+     * Cambia el content type del header a aplication json como
+     * espera la api
+     * */
 
     @Override
     public Map<String, String> getHeaders() throws AuthFailureError {
@@ -57,7 +51,6 @@ public class utilsRequest extends JsonObjectRequest {
 
         JSONObject parametro = new JSONObject();
 
-        //parametro = new HashMap<>();
         try {
             parametro.put("usuario", username);
             parametro.put("contraseña", password);
@@ -86,16 +79,15 @@ public class utilsRequest extends JsonObjectRequest {
         utilsRequest request;
 
 
-        //Map params;
+
         JSONObject params = new JSONObject();
-        //params = new HashMap<>();
+
         try {
             params.put("idSupervisor", idSupervisor);
             params.put("dniSupervisor", dniSupervisor);
             params.put("fecha", fecha);
             params.put("idRepartidor", idRepartidor);
             params.put("dniRepartidor", dniRepartidor);
-
             params.put("tandas", arrayTandas);
         } catch (JSONException e) {
             e.printStackTrace();
