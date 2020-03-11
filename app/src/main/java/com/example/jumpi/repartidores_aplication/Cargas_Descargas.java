@@ -517,9 +517,9 @@ public class Cargas_Descargas extends AppCompatActivity {
             String idSupervisor = usuario.getIdPersona();
 
 
-            Response.Listener<String> responseListener = new Response.Listener<String>() {
+            Response.Listener<JSONObject> responseListener = new Response.Listener<JSONObject>() {
                 @Override
-                public void onResponse(String response) {
+                public void onResponse(JSONObject response) {
                     Log.d("TFSB", "response del server");
 
                     try{

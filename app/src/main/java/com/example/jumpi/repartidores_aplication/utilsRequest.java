@@ -4,51 +4,61 @@ import android.util.Log;
 
 import com.android.volley.Request;
 import com.android.volley.Response;
-import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.JsonObjectRequest;
 
 import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.util.HashMap;
 import java.util.Map;
 
-public class utilsRequest extends StringRequest {
+public class utilsRequest extends JsonObjectRequest {
+/**
+    private JSONObject params;
 
-    @Override
-    public Map<String, String> getParams() {
+
+    public JSONObject getParams() {
+
         return params;
     }
 
-    public void setParams(Map<String, String> params) {
+    public void setParams(JSONObject params) {
         this.params = params;
     }
 
-    private Map<String, String> params;
+*/
 
 
 
 
-    private utilsRequest(int method, String url, Response.Listener<String> listener, Response.ErrorListener errorListener, Map<String, String> params) {
-        super(method, url, listener, errorListener);
-        this.setParams(params);
+    private utilsRequest( String url, JSONObject params,  Response.Listener<JSONObject> listener, Response.ErrorListener errorListener) {
+        super(url, params, listener, errorListener);
+        //this.setParams(params);
 
 
 
     }
 
-    public static utilsRequest loginRequest(String username, String password, String intento, Response.Listener<String> listener) {
+    public static utilsRequest loginRequest(String username, String password, String intento, Response.Listener<JSONObject> listener) {
 
         String dirServer = vault.DIR_SERVER+vault.LOGIN_REQUEST;
         utilsRequest request;
 
 
-        Map<String, String> parametro;
+        JSONObject parametro = new JSONObject();
 
-        parametro = new HashMap<>();
-        parametro.put("usuario", username);
-        parametro.put("contraseña", password);
-        parametro.put("intento", intento);
+        //parametro = new HashMap<>();
+        try {
+            parametro.put("usuario", username);
+            parametro.put("contraseña", password);
+            parametro.put("intento", intento);
 
-        request = new utilsRequest(Request.Method.POST, dirServer, listener, null, parametro);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+        request = new utilsRequest(dirServer, parametro, listener, null );
 
         return request;
 
@@ -61,25 +71,30 @@ public class utilsRequest extends StringRequest {
                                              String idRepartidor,
                                              String dniRepartidor,
                                              JSONArray arrayTandas,
-                                             Response.Listener<String> listener) {
+                                             Response.Listener<JSONObject> listener) {
 
         String dirServer = vault.DIR_SERVER+vault.CARGA_DESCARGA_REQUEST;
         utilsRequest request;
 
 
-        Map params;
+        //Map params;
+        JSONObject params = new JSONObject();
+        //params = new HashMap<>();
+        try {
+            params.put("idSupervisor", idSupervisor);
+            params.put("dniSupervisor", dniSupervisor);
+            params.put("fecha", fecha);
+            params.put("idRepartidor", idRepartidor);
+            params.put("dniRepartidor", dniRepartidor);
 
-        params = new HashMap<>();
-        params.put("idSupervisor", idSupervisor);
-        params.put("dniSupervisor", dniSupervisor);
-        params.put("fecha", fecha);
-        params.put("idRepartidor", idRepartidor);
-        params.put("dniRepartidor", dniRepartidor);
-
-        params.put("tandas", arrayTandas);
+            params.put("tandas", arrayTandas);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
 
 
-        request = new utilsRequest(Request.Method.POST, dirServer, listener, null, params);
+
+        request = new utilsRequest(dirServer, params, listener, null);
         Log.d("TFSB", "retorna request");
         return request;
 
