@@ -3850,7 +3850,12 @@ public class EntregaRetiroEnvasesPatrocinio extends AppCompatActivity {
                             /*Llamada a la función: */
                             CambiarEstadoDeEvento(false);
 
-                            DimensionArrayNuevasVuelt
+
+                            SharedPreferences sharedPreferences = getSharedPreferences("Datos_Patrocinio_Supervisor", MODE_PRIVATE);
+                            SharedPreferences.Editor editor = sharedPreferences.edit();
+
+                            editor.putString("Indice_Evento" + Indice_Evento + "DimensionArrayNuevasVueltas", String.valueOf(ArrayListVueltas.size()));
+                            editor.commit();
 
                             Intent intent = new Intent(EntregaRetiroEnvasesPatrocinio.this, BuscarResponsableParaPatrocinio.class);
 
