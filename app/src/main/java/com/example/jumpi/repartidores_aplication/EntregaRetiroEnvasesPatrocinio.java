@@ -2360,6 +2360,114 @@ public class EntregaRetiroEnvasesPatrocinio extends AppCompatActivity {
 
 
 
+            /***** Usuario: SUPERVISOR *****/
+            else {
+
+                View NuevaVueltaInflada;
+
+                /*Llamada a la función: */
+                NuevaVueltaInflada = AgregarNuevaVuelta();
+
+                ArrayListVueltas.add(NuevaVueltaInflada);
+
+
+
+                final LinearLayout LinearLayoutVerticalProgramaticoConBorde = (LinearLayout) findViewById(R.id.llv_contenedor_para_bordes_erep);
+                LinearLayoutVerticalProgramaticoConBorde.setBackground(getDrawable(R.drawable.borde_linear_layout_evento_deshabilitado));
+
+
+                final LinearLayout LinearLayoutSegundaTuplaProgramatica_Patrocinio = (LinearLayout) findViewById(R.id.layout_horizontal_segunda_tupla_erep);
+                LinearLayoutSegundaTuplaProgramatica_Patrocinio.setBackgroundColor(Color.parseColor("#616161"));
+
+
+                final LinearLayout LinearLayoutTercerTuplaProgramatica_Patrocinio = (LinearLayout) NuevaVueltaInflada.findViewById(R.id.layout_vertical_tercer_tupla_erep);
+
+
+
+                TextView textViewNuevaVuelta = (TextView) NuevaVueltaInflada.findViewById(R.id.vuelta_erep);
+                textViewNuevaVuelta.setBackgroundColor(Color.parseColor("#424242"));
+                vuelta_numero++;
+                textViewNuevaVuelta.setText("Vuelta N°: " + vuelta_numero);
+
+
+
+
+
+                final ImageButton btnAgregarNuevoArticuloParaLaNuevaVuelta = (ImageButton) NuevaVueltaInflada.findViewById(R.id.add_art_erep);
+
+                btnAgregarNuevoArticuloParaLaNuevaVuelta.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+
+
+                        ValidarCamposParaAñadirNuevoArticuloPatrocinio(LinearLayoutTercerTuplaProgramatica_Patrocinio);
+
+
+                    }
+                });
+
+
+
+
+
+
+                final EditText et_entrega_nueva_vuelta = (EditText) NuevaVueltaInflada.findViewById(R.id.edtx_entrega_erep);
+                et_entrega_nueva_vuelta.requestFocus();
+
+
+                et_entrega_nueva_vuelta.setText(ValorSeteadoDelEditTextEntregaDeArticulosParaNuevaVuelta);
+
+
+
+
+
+
+
+
+                final EditText et_retiro_nueva_vuelta = (EditText) NuevaVueltaInflada.findViewById(R.id.edtx_retiro_erep);
+
+                et_retiro_nueva_vuelta.setText(ValorSeteadoDelEditTextRetiroDeArticulosParaNuevaVuelta);
+
+
+
+
+
+
+
+
+
+                final Spinner spinner_fijo_nueva_vuelta = (Spinner) NuevaVueltaInflada.findViewById(R.id.sp_art_erep);
+
+
+                Utils_Spinner.contador_de_inicializacion = 0;
+
+
+
+
+
+                /*Llamada a la función: */
+                setSpinner(spinner_fijo_nueva_vuelta, et_entrega_nueva_vuelta,true);
+
+
+
+
+
+                ArticuloSeleccionadoAnterior = spinner_fijo_nueva_vuelta.getSelectedItem().toString();
+
+
+                spinner_fijo_nueva_vuelta.setSelection(Utils_Spinner.ObtenerPosicionDelElementoEnElSpinner(ValorElementoSeleccionadoSpinnerFijo,spinner_fijo_nueva_vuelta));
+
+
+                ArticuloSeleccionadoAnterior = spinner_fijo_nueva_vuelta.getSelectedItem().toString();
+
+            }/****** FIN DEL else (usuario: SUPERVISOR ******/
+
+
+
+
+
+
+
 
         } /********** FIN DEL else (Evento Cerrado)**/
 
@@ -3849,13 +3957,6 @@ public class EntregaRetiroEnvasesPatrocinio extends AppCompatActivity {
 
                             /*Llamada a la función: */
                             CambiarEstadoDeEvento(false);
-
-
-                            SharedPreferences sharedPreferences = getSharedPreferences("Datos_Patrocinio_Supervisor", MODE_PRIVATE);
-                            SharedPreferences.Editor editor = sharedPreferences.edit();
-
-                            editor.putString("Indice_Evento" + Indice_Evento + "DimensionArrayNuevasVueltas", String.valueOf(ArrayListVueltas.size()));
-                            editor.commit();
 
                             Intent intent = new Intent(EntregaRetiroEnvasesPatrocinio.this, BuscarResponsableParaPatrocinio.class);
 
