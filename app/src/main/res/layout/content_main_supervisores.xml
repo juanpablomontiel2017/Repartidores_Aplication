@@ -16,8 +16,8 @@
 
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
 
-    tools:context=".MainActivity"
-    tools:showIn="@layout/activity_main">
+    tools:context=".MainActivitySupervisores"
+    tools:showIn="@layout/activity_main_supervisores">
 
 
     <LinearLayout

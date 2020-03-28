@@ -15,7 +15,7 @@ import android.widget.LinearLayout;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivitySupervisores extends AppCompatActivity {
 
 
 
@@ -23,9 +23,6 @@ public class MainActivity extends AppCompatActivity {
 
 
 
-
-
-    /***VARIABLES TIPO LinearLayout ****/
 
     LinearLayout LinearLayoutVerticalCargaDescarga;
 
@@ -37,10 +34,6 @@ public class MainActivity extends AppCompatActivity {
 
 
 
-
-
-    /***VARIABLES TIPO String ****/
-
     String nombre_apellido_cliente = "Montiel Juan Pablo";
 
     String direccion_cliente = "Calle 22 entre 11 y 13";
@@ -49,7 +42,7 @@ public class MainActivity extends AppCompatActivity {
 
 
 
-    /***VARIABLES TIPO ImageButton ****/
+
 
     ImageButton img_btn_carga_descarga;
 
@@ -65,7 +58,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_main_supervisores);
 
 
 
@@ -97,7 +90,7 @@ public class MainActivity extends AppCompatActivity {
         @Override
         public void onClick(View v) {
 
-            Intent intent = new Intent (MainActivity.this, EleccionRepartidores.class);
+            Intent intent = new Intent (MainActivitySupervisores.this, EleccionRepartidores.class);
 
             intent.putExtra("activity","Carga_Descarga");
 
@@ -114,7 +107,7 @@ public class MainActivity extends AppCompatActivity {
         public void onClick(View v) {
 
 
-            Intent intent = new Intent (MainActivity.this, EleccionRepartidores.class);
+            Intent intent = new Intent (MainActivitySupervisores.this, EleccionRepartidores.class);
 
             intent.putExtra("activity","Carga_Descarga");
 
@@ -136,7 +129,7 @@ public class MainActivity extends AppCompatActivity {
         public void onClick(View v) {
 
 
-            Intent intent = new Intent (MainActivity.this, OpcionesEstadisticas.class);
+            Intent intent = new Intent (MainActivitySupervisores.this, OpcionesEstadisticas.class);
 
             startActivity(intent);
 
@@ -152,7 +145,7 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
 
 
-                Intent intent = new Intent (MainActivity.this, OpcionesEstadisticas.class);
+                Intent intent = new Intent (MainActivitySupervisores.this, OpcionesEstadisticas.class);
 
                 startActivity(intent);
 
@@ -175,7 +168,7 @@ public class MainActivity extends AppCompatActivity {
         public void onClick(View v) {
 
 
-            Intent intent = new Intent (MainActivity.this, RealizarVentasClientesSupervisor.class);
+            Intent intent = new Intent (MainActivitySupervisores.this, RealizarVentasClientesSupervisor.class);
 
             intent.putExtra("Nombre_Apellido_Cliente_Supervisor",nombre_apellido_cliente);
 
@@ -202,11 +195,9 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
 
 
-                Intent intent = new Intent (MainActivity.this, RealizarVentasClientesSupervisor.class);
+                Intent intent = new Intent (MainActivitySupervisores.this, RealizarVentasClientesSupervisor.class);
 
 
-
-                //ESTO DEJARLO COMO COMENTARIO POR EL MOMENTO
 
                 intent.putExtra("Nombre_Apellido_Cliente_Supervisor",nombre_apellido_cliente);
 
@@ -233,7 +224,7 @@ public class MainActivity extends AppCompatActivity {
         public void onClick(View v) {
 
 
-                Intent intent = new Intent (MainActivity.this, Mapa_Supervisores.class);
+                Intent intent = new Intent (MainActivitySupervisores.this, Mapa_Supervisores.class);
 
                 startActivity(intent);
 
@@ -255,7 +246,7 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
 
 
-                Intent intent = new Intent (MainActivity.this, Mapa_Supervisores.class);
+                Intent intent = new Intent (MainActivitySupervisores.this, Mapa_Supervisores.class);
 
                 startActivity(intent);
 
@@ -297,7 +288,7 @@ public class MainActivity extends AppCompatActivity {
 
 
 
-                    Intent intent = new Intent (MainActivity.this, BuscarResponsableParaPatrocinio.class);
+                    Intent intent = new Intent (MainActivitySupervisores.this, BuscarResponsableParaPatrocinio.class);
 
                     startActivity(intent);
 
@@ -312,7 +303,7 @@ public class MainActivity extends AppCompatActivity {
 
 
 
-            Intent intent = new Intent (MainActivity.this, AgregarCliente.class);
+            Intent intent = new Intent (MainActivitySupervisores.this, AgregarCliente.class);
 
             startActivity(intent);
 

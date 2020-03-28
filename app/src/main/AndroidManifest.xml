@@ -28,13 +28,13 @@
             android:label=""
             android:theme="@style/AppTheme.NoActionBar">
 
-            <!--
+
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-            -->
+
 
         </activity> <!-- #################### Para REPARTIDORES ########################### -->
         <activity
@@ -42,30 +42,32 @@
             android:label=" "
             android:parentActivityName=".LoginActivity"
             android:theme="@style/AppTheme.NoActionBar">
-          <intent-filter>
-              <action android:name="android.intent.action.MAIN" />
 
-              <category android:name="android.intent.category.LAUNCHER" />
-          </intent-filter>
+            <!--
+            <intent-filter>
+                 <action android:name="android.intent.action.MAIN" />
 
-      </activity>
+                 <category android:name="android.intent.category.LAUNCHER" />
+             </intent-filter> -->
+
+         </activity>
 
 
 
-      <activity
-          android:name=".Mapa_Repartidores"
-          android:label=""
-          android:parentActivityName=".Repartidores_Main_Activity"
-          android:theme="@style/AppTheme.NoActionBar">
+         <activity
+             android:name=".Mapa_Repartidores"
+             android:label=""
+             android:parentActivityName=".Repartidores_Main_Activity"
+             android:theme="@style/AppTheme.NoActionBar">
 
-        <!--
+           <!--
 
-      <intent-filter>
-          <action android:name="android.intent.action.MAIN" />
+         <intent-filter>
+             <action android:name="android.intent.action.MAIN" />
 
-          <category android:name="android.intent.category.LAUNCHER" />
-      </intent-filter>
--->
+             <category android:name="android.intent.category.LAUNCHER" />
+         </intent-filter>
+   -->
 
   </activity>
 
@@ -95,20 +97,22 @@
   <activity
       android:name=".Detalle_Faltante_Sobrante_Envases"
       android:label=""
-      android:theme="@style/AppTheme.NoActionBar" /> <!-- ########################## Para SUPERVISORES ########################### -->
+      android:theme="@style/AppTheme.NoActionBar" />
+
+
+        <!-- ########################## Para SUPERVISORES ########################### -->
         <activity
-            android:name=".MainActivity"
+            android:name=".MainActivitySupervisores"
             android:label=" "
             android:parentActivityName=".LoginActivity"
             android:theme="@style/AppTheme.NoActionBar">
 
-            <!--
-                                    <intent-filter>
+
+                                 <!--   <intent-filter>
                                         <action android:name="android.intent.action.MAIN" />
 
                                         <category android:name="android.intent.category.LAUNCHER" />
-                                    </intent-filter>
-            -->
+                                    </intent-filter> -->
 
         </activity>
         <activity
@@ -127,7 +131,7 @@
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".BuscarResponsableParaPatrocinio"
-            android:label="Buscar"
+            android:label=""
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".EntregaRetiroEnvasesPatrocinio"

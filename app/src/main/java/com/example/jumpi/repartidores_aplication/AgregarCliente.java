@@ -73,7 +73,7 @@ public class AgregarCliente extends AppCompatActivity {
 
 
         /* Para cambiar el color del puntero o "burbuja" del EditText */
-        setTheme(R.style.AppTheme_Cursor);
+        setTheme(R.style.AppTheme_CursorSupervisor);
 
 
 

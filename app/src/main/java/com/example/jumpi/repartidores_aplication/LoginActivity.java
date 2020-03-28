@@ -48,65 +48,16 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
 
 
 
+    /*************** DECLARACIÓN DE VARIABLES GLOBALES **************/
 
     private static final int REQUEST_READ_CONTACTS = 0;
 
     ArrayList<Usuario> ListaUsuario = new ArrayList<>();
 
 
-
-
-
-
-
-    /**********************************************************************************************/
-    /**********************************************************************************************/
-    /**********************************************************************************************/
-    /**********************************************************************************************/
-    /**********************************************************************************************/
-    /**********************************************************************************************/
-    /**********************************************************************************************/
-    /**********************************************************************************************/
-    /**********************************************************************************************/
-    /**********************************************************************************************/
-
-
-
-    private static final String[] DUMMY_CREDENTIALS = new String[]{
-            "foo@example.com:hello", "bar@example.com:world"
-    };
-
-
-
-
-
-    /**********************************************************************************************/
-    /**********************************************************************************************/
-    /**********************************************************************************************/
-    /**********************************************************************************************/
-    /**********************************************************************************************/
-    /**********************************************************************************************/
-    /**********************************************************************************************/
-    /**********************************************************************************************/
-    /**********************************************************************************************/
-    /**********************************************************************************************/
-
-
-
-
-
-
-
-
-
-
     private UserLoginTask mAuthTask = null;
     private DbUserLogin mAuthDb = null;
     private boolean flag = false;
-
-
-
-
 
 
 
@@ -120,8 +71,6 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
 
 
 
-
-
     /**********************************************************************************************/
     /**********************************************************************************************/
     /**********************************************************************************************/
@@ -138,11 +87,13 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
 
 
 
+    private static final String[] DUMMY_CREDENTIALS = new String[]{
+            "foo@example.com:hello", "bar@example.com:world"
+    };
 
 
 
-
-    /******************COMIENZO DEL onCreate()**************************/
+    /****************** COMIENZO DEL onCreate()**************************/
 
 
     @Override
@@ -154,9 +105,6 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-
-
-
 
 
         // Set up the login form.
@@ -476,13 +424,6 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
 
 
 
-
-
-
-
-
-
-
     /**
      * Callback received when a permissions request has been completed.
      */
@@ -521,10 +462,6 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
     /**********************************************************************************************/
     /**********************************************************************************************/
     /**********************************************************************************************/
-
-
-
-
 
 
 
@@ -1024,8 +961,6 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
 
             Response.Listener<String> responseListener = new Response.Listener<String>() {
                 // Se realiza una acción cuando se recibe el response
-
-
                 @Override
                 public void onResponse(String response) {
 
@@ -1074,11 +1009,11 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
 
 
                                 /*Llamada a la función: */
-                                LeerClientesDelResponse(jsonData,lunes,martes,miercoles,jueves
+                           /*     LeerClientesDelResponse(jsonData,lunes,martes,miercoles,jueves
                                                         ,viernes,sabado,id,dni,msj, mEmail,mPassword);
 
 
-
+*/
                                 // Ingresas a otra activity de la app. Logueo exitoso
 
 
@@ -1211,13 +1146,13 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
 
 
 
-
+/*
 
                                 String dia = UtilidadFecha.getNombreDelDia();
 
                                 bundle.putString("dia",dia);
 
-
+*/
 
 
 
@@ -1246,7 +1181,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
                                     // Crear el intent y pasar a una activity supervisor
 
 
-                                    Intent myIntent = new Intent(LoginActivity.this,MainActivity.class);
+                                    Intent myIntent = new Intent(LoginActivity.this, MainActivitySupervisores.class);
 
 
                                     Bundle bundle = new Bundle();
@@ -1344,12 +1279,6 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
 
 
 
-
-
-
-
-
-
     /**********************************************************************************************/
     /**********************************************************************************************/
     /**********************************************************************************************/
@@ -1360,11 +1289,6 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
     /**********************************************************************************************/
     /**********************************************************************************************/
     /**********************************************************************************************/
-
-
-
-
-
 
 
 
@@ -1434,8 +1358,6 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
 
             Response.Listener<String> responseListener = new Response.Listener<String>() {
                 // Se realiza una acción cuando se recibe el response
-
-
                 @Override
                 public void onResponse(String response) {
 
@@ -1641,12 +1563,12 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
 
                                 Bundle bundle = new Bundle();
 
-
+/*
                                 String dia = UtilidadFecha.getNombreDelDia();
 
 
                                 bundle.putString("dia",dia);
-
+*/
 
                                 myIntent.putExtras(bundle);
 
@@ -1679,7 +1601,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
 
                                     // Crear el intent y pasar a una activity supervisor
 
-                                    Intent myIntent = new Intent(LoginActivity.this,MainActivity.class);
+                                    Intent myIntent = new Intent(LoginActivity.this, MainActivitySupervisores.class);
 
 
                                     Bundle bundle = new Bundle();
@@ -2246,7 +2168,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
                                     // Crea el intent y pasar a una activity supervisor
 
 
-                                    Intent myIntent = new Intent(LoginActivity.this,MainActivity.class);
+                                    Intent myIntent = new Intent(LoginActivity.this, MainActivitySupervisores.class);
 
 
                                     Bundle bundle = new Bundle();

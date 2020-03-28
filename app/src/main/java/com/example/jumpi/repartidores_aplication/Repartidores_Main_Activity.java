@@ -9,7 +9,6 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 
@@ -24,8 +23,6 @@ import androidx.fragment.app.FragmentPagerAdapter;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.tabs.TabLayout;
-import com.mapbox.mapboxsdk.Mapbox;
-import com.mapbox.mapboxsdk.maps.MapboxMap;
 
 
 public class Repartidores_Main_Activity extends AppCompatActivity {
@@ -68,7 +65,7 @@ public class Repartidores_Main_Activity extends AppCompatActivity {
 
         super.onCreate(savedInstanceState);
 
-        setContentView(R.layout.repartidores_activity_main);
+        setContentView(R.layout.activity_main_repartidores);
 
 
 

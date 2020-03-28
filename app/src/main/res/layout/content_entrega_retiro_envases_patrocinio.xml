@@ -216,36 +216,30 @@
                         </Spinner>
 
 
-
-
-
-
                         <EditText
 
-                            android:layout_weight="1"
                             android:id="@+id/edtx_entrega_erep"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
+                            android:layout_weight="1"
                             android:gravity="center"
                             android:hint="Cantidad"
                             android:imeOptions="actionNext"
-                            android:inputType="number" />
-
-
-
-
+                            android:inputType="number"
+                            android:textCursorDrawable="@color/colorCursorSupervisores" />
 
 
                         <EditText
 
-                            android:layout_weight="1"
                             android:id="@+id/edtx_retiro_erep"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
+                            android:layout_weight="1"
                             android:gravity="center"
                             android:hint="Cantidad"
                             android:imeOptions="actionNext"
-                            android:inputType="number" />
+                            android:inputType="number"
+                            android:textCursorDrawable="@color/colorCursorSupervisores" />
 
 
 

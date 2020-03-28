@@ -282,7 +282,7 @@
 
 
 
-            </LinearLayout> <!--Fin del llv_datos_personales_responsable_nuevo_evento_patrocinio_supervisor -->
+            </LinearLayout> <!--Fin del llv_datos_personales_responsable_nuevo_evento_patrocinio -->
 
 
             <!--##############################################################################-->
@@ -424,7 +424,7 @@
                         android:textColorHint="#e0e0e0"
                         android:textSize="25sp"
                         android:textStyle="bold"
-                        android:textCursorDrawable="@color/colorCursorSupervisoresNuevoEvento"/>
+                        android:textCursorDrawable="@color/colorCursorNuevoEvento"/>
 
                 </LinearLayout>
 
@@ -501,7 +501,7 @@
                         android:textColorHint="#e0e0e0"
                         android:textSize="25sp"
                         android:textStyle="bold"
-                        android:textCursorDrawable="@color/colorCursorSupervisoresNuevoEvento"/>
+                        android:textCursorDrawable="@color/colorCursorNuevoEvento"/>
 
                 </LinearLayout>
 
@@ -576,7 +576,7 @@
                         android:textColorHint="#e0e0e0"
                         android:textSize="25sp"
                         android:textStyle="bold"
-                        android:textCursorDrawable="@color/colorCursorSupervisoresNuevoEvento"/>
+                        android:textCursorDrawable="@color/colorCursorNuevoEvento"/>
 
                 </LinearLayout>
 
@@ -598,7 +598,7 @@
 
                 <LinearLayout
 
-                    android:id="@+id/llh_referencia_nuevo_evento_patrocinio_supervisor"
+                    android:id="@+id/llh_referencia_nuevo_evento_patrocinio"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_marginLeft="10dp"
@@ -654,7 +654,7 @@
                         android:textColorHint="#e0e0e0"
                         android:textSize="25sp"
                         android:textStyle="bold"
-                        android:textCursorDrawable="@color/colorCursorSupervisoresNuevoEvento"/>
+                        android:textCursorDrawable="@color/colorCursorNuevoEvento"/>
 
 
 
@@ -719,13 +719,9 @@
                     </View>
 
 
-
-
-
-
                     <EditText
 
-                        android:id="@+id/et_fecha_inicio_nuevo_evento_patrocinio"
+                        android:id="@+id/nuevo_evento_patrocinio_et_fecha_inicio"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
@@ -733,13 +729,15 @@
                         android:layout_weight="1"
                         android:gravity="center"
                         android:hint="(Obligatorio)"
-                        android:inputType="datetime"
+                        android:inputType="date"
+                        android:focusable="false"
+                        android:clickable="true"
                         android:maxLength="10"
                         android:textColor="#FFFF"
                         android:textColorHint="#e0e0e0"
+                        android:textCursorDrawable="@color/colorCursorNuevoEvento"
                         android:textSize="25sp"
-                        android:textStyle="bold"
-                        android:textCursorDrawable="@color/colorCursorSupervisoresNuevoEvento"/>
+                        android:textStyle="bold" />
 
 
                 </LinearLayout>
@@ -803,10 +801,9 @@
                     </View>
 
 
-
                     <EditText
 
-                        android:id="@+id/et_fecha_fin_nuevo_evento_patrocinio"
+                        android:id="@+id/nuevo_evento_patrocinio_et_fecha_fin"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
@@ -814,13 +811,15 @@
                         android:layout_weight="1"
                         android:gravity="center"
                         android:hint="(Obligatorio)"
-                        android:inputType="datetime"
+                        android:inputType="date"
+                        android:focusable="false"
+                        android:clickable="true"
                         android:maxLength="10"
                         android:textColor="#FFFF"
                         android:textColorHint="#e0e0e0"
+                        android:textCursorDrawable="@color/colorCursorNuevoEvento"
                         android:textSize="25sp"
-                        android:textStyle="bold"
-                        android:textCursorDrawable="@color/colorCursorSupervisoresNuevoEvento"/>
+                        android:textStyle="bold" />
 
 
                 </LinearLayout>
@@ -878,10 +877,10 @@
                 </LinearLayout>
 
 
-            </LinearLayout> <!--Fin del llv_datos_nuevo_evento_patrocinio_supervisor -->
+            </LinearLayout> <!--Fin del llv_datos_nuevo_evento_patrocinio -->
 
 
-        </LinearLayout> <!--Fin del parent_llv_activity_nuevo_evento_patrocinio_supervisor  -->
+        </LinearLayout> <!--Fin del parent_llv_activity_nuevo_evento_patrocinio  -->
 
 
     </ScrollView>

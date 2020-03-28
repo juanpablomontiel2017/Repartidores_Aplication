@@ -1,7 +1,6 @@
 package com.example.jumpi.repartidores_aplication;
 
 import android.app.DatePickerDialog;
-import android.app.Dialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -12,6 +11,7 @@ import android.text.Editable;
 import android.text.InputFilter;
 import android.text.TextWatcher;
 import android.util.Patterns;
+import android.view.KeyEvent;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
@@ -26,9 +26,9 @@ import android.widget.Toast;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.github.rtoshiro.util.format.SimpleMaskFormatter;
-import com.github.rtoshiro.util.format.text.MaskTextWatcher;
-
+import java.lang.reflect.Field;
+import java.text.DateFormat;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
@@ -85,14 +85,35 @@ public class NuevoResponsablePatrocinio extends AppCompatActivity {
 
 
 
-
-
     final Calendar myCalendar = Calendar.getInstance();
+    final Calendar myCalendar2 = Calendar.getInstance();
 
 
-    private int pYear;
-    private int pMonth;
-    private int pDay;
+    private int pYearFI;
+    private int pYearFF;
+    private int pMonthFI;
+    private int pMonthFF;
+    private int pDayFI;
+    private int pDayFF;
+
+    DatePickerDialog.OnDateSetListener selector_fecha_inicio,selector_fecha_fin;
+
+    DatePickerDialog dialog_fecha_inicio, dialog_fecha_fin;
+
+
+
+
+
+    /***************************************************************/
+    /***************************************************************/
+    /***************************************************************/
+    /***************************************************************/
+    /***************************************************************/
+    /***************************************************************/
+    /***************************************************************/
+    /***************************************************************/
+    /***************************************************************/
+    /***************************************************************/
 
 
 
@@ -109,28 +130,27 @@ public class NuevoResponsablePatrocinio extends AppCompatActivity {
 
 
         /**Añadir "manualmente" color al StatusBar **/
-
         Window window = this.getWindow();
-
         // clear FLAG_TRANSLUCENT_STATUS flag:
         window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
-
         // add FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS flag to the window
         window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
-
         // finally change the color
         window.setStatusBarColor(Color.parseColor("#b71c1c"));
 
 
         /* Para cambiar el color del puntero o "burbuja" del EditText */
-        setTheme(R.style.AppTheme_Cursor);
+        setTheme(R.style.AppTheme_CursorSupervisor);
+
+
+        Usuario usuario = new Usuario();
+        usuario.LeerUsuarioEnUnSharedPreferences(this);
 
 
 
 
 
-        /*Instanciamos los campos de los DATOS PERSONALES del nuevo responsable */
-
+       /*Instanciamos los campos de los DATOS PERSONALES del nuevo responsable */
         et_dni_nuevo_responsable = (EditText) findViewById(R.id.et_dni_nuevo_responsable_formulario_patrocinio_supervisor);
         et_dni_nuevo_responsable.requestFocus();
         et_dni_nuevo_responsable.setBackgroundDrawable(getDrawable(R.drawable.edit_text_material_customizado));
@@ -198,7 +218,6 @@ public class NuevoResponsablePatrocinio extends AppCompatActivity {
 
 
         et_apellido_nuevo_responsable =  (EditText) findViewById(R.id.et_apellido_nuevo_responsable_formulario_patrocinio_supervisor);
-
         et_apellido_nuevo_responsable.setBackgroundDrawable(getDrawable(R.drawable.edit_text_material_customizado));
 
         et_apellido_nuevo_responsable.addTextChangedListener(new TextWatcher() {
@@ -231,13 +250,11 @@ public class NuevoResponsablePatrocinio extends AppCompatActivity {
 
 
         et_codigo_area_nuevo_responsable = (EditText) findViewById(R.id.et_codigo_area_nuevo_responsable_formulario_patrocinio_supervisor);
-
         et_codigo_area_nuevo_responsable.setBackgroundDrawable(getDrawable(R.drawable.edit_text_material_customizado));
 
 
 
         et_telefono_nuevo_responsable = (EditText) findViewById(R.id.et_telefono_nuevo_responsable_formulario_patrocinio_supervisor);
-
         et_telefono_nuevo_responsable.setBackgroundDrawable(getDrawable(R.drawable.edit_text_material_customizado));
 
 
@@ -248,66 +265,6 @@ public class NuevoResponsablePatrocinio extends AppCompatActivity {
         et_telefono_nuevo_responsable.setHint("");
         et_telefono_nuevo_responsable.setText("");
         et_telefono_nuevo_responsable.setBackgroundColor(Color.TRANSPARENT);
-
-
-
-
-
-
-
-        /**Sólo cuando se pierda el foco del ET_CODIGO_AREA, comenzará a comparar si
-         * cada código de area del archivo de texto es correcto **/
-
-        /*
-
-        et_codigo_area_nuevo_responsable.setOnFocusChangeListener(new View.OnFocusChangeListener() {
-            @Override
-            public void onFocusChange(View view, boolean hasFocus) {
-
-                if(!hasFocus){
-
-                    if(Utils_Codigo_Area_Telefonico_Argentina.Prueba(NuevoResponsablePatrocinio.this,et_codigo_area_nuevo_responsable.getText().toString())){
-
-
-                        Drawable myIconCheck = getResources().getDrawable(R.drawable.et_checkgood);
-                        myIconCheck.setBounds(0, 0, myIconCheck.getIntrinsicWidth(), myIconCheck.getIntrinsicHeight());
-                        et_codigo_area_nuevo_responsable.setError("Código de área válido", myIconCheck);
-
-
-                        et_telefono_nuevo_responsable.setFocusableInTouchMode(true);
-                        et_telefono_nuevo_responsable.setCursorVisible(true);
-                        et_telefono_nuevo_responsable.setHint("Obligatorio");
-                        et_telefono_nuevo_responsable.setBackgroundDrawable(getDrawable(R.drawable.edit_text_material_customizado));
-                        et_telefono_nuevo_responsable.setHint(R.string.edittext_hint);
-                        //et_telefono_nuevo_responsable.setError("¡Escriba el número de teléfono!");
-
-
-
-                    } else {
-
-
-                        et_codigo_area_nuevo_responsable.setError("Código de área no válido");
-
-
-                        et_telefono_nuevo_responsable.setFocusable(false);
-                        et_telefono_nuevo_responsable.setCursorVisible(false);
-                        et_telefono_nuevo_responsable.setHint("");
-                        et_telefono_nuevo_responsable.setText("");
-                        et_telefono_nuevo_responsable.setBackgroundColor(Color.TRANSPARENT);
-
-
-                        //et_telefono_nuevo_responsable.setError("¡Escriba un código de área válido!");
-
-
-                    }
-
-                }
-            }
-        });
-
-
-*/
-
 
 
 
@@ -330,43 +287,16 @@ public class NuevoResponsablePatrocinio extends AppCompatActivity {
 
                 ValidarCodigoArea();
 
-                /*
+                if(usuario.getTipo_de_Usuario().equals("repartidor")) {
 
-                if(Utils_Codigo_Area_Telefonico_Argentina.Prueba(NuevoResponsablePatrocinio.this,et_codigo_area_nuevo_responsable.getText().toString())){
+                    et_telefono_nuevo_responsable.setBackgroundDrawable(getDrawable(R.drawable.edit_text_underline_color_repartidor));
 
+                } else{
 
-                    Drawable myIconCheck = getResources().getDrawable(R.drawable.et_checkgood);
-                    myIconCheck.setBounds(0, 0, myIconCheck.getIntrinsicWidth(), myIconCheck.getIntrinsicHeight());
-                    et_codigo_area_nuevo_responsable.setError("Código de área válido", myIconCheck);
-
-
-                    et_telefono_nuevo_responsable.setFocusableInTouchMode(true);
-                    et_telefono_nuevo_responsable.setCursorVisible(true);
-                    et_telefono_nuevo_responsable.setHint("Obligatorio");
                     et_telefono_nuevo_responsable.setBackgroundDrawable(getDrawable(R.drawable.edit_text_material_customizado));
-                    et_telefono_nuevo_responsable.setHint(R.string.edittext_hint);
-
-
-
-                } else {
-
-
-                    et_codigo_area_nuevo_responsable.setError("Código de área no válido");
-
-
-                    et_telefono_nuevo_responsable.setFocusable(false);
-                    et_telefono_nuevo_responsable.setCursorVisible(false);
-                    et_telefono_nuevo_responsable.setHint("");
-                    et_telefono_nuevo_responsable.setText("");
-                    et_telefono_nuevo_responsable.setBackgroundColor(Color.TRANSPARENT);
-
-
 
 
                 }
-
-*/
-
 
 
             }
@@ -398,68 +328,6 @@ public class NuevoResponsablePatrocinio extends AppCompatActivity {
 
 
                     ValidarTelefono();
-
-
-                    /*
-
-
-                    if (et_codigo_area_nuevo_responsable.getText().toString().length() > 0
-                        && et_codigo_area_nuevo_responsable.getText().toString().length() < 3
-                        && et_telefono_nuevo_responsable.getText().toString().length() == 8){
-
-                        setEditTextMaxLength(et_telefono_nuevo_responsable,8);
-
-
-                        Drawable myIconCheck = getResources().getDrawable(R.drawable.et_checkgood);
-                        myIconCheck.setBounds(0, 0, myIconCheck.getIntrinsicWidth(), myIconCheck.getIntrinsicHeight());
-                        et_telefono_nuevo_responsable.setError("Número de teléfono valido", myIconCheck);
-
-
-                    }
-
-
-
-                    else if (et_codigo_area_nuevo_responsable.getText().toString().length() > 2
-                            && et_codigo_area_nuevo_responsable.getText().toString().length() < 4
-                            && et_telefono_nuevo_responsable.getText().toString().length() == 7){
-
-                        setEditTextMaxLength(et_telefono_nuevo_responsable,8);
-
-
-                        Drawable myIconCheck = getResources().getDrawable(R.drawable.et_checkgood);
-                        myIconCheck.setBounds(0, 0, myIconCheck.getIntrinsicWidth(), myIconCheck.getIntrinsicHeight());
-                        et_telefono_nuevo_responsable.setError("Número de teléfono valido", myIconCheck);
-
-
-                    }
-
-
-
-                    else if (et_codigo_area_nuevo_responsable.getText().toString().length() > 3
-                            && et_codigo_area_nuevo_responsable.getText().toString().length() < 5
-                            && et_telefono_nuevo_responsable.getText().toString().length() == 6){
-
-                        setEditTextMaxLength(et_telefono_nuevo_responsable,8);
-
-
-                        Drawable myIconCheck = getResources().getDrawable(R.drawable.et_checkgood);
-                        myIconCheck.setBounds(0, 0, myIconCheck.getIntrinsicWidth(), myIconCheck.getIntrinsicHeight());
-                        et_telefono_nuevo_responsable.setError("Número de teléfono valido", myIconCheck);
-
-
-                    }
-
-
-
-
-
-                    else{
-
-                        et_telefono_nuevo_responsable.setError("¡Número de teléfono no válido!");
-
-                    }
-
-                */
 
                 }
             });
@@ -620,12 +488,6 @@ public class NuevoResponsablePatrocinio extends AppCompatActivity {
 
 
 
-
-
-
-
-
-
         et_direccion_nuevo_responsable = (EditText) findViewById(R.id.et_direccion_nuevo_responsable_formulario_patrocinio_supervisor);
 
         et_direccion_nuevo_responsable.setBackgroundDrawable(getDrawable(R.drawable.edit_text_material_customizado));
@@ -709,38 +571,7 @@ public class NuevoResponsablePatrocinio extends AppCompatActivity {
             @Override
             public void afterTextChanged(Editable s) {
 
-
-
                 ValidarEmail(et_correo_nuevo_responsable);
-
-                /*
-
-                if (s.toString().length() > 0
-                        && ObtenerEmailValido(et_correo_nuevo_responsable.getText().toString())){
-
-
-
-                    Drawable myIconCheck = getResources().getDrawable(R.drawable.et_checkgood);
-                    myIconCheck.setBounds(0, 0, myIconCheck.getIntrinsicWidth(), myIconCheck.getIntrinsicHeight());
-                    et_correo_nuevo_responsable.setError("¡Correo válido!", myIconCheck);
-
-
-                }
-
-
-                else {
-
-
-                    et_correo_nuevo_responsable.setError("¡Correo no válido!");
-
-
-                }
-
-
-
-                 */
-
-
 
             }
         });
@@ -906,163 +737,245 @@ public class NuevoResponsablePatrocinio extends AppCompatActivity {
 
 
 
-
-
-
-
         et_fecha_inicio_del_evento_nuevo_responsable = (EditText) findViewById(R.id.et_nuevo_responsable_fecha_inicio_evento_formulario_patrocinio_supervisor);
 
 
-        final DatePickerDialog.OnDateSetListener date_fecha_inicio = new DatePickerDialog.OnDateSetListener() {
+        if(usuario.getTipo_de_Usuario().equals("repartidor")) {
 
-                @Override
-                public void onDateSet(DatePicker view, int year, int monthOfYear,
-                                  int dayOfMonth) {
+            et_fecha_inicio_del_evento_nuevo_responsable.setBackgroundDrawable(getDrawable(R.drawable.edit_text_underline_color_repartidor));
 
+        } //FIN DEL if(usuario.getTipo_de_Usuario().equals("repartidor"))
 
-                    pYear = year;
-                    pMonth = monthOfYear;
-                    pDay = dayOfMonth;
+        else {
 
+            et_fecha_inicio_del_evento_nuevo_responsable.setBackgroundDrawable(getDrawable(R.drawable.edit_text_material_customizado));
 
-                    // TODO Auto-generated method stub
-                    myCalendar.set(Calendar.YEAR, pYear);
-                    myCalendar.set(Calendar.MONTH,pMonth);
-                    myCalendar.set(Calendar.DAY_OF_MONTH,dayOfMonth);
-                    updateLabelFechaInicio();
-
-
-
-                } /**** Fin del método onDataSet ****/
-
-        }; /*********** Fin del método setOnClickListener ***********/
-
-
-
-        final DatePickerDialog dialog_fecha_inicio = new DatePickerDialog(this, date_fecha_inicio, pYear, pMonth, pDay);
-        dialog_fecha_inicio.getDatePicker().setMinDate(new Date().getTime());
-
-
-
-        et_fecha_inicio_del_evento_nuevo_responsable.setOnClickListener(new View.OnClickListener() {
-
-            @Override
-            public void onClick(View v) {
-
-
-                dialog_fecha_inicio.show();
-
-
-            } /**** Fin del método onClick ****/
-
-
-        }); /*********** Fin del método setOnClickListener ***********/
-
-
-        et_fecha_inicio_del_evento_nuevo_responsable.setBackgroundDrawable(getDrawable(R.drawable.edit_text_material_customizado));
-
-
-
-
-
+        }//FIN DEL else
 
 
 
 
         et_fecha_fin_del_evento_nuevo_responsable = (EditText) findViewById(R.id.et_nuevo_responsable_fecha_fin_evento_formulario_patrocinio);
+        /**Deshabilitar el ET al comienzo solo si la fecha de inicio tiene una fecha seleccionada **/
+        et_fecha_fin_del_evento_nuevo_responsable.setFocusable(false);
+        et_fecha_fin_del_evento_nuevo_responsable.setCursorVisible(false);
+        et_fecha_fin_del_evento_nuevo_responsable.setHint("");
+        et_fecha_fin_del_evento_nuevo_responsable.setText("");
+        et_fecha_fin_del_evento_nuevo_responsable.setBackgroundColor(Color.TRANSPARENT);
 
-        final DatePickerDialog.OnDateSetListener date_fecha_fin = new DatePickerDialog.OnDateSetListener() {
+
+
+
+
+        selector_fecha_fin = new DatePickerDialog.OnDateSetListener() {
 
             @Override
             public void onDateSet(DatePicker view, int year, int monthOfYear,
                                   int dayOfMonth) {
 
 
-                pYear = year;
-                pMonth = monthOfYear;
-                pDay = dayOfMonth;
+
+                pYearFF = year;
+                pMonthFF = monthOfYear;
+                pDayFF = dayOfMonth;
 
 
                 // TODO Auto-generated method stub
-                myCalendar.set(Calendar.YEAR, pYear);
-                myCalendar.set(Calendar.MONTH,pMonth);
-                myCalendar.set(Calendar.DAY_OF_MONTH,dayOfMonth);
+                myCalendar2.set(Calendar.YEAR,pYearFF);
+                myCalendar2.set(Calendar.MONTH,pMonthFF);
+                myCalendar2.set(Calendar.DAY_OF_MONTH,pDayFF);
+
+
+                /*Llamada a la función */
                 updateLabelFechaFin();
-
-
 
 
 
             } /**** Fin del método onDataSet ****/
 
-
-        }; /*********** Fin del método OnDateSetListener ***********/
-
-
-        final DatePickerDialog dialog_fecha_fin = new DatePickerDialog(this, date_fecha_fin, pYear, pMonth, pDay);
-        dialog_fecha_fin.getDatePicker().setMinDate(new Date().getTime());
+        }; /*********** Fin del método setOnClickListener ***********/
 
 
 
 
 
-        et_fecha_fin_del_evento_nuevo_responsable.setOnClickListener(new View.OnClickListener() {
+
+        selector_fecha_inicio = new DatePickerDialog.OnDateSetListener() {
+                @Override
+                public void onDateSet(DatePicker view,  int year, int month,
+                                   int day) {
+
+
+
+                    pYearFI = year;
+                    pMonthFI = month;
+                    pDayFI = day;
+
+
+
+                    // TODO Auto-generated method stub
+                    myCalendar.set(Calendar.YEAR, pYearFI);
+                    myCalendar.set(Calendar.MONTH,pMonthFI);
+                    myCalendar.set(Calendar.DAY_OF_MONTH,pDayFI);
+
+
+                    /*Llamada a la función */
+                    updateLabelFechaInicio();
+
+
+
+
+                    if(usuario.getTipo_de_Usuario().equals("repartidor")) {
+
+                        et_fecha_fin_del_evento_nuevo_responsable.setBackgroundDrawable(getDrawable(R.drawable.edit_text_underline_color_repartidor));
+                        et_fecha_fin_del_evento_nuevo_responsable.setHint("(Obligatorio)");
+
+                        dialog_fecha_fin = new DatePickerDialog(NuevoResponsablePatrocinio.this,
+                                R.style.MyDatePickerStyleRepartidoresNuevoResponsable,selector_fecha_fin,
+                                pYearFI,pMonthFI,pDayFI);
+
+
+                        dialog_fecha_fin.getDatePicker().setMinDate(ConvertirFechaEnMilisegundos(pDayFI,
+                                pMonthFI,pYearFI));
+
+
+
+                    } //FIN DEL if(usuario.getTipo_de_Usuario().equals("repartidor"))
+
+                    else{
+
+                        et_fecha_fin_del_evento_nuevo_responsable.setBackgroundDrawable(getDrawable(R.drawable.edit_text_material_customizado));
+                        et_fecha_fin_del_evento_nuevo_responsable.setHint("(Obligatorio)");
+
+                        dialog_fecha_fin = new DatePickerDialog(NuevoResponsablePatrocinio.this, selector_fecha_fin,
+                                pYearFI,pMonthFI,pDayFI);
+
+
+                        dialog_fecha_fin.getDatePicker().setMinDate(ConvertirFechaEnMilisegundos(pDayFI,
+                                pMonthFI,pYearFI));
+
+
+
+                    }//Fin del else
+
+
+
+                }/**** Fin del método onDataSet ****/
+
+        }; /*********** Fin del método setOnClickListener ***********/
+
+
+
+
+
+
+        if(usuario.getTipo_de_Usuario().equals("repartidor")){
+
+
+            dialog_fecha_inicio = new DatePickerDialog(this, R.style.MyDatePickerStyleRepartidoresNuevoResponsable, selector_fecha_inicio, pYearFI, pMonthFI, pDayFI);
+            dialog_fecha_inicio.getDatePicker().setMinDate(new Date().getTime());
+
+
+
+            et_fecha_inicio_del_evento_nuevo_responsable.setOnClickListener(new View.OnClickListener() {
+
+                @Override
+                public void onClick(View v) {
+
+
+                    dialog_fecha_inicio.show();
+
+
+                } /**** Fin del método onClick ****/
+
+
+            }); /*********** Fin del método setOnClickListener ***********/
+
+        }//FIN DEL if(usuario.getTipo_de_Usuario().equals("repartidor"))
+
+
+
+        //Usuario logueado como SUPERVISOR
+        else {
+
+            dialog_fecha_inicio = new DatePickerDialog(this, selector_fecha_inicio, pYearFI,
+                    pMonthFI, pDayFI);
+
+            dialog_fecha_inicio.getDatePicker().setMinDate(new Date().getTime());
+
+
+
+            et_fecha_inicio_del_evento_nuevo_responsable.setOnClickListener(new View.OnClickListener() {
+
+                @Override
+                public void onClick(View v) {
+
+                    dialog_fecha_inicio.show();
+
+                } /**** Fin del método onClick ****/
+
+
+            }); /*********** Fin del método setOnClickListener ***********/
+
+
+        }//Fin del else
+
+
+
+        /*****************************************************************************************************/
+        /*****************************************************************************************************/
+        /*****************************************************************************************************/
+        /*****************************************************************************************************/
+        /*****************************************************************************************************/
+        /*****************************************************************************************************/
+        /*****************************************************************************************************/
+        /*****************************************************************************************************/
+        /*****************************************************************************************************/
+        /*****************************************************************************************************/
+
+
+
+
+
+        if(usuario.getTipo_de_Usuario().equals("repartidor")) {
+
+
+                et_fecha_fin_del_evento_nuevo_responsable.setOnClickListener(new View.OnClickListener() {
+
+                    @Override
+                    public void onClick(View v) {
+
+
+                        dialog_fecha_fin.show();
+
+
+
+                    }
+                });
+
+
+
+
+        } //FIN DEL if(usuario.getTipo_de_Usuario().equals("repartidor"))
+
+        else{
+
+
+            et_fecha_fin_del_evento_nuevo_responsable.setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View v) {
 
-
-                dialog_fecha_fin.show();
-
-
-
-            }
-        });
-
-        et_fecha_fin_del_evento_nuevo_responsable.setBackgroundDrawable(getDrawable(R.drawable.edit_text_material_customizado));
+                 dialog_fecha_fin.show();
 
 
 
+                 }
+
+            });
 
 
-
-        /*
-
-        SimpleMaskFormatter smf = new SimpleMaskFormatter("NN/NN/NNNN");
-
-        et_fecha_fin_del_evento_nuevo_responsable = (EditText) findViewById(R.id.et_nuevo_responsable_fecha_fin_evento_formulario_patrocinio);
-
-        et_fecha_fin_del_evento_nuevo_responsable.setBackgroundDrawable(getDrawable(R.drawable.edit_text_material_customizado));
-
-        MaskTextWatcher mtw_fecha_fin_estimada_evento = new MaskTextWatcher(et_fecha_fin_del_evento_nuevo_responsable, smf);
-
-        et_fecha_fin_del_evento_nuevo_responsable.addTextChangedListener(mtw_fecha_fin_estimada_evento);
-
-        et_fecha_fin_del_evento_nuevo_responsable.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-
-            }
-
-            @Override
-            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-
-            }
-
-            @Override
-            public void afterTextChanged(Editable s) {
-
-
-                ValidarFechaFinEvento();
-
-            }
-        });
-
-
-
-*/
-
-
+        }//Fin del else
 
 
 
@@ -1070,7 +983,6 @@ public class NuevoResponsablePatrocinio extends AppCompatActivity {
 
 
         btn_cancelar_nuevo_responsable_del_evento_supervisor = (Button) findViewById(R.id.btn_cancelar_nuevo_responsable_del_evento_formulario_patrocinio_supervisor);
-
         btn_cancelar_nuevo_responsable_del_evento_supervisor.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -1188,11 +1100,30 @@ public class NuevoResponsablePatrocinio extends AppCompatActivity {
         });/*******************FIN DEL EVENTO setOnClickListener()**************************/
 
 
+
+
+
+        /***************************************************************************************/
+        /***************************************************************************************/
+        /***************************************************************************************/
+        /***************************************************************************************/
+        /***************************************************************************************/
+        /***************************************************************************************/
+        /***************************************************************************************/
+        /***************************************************************************************/
+        /***************************************************************************************/
+        /***************************************************************************************/
+
+
+
+
+
+
+        /** Inicialización de vistas para comprobar si el usuario es un repartidor **/
+
         tv_datos_responsable = (TextView) findViewById(R.id.datos_personales_responsable);
 
         tv_datos_evento = (TextView) findViewById(R.id.tv_evento_formulario_patrocinio);
-
-
 
         LinearLayout_Horizontal_DNI_Responsable = (LinearLayout) findViewById(R.id.llh_dni_formulario_patrocinio);
         LinearLayout_Horizontal_Nombre_Responsable = (LinearLayout) findViewById(R.id.llh_nombre_formulario_patrocinio);
@@ -1204,19 +1135,12 @@ public class NuevoResponsablePatrocinio extends AppCompatActivity {
         LinearLayout_Horizontal_Correo_Responsable = (LinearLayout) findViewById(R.id.llh_email_formulario_patrocinio);
         LinearLayout_Horizontal_Referencia_Responsable = (LinearLayout) findViewById(R.id.llh_referencia_formulario_patrocinio);
 
-
         LinearLayout_Horizontal_Nombre_Evento_Responsable = (LinearLayout) findViewById(R.id.llh_nombre_evento_formulario_patrocinio);
         LinearLayout_Horizontal_Direccion_Evento_Responsable = (LinearLayout) findViewById(R.id.llh_direccion_evento_formulario_patrocinio);
         LinearLayout_Horizontal_Barrio_Evento_Responsable = (LinearLayout) findViewById(R.id.llh_barrio_evento_formulario_patrocinio);
         LinearLayout_Horizontal_Referencia_Evento_Responsable = (LinearLayout) findViewById(R.id.llh_referencia_evento_formulario_patrocinio);
         LinearLayout_Horizontal_Fecha_Inicio_Evento_Responsable = (LinearLayout) findViewById(R.id.llh_fecha_inicio_formulario_patrocinio);
         LinearLayout_Horizontal_Fecha_Fin_Evento_Responsable = (LinearLayout) findViewById(R.id.llh_fecha_fin_formulario_patrocinio);
-
-
-
-
-
-
 
 
         img_ic_dni_nrp_repartidor = (ImageView) findViewById(R.id.img_dni_nrp);
@@ -1229,20 +1153,12 @@ public class NuevoResponsablePatrocinio extends AppCompatActivity {
         img_ic_correo_nrp_repartidor = (ImageView) findViewById(R.id.img_correo_nrp);
         img_ic_referencia_nrp_repartidor = (ImageView) findViewById(R.id.img_referencia_nrp);
 
-
         img_ic_nombre_evento_nrp_repartidor = (ImageView) findViewById(R.id.img_nombre_evento_nrp);
         img_ic_direccion_evento_nrp_repartidor = (ImageView) findViewById(R.id.img_direccion_evento_nrp);
         img_ic_barrio_evento_nrp_repartidor = (ImageView) findViewById(R.id.img_barrio_evento_nrp);
         img_ic_referencia_evento_nrp_repartidor = (ImageView) findViewById(R.id.img_referencia_evento_nrp);
         img_ic_fecha_inicio_evento_nrp_repartidor = (ImageView) findViewById(R.id.img_fecha_inicio_evento_nrp);
         img_ic_fecha_fin_evento_nrp_repartidor = (ImageView) findViewById(R.id.img_fecha_fin_evento_nrp);
-
-
-
-
-
-
-
 
 
         view_separador_dni_repartidor = (View) findViewById(R.id.separador_dni);
@@ -1255,7 +1171,6 @@ public class NuevoResponsablePatrocinio extends AppCompatActivity {
         view_separador_correo_repartidor = (View) findViewById(R.id.separador_correo);
         view_separador_referencia_repartidor = (View) findViewById(R.id.separador_referencia);
 
-
         view_separador_nombre_evento_repartidor = (View) findViewById(R.id.separador_nombre_evento_nrp);
         view_separador_direccion_evento_repartidor = (View) findViewById(R.id.separador_direccion_evento_nrp);
         view_separador_barrio_evento_repartidor = (View) findViewById(R.id.separador_barrio_evento_nrp);
@@ -1265,32 +1180,20 @@ public class NuevoResponsablePatrocinio extends AppCompatActivity {
 
 
 
-
-
-
-
-
-
-
-
-
-
         /** Pregunta si el usuario es un "repartidor" entonces habrá un cambio de colores en las activity's
          * de Patrocinio**/
-
-        Usuario usuario = new Usuario();
-
-        usuario.LeerUsuarioEnUnSharedPreferences(this);
-
         if(usuario.getTipo_de_Usuario().equals("repartidor")){
 
             // finally change the color
             window.setStatusBarColor(Color.parseColor("#303F9F"));
 
+
+            /* Para cambiar el color del puntero o "burbuja" del EditText */
+            setTheme(R.style.AppTheme_CursorRepartidor);
+
+
             tv_datos_responsable.setBackgroundColor(Color.parseColor("#283593"));
             tv_datos_evento.setBackgroundColor(Color.parseColor("#283593"));
-
-
 
             LinearLayout_Horizontal_DNI_Responsable.setBackground(getDrawable(R.drawable.contenedor_llh_nuevo_responsable_repartidor));
             LinearLayout_Horizontal_Nombre_Responsable.setBackground(getDrawable(R.drawable.contenedor_llh_nuevo_responsable_repartidor));
@@ -1357,20 +1260,70 @@ public class NuevoResponsablePatrocinio extends AppCompatActivity {
 
             btn_confirmar_nuevo_responsable_del_evento_supervisor.setBackground(getDrawable(R.drawable.btn_confirmar_nuevo_responsable_esquinas_con_bordes_repartidor));
 
+            /************ Cambiar color del cursor de cada EditText *************/
+
+            Field f = null;
+
+            try {
+
+                f = TextView.class.getDeclaredField("mCursorDrawableRes");
+                f.setAccessible(true);
+                f.set(et_dni_nuevo_responsable, R.drawable.color_cursor_repartidores);
+                f.set(et_nombre_nuevo_responsable, R.drawable.color_cursor_repartidores);
+                f.set(et_apellido_nuevo_responsable, R.drawable.color_cursor_repartidores);
+                f.set(et_codigo_area_nuevo_responsable, R.drawable.color_cursor_repartidores);
+                f.set(et_telefono_nuevo_responsable, R.drawable.color_cursor_repartidores);
+                f.set(et_direccion_nuevo_responsable, R.drawable.color_cursor_repartidores);
+                f.set(et_barrio_nuevo_responsable, R.drawable.color_cursor_repartidores);
+                f.set(et_correo_nuevo_responsable, R.drawable.color_cursor_repartidores);
+                f.set(et_referencia_nuevo_responsable, R.drawable.color_cursor_repartidores);
+
+                f.set(et_nombre_del_evento_nuevo_responsable, R.drawable.color_cursor_repartidores);
+                f.set(et_direccion_del_evento_nuevo_responsable, R.drawable.color_cursor_repartidores);
+                f.set(et_barrio_del_evento_nuevo_responsable, R.drawable.color_cursor_repartidores);
+                f.set(et_referencia_del_evento_nuevo_responsable, R.drawable.color_cursor_repartidores);
+                f.set(et_fecha_inicio_del_evento_nuevo_responsable, R.drawable.color_cursor_repartidores);
+                f.set(et_fecha_fin_del_evento_nuevo_responsable, R.drawable.color_cursor_repartidores);
 
 
-        }//Fin del if
+            } catch (NoSuchFieldException | IllegalAccessException e) {
+                e.printStackTrace();
+            }
+
+
+            /************ Cambiar color de la línea de cada EditText *************/
+
+
+            et_dni_nuevo_responsable.setBackgroundDrawable(getDrawable(R.drawable.edit_text_underline_color_repartidor));
+            et_nombre_nuevo_responsable.setBackgroundDrawable(getDrawable(R.drawable.edit_text_underline_color_repartidor));
+            et_apellido_nuevo_responsable.setBackgroundDrawable(getDrawable(R.drawable.edit_text_underline_color_repartidor));
+            et_codigo_area_nuevo_responsable.setBackgroundDrawable(getDrawable(R.drawable.edit_text_underline_color_repartidor));
+            et_telefono_nuevo_responsable.setBackgroundDrawable(getDrawable(R.drawable.edit_text_underline_color_repartidor));
+            et_direccion_nuevo_responsable.setBackgroundDrawable(getDrawable(R.drawable.edit_text_underline_color_repartidor));
+            et_barrio_nuevo_responsable.setBackgroundDrawable(getDrawable(R.drawable.edit_text_underline_color_repartidor));
+            et_correo_nuevo_responsable.setBackgroundDrawable(getDrawable(R.drawable.edit_text_underline_color_repartidor));
+            et_referencia_nuevo_responsable.setBackgroundDrawable(getDrawable(R.drawable.edit_text_underline_color_repartidor));
+
+            et_nombre_del_evento_nuevo_responsable.setBackgroundDrawable(getDrawable(R.drawable.edit_text_underline_color_repartidor));
+            et_direccion_del_evento_nuevo_responsable.setBackgroundDrawable(getDrawable(R.drawable.edit_text_underline_color_repartidor));
+            et_barrio_del_evento_nuevo_responsable.setBackgroundDrawable(getDrawable(R.drawable.edit_text_underline_color_repartidor));
+            et_referencia_del_evento_nuevo_responsable.setBackgroundDrawable(getDrawable(R.drawable.edit_text_underline_color_repartidor));
+            et_fecha_inicio_del_evento_nuevo_responsable.setBackgroundDrawable(getDrawable(R.drawable.edit_text_underline_color_repartidor));
+            et_fecha_fin_del_evento_nuevo_responsable.setBackgroundDrawable(getDrawable(R.drawable.edit_text_underline_color_repartidor));
 
 
 
 
 
+        }// FIN DEL if(usuario.getTipo_de_Usuario().equals("repartidor"))
 
 
 
 
 
-    }/******************************************FIN DEL onCreate()******************************************************/
+    }/******************************************FIN DEL onCreate() ******************************************************/
+
+
 
 
 
@@ -1566,32 +1519,7 @@ public class NuevoResponsablePatrocinio extends AppCompatActivity {
 
 
         return flag_dni;
- /*
 
-
-        int posicion_dos = et_dni_nuevo_responsable.getText().toString().indexOf(".");
-
-        int posicion_seis = et_dni_nuevo_responsable.getText().toString().lastIndexOf(".");
-
-
-
-
-        if(et_dni_nuevo_responsable.getText().toString().length() > 0 && et_dni_nuevo_responsable.getText().toString().length() == 10 && posicion_dos == 2 && posicion_seis == 6 ){
-
-
-            Toast.makeText(getApplicationContext(), "¡DNI válido!", Toast.LENGTH_LONG).show();
-
-
-
-        } else {
-
-            et_dni_nuevo_responsable.setError("DNI no válido");
-
-        }
-
-
-
-*/
 
 
     }   /**********************FIN DE LA FUNCIÓN ValidarDocumento()*********************/
@@ -2614,10 +2542,11 @@ public class NuevoResponsablePatrocinio extends AppCompatActivity {
 
         SimpleDateFormat sdf = new SimpleDateFormat(myFormat, Locale.US);
 
-        et_fecha_inicio_del_evento_nuevo_responsable.setText(sdf.format(myCalendar.getTime()));
+        String fecha_inicio_guardada = sdf.format(myCalendar.getTime());
+
+        et_fecha_inicio_del_evento_nuevo_responsable.setText(fecha_inicio_guardada);
 
     } /******************** FIN DE LA FUNCIÓN updateLabelFechaInicio() *******************/
-
 
 
 
@@ -2627,7 +2556,9 @@ public class NuevoResponsablePatrocinio extends AppCompatActivity {
 
         SimpleDateFormat sdf = new SimpleDateFormat(myFormat, Locale.US);
 
-        et_fecha_fin_del_evento_nuevo_responsable.setText(sdf.format(myCalendar.getTime()));
+        String fecha_fin_guardada = sdf.format(myCalendar2.getTime());
+
+        et_fecha_fin_del_evento_nuevo_responsable.setText(fecha_fin_guardada);
 
     } /******************** FIN DE LA FUNCIÓN updateLabelFechaFin() *******************/
 
@@ -2635,6 +2566,7 @@ public class NuevoResponsablePatrocinio extends AppCompatActivity {
 
 
 
+
     /***************************************************************************************************/
     /***************************************************************************************************/
     /***************************************************************************************************/
@@ -2645,6 +2577,31 @@ public class NuevoResponsablePatrocinio extends AppCompatActivity {
     /***************************************************************************************************/
     /***************************************************************************************************/
     /***************************************************************************************************/
+
+
+
+
+
+        public static long ConvertirFechaEnMilisegundos(int day, int month, int year) {
+        Calendar calendar = Calendar.getInstance();
+        calendar.set(year, month, day);
+        return calendar.getTimeInMillis();
+    }
+
+
+
+
+    /***************************************************************************************************/
+    /***************************************************************************************************/
+    /***************************************************************************************************/
+    /***************************************************************************************************/
+    /***************************************************************************************************/
+    /***************************************************************************************************/
+    /***************************************************************************************************/
+    /***************************************************************************************************/
+    /***************************************************************************************************/
+    /***************************************************************************************************/
+
 
 
 

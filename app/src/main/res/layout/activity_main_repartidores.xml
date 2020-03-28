@@ -83,8 +83,9 @@
         android:layout_height="wrap_content"
         android:layout_gravity="end|bottom"
         android:layout_margin="@dimen/fab_margin"
+        app:maxImageSize="40dp"
         android:src="@mipmap/ir_mapa_128px"
-        app:backgroundTint="#ff9100"/>
+        app:backgroundTint="#ff9100" />
 
 
 

@@ -3,6 +3,7 @@ package com.example.jumpi.repartidores_aplication;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.res.ColorStateList;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
 import android.graphics.drawable.Drawable;
@@ -28,6 +29,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.github.rtoshiro.util.format.SimpleMaskFormatter;
 import com.github.rtoshiro.util.format.text.MaskTextWatcher;
 
+import java.lang.reflect.Field;
 import java.util.regex.Pattern;
 
 import static android.view.View.GONE;
@@ -58,6 +60,10 @@ public class DatosPersonalesResponsable extends AppCompatActivity {
 
     ImageButton imgbtn_editar_datos_personales_responsable;
 
+    TextView Titulo_Datos_Personales, Titulo_Datos_Evento;
+
+    View Separador;
+
     int Indice_Item;
 
 
@@ -72,20 +78,16 @@ public class DatosPersonalesResponsable extends AppCompatActivity {
         /**Añadir "manualmente" color al StatusBar **/
 
         Window window = this.getWindow();
-
         // clear FLAG_TRANSLUCENT_STATUS flag:
         window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
-
         // add FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS flag to the window
         window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
-
         // finally change the color
         window.setStatusBarColor(Color.parseColor("#b71c1c"));
 
 
-
         /* Para cambiar el color del puntero o "burbuja" del EditText */
-        setTheme(R.style.AppTheme_Cursor);
+        setTheme(R.style.AppTheme_CursorSupervisor);
 
 
 
@@ -96,64 +98,61 @@ public class DatosPersonalesResponsable extends AppCompatActivity {
 
         /*Instanciamos los campos de los DATOS PERSONALES del responsable */
 
-        et_dni_responsable = (EditText) findViewById(R.id.et_dni_responsable);
+        Titulo_Datos_Personales = (TextView) findViewById(R.id.datos_personales_responsable);
 
+        Titulo_Datos_Evento = (TextView) findViewById(R.id.tv_evento_formulario_patrocinio);
+
+        Separador = (View) findViewById(R.id.separador);
+
+        et_dni_responsable = (EditText) findViewById(R.id.et_dni_responsable);
         et_dni_responsable.setFocusable(false);
         et_dni_responsable.setCursorVisible(false);
         et_dni_responsable.setBackgroundColor(Color.TRANSPARENT);
 
 
         et_nombre_responsable = (EditText) findViewById(R.id.et_nombre_responsable);
-
         et_nombre_responsable.setFocusable(false);
         et_nombre_responsable.setCursorVisible(false);
         et_nombre_responsable.setBackgroundColor(Color.TRANSPARENT);
 
 
         et_apellido_responsable = (EditText) findViewById(R.id.et_apellido_responsable);
-
         et_apellido_responsable.setFocusable(false);
         et_apellido_responsable.setCursorVisible(false);
         et_apellido_responsable.setBackgroundColor(Color.TRANSPARENT);
 
 
         et_codigo_area_responsable = (EditText) findViewById(R.id.et_codigo_area_responsable);
-
         et_codigo_area_responsable.setFocusable(false);
         et_codigo_area_responsable.setCursorVisible(false);
         et_codigo_area_responsable.setBackgroundColor(Color.TRANSPARENT);
 
 
         et_telefono_responsable = (EditText) findViewById(R.id.et_telefono_responsable);
-
         et_telefono_responsable.setFocusable(false);
         et_telefono_responsable.setCursorVisible(false);
         et_telefono_responsable.setBackgroundColor(Color.TRANSPARENT);
 
 
         et_direccion_responsable = (EditText) findViewById(R.id.et_direccion_responsable);
-
         et_direccion_responsable.setFocusable(false);
         et_direccion_responsable.setCursorVisible(false);
         et_direccion_responsable.setBackgroundColor(Color.TRANSPARENT);
 
 
         et_barrio_responsable = (EditText) findViewById(R.id.et_barrio_responsable);
-
         et_barrio_responsable.setFocusable(false);
         et_barrio_responsable.setCursorVisible(false);
         et_barrio_responsable.setBackgroundColor(Color.TRANSPARENT);
 
 
         et_correo_responsable = (EditText) findViewById(R.id.et_email_responsable);
-
         et_correo_responsable.setFocusable(false);
         et_correo_responsable.setCursorVisible(false);
         et_correo_responsable.setBackgroundColor(Color.TRANSPARENT);
 
 
         et_referencia_responsable = (EditText) findViewById(R.id.et_referencia_responsable);
-
         et_referencia_responsable.setFocusable(false);
         et_referencia_responsable.setCursorVisible(false);
         et_referencia_responsable.setBackgroundColor(Color.TRANSPARENT);
@@ -163,42 +162,36 @@ public class DatosPersonalesResponsable extends AppCompatActivity {
         /*Instanciamos los campos de los datos del evento */
 
         et_nombre_del_evento_responsable = (EditText) findViewById(R.id.et_nombre_evento);
-
         et_nombre_del_evento_responsable.setFocusable(false);
         et_nombre_del_evento_responsable.setCursorVisible(false);
         et_nombre_del_evento_responsable.setBackgroundColor(Color.TRANSPARENT);
 
 
         et_direccion_del_evento_responsable = (EditText) findViewById(R.id.et_direccion_evento);
-
         et_direccion_del_evento_responsable.setFocusable(false);
         et_direccion_del_evento_responsable.setCursorVisible(false);
         et_direccion_del_evento_responsable.setBackgroundColor(Color.TRANSPARENT);
 
 
         et_barrio_del_evento_responsable = (EditText) findViewById(R.id.et_barrio_evento);
-
         et_barrio_del_evento_responsable.setFocusable(false);
         et_barrio_del_evento_responsable.setCursorVisible(false);
         et_barrio_del_evento_responsable.setBackgroundColor(Color.TRANSPARENT);
 
 
         et_referencia_del_evento_responsable = (EditText) findViewById(R.id.et_referencia_evento);
-
         et_referencia_del_evento_responsable.setFocusable(false);
         et_referencia_del_evento_responsable.setCursorVisible(false);
         et_referencia_del_evento_responsable.setBackgroundColor(Color.TRANSPARENT);
 
 
         et_fecha_inicio_del_evento_responsable = (EditText) findViewById(R.id.et_fecha_inicio_evento);
-
         et_fecha_inicio_del_evento_responsable.setFocusable(false);
         et_fecha_inicio_del_evento_responsable.setCursorVisible(false);
         et_fecha_inicio_del_evento_responsable.setBackgroundColor(Color.TRANSPARENT);
 
 
         et_fecha_fin_del_evento_responsable = (EditText) findViewById(R.id.et_fecha_fin_evento);
-
         et_fecha_fin_del_evento_responsable.setFocusable(false);
         et_fecha_fin_del_evento_responsable.setCursorVisible(false);
         et_fecha_fin_del_evento_responsable.setBackgroundColor(Color.TRANSPARENT);
@@ -227,6 +220,9 @@ public class DatosPersonalesResponsable extends AppCompatActivity {
         });/*******************FIN DEL EVENTO setOnClickListener()**************************/
 
 
+
+
+
         btn_salir_nuevo_evento_patrocinio_supervisor = (Button) findViewById(R.id.btn_salir_nuevo_responsable_del_evento_formulario_patrocinio_supervisor);
 
         btn_salir_nuevo_evento_patrocinio_supervisor.setOnClickListener(new View.OnClickListener() {
@@ -237,6 +233,32 @@ public class DatosPersonalesResponsable extends AppCompatActivity {
 
             }
         });
+
+
+
+
+
+        Usuario usuario = new Usuario();
+        usuario.LeerUsuarioEnUnSharedPreferences(this);
+
+        /** Pregunta si el usuario es un "repartidor" entonces habrá un cambio de colores en las activity's
+         * de Patrocinio**/
+        if(usuario.getTipo_de_Usuario().equals("repartidor")){
+
+            // finally change the color
+            window.setStatusBarColor(Color.parseColor("#303F9F"));
+
+            Titulo_Datos_Personales.setTextColor(Color.parseColor("#1a237e"));
+
+            Separador.setBackgroundColor(Color.parseColor("#283593"));
+
+            imgbtn_editar_datos_personales_responsable.setColorFilter(Color.parseColor("#1A237E"));
+
+            Titulo_Datos_Evento.setTextColor(Color.parseColor("#1a237e"));
+
+        }//FIN DEL if (usuario.getTipo_de_Usuario().equals("repartidor"))
+
+
 
 
 
@@ -1237,7 +1259,85 @@ public class DatosPersonalesResponsable extends AppCompatActivity {
             });
 
 
+
+
+            Usuario usuario = new Usuario();
+            usuario.LeerUsuarioEnUnSharedPreferences(this);
+
+            if(usuario.getTipo_de_Usuario().equals("repartidor")){
+
+
+
+                /* Para cambiar el color del puntero o "burbuja" del EditText */
+                setTheme(R.style.AppTheme_CursorRepartidor);
+
+
+                /************ Cambiar color del cursor de cada EditText *************/
+
+                Field f = null;
+
+                try {
+
+                    f = TextView.class.getDeclaredField("mCursorDrawableRes");
+                    f.setAccessible(true);
+                    f.set(editText_dni_responsable, R.drawable.color_cursor_repartidores);
+                    f.set(editText_nombre_responsable, R.drawable.color_cursor_repartidores);
+                    f.set(editText_apellido_responsable, R.drawable.color_cursor_repartidores);
+                    f.set(editText_codigo_area_responsable, R.drawable.color_cursor_repartidores);
+                    f.set(editText_telefono_responsable, R.drawable.color_cursor_repartidores);
+                    f.set(editText_direccion_responsable, R.drawable.color_cursor_repartidores);
+                    f.set(editText_barrio_responsable, R.drawable.color_cursor_repartidores);
+                    f.set(editText_correo_responsable, R.drawable.color_cursor_repartidores);
+                    f.set(editText_referencia_responsable, R.drawable.color_cursor_repartidores);
+
+                    f.set(editText_nombre_evento, R.drawable.color_cursor_repartidores);
+                    f.set(editText_direccion_evento, R.drawable.color_cursor_repartidores);
+                    f.set(editText_barrio_evento, R.drawable.color_cursor_repartidores);
+                    f.set(editText_referencia_evento, R.drawable.color_cursor_repartidores);
+                    f.set(editText_fecha_inicio_evento, R.drawable.color_cursor_repartidores);
+                    f.set(editText_fecha_fin_evento, R.drawable.color_cursor_repartidores);
+
+
+                } catch (NoSuchFieldException | IllegalAccessException e) {
+                    e.printStackTrace();
+                }
+
+
+                /************ Cambiar color de la línea de cada EditText *************/
+
+                editText_dni_responsable.setBackgroundDrawable(getDrawable(R.drawable.edit_text_underline_color_repartidor));
+                editText_nombre_responsable.setBackgroundDrawable(getDrawable(R.drawable.edit_text_underline_color_repartidor));
+                editText_apellido_responsable.setBackgroundDrawable(getDrawable(R.drawable.edit_text_underline_color_repartidor));
+                editText_codigo_area_responsable.setBackgroundDrawable(getDrawable(R.drawable.edit_text_underline_color_repartidor));
+                editText_telefono_responsable.setBackgroundDrawable(getDrawable(R.drawable.edit_text_underline_color_repartidor));
+                editText_direccion_responsable.setBackgroundDrawable(getDrawable(R.drawable.edit_text_underline_color_repartidor));
+                editText_barrio_responsable.setBackgroundDrawable(getDrawable(R.drawable.edit_text_underline_color_repartidor));
+                editText_correo_responsable.setBackgroundDrawable(getDrawable(R.drawable.edit_text_underline_color_repartidor));
+                editText_referencia_responsable.setBackgroundDrawable(getDrawable(R.drawable.edit_text_underline_color_repartidor));
+
+                editText_nombre_evento.setBackgroundDrawable(getDrawable(R.drawable.edit_text_underline_color_repartidor));
+                editText_direccion_evento.setBackgroundDrawable(getDrawable(R.drawable.edit_text_underline_color_repartidor));
+                editText_barrio_evento.setBackgroundDrawable(getDrawable(R.drawable.edit_text_underline_color_repartidor));
+                editText_referencia_evento.setBackgroundDrawable(getDrawable(R.drawable.edit_text_underline_color_repartidor));
+                editText_fecha_inicio_evento.setBackgroundDrawable(getDrawable(R.drawable.edit_text_underline_color_repartidor));
+                editText_fecha_fin_evento.setBackgroundDrawable(getDrawable(R.drawable.edit_text_underline_color_repartidor));
+
+                btn_guardar_cambios.setBackground(getDrawable(R.drawable.btn_confirmar_nuevo_responsable_esquinas_con_bordes_repartidor));
+
+
+            }//FIN DEL if (usuario.getTipo_de_Usuario().equals("repartidor"))
+
+
+
+
+
+
         }  /*Fin del primer if (flag_edit) {}*/
+
+
+
+
+
 
 
     }/*******FIN DE LA FUNCIÓN EditarDatosResponsable() ********/
@@ -2332,23 +2432,6 @@ public class DatosPersonalesResponsable extends AppCompatActivity {
     /***************************************************************************************************/
     /***************************************************************************************************/
     /***************************************************************************************************/
-
-
-
-
-    @Override
-    public boolean onKeyDown(int keyCode, KeyEvent event) {
-
-        // TODO Auto-generated method stub
-        if (keyCode == event.KEYCODE_BACK) {
-
-            Intent intent = new Intent (DatosPersonalesResponsable.this, BuscarResponsableParaPatrocinio.class);
-
-            startActivity(intent);
-
-        }
-        return super.onKeyDown(keyCode, event);
-    }
 
 
 

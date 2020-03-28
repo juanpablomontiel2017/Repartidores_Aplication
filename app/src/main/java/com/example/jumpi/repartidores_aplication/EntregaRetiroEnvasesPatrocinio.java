@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.res.ColorStateList;
 import android.graphics.Color;
 import android.graphics.ColorFilter;
 import android.graphics.drawable.ColorDrawable;
@@ -24,6 +25,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
+import android.widget.ListView;
 import android.widget.ScrollView;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -36,6 +38,7 @@ import androidx.appcompat.widget.Toolbar;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 
+import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.Arrays;
 
@@ -126,7 +129,7 @@ public class EntregaRetiroEnvasesPatrocinio extends AppCompatActivity {
 
 
 
-
+    /**************************** COMIENZO DEL onCreate() ******************************/
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -136,7 +139,6 @@ public class EntregaRetiroEnvasesPatrocinio extends AppCompatActivity {
 
 
         /*Recibir los parámetros de la activity "BuscarResponsableParaPatrocinio */
-
         Indice_Evento = getIntent().getIntExtra("Indice_Evento",0);
 
 
@@ -207,6 +209,8 @@ public class EntregaRetiroEnvasesPatrocinio extends AppCompatActivity {
 
 
 
+        /* Para cambiar el color del puntero o "burbuja" del EditText */
+        setTheme(R.style.AppTheme_CursorSupervisor);
 
 
 
@@ -400,7 +404,7 @@ public class EntregaRetiroEnvasesPatrocinio extends AppCompatActivity {
     /***************************************************************************************************/
 
 
-    public void CambiarColoresEditarEventoFinalizado(){
+    public void CambiarColoresEditarEventoFinalizadoSupervisor(){
 
 
         for(int k=0; k < ArrayListVueltas.size(); k++) {
@@ -424,7 +428,57 @@ public class EntregaRetiroEnvasesPatrocinio extends AppCompatActivity {
 
 
 
-    }/**************** FIN DE LA FUNCIÓN CambiarColoresEditarEventoFinalizado() ***************/
+    }/**************** FIN DE LA FUNCIÓN CambiarColoresEditarEventoFinalizadoSupervisor() ***************/
+
+
+
+
+    /***************************************************************************************************/
+    /***************************************************************************************************/
+    /***************************************************************************************************/
+    /***************************************************************************************************/
+    /***************************************************************************************************/
+    /***************************************************************************************************/
+    /***************************************************************************************************/
+    /***************************************************************************************************/
+    /***************************************************************************************************/
+    /***************************************************************************************************/
+
+
+
+
+
+
+    public void CambiarColoresEditarEventoFinalizadoRepartidor(){
+
+
+        for(int k=0; k < ArrayListVueltas.size(); k++) {
+
+
+            final LinearLayout llv_borde = (LinearLayout) ArrayListVueltas.get(k).findViewById(R.id.llv_contenedor_para_bordes_erep);
+            llv_borde.setBackground(getDrawable(R.drawable.borde_linear_layout_entrega_retiro_patrocinio_repartidores));
+
+
+
+            final LinearLayout llh_segunda_tupla = (LinearLayout) ArrayListVueltas.get(k).findViewById(R.id.layout_horizontal_segunda_tupla_erep);
+            llh_segunda_tupla.setBackgroundColor(Color.parseColor("#0091ea"));
+
+
+
+            final TextView tv_vuelta = (TextView) ArrayListVueltas.get(k).findViewById(R.id.vuelta_erep);
+            tv_vuelta.setBackgroundColor(Color.parseColor("#2962ff"));
+
+        }//Fin del primer for
+
+
+
+
+    }/**************** FIN DE LA FUNCIÓN CambiarColoresEditarEventoFinalizadoRepartidor() ***************/
+
+
+
+
+
 
 
     /***************************************************************************************************/
@@ -575,9 +629,13 @@ public class EntregaRetiroEnvasesPatrocinio extends AppCompatActivity {
 
         eTcantEntrega = (EditText) findViewById(R.id.edtx_entrega_erep);
         eTcantEntrega.requestFocus();
+        eTcantEntrega.setBackgroundDrawable(getDrawable(R.drawable.edit_text_material_customizado));
+
 
 
         eTcantRetiro = (EditText) findViewById(R.id.edtx_retiro_erep);
+        eTcantRetiro.setBackgroundDrawable(getDrawable(R.drawable.edit_text_material_customizado));
+
 
 
 
@@ -617,13 +675,17 @@ public class EntregaRetiroEnvasesPatrocinio extends AppCompatActivity {
          * de Patrocinio**/
 
         Usuario usuario = new Usuario();
-
         usuario.LeerUsuarioEnUnSharedPreferences(this);
+
 
         if(usuario.getTipo_de_Usuario().equals("repartidor")){
 
             // finally change the color
             window.setStatusBarColor(Color.parseColor("#303F9F"));
+
+
+            /* Para cambiar el color del puntero o "burbuja" del EditText */
+            setTheme(R.style.AppTheme_CursorRepartidor);
 
 
             toolbar.setBackgroundColor(Color.parseColor("#3F51B5"));
@@ -641,7 +703,30 @@ public class EntregaRetiroEnvasesPatrocinio extends AppCompatActivity {
             LinearLayoutHorizontalSegundaTupla.setBackgroundColor(Color.parseColor("#0091ea"));
 
 
-        }//Fin del if
+
+            /************ Cambiar color del cursor de cada EditText *************/
+            Field f = null;
+
+            try {
+
+                f = TextView.class.getDeclaredField("mCursorDrawableRes");
+                f.setAccessible(true);
+                f.set(eTcantEntrega, R.drawable.color_cursor_repartidores);
+                f.set(eTcantRetiro, R.drawable.color_cursor_repartidores);
+
+
+
+            } catch (NoSuchFieldException | IllegalAccessException e) {
+                e.printStackTrace();
+            }
+
+
+            /************ Cambiar color de la línea de cada EditText *************/
+            eTcantEntrega.setBackgroundDrawable(getDrawable(R.drawable.edit_text_underline_color_repartidor));
+            eTcantRetiro.setBackgroundDrawable(getDrawable(R.drawable.edit_text_underline_color_repartidor));
+
+
+        }//FIN DEL if(usuario.getTipo_de_Usuario().equals("repartidor"))
 
 
 
@@ -672,144 +757,12 @@ public class EntregaRetiroEnvasesPatrocinio extends AppCompatActivity {
     public void CargarReferenciasPrimerVueltaEventoCerrado(Window window, Toolbar toolbar){
 
 
-        parent_scrollView_erep = (ScrollView) findViewById(R.id.scroll_parent_erep);
-
-        LinearLayoutVerticalPadre_Patrocinio = (LinearLayout) findViewById(R.id.parent_layout_vertical_erep);
-
-        LinearLayoutVerticalHijo_Patrocinio = (LinearLayout) findViewById(R.id.layout_vertical_erep);
-
-
-
-        LinearLayoutVerticalHijo_Patrocinio.setOnLongClickListener(new View.OnLongClickListener() {
-            @Override
-            public boolean onLongClick(View v) {
-
-
-                /*Llamada a la función: */
-                EliminarCualquierVuelta(v);
-
-
-                return false;
-
-
-            }/***************FIN DEL EVENTO onLongClick************************/
-
-
-        });
-
-
-        LinearLayoutVerticalBorde = (LinearLayout) findViewById(R.id.llv_contenedor_para_bordes_erep);
-        LinearLayoutVerticalBorde.setBackground(getDrawable(R.drawable.borde_linear_layout_evento_deshabilitado));
-
-        LinearLayoutHorizontalSegundaTupla = (LinearLayout) findViewById(R.id.layout_horizontal_segunda_tupla_erep);
-        LinearLayoutHorizontalSegundaTupla.setBackgroundColor(Color.parseColor("#616161"));
-
-
-
-        LinearLayoutVerticalTercerTupla_Patrocinio = (LinearLayout) findViewById(R.id.layout_vertical_tercer_tupla_erep);
-
-
-
-
-
-        TV_Titulo_Evento = (TextView) findViewById(R.id.tv_evento_titulo);
-        TV_Titulo_Evento.setTextColor(Color.BLACK);
-
-
-
-
-
-
-        /*Inicialización de la variable de tipo TextView creada en XML para hacer referencia al número de tanda en el que estamos parados */
-        TextView textViewVuelta = (TextView) findViewById(R.id.vuelta_erep);
-        textViewVuelta.setBackgroundColor(Color.parseColor("#424242"));
-        vuelta_numero++;
-        textViewVuelta.setText("Vuelta N°: " + vuelta_numero);
-
-
-
-
-
-        /*Inicialización de variable del botón "+" para añadir un nuevo artículo*/
-        btnAgregarNuevoArticuloParaPatrocinio = (ImageButton) findViewById(R.id.add_art_erep);
-
-        /**Método para añadir nuevos artículos pero que deberá cumplir ciertas condiciones para que se cumpla dicha acción**/
-        btnAgregarNuevoArticuloParaPatrocinio.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-
-
-                /*Llamada a la función: */
-                ValidarCamposParaAñadirNuevoArticuloPatrocinio(LinearLayoutVerticalTercerTupla_Patrocinio);
-
-
-
-
-            } /*Fin del método OnClick*/
-
-        }); /**Fin del método setOnClickListener**/
-
-
-
-
-
-
-
-
-
-        spinner_para_patrocinio = (Spinner) findViewById(R.id.sp_art_erep);
-
-
-
-        eTcantEntrega = (EditText) findViewById(R.id.edtx_entrega_erep);
-        eTcantEntrega.requestFocus();
-
-
-        eTcantRetiro = (EditText) findViewById(R.id.edtx_retiro_erep);
-
-
-
-
-
-        /*Llamada a la función: */
-        setSpinner(spinner_para_patrocinio, eTcantEntrega,true);
-
-
-
-        fab_nueva_vuelta = findViewById(R.id.fab_nueva_entrega_retiro);
-
-        fab_nueva_vuelta.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                Utils_Spinner.contador_de_inicializacion--;
-
-                ObtenerNuevaVuelta("","", "");
-
-            }
-        });
-
-
-
-        fab_cancelar_vuelta = findViewById(R.id.fab_cancelar_entrega_retiro);
-
-
-
-
-
-
-
-
-
-        /** Pregunta si el usuario es un "repartidor" entonces habrá un cambio de colores en las activity's
-         * de Patrocinio**/
-
         Usuario usuario = new Usuario();
 
         usuario.LeerUsuarioEnUnSharedPreferences(this);
 
-        if(usuario.getTipo_de_Usuario().equals("repartidor")){
+        if(usuario.getTipo_de_Usuario().equals("repartidor")) {
+
 
             // finally change the color
             window.setStatusBarColor(Color.parseColor("#303F9F"));
@@ -818,21 +771,251 @@ public class EntregaRetiroEnvasesPatrocinio extends AppCompatActivity {
             toolbar.setBackgroundColor(Color.parseColor("#3F51B5"));
             setSupportActionBar(toolbar);
 
-            TV_Titulo_Evento.setTextColor(Color.parseColor("#1a237e"));
+
+            parent_scrollView_erep = (ScrollView) findViewById(R.id.scroll_parent_erep);
+
+            LinearLayoutVerticalPadre_Patrocinio = (LinearLayout) findViewById(R.id.parent_layout_vertical_erep);
+
+            LinearLayoutVerticalHijo_Patrocinio = (LinearLayout) findViewById(R.id.layout_vertical_erep);
 
 
-            LinearLayoutVerticalBorde.setBackgroundDrawable(getDrawable(R.drawable.borde_linear_layout_entrega_retiro_patrocinio_repartidores));
+            LinearLayoutVerticalHijo_Patrocinio.setOnLongClickListener(new View.OnLongClickListener() {
+                @Override
+                public boolean onLongClick(View v) {
 
 
-            textViewVuelta.setBackgroundColor(Color.parseColor("#2962ff"));
+                    /*Llamada a la función: */
+                    EliminarCualquierVuelta(v);
 
 
-            LinearLayoutHorizontalSegundaTupla.setBackgroundColor(Color.parseColor("#0091ea"));
+                    return false;
 
 
-        }//Fin del if
+                }/***************FIN DEL EVENTO onLongClick************************/
 
 
+            });
+
+
+            LinearLayoutVerticalBorde = (LinearLayout) findViewById(R.id.llv_contenedor_para_bordes_erep);
+            LinearLayoutVerticalBorde.setBackground(getDrawable(R.drawable.borde_linear_layout_evento_deshabilitado));
+
+            LinearLayoutHorizontalSegundaTupla = (LinearLayout) findViewById(R.id.layout_horizontal_segunda_tupla_erep);
+            LinearLayoutHorizontalSegundaTupla.setBackgroundColor(Color.parseColor("#616161"));
+
+            LinearLayoutVerticalTercerTupla_Patrocinio = (LinearLayout) findViewById(R.id.layout_vertical_tercer_tupla_erep);
+
+
+            TV_Titulo_Evento = (TextView) findViewById(R.id.tv_evento_titulo);
+            TV_Titulo_Evento.setTextColor(Color.BLACK);
+
+
+
+            /*Inicialización de la variable de tipo TextView creada en XML para hacer referencia al número de tanda en el que estamos parados */
+            TextView textViewVuelta = (TextView) findViewById(R.id.vuelta_erep);
+            textViewVuelta.setBackgroundColor(Color.parseColor("#424242"));
+            vuelta_numero++;
+            textViewVuelta.setText("Vuelta N°: " + vuelta_numero);
+
+
+
+            /*Inicialización de variable del botón "+" para añadir un nuevo artículo*/
+            btnAgregarNuevoArticuloParaPatrocinio = (ImageButton) findViewById(R.id.add_art_erep);
+
+            /**Método para añadir nuevos artículos pero que deberá cumplir ciertas condiciones para que se cumpla dicha acción**/
+            btnAgregarNuevoArticuloParaPatrocinio.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+
+
+
+                    /*Llamada a la función: */
+                    ValidarCamposParaAñadirNuevoArticuloPatrocinio(LinearLayoutVerticalTercerTupla_Patrocinio);
+
+
+
+
+                } /*Fin del método OnClick*/
+
+            }); /**Fin del método setOnClickListener**/
+
+
+
+            spinner_para_patrocinio = (Spinner) findViewById(R.id.sp_art_erep);
+
+
+
+            eTcantEntrega = (EditText) findViewById(R.id.edtx_entrega_erep);
+            eTcantEntrega.requestFocus();
+
+
+            eTcantRetiro = (EditText) findViewById(R.id.edtx_retiro_erep);
+
+
+
+
+
+            /*Llamada a la función: */
+            setSpinner(spinner_para_patrocinio, eTcantEntrega,true);
+
+
+
+            fab_nueva_vuelta = findViewById(R.id.fab_nueva_entrega_retiro);
+
+            fab_nueva_vuelta.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+
+                    Utils_Spinner.contador_de_inicializacion--;
+
+                    ObtenerNuevaVuelta("","", "");
+
+                }
+            });
+
+
+
+            fab_cancelar_vuelta = findViewById(R.id.fab_cancelar_entrega_retiro);
+
+
+
+
+
+        }/**FIN DEL if (usuario.getTipo_de_Usuario().equals("repartidor")) **/
+
+
+
+
+
+
+        else {
+
+            parent_scrollView_erep = (ScrollView) findViewById(R.id.scroll_parent_erep);
+
+            LinearLayoutVerticalPadre_Patrocinio = (LinearLayout) findViewById(R.id.parent_layout_vertical_erep);
+
+            LinearLayoutVerticalHijo_Patrocinio = (LinearLayout) findViewById(R.id.layout_vertical_erep);
+
+
+
+            LinearLayoutVerticalHijo_Patrocinio.setOnLongClickListener(new View.OnLongClickListener() {
+                @Override
+                public boolean onLongClick(View v) {
+
+
+                    /*Llamada a la función: */
+                    EliminarCualquierVuelta(v);
+
+
+                    return false;
+
+
+                }/***************FIN DEL EVENTO onLongClick************************/
+
+
+            });
+
+
+            LinearLayoutVerticalBorde = (LinearLayout) findViewById(R.id.llv_contenedor_para_bordes_erep);
+            LinearLayoutVerticalBorde.setBackground(getDrawable(R.drawable.borde_linear_layout_evento_deshabilitado));
+
+            LinearLayoutHorizontalSegundaTupla = (LinearLayout) findViewById(R.id.layout_horizontal_segunda_tupla_erep);
+            LinearLayoutHorizontalSegundaTupla.setBackgroundColor(Color.parseColor("#616161"));
+
+
+
+            LinearLayoutVerticalTercerTupla_Patrocinio = (LinearLayout) findViewById(R.id.layout_vertical_tercer_tupla_erep);
+
+
+
+
+
+            TV_Titulo_Evento = (TextView) findViewById(R.id.tv_evento_titulo);
+            TV_Titulo_Evento.setTextColor(Color.BLACK);
+
+
+
+
+
+
+            /*Inicialización de la variable de tipo TextView creada en XML para hacer referencia al número de tanda en el que estamos parados */
+            TextView textViewVuelta = (TextView) findViewById(R.id.vuelta_erep);
+            textViewVuelta.setBackgroundColor(Color.parseColor("#424242"));
+            vuelta_numero++;
+            textViewVuelta.setText("Vuelta N°: " + vuelta_numero);
+
+
+
+
+
+            /*Inicialización de variable del botón "+" para añadir un nuevo artículo*/
+            btnAgregarNuevoArticuloParaPatrocinio = (ImageButton) findViewById(R.id.add_art_erep);
+
+            /**Método para añadir nuevos artículos pero que deberá cumplir ciertas condiciones para que se cumpla dicha acción**/
+            btnAgregarNuevoArticuloParaPatrocinio.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+
+
+
+                    /*Llamada a la función: */
+                    ValidarCamposParaAñadirNuevoArticuloPatrocinio(LinearLayoutVerticalTercerTupla_Patrocinio);
+
+
+
+
+                } /*Fin del método OnClick*/
+
+            }); /**Fin del método setOnClickListener**/
+
+
+
+
+
+
+
+
+
+            spinner_para_patrocinio = (Spinner) findViewById(R.id.sp_art_erep);
+
+
+
+            eTcantEntrega = (EditText) findViewById(R.id.edtx_entrega_erep);
+            eTcantEntrega.requestFocus();
+
+
+            eTcantRetiro = (EditText) findViewById(R.id.edtx_retiro_erep);
+
+
+
+
+
+            /*Llamada a la función: */
+            setSpinner(spinner_para_patrocinio, eTcantEntrega,true);
+
+
+
+            fab_nueva_vuelta = findViewById(R.id.fab_nueva_entrega_retiro);
+
+            fab_nueva_vuelta.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+
+                    Utils_Spinner.contador_de_inicializacion--;
+
+                    ObtenerNuevaVuelta("","", "");
+
+                }
+            });
+
+
+
+            fab_cancelar_vuelta = findViewById(R.id.fab_cancelar_entrega_retiro);
+
+
+
+
+        }/**FIN DEL else (usuario = Supervisor) **/
 
 
     }/******************************FIN DE LA FUNCIÓN CargarReferenciasPrimerVueltaEventoCerrado()*****************************/
@@ -1888,6 +2071,10 @@ public class EntregaRetiroEnvasesPatrocinio extends AppCompatActivity {
 
             EditTextEntrega.setEnabled(true);
             EditTextEntrega.setHint("Cantidad");
+            EditTextEntrega.setHintTextColor(Color.parseColor("#9e9e9e"));
+
+
+
 
         }
 
@@ -1927,10 +2114,8 @@ public class EntregaRetiroEnvasesPatrocinio extends AppCompatActivity {
 
 
 
-
-        if(LeerEstadoDeEvento(Indice_Evento)){ /*Evento abierto */
-
-
+        /****Evento abierto****/
+        if(LeerEstadoDeEvento(Indice_Evento)){
 
 
             View NuevaVueltaInflada;
@@ -1985,17 +2170,9 @@ public class EntregaRetiroEnvasesPatrocinio extends AppCompatActivity {
 
 
 
-
-
-
             final EditText et_retiro_nueva_vuelta = (EditText) NuevaVueltaInflada.findViewById(R.id.edtx_retiro_erep);
 
             et_retiro_nueva_vuelta.setText(ValorSeteadoDelEditTextRetiroDeArticulosParaNuevaVuelta);
-
-
-
-
-
 
 
 
@@ -2006,13 +2183,8 @@ public class EntregaRetiroEnvasesPatrocinio extends AppCompatActivity {
             Utils_Spinner.contador_de_inicializacion = 0;
 
 
-
-
-
             /*Llamada a la función: */
             setSpinner(spinner_fijo_nueva_vuelta, et_entrega_nueva_vuelta,true);
-
-
 
 
 
@@ -2045,150 +2217,151 @@ public class EntregaRetiroEnvasesPatrocinio extends AppCompatActivity {
                 LinearLayoutSegundaTuplaProgramatica_Patrocinio.setBackgroundColor(Color.parseColor("#0091ea"));
 
 
-            }//Fin del if
+            }//FIN DEL if (usuario.getTipo_de_Usuario().equals("repartidor"))
 
 
 
 
 
-        }//FIN del if principal
+        }/***** FIN DEL if (Event Abierto) **/
 
 
 
+        /*******************************************************************************************/
+        /*******************************************************************************************/
+        /*******************************************************************************************/
+        /*******************************************************************************************/
+        /*******************************************************************************************/
+        /*******************************************************************************************/
+        /*******************************************************************************************/
+        /*******************************************************************************************/
+        /*******************************************************************************************/
+        /*******************************************************************************************/
 
 
 
 
-        else {  /* Evento cerrado */
 
 
+        /****Evento cerrado****/
+        else {
 
-            View NuevaVueltaInflada;
 
-            /*Llamada a la función: */
-            NuevaVueltaInflada = AgregarNuevaVuelta();
 
-            ArrayListVueltas.add(NuevaVueltaInflada);
-
-
-
-            final LinearLayout LinearLayoutVerticalProgramaticoConBorde = (LinearLayout) findViewById(R.id.llv_contenedor_para_bordes_erep);
-            LinearLayoutVerticalProgramaticoConBorde.setBackground(getDrawable(R.drawable.borde_linear_layout_evento_deshabilitado));
-
-
-            final LinearLayout LinearLayoutSegundaTuplaProgramatica_Patrocinio = (LinearLayout) findViewById(R.id.layout_horizontal_segunda_tupla_erep);
-            LinearLayoutSegundaTuplaProgramatica_Patrocinio.setBackgroundColor(Color.parseColor("#616161"));
-
-
-            final LinearLayout LinearLayoutTercerTuplaProgramatica_Patrocinio = (LinearLayout) NuevaVueltaInflada.findViewById(R.id.layout_vertical_tercer_tupla_erep);
-
-
-
-            TextView textViewNuevaVuelta = (TextView) NuevaVueltaInflada.findViewById(R.id.vuelta_erep);
-            textViewNuevaVuelta.setBackgroundColor(Color.parseColor("#424242"));
-            vuelta_numero++;
-            textViewNuevaVuelta.setText("Vuelta N°: " + vuelta_numero);
-
-
-
-
-
-            final ImageButton btnAgregarNuevoArticuloParaLaNuevaVuelta = (ImageButton) NuevaVueltaInflada.findViewById(R.id.add_art_erep);
-
-            btnAgregarNuevoArticuloParaLaNuevaVuelta.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-
-
-                    ValidarCamposParaAñadirNuevoArticuloPatrocinio(LinearLayoutTercerTuplaProgramatica_Patrocinio);
-
-
-                }
-            });
-
-
-
-
-
-
-            final EditText et_entrega_nueva_vuelta = (EditText) NuevaVueltaInflada.findViewById(R.id.edtx_entrega_erep);
-            et_entrega_nueva_vuelta.requestFocus();
-
-
-            et_entrega_nueva_vuelta.setText(ValorSeteadoDelEditTextEntregaDeArticulosParaNuevaVuelta);
-
-
-
-
-
-
-
-
-            final EditText et_retiro_nueva_vuelta = (EditText) NuevaVueltaInflada.findViewById(R.id.edtx_retiro_erep);
-
-            et_retiro_nueva_vuelta.setText(ValorSeteadoDelEditTextRetiroDeArticulosParaNuevaVuelta);
-
-
-
-
-
-
-
-
-
-            final Spinner spinner_fijo_nueva_vuelta = (Spinner) NuevaVueltaInflada.findViewById(R.id.sp_art_erep);
-
-
-            Utils_Spinner.contador_de_inicializacion = 0;
-
-
-
-
-
-            /*Llamada a la función: */
-            setSpinner(spinner_fijo_nueva_vuelta, et_entrega_nueva_vuelta,true);
-
-
-
-
-
-            ArticuloSeleccionadoAnterior = spinner_fijo_nueva_vuelta.getSelectedItem().toString();
-
-
-            spinner_fijo_nueva_vuelta.setSelection(Utils_Spinner.ObtenerPosicionDelElementoEnElSpinner(ValorElementoSeleccionadoSpinnerFijo,spinner_fijo_nueva_vuelta));
-
-
-            ArticuloSeleccionadoAnterior = spinner_fijo_nueva_vuelta.getSelectedItem().toString();
-
-
-
-
-
-
-            /** Pregunta si el usuario es un "repartidor" entonces habrá un cambio de colores en las activity's
-             * de Patrocinio**/
 
             Usuario usuario = new Usuario();
-
             usuario.LeerUsuarioEnUnSharedPreferences(this);
 
             if(usuario.getTipo_de_Usuario().equals("repartidor")){
 
-                LinearLayoutVerticalProgramaticoConBorde.setBackgroundDrawable(getDrawable(R.drawable.borde_linear_layout_entrega_retiro_patrocinio_repartidores));
 
-                textViewNuevaVuelta.setBackgroundColor(Color.parseColor("#2962ff"));
+                View NuevaVueltaInflada;
 
-                LinearLayoutSegundaTuplaProgramatica_Patrocinio.setBackgroundColor(Color.parseColor("#0091ea"));
+                /*Llamada a la función: */
+                NuevaVueltaInflada = AgregarNuevaVuelta();
 
-
-            }//Fin del if
-
+                ArrayListVueltas.add(NuevaVueltaInflada);
 
 
 
+                final LinearLayout LinearLayoutVerticalProgramaticoConBorde = (LinearLayout) findViewById(R.id.llv_contenedor_para_bordes_erep);
+                LinearLayoutVerticalProgramaticoConBorde.setBackground(getDrawable(R.drawable.borde_linear_layout_evento_deshabilitado));
 
 
-        }//FIN del else
+                final LinearLayout LinearLayoutSegundaTuplaProgramatica_Patrocinio = (LinearLayout) findViewById(R.id.layout_horizontal_segunda_tupla_erep);
+                LinearLayoutSegundaTuplaProgramatica_Patrocinio.setBackgroundColor(Color.parseColor("#616161"));
+
+
+                final LinearLayout LinearLayoutTercerTuplaProgramatica_Patrocinio = (LinearLayout) NuevaVueltaInflada.findViewById(R.id.layout_vertical_tercer_tupla_erep);
+
+
+
+                TextView textViewNuevaVuelta = (TextView) NuevaVueltaInflada.findViewById(R.id.vuelta_erep);
+                textViewNuevaVuelta.setBackgroundColor(Color.parseColor("#424242"));
+                vuelta_numero++;
+                textViewNuevaVuelta.setText("Vuelta N°: " + vuelta_numero);
+
+
+
+
+
+                final ImageButton btnAgregarNuevoArticuloParaLaNuevaVuelta = (ImageButton) NuevaVueltaInflada.findViewById(R.id.add_art_erep);
+
+                btnAgregarNuevoArticuloParaLaNuevaVuelta.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+
+
+                        ValidarCamposParaAñadirNuevoArticuloPatrocinio(LinearLayoutTercerTuplaProgramatica_Patrocinio);
+
+
+                    }
+                });
+
+
+
+
+
+
+                final EditText et_entrega_nueva_vuelta = (EditText) NuevaVueltaInflada.findViewById(R.id.edtx_entrega_erep);
+                et_entrega_nueva_vuelta.requestFocus();
+
+
+                et_entrega_nueva_vuelta.setText(ValorSeteadoDelEditTextEntregaDeArticulosParaNuevaVuelta);
+
+
+
+
+
+
+
+
+                final EditText et_retiro_nueva_vuelta = (EditText) NuevaVueltaInflada.findViewById(R.id.edtx_retiro_erep);
+
+                et_retiro_nueva_vuelta.setText(ValorSeteadoDelEditTextRetiroDeArticulosParaNuevaVuelta);
+
+
+
+
+
+
+
+
+
+                final Spinner spinner_fijo_nueva_vuelta = (Spinner) NuevaVueltaInflada.findViewById(R.id.sp_art_erep);
+
+
+                Utils_Spinner.contador_de_inicializacion = 0;
+
+
+
+
+
+                /*Llamada a la función: */
+                setSpinner(spinner_fijo_nueva_vuelta, et_entrega_nueva_vuelta,true);
+
+
+
+
+
+                ArticuloSeleccionadoAnterior = spinner_fijo_nueva_vuelta.getSelectedItem().toString();
+
+
+                spinner_fijo_nueva_vuelta.setSelection(Utils_Spinner.ObtenerPosicionDelElementoEnElSpinner(ValorElementoSeleccionadoSpinnerFijo,spinner_fijo_nueva_vuelta));
+
+
+                ArticuloSeleccionadoAnterior = spinner_fijo_nueva_vuelta.getSelectedItem().toString();
+
+
+
+
+            }//FIN DEL if(usuario.getTipo_de_Usuario().equals("repartidor"))
+
+
+
+
+
+        } /********** FIN DEL else (Evento Cerrado)**/
 
 
 
@@ -2662,12 +2835,10 @@ public class EntregaRetiroEnvasesPatrocinio extends AppCompatActivity {
 
 
 
-
                 sp_vuelta.setEnabled(true);
 
-
-
                 String text_spinner_fijo = sp_vuelta.getSelectedItem().toString();
+
 
 
                 if(text_spinner_fijo == "Envases rotos/pinchados" || text_spinner_fijo == "Dispenser plástico roto"
@@ -2680,7 +2851,34 @@ public class EntregaRetiroEnvasesPatrocinio extends AppCompatActivity {
                     editText_entrega_vuelta.setHint("Cantidad");
 
 
-                } else {
+                    editText_retiro_vuelta.setFocusableInTouchMode(true);
+                    editText_retiro_vuelta.setCursorVisible(true);
+                    editText_retiro_vuelta.requestFocus();
+                    editText_retiro_vuelta.setHint("Cantidad");
+                    editText_retiro_vuelta.setHintTextColor(Color.parseColor("#9e9e9e"));
+
+
+                    Usuario usuario = new Usuario();
+                    usuario.LeerUsuarioEnUnSharedPreferences(this);
+
+                    if(usuario.getTipo_de_Usuario().equals("repartidor")) {
+
+                        editText_retiro_vuelta.setBackgroundDrawable(getDrawable(R.drawable.edit_text_underline_color_repartidor));
+
+                    }
+
+                    else {
+
+                        editText_retiro_vuelta.setBackgroundDrawable(getDrawable(R.drawable.edit_text_material_customizado));
+
+                    }
+
+
+
+                }
+
+
+                 else {
 
 
 
@@ -2689,7 +2887,22 @@ public class EntregaRetiroEnvasesPatrocinio extends AppCompatActivity {
                     editText_entrega_vuelta.setCursorVisible(true);
                     editText_entrega_vuelta.setHint("Cantidad");
                     editText_entrega_vuelta.setHintTextColor(Color.parseColor("#9e9e9e"));
-                    editText_entrega_vuelta.setBackgroundDrawable(getDrawable(R.drawable.edit_text_material_customizado));
+
+                    Usuario usuario = new Usuario();
+                    usuario.LeerUsuarioEnUnSharedPreferences(this);
+
+                    if(usuario.getTipo_de_Usuario().equals("repartidor")) {
+
+                        editText_entrega_vuelta.setBackgroundDrawable(getDrawable(R.drawable.edit_text_underline_color_repartidor));
+
+                    }
+
+                    else {
+
+                        editText_entrega_vuelta.setBackgroundDrawable(getDrawable(R.drawable.edit_text_material_customizado));
+
+                    }
+
 
 
 
@@ -2699,12 +2912,27 @@ public class EntregaRetiroEnvasesPatrocinio extends AppCompatActivity {
                     editText_retiro_vuelta.setCursorVisible(true);
                     editText_retiro_vuelta.setHint("Cantidad");
                     editText_retiro_vuelta.setHintTextColor(Color.parseColor("#9e9e9e"));
-                    editText_retiro_vuelta.setBackgroundDrawable(getDrawable(R.drawable.edit_text_material_customizado));
+
+                    if(usuario.getTipo_de_Usuario().equals("repartidor")) {
+
+                        editText_retiro_vuelta.setBackgroundDrawable(getDrawable(R.drawable.edit_text_underline_color_repartidor));
+
+                    }
+
+                    else {
+
+                        editText_retiro_vuelta.setBackgroundDrawable(getDrawable(R.drawable.edit_text_material_customizado));
+
+                    }
 
 
 
 
-                }
+
+
+
+
+                 }
 
 
 
@@ -2744,7 +2972,7 @@ public class EntregaRetiroEnvasesPatrocinio extends AppCompatActivity {
 
                     if(text_spinner_programatico == "Envases rotos/pinchados" ||
                             text_spinner_programatico == "Dispenser plástico roto" ||
-                            text_spinner_programatico == "Dispenser eléctrico averiado"){
+                            text_spinner_programatico == "Dispenser eléctrico \n averiado"){
 
 
                         et_entrega_del_nuevo_articulo.setEnabled(false);
@@ -2752,14 +2980,55 @@ public class EntregaRetiroEnvasesPatrocinio extends AppCompatActivity {
                         et_entrega_del_nuevo_articulo.setText("");
                         et_entrega_del_nuevo_articulo.setHint("Cantidad");
 
+                        et_retiro_del_nuevo_articulo.setFocusableInTouchMode(true);
+                        et_retiro_del_nuevo_articulo.setCursorVisible(true);
+                        et_retiro_del_nuevo_articulo.requestFocus();
+                        et_retiro_del_nuevo_articulo.setHint("Cantidad");
+                        et_retiro_del_nuevo_articulo.setHintTextColor(Color.parseColor("#9e9e9e"));
 
-                    } else {
+                        Usuario usuario = new Usuario();
+                        usuario.LeerUsuarioEnUnSharedPreferences(this);
+
+                        if(usuario.getTipo_de_Usuario().equals("repartidor")) {
+
+                            et_retiro_del_nuevo_articulo.setBackgroundDrawable(getDrawable(R.drawable.edit_text_underline_color_repartidor));
+
+                        }
+
+                        else {
+
+                            et_retiro_del_nuevo_articulo.setBackgroundDrawable(getDrawable(R.drawable.edit_text_material_customizado));
+
+                        }
+
+
+
+                    }
+
+
+
+                    else {
 
                         et_entrega_del_nuevo_articulo.setFocusableInTouchMode(true);
                         et_entrega_del_nuevo_articulo.setCursorVisible(true);
                         et_entrega_del_nuevo_articulo.setHint("Cantidad");
                         et_entrega_del_nuevo_articulo.setHintTextColor(Color.parseColor("#9e9e9e"));
-                        et_entrega_del_nuevo_articulo.setBackgroundDrawable(getDrawable(R.drawable.edit_text_material_customizado));
+
+
+                        Usuario usuario = new Usuario();
+                        usuario.LeerUsuarioEnUnSharedPreferences(this);
+
+                        if(usuario.getTipo_de_Usuario().equals("repartidor")) {
+
+                            et_entrega_del_nuevo_articulo.setBackgroundDrawable(getDrawable(R.drawable.edit_text_underline_color_repartidor));
+
+                        }
+
+                        else {
+
+                            et_entrega_del_nuevo_articulo.setBackgroundDrawable(getDrawable(R.drawable.edit_text_material_customizado));
+
+                        }
 
 
 
@@ -2768,7 +3037,20 @@ public class EntregaRetiroEnvasesPatrocinio extends AppCompatActivity {
                         et_retiro_del_nuevo_articulo.setCursorVisible(true);
                         et_retiro_del_nuevo_articulo.setHint("Cantidad");
                         et_retiro_del_nuevo_articulo.setHintTextColor(Color.parseColor("#9e9e9e"));
-                        et_retiro_del_nuevo_articulo.setBackgroundDrawable(getDrawable(R.drawable.edit_text_material_customizado));
+
+                        if(usuario.getTipo_de_Usuario().equals("repartidor")) {
+
+                            et_retiro_del_nuevo_articulo.setBackgroundDrawable(getDrawable(R.drawable.edit_text_underline_color_repartidor));
+
+                        }
+
+                        else {
+
+                            et_retiro_del_nuevo_articulo.setBackgroundDrawable(getDrawable(R.drawable.edit_text_material_customizado));
+
+                        }
+
+
 
 
 
@@ -3169,7 +3451,7 @@ public class EntregaRetiroEnvasesPatrocinio extends AppCompatActivity {
 
 
 
-    MenuItem BotonGuardar, BotonEditarEvento;
+    MenuItem BotonGuardar, BotonEditarEvento,BotonHabilitarEvento,BotonFinalizarEvento;
 
 
     @Override
@@ -3180,35 +3462,91 @@ public class EntregaRetiroEnvasesPatrocinio extends AppCompatActivity {
         getMenuInflater().inflate(R.menu.menu_entrega_retiro_envases_patrocinio, menu);
 
 
-        if(!LeerEstadoDeEvento(Indice_Evento)) {
+
+        Usuario usuario = new Usuario();
+        usuario.LeerUsuarioEnUnSharedPreferences(this);
+
+        if(usuario.getTipo_de_Usuario().equals("repartidor")) {
+
+            /**Evento Cerrado **/
+            if(!LeerEstadoDeEvento(Indice_Evento)) {
+
+                menu.findItem(R.id.action_save_vuelta).setVisible(false);
+
+                menu.findItem(R.id.action_edit_vuelta).setVisible(false);
 
 
-            fab_nueva_vuelta.setVisibility(GONE);
+                menu.findItem(R.id.action_finish_evento).setVisible(false);
 
-            menu.findItem(R.id.action_save_vuelta).setVisible(false);
+                menu.findItem(R.id.action_avaible_evento).setVisible(false);
 
-            menu.findItem(R.id.action_finish_evento).setVisible(false);
-
-            menu.findItem(R.id.action_avaible_evento).setVisible(true);
-
-        }//Fin del if
+                fab_nueva_vuelta.setVisibility(GONE);
 
 
-        else {
-
-            menu.findItem(R.id.action_avaible_evento).setVisible(false);
-
-        }
+            }//Fin del if
 
 
+            else {
+
+                menu.findItem(R.id.action_save_vuelta).setVisible(true);
+
+                menu.findItem(R.id.action_edit_vuelta).setVisible(true);
 
 
-        BotonEditarEvento = menu.findItem(R.id.action_edit_vuelta);
+                menu.findItem(R.id.action_finish_evento).setVisible(false);
+
+                menu.findItem(R.id.action_avaible_evento).setVisible(false);
+
+            }
+
+
+        }//FIN DEL if (usuario.getTipo_de_Usuario().equals("repartidor"))
+
+
+
+
+
+        /**Usuario: SUPERVISOR **/
+        else{
+
+
+            /**Evento Cerrado **/
+            if(!LeerEstadoDeEvento(Indice_Evento)) {
+
+                fab_nueva_vuelta.setVisibility(GONE);
+
+                menu.findItem(R.id.action_save_vuelta).setVisible(false);
+
+                menu.findItem(R.id.action_finish_evento).setVisible(false);
+
+                menu.findItem(R.id.action_edit_vuelta).setVisible(false);
+
+                menu.findItem(R.id.action_avaible_evento).setVisible(true);
+
+            }//Fin del if
+
+
+            else {
+
+                menu.findItem(R.id.action_avaible_evento).setVisible(false);
+
+            }
+
+
+
+        }/**FIN DEL else (usuario = "supervisor") **/
+
+
+
 
 
         BotonGuardar = menu.findItem(R.id.action_save_vuelta);
 
+        BotonEditarEvento = menu.findItem(R.id.action_edit_vuelta);
 
+        BotonHabilitarEvento = menu.findItem(R.id.action_avaible_evento);
+
+        BotonFinalizarEvento = menu.findItem(R.id.action_finish_evento);
 
 
         return true;
@@ -3254,37 +3592,28 @@ public class EntregaRetiroEnvasesPatrocinio extends AppCompatActivity {
 
 
 
-                    /*Si el evento no fue cerrado*/
+                    /**Si el evento no fue cerrado**/
 
                     if(LeerEstadoDeEvento(Indice_Evento)){
 
 
                         if(DeshabilitarVistasDeLasVueltasAlGuardarCambios(ValidarTodosLosCamposParaGuardarCambiosEnCadaVuelta())){
 
-
-
                             /*Llamada a la función: */
                             GuardarValoresEnSharedPreferencesPatrocinio();
 
-
-
                         }//Fin del if
-
-
-
 
 
                     }//Fin del primer if
 
 
 
-
+                    /**Evento cerrado**/
                     else {
 
 
                         if(DeshabilitarVistasDeLasVueltasAlGuardarCambios(ValidarTodosLosCamposParaGuardarCambiosEnCadaVuelta())){
-
-
 
                             /*Llamada a las funciones: */
                             GuardarValoresEnSharedPreferencesPatrocinio();
@@ -3354,38 +3683,96 @@ public class EntregaRetiroEnvasesPatrocinio extends AppCompatActivity {
                 public void onClick(DialogInterface dialog, int id) {
 
 
-                    /*Si el evento no fue cerrado*/
+                    Usuario usuario = new Usuario();
 
-                    if(LeerEstadoDeEvento(Indice_Evento)){
+                    usuario.LeerUsuarioEnUnSharedPreferences(EntregaRetiroEnvasesPatrocinio.this);
 
-
-                        /*Llamada a la función:  */
-                        EditarVueltas(true);
-
-                        fab_nueva_vuelta.setVisibility(GONE);
-
-                        //BotonGuardar.setVisible(true);
-
-
-                    }//Fin del if
+                    if(usuario.getTipo_de_Usuario().equals("repartidor")) {
 
 
 
-
-                    else {
-
-
-                        /*Llamada a la función:  */
-                        EditarVueltas(true);
-
-                        CambiarColoresEditarEventoFinalizado();
-
-                        BotonGuardar.setVisible(true);
-
-                        fab_nueva_vuelta.setVisibility(View.VISIBLE);
+                        /**Si el evento no fue cerrado**/
+                        if(LeerEstadoDeEvento(Indice_Evento)){
 
 
-                    }//Fin del else
+                            /*Llamada a la función:  */
+                            EditarVueltas(true);
+
+                            fab_nueva_vuelta.setVisibility(View.VISIBLE);
+
+                            BotonGuardar.setVisible(true);
+
+
+                        }//Fin del if
+
+
+
+
+                        else {
+
+
+                        }//Fin del else
+
+
+
+
+
+
+
+
+                    }//FIN DEL if (usuario.getTipo_de_Usuario().equals("repartidor"))
+
+
+
+                    /**Usuario: SUPERVISOR **/
+                    else{
+
+
+
+                        /**Si el evento no fue cerrado**/
+                        if(LeerEstadoDeEvento(Indice_Evento)){
+
+
+                            /*Llamada a la función:  */
+                            EditarVueltas(true);
+
+                            fab_nueva_vuelta.setVisibility(View.VISIBLE);
+
+                            BotonGuardar.setVisible(true);
+
+                            BotonHabilitarEvento.setVisible(false);
+
+                            BotonFinalizarEvento.setVisible(true);
+
+
+                        }//Fin del if
+
+
+
+
+                        else {
+
+                            /*Llamada a la función:  */
+                            EditarVueltas(true);
+
+                            /*Llamada a la función:  */
+                            CambiarColoresEditarEventoFinalizadoSupervisor();
+
+                            BotonGuardar.setVisible(true);
+
+                            fab_nueva_vuelta.setVisibility(View.VISIBLE);
+
+
+                        }//Fin del else
+
+
+
+
+
+                    }/**FIN DEL else (usuario = "supervisor") **/
+
+
+
 
 
 
@@ -3446,16 +3833,13 @@ public class EntregaRetiroEnvasesPatrocinio extends AppCompatActivity {
 
                     /**Si el evento se cierra sin INCONSISTENCIAS **/
 
-
                     SharedPreferences preferences = getSharedPreferences("Datos_Patrocinio_Supervisor", MODE_PRIVATE);
 
                     Integer DimensionArrayNuevasVueltas = Integer.parseInt(preferences.getString("Indice_Evento" + Indice_Evento + "DimensionArrayNuevasVueltas", "0"));
 
 
 
-                    if(ArrayListVueltas.size() == DimensionArrayNuevasVueltas ){
-
-
+                    if(ArrayListVueltas.size() == DimensionArrayNuevasVueltas){
 
                         if(DeshabilitarVistasDeLasVueltasAlGuardarCambios(ValidarTodosLosCamposParaGuardarCambiosEnCadaVuelta())){
 
@@ -3466,11 +3850,13 @@ public class EntregaRetiroEnvasesPatrocinio extends AppCompatActivity {
                             /*Llamada a la función: */
                             CambiarEstadoDeEvento(false);
 
+                            DimensionArrayNuevasVuelt
+
                             Intent intent = new Intent(EntregaRetiroEnvasesPatrocinio.this, BuscarResponsableParaPatrocinio.class);
 
                             startActivity(intent);
 
-                            finish();
+                            //finish();
 
                         }
 
@@ -3540,10 +3926,11 @@ public class EntregaRetiroEnvasesPatrocinio extends AppCompatActivity {
 
 
                     /*Llamada a las funciones: */
-                    CambiarColoresEditarEventoFinalizado();
+                    CambiarColoresEditarEventoFinalizadoSupervisor();
 
                     CambiarEstadoDeEvento(true);
 
+                    BotonEditarEvento.setVisible(true);
 
 
                 }
@@ -3577,12 +3964,6 @@ public class EntregaRetiroEnvasesPatrocinio extends AppCompatActivity {
 
 
 
-
-
-
-
-
-
         return super.onOptionsItemSelected(item);
 
 
@@ -3591,8 +3972,20 @@ public class EntregaRetiroEnvasesPatrocinio extends AppCompatActivity {
 
 
 
+    /**********************************************************************************/
+    /**********************************************************************************/
+    /**********************************************************************************/
+    /**********************************************************************************/
+    /**********************************************************************************/
+    /**********************************************************************************/
+    /**********************************************************************************/
+    /**********************************************************************************/
+    /**********************************************************************************/
+    /**********************************************************************************/
 
 
+
+/*
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
 
@@ -3607,7 +4000,7 @@ public class EntregaRetiroEnvasesPatrocinio extends AppCompatActivity {
 
         return super.onKeyDown(keyCode, event);
     }
-
+*/
 
 
 
@@ -3622,6 +4015,18 @@ public class EntregaRetiroEnvasesPatrocinio extends AppCompatActivity {
                             overridePendingTransition(0,0);
                             */
 
+
+
+    /**********************************************************************************/
+    /**********************************************************************************/
+    /**********************************************************************************/
+    /**********************************************************************************/
+    /**********************************************************************************/
+    /**********************************************************************************/
+    /**********************************************************************************/
+    /**********************************************************************************/
+    /**********************************************************************************/
+    /**********************************************************************************/
 
 
 }/******************************* FIN DE LA ACTIVITY EntregaRetiroEnvasesPatrocinio ******************************/
