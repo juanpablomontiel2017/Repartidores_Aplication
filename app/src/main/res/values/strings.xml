@@ -153,13 +153,24 @@
     </string>
 
 
+
+
+    <!--Activity: DatosPersonalesResponsable -->
+
+    <string name="mensaje_datos_personales_fecha_fin">Si desea cambiar la fecha de fin estimada primero debe modificar la fecha de inicio del evento</string>
+
+
+
+
     <!--Activity: NuevoResponsableParaPatrocinio -->
 
     <string name="edittext_hint">
-
         <font size="16">(Obligatorio)</font>
-
     </string>
+
+
+
+
     <string name="title_activity_datos_personales_responsable">DatosPersonalesResponsable</string>
     <string name="title_activity_mapa">Mapa</string>
     <string name="title_activity_mapa__supervisores">Mapa_Supervisores</string>

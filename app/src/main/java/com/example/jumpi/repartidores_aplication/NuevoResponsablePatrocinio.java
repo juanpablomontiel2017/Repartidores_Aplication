@@ -757,6 +757,7 @@ public class NuevoResponsablePatrocinio extends AppCompatActivity {
 
         et_fecha_fin_del_evento_nuevo_responsable = (EditText) findViewById(R.id.et_nuevo_responsable_fecha_fin_evento_formulario_patrocinio);
         /**Deshabilitar el ET al comienzo solo si la fecha de inicio tiene una fecha seleccionada **/
+        et_fecha_fin_del_evento_nuevo_responsable.setEnabled(false);
         et_fecha_fin_del_evento_nuevo_responsable.setFocusable(false);
         et_fecha_fin_del_evento_nuevo_responsable.setCursorVisible(false);
         et_fecha_fin_del_evento_nuevo_responsable.setHint("");
@@ -827,6 +828,8 @@ public class NuevoResponsablePatrocinio extends AppCompatActivity {
 
                     if(usuario.getTipo_de_Usuario().equals("repartidor")) {
 
+
+                        et_fecha_fin_del_evento_nuevo_responsable.setEnabled(true);
                         et_fecha_fin_del_evento_nuevo_responsable.setBackgroundDrawable(getDrawable(R.drawable.edit_text_underline_color_repartidor));
                         et_fecha_fin_del_evento_nuevo_responsable.setHint("(Obligatorio)");
 
@@ -844,6 +847,7 @@ public class NuevoResponsablePatrocinio extends AppCompatActivity {
 
                     else{
 
+                        et_fecha_fin_del_evento_nuevo_responsable.setEnabled(true);
                         et_fecha_fin_del_evento_nuevo_responsable.setBackgroundDrawable(getDrawable(R.drawable.edit_text_material_customizado));
                         et_fecha_fin_del_evento_nuevo_responsable.setHint("(Obligatorio)");
 
@@ -987,21 +991,19 @@ public class NuevoResponsablePatrocinio extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                if(!et_dni_nuevo_responsable.getText().toString().isEmpty() || !et_nombre_nuevo_responsable.getText().toString().isEmpty()
-                        || !et_apellido_nuevo_responsable.getText().toString().isEmpty() ||!et_codigo_area_nuevo_responsable.getText().toString().isEmpty()
-                        || !et_telefono_nuevo_responsable.getText().toString().isEmpty() || !et_direccion_nuevo_responsable.getText().toString().isEmpty()
-                        || !et_barrio_nuevo_responsable.getText().toString().isEmpty() || !et_correo_nuevo_responsable.getText().toString().isEmpty()
-                        || !et_referencia_nuevo_responsable.getText().toString().isEmpty() ||!et_nombre_del_evento_nuevo_responsable.getText().toString().isEmpty()
-                        || !et_direccion_del_evento_nuevo_responsable.getText().toString().isEmpty() || !et_barrio_del_evento_nuevo_responsable.getText().toString().isEmpty()
-                        || !et_fecha_inicio_del_evento_nuevo_responsable.getText().toString().isEmpty() || !et_fecha_fin_del_evento_nuevo_responsable.getText().toString().isEmpty()){
 
 
 
+                if(usuario.getTipo_de_Usuario().equals("repartidor")){
 
-                    AlertDialog.Builder builder = new AlertDialog.Builder(NuevoResponsablePatrocinio.this);
+
+                    AlertDialog.Builder builder = new AlertDialog.Builder(NuevoResponsablePatrocinio.this, R.style.AlertDialogStyleRepartidores);
+
+
                     builder.setIcon(R.drawable.ic_msj_alerta);
                     builder.setTitle("¿Desea salir?");
-                    builder.setMessage("Al parecer algunos campos del formulario no están vacios. ¿Desea cancelar la adición de un nuevo responsable del evento?");
+                    builder.setMessage("Al cancelar la adición de un nuevo responsable se perderán los cambios realizados ¿Desea continuar?");
+
 
 
                     builder.setPositiveButton("SI", new DialogInterface.OnClickListener() {
@@ -1011,9 +1013,9 @@ public class NuevoResponsablePatrocinio extends AppCompatActivity {
                             finish();
 
 
+
                         }
                     });
-
 
 
 
@@ -1024,9 +1026,7 @@ public class NuevoResponsablePatrocinio extends AppCompatActivity {
 
                         public void onClick(DialogInterface dialog, int id) {
 
-
                             dialog.dismiss();
-
 
                         }
                     });
@@ -1034,24 +1034,70 @@ public class NuevoResponsablePatrocinio extends AppCompatActivity {
 
 
                     AlertDialog dialog = builder.create();
+
                     dialog.show();
 
 
 
+                }//FIN DEL if(usuario.getTipo_de_Usuario().equals("repartidor"))
 
 
 
 
-                }//Fin del if
+                else{
 
 
-                else {
+                    AlertDialog.Builder builder = new AlertDialog.Builder(NuevoResponsablePatrocinio.this, R.style.AlertDialogStyleSupervisores);
 
 
-                    finish();
+                    builder.setIcon(R.drawable.ic_msj_alerta);
+                    builder.setTitle("¿Desea salir?");
+                    builder.setMessage("Al cancelar la adición de un nuevo responsable se perderán los cambios realizados ¿Desea continuar?");
 
 
-                }//Fin del else
+
+                    builder.setPositiveButton("SI", new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int id) {
+
+
+                            finish();
+
+
+
+                        }
+                    });
+
+
+
+
+
+                    builder.setNegativeButton("NO", new DialogInterface.OnClickListener() {
+
+
+                        public void onClick(DialogInterface dialog, int id) {
+
+                            dialog.dismiss();
+
+                        }
+                    });
+
+
+
+                    AlertDialog dialog = builder.create();
+
+                    dialog.show();
+
+
+
+                }//FIN DEL else (usuario = SUPERVISOR)
+
+
+
+
+
+
+
+
 
 
             }/*******************FIN DEL EVENTO onClick()**************************/
@@ -1418,8 +1464,8 @@ public class NuevoResponsablePatrocinio extends AppCompatActivity {
         //Estructura repetitiva para duplicar el tiempo de duración del Toast
             for (int i = 0; i < 2; i++) {
 
+                if(et_correo_nuevo_responsable.getText().toString().isEmpty()){
 
-                    /**Primer Validación: todos los campos obligatorios deben estar rellenados**/
 
                     if (!et_dni_nuevo_responsable.getText().toString().isEmpty() && ValidarDocumento()
                             && !et_nombre_nuevo_responsable.getText().toString().isEmpty() && ValidarNombre()
@@ -1428,8 +1474,6 @@ public class NuevoResponsablePatrocinio extends AppCompatActivity {
                             && !et_telefono_nuevo_responsable.getText().toString().isEmpty() && ValidarTelefono()
                             && !et_direccion_nuevo_responsable.getText().toString().isEmpty() && ValidarDireccion()
                             && !et_barrio_nuevo_responsable.getText().toString().isEmpty() && ValidarBarrio()
-                            && et_correo_nuevo_responsable.getText().toString().isEmpty() && !ValidarEmail(et_correo_nuevo_responsable)
-                            || ValidarEmail(et_correo_nuevo_responsable)
                             && !et_referencia_nuevo_responsable.getText().toString().isEmpty() && ValidarReferencia()
                             && !et_nombre_del_evento_nuevo_responsable.getText().toString().isEmpty() && ValidarNombreEvento()
                             && !et_direccion_del_evento_nuevo_responsable.getText().toString().isEmpty() && ValidarDireccionEvento()
@@ -1437,6 +1481,9 @@ public class NuevoResponsablePatrocinio extends AppCompatActivity {
                             && !et_referencia_del_evento_nuevo_responsable.getText().toString().isEmpty() && ValidarReferenciaEvento()
                             && !et_fecha_inicio_del_evento_nuevo_responsable.getText().toString().isEmpty() && ValidarFechaInicioEvento()
                             && !et_fecha_fin_del_evento_nuevo_responsable.getText().toString().isEmpty() && ValidarFechaFinEvento()){
+
+
+
 
 
                         flag_nuevo_responsable = true;
@@ -1447,11 +1494,63 @@ public class NuevoResponsablePatrocinio extends AppCompatActivity {
 
                     else {
 
-                    Toast.makeText(getApplicationContext(), "¡Error! Recuerde completar todos los campos que sean obligatorios y con datos válidos.", Toast.LENGTH_LONG).show();
+                        Toast.makeText(getApplicationContext(), "¡Error! Recuerde completar todos los campos que sean obligatorios y con datos válidos.", Toast.LENGTH_LONG).show();
 
-                    flag_nuevo_responsable = false;
+                        flag_nuevo_responsable = false;
 
                     }
+
+
+
+                }/** FIN DEL if (Campo de CORREO vacío **/
+
+
+
+
+
+                /**Campo de correo con valor **/
+                else {
+
+                    if (!et_dni_nuevo_responsable.getText().toString().isEmpty() && ValidarDocumento()
+                            && !et_nombre_nuevo_responsable.getText().toString().isEmpty() && ValidarNombre()
+                            && !et_apellido_nuevo_responsable.getText().toString().isEmpty() && ValidarApellido()
+                            && !et_codigo_area_nuevo_responsable.getText().toString().isEmpty() && ValidarCodigoArea()
+                            && !et_telefono_nuevo_responsable.getText().toString().isEmpty() && ValidarTelefono()
+                            && !et_direccion_nuevo_responsable.getText().toString().isEmpty() && ValidarDireccion()
+                            && !et_barrio_nuevo_responsable.getText().toString().isEmpty() && ValidarBarrio()
+                            &&  ValidarEmail(et_correo_nuevo_responsable)
+
+                            && !et_referencia_nuevo_responsable.getText().toString().isEmpty() && ValidarReferencia()
+                            && !et_nombre_del_evento_nuevo_responsable.getText().toString().isEmpty() && ValidarNombreEvento()
+                            && !et_direccion_del_evento_nuevo_responsable.getText().toString().isEmpty() && ValidarDireccionEvento()
+                            && !et_barrio_del_evento_nuevo_responsable.getText().toString().isEmpty() && ValidarBarrioEvento()
+                            && !et_referencia_del_evento_nuevo_responsable.getText().toString().isEmpty() && ValidarReferenciaEvento()
+                            && !et_fecha_inicio_del_evento_nuevo_responsable.getText().toString().isEmpty() && ValidarFechaInicioEvento()
+                            && !et_fecha_fin_del_evento_nuevo_responsable.getText().toString().isEmpty() && ValidarFechaFinEvento()){
+
+
+
+
+
+                        flag_nuevo_responsable = true;
+
+                    }
+
+
+
+                    else {
+
+                        Toast.makeText(getApplicationContext(), "¡Error! Recuerde completar todos los campos que sean obligatorios y con datos válidos.", Toast.LENGTH_LONG).show();
+
+                        flag_nuevo_responsable = false;
+
+                    }
+
+
+
+
+
+                }/*** FIN DEL else (CORREO No Vacío) ***/
 
 
 
@@ -1891,7 +1990,7 @@ public class NuevoResponsablePatrocinio extends AppCompatActivity {
 
         if (email.endsWith(".com")
                 || email.endsWith(".com.ar")
-                || email.endsWith(".net") ) {
+                || email.endsWith(".net")) {
 
 
             Pattern pattern = Patterns.EMAIL_ADDRESS;

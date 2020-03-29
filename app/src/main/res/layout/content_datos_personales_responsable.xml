@@ -141,31 +141,6 @@
                     android:weightSum="2">
 
 
-                    <!--   <ImageView
-
-                        android:id="@+id/img_dni_nrp"
-                        android:layout_width="100dp"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:layout_marginLeft="5dp"
-                        android:layout_weight="1"
-                        android:src="@drawable/ic_dni_nrp_supervisor" />
-
-
-                    <View
-
-                        android:id="@+id/separador_dni"
-                        android:layout_width="1dp"
-                        android:layout_height="match_parent"
-                        android:layout_marginLeft="10dp"
-                        android:layout_marginTop="10dp"
-                        android:layout_marginRight="10dp"
-                        android:layout_marginBottom="10dp"
-                        android:background="#ff5722">
-
-                    </View>
--->
-
                     <EditText
 
                         android:id="@+id/et_dni_responsable"
@@ -198,30 +173,6 @@
                     android:weightSum="2">
 
 
-                    <!--   <ImageView
-
-                        android:id="@+id/img_nombre_nrp"
-                        android:layout_width="100dp"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:layout_marginLeft="5dp"
-                        android:layout_weight="1"
-                        android:src="@drawable/ic_nombre_apellido_nrp_supervisor" />
-
-
-                    <View
-
-                        android:id="@+id/separador_nombre"
-                        android:layout_width="1dp"
-                        android:layout_height="match_parent"
-                        android:layout_marginLeft="10dp"
-                        android:layout_marginTop="10dp"
-                        android:layout_marginRight="10dp"
-                        android:layout_marginBottom="10dp"
-                        android:background="#ff5722">
-
-                    </View>
-                -->
 
                     <EditText
 
@@ -232,7 +183,7 @@
                         android:layout_weight="1"
                         android:gravity="center"
                         android:imeOptions="actionNext"
-                        android:inputType="textMultiLine"
+                        android:inputType="textAutoCorrect|textCapWords"
                         android:maxLength="45"
                         android:textCursorDrawable="@color/colorCursorSupervisores"
                         android:textSize="25sp"
@@ -255,31 +206,7 @@
                     android:weightSum="2">
 
 
-                    <!--  <ImageView
 
-                        android:id="@+id/img_apellido_nrp"
-                        android:layout_width="100dp"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:layout_marginLeft="5dp"
-                        android:layout_weight="1"
-                        android:src="@drawable/ic_nombre_apellido_nrp_supervisor" />
-
-
-                    <View
-
-                        android:id="@+id/separador_apellido"
-                        android:layout_width="1dp"
-                        android:layout_height="match_parent"
-                        android:layout_marginLeft="10dp"
-                        android:layout_marginTop="10dp"
-                        android:layout_marginRight="10dp"
-                        android:layout_marginBottom="10dp"
-                        android:background="#ff5722">
-
-                    </View>
-
-                -->
                     <EditText
 
                         android:id="@+id/et_apellido_responsable"
@@ -289,7 +216,7 @@
                         android:layout_weight="1"
                         android:gravity="center"
                         android:imeOptions="actionNext"
-                        android:inputType="textMultiLine"
+                        android:inputType="textAutoCorrect|textCapWords"
                         android:maxLength="45"
                         android:textCursorDrawable="@color/colorCursorSupervisores"
                         android:textSize="25sp"
@@ -333,30 +260,6 @@
                         android:weightSum="2">
 
 
-                        <!--      <ImageView
-
-                            android:id="@+id/img_codigo_area_nrp"
-                            android:layout_width="100dp"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center"
-                            android:layout_marginLeft="5dp"
-                            android:layout_weight="1"
-                            android:src="@drawable/ic_cod_area_nrp" />
-
-
-                        <View
-
-                            android:id="@+id/separador_codigo_area"
-                            android:layout_width="1dp"
-                            android:layout_height="match_parent"
-                            android:layout_marginLeft="10dp"
-                            android:layout_marginTop="10dp"
-                            android:layout_marginRight="10dp"
-                            android:layout_marginBottom="10dp"
-                            android:background="#ff5722">
-
-                        </View>
--->
 
 
                         <EditText
@@ -392,31 +295,7 @@
                         android:weightSum="2">
 
 
-                        <!--    <ImageView
 
-                            android:id="@+id/img_telefono_nrp"
-                            android:layout_width="100dp"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center"
-                            android:layout_marginLeft="5dp"
-                            android:layout_weight="1"
-                            android:src="@drawable/ic_telefono_nrp_supervisor" />
-
-
-                        <View
-
-                            android:id="@+id/separador_telefono"
-                            android:layout_width="1dp"
-                            android:layout_height="match_parent"
-                            android:layout_marginLeft="10dp"
-                            android:layout_marginTop="10dp"
-                            android:layout_marginRight="10dp"
-                            android:layout_marginBottom="10dp"
-                            android:background="#ff5722">
-
-                        </View>
-
--->
                         <EditText
 
                             android:id="@+id/et_telefono_responsable"
@@ -451,31 +330,6 @@
                     android:weightSum="2">
 
 
-                    <!--                    <ImageView
-
-                        android:id="@+id/img_direccion_nrp"
-                        android:layout_width="100dp"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:layout_marginLeft="5dp"
-                        android:layout_weight="1"
-                        android:src="@drawable/ic_direccion_nrp_supervisor" />
-
-
-                    <View
-
-                        android:id="@+id/separador_direccion"
-                        android:layout_width="1dp"
-                        android:layout_height="match_parent"
-                        android:layout_marginLeft="10dp"
-                        android:layout_marginTop="10dp"
-                        android:layout_marginRight="10dp"
-                        android:layout_marginBottom="10dp"
-                        android:background="#ff5722">
-
-                    </View>
-
--->
                     <EditText
 
                         android:id="@+id/et_direccion_responsable"
@@ -484,7 +338,7 @@
                         android:layout_weight="1"
                         android:gravity="center"
                         android:imeOptions="actionNext"
-                        android:inputType="textMultiLine"
+                        android:inputType="textCapSentences|textMultiLine"
                         android:maxLength="150"
                         android:textCursorDrawable="@color/colorCursorSupervisores"
                         android:textSize="25sp"
@@ -506,31 +360,6 @@
                     android:weightSum="2">
 
 
-                    <!--    <ImageView
-
-                        android:id="@+id/img_barrio_nrp"
-                        android:layout_width="100dp"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:layout_marginLeft="5dp"
-                        android:layout_weight="1"
-                        android:src="@drawable/ic_barrio_nrp_supervisor" />
-
-
-                    <View
-
-                        android:id="@+id/separador_barrio"
-                        android:layout_width="1dp"
-                        android:layout_height="match_parent"
-                        android:layout_marginLeft="10dp"
-                        android:layout_marginTop="10dp"
-                        android:layout_marginRight="10dp"
-                        android:layout_marginBottom="10dp"
-                        android:background="#ff5722">
-
-                    </View>
-
--->
 
                     <EditText
 
@@ -540,7 +369,7 @@
                         android:layout_weight="1"
                         android:gravity="center"
                         android:imeOptions="actionNext"
-                        android:inputType="textMultiLine"
+                        android:inputType="textCapSentences|textMultiLine"
                         android:maxLength="100"
                         android:textCursorDrawable="@color/colorCursorSupervisores"
                         android:textSize="25sp"
@@ -563,30 +392,6 @@
                     android:weightSum="2">
 
 
-                    <!--   <ImageView
-
-                        android:id="@+id/img_correo_nrp"
-                        android:layout_width="100dp"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:layout_marginLeft="5dp"
-                        android:layout_weight="1"
-                        android:src="@drawable/ic_correo_nrp_supervisor" />
-
-                    <View
-
-                        android:id="@+id/separador_correo"
-                        android:layout_width="1dp"
-                        android:layout_height="match_parent"
-                        android:layout_marginLeft="10dp"
-                        android:layout_marginTop="10dp"
-                        android:layout_marginRight="10dp"
-                        android:layout_marginBottom="10dp"
-                        android:background="#ff5722">
-
-                    </View>
-
--->
 
                     <EditText
 
@@ -618,31 +423,6 @@
                     android:weightSum="2">
 
 
-                    <!--   <ImageView
-
-                        android:id="@+id/img_referencia_nrp"
-                        android:layout_width="100dp"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:layout_marginLeft="5dp"
-                        android:layout_weight="1"
-                        android:src="@drawable/ic_referencia_nrp_supervisor" />
-
-
-                    <View
-
-                        android:id="@+id/separador_referencia"
-                        android:layout_width="1dp"
-                        android:layout_height="match_parent"
-                        android:layout_marginLeft="10dp"
-                        android:layout_marginTop="10dp"
-                        android:layout_marginRight="10dp"
-                        android:layout_marginBottom="10dp"
-                        android:background="#ff5722">
-
-                    </View>
--->
-
                     <EditText
 
                         android:id="@+id/et_referencia_responsable"
@@ -651,7 +431,7 @@
                         android:layout_weight="1"
                         android:gravity="center"
                         android:imeOptions="actionNext"
-                        android:inputType="textMultiLine"
+                        android:inputType="textCapSentences|textMultiLine"
                         android:maxLength="150"
                         android:textCursorDrawable="@color/colorCursorSupervisores"
                         android:textSize="25sp"
@@ -784,31 +564,6 @@
                     android:weightSum="2">
 
 
-                    <!--   <ImageView
-
-                        android:id="@+id/img_nombre_evento_nrp"
-                        android:layout_width="100dp"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:layout_marginLeft="5dp"
-                        android:layout_weight="1"
-                        android:src="@drawable/ic_nombre_evento_nrp_supervisor" />
-
-
-                    <View
-
-                        android:id="@+id/separador_nombre_evento_nrp"
-                        android:layout_width="1dp"
-                        android:layout_height="match_parent"
-                        android:layout_marginLeft="10dp"
-                        android:layout_marginTop="10dp"
-                        android:layout_marginRight="10dp"
-                        android:layout_marginBottom="10dp"
-                        android:background="#ff5722">
-
-                    </View>
-
--->
                     <EditText
 
                         android:id="@+id/et_nombre_evento"
@@ -818,7 +573,7 @@
                         android:layout_weight="1"
                         android:gravity="center"
                         android:imeOptions="actionNext"
-                        android:inputType="textMultiLine"
+                        android:inputType="textCapSentences|textMultiLine"
                         android:maxLength="100"
                         android:textCursorDrawable="@color/colorCursorSupervisores"
                         android:textSize="25sp"
@@ -841,33 +596,6 @@
                     android:weightSum="2">
 
 
-                    <!--    <ImageView
-
-                        android:id="@+id/img_direccion_evento_nrp"
-                        android:layout_weight="1"
-                        android:layout_width="100dp"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:layout_marginLeft="5dp"
-                        android:src="@drawable/ic_direccion_nrp_supervisor" />
-
-
-
-
-                    <View
-
-                        android:id="@+id/separador_direccion_evento_nrp"
-                        android:layout_width="1dp"
-                        android:layout_height="match_parent"
-                        android:layout_marginLeft="10dp"
-                        android:layout_marginTop="10dp"
-                        android:layout_marginRight="10dp"
-                        android:layout_marginBottom="10dp"
-                        android:background="#ff5722">
-
-                    </View>
-
--->
 
                     <EditText
 
@@ -878,7 +606,7 @@
                         android:layout_weight="1"
                         android:gravity="center"
                         android:imeOptions="actionNext"
-                        android:inputType="textMultiLine"
+                        android:inputType="textCapSentences|textMultiLine"
                         android:maxLength="150"
                         android:textCursorDrawable="@color/colorCursorSupervisores"
                         android:textSize="25sp"
@@ -902,31 +630,6 @@
                     android:weightSum="2">
 
 
-                    <!--     <ImageView
-
-                        android:id="@+id/img_barrio_evento_nrp"
-                        android:layout_weight="1"
-                        android:layout_width="100dp"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:layout_marginLeft="5dp"
-                        android:src="@drawable/ic_barrio_nrp_supervisor" />
-
-
-                    <View
-
-                        android:id="@+id/separador_barrio_evento_nrp"
-                        android:layout_width="1dp"
-                        android:layout_height="match_parent"
-                        android:layout_marginLeft="10dp"
-                        android:layout_marginTop="10dp"
-                        android:layout_marginRight="10dp"
-                        android:layout_marginBottom="10dp"
-                        android:background="#ff5722">
-
-                    </View>
-
--->
 
                     <EditText
 
@@ -937,7 +640,7 @@
                         android:layout_weight="1"
                         android:gravity="center"
                         android:imeOptions="actionNext"
-                        android:inputType="textMultiLine"
+                        android:inputType="textCapSentences|textMultiLine"
                         android:maxLength="100"
                         android:textCursorDrawable="@color/colorCursorSupervisores"
                         android:textSize="25sp"
@@ -961,31 +664,7 @@
                     android:weightSum="2">
 
 
-                    <!--       <ImageView
 
-                        android:id="@+id/img_referencia_evento_nrp"
-                        android:layout_weight="1"
-                        android:layout_width="100dp"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:layout_marginLeft="5dp"
-                        android:src="@drawable/ic_referencia_nrp_supervisor" />
-
-
-                    <View
-
-                        android:id="@+id/separador_referencia_evento_nrp"
-                        android:layout_width="1dp"
-                        android:layout_height="match_parent"
-                        android:layout_marginLeft="10dp"
-                        android:layout_marginTop="10dp"
-                        android:layout_marginRight="10dp"
-                        android:layout_marginBottom="10dp"
-                        android:background="#ff5722">
-
-                    </View>
-
--->
                     <EditText
 
                         android:id="@+id/et_referencia_evento"
@@ -995,7 +674,7 @@
                         android:layout_weight="1"
                         android:gravity="center"
                         android:imeOptions="actionNext"
-                        android:inputType="textMultiLine"
+                        android:inputType="textCapSentences|textMultiLine"
                         android:maxLength="150"
                         android:textCursorDrawable="@color/colorCursorSupervisores"
                         android:textSize="25sp"
@@ -1017,30 +696,6 @@
                     android:weightSum="2">
 
 
-                    <!--      <ImageView
-
-                        android:id="@+id/img_fecha_inicio_evento_nrp"
-                        android:layout_weight="1"
-                        android:layout_width="100dp"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:layout_marginLeft="5dp"
-                        android:src="@drawable/ic_fecha_inicio_nrp_supervisor" />
-
-
-                    <View
-
-                        android:id="@+id/separador_fecha_inicio_evento_nrp"
-                        android:layout_width="1dp"
-                        android:layout_height="match_parent"
-                        android:layout_marginLeft="10dp"
-                        android:layout_marginTop="10dp"
-                        android:layout_marginRight="10dp"
-                        android:layout_marginBottom="10dp"
-                        android:background="#ff5722">
-
-                    </View>
--->
 
                     <EditText
 

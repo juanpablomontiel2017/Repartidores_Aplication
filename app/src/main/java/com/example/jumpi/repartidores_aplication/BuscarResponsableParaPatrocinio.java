@@ -9,7 +9,7 @@ import android.content.res.ColorStateList;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
 import android.os.Bundle;
-import android.view.KeyEvent;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -34,30 +34,12 @@ import androidx.core.view.MenuItemCompat;
 
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.mapbox.mapboxsdk.plugins.annotation.Line;
 
 import java.lang.reflect.Field;
 import java.util.ArrayList;
 
 public class BuscarResponsableParaPatrocinio extends AppCompatActivity implements SearchView.OnQueryTextListener{
-
-
-
-    /******************** DECLARACIÓN DE VARIABLES GLOBALES ***********************/
-
-    public static Button btnResponsableActivo;
-
-
-    LinearLayout LinearLayoutVerticalPadre;
-
-    ArrayList<View> ArrayListItemEvento = new ArrayList<View>();
-    ArrayAdapter<String> adapter;
-
-    private ListView lv;
-
-    // Arreglo de nombres y apellidos de todos los responsables
-    String tokens[] = {"Almagro José","Gonzalez Alfredo","Ricardo Martinez","Andrada Esteban","Mendez Luis","Aldino Sebastián"};
-
-
 
 
 
@@ -82,7 +64,7 @@ public class BuscarResponsableParaPatrocinio extends AppCompatActivity implement
     /*********************************************************************************************************/
 
 
-    /*
+/*
 
     @Override
     protected void onResume() {
@@ -225,20 +207,49 @@ public class BuscarResponsableParaPatrocinio extends AppCompatActivity implement
 
     }
 
+
+
 */
 
+    /*****************************************************************/
+    /*****************************************************************/
+    /*****************************************************************/
+    /*****************************************************************/
+    /*****************************************************************/
+    /*****************************************************************/
+    /*****************************************************************/
+    /*****************************************************************/
+    /*****************************************************************/
+    /*****************************************************************/
 
 
-    /*****************************************************************/
-    /*****************************************************************/
-    /*****************************************************************/
-    /*****************************************************************/
-    /*****************************************************************/
-    /*****************************************************************/
-    /*****************************************************************/
-    /*****************************************************************/
-    /*****************************************************************/
-    /*****************************************************************/
+
+
+
+    /******************** DECLARACIÓN DE VARIABLES GLOBALES ***********************/
+
+
+    LinearLayout LinearLayoutVerticalPadre;
+
+    ArrayList<View> ArrayListItemEvento = new ArrayList<View>();
+
+    ArrayAdapter<String> Responsableadapter;
+
+    private ListView lv;
+
+    // Arreglo de nombres y apellidos de todos los responsables
+    String tokens[] = {"Almagro José","Gonzalez Alfredo","Ricardo Martinez","Andrada Esteban","Mendez Luis","Aldino Sebastián"};
+
+
+    private ArrayList<Responsable_Patrocinio> ResponsableArrayList = new ArrayList<Responsable_Patrocinio>();
+
+    private com.example.jumpi.repartidores_aplication.ResponsableAdapter ResponsableAdapter;
+
+
+
+
+
+
 
 
 
@@ -281,6 +292,7 @@ public class BuscarResponsableParaPatrocinio extends AppCompatActivity implement
 
         LinearLayoutVerticalPadre = (LinearLayout) findViewById(R.id.parent_layout_vertical_buscador_evento);
 
+        lv = (ListView) findViewById(R.id.list_view);
 
 
 
@@ -291,47 +303,101 @@ public class BuscarResponsableParaPatrocinio extends AppCompatActivity implement
             public void onClick(View view) {
 
 
+                Usuario usuario = new Usuario();
 
-                AlertDialog.Builder builder = new AlertDialog.Builder(BuscarResponsableParaPatrocinio.this);
-                builder.setIcon(R.drawable.ic_notificacion_nuevo_responsable);
-                builder.setTitle("¿Desea añadir un nuevo responsable a la lista?");
-                builder.setMessage("Presione el botón 'CONTINUAR' para completar el formulario con los datos requeridos del responsable del evento.");
+                usuario.LeerUsuarioEnUnSharedPreferences(BuscarResponsableParaPatrocinio.this);
 
-
-                builder.setPositiveButton("CONTINUAR", new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog, int id) {
+                if(usuario.getTipo_de_Usuario().equals("repartidor")){
 
 
-
-                        Intent intent = new Intent (BuscarResponsableParaPatrocinio.this, NuevoResponsablePatrocinio.class);
-
-                        startActivity(intent);
-
-                        finish();
+                    AlertDialog.Builder builder = new AlertDialog.Builder(BuscarResponsableParaPatrocinio.this,R.style.AlertDialogStyleRepartidores);
+                    builder.setIcon(R.drawable.ic_ad_addresponsable_repartidores_32px);
+                    builder.setTitle("¿Desea añadir un nuevo responsable a la lista?");
+                    builder.setMessage("Presione el botón 'CONTINUAR' para completar el formulario con los datos requeridos del responsable del evento.");
 
 
-                    }
-                });
+                    builder.setPositiveButton("CONTINUAR", new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int id) {
 
 
 
+                            Intent intent = new Intent (BuscarResponsableParaPatrocinio.this, NuevoResponsablePatrocinio.class);
+
+                            startActivity(intent);
+
+                            finish();
 
 
-                builder.setNegativeButton("CANCELAR", new DialogInterface.OnClickListener() {
-
-
-                    public void onClick(DialogInterface dialog, int id) {
-
-                        dialog.dismiss();
-
-                    }
-                });
+                        }
+                    });
 
 
 
-                AlertDialog dialog = builder.create();
-                dialog.show();
 
+
+                    builder.setNegativeButton("CANCELAR", new DialogInterface.OnClickListener() {
+
+                        public void onClick(DialogInterface dialog, int id) {
+
+                            dialog.dismiss();
+
+                        }
+                    });
+
+
+
+                    AlertDialog dialog = builder.create();
+                    dialog.show();
+
+
+                }//FIN DEL if(usuario.getTipo_de_Usuario().equals("repartidor"))
+
+
+
+
+                else {
+
+
+                    AlertDialog.Builder builder = new AlertDialog.Builder(BuscarResponsableParaPatrocinio.this,R.style.AlertDialogStyleSupervisores);
+                    builder.setIcon(R.drawable.ic_ad_addresponsable_supervisores_64px);
+                    builder.setTitle("¿Desea añadir un nuevo responsable a la lista?");
+                    builder.setMessage("Presione el botón 'CONTINUAR' para completar el formulario con los datos requeridos del responsable del evento.");
+
+
+                    builder.setPositiveButton("CONTINUAR", new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int id) {
+
+
+
+                            Intent intent = new Intent (BuscarResponsableParaPatrocinio.this, NuevoResponsablePatrocinio.class);
+
+                            startActivity(intent);
+
+                            finish();
+
+
+                        }
+                    });
+
+
+
+
+
+                    builder.setNegativeButton("CANCELAR", new DialogInterface.OnClickListener() {
+
+                        public void onClick(DialogInterface dialog, int id) {
+
+                            dialog.dismiss();
+
+                        }
+                    });
+
+
+
+                    AlertDialog dialog = builder.create();
+                    dialog.show();
+
+                }//FIN DEL else (usuario = SUPERVISOR)
 
 
 
@@ -345,22 +411,8 @@ public class BuscarResponsableParaPatrocinio extends AppCompatActivity implement
 
 
 
-
         /*Llamada a la función: */
         CargaItemDeEvento();
-
-
-
-
-
-        lv = (ListView) findViewById(R.id.list_view);
-
-        adapter = new ArrayAdapter<String>(this,R.layout.list_nombres_responsables_item, R.id.codigo_token, tokens);
-
-        lv.setAdapter(adapter);
-
-        lv.setTextFilterEnabled(true);
-
 
 
 
@@ -369,7 +421,6 @@ public class BuscarResponsableParaPatrocinio extends AppCompatActivity implement
 
 
         Usuario usuario = new Usuario();
-
         usuario.LeerUsuarioEnUnSharedPreferences(this);
 
         /** Pregunta si el usuario es un "repartidor" entonces habrá un cambio de colores en las activity's
@@ -401,6 +452,7 @@ public class BuscarResponsableParaPatrocinio extends AppCompatActivity implement
 
 
 
+
     /************************************************************************/
     /************************************************************************/
     /************************************************************************/
@@ -418,7 +470,6 @@ public class BuscarResponsableParaPatrocinio extends AppCompatActivity implement
     public boolean onQueryTextSubmit(String query) {
 
         // User pressed the search button
-
 
         return false;
 
@@ -440,13 +491,13 @@ public class BuscarResponsableParaPatrocinio extends AppCompatActivity implement
 
 
 
-
-
     @Override
     public boolean onQueryTextChange(String newText) {
 
-        // User changed the text
 
+
+
+        // User changed the text
         if(newText.equals("") ) {
 
             lv.setVisibility(View.GONE);
@@ -454,7 +505,7 @@ public class BuscarResponsableParaPatrocinio extends AppCompatActivity implement
 
         } else {
 
-            BuscarResponsableParaPatrocinio.this.adapter.getFilter().filter(newText.toString());
+            //BuscarResponsableParaPatrocinio.this.Responsableadapter.getFilter().filter(newText.toString()); me ayuda a filtrar con mejores resultados (buscar una solucion luego)
             lv.setVisibility(View.VISIBLE);
 
 
@@ -463,28 +514,18 @@ public class BuscarResponsableParaPatrocinio extends AppCompatActivity implement
 
                 public void onItemClick(AdapterView<?> parent, View view,int position, long id) {
 
-                    Intent intent = new Intent (BuscarResponsableParaPatrocinio.this, NuevoEventoPatrocinio.class);
 
-                    intent.putExtra("DNI_Responsable_Enviar", "38.765.245");
+                    int ValorDeLaPosicion;
 
-                    intent.putExtra("Nombre_Responsable_Enviar", "Juan Pablo");
+                    ValorDeLaPosicion = EncontrarPosicionDelResponsableLV(view);
 
-                    intent.putExtra("Apellido_Responsable_Enviar", "Montiel");
+                    Intent intent = new Intent(BuscarResponsableParaPatrocinio.this, NuevoEventoPatrocinio.class);
 
-                    intent.putExtra("Codigo_Area_Responsable_Enviar", "3734");
-
-                    intent.putExtra("Telefono_Responsable_Enviar", "446587");
-
-                    intent.putExtra("Direccion_Responsable_Enviar", "Calle 6 entre 11 y 13");
-
-                    intent.putExtra("Barrio_Responsable_Enviar", "Centro");
-
-                    intent.putExtra("Referencia_Responsable_Enviar", "Al lado de una funeraria");
-
-                    intent.putExtra("Correo_Responsable_Enviar", "juanpablomontiel2015@gmail.com");
-
+                    intent.putExtra("Indice_Item", ValorDeLaPosicion);
 
                     startActivity(intent);
+
+                    finish();
 
 
 
@@ -635,9 +676,7 @@ public class BuscarResponsableParaPatrocinio extends AppCompatActivity implement
             int Indice_Responsable = preferences.getInt("Indice_Responsable" + indice_evento, 0);
 
 
-            //ArrayList<String> NombreApellidoResponsable = new ArrayList<>();
 
-            //NombreApellidoResponsable = ObtenerApellidoNombreResponsable(Indice_Responsable);
 
 
             ET_Nombre_Evento.setText(Nombre_Evento);
@@ -645,7 +684,6 @@ public class BuscarResponsableParaPatrocinio extends AppCompatActivity implement
             ET_Valor_Fecha_Fin_Evento.setText(Fecha_Fin_Evento);
 
 
-            /** De esta manera anduvo **/
 
             SharedPreferences preferences_responsable = getSharedPreferences("Datos_Responsable", MODE_PRIVATE);
 
@@ -656,10 +694,15 @@ public class BuscarResponsableParaPatrocinio extends AppCompatActivity implement
             ET_Apellido_Responsable_Evento.setText(Apellido_Responsable);
 
 
-            /** DE ESTA FORMA MUESTRA EL NOMBRE Y APELLIDO DEL ÚLTIMO RESPONSABLE CREADO EN TODOS LOS ITEMS ***/
 
-            //ET_Nombre_Responsable_Evento.setText(NombreApellidoResponsable.get(0));
-            //ET_Apellido_Responsable_Evento.setText(NombreApellidoResponsable.get(1));
+            ResponsableArrayList.add(new Responsable_Patrocinio(Nombre_Responsable, Apellido_Responsable));
+
+            ResponsableAdapter=new ResponsableAdapter(BuscarResponsableParaPatrocinio.this, ResponsableArrayList);
+
+            lv.setAdapter(ResponsableAdapter);
+
+            lv.setTextFilterEnabled(true);
+
 
 
             final Button btn_ver_detalle_entrega_retiro_envases_patrocinio = (Button) NuevoItemInflado.findViewById(R.id.btn_ver_detalle_item_evento);
@@ -702,6 +745,8 @@ public class BuscarResponsableParaPatrocinio extends AppCompatActivity implement
                     intent.putExtra("Indice_Item", ValorDeLaPosicion);
 
                     startActivity(intent);
+
+                    finish();
 
                 }
             });
@@ -1080,36 +1125,6 @@ public class BuscarResponsableParaPatrocinio extends AppCompatActivity implement
 
 
 
-     public ArrayList<String> ObtenerApellidoNombreResponsable(int indice_responsable){
-
-
-         ArrayList<String> NombreApellidoResponsable = new ArrayList<>();
-
-         SharedPreferences preferences = getSharedPreferences("Datos_Responsable", MODE_PRIVATE);
-
-
-         NombreApellidoResponsable.add(preferences.getString("Nombre_Responsable" + indice_responsable, ""));
-         NombreApellidoResponsable.add(preferences.getString("Apellido_Responsable" + indice_responsable, ""));
-
-
-
-         return NombreApellidoResponsable;
-
-
-     }/***************************FIN DE LA FUNCIÓN ObtenerApellidoNombreResponsable()*****************************/
-
-
-
-    /************************************************************************/
-    /************************************************************************/
-    /************************************************************************/
-    /************************************************************************/
-    /************************************************************************/
-    /************************************************************************/
-    /************************************************************************/
-    /************************************************************************/
-    /************************************************************************/
-    /************************************************************************/
 
 
 
@@ -1119,7 +1134,7 @@ public class BuscarResponsableParaPatrocinio extends AppCompatActivity implement
 
         int posicion_item = 99;
 
-        View Item = EncontrarItemPadre(button_ver_responsable);
+        View Item = EncontrarItemPadreBotonVerDatosResponsble(button_ver_responsable);
 
         for(int i = 0 ; i < ArrayListItemEvento.size(); i++ ){
 
@@ -1159,7 +1174,7 @@ public class BuscarResponsableParaPatrocinio extends AppCompatActivity implement
 
 
 
-    public View EncontrarItemPadre (View button_ver_responsable){
+    public View EncontrarItemPadreBotonVerDatosResponsble (View button_ver_responsable){
 
 
         LinearLayout linearLayoutHorizontalButtonVerResponsable = (LinearLayout) button_ver_responsable.getParent();
@@ -1179,7 +1194,8 @@ public class BuscarResponsableParaPatrocinio extends AppCompatActivity implement
 
 
 
-    } /******************************FIN DE LA FUNCION EncontrarItemPadre()*****************************/
+    } /******************************FIN DE LA FUNCION EncontrarItemPadreBotonVerDatosResponsble()*****************************/
+
 
 
 
@@ -1197,74 +1213,58 @@ public class BuscarResponsableParaPatrocinio extends AppCompatActivity implement
 
 
 
+    public int  EncontrarPosicionDelResponsableLV(View lv_responsable){
 
-    public void EditarDatosItemEvento(boolean flag){
+        int posicion_item = 99;
 
+        View Item = EncontrarItemPadreListView(lv_responsable);
 
-        if(flag){
+        for(int i = 0 ; i < ArrayListItemEvento.size(); i++ ){
 
-            for(int k=0; k < ArrayListItemEvento.size(); k++) {
+            if(ArrayListItemEvento.get(i) == Item ){
 
+                posicion_item = i;
 
-                final EditText ET_Nombre_Evento = (EditText) ArrayListItemEvento.get(k).findViewById(R.id.et_nombre_evento_recibir);
+                break;
 
-                final EditText ET_Nombre_Responsable_Evento = (EditText) ArrayListItemEvento.get(k).findViewById(R.id.et_nombre_responsable_recibir);
-
-                final EditText ET_Apellido_Responsable_Evento = (EditText) ArrayListItemEvento.get(k).findViewById(R.id.et_apellido_responsable_recibir);
-
-                final EditText ET_Valor_Fecha_Inicio_Evento = (EditText) ArrayListItemEvento.get(k).findViewById(R.id.et_valor_fecha_inicio_recibir);
-
-                final EditText ET_Valor_Fecha_Fin_Evento = (EditText) ArrayListItemEvento.get(k).findViewById(R.id.et_valor_fecha_fin_recibir);
+            }//Fin del if
 
 
-                ET_Nombre_Evento.setFocusableInTouchMode(true);
-                ET_Nombre_Evento.requestFocus();
-                ET_Nombre_Evento.setCursorVisible(true);
-                ET_Nombre_Evento.setBackgroundDrawable(getDrawable(R.drawable.edit_text_material_customizado));
+        }//Fin del for
 
 
+        return posicion_item;
 
 
-                ET_Nombre_Responsable_Evento.setFocusableInTouchMode(true);
-                ET_Nombre_Responsable_Evento.setCursorVisible(true);
-                ET_Nombre_Responsable_Evento.setBackgroundDrawable(getDrawable(R.drawable.edit_text_material_customizado));
+    }/*********************************FIN DE LA FUNCIÓN EncontrarPosicionDelResponsableLV()*******************************************/
 
 
 
 
-                ET_Apellido_Responsable_Evento.setFocusableInTouchMode(true);
-                ET_Apellido_Responsable_Evento.setCursorVisible(true);
-                ET_Apellido_Responsable_Evento.setBackgroundDrawable(getDrawable(R.drawable.edit_text_material_customizado));
+    /************************************************************************/
+    /************************************************************************/
+    /************************************************************************/
+    /************************************************************************/
+    /************************************************************************/
+    /************************************************************************/
+    /************************************************************************/
+    /************************************************************************/
+    /************************************************************************/
+    /************************************************************************/
 
 
 
-
-                ET_Valor_Fecha_Inicio_Evento.setFocusableInTouchMode(true);
-                ET_Valor_Fecha_Inicio_Evento.setCursorVisible(true);
-                ET_Valor_Fecha_Inicio_Evento.setBackgroundDrawable(getDrawable(R.drawable.edit_text_material_customizado));
+    public View EncontrarItemPadreListView (View lv_responsable){
 
 
 
+        LinearLayout linearLayoutHorizontalLV = (LinearLayout) findViewById(R.id.llh_contenedor_lv);
 
-                ET_Valor_Fecha_Fin_Evento.setFocusableInTouchMode(true);
-                ET_Valor_Fecha_Fin_Evento.setCursorVisible(true);
-                ET_Valor_Fecha_Fin_Evento.setBackgroundDrawable(getDrawable(R.drawable.edit_text_material_customizado));
-
-
-
-            }//Fin del for
+        return linearLayoutHorizontalLV;
 
 
 
-
-
-
-
-        }//Fin flag
-
-
-
-    }/*******FIN DE LA FUNCIÓN EditarDatosItemEvento() ********/
+    } /******************************FIN DE LA FUNCION EncontrarItemPadreListView()*****************************/
 
 
 
@@ -1284,95 +1284,7 @@ public class BuscarResponsableParaPatrocinio extends AppCompatActivity implement
 
 
 
-
-    public boolean DeshabilitarVistasDeCadaItemAlGuardarCambios(boolean flag_enabled){
-
-        if (flag_enabled) {
-
-
-
-            for(int k=0; k < ArrayListItemEvento.size(); k++){
-
-
-
-                final EditText ET_Nombre_Evento = (EditText) ArrayListItemEvento.get(k).findViewById(R.id.et_nombre_evento_recibir);
-
-                final EditText ET_Nombre_Responsable_Evento = (EditText) ArrayListItemEvento.get(k).findViewById(R.id.et_nombre_responsable_recibir);
-
-                final EditText ET_Apellido_Responsable_Evento = (EditText) ArrayListItemEvento.get(k).findViewById(R.id.et_apellido_responsable_recibir);
-
-                final EditText ET_Valor_Fecha_Inicio_Evento = (EditText) ArrayListItemEvento.get(k).findViewById(R.id.et_valor_fecha_inicio_recibir);
-
-                final EditText ET_Valor_Fecha_Fin_Evento = (EditText) ArrayListItemEvento.get(k).findViewById(R.id.et_valor_fecha_fin_recibir);
-
-
-
-
-
-
-                ET_Nombre_Evento.setFocusable(false);
-                ET_Nombre_Evento.setCursorVisible(false);
-                ET_Nombre_Evento.setBackgroundColor(Color.TRANSPARENT);
-
-
-
-                ET_Nombre_Responsable_Evento.setFocusable(false);
-                ET_Nombre_Responsable_Evento.setCursorVisible(false);
-                ET_Nombre_Responsable_Evento.setBackgroundColor(Color.TRANSPARENT);
-
-
-
-                ET_Apellido_Responsable_Evento.setFocusable(false);
-                ET_Apellido_Responsable_Evento.setCursorVisible(false);
-                ET_Apellido_Responsable_Evento.setBackgroundColor(Color.TRANSPARENT);
-
-
-
-                ET_Valor_Fecha_Inicio_Evento.setFocusable(false);
-                ET_Valor_Fecha_Inicio_Evento.setCursorVisible(false);
-                ET_Valor_Fecha_Inicio_Evento.setBackgroundColor(Color.TRANSPARENT);
-
-
-
-                ET_Valor_Fecha_Fin_Evento.setFocusable(false);
-                ET_Valor_Fecha_Fin_Evento.setCursorVisible(false);
-                ET_Valor_Fecha_Fin_Evento.setBackgroundColor(Color.TRANSPARENT);
-
-
-
-
-            } //Fin del for
-
-
-        }  /*Fin del primer if (flag_enabled) {}*/
-
-
-
-        return flag_enabled;
-
-
-
-    }/*******FIN DE LA FUNCIÓN DeshabilitarVistasDeCadaItemAlGuardarCambios() ********/
-
-
-
-
-
-
-
-    /************************************************************************/
-    /************************************************************************/
-    /************************************************************************/
-    /************************************************************************/
-    /************************************************************************/
-    /************************************************************************/
-    /************************************************************************/
-    /************************************************************************/
-    /************************************************************************/
-    /************************************************************************/
-
-
-
+    SearchView searchView;
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -1381,7 +1293,15 @@ public class BuscarResponsableParaPatrocinio extends AppCompatActivity implement
 
         MenuItem searchItem = menu.findItem(R.id.search);
 
-        SearchView searchView = (SearchView) MenuItemCompat.getActionView(searchItem);
+        searchView = (SearchView) MenuItemCompat.getActionView(searchItem);
+
+        searchView.setIconifiedByDefault(false);
+        searchView.setOnQueryTextListener(this);
+        searchView.setSubmitButtonEnabled(true);
+        searchView.setQueryHint("Search Here");
+
+
+
 
         searchView.setOnQueryTextListener(this);
 
@@ -1402,7 +1322,6 @@ public class BuscarResponsableParaPatrocinio extends AppCompatActivity implement
 
 
             /************ Cambiar color del cursor de cada EditText *************/
-
             Field f = null;
 
             try {
@@ -1417,6 +1336,27 @@ public class BuscarResponsableParaPatrocinio extends AppCompatActivity implement
 
 
         }//FIN DEL if(usuario.getTipo_de_Usuario().equals("repartidor"))
+
+        else {
+
+
+
+
+            /************ Cambiar color del cursor de cada EditText *************/
+            Field f = null;
+
+            try {
+
+                f = TextView.class.getDeclaredField("mCursorDrawableRes");
+                f.setAccessible(true);
+                f.set(searchView, R.drawable.color_cursor_supervisores);
+
+            } catch (Exception e) {
+
+            }
+
+        }//FIN DEL else (usuario = SUPERVISOR)
+
 
 
         return true;
@@ -1454,34 +1394,6 @@ public class BuscarResponsableParaPatrocinio extends AppCompatActivity implement
 
 
 
-
-/*
-    @Override
-    public boolean onKeyDown(int keyCode, KeyEvent event) {
-
-        // TODO Auto-generated method stub
-        if (keyCode == event.KEYCODE_BACK) {
-
-            Intent intent = new Intent (BuscarResponsableParaPatrocinio.this, MainActivitySupervisores.class);
-
-            startActivity(intent);
-
-        }
-
-        return super.onKeyDown(keyCode, event);
-    }
- */
-
-
-
-
-/*
-        Refrescar activity
-        finish();
-        overridePendingTransition(0,0);
-        startActivity(getIntent());
-        overridePendingTransition(0,0);
-*/
 
 
 

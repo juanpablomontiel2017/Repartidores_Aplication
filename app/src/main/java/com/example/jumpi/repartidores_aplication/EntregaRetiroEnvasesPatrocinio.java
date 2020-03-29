@@ -3689,79 +3689,173 @@ public class EntregaRetiroEnvasesPatrocinio extends AppCompatActivity {
 
         if (id == R.id.action_save_vuelta) {
 
-            AlertDialog.Builder builder = new AlertDialog.Builder(EntregaRetiroEnvasesPatrocinio.this);
-            builder.setIcon(R.drawable.ic_msj_alerta);
-            builder.setTitle("Desea guardar los cambios realizados?!");
-            builder.setMessage("Al presionar el botón 'Guardar' se guardarán los cambios realizados en cada vuelta. ¿Desea continuar?");
-
-
-            builder.setPositiveButton("Guardar", new DialogInterface.OnClickListener() {
-                public void onClick(DialogInterface dialog, int id) {
 
 
 
-                    /**Si el evento no fue cerrado**/
+            Usuario usuario = new Usuario();
+            usuario.LeerUsuarioEnUnSharedPreferences(EntregaRetiroEnvasesPatrocinio.this);
 
-                    if(LeerEstadoDeEvento(Indice_Evento)){
-
-
-                        if(DeshabilitarVistasDeLasVueltasAlGuardarCambios(ValidarTodosLosCamposParaGuardarCambiosEnCadaVuelta())){
-
-                            /*Llamada a la función: */
-                            GuardarValoresEnSharedPreferencesPatrocinio();
-
-                        }//Fin del if
-
-
-                    }//Fin del primer if
+            if(usuario.getTipo_de_Usuario().equals("repartidor")){
 
 
 
-                    /**Evento cerrado**/
-                    else {
+                AlertDialog.Builder builder = new AlertDialog.Builder(EntregaRetiroEnvasesPatrocinio.this, R.style.AlertDialogStyleRepartidores);
+                builder.setIcon(R.drawable.ic_msj_alerta);
+                builder.setTitle("Desea guardar los cambios realizados?!");
+                builder.setMessage("Al presionar el botón GUARDAR se salvarán los cambios realizados en cada vuelta. ¿Desea continuar?");
 
 
-                        if(DeshabilitarVistasDeLasVueltasAlGuardarCambios(ValidarTodosLosCamposParaGuardarCambiosEnCadaVuelta())){
-
-                            /*Llamada a las funciones: */
-                            GuardarValoresEnSharedPreferencesPatrocinio();
-
-                            CambioDeColoresAlGuardarNuevamenteEventoFinalizado();
+                builder.setPositiveButton("Guardar", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
 
 
-                        }//Fin del if
+                        /**Si el evento no fue cerrado**/
+                        if(LeerEstadoDeEvento(Indice_Evento)){
 
 
+                            if(DeshabilitarVistasDeLasVueltasAlGuardarCambios(ValidarTodosLosCamposParaGuardarCambiosEnCadaVuelta())){
 
-                    }//Fin del else
+                                /*Llamada a la función: */
+                                GuardarValoresEnSharedPreferencesPatrocinio();
 
-
-
-                }
-            });
-
+                            }//Fin del if
 
 
-
-
-
-            builder.setNegativeButton("Cancelar", new DialogInterface.OnClickListener() {
-
-
-                public void onClick(DialogInterface dialog, int id) {
-
-                    dialog.dismiss();
-
-                }
-            });
+                        }//Fin del primer if
 
 
 
-            AlertDialog dialog = builder.create();
-            dialog.show();
+                        /**Evento cerrado**/
+                        else {
+
+
+                            if(DeshabilitarVistasDeLasVueltasAlGuardarCambios(ValidarTodosLosCamposParaGuardarCambiosEnCadaVuelta())){
+
+                                /*Llamada a las funciones: */
+                                GuardarValoresEnSharedPreferencesPatrocinio();
+
+                                CambioDeColoresAlGuardarNuevamenteEventoFinalizado();
+
+
+                            }//Fin del if
+
+
+
+                        }//Fin del else
+
+
+
+                    }
+                });
+
+
+
+
+
+
+                builder.setNegativeButton("Cancelar", new DialogInterface.OnClickListener() {
+
+
+                    public void onClick(DialogInterface dialog, int id) {
+
+                        dialog.dismiss();
+
+                    }
+                });
+
+
+
+                AlertDialog dialog = builder.create();
+                dialog.show();
+
+
+
+
+
+
+
+            }//FIN DEL if(usuario.getTipo_de_Usuario().equals("repartidor"))
+
+            else{
+
+
+                AlertDialog.Builder builder = new AlertDialog.Builder(EntregaRetiroEnvasesPatrocinio.this, R.style.AlertDialogStyleSupervisores);
+                builder.setIcon(R.drawable.ic_msj_alerta);
+                builder.setTitle("Desea guardar los cambios realizados?!");
+                builder.setMessage("Al presionar el botón GUARDAR se salvarán los cambios realizados en cada vuelta. ¿Desea continuar?");
+
+
+                builder.setPositiveButton("Guardar", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+
+
+                        /**Si el evento no fue cerrado**/
+                        if(LeerEstadoDeEvento(Indice_Evento)){
+
+
+                            if(DeshabilitarVistasDeLasVueltasAlGuardarCambios(ValidarTodosLosCamposParaGuardarCambiosEnCadaVuelta())){
+
+                                /*Llamada a la función: */
+                                GuardarValoresEnSharedPreferencesPatrocinio();
+
+                            }//Fin del if
+
+
+                        }//Fin del primer if
+
+
+
+                        /**Evento cerrado**/
+                        else {
+
+
+                            if(DeshabilitarVistasDeLasVueltasAlGuardarCambios(ValidarTodosLosCamposParaGuardarCambiosEnCadaVuelta())){
+
+                                /*Llamada a las funciones: */
+                                GuardarValoresEnSharedPreferencesPatrocinio();
+
+                                CambioDeColoresAlGuardarNuevamenteEventoFinalizado();
+
+
+                            }//Fin del if
+
+
+
+                        }//Fin del else
+
+
+
+                    }
+                });
+
+
+
+
+
+
+                builder.setNegativeButton("Cancelar", new DialogInterface.OnClickListener() {
+
+
+                    public void onClick(DialogInterface dialog, int id) {
+
+                        dialog.dismiss();
+
+                    }
+                });
+
+
+
+                AlertDialog dialog = builder.create();
+                dialog.show();
+
+
+
+
+            }//FIN DEL else (usuario = SUPERVISOR)
 
 
             return true;
+
 
         }//FIN DEL if (id == R.id.action_save_vuelta)
 
@@ -3779,106 +3873,109 @@ public class EntregaRetiroEnvasesPatrocinio extends AppCompatActivity {
         if(id == R.id.action_edit_vuelta){
 
 
+            Usuario usuario = new Usuario();
 
+            usuario.LeerUsuarioEnUnSharedPreferences(EntregaRetiroEnvasesPatrocinio.this);
 
-            AlertDialog.Builder builder = new AlertDialog.Builder(EntregaRetiroEnvasesPatrocinio.this);
-            builder.setIcon(R.drawable.ic_msj_alerta);
-            builder.setTitle("¿Desea modificar algunas de las vueltas realizadas?");
-            builder.setMessage("Presione 'SI' en caso que desee editar los campos de algunas de las vueltas.");
+            if(usuario.getTipo_de_Usuario().equals("repartidor")){
 
 
-            builder.setPositiveButton("SI", new DialogInterface.OnClickListener() {
-                public void onClick(DialogInterface dialog, int id) {
+                AlertDialog.Builder builder = new AlertDialog.Builder(EntregaRetiroEnvasesPatrocinio.this,R.style.AlertDialogStyleRepartidores);
+                builder.setIcon(R.drawable.ic_msj_alerta);
+                builder.setTitle("¿Desea modificar algunas de las vueltas realizadas?");
+                builder.setMessage("Presione 'SI' en caso que desee editar los campos de algunas de las vueltas.");
 
 
-                    Usuario usuario = new Usuario();
+                builder.setPositiveButton("SI", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
 
-                    usuario.LeerUsuarioEnUnSharedPreferences(EntregaRetiroEnvasesPatrocinio.this);
+                        if(usuario.getTipo_de_Usuario().equals("repartidor")) {
 
-                    if(usuario.getTipo_de_Usuario().equals("repartidor")) {
 
+                            /**Si el evento no fue cerrado**/
+                            if(LeerEstadoDeEvento(Indice_Evento)){
 
 
-                        /**Si el evento no fue cerrado**/
-                        if(LeerEstadoDeEvento(Indice_Evento)){
+                                /*Llamada a la función:  */
+                                EditarVueltas(true);
 
+                                fab_nueva_vuelta.setVisibility(View.VISIBLE);
 
-                            /*Llamada a la función:  */
-                            EditarVueltas(true);
+                                BotonGuardar.setVisible(true);
 
-                            fab_nueva_vuelta.setVisibility(View.VISIBLE);
 
-                            BotonGuardar.setVisible(true);
+                            }//Fin del if
 
 
-                        }//Fin del if
 
 
+                            else {
 
 
-                        else {
+                            }//Fin del else
 
 
-                        }//Fin del else
 
 
 
 
 
 
+                        }//FIN DEL if (usuario.getTipo_de_Usuario().equals("repartidor"))
 
 
-                    }//FIN DEL if (usuario.getTipo_de_Usuario().equals("repartidor"))
 
+                        /**Usuario: SUPERVISOR **/
+                        else{
 
 
-                    /**Usuario: SUPERVISOR **/
-                    else{
+                            /**Si el evento no fue cerrado**/
+                            if(LeerEstadoDeEvento(Indice_Evento)){
 
 
+                                /*Llamada a la función:  */
+                                EditarVueltas(true);
 
-                        /**Si el evento no fue cerrado**/
-                        if(LeerEstadoDeEvento(Indice_Evento)){
+                                fab_nueva_vuelta.setVisibility(View.VISIBLE);
 
+                                BotonGuardar.setVisible(true);
 
-                            /*Llamada a la función:  */
-                            EditarVueltas(true);
+                                BotonHabilitarEvento.setVisible(false);
 
-                            fab_nueva_vuelta.setVisibility(View.VISIBLE);
+                                BotonFinalizarEvento.setVisible(true);
 
-                            BotonGuardar.setVisible(true);
 
-                            BotonHabilitarEvento.setVisible(false);
+                            }//Fin del if
 
-                            BotonFinalizarEvento.setVisible(true);
 
 
-                        }//Fin del if
 
+                            else {
 
+                                /*Llamada a la función:  */
+                                EditarVueltas(true);
 
+                                /*Llamada a la función:  */
+                                CambiarColoresEditarEventoFinalizadoSupervisor();
 
-                        else {
+                                BotonGuardar.setVisible(true);
 
-                            /*Llamada a la función:  */
-                            EditarVueltas(true);
+                                fab_nueva_vuelta.setVisibility(View.VISIBLE);
 
-                            /*Llamada a la función:  */
-                            CambiarColoresEditarEventoFinalizadoSupervisor();
 
-                            BotonGuardar.setVisible(true);
+                            }//Fin del else
 
-                            fab_nueva_vuelta.setVisibility(View.VISIBLE);
 
 
-                        }//Fin del else
 
 
+                        }/**FIN DEL else (usuario = "supervisor") **/
 
 
 
-                    }/**FIN DEL else (usuario = "supervisor") **/
 
+                    }
+                });
 
 
 
@@ -3886,34 +3983,154 @@ public class EntregaRetiroEnvasesPatrocinio extends AppCompatActivity {
 
 
 
-                }
-            });
 
+                builder.setNegativeButton("NO", new DialogInterface.OnClickListener() {
 
+                    public void onClick(DialogInterface dialog, int id) {
 
+                        dialog.dismiss();
 
+                    }
+                });
 
 
 
+                AlertDialog dialog = builder.create();
+                dialog.show();
 
-            builder.setNegativeButton("NO", new DialogInterface.OnClickListener() {
 
-                public void onClick(DialogInterface dialog, int id) {
 
-                    dialog.dismiss();
 
-                }
-            });
+            }//FIN DEL if(usuario.getTipo_de_Usuario().equals("repartidor"))
 
 
 
-            AlertDialog dialog = builder.create();
-            dialog.show();
+
+            /****** Usuario logueado como SUPERVISOR *****/
+            else{
+
+                AlertDialog.Builder builder = new AlertDialog.Builder(EntregaRetiroEnvasesPatrocinio.this,R.style.AlertDialogStyleSupervisores);
+                builder.setIcon(R.drawable.ic_msj_alerta);
+                builder.setTitle("¿Desea modificar algunas de las vueltas realizadas?");
+                builder.setMessage("Presione 'SI' en caso que desee editar los campos de algunas de las vueltas.");
+
+
+                builder.setPositiveButton("SI", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+
+                        if(usuario.getTipo_de_Usuario().equals("repartidor")) {
+
+
+                            /**Si el evento no fue cerrado**/
+                            if(LeerEstadoDeEvento(Indice_Evento)){
+
+
+                                /*Llamada a la función:  */
+                                EditarVueltas(true);
+
+                                fab_nueva_vuelta.setVisibility(View.VISIBLE);
+
+                                BotonGuardar.setVisible(true);
+
+
+                            }//Fin del if
+
+
+
+
+                            else {
+
+
+                            }//Fin del else
+
+
+
+
+
+
+
+
+                        }//FIN DEL if (usuario.getTipo_de_Usuario().equals("repartidor"))
+
+
+
+                        /**Usuario: SUPERVISOR **/
+                        else{
+
+
+                            /**Si el evento no fue cerrado**/
+                            if(LeerEstadoDeEvento(Indice_Evento)){
+
+
+                                /*Llamada a la función:  */
+                                EditarVueltas(true);
+
+                                fab_nueva_vuelta.setVisibility(View.VISIBLE);
+
+                                BotonGuardar.setVisible(true);
+
+                                BotonHabilitarEvento.setVisible(false);
+
+                                BotonFinalizarEvento.setVisible(true);
+
+
+                            }//Fin del if
+
+
+
+
+                            else {
+
+                                /*Llamada a la función:  */
+                                EditarVueltas(true);
+
+                                /*Llamada a la función:  */
+                                CambiarColoresEditarEventoFinalizadoSupervisor();
+
+                                BotonGuardar.setVisible(true);
+
+                                fab_nueva_vuelta.setVisibility(View.VISIBLE);
+
+
+                            }//Fin del else
+
+
+
+
+
+                        }/**FIN DEL else (usuario = "supervisor") **/
+
+
+
+
+                    }
+                });
+
+
+
+
+
+
+
+
+                builder.setNegativeButton("NO", new DialogInterface.OnClickListener() {
+
+                    public void onClick(DialogInterface dialog, int id) {
+
+                        dialog.dismiss();
+
+                    }
+                });
+
+
+
+                AlertDialog dialog = builder.create();
+                dialog.show();
+
+            }//FIN DEL else (usuario = SUPERVISOR)
 
 
             return true;
-
-
 
         }//FIN DEL if(id == R.id.action_edit_vuelta)
 
@@ -3928,83 +4145,165 @@ public class EntregaRetiroEnvasesPatrocinio extends AppCompatActivity {
         if(id == R.id.action_finish_evento){
 
 
-            AlertDialog.Builder builder = new AlertDialog.Builder(EntregaRetiroEnvasesPatrocinio.this);
-            builder.setIcon(R.drawable.ic_msj_alerta);
-            builder.setTitle("Importante!");
-            builder.setMessage("Está a punto de finalizar el evento. ¿Desea continuar?");
+            Usuario usuario = new Usuario();
+
+            usuario.LeerUsuarioEnUnSharedPreferences(EntregaRetiroEnvasesPatrocinio.this);
+
+            if(usuario.getTipo_de_Usuario().equals("repartidor")) {
 
 
-            builder.setPositiveButton("Confirmar", new DialogInterface.OnClickListener() {
-                public void onClick(DialogInterface dialog, int id) {
+                AlertDialog.Builder builder = new AlertDialog.Builder(EntregaRetiroEnvasesPatrocinio.this,R.style.AlertDialogStyleRepartidores);
+                builder.setIcon(R.drawable.ic_msj_alerta);
+                builder.setTitle("Importante!");
+                builder.setMessage("Está a punto de finalizar el evento. ¿Desea continuar?");
 
 
+                builder.setPositiveButton("Confirmar", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
 
-                    /**Si el evento se cierra sin INCONSISTENCIAS **/
+                        /**Si el evento se cierra sin INCONSISTENCIAS **/
 
-                    SharedPreferences preferences = getSharedPreferences("Datos_Patrocinio_Supervisor", MODE_PRIVATE);
+                        SharedPreferences preferences = getSharedPreferences("Datos_Patrocinio_Supervisor", MODE_PRIVATE);
 
-                    Integer DimensionArrayNuevasVueltas = Integer.parseInt(preferences.getString("Indice_Evento" + Indice_Evento + "DimensionArrayNuevasVueltas", "0"));
-
-
-
-                    if(ArrayListVueltas.size() == DimensionArrayNuevasVueltas){
-
-                        if(DeshabilitarVistasDeLasVueltasAlGuardarCambios(ValidarTodosLosCamposParaGuardarCambiosEnCadaVuelta())){
-
-
-                            /*Llamada a la función: */
-                            GuardarValoresEnSharedPreferencesPatrocinio();
-
-                            /*Llamada a la función: */
-                            CambiarEstadoDeEvento(false);
-
-                            Intent intent = new Intent(EntregaRetiroEnvasesPatrocinio.this, BuscarResponsableParaPatrocinio.class);
-
-                            startActivity(intent);
-
-                            //finish();
-
-                        }
+                        Integer DimensionArrayNuevasVueltas = Integer.parseInt(preferences.getString("Indice_Evento" + Indice_Evento + "DimensionArrayNuevasVueltas", "0"));
 
 
 
-                    }//Fin del primer if
+                        if(ArrayListVueltas.size() == DimensionArrayNuevasVueltas){
+
+                            if(DeshabilitarVistasDeLasVueltasAlGuardarCambios(ValidarTodosLosCamposParaGuardarCambiosEnCadaVuelta())){
 
 
-                    else{
+                                /*Llamada a la función: */
+                                GuardarValoresEnSharedPreferencesPatrocinio();
+
+                                /*Llamada a la función: */
+                                CambiarEstadoDeEvento(false);
+
+                                Intent intent = new Intent(EntregaRetiroEnvasesPatrocinio.this, BuscarResponsableParaPatrocinio.class);
+
+                                startActivity(intent);
+
+                                finish();
+
+                            }
 
 
 
-                        Toast.makeText(getApplicationContext(), "Error! No es posible cerrar el evento." +
+                        }//Fin del primer if
+
+
+                        else{
+
+                            Toast.makeText(getApplicationContext(), "Error! No es posible cerrar el evento." +
+                                    " Por favor, recuerde guardar los cambios realizados", Toast.LENGTH_LONG).show();
+
+
+                        }//Fin del else
+
+
+
+
+                    }
+                });
+
+
+
+                builder.setNegativeButton("Cancelar", new DialogInterface.OnClickListener() {
+
+                    public void onClick(DialogInterface dialog, int id) {
+
+                        dialog.dismiss();
+
+
+                    }
+                });
+
+
+
+                AlertDialog dialog = builder.create();
+                dialog.show();
+
+
+            }//FIN DEL if(usuario.getTipo_de_Usuario().equals("repartidor"))
+
+            else{
+
+
+                AlertDialog.Builder builder = new AlertDialog.Builder(EntregaRetiroEnvasesPatrocinio.this,R.style.AlertDialogStyleSupervisores);
+                builder.setIcon(R.drawable.ic_msj_alerta);
+                builder.setTitle("¡Importante!");
+                builder.setMessage("Está a punto de finalizar el evento. ¿Desea continuar?");
+
+
+                builder.setPositiveButton("Confirmar", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+
+                        /**Si el evento se cierra sin INCONSISTENCIAS **/
+
+                        SharedPreferences preferences = getSharedPreferences("Datos_Patrocinio_Supervisor", MODE_PRIVATE);
+
+                        Integer DimensionArrayNuevasVueltas = Integer.parseInt(preferences.getString("Indice_Evento" + Indice_Evento + "DimensionArrayNuevasVueltas", "0"));
+
+
+
+                        if(ArrayListVueltas.size() == DimensionArrayNuevasVueltas){
+
+                            if(DeshabilitarVistasDeLasVueltasAlGuardarCambios(ValidarTodosLosCamposParaGuardarCambiosEnCadaVuelta())){
+
+
+                                /*Llamada a la función: */
+                                GuardarValoresEnSharedPreferencesPatrocinio();
+
+                                /*Llamada a la función: */
+                                CambiarEstadoDeEvento(false);
+
+                                Intent intent = new Intent(EntregaRetiroEnvasesPatrocinio.this, BuscarResponsableParaPatrocinio.class);
+
+                                startActivity(intent);
+
+                                finish();
+
+                            }
+
+
+
+                        }//Fin del primer if
+
+
+                        else{
+
+                            Toast.makeText(getApplicationContext(), "Error! No es posible cerrar el evento." +
                                 " Por favor, recuerde guardar los cambios realizados", Toast.LENGTH_LONG).show();
 
 
-                    }//Fin del else
+                        }//Fin del else
 
 
 
 
-                }
-            });
+                    }
+                });
 
 
 
-            builder.setNegativeButton("Cancelar", new DialogInterface.OnClickListener() {
+                builder.setNegativeButton("Cancelar", new DialogInterface.OnClickListener() {
 
-                public void onClick(DialogInterface dialog, int id) {
+                    public void onClick(DialogInterface dialog, int id) {
 
-                    dialog.dismiss();
-
-
-                }
-            });
+                        dialog.dismiss();
 
 
+                    }
+                });
 
-            AlertDialog dialog = builder.create();
-            dialog.show();
 
 
+                AlertDialog dialog = builder.create();
+                dialog.show();
+
+
+            }/***FIN DEL else (usuario = SUPERVISOR ***/
 
             return true;
 
@@ -4021,45 +4320,94 @@ public class EntregaRetiroEnvasesPatrocinio extends AppCompatActivity {
         if(id == R.id.action_avaible_evento){
 
 
-            AlertDialog.Builder builder = new AlertDialog.Builder(EntregaRetiroEnvasesPatrocinio.this);
-            builder.setIcon(R.drawable.ic_msj_alerta);
-            builder.setTitle("Importante!");
-            builder.setMessage("Está a punto de habilitar el evento. ¿Desea continuar?");
+            Usuario usuario = new Usuario();
+
+            usuario.LeerUsuarioEnUnSharedPreferences(EntregaRetiroEnvasesPatrocinio.this);
+
+            if(usuario.getTipo_de_Usuario().equals("repartidor")) {
 
 
-            builder.setPositiveButton("Confirmar", new DialogInterface.OnClickListener() {
-                public void onClick(DialogInterface dialog, int id) {
+                AlertDialog.Builder builder = new AlertDialog.Builder(EntregaRetiroEnvasesPatrocinio.this,R.style.AlertDialogStyleRepartidores);
+                builder.setIcon(R.drawable.ic_msj_alerta);
+                builder.setTitle("¡Importante!");
+                builder.setMessage("Está a punto de habilitar el evento. ¿Desea continuar?");
 
 
-                    /*Llamada a las funciones: */
-                    CambiarColoresEditarEventoFinalizadoSupervisor();
-
-                    CambiarEstadoDeEvento(true);
-
-                    BotonEditarEvento.setVisible(true);
+                builder.setPositiveButton("Confirmar", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
 
 
-                }
-            });
+                        /*Llamada a las funciones: */
+                        CambiarColoresEditarEventoFinalizadoSupervisor();
+
+                        CambiarEstadoDeEvento(true);
+
+                        BotonEditarEvento.setVisible(true);
 
 
-
-            builder.setNegativeButton("Cancelar", new DialogInterface.OnClickListener() {
-
-                public void onClick(DialogInterface dialog, int id) {
-
-                    dialog.dismiss();
-
-
-                }
-            });
+                    }
+                });
 
 
 
-            AlertDialog dialog = builder.create();
-            dialog.show();
+                builder.setNegativeButton("Cancelar", new DialogInterface.OnClickListener() {
+
+                    public void onClick(DialogInterface dialog, int id) {
+
+                        dialog.dismiss();
 
 
+                    }
+                });
+
+
+                AlertDialog dialog = builder.create();
+                dialog.show();
+
+
+            }//FIN DEL if(usuario.getTipo_de_Usuario().equals("repartidor"))
+
+            else{
+
+                AlertDialog.Builder builder = new AlertDialog.Builder(EntregaRetiroEnvasesPatrocinio.this,R.style.AlertDialogStyleSupervisores);
+                builder.setIcon(R.drawable.ic_msj_alerta);
+                builder.setTitle("¡Importante!");
+                builder.setMessage("Está a punto de habilitar el evento. ¿Desea continuar?");
+
+
+                builder.setPositiveButton("Confirmar", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+
+
+                        /*Llamada a las funciones: */
+                        CambiarColoresEditarEventoFinalizadoSupervisor();
+
+                        CambiarEstadoDeEvento(true);
+
+                        BotonEditarEvento.setVisible(true);
+
+
+                    }
+                });
+
+
+
+                builder.setNegativeButton("Cancelar", new DialogInterface.OnClickListener() {
+
+                    public void onClick(DialogInterface dialog, int id) {
+
+                        dialog.dismiss();
+
+
+                    }
+                });
+
+
+                AlertDialog dialog = builder.create();
+                dialog.show();
+
+
+            }/*** FIN DEL else (usuario = SUPERVISOR) ****/
 
             return true;
 

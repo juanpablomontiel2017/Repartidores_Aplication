@@ -69,16 +69,17 @@
                     android:orientation="horizontal">
 
 
-                    <TextView
+                    <EditText
 
                         android:id="@+id/dni_responsable_nuevo_evento_patrocinio"
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:text="DNI"
-                        android:textAlignment="center"
-                        android:textColor="#000"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:inputType="number"
+                        android:maxLength="8"
                         android:textSize="25sp"
-                        android:textStyle="bold" />
+                        android:textStyle="bold"
+                        android:textCursorDrawable="@color/colorCursorSupervisores"/>
 
 
                 </LinearLayout>
@@ -96,16 +97,18 @@
                     android:orientation="horizontal">
 
 
-                    <TextView
+                    <EditText
 
                         android:id="@+id/nombre_responsable_nuevo_evento_patrocinio"
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:text="NOMBRE"
-                        android:textAlignment="center"
-                        android:textColor="#000"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
                         android:textSize="25sp"
-                        android:textStyle="bold" />
+                        android:textStyle="bold"
+                        android:maxLength="45"
+                        android:textCursorDrawable="@color/colorCursorSupervisores"
+                        android:inputType="textMultiLine"/>
+
 
                 </LinearLayout>
 
@@ -123,16 +126,18 @@
                     android:orientation="horizontal">
 
 
-                    <TextView
+                    <EditText
 
                         android:id="@+id/apellido_responsable_nuevo_evento_patrocinio"
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:text="APELLIDO"
-                        android:textAlignment="center"
-                        android:textColor="#000"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
                         android:textSize="25sp"
-                        android:textStyle="bold" />
+                        android:textStyle="bold"
+                        android:inputType="textMultiLine"
+                        android:maxLength="45"
+                        android:textCursorDrawable="@color/colorCursorSupervisores"/>
+
 
                 </LinearLayout>
 
@@ -148,33 +153,33 @@
                     android:weightSum="2">
 
 
-                    <TextView
+                    <EditText
 
                         android:id="@+id/codigo_area_responsable_nuevo_evento_patrocinio"
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent"
+                        android:layout_height="wrap_content"
                         android:layout_marginLeft="100dp"
                         android:layout_weight="1"
-                        android:textAlignment="center"
-                        android:textColor="#000"
+                        android:gravity="center"
                         android:textSize="25sp"
                         android:textStyle="bold"
-                        tools:text="CODIGO AREA" />
+                        android:textCursorDrawable="@color/colorCursorSupervisores"
+                        android:maxLength="4"
+                        android:inputType="number"/>
 
 
-                    <TextView
+
+                    <EditText
 
                         android:id="@+id/telefono_responsable_nuevo_evento_patrocinio"
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent"
+                        android:layout_height="wrap_content"
                         android:layout_marginRight="80dp"
-                        android:layout_weight="1"
                         android:gravity="left"
-                        android:textAlignment="center"
-                        android:textColor="#000"
                         android:textSize="25sp"
                         android:textStyle="bold"
-                        tools:text="TELEFONO" />
+                        android:inputType="number"
+                        android:textCursorDrawable="@color/colorCursorSupervisores" />
 
                 </LinearLayout>
 
@@ -191,15 +196,16 @@
                     android:orientation="horizontal">
 
 
-                    <TextView
+                    <EditText
                         android:id="@+id/direccion_responsable_nuevo_evento_patrocinio"
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:text="DIRECCIÓN"
-                        android:textAlignment="center"
-                        android:textColor="#000"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
                         android:textSize="25sp"
-                        android:textStyle="bold" />
+                        android:textStyle="bold"
+                        android:inputType="textMultiLine"
+                        android:maxLength="150"
+                        android:textCursorDrawable="@color/colorCursorSupervisores"/>
 
                 </LinearLayout>
 
@@ -215,15 +221,16 @@
                     android:orientation="horizontal">
 
 
-                    <TextView
+                    <EditText
                         android:id="@+id/barrio_responsable_nuevo_evento_patrocinio"
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:text="BARRIO"
-                        android:textAlignment="center"
-                        android:textColor="#000"
+                        android:layout_height="wrap_content"
                         android:textSize="25sp"
-                        android:textStyle="bold" />
+                        android:textStyle="bold"
+                        android:gravity="center"
+                        android:inputType="textMultiLine"
+                        android:maxLength="100"
+                        android:textCursorDrawable="@color/colorCursorSupervisores"/>
 
                 </LinearLayout>
 
@@ -239,16 +246,19 @@
                     android:orientation="horizontal">
 
 
-                    <TextView
+                    <EditText
 
                         android:id="@+id/referencia_responsable_nuevo_evento_patrocinio"
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:text="REFERENCIA"
-                        android:textAlignment="center"
-                        android:textColor="#000"
+                        android:layout_height="wrap_content"
                         android:textSize="25sp"
-                        android:textStyle="bold" />
+                        android:textStyle="bold"
+                        android:gravity="center"
+                        android:inputType="textMultiLine"
+                        android:maxLength="150"
+                        android:textCursorDrawable="@color/colorCursorSupervisores"/>
+
+
 
                 </LinearLayout>
 
@@ -264,16 +274,18 @@
                     android:orientation="horizontal">
 
 
-                    <TextView
+                    <EditText
 
                         android:id="@+id/email_responsable_nuevo_evento_patrocinio"
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:text="CORREO"
-                        android:textAlignment="center"
-                        android:textColor="#000"
+                        android:layout_height="wrap_content"
                         android:textSize="25sp"
-                        android:textStyle="bold" />
+                        android:textStyle="bold"
+                        android:gravity="center"
+                        android:inputType="textMultiLine|textEmailAddress"
+                        android:maxLength="45"
+                        android:textCursorDrawable="@color/colorCursorSupervisores"/>
+
 
                 </LinearLayout>
 
@@ -352,13 +364,11 @@
                 </LinearLayout>
 
 
-
-
                 <TextView
 
                     android:id="@+id/nombre_nuevo_evento_patrocinio"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
+                    android:layout_height="wrap_content"
                     android:layout_marginLeft="10dp"
                     android:layout_marginRight="10dp"
                     android:text="NOMBRE"
@@ -419,7 +429,7 @@
                         android:layout_weight="1"
                         android:gravity="center"
                         android:hint="(Obligatorio)"
-                        android:inputType="textMultiLine"
+                        android:inputType="textCapSentences|textMultiLine"
                         android:textColor="#FFFF"
                         android:textColorHint="#e0e0e0"
                         android:textSize="25sp"
@@ -496,7 +506,7 @@
                         android:layout_weight="1"
                         android:gravity="center"
                         android:hint="(Obligatorio)"
-                        android:inputType="textMultiLine"
+                        android:inputType="textCapSentences|textMultiLine"
                         android:textColor="#FFFF"
                         android:textColorHint="#e0e0e0"
                         android:textSize="25sp"
@@ -571,7 +581,7 @@
                         android:layout_weight="1"
                         android:gravity="center"
                         android:hint="(Obligatorio)"
-                        android:inputType="textMultiLine"
+                        android:inputType="textCapSentences|textMultiLine"
                         android:textColor="#FFFF"
                         android:textColorHint="#e0e0e0"
                         android:textSize="25sp"
@@ -637,24 +647,22 @@
                     </View>
 
 
-
-
                     <EditText
 
                         android:id="@+id/et_referencia_nuevo_evento_patrocinio"
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent"
+                        android:layout_height="wrap_content"
                         android:layout_gravity="center"
                         android:layout_marginRight="10dp"
                         android:layout_weight="1"
                         android:gravity="center"
                         android:hint="(Obligatorio)"
-                        android:inputType="textMultiLine"
+                        android:inputType="textCapSentences|textMultiLine"
                         android:textColor="#FFFF"
                         android:textColorHint="#e0e0e0"
+                        android:textCursorDrawable="@color/colorCursorNuevoEvento"
                         android:textSize="25sp"
-                        android:textStyle="bold"
-                        android:textCursorDrawable="@color/colorCursorNuevoEvento"/>
+                        android:textStyle="bold" />
 
 
 

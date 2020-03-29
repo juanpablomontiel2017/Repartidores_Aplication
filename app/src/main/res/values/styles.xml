@@ -55,6 +55,64 @@
 
 
 
+    <!-- ********* Cambio de colores AlertDialog Message SUPERVISORES ********** -->
+
+    <style name="AlertDialogStyleSupervisores" parent="Theme.AppCompat.Light.Dialog">
+        <item name="android:colorAccent">#ffffff</item>
+        <item name="android:textColor">#d50000</item>
+        <item name="android:textColorPrimary">#000</item>
+        <item name="android:textSize">20dip</item>
+        <item name="buttonBarNegativeButtonStyle">@style/NegativeButtonStyleSupervisores</item>
+        <item name="buttonBarPositiveButtonStyle">@style/PositiveButtonStyleSupervisores</item>
+
+    </style>
+
+    <!--Colores para los botones -->
+
+    <style name="NegativeButtonStyleSupervisores" parent="Widget.MaterialComponents.Button.TextButton.Dialog">
+        <item name="android:textColor">#d50000</item>
+        <item name="android:textSize">20dip</item>
+    </style>
+
+    <style name="PositiveButtonStyleSupervisores" parent="Widget.MaterialComponents.Button.TextButton.Dialog">
+        <item name="android:textColor">#ff9100</item>
+        <item name="android:textSize">20dip</item>
+    </style>
+
+
+
+    <!-- ********* Cambio de colores AlertDialog Message REPARTIDORES ********** -->
+
+
+    <style name="AlertDialogStyleRepartidores" parent="Theme.AppCompat.Light.Dialog">
+        <item name="android:colorAccent">#ffffff</item>
+        <item name="android:textColor">#311b92</item>
+        <item name="android:textColorPrimary">#000</item>
+        <item name="android:textSize">20dip</item>
+        <item name="buttonBarNegativeButtonStyle">@style/NegativeButtonStyleRepartidores</item>
+        <item name="buttonBarPositiveButtonStyle">@style/PositiveButtonStyleRepartidores</item>
+
+    </style>
+
+    <!--Colores para los botones -->
+
+    <style name="NegativeButtonStyleRepartidores" parent="Widget.MaterialComponents.Button.TextButton.Dialog">
+        <item name="android:textColor">#311b92</item>
+        <item name="android:textSize">20dip</item>
+    </style>
+
+    <style name="PositiveButtonStyleRepartidores" parent="Widget.MaterialComponents.Button.TextButton.Dialog">
+        <item name="android:textColor">#03a9f4</item>
+        <item name="android:textSize">20dip</item>
+    </style>
+
+
+
+
+
+
+
+
 
     <style name="NavigationMapRoute">
         <!-- Colors -->
