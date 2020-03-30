@@ -319,13 +319,19 @@ public class BuscarResponsableParaPatrocinio extends AppCompatActivity implement
                 public void onItemClick(AdapterView<?> parent, View view,int position, long id) {
 
 
-                    int ValorDeLaPosicion;
 
-                    ValorDeLaPosicion = EncontrarPosicionDelResponsableLV(view);
+                    Responsable_Patrocinio objResponsable;
+
+                    //ValorDeLaPosicion = EncontrarPosicionDelResponsableLV(view);
+
+                    objResponsable = (Responsable_Patrocinio) lv.getAdapter().getItem(position);
+
+                    Integer idResponsable = objResponsable.getId();
+
 
                     Intent intent = new Intent(BuscarResponsableParaPatrocinio.this, NuevoEventoPatrocinio.class);
 
-                    intent.putExtra("Indice_Item", ValorDeLaPosicion);
+                    intent.putExtra("Indice_Item", idResponsable);
 
                     startActivity(intent);
 
@@ -498,7 +504,7 @@ public class BuscarResponsableParaPatrocinio extends AppCompatActivity implement
 
 
 
-            ResponsableArrayList.add(new Responsable_Patrocinio(Nombre_Responsable, Apellido_Responsable));
+            ResponsableArrayList.add(new Responsable_Patrocinio(Nombre_Responsable, Apellido_Responsable, Indice_Responsable));
 
             ResponsableAdapter=new ResponsableAdapter(BuscarResponsableParaPatrocinio.this, ResponsableArrayList);
 
