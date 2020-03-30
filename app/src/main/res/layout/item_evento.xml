@@ -134,6 +134,9 @@
 
                 </View>
 
+
+                <!-- ##################################################################3 -->
+
                 <LinearLayout
 
                     android:id="@+id/llh_fecha_inicio"
@@ -148,7 +151,7 @@
 
                         android:id="@+id/tv_fecha_inicio_recibir"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
+                        android:layout_height="match_parent"
                         android:layout_weight="1"
                         android:gravity="center"
                         android:text="FECHA DE INICIO "
@@ -173,8 +176,12 @@
                         android:background="#eeeeee"
                         android:textCursorDrawable="@color/colorCursorSupervisores"/>
 
-
                 </LinearLayout>
+
+
+
+                <!-- ##################################################################3 -->
+
 
 
                 <LinearLayout
@@ -191,7 +198,7 @@
 
                         android:id="@+id/tv_fecha_fin_recibir"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
+                        android:layout_height="match_parent"
                         android:layout_weight="1"
                         android:gravity="center"
                         android:text="FECHA DE FIN ESTIMADA "
@@ -215,11 +222,32 @@
                         android:focusable="false"
                         android:cursorVisible="false"
                         android:background="#eeeeee"
-                        android:textCursorDrawable="@color/colorCursorSupervisores"
-                        />
+                        android:textCursorDrawable="@color/colorCursorSupervisores"/>
 
 
                 </LinearLayout>
+
+
+
+                <View
+
+                    android:id="@+id/view_separador_dos"
+                    android:layout_width="match_parent"
+                    android:layout_height="3dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_marginBottom="0dp"
+                    android:background="#e0e0e0">
+
+                </View>
+
+
+
+                <!-- ##################################################################3 -->
+
+
+                <!-- ##################################################################3 -->
 
 
                 <LinearLayout

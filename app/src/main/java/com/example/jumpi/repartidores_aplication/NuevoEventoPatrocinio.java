@@ -3,6 +3,7 @@ package com.example.jumpi.repartidores_aplication;
 import android.app.DatePickerDialog;
 import android.app.Dialog;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.ColorStateList;
 import android.graphics.Color;
@@ -649,8 +650,20 @@ public class NuevoEventoPatrocinio extends AppCompatActivity {
             public void onClick(View v) {
 
 
-                ValidarCamposDelFormularioAntesDeConfirmarNuevoResponsable();
+                if(ValidarCamposDelFormularioAntesDeConfirmarNuevoResponsable()) {
 
+
+                    int Indice_Responsable = GuardarDatosResponsableEnSharedPreferences();
+
+                    GuardarDatosEventoEnSharedPreferences(Indice_Responsable);
+
+                    Intent intent = new Intent (NuevoEventoPatrocinio.this, BuscarResponsableParaPatrocinio.class);
+
+                    startActivity(intent);
+
+                    finish();
+
+                }
 
             }/*******************FIN DEL EVENTO onClick()**************************/
 
@@ -712,8 +725,23 @@ public class NuevoEventoPatrocinio extends AppCompatActivity {
 
 
 
-    }/*********************FIN DEL onCreate()**************************/
+    }/************************* FIN DEL onCreate() ******************************/
 
+
+
+
+
+
+    /***************************************************************************************************/
+    /***************************************************************************************************/
+    /***************************************************************************************************/
+    /***************************************************************************************************/
+    /***************************************************************************************************/
+    /***************************************************************************************************/
+    /***************************************************************************************************/
+    /***************************************************************************************************/
+    /***************************************************************************************************/
+    /***************************************************************************************************/
 
 
 
@@ -733,6 +761,20 @@ public class NuevoEventoPatrocinio extends AppCompatActivity {
 
 
     }/******************************* FIN DE LA FUNCIÓN RecibirDatosPersonalesResponsable() ***********************************/
+
+
+
+    /***************************************************************************************************/
+    /***************************************************************************************************/
+    /***************************************************************************************************/
+    /***************************************************************************************************/
+    /***************************************************************************************************/
+    /***************************************************************************************************/
+    /***************************************************************************************************/
+    /***************************************************************************************************/
+    /***************************************************************************************************/
+    /***************************************************************************************************/
+
 
 
 
@@ -828,6 +870,158 @@ public class NuevoEventoPatrocinio extends AppCompatActivity {
     /***************************************************************************************************/
     /***************************************************************************************************/
     /***************************************************************************************************/
+
+
+
+    public int GuardarDatosResponsableEnSharedPreferences(){
+
+        int indice = 0;
+
+        SharedPreferences sharedPreferences = getSharedPreferences("Datos_Responsable", MODE_PRIVATE);
+
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+
+
+        String DimensionEvento = sharedPreferences.getString("DimensionDeResponsable", "");
+
+        if(DimensionEvento == ""){
+
+            indice = 0;
+
+
+        }//Fin del if
+
+
+        else {
+
+            indice = Integer.parseInt(DimensionEvento) + 1;
+
+        }//Fin del else
+
+        editor.putString("DNI_Responsable" + indice, et_dni_responsable_nuevo_evento_patrocinio.getText().toString());
+
+        editor.putString("Nombre_Responsable" + indice, et_nombre_responsable_nuevo_evento_patrocinio.getText().toString());
+
+        editor.putString("Apellido_Responsable" + indice, et_apellido_responsable_nuevo_evento_patrocinio.getText().toString());
+
+        editor.putString("Codigo_Area_Responsable" + indice, et_codigo_area_responsable_nuevo_evento_patrocinio.getText().toString());
+
+        editor.putString("Telefono_Responsable" + indice, et_telefono_responsable_nuevo_evento_patrocinio.getText().toString());
+
+        editor.putString("Direccion_Responsable" + indice, et_direccion_responsable_nuevo_evento_patrocinio.getText().toString());
+
+        editor.putString("Barrio_Responsable" + indice, et_barrio_responsable_nuevo_evento_patrocinio.getText().toString());
+
+        editor.putString("Correo_Responsable" + indice, et_correo_responsable_nuevo_evento_patrocinio.getText().toString());
+
+        editor.putString("Referencia_Responsable" + indice, et_referencia_responsable_nuevo_evento_patrocinio.getText().toString());
+
+
+
+
+        editor.putString("DimensionDeResponsable", String.valueOf(indice));
+
+        editor.commit();
+
+        return indice;
+
+    }/******************** FIN DE LA FUNCIÓN GuardarDatosResponsableEnSharedPreferences() *******************/
+
+
+
+
+
+
+
+    /***************************************************************************************************/
+    /***************************************************************************************************/
+    /***************************************************************************************************/
+    /***************************************************************************************************/
+    /***************************************************************************************************/
+    /***************************************************************************************************/
+    /***************************************************************************************************/
+    /***************************************************************************************************/
+    /***************************************************************************************************/
+    /***************************************************************************************************/
+
+
+
+    public void GuardarDatosEventoEnSharedPreferences(int indice_responsable){
+
+        int indice_evento = 0;
+
+        SharedPreferences sharedPreferences = getSharedPreferences("Datos_Evento", MODE_PRIVATE);
+
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+
+
+        String DimensionEvento = sharedPreferences.getString("DimensionDeEvento", "");
+
+        if(DimensionEvento == ""){
+
+            indice_evento = 0;
+
+
+        }//Fin del if
+
+
+        else {
+
+            indice_evento = Integer.parseInt(DimensionEvento) + 1;
+
+        }//Fin del else
+
+
+
+        editor.putString("Nombre_Evento" + indice_evento, et_nombre_nuevo_evento_patrocinio.getText().toString());
+
+        editor.putString("Direccion_Evento" + indice_evento, et_direccion_nuevo_evento_patrocinio.getText().toString());
+
+        editor.putString("Barrio_Evento" + indice_evento, et_barrio_nuevo_evento_patrocinio.getText().toString());
+
+        editor.putString("Referencia_Evento" + indice_evento, et_referencia_nuevo_evento_patrocinio.getText().toString());
+
+        editor.putString("Fecha_Inicio_Evento" + indice_evento, et_fecha_inicio_nuevo_evento_patrocinio.getText().toString());
+
+        editor.putString("Fecha_Fin_Evento" + indice_evento, et_fecha_fin_nuevo_evento_patrocinio.getText().toString());
+
+        editor.putInt("Indice_Responsable" + indice_evento, indice_responsable);
+
+        editor.putBoolean("Estado_Evento" + indice_evento, true);
+
+
+
+        editor.putString("DimensionDeEvento", String.valueOf(indice_evento));
+
+        editor.commit();
+
+
+
+
+
+    }/******************** FIN DE LA FUNCIÓN GuardarDatosEventoEnSharedPreferences() *******************/
+
+
+
+
+
+
+    /***************************************************************************************************/
+    /***************************************************************************************************/
+    /***************************************************************************************************/
+    /***************************************************************************************************/
+    /***************************************************************************************************/
+    /***************************************************************************************************/
+    /***************************************************************************************************/
+    /***************************************************************************************************/
+    /***************************************************************************************************/
+    /***************************************************************************************************/
+
+
+
+
+
+
 
 
 
@@ -990,7 +1184,6 @@ public class NuevoEventoPatrocinio extends AppCompatActivity {
 
         } else {
 
-            //et_nombre_nuevo_evento_patrocinio.setError("Nombre de evento no válido");
             Drawable myIconError = getResources().getDrawable(R.drawable.campo_error_32px);
             myIconError.setBounds(0, 0, myIconError.getIntrinsicWidth(), myIconError.getIntrinsicHeight());
             et_nombre_nuevo_evento_patrocinio.setError("Nombre de evento no válido", myIconError);
@@ -1037,7 +1230,6 @@ public class NuevoEventoPatrocinio extends AppCompatActivity {
 
         } else {
 
-            //et_direccion_nuevo_evento_patrocinio.setError("Dirección de evento no válida");
 
             Drawable myIconError = getResources().getDrawable(R.drawable.campo_error_32px);
             myIconError.setBounds(0, 0, myIconError.getIntrinsicWidth(), myIconError.getIntrinsicHeight());
@@ -1088,7 +1280,6 @@ public class NuevoEventoPatrocinio extends AppCompatActivity {
 
         } else {
 
-            //et_barrio_nuevo_evento_patrocinio.setError("Barrio de evento no válido");
 
             Drawable myIconError = getResources().getDrawable(R.drawable.campo_error_32px);
             myIconError.setBounds(0, 0, myIconError.getIntrinsicWidth(), myIconError.getIntrinsicHeight());
@@ -1134,7 +1325,6 @@ public class NuevoEventoPatrocinio extends AppCompatActivity {
 
         } else {
 
-            //et_referencia_nuevo_evento_patrocinio.setError("Referencia de evento no válida");
 
             Drawable myIconError = getResources().getDrawable(R.drawable.campo_error_32px);
             myIconError.setBounds(0, 0, myIconError.getIntrinsicWidth(), myIconError.getIntrinsicHeight());
@@ -1185,7 +1375,6 @@ public class NuevoEventoPatrocinio extends AppCompatActivity {
         } else {
 
 
-            //et_fecha_inicio_nuevo_evento_patrocinio.setError("Fecha de inicio no válida");
             Drawable myIconError = getResources().getDrawable(R.drawable.campo_error_32px);
             myIconError.setBounds(0, 0, myIconError.getIntrinsicWidth(), myIconError.getIntrinsicHeight());
             et_fecha_inicio_nuevo_evento_patrocinio.setError("Fecha de inicio de evento no válida", myIconError);
@@ -1245,7 +1434,6 @@ public class NuevoEventoPatrocinio extends AppCompatActivity {
         } else {
 
 
-            //et_fecha_fin_nuevo_evento_patrocinio.setError("Fecha de fin no válida");
 
             Drawable myIconError = getResources().getDrawable(R.drawable.campo_error_32px);
             myIconError.setBounds(0, 0, myIconError.getIntrinsicWidth(), myIconError.getIntrinsicHeight());

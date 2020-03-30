@@ -73,7 +73,7 @@ public class EntregaRetiroEnvasesPatrocinio extends AppCompatActivity {
 
     /******Variables Cerrojos********/
 
-    boolean Estado_Evento = true;
+    //boolean Estado_Evento = true;
 
 
 
@@ -1101,7 +1101,7 @@ public class EntregaRetiroEnvasesPatrocinio extends AppCompatActivity {
     public void EliminarCualquierVuelta(final View v){
 
 
-        if(Estado_Evento){
+        if(LeerEstadoDeEvento(Indice_Evento)){
 
 
             AlertDialog.Builder builder = new AlertDialog.Builder(EntregaRetiroEnvasesPatrocinio.this);
@@ -1291,7 +1291,7 @@ public class EntregaRetiroEnvasesPatrocinio extends AppCompatActivity {
 
 
 
-        String DimensionArrayNuevasVueltas = preferences.getString("DimensionArrayNuevasVueltas", "");
+        String DimensionArrayNuevasVueltas = preferences.getString("Indice_Evento" + Indice_Evento + "DimensionArrayNuevasVueltas", "");
 
 
 
@@ -1301,9 +1301,9 @@ public class EntregaRetiroEnvasesPatrocinio extends AppCompatActivity {
 
 
 
-                String ElementoSeleccionadoSpinnerFijo = preferences.getString("ElementoSeleccionadoSpinnerFijo - " + "Vuelta Numero: " + indice_vueltas, "");
-                String ValorEntregaArticulosFijo = preferences.getString("CantidadEntregaArticuloFijo - " + "Vuelta Numero: " + indice_vueltas, "");
-                String ValorRetiroArticulosFijo = preferences.getString("CantidadRetiroArticuloFijo - " + "Vuelta Numero: " + indice_vueltas, "");
+                String ElementoSeleccionadoSpinnerFijo = preferences.getString("Indice_Evento" + Indice_Evento + "ElementoSeleccionadoSpinnerFijo - " + "Vuelta Numero: " + indice_vueltas, "");
+                String ValorEntregaArticulosFijo = preferences.getString("Indice_Evento" + Indice_Evento + "CantidadEntregaArticuloFijo - " + "Vuelta Numero: " + indice_vueltas, "");
+                String ValorRetiroArticulosFijo = preferences.getString("Indice_Evento" + Indice_Evento + "CantidadRetiroArticuloFijo - " + "Vuelta Numero: " + indice_vueltas, "");
 
 
                 /* Llamada a la función: */
@@ -1311,7 +1311,7 @@ public class EntregaRetiroEnvasesPatrocinio extends AppCompatActivity {
 
 
 
-                String DimensionArticulosProgramaticos = preferences.getString("DimensionArticulosProgramaticos - VueltaNumero: " + indice_vueltas, "");
+                String DimensionArticulosProgramaticos = preferences.getString("Indice_Evento" + Indice_Evento + "DimensionArticulosProgramaticos - VueltaNumero: " + indice_vueltas, "");
 
                 if (DimensionArticulosProgramaticos != "") {
 
@@ -1319,9 +1319,9 @@ public class EntregaRetiroEnvasesPatrocinio extends AppCompatActivity {
 
 
 
-                        String ElementoSeleccionadoSpinnerProgramatico = preferences.getString("ElementoSeleccionadoSpinnerProgramatico - " + "Vuelta Numero: " + indice_vueltas + " - " + "Posicion: " + j, "");
-                        String ValorEntregaNuevoArticuloProgramatico = preferences.getString("CantidadDeEntregaNuevoArticuloProgramatico - " + "Vuelta Numero: " + indice_vueltas + " - " + "Posicion: " + j, "");
-                        String ValorRetiroNuevoArticuloProgramatico = preferences.getString("CantidadDeRetiroNuevoArticuloProgramatico - " + "Vuelta Numero: " + indice_vueltas + " - " + "Posicion: " + j, "");
+                        String ElementoSeleccionadoSpinnerProgramatico = preferences.getString("Indice_Evento" + Indice_Evento + "ElementoSeleccionadoSpinnerProgramatico - " + "Vuelta Numero: " + indice_vueltas + " - " + "Posicion: " + j, "");
+                        String ValorEntregaNuevoArticuloProgramatico = preferences.getString("Indice_Evento" + Indice_Evento + "CantidadDeEntregaNuevoArticuloProgramatico - " + "Vuelta Numero: " + indice_vueltas + " - " + "Posicion: " + j, "");
+                        String ValorRetiroNuevoArticuloProgramatico = preferences.getString("Indice_Evento" + Indice_Evento + "CantidadDeRetiroNuevoArticuloProgramatico - " + "Vuelta Numero: " + indice_vueltas + " - " + "Posicion: " + j, "");
 
 
                         if (ValorEntregaNuevoArticuloProgramatico != "" || ValorRetiroNuevoArticuloProgramatico != "") {
@@ -1357,7 +1357,7 @@ public class EntregaRetiroEnvasesPatrocinio extends AppCompatActivity {
 
 
 
-        if(preferences.getBoolean("GuardarLasVistasDeLasVueltasDeshabilitadas",false)){
+        if(preferences.getBoolean("Indice_Evento" + Indice_Evento + "GuardarLasVistasDeLasVueltasDeshabilitadas",false)){
 
             DeshabilitarVistasDeLasVueltasAlGuardarCambios(true);
 
@@ -1399,11 +1399,11 @@ public class EntregaRetiroEnvasesPatrocinio extends AppCompatActivity {
         int tope_de_articulos = 0;
 
 
-        editor.remove("ElementoSeleccionadoSpinnerFijo - " + "Vuelta Numero: " + i).commit();
+        editor.remove("Indice_Evento" + Indice_Evento + "ElementoSeleccionadoSpinnerFijo - " + "Vuelta Numero: " + i).commit();
 
-        editor.remove("CantidadEntregaArticuloFijo - " + "Vuelta Numero: " + i).commit();
+        editor.remove("Indice_Evento" + Indice_Evento + "CantidadEntregaArticuloFijo - " + "Vuelta Numero: " + i).commit();
 
-        editor.remove("CantidadRetiroArticuloFijo - " + "Vuelta Numero: " + i).commit();
+        editor.remove("Indice_Evento" + Indice_Evento + "CantidadRetiroArticuloFijo - " + "Vuelta Numero: " + i).commit();
 
 
 
@@ -1419,11 +1419,11 @@ public class EntregaRetiroEnvasesPatrocinio extends AppCompatActivity {
 
 
 
-            editor.remove("ElementoSeleccionadoSpinnerProgramatico - " + "Vuelta Numero: " + i + " - " + "Posicion: " + j).commit();
+            editor.remove("Indice_Evento" + Indice_Evento + "ElementoSeleccionadoSpinnerProgramatico - " + "Vuelta Numero: " + i + " - " + "Posicion: " + j).commit();
 
-            editor.remove("CantidadDeEntregaNuevoArticuloProgramatico - " + "Vuelta Numero: " + i + " - " + "Posicion: " + j).commit();
+            editor.remove("Indice_Evento" + Indice_Evento + "CantidadDeEntregaNuevoArticuloProgramatico - " + "Vuelta Numero: " + i + " - " + "Posicion: " + j).commit();
 
-            editor.remove("CantidadDeRetiroNuevoArticuloProgramatico - " + "Vuelta Numero: " + i + " - " + "Posicion: " + j).commit();
+            editor.remove("Indice_Evento" + Indice_Evento + "CantidadDeRetiroNuevoArticuloProgramatico - " + "Vuelta Numero: " + i + " - " + "Posicion: " + j).commit();
 
 
 
@@ -1434,7 +1434,7 @@ public class EntregaRetiroEnvasesPatrocinio extends AppCompatActivity {
 
 
 
-        editor.remove("DimensionArticulosProgramaticos - VueltaNumero: " + i).commit();
+        editor.remove("Indice_Evento" + Indice_Evento + "DimensionArticulosProgramaticos - VueltaNumero: " + i).commit();
 
 
 
@@ -1457,12 +1457,6 @@ public class EntregaRetiroEnvasesPatrocinio extends AppCompatActivity {
     /***************************************************************************************************/
     /***************************************************************************************************/
     /***************************************************************************************************/
-
-
-
-
-
-
 
 
 
@@ -3337,7 +3331,6 @@ public class EntregaRetiroEnvasesPatrocinio extends AppCompatActivity {
     public void GuardarValoresEnSharedPreferencesPatrocinio() {
 
         SharedPreferences sharedPreferences = getSharedPreferences("Datos_Patrocinio_Supervisor", MODE_PRIVATE);
-
         SharedPreferences.Editor editor = sharedPreferences.edit();
 
 
@@ -3459,7 +3452,7 @@ public class EntregaRetiroEnvasesPatrocinio extends AppCompatActivity {
 
 
 
-        editor.remove("flag_nueva_vuelta").commit();
+        editor.remove("Indice_Evento" + Indice_Evento + "flag_nueva_vuelta").commit();
 
 
         for (int i = 0; i < ArrayListVueltas.size(); i++) {
@@ -3472,9 +3465,9 @@ public class EntregaRetiroEnvasesPatrocinio extends AppCompatActivity {
         } //Fin del primer for "i" = Vueltas
 
 
-        editor.remove("DimensionArrayNuevasVueltas").commit();
+        editor.remove("Indice_Evento" + Indice_Evento + "DimensionArrayNuevasVueltas").commit();
 
-        editor.remove("GuardarLasVistasDeLasVueltasDeshabilitadas").commit();
+        editor.remove("Indice_Evento" + Indice_Evento + "GuardarLasVistasDeLasVueltasDeshabilitadas").commit();
 
 
 
@@ -3552,11 +3545,6 @@ public class EntregaRetiroEnvasesPatrocinio extends AppCompatActivity {
     /***************************************************************************************************/
     /***************************************************************************************************/
     /***************************************************************************************************/
-
-
-
-
-
 
 
     MenuItem BotonGuardar, BotonEditarEvento,BotonHabilitarEvento,BotonFinalizarEvento;
@@ -4145,90 +4133,6 @@ public class EntregaRetiroEnvasesPatrocinio extends AppCompatActivity {
         if(id == R.id.action_finish_evento){
 
 
-            Usuario usuario = new Usuario();
-
-            usuario.LeerUsuarioEnUnSharedPreferences(EntregaRetiroEnvasesPatrocinio.this);
-
-            if(usuario.getTipo_de_Usuario().equals("repartidor")) {
-
-
-                AlertDialog.Builder builder = new AlertDialog.Builder(EntregaRetiroEnvasesPatrocinio.this,R.style.AlertDialogStyleRepartidores);
-                builder.setIcon(R.drawable.ic_msj_alerta);
-                builder.setTitle("Importante!");
-                builder.setMessage("Está a punto de finalizar el evento. ¿Desea continuar?");
-
-
-                builder.setPositiveButton("Confirmar", new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog, int id) {
-
-                        /**Si el evento se cierra sin INCONSISTENCIAS **/
-
-                        SharedPreferences preferences = getSharedPreferences("Datos_Patrocinio_Supervisor", MODE_PRIVATE);
-
-                        Integer DimensionArrayNuevasVueltas = Integer.parseInt(preferences.getString("Indice_Evento" + Indice_Evento + "DimensionArrayNuevasVueltas", "0"));
-
-
-
-                        if(ArrayListVueltas.size() == DimensionArrayNuevasVueltas){
-
-                            if(DeshabilitarVistasDeLasVueltasAlGuardarCambios(ValidarTodosLosCamposParaGuardarCambiosEnCadaVuelta())){
-
-
-                                /*Llamada a la función: */
-                                GuardarValoresEnSharedPreferencesPatrocinio();
-
-                                /*Llamada a la función: */
-                                CambiarEstadoDeEvento(false);
-
-                                Intent intent = new Intent(EntregaRetiroEnvasesPatrocinio.this, BuscarResponsableParaPatrocinio.class);
-
-                                startActivity(intent);
-
-                                finish();
-
-                            }
-
-
-
-                        }//Fin del primer if
-
-
-                        else{
-
-                            Toast.makeText(getApplicationContext(), "Error! No es posible cerrar el evento." +
-                                    " Por favor, recuerde guardar los cambios realizados", Toast.LENGTH_LONG).show();
-
-
-                        }//Fin del else
-
-
-
-
-                    }
-                });
-
-
-
-                builder.setNegativeButton("Cancelar", new DialogInterface.OnClickListener() {
-
-                    public void onClick(DialogInterface dialog, int id) {
-
-                        dialog.dismiss();
-
-
-                    }
-                });
-
-
-
-                AlertDialog dialog = builder.create();
-                dialog.show();
-
-
-            }//FIN DEL if(usuario.getTipo_de_Usuario().equals("repartidor"))
-
-            else{
-
 
                 AlertDialog.Builder builder = new AlertDialog.Builder(EntregaRetiroEnvasesPatrocinio.this,R.style.AlertDialogStyleSupervisores);
                 builder.setIcon(R.drawable.ic_msj_alerta);
@@ -4247,7 +4151,7 @@ public class EntregaRetiroEnvasesPatrocinio extends AppCompatActivity {
 
 
 
-                        if(ArrayListVueltas.size() == DimensionArrayNuevasVueltas){
+                        if (ArrayListVueltas.size() == DimensionArrayNuevasVueltas) {
 
                             if(DeshabilitarVistasDeLasVueltasAlGuardarCambios(ValidarTodosLosCamposParaGuardarCambiosEnCadaVuelta())){
 
@@ -4257,6 +4161,15 @@ public class EntregaRetiroEnvasesPatrocinio extends AppCompatActivity {
 
                                 /*Llamada a la función: */
                                 CambiarEstadoDeEvento(false);
+
+                                String Fecha_donde_finalizo_evento = UtilidadFecha.getFecha("dd/MM/yyyy");
+
+
+                                SharedPreferences sharedPreferences = getSharedPreferences("Datos_Evento", MODE_PRIVATE);
+                                SharedPreferences.Editor editor = sharedPreferences.edit();
+
+                                editor.putString("Fecha_Fin_Evento" + Indice_Evento, Fecha_donde_finalizo_evento);
+                                editor.commit();
 
                                 Intent intent = new Intent(EntregaRetiroEnvasesPatrocinio.this, BuscarResponsableParaPatrocinio.class);
 
@@ -4303,7 +4216,6 @@ public class EntregaRetiroEnvasesPatrocinio extends AppCompatActivity {
                 dialog.show();
 
 
-            }/***FIN DEL else (usuario = SUPERVISOR ***/
 
             return true;
 
@@ -4320,54 +4232,6 @@ public class EntregaRetiroEnvasesPatrocinio extends AppCompatActivity {
         if(id == R.id.action_avaible_evento){
 
 
-            Usuario usuario = new Usuario();
-
-            usuario.LeerUsuarioEnUnSharedPreferences(EntregaRetiroEnvasesPatrocinio.this);
-
-            if(usuario.getTipo_de_Usuario().equals("repartidor")) {
-
-
-                AlertDialog.Builder builder = new AlertDialog.Builder(EntregaRetiroEnvasesPatrocinio.this,R.style.AlertDialogStyleRepartidores);
-                builder.setIcon(R.drawable.ic_msj_alerta);
-                builder.setTitle("¡Importante!");
-                builder.setMessage("Está a punto de habilitar el evento. ¿Desea continuar?");
-
-
-                builder.setPositiveButton("Confirmar", new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog, int id) {
-
-
-                        /*Llamada a las funciones: */
-                        CambiarColoresEditarEventoFinalizadoSupervisor();
-
-                        CambiarEstadoDeEvento(true);
-
-                        BotonEditarEvento.setVisible(true);
-
-
-                    }
-                });
-
-
-
-                builder.setNegativeButton("Cancelar", new DialogInterface.OnClickListener() {
-
-                    public void onClick(DialogInterface dialog, int id) {
-
-                        dialog.dismiss();
-
-
-                    }
-                });
-
-
-                AlertDialog dialog = builder.create();
-                dialog.show();
-
-
-            }//FIN DEL if(usuario.getTipo_de_Usuario().equals("repartidor"))
-
-            else{
 
                 AlertDialog.Builder builder = new AlertDialog.Builder(EntregaRetiroEnvasesPatrocinio.this,R.style.AlertDialogStyleSupervisores);
                 builder.setIcon(R.drawable.ic_msj_alerta);
@@ -4386,6 +4250,10 @@ public class EntregaRetiroEnvasesPatrocinio extends AppCompatActivity {
 
                         BotonEditarEvento.setVisible(true);
 
+                        BotonHabilitarEvento.setVisible(false);
+
+                        BotonFinalizarEvento.setVisible(true);
+
 
                     }
                 });
@@ -4406,8 +4274,6 @@ public class EntregaRetiroEnvasesPatrocinio extends AppCompatActivity {
                 AlertDialog dialog = builder.create();
                 dialog.show();
 
-
-            }/*** FIN DEL else (usuario = SUPERVISOR) ****/
 
             return true;
 
@@ -4439,48 +4305,6 @@ public class EntregaRetiroEnvasesPatrocinio extends AppCompatActivity {
 
 
 
-/*
-    @Override
-    public boolean onKeyDown(int keyCode, KeyEvent event) {
-
-        // TODO Auto-generated method stub
-        if (keyCode == event.KEYCODE_BACK) {
-
-            Intent intent = new Intent (EntregaRetiroEnvasesPatrocinio.this, BuscarResponsableParaPatrocinio.class);
-
-            startActivity(intent);
-
-        }
-
-        return super.onKeyDown(keyCode, event);
-    }
-*/
-
-
-
-
-
-
-
-                            /*Refrescar activity
-                            finish();
-                            overridePendingTransition(0,0);
-                            startActivity(getIntent());
-                            overridePendingTransition(0,0);
-                            */
-
-
-
-    /**********************************************************************************/
-    /**********************************************************************************/
-    /**********************************************************************************/
-    /**********************************************************************************/
-    /**********************************************************************************/
-    /**********************************************************************************/
-    /**********************************************************************************/
-    /**********************************************************************************/
-    /**********************************************************************************/
-    /**********************************************************************************/
 
 
 }/******************************* FIN DE LA ACTIVITY EntregaRetiroEnvasesPatrocinio ******************************/

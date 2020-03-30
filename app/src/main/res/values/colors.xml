@@ -5,6 +5,7 @@
     <color name="colorAccent">#80deea</color>
 
 
+
     <!-- Colores para los cursores de los EditText -->
     <color name="colorCursorSupervisores">#ff9100</color>
     <color name="colorCursorNuevoEvento">#ffff</color>
