@@ -840,8 +840,6 @@ public class NuevoEventoPatrocinio extends AppCompatActivity {
 
 
 
-
-
         ET_DNI_Responsable.setText(DNI_Responsable);
         ET_Nombre_Responsable.setText(Nombre_Responsable);
         ET_Apellido_Responsable.setText(Apellido_Responsable);

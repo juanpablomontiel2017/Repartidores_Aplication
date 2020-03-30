@@ -4248,6 +4248,14 @@ public class EntregaRetiroEnvasesPatrocinio extends AppCompatActivity {
 
                         CambiarEstadoDeEvento(true);
 
+                        SharedPreferences sharedPreferences = getSharedPreferences("Datos_Evento", MODE_PRIVATE);
+                        SharedPreferences.Editor editor = sharedPreferences.edit();
+
+                        editor.remove("Fecha_Fin_Evento" + Indice_Evento).commit();
+                        editor.commit();
+
+
+
                         BotonEditarEvento.setVisible(true);
 
                         BotonHabilitarEvento.setVisible(false);

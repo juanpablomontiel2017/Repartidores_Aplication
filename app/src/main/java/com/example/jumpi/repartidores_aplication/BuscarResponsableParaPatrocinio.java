@@ -50,7 +50,7 @@ public class BuscarResponsableParaPatrocinio extends AppCompatActivity implement
 
     ArrayList<View> ArrayListItemEvento = new ArrayList<View>();
 
-    ArrayAdapter<String> Responsableadapter;
+    //ArrayAdapter<String> Responsableadapter;
 
     private ListView lv;
 
@@ -71,7 +71,7 @@ public class BuscarResponsableParaPatrocinio extends AppCompatActivity implement
 
 
 
-        /**Añadir "manualmente" color al StatusBar **/
+        /** Añadir "manualmente" color al StatusBar **/
 
         Window window = this.getWindow();
 
@@ -464,6 +464,7 @@ public class BuscarResponsableParaPatrocinio extends AppCompatActivity implement
 
 
             final TextView TV_Fecha_Fin_Estimada_Evento = (TextView) NuevoItemInflado.findViewById(R.id.tv_fecha_fin_recibir);
+            TV_Fecha_Fin_Estimada_Evento.setText("FECHA DE FIN ESTIMADA");
 
 
             final EditText ET_Valor_Fecha_Fin_Estimada_Evento = (EditText) NuevoItemInflado.findViewById(R.id.et_valor_fecha_fin_recibir);
@@ -500,7 +501,7 @@ public class BuscarResponsableParaPatrocinio extends AppCompatActivity implement
 
             ResponsableArrayList.add(new Responsable_Patrocinio(Nombre_Responsable, Apellido_Responsable));
 
-            ResponsableAdapter=new ResponsableAdapter(BuscarResponsableParaPatrocinio.this, ResponsableArrayList);
+            ResponsableAdapter = new ResponsableAdapter(BuscarResponsableParaPatrocinio.this, ResponsableArrayList);
 
             lv.setAdapter(ResponsableAdapter);
 
