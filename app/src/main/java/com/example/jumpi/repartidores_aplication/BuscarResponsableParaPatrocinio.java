@@ -24,6 +24,7 @@ import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
@@ -40,6 +41,8 @@ import com.mapbox.mapboxsdk.plugins.annotation.Line;
 import java.lang.reflect.Field;
 import java.util.ArrayList;
 
+import static android.view.View.GONE;
+
 public class BuscarResponsableParaPatrocinio extends AppCompatActivity implements SearchView.OnQueryTextListener{
 
 
@@ -49,8 +52,6 @@ public class BuscarResponsableParaPatrocinio extends AppCompatActivity implement
     LinearLayout LinearLayoutVerticalPadre;
 
     ArrayList<View> ArrayListItemEvento = new ArrayList<View>();
-
-    //ArrayAdapter<String> Responsableadapter;
 
     private ListView lv;
 
@@ -97,6 +98,8 @@ public class BuscarResponsableParaPatrocinio extends AppCompatActivity implement
         LinearLayoutVerticalPadre = (LinearLayout) findViewById(R.id.parent_layout_vertical_buscador_evento);
 
         lv = (ListView) findViewById(R.id.list_view);
+
+
 
 
 
@@ -322,8 +325,6 @@ public class BuscarResponsableParaPatrocinio extends AppCompatActivity implement
 
                     Responsable_Patrocinio objResponsable;
 
-                    //ValorDeLaPosicion = EncontrarPosicionDelResponsableLV(view);
-
                     objResponsable = (Responsable_Patrocinio) lv.getAdapter().getItem(position);
 
                     Integer idResponsable = objResponsable.getId();
@@ -424,6 +425,7 @@ public class BuscarResponsableParaPatrocinio extends AppCompatActivity implement
     public  void ObtenerItemEvento(final int indice_evento){
 
 
+
         SharedPreferences preferences_estado_evento = getSharedPreferences("Datos_Evento", MODE_PRIVATE);
 
 
@@ -439,10 +441,40 @@ public class BuscarResponsableParaPatrocinio extends AppCompatActivity implement
             ArrayListItemEvento.add(NuevoItemInflado);
 
 
+
+
+
+
+
             final View view_estado_evento = (View) NuevoItemInflado.findViewById(R.id.view_estado_evento);
 
 
             final LinearLayout LinearLayoutVerticalPadre = (LinearLayout) findViewById(R.id.linear_layout_vertical_padre);
+
+
+            final LinearLayout LinearLayoutVerticalContenedorPadre = (LinearLayout) findViewById(R.id.llh_contenedor_evento);
+
+
+            /* Guardaremos las "Nuevas Vueltas" creadas en ArrayVueltas */
+            ArrayListItemEvento.add(LinearLayoutVerticalContenedorPadre);
+
+
+            LinearLayoutVerticalContenedorPadre.setOnLongClickListener(new View.OnLongClickListener() {
+                @Override
+                public boolean onLongClick(View v) {
+
+
+                    /*Llamada a la función: */
+                    EliminarEvento(v,indice_evento);
+
+
+                    return false;
+
+
+                }/***************FIN DEL EVENTO onLongClick************************/
+
+
+            });
 
 
             final LinearLayout LinearLayoutVerticalContenedorHijo = (LinearLayout) NuevoItemInflado.findViewById(R.id.llv_contenedor_hijo_de_evento);
@@ -474,6 +506,12 @@ public class BuscarResponsableParaPatrocinio extends AppCompatActivity implement
 
 
             final EditText ET_Valor_Fecha_Fin_Estimada_Evento = (EditText) NuevoItemInflado.findViewById(R.id.et_valor_fecha_fin_recibir);
+
+
+            Button btn_ver_detalle_entrega_retiro_envases_patrocinio = (Button) NuevoItemInflado.findViewById(R.id.btn_ver_detalle_item_evento);
+
+
+            Button btn_ver_datos_personales_responsable_patrocinio = (Button) NuevoItemInflado.findViewById(R.id.btn_ver_datos_personales_item_evento);
 
 
 
@@ -515,7 +553,45 @@ public class BuscarResponsableParaPatrocinio extends AppCompatActivity implement
 
 
 
-            final Button btn_ver_detalle_entrega_retiro_envases_patrocinio = (Button) NuevoItemInflado.findViewById(R.id.btn_ver_detalle_item_evento);
+
+             String Fecha_Actual = UtilidadFecha.getFecha("dd/MM/yyyy");
+
+
+            /**********************************************************************/
+            /**********************************************************************/
+            /**********************************************************************/
+            /**********************************************************************/
+            /**********************************************************************/
+
+
+
+            if(Fecha_Fin_Estimada_Evento.equals(Fecha_Actual)) {
+
+
+                /*Cierro el evento donde su fecha de fin ha expirado, por ende
+                * cambio los colores de las vistas */
+
+                view_estado_evento.setBackgroundColor(Color.parseColor("#78909c"));
+
+                LinearLayoutVerticalPadre.setBackgroundColor(Color.parseColor("#37474f"));
+
+                btn_ver_detalle_entrega_retiro_envases_patrocinio.getBackground().setColorFilter(Color.parseColor("#616161"), PorterDuff.Mode.SRC_ATOP);
+
+                btn_ver_datos_personales_responsable_patrocinio.getBackground().setColorFilter(Color.parseColor("#424242"), PorterDuff.Mode.SRC_ATOP);
+
+
+            } //Fin del primer if(Fecha_Fin_Estimada_Evento.equals(Fecha_Actual))
+
+
+            /**********************************************************************/
+            /**********************************************************************/
+            /**********************************************************************/
+            /**********************************************************************/
+            /**********************************************************************/
+
+
+
+            btn_ver_detalle_entrega_retiro_envases_patrocinio = (Button) NuevoItemInflado.findViewById(R.id.btn_ver_detalle_item_evento);
             btn_ver_detalle_entrega_retiro_envases_patrocinio.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
@@ -540,7 +616,7 @@ public class BuscarResponsableParaPatrocinio extends AppCompatActivity implement
             });
 
 
-            final Button btn_ver_datos_personales_responsable_patrocinio = (Button) NuevoItemInflado.findViewById(R.id.btn_ver_datos_personales_item_evento);
+            btn_ver_datos_personales_responsable_patrocinio = (Button) NuevoItemInflado.findViewById(R.id.btn_ver_datos_personales_item_evento);
             btn_ver_datos_personales_responsable_patrocinio.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
@@ -710,8 +786,9 @@ public class BuscarResponsableParaPatrocinio extends AppCompatActivity implement
 
                         intent.putExtra("Apellido_del_responsable", ET_Apellido_Responsable_Evento.getText().toString());
 
-
                         startActivity(intent);
+
+                        finish();
 
                     }
                 });
@@ -736,6 +813,7 @@ public class BuscarResponsableParaPatrocinio extends AppCompatActivity implement
 
                         startActivity(intent);
 
+                        finish();
                     }
                 });
 
@@ -848,6 +926,8 @@ public class BuscarResponsableParaPatrocinio extends AppCompatActivity implement
 
                         startActivity(intent);
 
+                        finish();
+
                     }
                 });
 
@@ -871,6 +951,7 @@ public class BuscarResponsableParaPatrocinio extends AppCompatActivity implement
 
                         startActivity(intent);
 
+                        finish();
                     }
                 });
 
@@ -1022,17 +1103,146 @@ public class BuscarResponsableParaPatrocinio extends AppCompatActivity implement
 
 
 
-    public int  EncontrarPosicionDelResponsableLV(View lv_responsable){
+    public void EliminarEvento(final View v, final int indice_evento){
 
-        int posicion_item = 99;
 
-        View Item = EncontrarItemPadreListView(lv_responsable);
+        SharedPreferences preferences_estado_evento = getSharedPreferences("Datos_Evento", MODE_PRIVATE);
+
+
+        final LinearLayout LinearLayoutVerticalPadre = (LinearLayout) findViewById(R.id.linear_layout_vertical_padre);
+
+
+        if(preferences_estado_evento.getBoolean("Estado_Evento" + indice_evento, false)) {
+        //if(!LeerEstadoDeEvento(Indice_Evento)){
+
+
+            AlertDialog.Builder builder = new AlertDialog.Builder(BuscarResponsableParaPatrocinio.this);
+            builder.setIcon(R.drawable.ic_msj_alerta);
+            builder.setTitle("Desea eliminar el evento seleccionado?!");
+            builder.setMessage("Al presionar el botón 'Eliminar Evento' se borrará dicho evento seleccionado. ¿Desea continuar?");
+
+
+            builder.setPositiveButton("Eliminar Evento", new DialogInterface.OnClickListener() {
+
+                @SuppressLint("RestrictedApi")
+                public void onClick(DialogInterface dialog, int id) {
+
+
+
+
+
+
+                    if (ArrayListItemEvento.size() > 1) {
+
+                        int ValorDeLaPosicion;
+
+                        ValorDeLaPosicion = EncontrarPosicionDeEvento(v);
+
+
+
+                        if(ValorDeLaPosicion != 99){
+
+
+
+                            /*Llamada a la función:  */
+                            //BorrarValoresDelSharedPreferencesPatrocinio();
+
+
+
+                            ArrayListItemEvento.remove(v);
+
+
+
+
+                            LinearLayoutVerticalPadre.removeAllViews();
+
+
+
+                            /*Llamada a la función:  */
+                            //GuardarValoresEnSharedPreferencesPatrocinio();
+
+
+
+                            //vuelta_numero = 0;
+
+
+                            //ArrayListVueltas.clear();
+
+
+                            /*Llamada a la función:  */
+                            //RefrescarVueltasEnPantalla();
+
+
+                            Toast.makeText(BuscarResponsableParaPatrocinio.this, "El evento ha sido eliminado", Toast.LENGTH_LONG).show();
+
+
+
+
+
+
+
+
+                        } else {
+
+
+                            Toast.makeText(BuscarResponsableParaPatrocinio.this, "Posicion: " + ValorDeLaPosicion, Toast.LENGTH_LONG).show();
+
+
+                        }
+
+
+                    } else {
+
+                        Toast.makeText(BuscarResponsableParaPatrocinio.this, "¡No es posible eliminar la primer vuelta. Por favor, tenga en cuenta crear una nueva vuelta!", Toast.LENGTH_LONG).show();
+
+                    }
+
+
+                }
+            });
+
+
+            builder.setNegativeButton("Cancelar", new DialogInterface.OnClickListener() {
+                public void onClick(DialogInterface dialog, int id) {
+
+                    dialog.dismiss();
+                }
+            });
+
+
+            AlertDialog dialog = builder.create();
+            dialog.show();
+
+
+        }//Fin del primer if
+
+
+
+    }/*********************************FIN DE LA FUNCIÓN EliminarEvento()*******************************************/
+
+
+
+    /************************************************************************/
+    /************************************************************************/
+    /************************************************************************/
+    /************************************************************************/
+    /************************************************************************/
+    /************************************************************************/
+    /************************************************************************/
+    /************************************************************************/
+    /************************************************************************/
+    /************************************************************************/
+
+
+    public int  EncontrarPosicionDeEvento(View v){
+
+        int posicion_vuelta = 99;
 
         for(int i = 0 ; i < ArrayListItemEvento.size(); i++ ){
 
-            if(ArrayListItemEvento.get(i) == Item ){
+            if(ArrayListItemEvento.get(i) == v ){
 
-                posicion_item = i;
+                posicion_vuelta = i;
 
                 break;
 
@@ -1042,10 +1252,126 @@ public class BuscarResponsableParaPatrocinio extends AppCompatActivity implement
         }//Fin del for
 
 
-        return posicion_item;
+        return posicion_vuelta;
 
 
-    }/*********************************FIN DE LA FUNCIÓN EncontrarPosicionDelResponsableLV()*******************************************/
+    }/*********************************FIN DE LA FUNCIÓN EncontrarPosicionDeVuelta()*******************************************/
+
+
+
+
+
+
+    public void BorrarValoresDelSharedPreferencesPatrocinio(){
+
+
+        View NuevoItemInflado;
+
+        /*Llamada a la función: */
+        NuevoItemInflado = AgregarItemEvento();
+
+        ArrayListItemEvento.add(NuevoItemInflado);
+
+
+        final View view_estado_evento = (View) NuevoItemInflado.findViewById(R.id.view_estado_evento);
+
+
+        final LinearLayout LinearLayoutVerticalPadre = (LinearLayout) findViewById(R.id.linear_layout_vertical_padre);
+
+
+        final LinearLayout LinearLayoutVerticalContenedorHijo = (LinearLayout) NuevoItemInflado.findViewById(R.id.llv_contenedor_hijo_de_evento);
+
+
+        final EditText ET_Nombre_Evento = (EditText) NuevoItemInflado.findViewById(R.id.et_nombre_evento_recibir);
+
+
+        final EditText ET_Nombre_Responsable_Evento = (EditText) NuevoItemInflado.findViewById(R.id.et_nombre_responsable_recibir);
+
+
+        final EditText ET_Apellido_Responsable_Evento = (EditText) NuevoItemInflado.findViewById(R.id.et_apellido_responsable_recibir);
+
+
+        final LinearLayout LinearLayoutHorizontalFechaInicio = (LinearLayout) NuevoItemInflado.findViewById(R.id.llh_fecha_inicio);
+
+
+        final TextView TV_Fecha_Inicio_Evento = (TextView) NuevoItemInflado.findViewById(R.id.tv_fecha_inicio_recibir);
+
+
+        final EditText ET_Valor_Fecha_Inicio_Evento = (EditText) NuevoItemInflado.findViewById(R.id.et_valor_fecha_inicio_recibir);
+
+
+        final LinearLayout LinearLayoutHorizontalFechaFinEstimada = (LinearLayout) NuevoItemInflado.findViewById(R.id.llh_fecha_fin);
+
+
+        final TextView TV_Fecha_Fin_Estimada_Evento = (TextView) NuevoItemInflado.findViewById(R.id.tv_fecha_fin_recibir);
+        TV_Fecha_Fin_Estimada_Evento.setText("FECHA DE FIN ESTIMADA");
+
+
+        final EditText ET_Valor_Fecha_Fin_Estimada_Evento = (EditText) NuevoItemInflado.findViewById(R.id.et_valor_fecha_fin_recibir);
+
+
+        Button btn_ver_detalle_entrega_retiro_envases_patrocinio = (Button) NuevoItemInflado.findViewById(R.id.btn_ver_detalle_item_evento);
+
+
+        Button btn_ver_datos_personales_responsable_patrocinio = (Button) NuevoItemInflado.findViewById(R.id.btn_ver_datos_personales_item_evento);
+
+
+
+        SharedPreferences preferences = getSharedPreferences("Datos_Evento", MODE_PRIVATE);
+
+        String Nombre_Evento = preferences.getString("Nombre_Evento" + indice_evento, "");
+        String Fecha_Inicio_Evento = preferences.getString("Fecha_Inicio_Evento" + indice_evento, "");
+        String Fecha_Fin_Estimada_Evento = preferences.getString("Fecha_Fin_Evento" + indice_evento, "");
+        int Indice_Responsable = preferences.getInt("Indice_Responsable" + indice_evento, 0);
+
+
+
+
+
+        ET_Nombre_Evento.setText(Nombre_Evento);
+        ET_Valor_Fecha_Inicio_Evento.setText(Fecha_Inicio_Evento);
+        ET_Valor_Fecha_Fin_Estimada_Evento.setText(Fecha_Fin_Estimada_Evento);
+
+
+
+        SharedPreferences preferences_responsable = getSharedPreferences("Datos_Responsable", MODE_PRIVATE);
+
+        String Nombre_Responsable = preferences_responsable.getString("Nombre_Responsable" + Indice_Responsable, "");
+        String Apellido_Responsable = preferences_responsable.getString("Apellido_Responsable" + Indice_Responsable, "");
+
+
+
+
+
+
+
+        SharedPreferences sharedPreferences = getSharedPreferences("Datos_Patrocinio_Supervisor", MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+
+
+
+        editor.remove("Indice_Evento" + Indice_Evento + "flag_nueva_vuelta").commit();
+
+
+        for (int i = 0; i < ArrayListVueltas.size(); i++) {
+
+
+            EliminarVueltaEnElSharedPreferences(ArrayListVueltas.get(i),editor,i);
+
+
+        } //Fin del primer for "i" = Vueltas
+
+
+        editor.remove("Indice_Evento" + Indice_Evento + "DimensionArrayNuevasVueltas").commit();
+
+        editor.remove("Indice_Evento" + Indice_Evento + "GuardarLasVistasDeLasVueltasDeshabilitadas").commit();
+
+
+
+
+    }/*******************************FIN DE LA FUNCION BorrarValoresDelSharedPreferenceasPatrocinio()******************************/
+
+
 
 
 
@@ -1063,33 +1389,6 @@ public class BuscarResponsableParaPatrocinio extends AppCompatActivity implement
 
 
 
-    public View EncontrarItemPadreListView (View lv_responsable){
-
-
-
-        LinearLayout linearLayoutHorizontalLV = (LinearLayout) findViewById(R.id.llh_contenedor_lv);
-
-        return linearLayoutHorizontalLV;
-
-
-
-    } /******************************FIN DE LA FUNCION EncontrarItemPadreListView()*****************************/
-
-
-
-
-
-
-    /************************************************************************/
-    /************************************************************************/
-    /************************************************************************/
-    /************************************************************************/
-    /************************************************************************/
-    /************************************************************************/
-    /************************************************************************/
-    /************************************************************************/
-    /************************************************************************/
-    /************************************************************************/
 
 
 

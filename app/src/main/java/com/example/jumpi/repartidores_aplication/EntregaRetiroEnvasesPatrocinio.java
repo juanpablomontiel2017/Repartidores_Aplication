@@ -70,14 +70,6 @@ public class EntregaRetiroEnvasesPatrocinio extends AppCompatActivity {
 
 
 
-
-    /******Variables Cerrojos********/
-
-    //boolean Estado_Evento = true;
-
-
-
-
     /**Variables tipo Spinner**/
 
     Spinner spinner_para_patrocinio;
@@ -94,6 +86,7 @@ public class EntregaRetiroEnvasesPatrocinio extends AppCompatActivity {
     /******Variables tipo String********/
 
     String ArticuloSeleccionadoAnterior;
+    String Fecha_Actual;
 
 
 
@@ -113,7 +106,7 @@ public class EntregaRetiroEnvasesPatrocinio extends AppCompatActivity {
     ImageButton btnAgregarNuevoArticuloParaPatrocinio;
 
 
-    /*Para incrementar el número de cada vuelta añadida*/
+    /** Variables enteras*/
 
     int vuelta_numero = 0;
 
@@ -124,7 +117,7 @@ public class EntregaRetiroEnvasesPatrocinio extends AppCompatActivity {
     private FloatingActionButton fab_nueva_vuelta;
     private FloatingActionButton fab_cancelar_vuelta;
 
-
+    Menu menu;
 
 
 
@@ -142,16 +135,38 @@ public class EntregaRetiroEnvasesPatrocinio extends AppCompatActivity {
         Indice_Evento = getIntent().getIntExtra("Indice_Evento",0);
 
 
+        Fecha_Actual = UtilidadFecha.getFecha("dd/MM/yyyy");
 
 
-        /** Preguntar si se cerro el evento **/
+        SharedPreferences preferences = getSharedPreferences("Datos_Evento", MODE_PRIVATE);
 
+        String Fecha_Fin_Evento = preferences.getString("Fecha_Fin_Evento" + Indice_Evento, "");
+
+
+
+        /** Pregunta si se cerró el evento **/
         if(LeerEstadoDeEvento(Indice_Evento)){ /*Evento abierto */
 
 
-            /*Llamada a la función: */
-            CargarVistasEventoHabilitado();
 
+            /** La fecha de fin a expirado sin que el SUPERVISOR haya finalizado el evento **/
+            if(Fecha_Fin_Evento.equals(Fecha_Actual)){
+
+
+                /*Llamada a la función: */
+                CargarVistasEventoDeshabilitado();
+
+                CambiarEstadoDeEvento(false);
+
+
+            }
+
+            else {
+
+                /*Llamada a la función: */
+                CargarVistasEventoHabilitado();
+
+            }
 
 
         }
@@ -3547,8 +3562,9 @@ public class EntregaRetiroEnvasesPatrocinio extends AppCompatActivity {
     /***************************************************************************************************/
 
 
-    MenuItem BotonGuardar, BotonEditarEvento,BotonHabilitarEvento,BotonFinalizarEvento;
 
+
+    MenuItem BotonGuardar, BotonEditarEvento,BotonHabilitarEvento,BotonFinalizarEvento;
 
     @Override
     public boolean onCreateOptionsMenu (Menu menu){
@@ -3558,7 +3574,6 @@ public class EntregaRetiroEnvasesPatrocinio extends AppCompatActivity {
         getMenuInflater().inflate(R.menu.menu_entrega_retiro_envases_patrocinio, menu);
 
 
-
         Usuario usuario = new Usuario();
         usuario.LeerUsuarioEnUnSharedPreferences(this);
 
@@ -3566,6 +3581,9 @@ public class EntregaRetiroEnvasesPatrocinio extends AppCompatActivity {
 
             /**Evento Cerrado **/
             if(!LeerEstadoDeEvento(Indice_Evento)) {
+
+                /** La fecha de fin a expirado sin que el SUPERVISOR haya finalizado el evento **/
+                //if(Fecha_Fin_Evento.equals(Fecha_Actual)){
 
                 menu.findItem(R.id.action_save_vuelta).setVisible(false);
 
@@ -3607,6 +3625,7 @@ public class EntregaRetiroEnvasesPatrocinio extends AppCompatActivity {
 
 
             /**Evento Cerrado **/
+
             if(!LeerEstadoDeEvento(Indice_Evento)) {
 
                 fab_nueva_vuelta.setVisibility(GONE);
@@ -4252,7 +4271,6 @@ public class EntregaRetiroEnvasesPatrocinio extends AppCompatActivity {
                         SharedPreferences.Editor editor = sharedPreferences.edit();
 
                         editor.remove("Fecha_Fin_Evento" + Indice_Evento).commit();
-                        editor.commit();
 
 
 
