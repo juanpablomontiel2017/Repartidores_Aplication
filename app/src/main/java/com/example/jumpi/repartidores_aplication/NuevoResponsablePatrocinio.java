@@ -855,7 +855,7 @@ public class NuevoResponsablePatrocinio extends AppCompatActivity {
                                 pYearFI,pMonthFI,pDayFI);
 
 
-                        dialog_fecha_fin.getDatePicker().setMinDate(ConvertirFechaEnMilisegundos(pDayFI,
+                        dialog_fecha_fin.getDatePicker().setMinDate(ConvertirFechaEnMilisegundos(pDayFI+1,
                                 pMonthFI,pYearFI));
 
 
