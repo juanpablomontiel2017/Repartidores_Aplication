@@ -838,7 +838,7 @@ public class NuevoResponsablePatrocinio extends AppCompatActivity {
                                 pYearFI,pMonthFI,pDayFI);
 
 
-                        dialog_fecha_fin.getDatePicker().setMinDate(ConvertirFechaEnMilisegundos(pDayFI,
+                        dialog_fecha_fin.getDatePicker().setMinDate(ConvertirFechaEnMilisegundos(pDayFI+1,
                                 pMonthFI,pYearFI));
 
 
@@ -2504,7 +2504,15 @@ public class NuevoResponsablePatrocinio extends AppCompatActivity {
 
         editor.putString("Barrio_Responsable" + indice, et_barrio_nuevo_responsable.getText().toString());
 
-        editor.putString("Correo_Responsable" + indice, et_correo_nuevo_responsable.getText().toString());
+        if(et_correo_nuevo_responsable.getText().toString().isEmpty()){
+
+            editor.putString("Correo_Responsable" + indice, "No tiene correo");
+
+        } else {
+
+            editor.putString("Correo_Responsable" + indice, et_correo_nuevo_responsable.getText().toString());
+
+        }
 
         editor.putString("Referencia_Responsable" + indice, et_referencia_nuevo_responsable.getText().toString());
 

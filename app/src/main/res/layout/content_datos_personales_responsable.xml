@@ -173,7 +173,6 @@
                     android:weightSum="2">
 
 
-
                     <EditText
 
                         android:id="@+id/et_nombre_responsable"
@@ -204,7 +203,6 @@
                     android:gravity="center"
                     android:orientation="horizontal"
                     android:weightSum="2">
-
 
 
                     <EditText

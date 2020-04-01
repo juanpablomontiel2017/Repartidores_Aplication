@@ -184,6 +184,8 @@ public class NuevoEventoPatrocinio extends AppCompatActivity {
         et_correo_responsable_nuevo_evento_patrocinio.setBackgroundColor(Color.TRANSPARENT);
 
 
+
+
         et_referencia_responsable_nuevo_evento_patrocinio.setFocusable(false);
         et_referencia_responsable_nuevo_evento_patrocinio.setCursorVisible(false);
         et_referencia_responsable_nuevo_evento_patrocinio.setBackgroundColor(Color.TRANSPARENT);
@@ -375,7 +377,7 @@ public class NuevoEventoPatrocinio extends AppCompatActivity {
                             pYearFI,pMonthFI,pDayFI);
 
 
-                    dialog_fecha_fin_nuevo_evento.getDatePicker().setMinDate(ConvertirFechaEnMilisegundos(pDayFI,
+                    dialog_fecha_fin_nuevo_evento.getDatePicker().setMinDate(ConvertirFechaEnMilisegundos(pDayFI+1,
                             pMonthFI,pYearFI));
 
 
@@ -394,7 +396,7 @@ public class NuevoEventoPatrocinio extends AppCompatActivity {
                             selector_fecha_fin_nuevo_evento, pYearFI,pMonthFI,pDayFI);
 
 
-                    dialog_fecha_fin_nuevo_evento.getDatePicker().setMinDate(ConvertirFechaEnMilisegundos(pDayFI,
+                    dialog_fecha_fin_nuevo_evento.getDatePicker().setMinDate(ConvertirFechaEnMilisegundos(pDayFI+1,
                             pMonthFI,pYearFI));
 
 
@@ -692,10 +694,6 @@ public class NuevoEventoPatrocinio extends AppCompatActivity {
             window.setStatusBarColor(Color.parseColor("#303F9F"));
 
 
-
-
-
-
             linearlayout_vertical_datos_responsable_nuevo_evento_patrocinio.setBackgroundColor(Color.parseColor("#0277bd"));
 
             linearlayout_horizontal_nombre_nuevo_evento_patrocinio.setBackground(getDrawable(R.drawable.contenedor_et_nuevo_evento_patrocinio));
@@ -712,6 +710,9 @@ public class NuevoEventoPatrocinio extends AppCompatActivity {
 
             btn_cancelar_nuevo_evento_patrocinio.setBackground(getDrawable(R.drawable.btn_borde_redondeado));
             btn_cancelar_nuevo_evento_patrocinio.getBackground().setColorFilter(Color.parseColor("#283593"), PorterDuff.Mode.SRC_ATOP);
+
+
+            et_correo_responsable_nuevo_evento_patrocinio.setTextColor(Color.parseColor("#311b92"));
 
 
 
@@ -835,6 +836,15 @@ public class NuevoEventoPatrocinio extends AppCompatActivity {
         String Direccion_Responsable = preferences.getString("Direccion_Responsable" + Indice_Responsable, "");
         String Barrio_Responsable = preferences.getString("Barrio_Responsable" + Indice_Responsable, "");
         String Correo_Responsable = preferences.getString("Correo_Responsable" + Indice_Responsable, "");
+
+
+        if(Correo_Responsable.equals("No tiene correo")){
+
+            ET_Correo_Responsable.setTextColor(Color.parseColor("#d50000"));
+
+        }
+
+
         String Referencia_Responsable = preferences.getString("Referencia_Responsable" + Indice_Responsable, "");
 
 

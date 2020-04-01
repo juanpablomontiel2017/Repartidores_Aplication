@@ -117,7 +117,6 @@ public class EntregaRetiroEnvasesPatrocinio extends AppCompatActivity {
     private FloatingActionButton fab_nueva_vuelta;
     private FloatingActionButton fab_cancelar_vuelta;
 
-    Menu menu;
 
 
 
@@ -153,10 +152,14 @@ public class EntregaRetiroEnvasesPatrocinio extends AppCompatActivity {
             if(Fecha_Fin_Evento.equals(Fecha_Actual)){
 
 
-                /*Llamada a la función: */
+                /*Llamada a las siguientes funciones: */
                 CargarVistasEventoDeshabilitado();
 
+                DeshabilitarVistasDeLasVueltasAlGuardarCambios(true);
+
                 CambiarEstadoDeEvento(false);
+
+
 
 
             }
@@ -175,7 +178,11 @@ public class EntregaRetiroEnvasesPatrocinio extends AppCompatActivity {
 
 
             /*Llamada a la función: */
+
             CargarVistasEventoDeshabilitado();
+
+            DeshabilitarVistasDeLasVueltasAlGuardarCambios(true);
+
 
 
         }
@@ -861,7 +868,6 @@ public class EntregaRetiroEnvasesPatrocinio extends AppCompatActivity {
 
 
             eTcantEntrega = (EditText) findViewById(R.id.edtx_entrega_erep);
-            eTcantEntrega.requestFocus();
 
 
             eTcantRetiro = (EditText) findViewById(R.id.edtx_retiro_erep);
@@ -1996,8 +2002,8 @@ public class EntregaRetiroEnvasesPatrocinio extends AppCompatActivity {
 
                     String text = spinner.getSelectedItem().toString();
 
-                    Toast to = Toast.makeText(getApplicationContext(), "Ha seleccionado " + text, Toast.LENGTH_LONG);
-                    to.show();
+                    //Toast to = Toast.makeText(getApplicationContext(), "Ha seleccionado " + text, Toast.LENGTH_LONG);
+                    //to.show();
 
 
 
@@ -2856,6 +2862,7 @@ public class EntregaRetiroEnvasesPatrocinio extends AppCompatActivity {
 
 
                 editText_retiro_nueva_vuelta.setFocusable(false);
+                editText_entrega_nueva_vuelta.setCursorVisible(false);
                 editText_retiro_nueva_vuelta.setHint("");
                 editText_retiro_nueva_vuelta.setHintTextColor(Color.parseColor("#fafafa"));
                 editText_retiro_nueva_vuelta.setBackgroundColor(Color.TRANSPARENT);
@@ -3805,6 +3812,9 @@ public class EntregaRetiroEnvasesPatrocinio extends AppCompatActivity {
                                 /*Llamada a la función: */
                                 GuardarValoresEnSharedPreferencesPatrocinio();
 
+                                fab_nueva_vuelta.setVisibility(View.VISIBLE);
+
+
                             }//Fin del if
 
 
@@ -3884,257 +3894,84 @@ public class EntregaRetiroEnvasesPatrocinio extends AppCompatActivity {
 
             usuario.LeerUsuarioEnUnSharedPreferences(EntregaRetiroEnvasesPatrocinio.this);
 
-            if(usuario.getTipo_de_Usuario().equals("repartidor")){
 
 
-                AlertDialog.Builder builder = new AlertDialog.Builder(EntregaRetiroEnvasesPatrocinio.this,R.style.AlertDialogStyleRepartidores);
-                builder.setIcon(R.drawable.ic_msj_alerta);
-                builder.setTitle("¿Desea modificar algunas de las vueltas realizadas?");
-                builder.setMessage("Presione 'SI' en caso que desee editar los campos de algunas de las vueltas.");
 
+            if(usuario.getTipo_de_Usuario().equals("repartidor")) {
 
-                builder.setPositiveButton("SI", new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog, int id) {
 
-                        if(usuario.getTipo_de_Usuario().equals("repartidor")) {
+                /**Si el evento no fue cerrado**/
+                if(LeerEstadoDeEvento(Indice_Evento)){
 
 
-                            /**Si el evento no fue cerrado**/
-                            if(LeerEstadoDeEvento(Indice_Evento)){
+                    /*Llamada a la función:  */
+                    EditarVueltas(true);
 
+                    fab_nueva_vuelta.setVisibility(GONE);
 
-                                /*Llamada a la función:  */
-                                EditarVueltas(true);
+                    BotonGuardar.setVisible(true);
 
-                                fab_nueva_vuelta.setVisibility(View.VISIBLE);
 
-                                BotonGuardar.setVisible(true);
+                }//Fin del if
 
 
-                            }//Fin del if
 
+                /**Evento Cerrado**/
+                else {
 
 
+                }//Fin del else
 
-                            else {
 
+            }//FIN DEL if (usuario.getTipo_de_Usuario().equals("repartidor"))
 
-                            }//Fin del else
 
 
-
-
-
-
-
-
-                        }//FIN DEL if (usuario.getTipo_de_Usuario().equals("repartidor"))
-
-
-
-                        /**Usuario: SUPERVISOR **/
-                        else{
-
-
-                            /**Si el evento no fue cerrado**/
-                            if(LeerEstadoDeEvento(Indice_Evento)){
-
-
-                                /*Llamada a la función:  */
-                                EditarVueltas(true);
-
-                                fab_nueva_vuelta.setVisibility(View.VISIBLE);
-
-                                BotonGuardar.setVisible(true);
-
-                                BotonHabilitarEvento.setVisible(false);
-
-                                BotonFinalizarEvento.setVisible(true);
-
-
-                            }//Fin del if
-
-
-
-
-                            else {
-
-                                /*Llamada a la función:  */
-                                EditarVueltas(true);
-
-                                /*Llamada a la función:  */
-                                CambiarColoresEditarEventoFinalizadoSupervisor();
-
-                                BotonGuardar.setVisible(true);
-
-                                fab_nueva_vuelta.setVisibility(View.VISIBLE);
-
-
-                            }//Fin del else
-
-
-
-
-
-                        }/**FIN DEL else (usuario = "supervisor") **/
-
-
-
-
-                    }
-                });
-
-
-
-
-
-
-
-
-                builder.setNegativeButton("NO", new DialogInterface.OnClickListener() {
-
-                    public void onClick(DialogInterface dialog, int id) {
-
-                        dialog.dismiss();
-
-                    }
-                });
-
-
-
-                AlertDialog dialog = builder.create();
-                dialog.show();
-
-
-
-
-            }//FIN DEL if(usuario.getTipo_de_Usuario().equals("repartidor"))
-
-
-
-
-            /****** Usuario logueado como SUPERVISOR *****/
+            /**Usuario: SUPERVISOR **/
             else{
 
-                AlertDialog.Builder builder = new AlertDialog.Builder(EntregaRetiroEnvasesPatrocinio.this,R.style.AlertDialogStyleSupervisores);
-                builder.setIcon(R.drawable.ic_msj_alerta);
-                builder.setTitle("¿Desea modificar algunas de las vueltas realizadas?");
-                builder.setMessage("Presione 'SI' en caso que desee editar los campos de algunas de las vueltas.");
 
 
-                builder.setPositiveButton("SI", new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog, int id) {
+                /**Si el evento no fue cerrado**/
+                if(LeerEstadoDeEvento(Indice_Evento)){
 
-                        if(usuario.getTipo_de_Usuario().equals("repartidor")) {
 
+                    /*Llamada a la función:  */
+                    EditarVueltas(true);
 
-                            /**Si el evento no fue cerrado**/
-                            if(LeerEstadoDeEvento(Indice_Evento)){
+                    fab_nueva_vuelta.setVisibility(GONE);
 
+                    BotonGuardar.setVisible(true);
 
-                                /*Llamada a la función:  */
-                                EditarVueltas(true);
+                    BotonHabilitarEvento.setVisible(false);
 
-                                fab_nueva_vuelta.setVisibility(View.VISIBLE);
+                    BotonFinalizarEvento.setVisible(true);
 
-                                BotonGuardar.setVisible(true);
+                }//Fin del if
 
 
-                            }//Fin del if
+                /**Evento Cerrado**/
+                else {
 
+                    /*Llamada a la función:  */
+                    EditarVueltas(true);
 
+                    /*Llamada a la función:  */
+                    CambiarColoresEditarEventoFinalizadoSupervisor();
 
+                    BotonGuardar.setVisible(true);
 
-                            else {
+                    fab_nueva_vuelta.setVisibility(GONE);
 
 
-                            }//Fin del else
+                }//Fin del else
 
 
 
 
 
+            }/**FIN DEL else (usuario = "supervisor") **/
 
-
-
-                        }//FIN DEL if (usuario.getTipo_de_Usuario().equals("repartidor"))
-
-
-
-                        /**Usuario: SUPERVISOR **/
-                        else{
-
-
-                            /**Si el evento no fue cerrado**/
-                            if(LeerEstadoDeEvento(Indice_Evento)){
-
-
-                                /*Llamada a la función:  */
-                                EditarVueltas(true);
-
-                                fab_nueva_vuelta.setVisibility(View.VISIBLE);
-
-                                BotonGuardar.setVisible(true);
-
-                                BotonHabilitarEvento.setVisible(false);
-
-                                BotonFinalizarEvento.setVisible(true);
-
-
-                            }//Fin del if
-
-
-
-
-                            else {
-
-                                /*Llamada a la función:  */
-                                EditarVueltas(true);
-
-                                /*Llamada a la función:  */
-                                CambiarColoresEditarEventoFinalizadoSupervisor();
-
-                                BotonGuardar.setVisible(true);
-
-                                fab_nueva_vuelta.setVisibility(View.VISIBLE);
-
-
-                            }//Fin del else
-
-
-
-
-
-                        }/**FIN DEL else (usuario = "supervisor") **/
-
-
-
-
-                    }
-                });
-
-
-
-
-
-
-
-
-                builder.setNegativeButton("NO", new DialogInterface.OnClickListener() {
-
-                    public void onClick(DialogInterface dialog, int id) {
-
-                        dialog.dismiss();
-
-                    }
-                });
-
-
-
-                AlertDialog dialog = builder.create();
-                dialog.show();
-
-            }//FIN DEL else (usuario = SUPERVISOR)
 
 
             return true;
@@ -4273,6 +4110,8 @@ public class EntregaRetiroEnvasesPatrocinio extends AppCompatActivity {
                         editor.remove("Fecha_Fin_Evento" + Indice_Evento).commit();
 
 
+
+                        TV_Titulo_Evento.setTextColor(Color.parseColor("#d50000"));
 
                         BotonEditarEvento.setVisible(true);
 

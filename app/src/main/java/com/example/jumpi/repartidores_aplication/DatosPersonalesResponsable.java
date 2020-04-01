@@ -180,6 +180,8 @@ public class DatosPersonalesResponsable extends AppCompatActivity {
         et_correo_responsable.setBackgroundColor(Color.TRANSPARENT);
 
 
+
+
         et_referencia_responsable = (EditText) findViewById(R.id.et_referencia_responsable);
         et_referencia_responsable.setFocusable(false);
         et_referencia_responsable.setCursorVisible(false);
@@ -288,6 +290,9 @@ public class DatosPersonalesResponsable extends AppCompatActivity {
 
             Titulo_Datos_Evento.setTextColor(Color.parseColor("#1a237e"));
 
+            et_correo_responsable.setTextColor(Color.parseColor("#311b92"));
+
+
         }//FIN DEL if (usuario.getTipo_de_Usuario().equals("repartidor"))
 
 
@@ -367,6 +372,13 @@ public class DatosPersonalesResponsable extends AppCompatActivity {
 
 
         final EditText ET_Correo_Responsable = (EditText) findViewById(R.id.et_email_responsable);
+
+
+        if(ET_Correo_Responsable.equals("No tiene correo")){
+
+            ET_Correo_Responsable.setTextColor(Color.parseColor("#d50000"));
+
+        }
 
 
         final EditText ET_Referencia_Responsable = (EditText) findViewById(R.id.et_referencia_responsable);
@@ -626,76 +638,91 @@ public class DatosPersonalesResponsable extends AppCompatActivity {
             editText_dni_responsable.setFocusableInTouchMode(true);
             editText_dni_responsable.setCursorVisible(true);
             editText_dni_responsable.setBackgroundDrawable(getDrawable(R.drawable.edit_text_material_customizado));
+            editText_dni_responsable.setTextColor(Color.parseColor("#263238"));
 
 
             editText_nombre_responsable.setFocusableInTouchMode(true);
             editText_nombre_responsable.setCursorVisible(true);
             editText_nombre_responsable.setBackgroundDrawable(getDrawable(R.drawable.edit_text_material_customizado));
+            editText_nombre_responsable.setTextColor(Color.parseColor("#263238"));
 
 
             editText_apellido_responsable.setFocusableInTouchMode(true);
             editText_apellido_responsable.setCursorVisible(true);
             editText_apellido_responsable.setBackgroundDrawable(getDrawable(R.drawable.edit_text_material_customizado));
+            editText_apellido_responsable.setTextColor(Color.parseColor("#263238"));
 
 
             editText_codigo_area_responsable.setFocusableInTouchMode(true);
             editText_codigo_area_responsable.setCursorVisible(true);
             editText_codigo_area_responsable.setBackgroundDrawable(getDrawable(R.drawable.edit_text_material_customizado));
+            editText_codigo_area_responsable.setTextColor(Color.parseColor("#263238"));
 
 
             editText_telefono_responsable.setFocusableInTouchMode(true);
             editText_telefono_responsable.setCursorVisible(true);
             editText_telefono_responsable.setBackgroundDrawable(getDrawable(R.drawable.edit_text_material_customizado));
+            editText_telefono_responsable.setTextColor(Color.parseColor("#263238"));
 
 
             editText_direccion_responsable.setFocusableInTouchMode(true);
             editText_direccion_responsable.setCursorVisible(true);
             editText_direccion_responsable.setBackgroundDrawable(getDrawable(R.drawable.edit_text_material_customizado));
+            editText_direccion_responsable.setTextColor(Color.parseColor("#263238"));
 
 
             editText_barrio_responsable.setFocusableInTouchMode(true);
             editText_barrio_responsable.setCursorVisible(true);
             editText_barrio_responsable.setBackgroundDrawable(getDrawable(R.drawable.edit_text_material_customizado));
+            editText_barrio_responsable.setTextColor(Color.parseColor("#263238"));
 
 
             editText_correo_responsable.setFocusableInTouchMode(true);
             editText_correo_responsable.setCursorVisible(true);
             editText_correo_responsable.setBackgroundDrawable(getDrawable(R.drawable.edit_text_material_customizado));
+            editText_correo_responsable.setTextColor(Color.parseColor("#263238"));
 
 
             editText_referencia_responsable.setFocusableInTouchMode(true);
             editText_referencia_responsable.setCursorVisible(true);
             editText_referencia_responsable.setBackgroundDrawable(getDrawable(R.drawable.edit_text_material_customizado));
+            editText_referencia_responsable.setTextColor(Color.parseColor("#263238"));
 
 
             editText_nombre_evento.setFocusableInTouchMode(true);
             editText_nombre_evento.setCursorVisible(true);
             editText_nombre_evento.setBackgroundDrawable(getDrawable(R.drawable.edit_text_material_customizado));
+            editText_nombre_evento.setTextColor(Color.parseColor("#263238"));
 
 
             editText_direccion_evento.setFocusableInTouchMode(true);
             editText_direccion_evento.setCursorVisible(true);
             editText_direccion_evento.setBackgroundDrawable(getDrawable(R.drawable.edit_text_material_customizado));
+            editText_direccion_evento.setTextColor(Color.parseColor("#263238"));
 
 
             editText_barrio_evento.setFocusableInTouchMode(true);
             editText_barrio_evento.setCursorVisible(true);
             editText_barrio_evento.setBackgroundDrawable(getDrawable(R.drawable.edit_text_material_customizado));
+            editText_barrio_evento.setTextColor(Color.parseColor("#263238"));
 
 
             editText_referencia_evento.setFocusableInTouchMode(true);
             editText_referencia_evento.setCursorVisible(true);
             editText_referencia_evento.setBackgroundDrawable(getDrawable(R.drawable.edit_text_material_customizado));
+            editText_referencia_evento.setTextColor(Color.parseColor("#263238"));
 
 
             editText_fecha_inicio_evento.setFocusableInTouchMode(true);
             editText_fecha_inicio_evento.setCursorVisible(true);
             editText_fecha_inicio_evento.setBackgroundDrawable(getDrawable(R.drawable.edit_text_material_customizado));
+            editText_fecha_inicio_evento.setTextColor(Color.parseColor("#263238"));
 
 
             editText_fecha_fin_evento.setFocusableInTouchMode(true);
             editText_fecha_fin_evento.setCursorVisible(true);
             editText_fecha_fin_evento.setBackgroundDrawable(getDrawable(R.drawable.edit_text_material_customizado));
+            editText_fecha_fin_evento.setTextColor(Color.parseColor("#263238"));
 
 
             /**** Comprobar si cada campo de texto es valido (arrojando un check o un msj de error) ****/
@@ -1221,6 +1248,7 @@ public class DatosPersonalesResponsable extends AppCompatActivity {
                 TextView toastTV = (TextView) toastLayout.getChildAt(0);
                 toastTV.setTextSize(18);
                 toast.show();
+
             }//FIN DEL for
 
 
@@ -1296,7 +1324,7 @@ public class DatosPersonalesResponsable extends AppCompatActivity {
                                 pYearFI,pMonthFI,pDayFI);
 
 
-                        dialog_fecha_fin.getDatePicker().setMinDate(ConvertirFechaEnMilisegundos(pDayFI,
+                        dialog_fecha_fin.getDatePicker().setMinDate(ConvertirFechaEnMilisegundos(pDayFI+1,
                                 pMonthFI,pYearFI));
 
 
@@ -1313,7 +1341,7 @@ public class DatosPersonalesResponsable extends AppCompatActivity {
                                 pYearFI,pMonthFI,pDayFI);
 
 
-                        dialog_fecha_fin.getDatePicker().setMinDate(ConvertirFechaEnMilisegundos(pDayFI,
+                        dialog_fecha_fin.getDatePicker().setMinDate(ConvertirFechaEnMilisegundos(pDayFI+1,
                                 pMonthFI,pYearFI));
 
 
@@ -1743,7 +1771,7 @@ public class DatosPersonalesResponsable extends AppCompatActivity {
 
 
 
-            if(et_correo_responsable.getText().toString().isEmpty()){
+            if(et_correo_responsable.getText().toString().isEmpty() || et_correo_responsable.getText().toString().equals("No tiene correo")){
 
 
                 if (!et_dni_responsable.getText().toString().isEmpty() && ValidarDocumento()
