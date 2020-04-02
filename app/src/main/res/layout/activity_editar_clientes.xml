@@ -61,8 +61,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="150dp"
                     android:layout_marginRight="150dp"
-                    android:layout_marginBottom="10dp"
-                    android:src="@mipmap/img_editar_cliente" />
+                    android:layout_marginBottom="10dp"/>
 
 
             </LinearLayout>
@@ -77,6 +76,54 @@
                 android:layout_marginRight="20dp"
                 android:layout_marginBottom="50dp"
                 android:orientation="vertical">
+
+
+
+                <LinearLayout
+
+                    android:id="@+id/llv_dni_ec"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+
+                    <TextView
+
+                        android:id="@+id/tv_dni_ec"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="DNI"
+                        android:textColor="#FFFF"
+                        android:textSize="24sp"/>
+
+
+                </LinearLayout>
+
+
+                <LinearLayout
+
+                    android:id="@+id/llh_dni_ec"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="10dp"
+                    android:orientation="horizontal">
+
+                    <EditText
+
+                        android:id="@+id/et_dni_cliente_editar"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center|left"
+                        android:hint="OBLIGATORIO"
+                        android:inputType="number"
+                        android:maxLength="8"
+                        android:textColor="#03a9f4"
+                        android:textSize="24sp"
+                        android:textStyle="bold" />
+
+                </LinearLayout>
+
+
 
                 <LinearLayout
 
@@ -161,6 +208,99 @@
                         android:textColor="#03a9f4"
                         android:textSize="24sp"
                         android:textStyle="bold" />
+
+                </LinearLayout>
+
+
+                <LinearLayout
+
+                    android:id="@+id/llv_codigo_area_ec"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+
+                    <TextView
+
+                        android:id="@+id/tv_codigo_area_ec"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="CÓDIGO DE ÁREA"
+                        android:textColor="#FFFF"
+                        android:textSize="24sp"/>
+
+
+                </LinearLayout>
+
+
+                <LinearLayout
+
+                    android:id="@+id/llh_codigo_area_ec"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="10dp"
+                    android:orientation="horizontal">
+
+
+                    <EditText
+                        android:id="@+id/et_codigo_area_cliente_editar"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center|left"
+                        android:hint="OBLIGATORIO"
+                        android:inputType="textMultiLine|number"
+                        android:textColor="#03a9f4"
+                        android:textSize="24sp"
+                        android:textStyle="bold" />
+
+
+                </LinearLayout>
+
+
+
+
+
+                <LinearLayout
+
+                    android:id="@+id/llv_telefono_ec"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+
+                    <TextView
+
+                        android:id="@+id/tv_telefono_ec"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="TELÉFONO"
+                        android:textColor="#FFFF"
+                        android:textSize="24sp"/>
+
+
+                </LinearLayout>
+
+
+                <LinearLayout
+
+                    android:id="@+id/llh_telefono_ec"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="10dp"
+                    android:orientation="horizontal">
+
+
+                    <EditText
+                        android:id="@+id/et_telefono_cliente_editar"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center|left"
+                        android:hint="OBLIGATORIO"
+                        android:inputType="textMultiLine|number"
+                        android:textColor="#03a9f4"
+                        android:textSize="24sp"
+                        android:textStyle="bold" />
+
 
                 </LinearLayout>
 
@@ -254,50 +394,6 @@
                 </LinearLayout>
 
 
-                <LinearLayout
-
-                    android:id="@+id/llv_telefono_ec"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical">
-
-
-                    <TextView
-
-                        android:id="@+id/tv_telefono_ec"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="TELÉFONO"
-                        android:textColor="#FFFF"
-                        android:textSize="24sp"/>
-
-
-                </LinearLayout>
-
-
-                <LinearLayout
-
-                    android:id="@+id/llh_telefono_ec"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="10dp"
-                    android:orientation="horizontal">
-
-
-                    <EditText
-                        android:id="@+id/et_telefono_cliente_editar"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:gravity="center|left"
-                        android:hint="OBLIGATORIO"
-                        android:inputType="textMultiLine|number"
-                        android:textColor="#03a9f4"
-                        android:textSize="24sp"
-                        android:textStyle="bold" />
-
-
-                </LinearLayout>
-
 
                 <LinearLayout
 
@@ -341,51 +437,6 @@
                         android:textSize="24sp"
                         android:textStyle="bold" />
 
-
-                </LinearLayout>
-
-
-                <LinearLayout
-
-                    android:id="@+id/llv_dni_ec"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical">
-
-
-                    <TextView
-
-                        android:id="@+id/tv_dni_ec"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="DNI"
-                        android:textColor="#FFFF"
-                        android:textSize="24sp"/>
-
-
-                </LinearLayout>
-
-
-                <LinearLayout
-
-                    android:id="@+id/llh_dni_ec"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="10dp"
-                    android:orientation="horizontal">
-
-                    <EditText
-
-                        android:id="@+id/et_dni_cliente_editar"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:gravity="center|left"
-                        android:hint="OBLIGATORIO"
-                        android:inputType="number"
-                        android:maxLength="8"
-                        android:textColor="#03a9f4"
-                        android:textSize="24sp"
-                        android:textStyle="bold" />
 
                 </LinearLayout>
 
@@ -454,7 +505,7 @@
                         android:layout_height="60dp"
                         android:layout_margin="@dimen/appbar_padding_top"
                         android:layout_marginTop="10dp"
-                        android:background="@drawable/btn_guardar_cambios_borde_blanco"
+                        android:background="@drawable/editar_cliente_btn_guardar_cambios_repartidor"
                         android:text="GUARDAR CAMBIOS"
                         android:textColor="#FFFF"
                         android:textSize="20sp"

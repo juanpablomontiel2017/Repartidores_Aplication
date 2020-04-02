@@ -3,9 +3,6 @@ package com.example.jumpi.repartidores_aplication;
 public class Clientes {
 
 
-
-
-
     private int IdPersona;
     private int DNI;
     private int Foto;
@@ -14,11 +11,11 @@ public class Clientes {
     private String Direccion;
     private String Barrio;
     private String Referencia;
+    private String Codigo_Area;
     private String Telefono;
     private String Correo;
 
 
-
     /**********************************************************************************************/
     /**********************************************************************************************/
     /**********************************************************************************************/
@@ -32,12 +29,10 @@ public class Clientes {
 
 
 
+    public Clientes(int dni, int idPersona, int foto, String apellido, String nombre, String direccion, String barrio,String referencia, String codigo_area, String telefono, String correo) {
 
-
-    public Clientes(int DNI, int IdPersona, int foto, String apellido, String nombre, String direccion, String barrio,String referencia, String telefono, String correo) {
-
-        IdPersona = IdPersona;
-        DNI=DNI;
+        IdPersona = idPersona;
+        DNI=dni;
 
         Foto = foto;
         Apellido = apellido;
@@ -45,6 +40,7 @@ public class Clientes {
         Direccion = direccion;
         Barrio = barrio;
         Referencia = referencia;
+        Codigo_Area = codigo_area;
         Telefono = telefono;
         Correo = correo;
 
@@ -55,10 +51,6 @@ public class Clientes {
 
 
 
-
-
-
-
     /**********************************************************************************************/
     /**********************************************************************************************/
     /**********************************************************************************************/
@@ -69,14 +61,10 @@ public class Clientes {
     /**********************************************************************************************/
     /**********************************************************************************************/
     /**********************************************************************************************/
-
-
-
 
 
 
     /************ Método Getter ************/
-
 
     public int getIdPersona() {
         return IdPersona;
@@ -102,11 +90,18 @@ public class Clientes {
         return Barrio;
     }
 
+    public String getCodigo_Area(){
+
+        return Codigo_Area;
+    }
+
     public String getTelefono() {return Telefono;}
 
     public String getCorreo() {return Correo;}
 
     public int getDNI() {
+
+
         return DNI;
     }
 
@@ -115,12 +110,6 @@ public class Clientes {
 
 
 
-
-
-
-
-
-
     /**********************************************************************************************/
     /**********************************************************************************************/
     /**********************************************************************************************/
@@ -131,11 +120,7 @@ public class Clientes {
     /**********************************************************************************************/
     /**********************************************************************************************/
     /**********************************************************************************************/
-
-
-
-
-
+    
 
     /************ Método Setter ************/
 
@@ -163,6 +148,8 @@ public class Clientes {
         Barrio = barrio;
     }
 
+    public void setCodigo_Area(String codigo_area){Codigo_Area=codigo_area;}
+
     public void setTelefono (String telefono) {
         Telefono = telefono;
     }
@@ -172,6 +159,7 @@ public class Clientes {
     }
 
     public void setDNI(int DNI) {
+
         this.DNI = DNI;
     }
 

@@ -6,12 +6,11 @@
 
 
     <item
-        android:id="@+id/search"
-        android:icon="@android:drawable/ic_menu_search"
-        android:title="@string/hint_search"
-        app:actionViewClass="android.support.v7.widget.SearchView"
-        app:showAsAction="always" />
-
+        android:id="@+id/action_search"
+        android:icon="@drawable/ic_search"
+        android:title="Buscar Cliente"
+        app:actionViewClass="androidx.appcompat.widget.SearchView"
+        app:showAsAction="ifRoom|collapseActionView" />
 
 
 </menu>

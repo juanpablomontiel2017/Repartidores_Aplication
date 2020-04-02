@@ -2,6 +2,7 @@ package com.example.jumpi.repartidores_aplication;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -16,6 +17,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -33,12 +35,9 @@ public class RealizarVentasClientesSupervisor extends AppCompatActivity {
     /*******DECLARACIÓN DE VARIABLES GLOBALES**/
 
 
-
-
-
     /**Variables tipo Spinner**/
 
-    Spinner spinner_ventas_supervisor;
+    Spinner spinner_ventas;
 
 
 
@@ -52,20 +51,28 @@ public class RealizarVentasClientesSupervisor extends AppCompatActivity {
 
     /** Variables tipo TextView*/
 
-    TextView Nombre_Apellido_Cliente_Ventas_Supervisor;
+    TextView DNI_Cliente_Ventas;
 
-    TextView Direccion_Cliente_Ventas_Supervisor;
+    TextView Apellido_Cliente_Ventas;
 
-    TextView Barrio_Cliente_Ventas_Supervisor;
+    TextView Nombre_Cliente_Ventas;
+
+    TextView Codigo_Area_Cliente_Ventas;
+
+    TextView Telefono_Cliente_Ventas;
+
+    TextView Direccion_Cliente_Ventas;
+
+    TextView Barrio_Cliente_Ventas;
+
+    TextView Referencia_Cliente_Ventas;
+
+    TextView Correo_Cliente_Ventas;
 
 
     /******Variables tipo String********/
 
     String ArticuloSeleccionadoAnterior;
-
-
-
-
 
 
     /**Variables tipo EditText*/
@@ -75,8 +82,6 @@ public class RealizarVentasClientesSupervisor extends AppCompatActivity {
     EditText eTEntrega;
 
 
-
-
     /** Variables tipo ImageButton*/
 
     ImageButton btnAgregarNuevoArticuloParaVentas;
@@ -84,6 +89,9 @@ public class RealizarVentasClientesSupervisor extends AppCompatActivity {
     ImageButton buttonConfirmarVentas;
 
 
+    /** Variables tipo ImageView*/
+
+    ImageView Foto_Cliente_Ventas;
 
     /** Variables tipo LinearLayout*/
     LinearLayout LinearLayoutVerticalDatosPersonales,LinearLayoutVerticalVentas,LinearLayoutHorizontalContenedorSpinner,
@@ -121,18 +129,30 @@ public class RealizarVentasClientesSupervisor extends AppCompatActivity {
 
 
 
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar_ventas_supervisor);
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar_ventas);
         toolbar.setTitle("VENTAS");
         toolbar.setTitleTextColor(Color.WHITE);
         setSupportActionBar(toolbar);
 
+        Foto_Cliente_Ventas = (ImageView) findViewById(R.id.img_cliente) ;
 
+        DNI_Cliente_Ventas  = (TextView) findViewById(R.id.dni_cliente_realizar_ventas);
 
-        Nombre_Apellido_Cliente_Ventas_Supervisor  = (TextView) findViewById(R.id.nombre_apellido_cliente_realizar_ventas_supervisor);
+        Apellido_Cliente_Ventas  = (TextView) findViewById(R.id.apellido_cliente_realizar_ventas);
 
-        Direccion_Cliente_Ventas_Supervisor  = (TextView) findViewById(R.id.direccion_cliente_realizar_ventas_supervisor);
+        Nombre_Cliente_Ventas  = (TextView) findViewById(R.id.nombre_cliente_realizar_ventas);
 
-        Barrio_Cliente_Ventas_Supervisor  = (TextView) findViewById(R.id.barrio_cliente_realizar_ventas_supervisor);
+        Codigo_Area_Cliente_Ventas  = (TextView) findViewById(R.id.codigo_cliente_realizar_ventas);
+
+        Telefono_Cliente_Ventas  = (TextView) findViewById(R.id.telefono_cliente_realizar_ventas);
+
+        Direccion_Cliente_Ventas  = (TextView) findViewById(R.id.direccion_cliente_realizar_ventas);
+
+        Barrio_Cliente_Ventas  = (TextView) findViewById(R.id.barrio_cliente_realizar_ventas);
+
+        Referencia_Cliente_Ventas  = (TextView) findViewById(R.id.referencia_cliente_realizar_ventas);
+
+        Correo_Cliente_Ventas  = (TextView) findViewById(R.id.correo_cliente_realizar_ventas);
 
 
 
@@ -145,15 +165,15 @@ public class RealizarVentasClientesSupervisor extends AppCompatActivity {
 
         LinearLayoutVerticalDatosPersonales = (LinearLayout) findViewById(R.id.llv_datos_personales);
 
-        LinearLayoutVerticalVentas = (LinearLayout) findViewById(R.id.layout_vertical_ventas_supervisor);
+        LinearLayoutVerticalVentas = (LinearLayout) findViewById(R.id.layout_vertical_ventas);
 
         LinearLayoutHorizontalContenedorSpinner = (LinearLayout) findViewById(R.id.llh_contenedor_spinner);
 
-        LinearLayoutVerticalImporteEntregaVentas = (LinearLayout) findViewById(R.id.llv_importe_entrega_venta_supervisor);
+        LinearLayoutVerticalImporteEntregaVentas = (LinearLayout) findViewById(R.id.llv_importe_entrega_venta);
 
 
 
-        btnAgregarNuevoArticuloParaVentas = (ImageButton) findViewById(R.id.add_art_ventas_supervisor);
+        btnAgregarNuevoArticuloParaVentas = (ImageButton) findViewById(R.id.add_art_ventas);
 
         /**Método para añadir nuevos artículos pero que deberá cumplir ciertas condiciones para que se cumpla dicha acción**/
         btnAgregarNuevoArticuloParaVentas.setOnClickListener(new View.OnClickListener() {
@@ -173,11 +193,11 @@ public class RealizarVentasClientesSupervisor extends AppCompatActivity {
 
 
 
-        spinner_ventas_supervisor = (Spinner)findViewById(R.id.sp_art_ventas_supervisor);
+        spinner_ventas = (Spinner)findViewById(R.id.sp_art_ventas);
 
 
 
-        eTCantVentas = (EditText) findViewById(R.id.edtx_cantidad_productos_ventas_supervisor);
+        eTCantVentas = (EditText) findViewById(R.id.edtx_cantidad_productos_ventas);
 
         eTCantVentas.setBackgroundDrawable(getDrawable(R.drawable.edit_text_material_customizado));
 
@@ -186,7 +206,7 @@ public class RealizarVentasClientesSupervisor extends AppCompatActivity {
 
         /*Llamada a la función: */
 
-        setSpinner(spinner_ventas_supervisor,true);
+        setSpinner(spinner_ventas,true);
 
 
 
@@ -195,7 +215,7 @@ public class RealizarVentasClientesSupervisor extends AppCompatActivity {
 
 
 
-        buttonConfirmarVentas = (ImageButton) findViewById(R.id.img_button_confirmar_ventas_supervisor);
+        buttonConfirmarVentas = (ImageButton) findViewById(R.id.img_button_confirmar_ventas);
 
 
 
@@ -214,7 +234,7 @@ public class RealizarVentasClientesSupervisor extends AppCompatActivity {
 
 
 
-        eTEntrega = (EditText) findViewById(R.id.cantidad_entrega_productos_ventas_supervisor);
+        eTEntrega = (EditText) findViewById(R.id.cantidad_entrega_productos_ventas);
 
         eTEntrega.setBackgroundDrawable(getDrawable(R.drawable.edit_text_material_customizado));
 
@@ -464,25 +484,48 @@ public class RealizarVentasClientesSupervisor extends AppCompatActivity {
     public void RecibirParametrosDeLosClientesVentasSupervisores(){
 
 
-
-        String extras = getIntent().getStringExtra("Nombre_Apellido_Cliente_Supervisor");
-
-        Nombre_Apellido_Cliente_Ventas_Supervisor.setText(extras);
+        int recibir_foto = getIntent().getIntExtra("Foto",0);
+        Foto_Cliente_Ventas.setImageResource(recibir_foto);
 
 
 
-        extras = getIntent().getStringExtra("Direccion_Cliente_Supervisor");
-
-        Direccion_Cliente_Ventas_Supervisor.setText(extras);
-
+        int recibir_dni = getIntent().getIntExtra("DNI",0);
+        DNI_Cliente_Ventas.setText(String.valueOf(recibir_dni));
 
 
-
-        extras = getIntent().getStringExtra("Barrio_Cliente_Supervisor");
-
-        Barrio_Cliente_Ventas_Supervisor.setText(extras);
+        String extras = getIntent().getStringExtra("Apellido");
+        Apellido_Cliente_Ventas.setText(extras);
 
 
+        extras = getIntent().getStringExtra("Nombre");
+        Nombre_Cliente_Ventas.setText(extras);
+
+
+        extras = getIntent().getStringExtra("Codigo_Area");
+        Codigo_Area_Cliente_Ventas.setText(extras);
+
+        extras = getIntent().getStringExtra("Telefono");
+        Telefono_Cliente_Ventas.setText(extras);
+
+        extras = getIntent().getStringExtra("Direccion");
+        Direccion_Cliente_Ventas.setText(extras);
+
+
+        extras = getIntent().getStringExtra("Barrio");
+        Barrio_Cliente_Ventas.setText(extras);
+
+        extras = getIntent().getStringExtra("Referencia");
+        Referencia_Cliente_Ventas.setText(extras);
+
+
+        extras = getIntent().getStringExtra("Correo");
+        Correo_Cliente_Ventas.setText(extras);
+
+        if(extras.equals("No tiene correo")){
+
+            Correo_Cliente_Ventas.setTextColor(Color.parseColor("#263238"));
+
+        }
 
     }/**********************FIN DE LA FUNCIÓN RecibirParametrosDeLosClientesVentasSupervisores()********************************/
 
@@ -856,7 +899,7 @@ public class RealizarVentasClientesSupervisor extends AppCompatActivity {
             /**VALIDACIÓN DEL CAMPO DE CANTIDAD PARA EL NUEVO ARTICULO**/
 
 
-            final LinearLayout llv_ventas_supervisor = (LinearLayout) findViewById(R.id.layout_vertical_ventas_supervisor);
+            final LinearLayout llv_ventas_supervisor = (LinearLayout) findViewById(R.id.layout_vertical_ventas);
 
             for(int j = 1 ; j < llv_ventas_supervisor.getChildCount() ; j++){
 
@@ -1189,7 +1232,7 @@ public class RealizarVentasClientesSupervisor extends AppCompatActivity {
 
                 /**VALIDACIÓN DE CAMPOS DE CANTIDAD DE ARTÍCULO Y LA ENTREGA PARA LOS NUEVOS ARTICULOS**/
 
-                final LinearLayout llv_ventas_supervisor = (LinearLayout) findViewById(R.id.layout_vertical_ventas_supervisor);
+                final LinearLayout llv_ventas_supervisor = (LinearLayout) findViewById(R.id.layout_vertical_ventas);
 
                 for(int l = 1 ; l < llv_ventas_supervisor.getChildCount() ; l++){
 
@@ -1316,11 +1359,11 @@ public class RealizarVentasClientesSupervisor extends AppCompatActivity {
 
             int tope_de_articulos = 0;
 
-            final Spinner spinner_fijo_ventas_supervisores = (Spinner) findViewById(R.id.sp_art_ventas_supervisor);
+            final Spinner spinner_fijo_ventas_supervisores = (Spinner) findViewById(R.id.sp_art_ventas);
 
-            final EditText editText_cantidad_articulo_fijo_supervisores = (EditText) findViewById(R.id.edtx_cantidad_productos_ventas_supervisor);
+            final EditText editText_cantidad_articulo_fijo_supervisores = (EditText) findViewById(R.id.edtx_cantidad_productos_ventas);
 
-            final EditText editText_entrega_venta_supervisores = (EditText) findViewById(R.id.cantidad_entrega_productos_ventas_supervisor);
+            final EditText editText_entrega_venta_supervisores = (EditText) findViewById(R.id.cantidad_entrega_productos_ventas);
 
 
 
@@ -1336,7 +1379,7 @@ public class RealizarVentasClientesSupervisor extends AppCompatActivity {
 
 
 
-            final LinearLayout llv_ventas_supervisores = (LinearLayout) findViewById(R.id.layout_vertical_ventas_supervisor);
+            final LinearLayout llv_ventas_supervisores = (LinearLayout) findViewById(R.id.layout_vertical_ventas);
 
             tope_de_articulos = llv_ventas_supervisores.getChildCount()-1;
 

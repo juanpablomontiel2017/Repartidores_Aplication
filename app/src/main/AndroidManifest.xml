@@ -36,7 +36,13 @@
             </intent-filter>
 
 
-        </activity> <!-- #################### Para REPARTIDORES ########################### -->
+        </activity>
+
+
+
+
+
+        <!-- #################### Para REPARTIDORES ########################### -->
         <activity
             android:name=".Repartidores_Main_Activity"
             android:label=" "
@@ -145,7 +151,8 @@
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".BuscarClienteParaRealizarVenta"
-            android:label="Buscar Cliente" />
+            android:label="Buscar Cliente"
+            android:theme="@style/AppTheme.NoActionBar"/>
         <activity
             android:name=".RealizarVentasClientesSupervisor"
             android:label=""

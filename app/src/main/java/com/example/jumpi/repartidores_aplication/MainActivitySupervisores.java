@@ -168,21 +168,11 @@ public class MainActivitySupervisores extends AppCompatActivity {
         public void onClick(View v) {
 
 
-            Intent intent = new Intent (MainActivitySupervisores.this, RealizarVentasClientesSupervisor.class);
-
-            intent.putExtra("Nombre_Apellido_Cliente_Supervisor",nombre_apellido_cliente);
-
-            intent.putExtra("Direccion_Cliente_Supervisor",direccion_cliente);
-
-            intent.putExtra("Barrio_Cliente_Supervisor",barrio_cliente);
-
-
+            Intent intent = new Intent (MainActivitySupervisores.this, BuscarClienteParaRealizarVenta.class);
 
             startActivity(intent);
 
-
-
-            }
+        }
 
 
     });
@@ -195,17 +185,7 @@ public class MainActivitySupervisores extends AppCompatActivity {
             public void onClick(View v) {
 
 
-                Intent intent = new Intent (MainActivitySupervisores.this, RealizarVentasClientesSupervisor.class);
-
-
-
-                intent.putExtra("Nombre_Apellido_Cliente_Supervisor",nombre_apellido_cliente);
-
-                intent.putExtra("Direccion_Cliente_Supervisor",direccion_cliente);
-
-                intent.putExtra("Barrio_Cliente_Supervisor",barrio_cliente);
-
-
+                Intent intent = new Intent (MainActivitySupervisores.this, BuscarClienteParaRealizarVenta.class);
 
                 startActivity(intent);
 
