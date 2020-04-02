@@ -1,5 +1,6 @@
 package com.example.jumpi.repartidores_aplication;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
@@ -202,12 +203,27 @@ public class BuscarClienteParaRealizarVenta extends AppCompatActivity{
 
         SearchView searchView = (SearchView) searchItem.getActionView();
 
+        /* Aparece una "lupa" en el lado derecho */
+        searchView.setIconifiedByDefault(false);
+
+        searchView.setIconifiedByDefault(false);
+        searchView.setSubmitButtonEnabled(true);
+
+
+
+
+
+
+        /* Ingresar a la activity con el buscador "activado" */
+        searchItem.expandActionView();
+
+
         searchView.setImeOptions(EditorInfo.IME_ACTION_DONE);
 
 
 
 
-        /** Cambiar color del SearchView ya que no es un Toolbar en sí **/
+        /** Cambiar color del SearchView **/
         MenuItemCompat.setOnActionExpandListener(searchItem, new MenuItemCompat.OnActionExpandListener() {
 
             @Override
@@ -247,10 +263,41 @@ public class BuscarClienteParaRealizarVenta extends AppCompatActivity{
         });
 
 
-
         return true;
 
     }/********************* FIN DEL onCreateOptionsMenu() ******************/
+
+
+
+
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // Handle action bar item clicks here. The action bar will
+        // automatically handle clicks on the Home/Up button, so long
+        // as you specify a parent activity in AndroidManifest.xml.
+        int id = item.getItemId();
+
+
+        if (id == R.id.action_ac) {
+
+            
+            Intent intent = new Intent (BuscarClienteParaRealizarVenta.this, AgregarCliente.class);
+
+            startActivity(intent);
+
+
+            return true;
+
+        }
+
+
+
+
+        return super.onOptionsItemSelected(item);
+
+
+    } /*************************FIN DE LA FUNCIÓN onOptionsItemSelected()*******************/
 
 
 

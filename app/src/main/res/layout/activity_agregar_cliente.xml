@@ -81,6 +81,87 @@
                 android:layout_marginBottom="50dp"
                 android:orientation="vertical">
 
+                <!-- ######################################################### -->
+
+
+                <LinearLayout
+
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="DNI"
+                        android:textColor="#000"
+                        android:textSize="24sp"
+                        android:textStyle="bold" />
+
+
+                </LinearLayout>
+
+
+                <LinearLayout
+
+                    android:id="@+id/llh_dni"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="10dp"
+                    android:background="@drawable/contenedor_llh_nuevo_responsable_supervisor"
+                    android:orientation="horizontal"
+                    android:weightSum="2">
+
+
+                    <ImageView
+
+                        android:id="@+id/img_dni_ac"
+                        android:layout_width="100dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginLeft="5dp"
+                        android:layout_weight="1"
+                        android:src="@drawable/ic_dni_nrp_supervisor" />
+
+                    <View
+
+                        android:id="@+id/view_dni_ac"
+                        android:layout_width="1dp"
+                        android:layout_height="match_parent"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginRight="10dp"
+                        android:layout_marginBottom="10dp"
+                        android:background="#ff5722">
+
+                    </View>
+
+
+                    <EditText
+
+                        android:layout_weight="1"
+                        android:id="@+id/dni_cliente_agregar"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center|left"
+                        android:hint="(Obligatorio)"
+                        android:inputType="number"
+                        android:maxLength="8"
+                        android:imeOptions="actionNext"
+                        android:textColor="#000"
+                        android:textSize="24sp"
+                        android:textStyle="bold"
+                        android:textCursorDrawable="@color/colorCursorSupervisores"/>
+
+                </LinearLayout>
+
+
+
+
+                <!-- ######################################################### -->
+
+
                 <LinearLayout
 
                     android:layout_width="match_parent"
@@ -144,7 +225,10 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:gravity="center|left"
-                        android:inputType="textMultiLine"
+                        android:hint="(Obligatorio)"
+                        android:imeOptions="actionNext"
+                        android:inputType="textAutoCorrect|textCapWords"
+                        android:maxLength="45"
                         android:textColor="#000"
                         android:textSize="24sp"
                         android:textStyle="bold"
@@ -219,7 +303,10 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:gravity="center|left"
-                        android:inputType="textMultiLine"
+                        android:hint="(Obligatorio)"
+                        android:imeOptions="actionNext"
+                        android:inputType="textAutoCorrect|textCapWords"
+                        android:maxLength="45"
                         android:textColor="#000"
                         android:textSize="24sp"
                         android:textStyle="bold"
@@ -232,6 +319,168 @@
 
 
                 <!-- ######################################################### -->
+
+
+
+                <LinearLayout
+
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="CÓDIGO DE ÁREA"
+                        android:textColor="#000"
+                        android:textSize="24sp"
+                        android:textStyle="bold" />
+
+
+                </LinearLayout>
+
+
+                <LinearLayout
+
+                    android:id="@+id/llh_codigo_area"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="10dp"
+                    android:background="@drawable/contenedor_llh_nuevo_responsable_supervisor"
+                    android:orientation="horizontal"
+                    android:weightSum="2">
+
+
+                    <ImageView
+
+                        android:id="@+id/img_codigo_area_ac"
+                        android:layout_width="100dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginLeft="5dp"
+                        android:layout_weight="1"
+                        android:src="@drawable/ic_cod_area_nrp" />
+
+
+                    <View
+
+                        android:id="@+id/view_codigo_area_ac"
+                        android:layout_width="1dp"
+                        android:layout_height="match_parent"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginRight="10dp"
+                        android:layout_marginBottom="10dp"
+                        android:background="#ff5722">
+
+                    </View>
+
+
+
+                    <EditText
+
+                        android:layout_weight="1"
+                        android:id="@+id/codigo_area_cliente_agregar"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="left"
+                        android:gravity="center|left"
+                        android:hint="(Obligatorio)"
+                        android:inputType="number"
+                        android:maxLength="4"
+                        android:imeOptions="actionNext"
+                        android:textColor="#000"
+                        android:textSize="24sp"
+                        android:textStyle="bold"
+                        android:textCursorDrawable="@color/colorCursorSupervisores"/>
+
+
+
+                </LinearLayout>
+
+
+
+
+                <!-- ######################################################### -->
+
+
+
+                <LinearLayout
+
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="TELÉFONO"
+                        android:textColor="#000"
+                        android:textSize="24sp"
+                        android:textStyle="bold" />
+
+
+                </LinearLayout>
+
+
+                <LinearLayout
+
+                    android:id="@+id/llh_telefono"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="10dp"
+                    android:background="@drawable/contenedor_llh_nuevo_responsable_supervisor"
+                    android:orientation="horizontal"
+                    android:weightSum="2">
+
+                    <ImageView
+
+                        android:id="@+id/img_telefono_ac"
+                        android:layout_width="100dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginLeft="5dp"
+                        android:layout_weight="1"
+                        android:src="@drawable/ic_telefono_nrp_supervisor" />
+
+                    <View
+
+                        android:id="@+id/view_telefono_ac"
+                        android:layout_width="1dp"
+                        android:layout_height="match_parent"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginRight="10dp"
+                        android:layout_marginBottom="10dp"
+                        android:background="#ff5722">
+
+                    </View>
+
+
+
+                    <EditText
+
+                        android:layout_weight="1"
+                        android:id="@+id/telefono_cliente_agregar"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center|left"
+                        android:hint="(Obligatorio)"
+                        android:inputType="number"
+                        android:imeOptions="actionNext"
+                        android:textColor="#000"
+                        android:textSize="24sp"
+                        android:textStyle="bold"
+                        android:textCursorDrawable="@color/colorCursorSupervisores"/>
+
+
+                </LinearLayout>
+
+
+                <!-- ######################################################### -->
+
 
 
                 <LinearLayout
@@ -298,7 +547,10 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="left"
                         android:gravity="center|left"
-                        android:inputType="textMultiLine"
+                        android:hint="(Obligatorio)"
+                        android:inputType="textCapSentences|textMultiLine"
+                        android:maxLength="150"
+                        android:imeOptions="actionNext"
                         android:textColor="#000"
                         android:textSize="24sp"
                         android:textStyle="bold"
@@ -372,7 +624,10 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:gravity="center|left"
-                        android:inputType="textMultiLine"
+                        android:hint="(Obligatorio)"
+                        android:inputType="textCapSentences|textMultiLine"
+                        android:maxLength="100"
+                        android:imeOptions="actionNext"
                         android:textColor="#000"
                         android:textSize="24sp"
                         android:textStyle="bold"
@@ -385,79 +640,6 @@
 
                 <!-- ######################################################### -->
 
-
-                <LinearLayout
-
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical">
-
-
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="TELÉFONO"
-                        android:textColor="#000"
-                        android:textSize="24sp"
-                        android:textStyle="bold" />
-
-
-                </LinearLayout>
-
-
-                <LinearLayout
-
-                    android:id="@+id/llh_telefono"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="10dp"
-                    android:background="@drawable/contenedor_llh_nuevo_responsable_supervisor"
-                    android:orientation="horizontal"
-                    android:weightSum="2">
-
-                    <ImageView
-
-                        android:id="@+id/img_telefono_ac"
-                        android:layout_width="100dp"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:layout_marginLeft="5dp"
-                        android:layout_weight="1"
-                        android:src="@drawable/ic_telefono_nrp_supervisor" />
-
-                    <View
-
-                        android:id="@+id/view_telefono_ac"
-                        android:layout_width="1dp"
-                        android:layout_height="match_parent"
-                        android:layout_marginLeft="10dp"
-                        android:layout_marginTop="10dp"
-                        android:layout_marginRight="10dp"
-                        android:layout_marginBottom="10dp"
-                        android:background="#ff5722">
-
-                    </View>
-
-
-
-                    <EditText
-
-                        android:layout_weight="1"
-                        android:id="@+id/telefono_cliente_agregar"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:gravity="center|left"
-                        android:inputType="textMultiLine|number"
-                        android:textColor="#000"
-                        android:textSize="24sp"
-                        android:textStyle="bold"
-                        android:textCursorDrawable="@color/colorCursorSupervisores"/>
-
-
-                </LinearLayout>
-
-
-                <!-- ######################################################### -->
 
 
                 <LinearLayout
@@ -523,85 +705,14 @@
                         android:layout_height="wrap_content"
                         android:gravity="center|left"
                         android:inputType="textMultiLine|textEmailAddress"
+                        android:maxLength="45"
+                        android:hint=""
+                        android:imeOptions="actionNext"
                         android:textColor="#000"
                         android:textSize="24sp"
                         android:textStyle="bold"
                         android:textCursorDrawable="@color/colorCursorSupervisores"/>
 
-
-                </LinearLayout>
-
-
-                <!-- ######################################################### -->
-
-
-                <LinearLayout
-
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical">
-
-
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="DNI"
-                        android:textColor="#000"
-                        android:textSize="24sp"
-                        android:textStyle="bold" />
-
-
-                </LinearLayout>
-
-
-                <LinearLayout
-
-                    android:id="@+id/llh_dni"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="10dp"
-                    android:background="@drawable/contenedor_llh_nuevo_responsable_supervisor"
-                    android:orientation="horizontal"
-                    android:weightSum="2">
-
-
-                    <ImageView
-
-                        android:id="@+id/img_dni_ac"
-                        android:layout_width="100dp"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:layout_marginLeft="5dp"
-                        android:layout_weight="1"
-                        android:src="@drawable/ic_dni_nrp_supervisor" />
-
-                    <View
-
-                        android:id="@+id/view_dni_ac"
-                        android:layout_width="1dp"
-                        android:layout_height="match_parent"
-                        android:layout_marginLeft="10dp"
-                        android:layout_marginTop="10dp"
-                        android:layout_marginRight="10dp"
-                        android:layout_marginBottom="10dp"
-                        android:background="#ff5722">
-
-                    </View>
-
-
-                    <EditText
-
-                        android:layout_weight="1"
-                        android:id="@+id/dni_cliente_agregar"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:gravity="center|left"
-                        android:inputType="number"
-                        android:maxLength="8"
-                        android:textColor="#000"
-                        android:textSize="24sp"
-                        android:textStyle="bold"
-                        android:textCursorDrawable="@color/colorCursorSupervisores"/>
 
                 </LinearLayout>
 
@@ -671,7 +782,10 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
                         android:gravity="center|left"
-                        android:inputType="textMultiLine"
+                        android:hint="(Obligatorio)"
+                        android:inputType="textCapSentences|textMultiLine"
+                        android:maxLength="150"
+                        android:imeOptions="actionNext"
                         android:textColor="#000"
                         android:textSize="24sp"
                         android:textStyle="bold"

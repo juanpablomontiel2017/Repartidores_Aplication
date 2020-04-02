@@ -1655,7 +1655,7 @@ public class NuevoResponsablePatrocinio extends AppCompatActivity {
 
 
 
-    boolean flag_dni = false;
+    boolean flag_dni_responsable = false;
 
     public boolean ValidarDocumento() {
 
@@ -1669,7 +1669,7 @@ public class NuevoResponsablePatrocinio extends AppCompatActivity {
             myIconCheck.setBounds(0, 0, myIconCheck.getIntrinsicWidth(), myIconCheck.getIntrinsicHeight());
             et_dni_nuevo_responsable.setError("DNI válido", myIconCheck);
 
-            flag_dni = true;
+            flag_dni_responsable = true;
 
 
         } else {
@@ -1677,12 +1677,12 @@ public class NuevoResponsablePatrocinio extends AppCompatActivity {
 
             et_dni_nuevo_responsable.setError("DNI no válido");
 
-            flag_dni = false;
+            flag_dni_responsable = false;
 
         }
 
 
-        return flag_dni;
+        return flag_dni_responsable;
 
 
 
@@ -1804,7 +1804,7 @@ public class NuevoResponsablePatrocinio extends AppCompatActivity {
 
 
 
-    boolean flag_codigo_area = false;
+    boolean flag_codigo_area_responsable = false;
 
     public boolean ValidarCodigoArea() {
 
@@ -1819,11 +1819,10 @@ public class NuevoResponsablePatrocinio extends AppCompatActivity {
 
             et_telefono_nuevo_responsable.setFocusableInTouchMode(true);
             et_telefono_nuevo_responsable.setCursorVisible(true);
-            et_telefono_nuevo_responsable.setHint("Obligatorio");
             et_telefono_nuevo_responsable.setBackgroundDrawable(getDrawable(R.drawable.edit_text_material_customizado));
             et_telefono_nuevo_responsable.setHint(R.string.edittext_hint);
 
-            flag_codigo_area = true;
+            flag_codigo_area_responsable = true;
 
 
         } else {
@@ -1838,12 +1837,12 @@ public class NuevoResponsablePatrocinio extends AppCompatActivity {
             et_telefono_nuevo_responsable.setText("");
             et_telefono_nuevo_responsable.setBackgroundColor(Color.TRANSPARENT);
 
-            flag_codigo_area = false;
+            flag_codigo_area_responsable = false;
 
 
         }
 
-        return flag_codigo_area;
+        return flag_codigo_area_responsable;
 
 
     }   /**********************FIN DE LA FUNCIÓN ValidarCodigoArea()*********************/
@@ -1866,7 +1865,7 @@ public class NuevoResponsablePatrocinio extends AppCompatActivity {
 
 
 
-    boolean flag_telefono = false;
+    boolean flag_telefono_responsable = false;
 
     public boolean ValidarTelefono(){
 
@@ -1884,7 +1883,7 @@ public class NuevoResponsablePatrocinio extends AppCompatActivity {
             et_telefono_nuevo_responsable.setError("Número de teléfono valido", myIconCheck);
 
 
-            flag_telefono = true;
+            flag_telefono_responsable = true;
 
 
         }
@@ -1903,7 +1902,7 @@ public class NuevoResponsablePatrocinio extends AppCompatActivity {
             et_telefono_nuevo_responsable.setError("Número de teléfono valido", myIconCheck);
 
 
-            flag_telefono = true;
+            flag_telefono_responsable = true;
 
 
         }
@@ -1922,7 +1921,7 @@ public class NuevoResponsablePatrocinio extends AppCompatActivity {
             et_telefono_nuevo_responsable.setError("Número de teléfono valido", myIconCheck);
 
 
-            flag_telefono = true;
+            flag_telefono_responsable = true;
 
         }
 
@@ -1934,12 +1933,12 @@ public class NuevoResponsablePatrocinio extends AppCompatActivity {
 
             et_telefono_nuevo_responsable.setError("¡Número de teléfono no válido!");
 
-            flag_telefono = false;
+            flag_telefono_responsable = false;
 
         }
 
 
-        return flag_telefono;
+        return flag_telefono_responsable;
 
     }/**********************FIN DE LA FUNCIÓN ValidarTelefono()*********************/
 
@@ -2092,7 +2091,7 @@ public class NuevoResponsablePatrocinio extends AppCompatActivity {
 
     boolean flag_correo_responsable = false;
 
-    public boolean ValidarEmail(EditText et_correo_nuevo_responsable){
+    public boolean ValidarEmail(EditText et_correo_nuevo_responsble){
 
 
 

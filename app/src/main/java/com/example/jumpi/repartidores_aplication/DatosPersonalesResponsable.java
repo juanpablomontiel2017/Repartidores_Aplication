@@ -1581,7 +1581,7 @@ public class DatosPersonalesResponsable extends AppCompatActivity {
 
 
 
-    }/*******FIN DE LA FUNCIÓN EditarDatosResponsable() ********/
+    }/***************************FIN DE LA FUNCIÓN EditarDatosResponsable() **********************************/
 
 
 
@@ -1895,7 +1895,7 @@ public class DatosPersonalesResponsable extends AppCompatActivity {
 
 
 
-    boolean flag_dni = false;
+    boolean flag_dni_ec = false;
 
     public boolean ValidarDocumento() {
 
@@ -1909,7 +1909,7 @@ public class DatosPersonalesResponsable extends AppCompatActivity {
             myIconCheck.setBounds(0, 0, myIconCheck.getIntrinsicWidth(), myIconCheck.getIntrinsicHeight());
             et_dni_responsable.setError("DNI válido", myIconCheck);
 
-            flag_dni = true;
+            flag_dni_ec = true;
 
 
         } else {
@@ -1917,38 +1917,12 @@ public class DatosPersonalesResponsable extends AppCompatActivity {
 
             et_dni_responsable.setError("DNI no válido");
 
-            flag_dni = false;
+            flag_dni_ec = false;
 
         }
 
 
-        return flag_dni;
- /*
-
-
-        int posicion_dos = et_dni_nuevo_responsable.getText().toString().indexOf(".");
-
-        int posicion_seis = et_dni_nuevo_responsable.getText().toString().lastIndexOf(".");
-
-
-
-
-        if(et_dni_nuevo_responsable.getText().toString().length() > 0 && et_dni_nuevo_responsable.getText().toString().length() == 10 && posicion_dos == 2 && posicion_seis == 6 ){
-
-
-            Toast.makeText(getApplicationContext(), "¡DNI válido!", Toast.LENGTH_LONG).show();
-
-
-
-        } else {
-
-            et_dni_nuevo_responsable.setError("DNI no válido");
-
-        }
-
-
-
-*/
+        return flag_dni_ec;
 
 
     }   /**********************FIN DE LA FUNCIÓN ValidarDocumento()*********************/
@@ -2070,7 +2044,7 @@ public class DatosPersonalesResponsable extends AppCompatActivity {
 
 
 
-    boolean flag_codigo_area = false;
+    boolean flag_codigo_area_responsable = false;
 
     public boolean ValidarCodigoArea() {
 
@@ -2089,7 +2063,7 @@ public class DatosPersonalesResponsable extends AppCompatActivity {
             et_telefono_responsable.setBackgroundDrawable(getDrawable(R.drawable.edit_text_material_customizado));
             et_telefono_responsable.setHint(R.string.edittext_hint);
 
-            flag_codigo_area = true;
+            flag_codigo_area_responsable = true;
 
 
         } else {
@@ -2104,12 +2078,12 @@ public class DatosPersonalesResponsable extends AppCompatActivity {
             et_telefono_responsable.setText("");
             et_telefono_responsable.setBackgroundColor(Color.TRANSPARENT);
 
-            flag_codigo_area = false;
+            flag_codigo_area_responsable = false;
 
 
         }
 
-        return flag_codigo_area;
+        return flag_codigo_area_responsable;
 
 
     }   /**********************FIN DE LA FUNCIÓN ValidarCodigoArea()*********************/
@@ -2132,7 +2106,7 @@ public class DatosPersonalesResponsable extends AppCompatActivity {
 
 
 
-    boolean flag_telefono = false;
+    boolean flag_telefono_responsable = false;
 
     public boolean ValidarTelefono(){
 
@@ -2150,7 +2124,7 @@ public class DatosPersonalesResponsable extends AppCompatActivity {
             et_telefono_responsable.setError("Número de teléfono valido", myIconCheck);
 
 
-            flag_telefono = true;
+            flag_telefono_responsable = true;
 
 
         }
@@ -2169,7 +2143,7 @@ public class DatosPersonalesResponsable extends AppCompatActivity {
             et_telefono_responsable.setError("Número de teléfono valido", myIconCheck);
 
 
-            flag_telefono = true;
+            flag_telefono_responsable = true;
 
 
         }
@@ -2188,7 +2162,7 @@ public class DatosPersonalesResponsable extends AppCompatActivity {
             et_telefono_responsable.setError("Número de teléfono valido", myIconCheck);
 
 
-            flag_telefono = true;
+            flag_telefono_responsable = true;
 
         }
 
@@ -2200,12 +2174,12 @@ public class DatosPersonalesResponsable extends AppCompatActivity {
 
             et_telefono_responsable.setError("¡Número de teléfono no válido!");
 
-            flag_telefono = false;
+            flag_telefono_responsable = false;
 
         }
 
 
-        return flag_telefono;
+        return flag_telefono_responsable;
 
     }/**********************FIN DE LA FUNCIÓN ValidarTelefono()*********************/
 

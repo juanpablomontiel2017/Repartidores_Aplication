@@ -188,7 +188,7 @@ public class Repartidores_Main_Activity extends AppCompatActivity {
     public boolean onCreateOptionsMenu(Menu menu) {
 
 
-        getMenuInflater().inflate(R.menu.menu_second_, menu);
+        getMenuInflater().inflate(R.menu.menu_main_repartidores_, menu);
 
 
         return true;

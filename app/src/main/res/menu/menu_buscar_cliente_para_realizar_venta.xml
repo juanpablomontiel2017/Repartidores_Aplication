@@ -10,7 +10,19 @@
         android:icon="@drawable/ic_search"
         android:title="Buscar Cliente"
         app:actionViewClass="androidx.appcompat.widget.SearchView"
-        app:showAsAction="ifRoom|collapseActionView" />
+        app:showAsAction="always|collapseActionView"
+        android:orderInCategory="1"/>
+
+
+
+    <item
+        android:id="@+id/action_ac"
+        android:orderInCategory="100"
+        android:title="@string/action_agregar_cliente"
+        app:showAsAction="never" />
+
+
+
 
 
 </menu>
