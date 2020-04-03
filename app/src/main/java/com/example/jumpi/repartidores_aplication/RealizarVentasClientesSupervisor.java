@@ -567,17 +567,17 @@ public class RealizarVentasClientesSupervisor extends AppCompatActivity {
         final LinearLayout LinearLayoutHorizontalContenedorSpinnerProgramatico = (LinearLayout) findViewById(R.id.llh_contenedor_spinner_nuevo_articulo_supervisor);
 
 
-        final ImageButton btnEliminarArticuloVentasSupervisores = (ImageButton) NuevoArticuloInfladoVentasSupervisores.findViewById(R.id.delete_art_ventas_supervisor);
+        final ImageButton btnEliminarArticuloVentas = (ImageButton) NuevoArticuloInfladoVentasSupervisores.findViewById(R.id.delete_art_ventas_supervisor);
 
 
 
 
-        final EditText EditText_Carga_Nuevo_Articulo_Ventas_Supervisores = (EditText) NuevoArticuloInfladoVentasSupervisores.findViewById(R.id.edtx_cantidad_ventas_new_art_supervisor);
+        final EditText EditText_Cantidad_Nuevo_Articulo_Ventas = (EditText) NuevoArticuloInfladoVentasSupervisores.findViewById(R.id.edtx_cantidad_ventas_new_art_supervisor);
 
-        EditText_Carga_Nuevo_Articulo_Ventas_Supervisores.setBackgroundDrawable(getDrawable(R.drawable.edit_text_material_customizado));
+        EditText_Cantidad_Nuevo_Articulo_Ventas.setBackgroundDrawable(getDrawable(R.drawable.edit_text_material_customizado));
 
 
-        EditText_Carga_Nuevo_Articulo_Ventas_Supervisores.addTextChangedListener(new TextWatcher() {
+        EditText_Cantidad_Nuevo_Articulo_Ventas.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
 
@@ -593,7 +593,7 @@ public class RealizarVentasClientesSupervisor extends AppCompatActivity {
 
 
 
-                if(s.toString().length() > 0 && s.toString().charAt(0) != '0' ){
+                if(s.toString().length() > 0 && s.toString().charAt(0) != '0'){
 
 
                     buttonConfirmarVentas.setImageResource(R.drawable.ic_check_verde);
@@ -616,6 +616,52 @@ public class RealizarVentasClientesSupervisor extends AppCompatActivity {
         });/*******************************FIN DEL EVENTO addTextChangedListener()**************************************/
 
 
+
+
+
+
+        eTCantVentas.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+
+                if(!s.toString().isEmpty() && EditText_Cantidad_Nuevo_Articulo_Ventas.getText().toString().isEmpty() ){
+
+
+                    buttonConfirmarVentas.setImageResource(R.drawable.ic_check_rojo);
+
+                }
+
+                if(s.toString().isEmpty() && EditText_Cantidad_Nuevo_Articulo_Ventas.getText().toString().isEmpty() ){
+
+
+                    buttonConfirmarVentas.setImageResource(R.drawable.ic_check_rojo);
+
+                }
+
+
+
+            }
+        });
+
+
+
+
+
+
+
+
+
         eTEntrega.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
@@ -631,14 +677,14 @@ public class RealizarVentasClientesSupervisor extends AppCompatActivity {
             public void afterTextChanged(Editable s) {
 
 
-                if(!s.toString().isEmpty() && EditText_Carga_Nuevo_Articulo_Ventas_Supervisores.getText().toString().isEmpty() ){
+                if(!s.toString().isEmpty() && EditText_Cantidad_Nuevo_Articulo_Ventas.getText().toString().isEmpty() ){
 
 
                     buttonConfirmarVentas.setImageResource(R.drawable.ic_check_rojo);
 
                 }
 
-                if(s.toString().isEmpty() && EditText_Carga_Nuevo_Articulo_Ventas_Supervisores.getText().toString().isEmpty() ){
+                if(s.toString().isEmpty() && EditText_Cantidad_Nuevo_Articulo_Ventas.getText().toString().isEmpty() ){
 
 
                     buttonConfirmarVentas.setImageResource(R.drawable.ic_check_rojo);
@@ -689,7 +735,7 @@ public class RealizarVentasClientesSupervisor extends AppCompatActivity {
 
 
 
-        btnEliminarArticuloVentasSupervisores.setOnClickListener(new View.OnClickListener() {
+        btnEliminarArticuloVentas.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 

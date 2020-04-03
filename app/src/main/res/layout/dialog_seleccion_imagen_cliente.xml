@@ -17,7 +17,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:orientation="vertical"
-            android:weightSum="4">
+            android:weightSum="5">
 
 
             <!-- #################################################### -->
@@ -196,7 +196,51 @@
 
             </LinearLayout>
 
-            <!-- ############################################################## -->
+
+            <!-- #################################################### -->
+
+
+            <LinearLayout
+
+                android:layout_width="match_parent"
+                android:layout_height="100dp"
+                android:layout_marginTop="5dp"
+                android:layout_weight="1"
+                android:gravity="center_horizontal"
+                android:orientation="horizontal"
+                android:weightSum="3">
+
+
+                <ImageView
+
+                    android:id="@+id/dialog_img_cliente_trece"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:src="@mipmap/cliente_img13_bombero_512px" />
+
+
+                <ImageView
+
+                    android:id="@+id/dialog_img_cliente_catorce"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:src="@mipmap/cliente_img14_man_512px" />
+
+
+                <ImageView
+
+                    android:id="@+id/dialog_img_cliente_quince"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:src="@mipmap/cliente_img15_jardinero_512px" />
+
+
+            </LinearLayout>
+
+            <!-- #################################################### -->
 
 
 

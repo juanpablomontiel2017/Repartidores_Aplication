@@ -898,6 +898,49 @@ public class AgregarCliente extends AppCompatActivity {
 
 
 
+                ImageView img_cliente_trece = (ImageView) dialog.findViewById(R.id.dialog_img_cliente_trece);
+                img_cliente_trece.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+
+                        dialog.dismiss();
+
+                        ImageView_Boton_AddCliente.setImageResource(R.mipmap.cliente_img13_bombero_512px);
+
+                    }
+                });
+
+
+
+
+                ImageView img_cliente_catorce = (ImageView) dialog.findViewById(R.id.dialog_img_cliente_catorce);
+                img_cliente_catorce.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+
+                        dialog.dismiss();
+
+                        ImageView_Boton_AddCliente.setImageResource(R.mipmap.cliente_img14_man_512px);
+
+                    }
+                });
+
+
+
+
+                ImageView img_cliente_quince = (ImageView) dialog.findViewById(R.id.dialog_img_cliente_quince);
+                img_cliente_quince.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+
+                        dialog.dismiss();
+
+                        ImageView_Boton_AddCliente.setImageResource(R.mipmap.cliente_img15_jardinero_512px);
+
+                    }
+                });
+
+
 
                 dialog.show();
 
