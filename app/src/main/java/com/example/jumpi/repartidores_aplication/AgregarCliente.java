@@ -1,10 +1,12 @@
 package com.example.jumpi.repartidores_aplication;
 
+import android.app.Dialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
+import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 
@@ -41,7 +43,8 @@ public class AgregarCliente extends AppCompatActivity {
                  llh_contenedor_referencia;
 
     ImageView  img_apellido, img_nombre, img_direccion, img_barrio, img_telefono, img_correo, img_dni,
-               img_referencia, img_codigo_area;
+               img_referencia, img_codigo_area,ImageView_Boton_AddCliente;
+
 
     View view_apellido, view_nombre, view_direccion, view_barrio, view_telefono, view_correo, view_dni,
          view_referencia, view_codigo_area;
@@ -695,6 +698,218 @@ public class AgregarCliente extends AppCompatActivity {
 
 
 
+
+        ImageView_Boton_AddCliente = (ImageView) findViewById(R.id.img_cliente_agregar);
+
+
+        ImageView_Boton_AddCliente.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View arg0) {
+
+                final Dialog dialog = new Dialog(AgregarCliente.this);
+                dialog.setContentView(R.layout.dialog_seleccion_imagen_cliente);
+
+                dialog.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
+
+
+
+
+
+                ImageView img_cliente_uno = (ImageView) dialog.findViewById(R.id.dialog_img_cliente_uno);
+
+                img_cliente_uno.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+
+                        dialog.dismiss();
+
+                        ImageView_Boton_AddCliente.setImageResource(R.mipmap.cliente_img1_hombrebarbudo_512px);
+
+                    }
+                });
+
+
+                ImageView img_cliente_dos = (ImageView) dialog.findViewById(R.id.dialog_img_cliente_dos);
+
+                img_cliente_dos.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+
+                        dialog.dismiss();
+
+                        ImageView_Boton_AddCliente.setImageResource(R.mipmap.cliente_img2_hombrerulos_512px);
+
+                    }
+                });
+
+
+
+
+
+                ImageView img_cliente_tres = (ImageView) dialog.findViewById(R.id.dialog_img_cliente_tres);
+                img_cliente_tres.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+
+                        dialog.dismiss();
+
+                        ImageView_Boton_AddCliente.setImageResource(R.mipmap.cliente_img3_profesor_512px);
+
+                    }
+                });
+
+
+
+
+
+
+
+                ImageView img_cliente_cuatro = (ImageView) dialog.findViewById(R.id.dialog_img_cliente_cuatro);
+                img_cliente_cuatro.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+
+                        dialog.dismiss();
+
+                        ImageView_Boton_AddCliente.setImageResource(R.mipmap.cliente_img4_policia_512px);
+
+                    }
+                });
+
+
+
+
+
+                ImageView img_cliente_cinco = (ImageView) dialog.findViewById(R.id.dialog_img_cliente_cinco);
+                img_cliente_cinco.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+
+                        dialog.dismiss();
+
+                        ImageView_Boton_AddCliente.setImageResource(R.mipmap.cliente_img5_sra_512px);
+
+                    }
+                });
+
+
+
+
+
+
+                ImageView img_cliente_seis = (ImageView) dialog.findViewById(R.id.dialog_img_cliente_seis);
+                img_cliente_seis.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+
+                        dialog.dismiss();
+
+                        ImageView_Boton_AddCliente.setImageResource(R.mipmap.cliente_img6_profesor_512px);
+
+                    }
+                });
+
+
+
+
+                ImageView img_cliente_siete = (ImageView) dialog.findViewById(R.id.dialog_img_cliente_siete);
+                img_cliente_siete.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+
+                        dialog.dismiss();
+
+                        ImageView_Boton_AddCliente.setImageResource(R.mipmap.cliente_img7_abuelo_512px);
+
+                    }
+                });
+
+
+
+
+                ImageView img_cliente_ocho = (ImageView) dialog.findViewById(R.id.dialog_img_cliente_ocho);
+                img_cliente_ocho.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+
+                        dialog.dismiss();
+
+                        ImageView_Boton_AddCliente.setImageResource(R.mipmap.cliente_img8_chica_512px);
+
+                    }
+                });
+
+
+
+                ImageView img_cliente_nueve = (ImageView) dialog.findViewById(R.id.dialog_img_cliente_nueve);
+                img_cliente_nueve.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+
+                        dialog.dismiss();
+
+                        ImageView_Boton_AddCliente.setImageResource(R.mipmap.cliente_img9_dentista_512px);
+
+                    }
+                });
+
+
+                ImageView img_cliente_diez = (ImageView) dialog.findViewById(R.id.dialog_img_cliente_diez);
+                img_cliente_diez.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+
+                        dialog.dismiss();
+
+                        ImageView_Boton_AddCliente.setImageResource(R.mipmap.cliente_img10_doctor_512px);
+
+                    }
+                });
+
+
+
+                ImageView img_cliente_once = (ImageView) dialog.findViewById(R.id.dialog_img_cliente_once);
+                img_cliente_once.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+
+                        dialog.dismiss();
+
+                        ImageView_Boton_AddCliente.setImageResource(R.mipmap.cliente_img11_woman);
+
+                    }
+                });
+
+
+
+
+                ImageView img_cliente_doce = (ImageView) dialog.findViewById(R.id.dialog_img_cliente_doce);
+                img_cliente_doce.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+
+                        dialog.dismiss();
+
+                        ImageView_Boton_AddCliente.setImageResource(R.mipmap.cliente_img12_abuela_512px);
+
+                    }
+                });
+
+
+
+
+                dialog.show();
+
+
+            }
+        });
+
+
+
+
+
+        /*Instanciamos las vistas en caso de que el usuario sea un repartidor*/
 
         tv_titulo_nuevo_cliente = (TextView) findViewById(R.id.tv_nuevo_cliente_titulo);
 

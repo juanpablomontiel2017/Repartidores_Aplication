@@ -64,7 +64,7 @@
                     android:layout_height="150dp"
                     android:layout_marginRight="150dp"
                     android:layout_marginBottom="10dp"
-                    android:src="@mipmap/cliente_img7_abuelo_512px" />
+                    android:src="@mipmap/agregar_cliente_ic_add_nuevo_cliente_512px" />
 
 
             </LinearLayout>
