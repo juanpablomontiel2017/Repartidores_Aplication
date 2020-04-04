@@ -454,9 +454,11 @@
 
 
                     <TextView
-                        android:id="@+id/cantidad_saldo_productos_ventas"
+                        android:id="@+id/cantidad_importe_articulos_ventas"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
+                        android:layout_gravity="center"
+                        android:layout_marginRight="50dp"
                         android:layout_weight="1"
                         android:gravity="center"
                         android:text="IMPORTE"

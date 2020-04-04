@@ -69,10 +69,12 @@ public class RealizarVentasClientesSupervisor extends AppCompatActivity {
 
     TextView Correo_Cliente_Ventas;
 
+    TextView Cantidad_Importe_Articulos_Ventas;
 
     /******Variables tipo String********/
 
     String ArticuloSeleccionadoAnterior;
+    String Importe;
 
 
     /**Variables tipo EditText*/
@@ -98,6 +100,23 @@ public class RealizarVentasClientesSupervisor extends AppCompatActivity {
                  LinearLayoutVerticalImporteEntregaVentas;
 
 
+
+    /** Variables enteras*/
+
+    int precio_bidones = 100;
+    int precio_dispenser_plastico = 250;
+    int precio_canillas = 70;
+    int precio_dispenser_electrico = 6000;
+
+    /** Variables de tipo ArrayList*/
+
+    ArrayList<View> ArrayListArticulos = new ArrayList<View>();
+
+
+
+
+
+    /******************************* COMIENZO DEL onCreate() ******************************/
 
 
     @SuppressLint("ResourceType")
@@ -133,6 +152,11 @@ public class RealizarVentasClientesSupervisor extends AppCompatActivity {
         toolbar.setTitle("VENTAS");
         toolbar.setTitleTextColor(Color.WHITE);
         setSupportActionBar(toolbar);
+
+
+
+
+
 
         Foto_Cliente_Ventas = (ImageView) findViewById(R.id.img_cliente) ;
 
@@ -240,13 +264,20 @@ public class RealizarVentasClientesSupervisor extends AppCompatActivity {
 
 
 
+        Cantidad_Importe_Articulos_Ventas = (TextView) findViewById(R.id.cantidad_importe_articulos_ventas);
+
+
+
         /*Llamada a la función: */
         ActualizarColorDelCheckBoton();
 
 
+        Funcion();
+
+        //ActualizarImporteConSeleccionDeArticuloSpinner();
 
 
-
+        ArrayListArticulos.add(LinearLayoutVerticalVentas);
 
 
 
@@ -284,6 +315,259 @@ public class RealizarVentasClientesSupervisor extends AppCompatActivity {
 
 
 
+    /*********************************************************************************************/
+    /*********************************************************************************************/
+    /*********************************************************************************************/
+    /*********************************************************************************************/
+    /*********************************************************************************************/
+    /*********************************************************************************************/
+    /*********************************************************************************************/
+    /*********************************************************************************************/
+    /*********************************************************************************************/
+    /*********************************************************************************************/
+
+
+
+
+
+    public void Funcion(){
+
+
+        //for (int i = 0; i < ArrayListArticulos.size(); i++) {
+
+        //     final EditText et_cantidad_ventas_fijo = (EditText) ArrayListArticulos.get(i).findViewById(R.id.edtx_cantidad_productos_ventas);
+
+
+
+            eTCantVentas.addTextChangedListener(new TextWatcher() {
+                @Override
+                public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+                }
+
+                @Override
+                public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+                }
+
+                @Override
+                public void afterTextChanged(Editable s) {
+
+
+                    if (s.toString().length() > 0 && s.toString().charAt(0) != '0'){
+
+
+                        String text = spinner_ventas.getSelectedItem().toString();
+                        Importe = MostrarImporte(text,eTCantVentas);
+                        Cantidad_Importe_Articulos_Ventas.setText(Importe);
+
+                    }
+
+                    else{
+
+                        Cantidad_Importe_Articulos_Ventas.setText("");
+
+                    }
+
+
+
+                }/*******************************FIN DEL EVENTO afterTextChanged()******************************************/
+
+
+            });/*******************************FIN DEL EVENTO addTextChangedListener()**************************************/
+
+
+
+
+
+            ActualizarImporteConSeleccionDeArticuloSpinnerFijo(spinner_ventas,eTCantVentas);
+
+
+
+/*
+            final LinearLayout LLV_Tercer_Tupla_Ventas = (LinearLayout) ArrayListArticulos.get(i).findViewById(R.id.layout_vertical_ventas);
+
+
+            for(int j = 0; j < LLV_Tercer_Tupla_Ventas.getChildCount(); j++){
+
+
+                final LinearLayout LLH_Nuevo_Articulo = (LinearLayout) LLV_Tercer_Tupla_Ventas.getChildAt(j);
+
+                final Spinner spinner_nuevos_articulos_ventas = (Spinner) LLH_Nuevo_Articulo.findViewById(R.id.sp_new_art_ventas_supervisor);
+
+                final EditText et_cantidad_ventas_programaticos = (EditText) LLH_Nuevo_Articulo.findViewById(R.id.edtx_cantidad_ventas_new_art_supervisor);
+
+
+                et_cantidad_ventas_programaticos.addTextChangedListener(new TextWatcher() {
+                    @Override
+                    public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+                    }
+
+                    @Override
+                    public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+                    }
+
+                    @Override
+                    public void afterTextChanged(Editable s) {
+
+
+                        if (s.toString().length() > 0 && s.toString().charAt(0) != '0') {
+
+
+                            String text = spinner_nuevos_articulos_ventas.getSelectedItem().toString();
+                            Importe = MostrarImporte(text,et_cantidad_ventas_programaticos);
+                            Cantidad_Importe_Articulos_Ventas.setText(Importe);
+
+                        } else {
+
+
+                            buttonConfirmarVentas.setImageResource(R.drawable.ic_check_rojo);
+
+                        }
+                    }
+
+                });*/  /*******************************FIN DEL EVENTO addTextChangedListener()**************************************/
+
+                /*
+
+
+                ActualizarImporteConSeleccionDeArticuloSpinnerFijo(spinner_nuevos_articulos_ventas,et_cantidad_ventas_programaticos);
+
+
+            }//Fin del for
+
+
+
+        }//Fin del primer for
+
+*/
+
+    } /********************* FIN DE LA FUNCIÓN *****************/
+
+
+
+    /********************************************************************************************/
+    /********************************************************************************************/
+    /********************************************************************************************/
+    /********************************************************************************************/
+    /********************************************************************************************/
+    /********************************************************************************************/
+    /********************************************************************************************/
+    /********************************************************************************************/
+    /********************************************************************************************/
+    /********************************************************************************************/
+
+
+
+    public void ActualizarImporteConSeleccionDeArticuloSpinnerFijo(Spinner spinner, EditText editText){
+
+
+
+        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+
+
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+
+
+
+
+                String text = spinner.getSelectedItem().toString();
+
+
+                if(!editText.getText().toString().isEmpty()){
+
+
+                    String importe = MostrarImporte(text,editText);
+                    Cantidad_Importe_Articulos_Ventas.setText(importe);
+
+                }
+
+
+
+        }/******************************FIN DEL EVENTO onItemSelected()*****************************/
+
+
+
+
+
+        @Override
+        public void onNothingSelected(AdapterView<?> adapterView) {
+
+        }
+
+
+
+
+
+        });/******************************FIN DEL EVENTO setOnItemSelectedListener()*****************************/
+
+
+
+    }/****************** FIN DE LA FUNCIÓN ActualizarImporteConSeleccionDeArticuloSpinnerFijo() ************************/
+
+
+    /********************************************************************************************/
+    /********************************************************************************************/
+    /********************************************************************************************/
+    /********************************************************************************************/
+    /********************************************************************************************/
+    /********************************************************************************************/
+    /********************************************************************************************/
+    /********************************************************************************************/
+    /********************************************************************************************/
+    /********************************************************************************************/
+
+
+
+
+
+    public String MostrarImporte (String ArticuloSeleccionadoSpinner, EditText editText){
+
+
+
+        if (ArticuloSeleccionadoSpinner == "Bidones") {
+
+            Importe = String.valueOf (getImporteBidones(precio_bidones,editText));
+
+        }
+
+        else if (ArticuloSeleccionadoSpinner == "Dispenser Plástico") {
+
+            Importe = String.valueOf (getImporteDispenserPlastico(precio_dispenser_plastico,editText));
+
+        }
+
+
+
+        else if (ArticuloSeleccionadoSpinner == "Canillas") {
+
+            Importe = String.valueOf (getImporteCanillas(precio_canillas,editText));
+
+        }
+
+
+
+        else if (ArticuloSeleccionadoSpinner == "Dispenser Eléctrico") {
+
+            Importe = String.valueOf (getImporteDispenserElectrico(precio_dispenser_electrico,editText));
+
+        }
+
+        else if (ArticuloSeleccionadoSpinner == "Envases vacíos retirados") {
+
+            Importe = String.valueOf(0);
+
+        }
+
+        return Importe;
+
+
+    } /*************************** FIN DE LA FUNCIÓN MostrarImporte() ******************************/
+
+
 
 
     /***************************************************************************************************/
@@ -303,6 +587,7 @@ public class RealizarVentasClientesSupervisor extends AppCompatActivity {
 
 
     public void ActualizarColorDelCheckBoton(){
+
 
 
 
@@ -331,12 +616,20 @@ public class RealizarVentasClientesSupervisor extends AppCompatActivity {
                     buttonConfirmarVentas.setImageResource(R.drawable.ic_check_verde);
 
 
+
+                    //String text = spinner_ventas.getSelectedItem().toString();
+                    //String importe = MostrarImporte(text);
+                    //Cantidad_Importe_Articulos_Ventas.setText(importe);
+
+
                 }
 
                 else{
 
 
                     buttonConfirmarVentas.setImageResource(R.drawable.ic_check_rojo);
+
+                    //Cantidad_Importe_Articulos_Ventas.setText("");
 
 
 
@@ -558,10 +851,10 @@ public class RealizarVentasClientesSupervisor extends AppCompatActivity {
         /*Llamada a la función: */
         NuevoArticuloInfladoVentasSupervisores = AgregarNuevoArticuloParaVentasSupervisores(llv);
 
+        //ArrayListArticulos.add(NuevoArticuloInfladoVentasSupervisores);
+
 
         /** Instanciamos las vistas del diseño XML: "nuevo_articulo_ventas.xml" **/
-
-
 
 
         final LinearLayout LinearLayoutHorizontalContenedorSpinnerProgramatico = (LinearLayout) findViewById(R.id.llh_contenedor_spinner_nuevo_articulo_supervisor);
@@ -570,9 +863,14 @@ public class RealizarVentasClientesSupervisor extends AppCompatActivity {
         final ImageButton btnEliminarArticuloVentas = (ImageButton) NuevoArticuloInfladoVentasSupervisores.findViewById(R.id.delete_art_ventas_supervisor);
 
 
-
-
         final EditText EditText_Cantidad_Nuevo_Articulo_Ventas = (EditText) NuevoArticuloInfladoVentasSupervisores.findViewById(R.id.edtx_cantidad_ventas_new_art_supervisor);
+
+
+        final Spinner spinner_nuevos_articulos_ventas_supervisores = (Spinner) NuevoArticuloInfladoVentasSupervisores.findViewById(R.id.sp_new_art_ventas_supervisor);
+
+
+
+
 
         EditText_Cantidad_Nuevo_Articulo_Ventas.setBackgroundDrawable(getDrawable(R.drawable.edit_text_material_customizado));
 
@@ -597,6 +895,14 @@ public class RealizarVentasClientesSupervisor extends AppCompatActivity {
 
 
                     buttonConfirmarVentas.setImageResource(R.drawable.ic_check_verde);
+
+
+
+                    String text = spinner_nuevos_articulos_ventas_supervisores.getSelectedItem().toString();
+                    Importe = MostrarImporte(text,EditText_Cantidad_Nuevo_Articulo_Ventas);
+                    Cantidad_Importe_Articulos_Ventas.setText(Importe);
+
+
 
 
                 } else {
@@ -698,7 +1004,6 @@ public class RealizarVentasClientesSupervisor extends AppCompatActivity {
 
 
 
-        final Spinner spinner_nuevos_articulos_ventas_supervisores = (Spinner) NuevoArticuloInfladoVentasSupervisores.findViewById(R.id.sp_new_art_ventas_supervisor);
 
 
         /*Llamada a la función: */
@@ -1464,4 +1769,88 @@ public class RealizarVentasClientesSupervisor extends AppCompatActivity {
 
 
 
-}/************FIN DE LA Activity***************/
+    /**************************************************************************************************/
+    /**************************************************************************************************/
+    /**************************************************************************************************/
+    /**************************************************************************************************/
+    /**************************************************************************************************/
+    /**************************************************************************************************/
+    /**************************************************************************************************/
+    /**************************************************************************************************/
+    /**************************************************************************************************/
+    /**************************************************************************************************/
+
+
+
+
+    public int getImporteBidones(int precio_bidones, EditText editText) {
+
+        int cantidad_bidones =Integer.parseInt(editText.getText().toString());
+
+        int importe_bidones = cantidad_bidones * precio_bidones;
+
+        return importe_bidones;
+
+    }
+
+
+
+
+    public int getImporteDispenserPlastico(int precio_dispenser_plastico,EditText editText) {
+
+
+        int cantidad_dispenser_plastico = Integer.parseInt(editText.getText().toString());
+
+
+        int importe_dispenser_plastico = cantidad_dispenser_plastico * precio_dispenser_plastico;
+
+
+        return importe_dispenser_plastico;
+    }
+
+
+    public int getImporteCanillas(int precio_canillas, EditText editText) {
+
+
+        int cantidad_canillas = Integer.parseInt(editText.getText().toString());
+
+
+        int importe_canillas = cantidad_canillas * precio_canillas;
+
+
+        return importe_canillas;
+
+    }
+
+
+
+
+    public int getImporteDispenserElectrico(int precio_dispenser_electrico, EditText editText) {
+
+        int cantidad_dispenser_electrico = Integer.parseInt(editText.getText().toString());
+
+
+        int importe_dispenser_electrico = cantidad_dispenser_electrico * precio_dispenser_electrico;
+
+
+        return importe_dispenser_electrico;
+
+    }
+
+
+
+
+    /**************************************************************************************************/
+    /**************************************************************************************************/
+    /**************************************************************************************************/
+    /**************************************************************************************************/
+    /**************************************************************************************************/
+    /**************************************************************************************************/
+    /**************************************************************************************************/
+    /**************************************************************************************************/
+    /**************************************************************************************************/
+    /**************************************************************************************************/
+
+
+
+}/******************************* FIN DE LA ACTIVITY RealizarVentasCientes ***********************************/

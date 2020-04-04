@@ -2591,7 +2591,6 @@ public class NuevoResponsablePatrocinio extends AppCompatActivity {
 
 
         editor.putString("DimensionDeEvento", String.valueOf(indice_evento));
-
         editor.commit();
 
 

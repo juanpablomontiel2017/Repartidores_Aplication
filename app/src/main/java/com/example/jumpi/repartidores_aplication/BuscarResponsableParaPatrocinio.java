@@ -62,6 +62,9 @@ public class BuscarResponsableParaPatrocinio extends AppCompatActivity implement
 
 
 
+
+
+
     /************************* COMIENZO DEL onCreate() ******************************/
 
     @Override
@@ -392,8 +395,9 @@ public class BuscarResponsableParaPatrocinio extends AppCompatActivity implement
 
                 ObtenerItemEvento(i);
 
-
             }//Fin del for
+
+
 
 
 
@@ -435,7 +439,7 @@ public class BuscarResponsableParaPatrocinio extends AppCompatActivity implement
 
 
         /***** Evento Abierto *****/
-        if(preferences_evento.getBoolean("Estado_Evento" + indice_evento, false)) {
+        if(preferences_evento.getBoolean("Estado_Evento" + indice_evento, false)){
 
 
             View NuevoItemInflado;
@@ -1036,52 +1040,6 @@ public class BuscarResponsableParaPatrocinio extends AppCompatActivity implement
 
 
 
-
-
-
-    /************************************************************************/
-    /************************************************************************/
-    /************************************************************************/
-    /************************************************************************/
-    /************************************************************************/
-    /************************************************************************/
-    /************************************************************************/
-    /************************************************************************/
-    /************************************************************************/
-    /************************************************************************/
-
-
-
-    public int  EncontrarPosicionDeItemEvento(View button_ver_responsable){
-
-        int posicion_item = 99;
-
-        View Item = EncontrarItemPadreBotonVerDatosResponsble(button_ver_responsable);
-
-        for(int i = 0 ; i < ArrayListItemEvento.size(); i++ ){
-
-            if(ArrayListItemEvento.get(i) == Item ){
-
-                posicion_item = i;
-
-                break;
-
-            }//Fin del if
-
-
-        }//Fin del for
-
-
-        return posicion_item;
-
-
-    }/*********************************FIN DE LA FUNCIÓN EncontrarPosicionDeItemEvento()*******************************************/
-
-
-
-
-
-
     /************************************************************************/
     /************************************************************************/
     /************************************************************************/
@@ -1113,8 +1071,6 @@ public class BuscarResponsableParaPatrocinio extends AppCompatActivity implement
 
 
     } /******************************FIN DE LA FUNCION EncontrarItemPadreBotonVerDatosResponsble()*****************************/
-
-
 
 
 
@@ -1164,8 +1120,11 @@ public class BuscarResponsableParaPatrocinio extends AppCompatActivity implement
                         if(ValorDeLaPosicion != 99){
 
 
+                            BackUpDatosEvento();
+
 
                             editor.clear().commit();
+
 
 
                             ArrayListItemEvento.remove(v);
@@ -1175,7 +1134,7 @@ public class BuscarResponsableParaPatrocinio extends AppCompatActivity implement
 
 
                             /*Llamada a la función:  */
-                            GuardarDatosEventoEnSharedPreferences();
+                            //GuardarDatosEventoEnSharedPreferences();
 
 
                             ArrayListItemEvento.clear();
@@ -1224,7 +1183,136 @@ public class BuscarResponsableParaPatrocinio extends AppCompatActivity implement
 
 
 
-    }/*********************************FIN DE LA FUNCIÓN EliminarEvento()*******************************************/
+    } /*********************************FIN DE LA FUNCIÓN EliminarEvento()*******************************************/
+
+
+
+
+
+
+
+    /************************************************************************/
+    /************************************************************************/
+    /************************************************************************/
+    /************************************************************************/
+    /************************************************************************/
+    /************************************************************************/
+    /************************************************************************/
+    /************************************************************************/
+    /************************************************************************/
+    /************************************************************************/
+
+
+
+
+
+
+
+    public int  EncontrarPosicionDeItemEvento(View button_ver_responsable){
+
+        int posicion_item = 99;
+
+        View Item = EncontrarItemPadreBotonVerDatosResponsble(button_ver_responsable);
+
+        for(int i = 0 ; i < ArrayListItemEvento.size(); i++ ){
+
+            if(ArrayListItemEvento.get(i) == Item ){
+
+                posicion_item = i;
+
+                break;
+
+            }//Fin del if
+
+
+        }//Fin del for
+
+
+        return posicion_item;
+
+
+    }/*********************************FIN DE LA FUNCIÓN EncontrarPosicionDeItemEvento()*******************************************/
+
+
+
+
+
+    /************************************************************************/
+    /************************************************************************/
+    /************************************************************************/
+    /************************************************************************/
+    /************************************************************************/
+    /************************************************************************/
+    /************************************************************************/
+    /************************************************************************/
+    /************************************************************************/
+    /************************************************************************/
+
+
+
+
+
+    public void BackUpDatosEvento(){
+
+
+        SharedPreferences preferences = getSharedPreferences("Datos_Evento", MODE_PRIVATE);
+
+
+
+        SharedPreferences sharedPreferences = getSharedPreferences("Datos_Item_Evento", MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+
+
+        String DimensionEvento = preferences.getString("DimensionDeEvento", "");
+
+
+        for (int i = 0; i < Integer.parseInt(DimensionEvento) ; i++) {
+
+
+          String Nombre_Evento = preferences.getString("Nombre_Evento" + i, "");
+
+          String Direccion_Evento = preferences.getString("Direccion_Evento" + i,"");
+
+          String Barrio_Evento = preferences.getString("Barrio_Evento" + i,"");
+
+          String Referencia_Evento = preferences.getString("Referencia_Evento" + i,"");
+
+          String Fecha_Inicio_Evento = preferences.getString("Fecha_Inicio_Evento" + i, "");
+
+          String Fecha_Fin_Evento = preferences.getString("Fecha_Fin_Evento" + i, "");
+
+          int Indice_Responsable = preferences.getInt("Indice_Responsable" + i, 0);
+
+          Boolean Estado_Evento = preferences.getBoolean("Estado_Evento" + i, true);
+
+
+          editor.putString("Nombre_Evento" + i, Nombre_Evento);
+
+          editor.putString("Direccion_Evento" + i, Direccion_Evento);
+
+          editor.putString("Barrio_Evento" + i, Barrio_Evento);
+
+          editor.putString("Referencia_Evento" + i, Referencia_Evento);
+
+          editor.putString("Fecha_Inicio_Evento" + i, Fecha_Inicio_Evento);
+
+          editor.putString("Fecha_Fin_Evento" + i, Fecha_Fin_Evento);
+
+          editor.putInt("Indice_Responsable" + i, Indice_Responsable);
+
+          editor.putBoolean("Estado_Evento" + i, Estado_Evento);
+
+
+        }//FIN DEL for
+
+
+        editor.putString("DimensionDeEvento", String.valueOf(DimensionEvento));
+        editor.commit();
+
+
+
+
+    }/***************** FIN DE LA FUNCIÓN BackUpDatosEvento() **********************/
 
 
 
@@ -1280,19 +1368,41 @@ public class BuscarResponsableParaPatrocinio extends AppCompatActivity implement
 
 
 
+    public View EncontrarNombreEvento (View v){
 
-    public void GuardarDatosEventoEnSharedPreferences() {
 
-        SharedPreferences sharedPreferences = getSharedPreferences("Datos_Evento", MODE_PRIVATE);
+
+
+
+
+
+        return v;
+
+    } /******************************FIN DE LA FUNCION EncontrarItemPadreBotonVerDatosResponsble()*****************************/
+
+
+
+
+    /************************************************************************/
+    /************************************************************************/
+    /************************************************************************/
+    /************************************************************************/
+    /************************************************************************/
+    /************************************************************************/
+    /************************************************************************/
+    /************************************************************************/
+    /************************************************************************/
+    /************************************************************************/
+
+
+/*
+
+    public void GuardarDatosEventoEnSharedPreferences(int indice_responsable) {
+
+        SharedPreferences sharedPreferences = getSharedPreferences("Datos_Item_Evento", MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPreferences.edit();
 
 
-        View NuevoItemInflado;
-
-        /*Llamada a la función: */
-        NuevoItemInflado = AgregarItemEvento();
-
-        ArrayListItemEvento.add(NuevoItemInflado);
 
 
         for (int i = 0; i < ArrayListItemEvento.size(); i++) {
@@ -1300,37 +1410,32 @@ public class BuscarResponsableParaPatrocinio extends AppCompatActivity implement
 
             final EditText ET_Nombre_Evento = (EditText) ArrayListItemEvento.get(i).findViewById(R.id.et_nombre_evento_recibir);
 
-
             final EditText ET_Valor_Fecha_Inicio_Evento = (EditText) ArrayListItemEvento.get(i).findViewById(R.id.et_valor_fecha_inicio_recibir);
-
 
             final EditText ET_Valor_Fecha_Fin_Estimada_Evento = (EditText) ArrayListItemEvento.get(i).findViewById(R.id.et_valor_fecha_fin_recibir);
 
 
-            editor.putString("Indice_Evento" + i + "Nombre_Evento", ET_Nombre_Evento.getText().toString());
-            editor.commit();
+            editor.putString("Nombre_Evento" + i, ET_Nombre_Evento.getText().toString());
 
+            editor.putString("Fecha_Inicio_Evento" + i, et_fecha_inicio_del_evento_nuevo_responsable.getText().toString());
 
-            editor.putString( "Indice_Evento"+ i + "Fecha_Inicio_Evento", ET_Valor_Fecha_Inicio_Evento.getText().toString());
-            editor.commit();
+            editor.putString("Fecha_Fin_Evento" + i, et_fecha_fin_del_evento_nuevo_responsable.getText().toString());
 
+            editor.putInt("Indice_Responsable" + i, indice_responsable);
 
-            editor.putString("Indice_Evento" + i + "Fecha_Fin_Evento", ET_Valor_Fecha_Fin_Estimada_Evento.getText().toString());
-            editor.commit();
-
-
-            editor.putInt("Indice_Responsable" + i, 0);
+            editor.putBoolean("Estado_Evento" + i, true);
 
 
         } //Fin del primer for
 
 
-        editor.putString("DimensionArrayEventos", String.valueOf(ArrayListItemEvento.size()));
+        editor.putString("DimensionDeEvento", String.valueOf(indice_evento));
         editor.commit();
 
 
 
-    }/*******************************FIN DE LA FUNCIÓN GuardarDatosEventoEnSharedPreferences()******************************/
+
+    }*/ /*******************************FIN DE LA FUNCIÓN GuardarDatosEventoEnSharedPreferences()******************************/
 
 
 
