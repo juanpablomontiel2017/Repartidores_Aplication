@@ -766,6 +766,8 @@ public class BuscarResponsableParaPatrocinio extends AppCompatActivity implement
 
                 /* Obtenemos los valores guardados del evento de "x" activity */
                 String Nombre_Evento = preferences_evento.getString("Nombre_Evento" + indice_evento, "");
+
+                arrayListNombreDeEventos.add(Nombre_Evento);
                 String Fecha_Inicio_Evento = preferences_evento.getString("Fecha_Inicio_Evento" + indice_evento, "");
                 String Fecha_Fin_Estimada_Evento = preferences_evento.getString("Fecha_Fin_Evento" + indice_evento, "");
                 int Indice_Responsable = preferences_evento.getInt("Indice_Responsable" + indice_evento, 0);
@@ -927,6 +929,7 @@ public class BuscarResponsableParaPatrocinio extends AppCompatActivity implement
 
                 /* Obtenemos los valores guardados del evento de "x" activity */
                 String Nombre_Evento = preferences_evento.getString("Nombre_Evento" + indice_evento, "");
+                arrayListNombreDeEventos.add(Nombre_Evento);
                 String Fecha_Inicio_Evento = preferences_evento.getString("Fecha_Inicio_Evento" + indice_evento, "");
                 String Fecha_Fin_Estimada_Evento = preferences_evento.getString("Fecha_Fin_Evento" + indice_evento, "");
                 int Indice_Responsable = preferences_evento.getInt("Indice_Responsable" + indice_evento, 0);
