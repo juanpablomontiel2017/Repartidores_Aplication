@@ -54,6 +54,11 @@ public class BuscarResponsableParaPatrocinio extends AppCompatActivity implement
 
     ArrayList<View> ArrayListItemEvento = new ArrayList<View>();
 
+    ArrayList<String> arrayListNombreDeEventos = new ArrayList<String>();
+
+
+
+
     private ListView lv;
 
     private ArrayList<Responsable_Patrocinio> ResponsableArrayList = new ArrayList<Responsable_Patrocinio>();
@@ -504,6 +509,8 @@ public class BuscarResponsableParaPatrocinio extends AppCompatActivity implement
 
             /* Obtenemos los valores guardados del evento de "x" activity*/
             String Nombre_Evento = preferences_evento.getString("Nombre_Evento" + indice_evento, "");
+            arrayListNombreDeEventos.add(Nombre_Evento);
+
             String Fecha_Inicio_Evento = preferences_evento.getString("Fecha_Inicio_Evento" + indice_evento, "");
             String Fecha_Fin_Estimada_Evento = preferences_evento.getString("Fecha_Fin_Evento" + indice_evento, "");
             int Indice_Responsable = preferences_evento.getInt("Indice_Responsable" + indice_evento, 0);
@@ -1117,30 +1124,38 @@ public class BuscarResponsableParaPatrocinio extends AppCompatActivity implement
                         ValorDeLaPosicion = EncontrarPosicionDeEvento(v);
 
 
+
                         if(ValorDeLaPosicion != 99){
 
 
+                           String nombreDeEventoBorrado = arrayListNombreDeEventos.get(ValorDeLaPosicion);
+
+                           //Creo un backup de la colección Datos_Evento
                             BackUpDatosEvento();
 
-
+                            //Borro toda la colección de Datos_Evento
                             editor.clear().commit();
 
 
 
-                            ArrayListItemEvento.remove(v);
+                           // ArrayListItemEvento.remove(v);
 
 
+
+                            //Borro todos los item en pantalla
                             LinearLayoutVerticalPadre.removeAllViews();
 
 
-                            /*Llamada a la función:  */
-                            //GuardarDatosEventoEnSharedPreferences();
+                            //Restauro la colección Datos_Evento. No se guarda el evento eliminado
+                            restaurarBackupSinElementoBorrado(nombreDeEventoBorrado);
 
 
+                            //Limpio los arrayList
                             ArrayListItemEvento.clear();
+                            arrayListNombreDeEventos.clear();
 
 
-                            /*Llamada a la función:  */
+                            //Se vuelven a recargar los arrayList y los ítem en pantalla
                             RefrescarEventosEnPantalla();
 
 
@@ -1395,49 +1410,88 @@ public class BuscarResponsableParaPatrocinio extends AppCompatActivity implement
     /************************************************************************/
 
 
-/*
-
-    public void GuardarDatosEventoEnSharedPreferences(int indice_responsable) {
-
-        SharedPreferences sharedPreferences = getSharedPreferences("Datos_Item_Evento", MODE_PRIVATE);
-        SharedPreferences.Editor editor = sharedPreferences.edit();
 
 
+    public void restaurarBackupSinElementoBorrado(String nombreDeEventoBorrado) {
+
+        SharedPreferences sharedPreferencesDatosItemEvento = getSharedPreferences("Datos_Item_Evento", MODE_PRIVATE);
+
+        SharedPreferences.Editor editorDatosItemEvento = sharedPreferencesDatosItemEvento.edit();
 
 
-        for (int i = 0; i < ArrayListItemEvento.size(); i++) {
+        String DimensionEvento = sharedPreferencesDatosItemEvento.getString("DimensionDeEvento", "");
+
+        SharedPreferences sharedPreferencesDatosEvento = getSharedPreferences("Datos_Evento", MODE_PRIVATE);
+
+        SharedPreferences.Editor editorDatosEvento = sharedPreferencesDatosEvento.edit();
 
 
-            final EditText ET_Nombre_Evento = (EditText) ArrayListItemEvento.get(i).findViewById(R.id.et_nombre_evento_recibir);
-
-            final EditText ET_Valor_Fecha_Inicio_Evento = (EditText) ArrayListItemEvento.get(i).findViewById(R.id.et_valor_fecha_inicio_recibir);
-
-            final EditText ET_Valor_Fecha_Fin_Estimada_Evento = (EditText) ArrayListItemEvento.get(i).findViewById(R.id.et_valor_fecha_fin_recibir);
+        Integer índiceNuevaColección = 0;
+        for (int i = 0; i < Integer.parseInt(DimensionEvento); i++) {
 
 
-            editor.putString("Nombre_Evento" + i, ET_Nombre_Evento.getText().toString());
+            String nombreEvento = sharedPreferencesDatosItemEvento.getString("Nombre_Evento" + i, "");
 
-            editor.putString("Fecha_Inicio_Evento" + i, et_fecha_inicio_del_evento_nuevo_responsable.getText().toString());
+            if (!nombreEvento.equals(nombreDeEventoBorrado)){
 
-            editor.putString("Fecha_Fin_Evento" + i, et_fecha_fin_del_evento_nuevo_responsable.getText().toString());
 
-            editor.putInt("Indice_Responsable" + i, indice_responsable);
 
-            editor.putBoolean("Estado_Evento" + i, true);
+                String Direccion_Evento = sharedPreferencesDatosItemEvento.getString("Direccion_Evento" + i,"");
+
+                String Barrio_Evento = sharedPreferencesDatosItemEvento.getString("Barrio_Evento" + i,"");
+
+                String Referencia_Evento = sharedPreferencesDatosItemEvento.getString("Referencia_Evento" + i,"");
+
+                String Fecha_Inicio_Evento = sharedPreferencesDatosItemEvento.getString("Fecha_Inicio_Evento" + i, "");
+
+                String Fecha_Fin_Evento = sharedPreferencesDatosItemEvento.getString("Fecha_Fin_Evento" + i, "");
+
+                int Indice_Responsable = sharedPreferencesDatosItemEvento.getInt("Indice_Responsable" + i, 0);
+
+                Boolean Estado_Evento = sharedPreferencesDatosItemEvento.getBoolean("Estado_Evento" + i, true);
+
+
+                editorDatosEvento.putString("Nombre_Evento" + índiceNuevaColección, nombreEvento);
+
+                editorDatosEvento.putString("Direccion_Evento" + índiceNuevaColección, Direccion_Evento);
+
+                editorDatosEvento.putString("Barrio_Evento" + índiceNuevaColección, Barrio_Evento);
+
+                editorDatosEvento.putString("Referencia_Evento" + índiceNuevaColección, Referencia_Evento);
+
+                editorDatosEvento.putString("Fecha_Inicio_Evento" + índiceNuevaColección, Fecha_Inicio_Evento);
+
+                editorDatosEvento.putString("Fecha_Fin_Evento" + índiceNuevaColección, Fecha_Fin_Evento);
+
+                editorDatosEvento.putInt("Indice_Responsable" + índiceNuevaColección, Indice_Responsable);
+
+                editorDatosEvento.putBoolean("Estado_Evento" + índiceNuevaColección, Estado_Evento);
+
+                índiceNuevaColección++;
+                editorDatosEvento.putString("DimensionDeEvento", String.valueOf(índiceNuevaColección));
+                editorDatosEvento.commit();
+
+
+
+            }else{
+                //por acá pasa cuando encuentra el elemento eliminado y no lo guarda en la coleccion de
+                //Datos_Evento
+
+            }
+
+
+
 
 
         } //Fin del primer for
 
-
-        editor.putString("DimensionDeEvento", String.valueOf(indice_evento));
-        editor.commit();
+        editorDatosItemEvento.clear().commit();
 
 
 
 
-    }*/ /*******************************FIN DE LA FUNCIÓN GuardarDatosEventoEnSharedPreferences()******************************/
 
-
+    } /*******************************FIN DE LA FUNCIÓN restaurarBackupSinElementoBorrado()******************************/
 
 
     /************************************************************************/
@@ -1459,20 +1513,14 @@ public class BuscarResponsableParaPatrocinio extends AppCompatActivity implement
 
 
 
-        String DimensionArrayEventos = preferences.getString("DimensionArrayEventos", "");
+        String DimensionDeEvento = preferences.getString("DimensionDeEvento", "");
 
 
 
-        if (DimensionArrayEventos != "") {
+        if (DimensionDeEvento != "") {
 
-            for (int indice_ev = 0; indice_ev < Integer.valueOf(DimensionArrayEventos); indice_ev++) {
+            for (int indice_ev = 0; indice_ev < Integer.valueOf(DimensionDeEvento); indice_ev++) {
 
-
-
-                String Nombre_Evento = preferences.getString("Indice_Evento" + indice_ev + "Nombre_Evento" + "Evento Numero" + indice_ev, "");
-                String Fecha_Inicio = preferences.getString("Indice_Evento" + indice_ev + "Fecha_Inicio_Evento" + "Evento Numero" + indice_ev, "");
-                String Fecha_Fin_Estimada = preferences.getString("Indice_Evento" + indice_ev + "Fecha_Fin_Evento" + "Evento Numero" + indice_ev, "");
-                int Indice_Responsable = preferences.getInt("Indice_Responsable" + indice_ev, 0);
 
 
                 /* Llamada a la función: */
