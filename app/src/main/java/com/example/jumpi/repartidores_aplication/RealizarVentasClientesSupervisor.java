@@ -277,8 +277,6 @@ public class RealizarVentasClientesSupervisor extends AppCompatActivity {
         //ActualizarImporteConSeleccionDeArticuloSpinner();
 
 
-        ArrayListArticulos.add(LinearLayoutVerticalVentas);
-
 
 
         /** Pregunta si el usuario es un "repartidor" entonces habrá un cambio de colores en las activity's
@@ -333,13 +331,13 @@ public class RealizarVentasClientesSupervisor extends AppCompatActivity {
     public void Funcion(){
 
 
-        //for (int i = 0; i < ArrayListArticulos.size(); i++) {
+        for (int i = 0; i < ArrayListArticulos.size(); i++) {
 
-        //     final EditText et_cantidad_ventas_fijo = (EditText) ArrayListArticulos.get(i).findViewById(R.id.edtx_cantidad_productos_ventas);
+            final EditText et_cantidad_ventas_fijo = (EditText) ArrayListArticulos.get(i).findViewById(R.id.edtx_cantidad_productos_ventas);
 
 
 
-            eTCantVentas.addTextChangedListener(new TextWatcher() {
+            et_cantidad_ventas_fijo.addTextChangedListener(new TextWatcher() {
                 @Override
                 public void beforeTextChanged(CharSequence s, int start, int count, int after) {
 
@@ -358,7 +356,7 @@ public class RealizarVentasClientesSupervisor extends AppCompatActivity {
 
 
                         String text = spinner_ventas.getSelectedItem().toString();
-                        Importe = MostrarImporte(text,eTCantVentas);
+                        Importe = MostrarImporte(text,et_cantidad_ventas_fijo);
                         Cantidad_Importe_Articulos_Ventas.setText(Importe);
 
                     }
@@ -384,7 +382,7 @@ public class RealizarVentasClientesSupervisor extends AppCompatActivity {
 
 
 
-/*
+
             final LinearLayout LLV_Tercer_Tupla_Ventas = (LinearLayout) ArrayListArticulos.get(i).findViewById(R.id.layout_vertical_ventas);
 
 
@@ -428,9 +426,9 @@ public class RealizarVentasClientesSupervisor extends AppCompatActivity {
                         }
                     }
 
-                });*/  /*******************************FIN DEL EVENTO addTextChangedListener()**************************************/
+                });  /*******************************FIN DEL EVENTO addTextChangedListener()**************************************/
 
-                /*
+
 
 
                 ActualizarImporteConSeleccionDeArticuloSpinnerFijo(spinner_nuevos_articulos_ventas,et_cantidad_ventas_programaticos);
@@ -442,7 +440,7 @@ public class RealizarVentasClientesSupervisor extends AppCompatActivity {
 
         }//Fin del primer for
 
-*/
+
 
     } /********************* FIN DE LA FUNCIÓN *****************/
 
