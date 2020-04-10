@@ -965,9 +965,6 @@ public class BuscarResponsableParaPatrocinio extends AppCompatActivity implement
 
 
 
-                           // ArrayListItemEvento.remove(v);
-
-
 
                             //Borro todos los item en pantalla
                             LinearLayoutVerticalPadre.removeAllViews();
@@ -975,7 +972,7 @@ public class BuscarResponsableParaPatrocinio extends AppCompatActivity implement
 
                             //Restauro la colección Datos_Evento. No se guarda el evento eliminado
                             restaurarBackupSinElementoBorrado(nombreDeEventoBorrado);
-                            //restaurarBackupPatrocinio(nombr);
+                            restaurarBackupPatrocinio(ValorDeLaPosicion);
 
 
                             //Limpio los arrayList
@@ -985,7 +982,6 @@ public class BuscarResponsableParaPatrocinio extends AppCompatActivity implement
 
                             //Se vuelven a recargar los arrayList y los ítem en pantalla
                             CargaItemDeEvento();
-                            //RefrescarEventosEnPantalla();
 
 
                             Toast.makeText(BuscarResponsableParaPatrocinio.this, "El evento ha sido eliminado", Toast.LENGTH_LONG).show();
@@ -1190,73 +1186,78 @@ public class BuscarResponsableParaPatrocinio extends AppCompatActivity implement
 
 
         String DimensionEvento = preferences_evento.getString("DimensionDeEvento", "");
-        String DimensionVueltas = preferences.getString("DimensionArrayNuevasVueltas", "");
 
 
         for (int i = 0; i <= Integer.parseInt(DimensionEvento); i++) {
-            for(int j = 0; j <= Integer.parseInt(DimensionVueltas); j++){
+
+            String DimensionVueltas = preferences.getString("Indice_Evento" + i + "DimensionArrayNuevasVueltas", "");
+
+            if(DimensionVueltas != ""){
 
 
-
-            int tope_de_articulos = 0;
-
-
-            String Articulo_Seleccionado = preferences.getString("Indice_Evento" + i + "ElementoSeleccionadoSpinnerFijo - " + "Vuelta Numero: " + j, "");
-
-            String CantidadEntregaFijo = preferences.getString("Indice_Evento" + i + "CantidadEntregaArticuloFijo - " + "Vuelta Numero: " + j, "");
-
-            String CantidadRetiroFijo = preferences.getString("Indice_Evento" + i + "CantidadRetiroArticuloFijo - " + "Vuelta Numero: " + j, "");
+                for(int j = 0; j < Integer.parseInt(DimensionVueltas); j++){
 
 
-            editor.putString("Indice_Evento" + i + "ElementoSeleccionadoSpinnerFijo - " + "Vuelta Numero: " + j, Articulo_Seleccionado);
+                    String Articulo_Seleccionado = preferences.getString("Indice_Evento" + i + "ElementoSeleccionadoSpinnerFijo - " + "Vuelta Numero: " + j, "");
 
-            editor.putString("Indice_Evento" + i + "CantidadEntregaArticuloFijo - " + "Vuelta Numero: " + j, CantidadEntregaFijo);
+                    String CantidadEntregaFijo = preferences.getString("Indice_Evento" + i + "CantidadEntregaArticuloFijo - " + "Vuelta Numero: " + j, "");
 
-            editor.putString("Indice_Evento" + i + "CantidadRetiroArticuloFijo - " + "Vuelta Numero: " + j, CantidadRetiroFijo);
-
-
+                    String CantidadRetiroFijo = preferences.getString("Indice_Evento" + i + "CantidadRetiroArticuloFijo - " + "Vuelta Numero: " + j, "");
 
 
-            String DimensionArticulosProgramaticos = preferences.getString("Indice_Evento" + i + "DimensionArticulosProgramaticos - VueltaNumero: " + j,"");
+                    editor.putString("Indice_Evento" + i + "ElementoSeleccionadoSpinnerFijo - " + "Vuelta Numero: " + j, Articulo_Seleccionado);
 
-            for(int k = 1 ; j < Integer.parseInt(DimensionArticulosProgramaticos) ; k++){
+                    editor.putString("Indice_Evento" + i + "CantidadEntregaArticuloFijo - " + "Vuelta Numero: " + j, CantidadEntregaFijo);
 
-
-                String Articulo_Seleccionado_Programatico = preferences.getString("Indice_Evento" + i + "ElementoSeleccionadoSpinnerProgramatico - " + "Vuelta Numero: " + j + " - " + "Posicion: " + k, "");
-
-                String CantidadEntregaProgramatico = preferences.getString("Indice_Evento" + i + "CantidadEntregaArticuloFijo - " + "Vuelta Numero: " + j + " - " + "Posicion: " + k, "");
-
-                String CantidadRetiroProgramtico = preferences.getString("Indice_Evento" + i + "CantidadRetiroArticuloFijo - " + "Vuelta Numero: " + j + " - " + "Posicion: " + k, "");
+                    editor.putString("Indice_Evento" + i + "CantidadRetiroArticuloFijo - " + "Vuelta Numero: " + j, CantidadRetiroFijo);
 
 
-                editor.putString("Indice_Evento" + i + "ElementoSeleccionadoSpinnerProgramatico - " + "Vuelta Numero: " + j + " - " + "Posicion: " + k, Articulo_Seleccionado_Programatico);
+                    String DimensionArticulosProgramaticos = preferences.getString("Indice_Evento" + i + "DimensionArticulosProgramaticos - VueltaNumero: " + j,"");
 
-                editor.putString("Indice_Evento" + i + "CantidadDeEntregaNuevoArticuloProgramatico - " + "Vuelta Numero: " + j + " - " + "Posicion: " + k, CantidadEntregaProgramatico);
-
-                editor.putString("Indice_Evento" + i + "CantidadDeRetiroNuevoArticuloProgramatico - " + "Vuelta Numero: " + j + " - " + "Posicion: " + k, CantidadRetiroProgramtico);
+                    if (DimensionArticulosProgramaticos != "") {
 
 
-
-            } //Fin del for del "k" ("Articulos Programáticos")
-
-
-            editor.putString("Indice_Evento" + i + "DimensionArticulosProgramaticos - VueltaNumero: " + j, String.valueOf(tope_de_articulos));
+                        for (int k = 1; k <= Integer.valueOf(DimensionArticulosProgramaticos); k++) {
 
 
-            }//Fin del primer for j
+                            String Articulo_Seleccionado_Programatico = preferences.getString("Indice_Evento" + i + "ElementoSeleccionadoSpinnerProgramatico - " + "Vuelta Numero: " + j + " - " + "Posicion: " + k, "");
 
-            editor.putString("Indice_Evento" + i + "DimensionArrayNuevasVueltas", String.valueOf(DimensionVueltas));
-            editor.commit();
+                            String CantidadEntregaProgramatico = preferences.getString("Indice_Evento" + i + "CantidadDeEntregaNuevoArticuloProgramatico - " + "Vuelta Numero: " + j + " - " + "Posicion: " + k, "");
+
+                            String CantidadRetiroProgramtico = preferences.getString("Indice_Evento" + i + "CantidadDeRetiroNuevoArticuloProgramatico - " + "Vuelta Numero: " + j + " - " + "Posicion: " + k, "");
+
+
+                            editor.putString("Indice_Evento" + i + "ElementoSeleccionadoSpinnerProgramatico - " + "Vuelta Numero: " + j + " - " + "Posicion: " + k, Articulo_Seleccionado_Programatico);
+
+                            editor.putString("Indice_Evento" + i + "CantidadDeEntregaNuevoArticuloProgramatico - " + "Vuelta Numero: " + j + " - " + "Posicion: " + k, CantidadEntregaProgramatico);
+
+                            editor.putString("Indice_Evento" + i + "CantidadDeRetiroNuevoArticuloProgramatico - " + "Vuelta Numero: " + j + " - " + "Posicion: " + k, CantidadRetiroProgramtico);
+
+
+                        } //Fin del for del "k" ("Articulos Programáticos")
+
+                    }//Fin del if
+
+                    editor.putString("Indice_Evento" + i + "DimensionArticulosProgramaticos - VueltaNumero: " + j, String.valueOf(DimensionArticulosProgramaticos));
+
+                }//Fin del primer for j
+
+
+                editor.putString("Indice_Evento" + i + "DimensionArrayNuevasVueltas", String.valueOf(DimensionVueltas));
+                editor.commit();
+
+            }//FIN DEL if(DimensionVueltas != "")
+
 
         } //Fin del primer for i
 
 
+        editor.putString("DimensionDeEvento", String.valueOf(DimensionEvento));
+        editor.commit();
 
 
-    }/***************** FIN DE LA FUNCIÓN BackUpDatosEvento() **********************/
 
-
-
+    }/***************** FIN DE LA FUNCIÓN BackUpDatosPatrocinio() **********************/
 
 
 
@@ -1314,18 +1315,110 @@ public class BuscarResponsableParaPatrocinio extends AppCompatActivity implement
     /************************************************************************/
 
 
+    public void restaurarBackupPatrocinio(int valor_posicion) {
 
-    public View EncontrarNombreEvento (View v){
-
-
-
-
+        SharedPreferences sharedPreferencesBackUpTemporal = getSharedPreferences("BackUp_Temporal", MODE_PRIVATE);
+        SharedPreferences.Editor editorBackUpTemporal = sharedPreferencesBackUpTemporal.edit();
 
 
+        String DimensionEvento = sharedPreferencesBackUpTemporal.getString("DimensionDeEvento", "");
 
-        return v;
 
-    } /******************************FIN DE LA FUNCION EncontrarItemPadreBotonVerDatosResponsble()*****************************/
+        SharedPreferences sharedPreferencesDatosPatrocinio = getSharedPreferences("Datos_Patrocinio_Supervisor", MODE_PRIVATE);
+        SharedPreferences.Editor editorDatosPatrocinio = sharedPreferencesDatosPatrocinio.edit();
+
+
+
+        Integer índiceNuevaColección = -1;
+
+        for (int i = 0; i <= Integer.parseInt(DimensionEvento); i++) {
+
+
+            String DimensionVueltas = sharedPreferencesBackUpTemporal.getString("Indice_Evento" + i + "DimensionArrayNuevasVueltas", "");
+
+            int ValorPosicion = i;
+
+            if (ValorPosicion != valor_posicion){
+
+
+                índiceNuevaColección++;
+
+
+                if(DimensionVueltas != ""){
+
+                    for (int j = 0; j < Integer.parseInt(DimensionVueltas); j++) {
+
+
+                        String Articulo_Seleccionado = sharedPreferencesBackUpTemporal.getString("Indice_Evento" + i + "ElementoSeleccionadoSpinnerFijo - " + "Vuelta Numero: " + j, "");
+
+                        String CantidadEntregaFijo = sharedPreferencesBackUpTemporal.getString("Indice_Evento" + i + "CantidadEntregaArticuloFijo - " + "Vuelta Numero: " + j, "");
+
+                        String CantidadRetiroFijo = sharedPreferencesBackUpTemporal.getString("Indice_Evento" + i + "CantidadRetiroArticuloFijo - " + "Vuelta Numero: " + j, "");
+
+
+
+                        editorDatosPatrocinio.putString("Indice_Evento" + i + "ElementoSeleccionadoSpinnerFijo - " + "Vuelta Numero: " + j, Articulo_Seleccionado);
+
+                        editorDatosPatrocinio.putString("Indice_Evento" + i + "CantidadEntregaArticuloFijo - " + "Vuelta Numero: " + j, CantidadEntregaFijo);
+
+                        editorDatosPatrocinio.putString("Indice_Evento" + i + "CantidadRetiroArticuloFijo - " + "Vuelta Numero: " + j, CantidadRetiroFijo);
+
+                        editorDatosPatrocinio.putString("DimensionDeEvento", String.valueOf(índiceNuevaColección));
+                        editorDatosPatrocinio.commit();
+
+
+                        String DimensionArticulosProgramaticos = sharedPreferencesBackUpTemporal.getString("Indice_Evento" + i + "DimensionArticulosProgramaticos - VueltaNumero: " + j,"");
+
+                        for(int k = 1 ; k <= Integer.valueOf(DimensionArticulosProgramaticos) ; k++){
+
+
+                            String Articulo_Seleccionado_Programatico = sharedPreferencesBackUpTemporal.getString("Indice_Evento" + i + "ElementoSeleccionadoSpinnerProgramatico - " + "Vuelta Numero: " + j + " - " + "Posicion: " + k, "");
+
+                            String CantidadEntregaProgramatico = sharedPreferencesBackUpTemporal.getString("Indice_Evento" + i + "CantidadDeEntregaNuevoArticuloProgramatico - " + "Vuelta Numero: " + j + " - " + "Posicion: " + k, "");
+
+                            String CantidadRetiroProgramatico = sharedPreferencesBackUpTemporal.getString("Indice_Evento" + i + "CantidadDeRetiroNuevoArticuloProgramatico - " + "Vuelta Numero: " + j + " - " + "Posicion: " + k, "");
+
+
+
+                            editorDatosPatrocinio.putString("Indice_Evento" + i + "ElementoSeleccionadoSpinnerProgramatico - " + "Vuelta Numero: " + j + " - " + "Posicion: " + k, Articulo_Seleccionado_Programatico);
+
+                            editorDatosPatrocinio.putString("Indice_Evento" + i + "CantidadDeEntregaNuevoArticuloProgramatico - " + "Vuelta Numero: " + j + " - " + "Posicion: " + k, CantidadEntregaProgramatico);
+
+                            editorDatosPatrocinio.putString("Indice_Evento" + i + "CantidadDeRetiroNuevoArticuloProgramatico - " + "Vuelta Numero: " + j + " - " + "Posicion: " + k, CantidadRetiroProgramatico);
+
+
+
+                        } //Fin del for del "k" ("Articulos Programáticos")
+
+
+                        editorDatosPatrocinio.putString("Indice_Evento" + i + "DimensionArticulosProgramaticos - VueltaNumero: " + j, String.valueOf(DimensionArticulosProgramaticos));
+
+                    }//FIN DEL for j
+
+
+                    editorDatosPatrocinio.putString("Indice_Evento" + i + "DimensionArrayNuevasVueltas", String.valueOf(DimensionVueltas));
+                    editorDatosPatrocinio.commit();
+
+
+                }//FIN DEL if (DimensionVueltas != "")
+
+
+            }else{
+
+
+            }//FIN DEL else
+
+
+        }//FIN DEL for i
+
+
+
+
+        editorBackUpTemporal.clear().commit();
+
+
+    } /*******************************FIN DE LA FUNCIÓN restaurarBackupPatrocinio()******************************/
+
 
 
 
@@ -1347,14 +1440,14 @@ public class BuscarResponsableParaPatrocinio extends AppCompatActivity implement
     public void restaurarBackupSinElementoBorrado(String nombreDeEventoBorrado) {
 
         SharedPreferences sharedPreferencesDatosItemEvento = getSharedPreferences("Datos_Item_Evento", MODE_PRIVATE);
-
         SharedPreferences.Editor editorDatosItemEvento = sharedPreferencesDatosItemEvento.edit();
 
 
         String DimensionEvento = sharedPreferencesDatosItemEvento.getString("DimensionDeEvento", "");
 
-        SharedPreferences sharedPreferencesDatosEvento = getSharedPreferences("Datos_Evento", MODE_PRIVATE);
 
+
+        SharedPreferences sharedPreferencesDatosEvento = getSharedPreferences("Datos_Evento", MODE_PRIVATE);
         SharedPreferences.Editor editorDatosEvento = sharedPreferencesDatosEvento.edit();
 
 
@@ -1442,53 +1535,9 @@ public class BuscarResponsableParaPatrocinio extends AppCompatActivity implement
     /************************************************************************/
 
 
-    public void RefrescarEventosEnPantalla(){
 
 
 
-        int dimension = 0;
-
-        SharedPreferences preferences = getSharedPreferences("Datos_Evento", MODE_PRIVATE);
-
-        String DimensionEvento = preferences.getString("DimensionDeEvento", "");
-
-        if(DimensionEvento != ""){
-
-            dimension = Integer.parseInt(DimensionEvento);
-
-            for(int i=0; i < dimension; i++){
-
-                ObtenerItemEvento(i);
-
-            }//Fin del for
-
-
-        }//Fin del if
-
-
-
-
-
-
-
-
-
-    }/*****************FIN DE LA FUNCIÓN RefrescarEventosEnPantalla()**************************/
-
-
-
-
-
-    /************************************************************************/
-    /************************************************************************/
-    /************************************************************************/
-    /************************************************************************/
-    /************************************************************************/
-    /************************************************************************/
-    /************************************************************************/
-    /************************************************************************/
-    /************************************************************************/
-    /************************************************************************/
 
 
     SearchView searchView;
