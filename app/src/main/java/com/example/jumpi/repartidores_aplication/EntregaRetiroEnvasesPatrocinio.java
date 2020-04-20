@@ -143,7 +143,6 @@ public class EntregaRetiroEnvasesPatrocinio extends AppCompatActivity {
 
 
 
-        /** Pregunta si se cerró el evento **/
         if(LeerEstadoDeEvento(Indice_Evento)){ /*Evento abierto */
 
 
@@ -178,7 +177,6 @@ public class EntregaRetiroEnvasesPatrocinio extends AppCompatActivity {
 
 
             /*Llamada a la función: */
-
             CargarVistasEventoDeshabilitado();
 
             DeshabilitarVistasDeLasVueltasAlGuardarCambios(true);
@@ -4028,7 +4026,6 @@ public class EntregaRetiroEnvasesPatrocinio extends AppCompatActivity {
                                 editor.commit();
 
                                 Intent intent = new Intent(EntregaRetiroEnvasesPatrocinio.this, BuscarResponsableParaPatrocinio.class);
-
                                 startActivity(intent);
 
                                 finish();

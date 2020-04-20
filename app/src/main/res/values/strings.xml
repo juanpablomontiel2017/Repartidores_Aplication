@@ -88,6 +88,10 @@
 
     <string name="action_editar_tanda">Editar Tandas</string>
 
+    <string name="action_avaible_tanda">Habilitar Tandas</string>
+
+
+
     <!--Envases Activity-->
 
     <string name="title_activity_envases"></string>
