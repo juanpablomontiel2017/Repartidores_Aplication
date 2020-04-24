@@ -76,7 +76,7 @@ public class RealizarVentasClientesSupervisor extends AppCompatActivity {
     /******Variables tipo String********/
 
     String ArticuloSeleccionadoAnterior;
-    String Importe_Articulo;
+    Integer Importe_Articulo;
 
     /**Variables tipo EditText*/
 
@@ -348,180 +348,10 @@ public class RealizarVentasClientesSupervisor extends AppCompatActivity {
 
 
 
-        editText.addTextChangedListener(new TextWatcher() {
 
 
-            @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
 
-            }
 
-            @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-
-
-
-            }
-
-            @Override
-            public void afterTextChanged(Editable s) {
-
-/*
-
-                editText.setOnKeyListener(new View.OnKeyListener() {
-                    @Override
-                    public boolean onKey(View v, int keyCode, KeyEvent event) {
-
-                        if (keyCode == KeyEvent.KEYCODE_DEL) {
-
-                            if (s.toString().length() > 0 && s.toString().length() < 3 && s.toString().charAt(0) != '0') {
-
-
-                                String nombre_articulo_seleccionado = spinner.getSelectedItem().toString();
-
-                                String str_importe = getImporte(nombre_articulo_seleccionado, editText);
-
-                                coste_articulo = Integer.parseInt(str_importe);
-
-                                Importe = 0;
-
-                                Importe = Importe + coste_articulo;
-
-                                //Muestra solamente el costo del artículo individual más el importe del otro artículo
-                                Cantidad_Importe_Articulos_Ventas.setText(String.valueOf(Importe));
-
-
-                                flag_importe = false;
-
-
-                            }//FIN DEL PRIMER if
-
-                            else {
-
-                                flag_importe = true;
-
-
-                            }//FIN DEL else
-
-                        }//FIN DEL if
-
-                        return false;
-                    }
-                });
-
-*/
-
-
-                /**************************************************/
-                /**************************************************/
-                /**************************************************/
-                /**************************************************/
-                /**************************************************/
-
-
-
-                    if (s.toString().length() > 0 && s.toString().charAt(0) != '0'){
-
-
-                        String nombre_articulo_seleccionado = spinner.getSelectedItem().toString();
-
-                        String str_importe = getImporte(nombre_articulo_seleccionado,editText);
-
-                        coste_articulo = Integer.parseInt(str_importe);
-
-                        //Muestra solamente el costo del artículo individual
-                        Cantidad_Importe_Articulos_Ventas.setText(String.valueOf(coste_articulo));
-
-                        Importe = 0;
-
-                        Importe = Importe + coste_articulo;
-
-                        importe_anterior = Importe;
-
-
-
-                    }
-
-                    else{
-
-                        Importe = 0;
-
-                        Cantidad_Importe_Articulos_Ventas.setText(String.valueOf(Importe));
-
-
-                    }
-
-
-
-
-
-            }
-
-
-        });
-
-
-
-
-
-/*
-        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-
-
-            @Override
-            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-
-
-
-                if(editText.getText().toString().length() > 0 && editText.getText().toString().charAt(0) != '0' ){
-
-
-                    String nombre_articulo_seleccionado = spinner.getSelectedItem().toString();
-
-                    String str_importe = getImporte(nombre_articulo_seleccionado,editText);
-
-                    coste_articulo = Integer.parseInt(str_importe);
-
-                    //Muestra solamente el costo del artículo individual
-                    Cantidad_Importe_Articulos_Ventas.setText(String.valueOf(coste_articulo));
-
-                    int Importe_Actual = coste_articulo - Importe;
-
-                    Importe = Importe + Importe_Actual;
-
-                }
-
-                else {
-
-
-
-                }
-
-
-
-
-            }
-
-
-
-
-
-
-            @Override
-            public void onNothingSelected(AdapterView<?> adapterView) {
-
-            }
-
-
-
-
-        });
-
-*/
-
-        /******************************FIN DEL EVENTO onItemSelected()*****************************/
-
-        /******************************FIN DEL EVENTO setOnItemSelectedListener()*****************************/
 
     }/****************** FIN DE LA FUNCIÓN ActualizarImporte() ************************/
 
@@ -540,308 +370,15 @@ public class RealizarVentasClientesSupervisor extends AppCompatActivity {
 
 
 
-    Boolean flag_importe_programatico = true;
 
-    public void ActualizarImporteArticulosProgramaticos(Spinner spinner, EditText editText){
 
 
 
-        editText.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
 
-            }
 
-            @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
 
 
 
-            }
-
-            @Override
-            public void afterTextChanged(Editable s) {
-
-
-                editText.setOnKeyListener(new View.OnKeyListener() {
-                    @Override
-                    public boolean onKey(View v, int keyCode, KeyEvent event) {
-
-                        if (keyCode == KeyEvent.KEYCODE_DEL) {
-
-                           if (s.toString().length() > 1 && s.toString().length() < 3 && s.toString().charAt(0) != '0') {
-
-                               if (!eTCantVentas.getText().toString().isEmpty()) {
-
-/*
-                                   String nombre_articulo_seleccionado = spinner.getSelectedItem().toString();
-
-                                   String str_importe = getImporte(nombre_articulo_seleccionado, editText);
-
-                                   coste_articulo = Integer.parseInt(str_importe);
-
-                                   Importe = Importe - coste_articulo;
-
-
- */
-                                   Importe = importe_anterior;
-
-                                   flag_importe_programatico = false;
-
-
-                               }//FIN DEL SEGUNDO if
-
-
-                               //Si el articulo fijo no tiene valor o está vacío
-                               else {
-
-                                   Importe = 0;
-
-                                   flag_importe_programatico = false;
-
-                               }
-
-
-
-                           }//FIN DEL PRIMER if
-
-
-                           else {
-
-                               flag_importe_programatico = true;
-
-                           }//FIN DEL else
-
-
-                        }//FIN DEL if
-
-                        return false;
-
-                    }
-
-                });
-
-
-                /************ Cuando la longitud del editText sea == '1' podrá hacer lo siguiente: **********/
-
-
-                if (s.toString().length() > 0 && s.toString().length() < 2 && s.toString().charAt(0) != '0') {
-
-
-                    String nombre_articulo_seleccionado = spinner.getSelectedItem().toString();
-
-                    String str_importe = getImporte(nombre_articulo_seleccionado, editText);
-
-                    coste_articulo = Integer.parseInt(str_importe);
-
-                    coste_articulo_anterior = coste_articulo;
-
-                    Importe = Importe + coste_articulo;
-
-                    //Muestra solamente el costo del artículo individual más el importe del otro artículo
-                    Cantidad_Importe_Articulos_Ventas.setText(String.valueOf(Importe));
-
-                    flag_importe_programatico = false;
-
-                }
-
-
-
-
-
-                /**************************************************/
-                /**************************************************/
-                /**************************************************/
-                /**************************************************/
-                /**************************************************/
-
-
-                if (flag_importe_programatico) {
-
-
-                        if (s.toString().length() > 0 && s.toString().length() < 2 && s.toString().charAt(0) != '0') {
-
-
-                            if (!eTCantVentas.getText().toString().isEmpty()) {
-
-
-                                String nombre_articulo_seleccionado = spinner.getSelectedItem().toString();
-
-                                String str_importe = getImporte(nombre_articulo_seleccionado, editText);
-
-                                coste_articulo = Integer.parseInt(str_importe);
-
-                                //Importe = coste_articulo + coste_anterior;
-
-                                Importe = Importe + coste_articulo;
-
-                                //Muestra solamente el costo del artículo individual más el importe del otro artículo
-                                Cantidad_Importe_Articulos_Ventas.setText(String.valueOf(Importe));
-
-
-                            } else {
-
-
-                                String nombre_articulo_seleccionado = spinner.getSelectedItem().toString();
-
-                                String str_importe = getImporte(nombre_articulo_seleccionado, editText);
-
-                                coste_articulo = Integer.parseInt(str_importe);
-
-                                //Muestra solamente el costo del artículo individual
-                                Cantidad_Importe_Articulos_Ventas.setText(String.valueOf(coste_articulo));
-
-                                Importe = Importe + coste_articulo;
-
-
-                            }//FIN DEL else
-
-
-                        }
-
-
-                }//FIN DEL if (flag_importe_programatico)
-
-
-
-                /**************************************************/
-                /**************************************************/
-                /**************************************************/
-                /**************************************************/
-                /**************************************************/
-
-
-
-
-                if (s.toString().isEmpty()) {
-
-
-                    //Importe = 0;
-
-                    //Cantidad_Importe_Articulos_Ventas.setText(String.valueOf(Importe));
-
-                }
-
-
-                if (s.toString().length() > 1 && s.toString().charAt(0) != '0') {
-
-                    //SI 's' es igual a 3
-
-
-
-                   if (!eTCantVentas.getText().toString().isEmpty()) {
-
-
-                      String nombre_articulo_seleccionado = spinner.getSelectedItem().toString();
-
-                      String str_importe = getImporte(nombre_articulo_seleccionado, editText);
-
-                      coste_articulo = Integer.parseInt(str_importe);
-
-                      Importe = Importe - coste_articulo_anterior;
-
-                      Importe = Importe + coste_articulo; //Importe por unidad
-
-                      //Muestra solamente el costo del artículo individual más el importe del otro artículo
-                      Cantidad_Importe_Articulos_Ventas.setText(String.valueOf(Importe));
-
-                      coste_articulo_anterior = coste_articulo;
-
-
-                   }
-
-                   //Si el campo del artículo fijo está vacío
-                   else{
-
-
-                       String nombre_articulo_seleccionado = spinner.getSelectedItem().toString();
-
-                       String str_importe = getImporte(nombre_articulo_seleccionado, editText);
-
-                       coste_articulo = Integer.parseInt(str_importe);
-
-                       Importe = coste_articulo;
-
-                       //Muestra solamente el costo del artículo individual más el importe del otro artículo
-                       Cantidad_Importe_Articulos_Ventas.setText(String.valueOf(Importe));
-
-                   }
-
-                }
-
-
-
-
-                /**************************************************/
-                /**************************************************/
-                /**************************************************/
-                /**************************************************/
-                /**************************************************/
-
-
-
-            }
-
-        });
-
-
-
-
-
-
-
-
-
-/*
-        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-
-
-            @Override
-            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-
-
-
-                if(editText.getText().toString().length() > 0 && editText.getText().toString().charAt(0) != '0'){
-
-
-                    String nombre_articulo_seleccionado = spinner.getSelectedItem().toString();
-
-                    String str_importe = getImporte(nombre_articulo_seleccionado,editText);
-
-                    coste_articulo = Integer.parseInt(str_importe);
-
-                    //Muestra solamente el costo del artículo individual
-                    Cantidad_Importe_Articulos_Ventas.setText(String.valueOf(coste_articulo));
-
-                    int Importe_Actual = coste_articulo - Importe;
-
-                    Importe = Importe + Importe_Actual;
-
-
-                }
-
-
-            }
-
-
-
-
-
-
-            @Override
-            public void onNothingSelected(AdapterView<?> adapterView) {
-
-            }
-
-
-
-
-        });
-*/
-
-
-
-    }/****************** FIN DE LA FUNCIÓN ActualizarImporteArticulosProgramaticos() ************************/
 
 
 
@@ -859,19 +396,19 @@ public class RealizarVentasClientesSupervisor extends AppCompatActivity {
 
 
 
-    public String getImporte(String ArticuloSeleccionadoSpinner, EditText editText){
+    public Integer getImporte(String ArticuloSeleccionadoSpinner, EditText editText){
 
 
 
         if (ArticuloSeleccionadoSpinner == "Bidones") {
 
-            Importe_Articulo = String.valueOf (CalcularImporteBidones(precio_bidones,editText));
+            Importe_Articulo = CalcularImporteBidones(precio_bidones,editText);
 
         }
 
         else if (ArticuloSeleccionadoSpinner == "Dispenser Plástico") {
 
-            Importe_Articulo = String.valueOf (CalcularImporteDispenserPlastico(precio_dispenser_plastico,editText));
+            Importe_Articulo = CalcularImporteDispenserPlastico(precio_dispenser_plastico,editText);
 
         }
 
@@ -879,7 +416,7 @@ public class RealizarVentasClientesSupervisor extends AppCompatActivity {
 
         else if (ArticuloSeleccionadoSpinner == "Canillas") {
 
-            Importe_Articulo = String.valueOf (CalcularImporteCanillas(precio_canillas,editText));
+            Importe_Articulo = CalcularImporteCanillas(precio_canillas,editText);
 
         }
 
@@ -887,13 +424,13 @@ public class RealizarVentasClientesSupervisor extends AppCompatActivity {
 
         else if (ArticuloSeleccionadoSpinner == "Dispenser Eléctrico") {
 
-            Importe_Articulo = String.valueOf (CalcularImporteDispenserElectrico(precio_dispenser_electrico,editText));
+            Importe_Articulo = CalcularImporteDispenserElectrico(precio_dispenser_electrico,editText);
 
         }
 
         else if (ArticuloSeleccionadoSpinner == "Envases vacíos retirados") {
 
-            Importe_Articulo = String.valueOf(0);
+            Importe_Articulo = 0;
 
         }
 
@@ -1196,7 +733,6 @@ public class RealizarVentasClientesSupervisor extends AppCompatActivity {
 
 
         /* Llamada a la función: */
-        ActualizarImporteArticulosProgramaticos(spinner_nuevos_articulos_ventas_supervisores,EditText_Cantidad_Nuevo_Articulo_Ventas);
 
 
         EditText_Cantidad_Nuevo_Articulo_Ventas.addTextChangedListener(new TextWatcher() {
@@ -1214,69 +750,8 @@ public class RealizarVentasClientesSupervisor extends AppCompatActivity {
             public void afterTextChanged(Editable s) {
 
 
-                if (s.toString().isEmpty()){
 
-                    if(!eTCantVentas.getText().toString().isEmpty()){
-
-                                            //en este caso la variable "coste_articulo" conserva su ultimo valor
-                        Importe = Importe - coste_articulo;
-
-                        //Muestra solamente el costo del artículo individual más el importe del otro artículo
-                        Cantidad_Importe_Articulos_Ventas.setText(String.valueOf(Importe));
-
-                        /*
-                        String nombre_articulo_seleccionado = spinner_ventas.getSelectedItem().toString();
-
-                        String str_importe = getImporte(nombre_articulo_seleccionado, eTCantVentas);
-
-                        coste_articulo = Integer.parseInt(str_importe);
-
-                        Importe = Importe + coste_articulo;
-
-                        //Muestra solamente el costo del artículo individual más el importe del otro artículo
-                        Cantidad_Importe_Articulos_Ventas.setText(String.valueOf(Importe));
-
-
-                         */
-
-                    }
-
-
-
-
-                }//FIN DEL PRIMER if
-
-
-
-                /***************************************************************************/
-                /***************************************************************************/
-                /***************************************************************************/
-                /***************************************************************************/
-                /***************************************************************************/
-
-
-
-
-
-                if(s.toString().length() > 0 && s.toString().charAt(0) != '0'){
-
-
-                    buttonConfirmarVentas.setImageResource(R.drawable.ic_check_verde);
-
-
-
-                } else {
-
-
-                    buttonConfirmarVentas.setImageResource(R.drawable.ic_check_rojo);
-
-                }
-
-
-
-
-
-            }/*******************************FIN DEL EVENTO afterTextChanged()******************************************/
+           }/*******************************FIN DEL EVENTO afterTextChanged()******************************************/
 
 
         });/*******************************FIN DEL EVENTO addTextChangedListener()**************************************/
@@ -1302,49 +777,6 @@ public class RealizarVentasClientesSupervisor extends AppCompatActivity {
 
 
 
-                if(s.toString().isEmpty()){
-
-
-                    if(!EditText_Cantidad_Nuevo_Articulo_Ventas.getText().toString().isEmpty()){
-
-                        String nombre_articulo_seleccionado = spinner_nuevos_articulos_ventas_supervisores.getSelectedItem().toString();
-
-                        String str_importe = getImporte(nombre_articulo_seleccionado, EditText_Cantidad_Nuevo_Articulo_Ventas);
-
-                        coste_articulo = Integer.parseInt(str_importe);
-
-                        Importe = Importe + coste_articulo;
-
-                        Cantidad_Importe_Articulos_Ventas.setText(String.valueOf(Importe));
-
-
-                    }
-
-
-                }//FIN DEL PRIMER if
-
-                else {
-
-                    //Aquí recibo si o si el importe del artículo fijo
-
-                    if(!EditText_Cantidad_Nuevo_Articulo_Ventas.getText().toString().isEmpty()){
-
-                        String nombre_articulo_seleccionado = spinner_nuevos_articulos_ventas_supervisores.getSelectedItem().toString();
-
-                        String str_importe = getImporte(nombre_articulo_seleccionado, EditText_Cantidad_Nuevo_Articulo_Ventas);
-
-                        coste_articulo = Integer.parseInt(str_importe);
-
-                        Importe = Importe + coste_articulo;
-
-                        Cantidad_Importe_Articulos_Ventas.setText(String.valueOf(Importe));
-
-                    }
-
-
-
-
-                }
 
 
 
@@ -1352,27 +784,10 @@ public class RealizarVentasClientesSupervisor extends AppCompatActivity {
 
 
 
-                /***************************************************************************/
-                /***************************************************************************/
-                /***************************************************************************/
-                /***************************************************************************/
-                /***************************************************************************/
 
 
 
-                if(!s.toString().isEmpty() && EditText_Cantidad_Nuevo_Articulo_Ventas.getText().toString().isEmpty() ){
 
-
-                    buttonConfirmarVentas.setImageResource(R.drawable.ic_check_rojo);
-
-                }
-
-                if(s.toString().isEmpty() && EditText_Cantidad_Nuevo_Articulo_Ventas.getText().toString().isEmpty() ){
-
-
-                    buttonConfirmarVentas.setImageResource(R.drawable.ic_check_rojo);
-
-                }
 
 
 
@@ -1739,7 +1154,6 @@ public class RealizarVentasClientesSupervisor extends AppCompatActivity {
         if (bandera_boleana) {
 
 
-            flag_importe_programatico = true;
 
             /*Llamar a la función*/
             ObtenerNuevoArticuloParaVentasSupervisores("",LinearLayout);
