@@ -3,7 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/GitRepositorio-Repartidores_Aplication.iml" filepath="$PROJECT_DIR$/GitRepositorio-Repartidores_Aplication.iml" group="Repartidores_Aplication" />
-      <module fileurl="file://$PROJECT_DIR$/Repartidores_Aplication.iml" filepath="$PROJECT_DIR$/Repartidores_Aplication.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Repartidores_Aplication.iml" filepath="$PROJECT_DIR$/Repartidores_Aplication.iml" group="Repartidores_Aplication" />
       <module fileurl="file://$PROJECT_DIR$/app/Repartidores_Aplication-app.iml" filepath="$PROJECT_DIR$/app/Repartidores_Aplication-app.iml" group="Repartidores_Aplication/app" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
     </modules>

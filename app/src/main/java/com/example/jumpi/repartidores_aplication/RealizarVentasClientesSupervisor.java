@@ -34,6 +34,9 @@ import java.util.Arrays;
 public class RealizarVentasClientesSupervisor extends AppCompatActivity {
 
 
+    Integer importeDespuesDeModificacion = 0;
+    Integer importeAntesDeModificacion = 0;
+
     /*******DECLARACIÓN DE VARIABLES GLOBALES**/
 
 
@@ -244,6 +247,53 @@ public class RealizarVentasClientesSupervisor extends AppCompatActivity {
         eTCantVentas.setBackgroundDrawable(getDrawable(R.drawable.edit_text_material_customizado));
 
 
+        eTCantVentas.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+
+                if ( !s.toString().equals("")){
+                    Integer cantidadAntesDeModificacion = Integer.parseInt(s.toString());
+                    importeAntesDeModificacion = getImporte(spinner_ventas.getSelectedItem().toString(), cantidadAntesDeModificacion);
+                }else{
+
+                    importeAntesDeModificacion = 0;
+                }
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+                if (!s.toString().equals("")){
+                    Integer cantidadDespuesDeModificación = Integer.parseInt(s.toString());
+
+                    importeDespuesDeModificacion = getImporte(spinner_ventas.getSelectedItem().toString(), cantidadDespuesDeModificación);
+
+                    ActualizarImporte();
+
+                }
+                else{
+
+
+                    importeDespuesDeModificacion = 0;
+
+                    ActualizarImporte();
+                }
+
+
+            }
+        });
+
+
+
+
+
 
 
         /*Llamada a la función: */
@@ -290,7 +340,6 @@ public class RealizarVentasClientesSupervisor extends AppCompatActivity {
         ActualizarColorDelCheckBoton();
 
 
-        ActualizarImporte(spinner_ventas,eTCantVentas);
 
 
 
@@ -342,9 +391,31 @@ public class RealizarVentasClientesSupervisor extends AppCompatActivity {
 
 
 
-    Boolean flag_importe = true;
 
-    public void ActualizarImporte(Spinner spinner, EditText editText){
+
+    public void ActualizarImporte(){
+
+        String cadena = Cantidad_Importe_Articulos_Ventas.getText().toString();
+
+        if(!cadena.equals("IMPORTE") && !cadena.equals("")){
+
+            Integer importe = Integer.parseInt(Cantidad_Importe_Articulos_Ventas.getText().toString());
+
+            importe = importe - importeAntesDeModificacion + importeDespuesDeModificacion;
+            Cantidad_Importe_Articulos_Ventas.setText(String.valueOf(importe));
+        }
+        else {
+
+
+            Integer importe = 0;
+
+
+            Cantidad_Importe_Articulos_Ventas.setText(String.valueOf(importe));
+        }
+
+
+
+
 
 
 
@@ -396,19 +467,19 @@ public class RealizarVentasClientesSupervisor extends AppCompatActivity {
 
 
 
-    public Integer getImporte(String ArticuloSeleccionadoSpinner, EditText editText){
+    public Integer getImporte(String ArticuloSeleccionadoSpinner, Integer cantidadArticulo){
 
 
 
         if (ArticuloSeleccionadoSpinner == "Bidones") {
 
-            Importe_Articulo = CalcularImporteBidones(precio_bidones,editText);
+            Importe_Articulo = CalcularImporteBidones(precio_bidones,cantidadArticulo);
 
         }
 
         else if (ArticuloSeleccionadoSpinner == "Dispenser Plástico") {
 
-            Importe_Articulo = CalcularImporteDispenserPlastico(precio_dispenser_plastico,editText);
+            Importe_Articulo = CalcularImporteDispenserPlastico(precio_dispenser_plastico,cantidadArticulo);
 
         }
 
@@ -416,7 +487,7 @@ public class RealizarVentasClientesSupervisor extends AppCompatActivity {
 
         else if (ArticuloSeleccionadoSpinner == "Canillas") {
 
-            Importe_Articulo = CalcularImporteCanillas(precio_canillas,editText);
+            Importe_Articulo = CalcularImporteCanillas(precio_canillas,cantidadArticulo);
 
         }
 
@@ -424,7 +495,7 @@ public class RealizarVentasClientesSupervisor extends AppCompatActivity {
 
         else if (ArticuloSeleccionadoSpinner == "Dispenser Eléctrico") {
 
-            Importe_Articulo = CalcularImporteDispenserElectrico(precio_dispenser_electrico,editText);
+            Importe_Articulo = CalcularImporteDispenserElectrico(precio_dispenser_electrico,cantidadArticulo);
 
         }
 
@@ -739,6 +810,15 @@ public class RealizarVentasClientesSupervisor extends AppCompatActivity {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
 
+                if (!s.toString().equals("")){
+                    Integer cantidadAntesDeModificacion = Integer.parseInt(s.toString());
+                    importeAntesDeModificacion = getImporte(spinner_nuevos_articulos_ventas_supervisores.getSelectedItem().toString(), cantidadAntesDeModificacion);
+                }else{
+
+                    importeAntesDeModificacion = 0;
+                }
+
+
             }
 
             @Override
@@ -749,50 +829,26 @@ public class RealizarVentasClientesSupervisor extends AppCompatActivity {
             @Override
             public void afterTextChanged(Editable s) {
 
+                if (!s.toString().equals("")){
+                    Integer cantidadDespuesDeModificación = Integer.parseInt(s.toString());
+
+                    importeDespuesDeModificacion = getImporte(spinner_nuevos_articulos_ventas_supervisores.getSelectedItem().toString(), cantidadDespuesDeModificación);
+
+                    ActualizarImporte();
+                }else{
 
 
-           }/*******************************FIN DEL EVENTO afterTextChanged()******************************************/
+                    importeDespuesDeModificacion = 0;
+                    ActualizarImporte();
+                }
 
+
+            }
 
         });/*******************************FIN DEL EVENTO addTextChangedListener()**************************************/
 
 
 
-
-
-
-        eTCantVentas.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-
-            }
-
-            @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-
-            }
-
-            @Override
-            public void afterTextChanged(Editable s) {
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-            }
-        });
 
 
 
@@ -878,7 +934,11 @@ public class RealizarVentasClientesSupervisor extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
+                Integer cantidadAntesDeModificacion = Integer.parseInt(EditText_Cantidad_Nuevo_Articulo_Ventas.getText().toString());
+                importeAntesDeModificacion = getImporte(spinner_nuevos_articulos_ventas_supervisores.getSelectedItem().toString(), cantidadAntesDeModificacion);
+                importeDespuesDeModificacion = 0;
 
+                ActualizarImporte();
 
                 EliminarNuevoArticuloVentasSupervisores(v,spinner_nuevos_articulos_ventas_supervisores);
 
@@ -1617,11 +1677,11 @@ public class RealizarVentasClientesSupervisor extends AppCompatActivity {
 
 
 
-    public int CalcularImporteBidones(int precio_bidones, EditText editText) {
+    public int CalcularImporteBidones(int precio_bidones, Integer cantidadArticulo) {
 
-        int cantidad_bidones =Integer.parseInt(editText.getText().toString());
 
-        int importe_bidones = cantidad_bidones * precio_bidones;
+
+        int importe_bidones = cantidadArticulo * precio_bidones;
 
         return importe_bidones;
 
@@ -1630,26 +1690,26 @@ public class RealizarVentasClientesSupervisor extends AppCompatActivity {
 
 
 
-    public int CalcularImporteDispenserPlastico(int precio_dispenser_plastico,EditText editText) {
+    public int CalcularImporteDispenserPlastico(int precio_dispenser_plastico,Integer cantidadArticulo) {
 
 
-        int cantidad_dispenser_plastico = Integer.parseInt(editText.getText().toString());
 
 
-        int importe_dispenser_plastico = cantidad_dispenser_plastico * precio_dispenser_plastico;
+
+        int importe_dispenser_plastico = cantidadArticulo * precio_dispenser_plastico;
 
 
         return importe_dispenser_plastico;
     }
 
 
-    public int CalcularImporteCanillas(int precio_canillas, EditText editText) {
+    public int CalcularImporteCanillas(int precio_canillas, Integer cantidadArticulo) {
 
 
-        int cantidad_canillas = Integer.parseInt(editText.getText().toString());
 
 
-        int importe_canillas = cantidad_canillas * precio_canillas;
+
+        int importe_canillas = cantidadArticulo * precio_canillas;
 
 
         return importe_canillas;
@@ -1659,12 +1719,12 @@ public class RealizarVentasClientesSupervisor extends AppCompatActivity {
 
 
 
-    public int CalcularImporteDispenserElectrico(int precio_dispenser_electrico, EditText editText) {
-
-        int cantidad_dispenser_electrico = Integer.parseInt(editText.getText().toString());
+    public int CalcularImporteDispenserElectrico(int precio_dispenser_electrico, Integer cantidadArticulo) {
 
 
-        int importe_dispenser_electrico = cantidad_dispenser_electrico * precio_dispenser_electrico;
+
+
+        int importe_dispenser_electrico = cantidadArticulo * precio_dispenser_electrico;
 
 
         return importe_dispenser_electrico;
