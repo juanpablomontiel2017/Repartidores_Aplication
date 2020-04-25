@@ -253,11 +253,15 @@ public class RealizarVentasClientesSupervisor extends AppCompatActivity {
 
 
                 if ( !s.toString().equals("")){
+
                     Integer cantidadAntesDeModificacion = Integer.parseInt(s.toString());
+
                     importeAntesDeModificacion = getImporte(spinner_ventas.getSelectedItem().toString(), cantidadAntesDeModificacion);
+
                 }else{
 
                     importeAntesDeModificacion = 0;
+
                 }
 
             }
@@ -271,6 +275,7 @@ public class RealizarVentasClientesSupervisor extends AppCompatActivity {
             public void afterTextChanged(Editable s) {
 
                 if (!s.toString().equals("")){
+
                     Integer cantidadDespuesDeModificación = Integer.parseInt(s.toString());
 
                     importeDespuesDeModificacion = getImporte(spinner_ventas.getSelectedItem().toString(), cantidadDespuesDeModificación);
@@ -278,16 +283,19 @@ public class RealizarVentasClientesSupervisor extends AppCompatActivity {
                     ActualizarImporte();
 
                 }
+
                 else{
 
 
                     importeDespuesDeModificacion = 0;
 
                     ActualizarImporte();
+
                 }
 
 
             }
+
         });
 
 
@@ -397,12 +405,23 @@ public class RealizarVentasClientesSupervisor extends AppCompatActivity {
 
         String cadena = Cantidad_Importe_Articulos_Ventas.getText().toString();
 
-        if(cadena.equals("IMPORTE") || cadena.equals("")){
+
+        if(!cadena.equals("IMPORTE") && !cadena.equals("")){
+
+
+            Integer importe = Integer.parseInt(Cantidad_Importe_Articulos_Ventas.getText().toString());
+
+            importe = importe - importeAntesDeModificacion + importeDespuesDeModificacion;
+            Cantidad_Importe_Articulos_Ventas.setText(String.valueOf(importe));
+        }
+        else {
+
 
             Integer importe = 0;
 
 
             Cantidad_Importe_Articulos_Ventas.setText(String.valueOf(importe));
+
 
         }
 
@@ -417,7 +436,7 @@ public class RealizarVentasClientesSupervisor extends AppCompatActivity {
 
 
 
-
+        
 
 
 
@@ -800,7 +819,6 @@ public class RealizarVentasClientesSupervisor extends AppCompatActivity {
         final Spinner spinner_nuevos_articulos_ventas_supervisores = (Spinner) NuevoArticuloInfladoVentasSupervisores.findViewById(R.id.sp_new_art_ventas_supervisor);
 
 
-        /* Llamada a la función: */
 
 
         EditText_Cantidad_Nuevo_Articulo_Ventas.addTextChangedListener(new TextWatcher() {
@@ -808,11 +826,16 @@ public class RealizarVentasClientesSupervisor extends AppCompatActivity {
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
 
                 if (!s.toString().equals("")){
+
                     Integer cantidadAntesDeModificacion = Integer.parseInt(s.toString());
+
+
                     importeAntesDeModificacion = getImporte(spinner_nuevos_articulos_ventas_supervisores.getSelectedItem().toString(), cantidadAntesDeModificacion);
+
                 }else{
 
                     importeAntesDeModificacion = 0;
+
                 }
 
 
