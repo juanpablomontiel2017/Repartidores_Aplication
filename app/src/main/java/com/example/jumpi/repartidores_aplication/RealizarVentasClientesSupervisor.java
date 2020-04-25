@@ -561,7 +561,7 @@ public class RealizarVentasClientesSupervisor extends AppCompatActivity {
 
                     buttonConfirmarVentas.setImageResource(R.drawable.ic_check_rojo);
 
-                    Cantidad_Importe_Articulos_Ventas.setText("");
+                  //  Cantidad_Importe_Articulos_Ventas.setText("");
 
 
 
