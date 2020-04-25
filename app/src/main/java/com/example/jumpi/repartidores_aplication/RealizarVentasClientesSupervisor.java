@@ -397,24 +397,21 @@ public class RealizarVentasClientesSupervisor extends AppCompatActivity {
 
         String cadena = Cantidad_Importe_Articulos_Ventas.getText().toString();
 
-        if(!cadena.equals("IMPORTE") && !cadena.equals("")){
-
-            Integer importe = Integer.parseInt(Cantidad_Importe_Articulos_Ventas.getText().toString());
-
-            importe = importe - importeAntesDeModificacion + importeDespuesDeModificacion;
-            Cantidad_Importe_Articulos_Ventas.setText(String.valueOf(importe));
-        }
-        else {
-
+        if(cadena.equals("IMPORTE") || cadena.equals("")){
 
             Integer importe = 0;
 
 
             Cantidad_Importe_Articulos_Ventas.setText(String.valueOf(importe));
+
         }
 
 
 
+        Integer importe = Integer.parseInt(Cantidad_Importe_Articulos_Ventas.getText().toString());
+
+        importe = importe - importeAntesDeModificacion + importeDespuesDeModificacion;
+        Cantidad_Importe_Articulos_Ventas.setText(String.valueOf(importe));
 
 
 
