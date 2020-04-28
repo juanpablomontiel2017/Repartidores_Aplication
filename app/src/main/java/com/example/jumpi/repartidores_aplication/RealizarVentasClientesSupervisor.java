@@ -46,7 +46,6 @@ public class RealizarVentasClientesSupervisor extends AppCompatActivity {
 
 
 
-
     /** Matríz Clásica tipo Cadena */
 
     String [] ListaDeArticulosEnVenta =  {"Bidones", "Dispenser Plástico", "Canillas", "Dispenser Eléctrico","Envases vacíos retirados"};
@@ -242,17 +241,18 @@ public class RealizarVentasClientesSupervisor extends AppCompatActivity {
 
 
 
+
+
         eTCantVentas = (EditText) findViewById(R.id.edtx_cantidad_productos_ventas);
 
         eTCantVentas.setBackgroundDrawable(getDrawable(R.drawable.edit_text_material_customizado));
-
 
         eTCantVentas.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
 
 
-                if ( !s.toString().equals("")){
+                if (!s.toString().equals("")){
 
                     Integer cantidadAntesDeModificacion = Integer.parseInt(s.toString());
 
@@ -308,6 +308,48 @@ public class RealizarVentasClientesSupervisor extends AppCompatActivity {
 
         setSpinner(spinner_ventas,true);
 
+
+
+
+        spinner_ventas.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+
+
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+
+
+                if (!eTCantVentas.getText().toString().equals("")){
+
+                    Integer cantidad_actual = Integer.parseInt(eTCantVentas.getText().toString());
+
+                    Integer importeDespuesdelaSeleccion = getImporte(spinner_ventas.getSelectedItem().toString(), cantidad_actual);
+
+                    Cantidad_Importe_Articulos_Ventas.setText(String.valueOf(importeDespuesdelaSeleccion));
+
+
+                } else{
+
+
+                }
+
+            }
+
+
+
+
+
+
+
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+
+
+
+
+        });
 
 
 
@@ -419,6 +461,7 @@ public class RealizarVentasClientesSupervisor extends AppCompatActivity {
 
             Integer importe = 0;
 
+            importe = importe - importeAntesDeModificacion + importeDespuesDeModificacion;
 
             Cantidad_Importe_Articulos_Ventas.setText(String.valueOf(importe));
 
@@ -426,11 +469,13 @@ public class RealizarVentasClientesSupervisor extends AppCompatActivity {
         }
 
 
-
+/*
         Integer importe = Integer.parseInt(Cantidad_Importe_Articulos_Ventas.getText().toString());
 
         importe = importe - importeAntesDeModificacion + importeDespuesDeModificacion;
         Cantidad_Importe_Articulos_Ventas.setText(String.valueOf(importe));
+*/
+
 
 
 
@@ -850,11 +895,13 @@ public class RealizarVentasClientesSupervisor extends AppCompatActivity {
             public void afterTextChanged(Editable s) {
 
                 if (!s.toString().equals("")){
+
                     Integer cantidadDespuesDeModificación = Integer.parseInt(s.toString());
 
                     importeDespuesDeModificacion = getImporte(spinner_nuevos_articulos_ventas_supervisores.getSelectedItem().toString(), cantidadDespuesDeModificación);
 
                     ActualizarImporte();
+
                 }else{
 
 
@@ -1391,7 +1438,6 @@ public class RealizarVentasClientesSupervisor extends AppCompatActivity {
 
                     /*Llamada a la función: */
                     Utils_Spinner.RefrescarOtrosSpinnerConBordes((Spinner)adapterView,ArticuloSeleccionadoAnterior,text, RealizarVentasClientesSupervisor.this);
-
 
 
 
