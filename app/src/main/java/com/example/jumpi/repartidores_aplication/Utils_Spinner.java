@@ -4,6 +4,7 @@ import android.content.Context;
 import android.view.View;
 import android.widget.Adapter;
 import android.widget.ArrayAdapter;
+import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.Spinner;
@@ -559,6 +560,48 @@ public class Utils_Spinner {
 
 
 }/******************************FIN DE LA FUNCION RefrescarOtrosSpinnerConBordes()*****************************/
+
+
+
+    /**** Obtengo el valor escrito en el editText ***/
+
+    public static Integer obtenerCantidadDeArticulo(Spinner spinner){
+
+        LinearLayout linearLayoutHorizontalContenedorSpinner = (LinearLayout) spinner.getParent();
+
+        LinearLayout linearLayoutHorizontalContenedorArticulos = (LinearLayout) linearLayoutHorizontalContenedorSpinner.getParent();
+
+
+
+        String cantidadDeArticulos = "";
+
+
+        for (int itemPos = 0; itemPos < linearLayoutHorizontalContenedorArticulos.getChildCount(); itemPos++) {
+
+
+
+            View item = linearLayoutHorizontalContenedorArticulos.getChildAt(itemPos);
+
+            if (item instanceof EditText) {
+
+
+                EditText etCantidadArticulo = (EditText) item;
+
+                cantidadDeArticulos = etCantidadArticulo.getText().toString();
+
+            }
+
+
+
+        }//Fin del for item_pos
+
+
+
+        return Integer.parseInt(cantidadDeArticulos);
+
+
+    }/******************************FIN DE LA FUNCION obtenerCantidadDeArticulo()*****************************/
+
 
 
 

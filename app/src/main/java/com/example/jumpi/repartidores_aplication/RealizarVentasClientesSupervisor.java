@@ -799,6 +799,7 @@ public class RealizarVentasClientesSupervisor extends AppCompatActivity {
 
         final Spinner spinner_nuevos_articulos_ventas_supervisores = (Spinner) NuevoArticuloInfladoVentasSupervisores.findViewById(R.id.sp_new_art_ventas_supervisor);
 
+        //spinner_nuevos_articulos_ventas_supervisores.onTouchEvent()
 
         /* Llamada a la función: */
 
@@ -1369,6 +1370,12 @@ public class RealizarVentasClientesSupervisor extends AppCompatActivity {
                     /*Llamada a la función: */
                     Utils_Spinner.RefrescarOtrosSpinnerConBordes((Spinner)adapterView,ArticuloSeleccionadoAnterior,text, RealizarVentasClientesSupervisor.this);
 
+
+                    Integer cantidadDeArticulo = Utils_Spinner.obtenerCantidadDeArticulo((Spinner) adapterView);
+                    importeAntesDeModificacion = getImporte(ArticuloSeleccionadoAnterior, cantidadDeArticulo);
+                    importeDespuesDeModificacion = getImporte(text, cantidadDeArticulo);
+
+                    ActualizarImporte();
 
 
 
