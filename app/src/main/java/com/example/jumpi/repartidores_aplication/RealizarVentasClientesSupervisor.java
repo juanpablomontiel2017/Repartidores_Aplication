@@ -34,9 +34,6 @@ import java.util.Arrays;
 public class RealizarVentasClientesSupervisor extends AppCompatActivity {
 
 
-    Integer importeDespuesDeModificacion = 0;
-    Integer importeAntesDeModificacion = 0;
-
     /*******DECLARACIÓN DE VARIABLES GLOBALES**/
 
 
@@ -114,16 +111,13 @@ public class RealizarVentasClientesSupervisor extends AppCompatActivity {
     int precio_dispenser_electrico = 6000;
 
     int Importe = 0;
-
-    int coste_articulo = 0;
-
     int importe_anterior = 0;
 
-    int coste_articulo_anterior = 0;
 
-    /** Variables de tipo ArrayList*/
+    Integer importeDespuesDeModificacion = 0;
+    Integer importeAntesDeModificacion = 0;
 
-    ArrayList<LinearLayout> ArrayListArticulos = new ArrayList<LinearLayout>();
+    int contador_de_inicializacion = 0;
 
 
 
@@ -305,51 +299,11 @@ public class RealizarVentasClientesSupervisor extends AppCompatActivity {
 
 
         /*Llamada a la función: */
-
         setSpinner(spinner_ventas,true);
 
 
 
 
-        spinner_ventas.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-
-
-            @Override
-            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-
-
-                if (!eTCantVentas.getText().toString().equals("")){
-
-                    Integer cantidad_actual = Integer.parseInt(eTCantVentas.getText().toString());
-
-                    Integer importeDespuesdelaSeleccion = getImporte(spinner_ventas.getSelectedItem().toString(), cantidad_actual);
-
-                    Cantidad_Importe_Articulos_Ventas.setText(String.valueOf(importeDespuesdelaSeleccion));
-
-
-                } else{
-
-
-                }
-
-            }
-
-
-
-
-
-
-
-
-            @Override
-            public void onNothingSelected(AdapterView<?> adapterView) {
-
-            }
-
-
-
-
-        });
 
 
 
@@ -469,15 +423,6 @@ public class RealizarVentasClientesSupervisor extends AppCompatActivity {
         }
 
 
-/*
-        Integer importe = Integer.parseInt(Cantidad_Importe_Articulos_Ventas.getText().toString());
-
-        importe = importe - importeAntesDeModificacion + importeDespuesDeModificacion;
-        Cantidad_Importe_Articulos_Ventas.setText(String.valueOf(importe));
-*/
-
-
-
 
 
 
@@ -503,28 +448,6 @@ public class RealizarVentasClientesSupervisor extends AppCompatActivity {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-    /********************************************************************************************/
-    /********************************************************************************************/
-    /********************************************************************************************/
-    /********************************************************************************************/
-    /********************************************************************************************/
-    /********************************************************************************************/
-    /********************************************************************************************/
-    /********************************************************************************************/
-    /********************************************************************************************/
-    /********************************************************************************************/
 
 
 
@@ -589,6 +512,80 @@ public class RealizarVentasClientesSupervisor extends AppCompatActivity {
 
 
 
+    public int CalcularImporteBidones(int precio_bidones, Integer cantidadArticulo) {
+
+
+
+        int importe_bidones = cantidadArticulo * precio_bidones;
+
+        return importe_bidones;
+
+    }
+
+
+
+
+    public int CalcularImporteDispenserPlastico(int precio_dispenser_plastico,Integer cantidadArticulo) {
+
+
+
+
+
+        int importe_dispenser_plastico = cantidadArticulo * precio_dispenser_plastico;
+
+
+        return importe_dispenser_plastico;
+    }
+
+
+    public int CalcularImporteCanillas(int precio_canillas, Integer cantidadArticulo) {
+
+
+
+
+
+        int importe_canillas = cantidadArticulo * precio_canillas;
+
+
+        return importe_canillas;
+
+    }
+
+
+
+
+    public int CalcularImporteDispenserElectrico(int precio_dispenser_electrico, Integer cantidadArticulo) {
+
+
+
+
+        int importe_dispenser_electrico = cantidadArticulo * precio_dispenser_electrico;
+
+
+        return importe_dispenser_electrico;
+
+    }
+
+
+
+
+    /***************************************************************************************************/
+    /***************************************************************************************************/
+    /***************************************************************************************************/
+    /***************************************************************************************************/
+    /***************************************************************************************************/
+    /***************************************************************************************************/
+    /***************************************************************************************************/
+    /***************************************************************************************************/
+    /***************************************************************************************************/
+    /***************************************************************************************************/
+
+
+
+
+
+
+
 
     public void ActualizarColorDelCheckBoton(){
 
@@ -624,9 +621,6 @@ public class RealizarVentasClientesSupervisor extends AppCompatActivity {
 
 
                     buttonConfirmarVentas.setImageResource(R.drawable.ic_check_rojo);
-
-                  //  Cantidad_Importe_Articulos_Ventas.setText("");
-
 
 
                 }
@@ -908,6 +902,30 @@ public class RealizarVentasClientesSupervisor extends AppCompatActivity {
                     importeDespuesDeModificacion = 0;
                     ActualizarImporte();
                 }
+
+
+
+
+
+
+
+
+
+                if(s.toString().length() > 0 && s.toString().charAt(0) != '0'){
+
+
+                    buttonConfirmarVentas.setImageResource(R.drawable.ic_check_verde);
+
+
+
+                } else {
+
+
+                    buttonConfirmarVentas.setImageResource(R.drawable.ic_check_rojo);
+
+                }
+
+
 
 
             }
@@ -1435,7 +1453,6 @@ public class RealizarVentasClientesSupervisor extends AppCompatActivity {
                     to.show();
 
 
-
                     /*Llamada a la función: */
                     Utils_Spinner.RefrescarOtrosSpinnerConBordes((Spinner)adapterView,ArticuloSeleccionadoAnterior,text, RealizarVentasClientesSupervisor.this);
 
@@ -1739,63 +1756,6 @@ public class RealizarVentasClientesSupervisor extends AppCompatActivity {
     /**************************************************************************************************/
     /**************************************************************************************************/
     /**************************************************************************************************/
-
-
-
-
-    public int CalcularImporteBidones(int precio_bidones, Integer cantidadArticulo) {
-
-
-
-        int importe_bidones = cantidadArticulo * precio_bidones;
-
-        return importe_bidones;
-
-    }
-
-
-
-
-    public int CalcularImporteDispenserPlastico(int precio_dispenser_plastico,Integer cantidadArticulo) {
-
-
-
-
-
-        int importe_dispenser_plastico = cantidadArticulo * precio_dispenser_plastico;
-
-
-        return importe_dispenser_plastico;
-    }
-
-
-    public int CalcularImporteCanillas(int precio_canillas, Integer cantidadArticulo) {
-
-
-
-
-
-        int importe_canillas = cantidadArticulo * precio_canillas;
-
-
-        return importe_canillas;
-
-    }
-
-
-
-
-    public int CalcularImporteDispenserElectrico(int precio_dispenser_electrico, Integer cantidadArticulo) {
-
-
-
-
-        int importe_dispenser_electrico = cantidadArticulo * precio_dispenser_electrico;
-
-
-        return importe_dispenser_electrico;
-
-    }
 
 
 

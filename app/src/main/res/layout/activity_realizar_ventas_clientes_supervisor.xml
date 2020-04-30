@@ -345,6 +345,8 @@
                         </LinearLayout>
 
 
+
+
                         <EditText
 
                             android:id="@+id/edtx_cantidad_productos_ventas"

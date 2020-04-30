@@ -160,6 +160,7 @@ public class Cargas_Descargas extends AppCompatActivity {
         Estado_Tanda = Boolean.parseBoolean(LeerConfiguracionDeActivityEnUnSharedPreferences("EstadoTanda" + nombre_apellido_recibir));
 
 
+
         /** Tandas cerradas **/
         if(!Estado_Tanda){
 
@@ -185,13 +186,13 @@ public class Cargas_Descargas extends AppCompatActivity {
 
 
 
-
-
-
         String FechaActualDelSistema = UtilidadFecha.getFecha("dd/MM/yyyy");
 
-        String FechaGuardada;
 
+        //String FechaGuardada;
+        String FechaGuardada = "28/04/2020";
+
+/*
 
         if(LeerConfiguracionDeActivityEnUnSharedPreferences("Fecha").equals("true")){
 
@@ -206,7 +207,7 @@ public class Cargas_Descargas extends AppCompatActivity {
         } //Fin del else
 
 
-
+*/
 
 
 
@@ -217,6 +218,8 @@ public class Cargas_Descargas extends AppCompatActivity {
             Toast.makeText(Cargas_Descargas.this, "Dia: " + Nombre_Dia, Toast.LENGTH_LONG).show();
 
 
+
+
         } //Fin del primer if
 
 
@@ -224,11 +227,10 @@ public class Cargas_Descargas extends AppCompatActivity {
 
          else {
 
+            GuardarConfiguracionDeActivityEnUnSharedPreferences("EstadoTanda" + nombre_apellido_recibir, "true");
 
             /*Llamada a la función: */
             CierreDeTanda(FechaActualDelSistema);
-
-
 
         }//Fin del else
 
@@ -739,8 +741,64 @@ public class Cargas_Descargas extends AppCompatActivity {
 
 
         //Pregunta si la tanda no fue cerrada
-        //if(LeerConfiguracionDeActivityEnUnSharedPreferences("EstadoTanda").equals("true")){
-        if(Estado_Tanda){
+        //if(!Estado_Tanda) {
+
+
+        AlertDialog.Builder builder = new AlertDialog.Builder(Cargas_Descargas.this);
+        builder.setIcon(R.drawable.ic_msj_alerta);
+        builder.setTitle("¡Buen día!");
+        builder.setMessage("¡Un nuevo día laboral ha comenzado! Consulte las tandas del día de ayer si así lo requiera");
+
+
+        builder.setPositiveButton("ACEPTAR", new DialogInterface.OnClickListener() {
+
+            public void onClick(DialogInterface dialog, int id) {
+
+
+                finish();
+                startActivity(getIntent());
+
+                BorrarValoresDelSharedPreferences();
+
+                //CambiarColoresEditarTandasCerradas();
+
+
+            }
+
+        });
+
+
+        AlertDialog dialog = builder.create();
+        dialog.show();
+
+
+
+
+
+            //MostrarValoresDelSharedPreferences();
+
+
+            //GuardarConfiguracionDeActivityEnUnSharedPreferences("Fecha" + nombre_apellido_recibir, FechaActualDelSistema);
+
+
+            //CambiarColoresEditarTandasCerradas();
+
+
+            //Toast.makeText(Cargas_Descargas.this, "¡Buen día! Un nuevo día laboral ha comenzado. Consulte las" +
+              //      "tandas del día de ayer si así lo requiera", Toast.LENGTH_LONG).show();
+
+       // }
+
+/*
+
+            BorrarValoresDelSharedPreferences();
+
+            //MostrarValoresDelSharedPreferences();
+
+
+            GuardarConfiguracionDeActivityEnUnSharedPreferences("Fecha" + nombre_apellido_recibir, FechaActualDelSistema);
+
+
 
 
             AlertDialog.Builder builder = new AlertDialog.Builder(Cargas_Descargas.this);
@@ -754,27 +812,9 @@ public class Cargas_Descargas extends AppCompatActivity {
                 public void onClick(DialogInterface dialog, int id) {
 
 
-
-
-                    /* Llamada a la función: */
-                    BorrarValoresDelSharedPreferences();
-
-
-                    /* Llamada a la función: */
-                    MostrarValoresDelSharedPreferences();
-
-
-                    /* Llamada a la función: */
-                    GuardarConfiguracionDeActivityEnUnSharedPreferences("Fecha",FechaActualDelSistema);
-
-                    CambiarColoresEditarTandasCerradas();
-
-
-
                 }
 
-
-            }); /**FIN DEL  builder.setPositiveButton()  **/
+            });
 
 
             AlertDialog dialog = builder.create();
@@ -788,35 +828,16 @@ public class Cargas_Descargas extends AppCompatActivity {
 
 
 
-        }//Fin del if
+        } */ //Fin del if
 
 
         //Si la tanda se ha cerrado:
-        else {
+        /*else {
 
 
 
-            /* Llamada a la función: */
-            BorrarValoresDelSharedPreferences();
 
-
-            /* Llamada a la función: */
-            MostrarValoresDelSharedPreferences();
-
-
-            /* Llamada a la función: */
-            GuardarConfiguracionDeActivityEnUnSharedPreferences("Fecha",FechaActualDelSistema);
-
-
-            CambiarColoresEditarTandasCerradas();
-
-
-            Toast.makeText(Cargas_Descargas.this, "¡Buen día! Un nuevo día laboral ha comenzado. Consulte las" +
-            "tandas del día de ayer si así lo requiera", Toast.LENGTH_LONG).show();
-
-
-
-        }//Fin del else
+        }*/ //Fin del else
 
 
 

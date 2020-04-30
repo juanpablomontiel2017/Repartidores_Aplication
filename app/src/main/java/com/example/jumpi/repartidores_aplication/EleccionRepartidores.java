@@ -90,7 +90,7 @@ public class EleccionRepartidores extends AppCompatActivity {
                         /*Llamada a la función: */
                         IniciarActivityCargaDescarga(view);
 
-                        Toast.makeText(EleccionRepartidores.this, "¡Ha ingresado a la activity 'Carga y Descarga'!", Toast.LENGTH_LONG).show();
+                        //Toast.makeText(EleccionRepartidores.this, "¡Ha ingresado a la activity 'Carga y Descarga'!", Toast.LENGTH_LONG).show();
 
                         break;
 
@@ -160,6 +160,8 @@ public class EleccionRepartidores extends AppCompatActivity {
             intent.putExtra("nombre_apellido_repartidor",nombre_apellido_repartidor_enviar);
 
             startActivity(intent);
+
+            //finish();
 
 
 
