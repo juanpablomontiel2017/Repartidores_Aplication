@@ -1457,6 +1457,8 @@ public class RealizarVentasClientesSupervisor extends AppCompatActivity {
                     /*Llamada a la función: */
                     Utils_Spinner.RefrescarOtrosSpinnerConBordes((Spinner)adapterView,ArticuloSeleccionadoAnterior,text, RealizarVentasClientesSupervisor.this);
 
+                    //cuando entra por 2da vez a la activity salta el error debido que a que la cantidad recibe un
+                    //valor vacío
 
                     Integer cantidadDeArticulo = Utils_Spinner.obtenerCantidadDeArticulo((Spinner) adapterView);
                     importeAntesDeModificacion = getImporte(ArticuloSeleccionadoAnterior, cantidadDeArticulo);
