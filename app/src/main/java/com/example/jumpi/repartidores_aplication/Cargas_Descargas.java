@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -39,7 +40,7 @@ import static android.view.View.GONE;
 
 public class Cargas_Descargas extends AppCompatActivity {
 
-
+    Boolean flag = false;
 
 
     /************** DECLARACIÓN DE VARIABLES GLOBALES***********/
@@ -141,23 +142,74 @@ public class Cargas_Descargas extends AppCompatActivity {
         setContentView(R.layout.activity_cargas_descargas);
 
 
-
-
-
-
-        String Nombre_Dia = UtilidadFecha.getNombreDelDia();
-
-
-
-
-
         /**Recibir como parámetro el Nombre&Apellido del repartidor de la activity de EleccionRepartidores**/
         nombre_apellido_recibir = getIntent().getStringExtra("nombre_apellido_repartidor");
 
-
-
-
         Estado_Tanda = Boolean.parseBoolean(LeerConfiguracionDeActivityEnUnSharedPreferences("EstadoTanda" + nombre_apellido_recibir));
+
+        String Nombre_Dia = UtilidadFecha.getNombreDelDia();
+
+        String FechaActualDelSistema = UtilidadFecha.getFecha("dd/MM/yyyy");
+
+        //String FechaGuardada;
+        String FechaGuardada = "02/05/2020";
+
+/*
+
+        if(LeerConfiguracionDeActivityEnUnSharedPreferences("Fecha").equals("true")){
+
+            FechaGuardada = (UtilidadFecha.SetearFecha(2000,00,01));
+
+        }//Fin del if
+
+        else {
+
+            FechaGuardada = LeerConfiguracionDeActivityEnUnSharedPreferences("Fecha");
+
+        } //Fin del else
+
+
+*/
+
+
+
+        if(FechaGuardada.equals(FechaActualDelSistema)) {
+
+            Toast.makeText(Cargas_Descargas.this, "Dia: " + Nombre_Dia, Toast.LENGTH_LONG).show();
+
+
+        } //Fin del primer if
+
+
+
+
+        else {
+
+            GuardarConfiguracionDeActivityEnUnSharedPreferences("EstadoTanda" + nombre_apellido_recibir, "true");
+
+            Estado_Tanda = true;
+
+
+            if(Estado_Tanda){
+
+                /*Llamada a la función: */
+                CierreDeTandaCorrecto(FechaActualDelSistema);
+
+            } else{
+
+                /*Llamada a la función: */
+                CierreDeTandaAbrupto(FechaActualDelSistema);
+
+
+            }
+
+
+        }//Fin del else
+
+
+
+
+
 
 
 
@@ -180,67 +232,13 @@ public class Cargas_Descargas extends AppCompatActivity {
 
         }//FIN DE else
 
-
-
-
-
-
-
-        String FechaActualDelSistema = UtilidadFecha.getFecha("dd/MM/yyyy");
-
-
-        //String FechaGuardada;
-        String FechaGuardada = "28/04/2020";
-
-/*
-
-        if(LeerConfiguracionDeActivityEnUnSharedPreferences("Fecha").equals("true")){
-
-            FechaGuardada = (UtilidadFecha.SetearFecha(2000,00,01));
-
-        }//Fin del if
-
-        else {
-
-            FechaGuardada = LeerConfiguracionDeActivityEnUnSharedPreferences("Fecha");
-
-        } //Fin del else
-
-
-*/
-
-
-
-
-
-        if(FechaGuardada.equals(FechaActualDelSistema)) {
-
-            Toast.makeText(Cargas_Descargas.this, "Dia: " + Nombre_Dia, Toast.LENGTH_LONG).show();
-
-
-
-
-        } //Fin del primer if
-
-
-
-
-         else {
-
-            GuardarConfiguracionDeActivityEnUnSharedPreferences("EstadoTanda" + nombre_apellido_recibir, "true");
-
-            /*Llamada a la función: */
-            CierreDeTanda(FechaActualDelSistema);
-
-        }//Fin del else
-
-
-
-
-
-
-
     } /*********************************FIN DEL onCreate()*******************************************/
+
+
+
+
+
+
 
 
     /***********************************************************************************************/
@@ -735,13 +733,7 @@ public class Cargas_Descargas extends AppCompatActivity {
     /***********************************************************************************************/
 
 
-
-    public void CierreDeTanda(final String FechaActualDelSistema){
-
-
-
-        //Pregunta si la tanda no fue cerrada
-        //if(!Estado_Tanda) {
+    public void CierreDeTandaCorrecto(final String FechaActualDelSistema){
 
 
         AlertDialog.Builder builder = new AlertDialog.Builder(Cargas_Descargas.this);
@@ -750,17 +742,13 @@ public class Cargas_Descargas extends AppCompatActivity {
         builder.setMessage("¡Un nuevo día laboral ha comenzado! Consulte las tandas del día de ayer si así lo requiera");
 
 
+
         builder.setPositiveButton("ACEPTAR", new DialogInterface.OnClickListener() {
 
             public void onClick(DialogInterface dialog, int id) {
 
 
-                finish();
-                startActivity(getIntent());
-
-                BorrarValoresDelSharedPreferences();
-
-                //CambiarColoresEditarTandasCerradas();
+                dialog.cancel(); //Cierra dialogo.
 
 
             }
@@ -768,83 +756,22 @@ public class Cargas_Descargas extends AppCompatActivity {
         });
 
 
+
         AlertDialog dialog = builder.create();
         dialog.show();
 
 
+        BorrarValoresDelSharedPreferences();
 
+        MostrarValoresDelSharedPreferences();
 
-
-            //MostrarValoresDelSharedPreferences();
-
-
-            //GuardarConfiguracionDeActivityEnUnSharedPreferences("Fecha" + nombre_apellido_recibir, FechaActualDelSistema);
-
-
-            //CambiarColoresEditarTandasCerradas();
-
-
-            //Toast.makeText(Cargas_Descargas.this, "¡Buen día! Un nuevo día laboral ha comenzado. Consulte las" +
-              //      "tandas del día de ayer si así lo requiera", Toast.LENGTH_LONG).show();
-
-       // }
-
-/*
-
-            BorrarValoresDelSharedPreferences();
-
-            //MostrarValoresDelSharedPreferences();
-
-
-            GuardarConfiguracionDeActivityEnUnSharedPreferences("Fecha" + nombre_apellido_recibir, FechaActualDelSistema);
-
-
-
-
-            AlertDialog.Builder builder = new AlertDialog.Builder(Cargas_Descargas.this);
-            builder.setIcon(R.drawable.ic_msj_alerta);
-            builder.setTitle("La tanda del día de ayer se ha cerrado abruptamente!");
-            builder.setMessage("¡Esto se debe porque ha comenzado un nuevo día laboral. Por favor verifique si existen incosistencias.!");
-
-
-            builder.setPositiveButton("ACEPTAR", new DialogInterface.OnClickListener() {
-
-                public void onClick(DialogInterface dialog, int id) {
-
-
-                }
-
-            });
-
-
-            AlertDialog dialog = builder.create();
-            dialog.show();
+        GuardarConfiguracionDeActivityEnUnSharedPreferences("Fecha" + nombre_apellido_recibir, FechaActualDelSistema);
 
 
 
 
 
-
-
-
-
-        } */ //Fin del if
-
-
-        //Si la tanda se ha cerrado:
-        /*else {
-
-
-
-
-        }*/ //Fin del else
-
-
-
-
-
-
-    }/***********************FIN DE LA FUNCIÓN CierreDeTanda()********************************/
+    }/***********************FIN DE LA FUNCIÓN CierreDeTandaCorrecto()********************************/
 
 
 
@@ -863,6 +790,58 @@ public class Cargas_Descargas extends AppCompatActivity {
     /***************************************************************************************************/
 
 
+
+
+    public void CierreDeTandaAbrupto(final String FechaActualDelSistema){
+
+
+        AlertDialog.Builder builder = new AlertDialog.Builder(Cargas_Descargas.this);
+        builder.setIcon(R.drawable.ic_msj_alerta);
+        builder.setTitle("¡Las tandas se han cerrado automáticamente!");
+        builder.setMessage("¡Esto se debe a que se ha olvidado de cerrar las tandas del días de ayer!");
+
+
+
+        builder.setPositiveButton("ACEPTAR", new DialogInterface.OnClickListener() {
+
+            public void onClick(DialogInterface dialog, int id) {
+
+
+                dialog.cancel(); //Cierra dialogo.
+
+
+            }
+
+        });
+
+
+
+        AlertDialog dialog = builder.create();
+        dialog.show();
+
+
+        BorrarValoresDelSharedPreferences();
+
+        MostrarValoresDelSharedPreferences();
+
+        GuardarConfiguracionDeActivityEnUnSharedPreferences("Fecha" + nombre_apellido_recibir, FechaActualDelSistema);
+
+
+
+
+    }/***********************FIN DE LA FUNCIÓN CierreDeTandaAbrupto()********************************/
+
+
+    /***************************************************************************************************/
+    /***************************************************************************************************/
+    /***************************************************************************************************/
+    /***************************************************************************************************/
+    /***************************************************************************************************/
+    /***************************************************************************************************/
+    /***************************************************************************************************/
+    /***************************************************************************************************/
+    /***************************************************************************************************/
+    /***************************************************************************************************/
 
 
 
