@@ -1038,7 +1038,7 @@ public class Mapa_Repartidores extends AppCompatActivity implements OnMapReadyCa
                 return null;
             }
 
-            String geoJson = loadGeoJsonFromAsset(activity, "waypoints90puntos.geojson");
+            String geoJson = loadGeoJsonFromAsset(activity, "map.geojson");
             return FeatureCollection.fromJson(geoJson);
         }
 

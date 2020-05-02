@@ -169,6 +169,8 @@ public class ClientesRecyclerViewAdapter extends RecyclerView.Adapter<ClientesRe
 
 
 
+
+
                     }
                 });
 

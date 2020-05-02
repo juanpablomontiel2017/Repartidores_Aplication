@@ -154,8 +154,8 @@ public class Cargas_Descargas extends AppCompatActivity {
         //String FechaGuardada;
         String FechaGuardada = "02/05/2020";
 
-/*
 
+/*
         if(LeerConfiguracionDeActivityEnUnSharedPreferences("Fecha").equals("true")){
 
             FechaGuardada = (UtilidadFecha.SetearFecha(2000,00,01));
@@ -180,18 +180,15 @@ public class Cargas_Descargas extends AppCompatActivity {
 
         } //Fin del primer if
 
-
-
-
         else {
 
-            GuardarConfiguracionDeActivityEnUnSharedPreferences("EstadoTanda" + nombre_apellido_recibir, "true");
+            //GuardarConfiguracionDeActivityEnUnSharedPreferences("EstadoTanda" + nombre_apellido_recibir, "true");
 
-            Estado_Tanda = true;
+            //Estado_Tanda = true;
 
 
-            if(Estado_Tanda){
-
+            if(!Estado_Tanda){
+                
                 /*Llamada a la función: */
                 CierreDeTandaCorrecto(FechaActualDelSistema);
 
@@ -199,10 +196,7 @@ public class Cargas_Descargas extends AppCompatActivity {
 
                 /*Llamada a la función: */
                 CierreDeTandaAbrupto(FechaActualDelSistema);
-
-
             }
-
 
         }//Fin del else
 
