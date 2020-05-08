@@ -15,17 +15,6 @@
 
 
 
-    <Button
-
-        android:id="@+id/btn_comenzar_reparto"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Comenzar ruta de reparto"
-        android:background="@color/mapboxGrayLight"
-        android:enabled="false"
-        android:clickable="true"/>
-
-
 
 
     <com.mapbox.mapboxsdk.maps.MapView
