@@ -237,11 +237,11 @@ public class Mapa_Repartidores extends AppCompatActivity implements OnMapReadyCa
                 //Point originPoint = fromLngLat(locationComponent.getLastKnownLocation().getLongitude(),
                 //        locationComponent.getLastKnownLocation().getLatitude());
 
-                Point originPoint = fromLngLat(-60.446815, -26.784306) ;
+                //Point originPoint = fromLngLat(-60.446815, -26.784306) ;
 
-                Point destinationPoint = fromLngLat(-60.429515,-26.76976) ;
+                //Point destinationPoint = fromLngLat(-60.429515,-26.76976) ;
 
-                getRoute(originPoint,destinationPoint);
+                //getRoute(originPoint,destinationPoint);
 
 
                 BotonComenzarReparto = findViewById(R.id.btn_comenzar_reparto);
@@ -1127,8 +1127,11 @@ public class Mapa_Repartidores extends AppCompatActivity implements OnMapReadyCa
                 return null;
             }
 
-            String geoJson = loadGeoJsonFromAsset(activity, "waypoints_20_puntos.geojson");
-            return FeatureCollection.fromJson(geoJson);
+            //String geoJson = loadGeoJsonFromAsset(activity, "waypoints_20_puntos.geojson");
+            //return FeatureCollection.fromJson(geoJson);
+
+            return null;
+
         }
 
 
