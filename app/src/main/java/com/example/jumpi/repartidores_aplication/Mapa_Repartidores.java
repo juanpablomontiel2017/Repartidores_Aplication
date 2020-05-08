@@ -6,6 +6,8 @@ import android.animation.TypeEvaluator;
 import android.animation.ValueAnimator;
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
@@ -26,6 +28,7 @@ import java.util.Map;
 import java.util.Objects;
 import java.util.Scanner;
 
+import android.preference.PreferenceManager;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -75,6 +78,7 @@ import com.mapbox.mapboxsdk.style.layers.PropertyFactory;
 import com.mapbox.mapboxsdk.style.layers.SymbolLayer;
 import com.mapbox.mapboxsdk.style.sources.GeoJsonSource;
 
+import static com.mapbox.geojson.Point.fromLngLat;
 import static com.mapbox.mapboxsdk.style.expressions.Expression.literal;
 import static com.mapbox.mapboxsdk.style.layers.Property.ICON_ANCHOR_BOTTOM;
 import static com.mapbox.mapboxsdk.style.layers.PropertyFactory.iconAllowOverlap;
@@ -91,8 +95,11 @@ import com.mapbox.mapboxsdk.utils.BitmapUtils;
 import com.mapbox.mapboxsdk.utils.ColorUtils;
 import com.mapbox.services.android.navigation.ui.v5.NavigationLauncher;
 import com.mapbox.services.android.navigation.ui.v5.NavigationLauncherOptions;
+import com.mapbox.services.android.navigation.ui.v5.NavigationView;
+import com.mapbox.services.android.navigation.ui.v5.map.NavigationMapboxMap;
 import com.mapbox.services.android.navigation.ui.v5.route.NavigationMapRoute;
 import com.mapbox.api.directions.v5.models.DirectionsRoute;
+import com.mapbox.services.android.navigation.v5.navigation.MapboxNavigation;
 import com.mapbox.services.android.navigation.v5.navigation.NavigationRoute;
 
 
@@ -109,8 +116,10 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatDelegate;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.content.res.ResourcesCompat;
+import androidx.navigation.Navigation;
 
 
 import static com.mapbox.mapboxsdk.style.expressions.Expression.eq;
@@ -124,8 +133,8 @@ import static com.mapbox.mapboxsdk.style.layers.PropertyFactory.iconOffset;
 
 
 
-public class Mapa_Repartidores extends AppCompatActivity implements OnMapReadyCallback,
-        MapboxMap.OnMapClickListener, OnLocationClickListener, PermissionsListener, OnCameraTrackingChangedListener {
+public class Mapa_Repartidores extends AppCompatActivity implements OnMapReadyCallback
+        /*MapboxMap.OnMapClickListener*/, OnLocationClickListener, PermissionsListener, OnCameraTrackingChangedListener {
 
     /********************* DECLARACIÓN DE VARIABLES GLOBALES **********************/
 
@@ -140,7 +149,7 @@ public class Mapa_Repartidores extends AppCompatActivity implements OnMapReadyCa
 
     private DirectionsRoute currentRoute;
 
-    private Button button;
+    private Button BotonComenzarReparto;
 
     private NavigationMapRoute navigationMapRoute;
 
@@ -162,8 +171,6 @@ public class Mapa_Repartidores extends AppCompatActivity implements OnMapReadyCa
 
 
 
-
-
     /****************** COMIENZO DEL onCreate() *******************/
 
     @Override
@@ -171,8 +178,6 @@ public class Mapa_Repartidores extends AppCompatActivity implements OnMapReadyCa
         super.onCreate(savedInstanceState);
 
         Mapbox.getInstance(getApplicationContext(), getString(R.string.access_token_repartidor));
-
-
 
 
         setContentView(R.layout.activity_mapa_repartidores);
@@ -205,6 +210,7 @@ public class Mapa_Repartidores extends AppCompatActivity implements OnMapReadyCa
 
 
 
+
     @Override
     public void onMapReady(@NonNull MapboxMap mapboxMap) {
 
@@ -212,8 +218,6 @@ public class Mapa_Repartidores extends AppCompatActivity implements OnMapReadyCa
         this.mapboxMap = mapboxMap;
 
         //this.mapboxMap.setMinZoomPreference(15);
-
-
 
         mapboxMap.setStyle(Style.MAPBOX_STREETS, new Style.OnStyleLoaded() {
 
@@ -226,17 +230,37 @@ public class Mapa_Repartidores extends AppCompatActivity implements OnMapReadyCa
 
                 new LoadGeoJson(Mapa_Repartidores.this).execute();
                 new LoadGeoJsonDataTask(Mapa_Repartidores.this).execute();
-                mapboxMap.addOnMapClickListener(Mapa_Repartidores.this);
+                //mapboxMap.addOnMapClickListener(Mapa_Repartidores.this);
 
 
-                button = findViewById(R.id.btn_draw_polyline);
-                button.setOnClickListener(new View.OnClickListener() {
+
+                //Point originPoint = fromLngLat(locationComponent.getLastKnownLocation().getLongitude(),
+                //        locationComponent.getLastKnownLocation().getLatitude());
+
+                Point originPoint = fromLngLat(-60.446815, -26.784306) ;
+
+                Point destinationPoint = fromLngLat(-60.429515,-26.76976) ;
+
+                getRoute(originPoint,destinationPoint);
+
+
+                BotonComenzarReparto = findViewById(R.id.btn_comenzar_reparto);
+
+
+                BotonComenzarReparto.setEnabled(true);
+                BotonComenzarReparto.setBackgroundResource(R.color.mapboxBlue);
+
+                BotonComenzarReparto.setOnClickListener(new View.OnClickListener() {
 
 
                     @Override
                     public void onClick(View v) {
 
+/*
+                        initNightMode();
+
                         boolean simulateRoute = true;
+
 
                         NavigationLauncherOptions options = NavigationLauncherOptions.builder()
                                 .directionsRoute(currentRoute)
@@ -245,8 +269,13 @@ public class Mapa_Repartidores extends AppCompatActivity implements OnMapReadyCa
 
                         // Call this method with Context from within an Activity
                         NavigationLauncher.startNavigation(Mapa_Repartidores.this, options);
+*/
+                        Intent intent = new Intent (Mapa_Repartidores.this, NavigationRepartidores.class);
+                        startActivity(intent);
+
 
                     }
+
 
                 });
 
@@ -256,7 +285,49 @@ public class Mapa_Repartidores extends AppCompatActivity implements OnMapReadyCa
 
         });
 
-    }/************** FIN DE LA FUNCIÓN onMapReady() **************************/
+    }/********************************* FIN DE LA FUNCIÓN onMapReady() *************************************/
+
+
+
+
+
+    /**************************************************************************/
+    /**************************************************************************/
+    /**************************************************************************/
+    /**************************************************************************/
+    /**************************************************************************/
+    /**************************************************************************/
+    /**************************************************************************/
+    /**************************************************************************/
+    /**************************************************************************/
+
+
+
+    private void initNightMode() {
+        int nightMode = retrieveNightModeFromPreferences();
+        AppCompatDelegate.setDefaultNightMode(nightMode);
+    }
+
+
+    private int retrieveNightModeFromPreferences() {
+        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
+        return preferences.getInt("Modo Nocturno" ,AppCompatDelegate.MODE_NIGHT_AUTO);
+    }
+
+
+
+
+
+
+    /**************************************************************************/
+    /**************************************************************************/
+    /**************************************************************************/
+    /**************************************************************************/
+    /**************************************************************************/
+    /**************************************************************************/
+    /**************************************************************************/
+    /**************************************************************************/
+    /**************************************************************************/
 
 
 
@@ -504,12 +575,12 @@ public class Mapa_Repartidores extends AppCompatActivity implements OnMapReadyCa
     /**************************************************************************/
 
 
-
+/*
     @Override
     public boolean onMapClick(@NonNull LatLng point) {
 
-        Point destinationPoint = Point.fromLngLat(point.getLongitude(), point.getLatitude());
-        Point originPoint = Point.fromLngLat(locationComponent.getLastKnownLocation().getLongitude(),
+        Point destinationPoint = fromLngLat(point.getLongitude(), point.getLatitude());
+        Point originPoint = fromLngLat(locationComponent.getLastKnownLocation().getLongitude(),
                 locationComponent.getLastKnownLocation().getLatitude());
 
 
@@ -520,7 +591,7 @@ public class Mapa_Repartidores extends AppCompatActivity implements OnMapReadyCa
 
         return handleClickIcon(mapboxMap.getProjection().toScreenLocation(point));
 
-    }/************** FIN DE LA FUNCIÓN onMapClick() **************************/
+    } */ /************** FIN DE LA FUNCIÓN onMapClick() **************************/
 
     /**************************************************************************/
     /**************************************************************************/
@@ -565,8 +636,11 @@ public class Mapa_Repartidores extends AppCompatActivity implements OnMapReadyCa
                         if (navigationMapRoute != null) {
                             navigationMapRoute.removeRoute();
                         } else {
+
                             navigationMapRoute = new NavigationMapRoute(null, mapView, mapboxMap, R.style.NavigationMapRoute);
+
                         }
+
                         navigationMapRoute.addRoute(currentRoute);
                     }
 
@@ -582,6 +656,21 @@ public class Mapa_Repartidores extends AppCompatActivity implements OnMapReadyCa
 
 
     }/************** FIN DE LA FUNCIÓN getRoute() **************************/
+
+
+
+
+    /**************************************************************************/
+    /**************************************************************************/
+    /**************************************************************************/
+    /**************************************************************************/
+    /**************************************************************************/
+    /**************************************************************************/
+    /**************************************************************************/
+    /**************************************************************************/
+    /**************************************************************************/
+
+
 
 
 
@@ -988,7 +1077,7 @@ public class Mapa_Repartidores extends AppCompatActivity implements OnMapReadyCa
             mapboxMap.getStyle(style -> {
 
                 // calling addImages is faster as separate addImage calls for each bitmap.
-                style.addImages(imageMap);
+                //style.addImages(imageMap);
 
 
 
@@ -1038,7 +1127,7 @@ public class Mapa_Repartidores extends AppCompatActivity implements OnMapReadyCa
                 return null;
             }
 
-            String geoJson = loadGeoJsonFromAsset(activity, "map.geojson");
+            String geoJson = loadGeoJsonFromAsset(activity, "waypoints_20_puntos.geojson");
             return FeatureCollection.fromJson(geoJson);
         }
 
@@ -1310,8 +1399,8 @@ public class Mapa_Repartidores extends AppCompatActivity implements OnMapReadyCa
             try {
                 Mapa_Repartidores activity = weakReference.get();
                 if (activity != null) {
-                    InputStream inputStream = activity.getAssets().open("polyline.geojson");
-                    return FeatureCollection.fromJson(convertStreamToString(inputStream));
+                    //InputStream inputStream = activity.getAssets().open("polyline_reparto.geojson");
+                    //return FeatureCollection.fromJson(convertStreamToString(inputStream));
                 }
             } catch (Exception exception) {
                 Timber.e("Exception loading GeoJSON: %s", exception.toString());
@@ -1489,7 +1578,7 @@ public class Mapa_Repartidores extends AppCompatActivity implements OnMapReadyCa
     protected void onDestroy() {
         super.onDestroy();
         if (mapboxMap != null) {
-            mapboxMap.removeOnMapClickListener(this);
+            //mapboxMap.removeOnMapClickListener(this);
         }
         mapView.onDestroy();
     }

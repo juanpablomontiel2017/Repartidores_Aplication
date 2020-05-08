@@ -19,108 +19,115 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+
+
         <activity
             android:name=".Frecuencia_De_Consumo"
             android:label="@string/title_activity_frecuencia__de__consumo"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".LoginActivity"
             android:label=""
             android:theme="@style/AppTheme.NoActionBar">
 
-<!--
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
+            <!--
+                    <intent-filter>
+                        <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
--->
+                        <category android:name="android.intent.category.LAUNCHER" />
+                    </intent-filter>
+            -->
 
         </activity>
 
 
 
 
-
         <!-- #################### Para REPARTIDORES ########################### -->
+
         <activity
             android:name=".Repartidores_Main_Activity"
             android:label=" "
             android:parentActivityName=".LoginActivity"
             android:theme="@style/AppTheme.NoActionBar">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+
+        <activity
+            android:name=".Mapa_Repartidores"
+            android:label=""
+            android:parentActivityName=".Repartidores_Main_Activity"
+            android:theme="@style/AppTheme.NoActionBar">
 
             <!--
-            <intent-filter>
-                 <action android:name="android.intent.action.MAIN" />
-
-                 <category android:name="android.intent.category.LAUNCHER" />
-             </intent-filter> -->
-
-         </activity>
-
-
-
-         <activity
-             android:name=".Mapa_Repartidores"
-             android:label=""
-             android:parentActivityName=".Repartidores_Main_Activity"
-             android:theme="@style/AppTheme.NoActionBar">
-
-           <!--
-
          <intent-filter>
              <action android:name="android.intent.action.MAIN" />
 
              <category android:name="android.intent.category.LAUNCHER" />
          </intent-filter>
-   -->
+            -->
 
-  </activity>
-
-
+        </activity>
 
 
-  <activity
-      android:name=".EditarClientes"
-      android:label="Editar Clientes"
-      android:theme="@style/AppTheme.NoActionBar" />
-  <activity
-      android:name=".AgregarCliente"
-      android:label=""
-      android:theme="@style/AppTheme.NoActionBar" />
-  <activity
-      android:name=".Detalle_Envases"
-      android:label=""
-      android:theme="@style/AppTheme.NoActionBar" />
-  <activity
-      android:name=".Detalle_Articulos"
-      android:label=""
-      android:theme="@style/AppTheme.NoActionBar" />
-  <activity
-      android:name=".Detalle_Dinero"
-      android:label=""
-      android:theme="@style/AppTheme.NoActionBar" />
-  <activity
-      android:name=".Detalle_Faltante_Sobrante_Envases"
-      android:label=""
-      android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".NavigationRepartidores"
+            android:label=""
+            android:theme="@style/AppTheme.NoActionBar"></activity>
+
+
+
+        <activity
+            android:name=".EditarClientes"
+            android:label="Editar Clientes"
+            android:theme="@style/AppTheme.NoActionBar" />
+
+
+        <activity
+            android:name=".AgregarCliente"
+            android:label=""
+            android:theme="@style/AppTheme.NoActionBar" />
+
+
+        <activity
+            android:name=".Detalle_Envases"
+            android:label=""
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".Detalle_Articulos"
+            android:label=""
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".Detalle_Dinero"
+            android:label=""
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".Detalle_Faltante_Sobrante_Envases"
+            android:label=""
+            android:theme="@style/AppTheme.NoActionBar" />
+
+
 
 
         <!-- ########################## Para SUPERVISORES ########################### -->
-
         <activity
             android:name=".MainActivitySupervisores"
             android:label=" "
             android:parentActivityName=".LoginActivity"
             android:theme="@style/AppTheme.NoActionBar">
 
-
+            <!--
                                     <intent-filter>
                                         <action android:name="android.intent.action.MAIN" />
 
                                         <category android:name="android.intent.category.LAUNCHER" />
                                     </intent-filter>
-
+            -->
         </activity>
         <activity
             android:name=".CombustibleEstadisticas"
@@ -153,7 +160,7 @@
         <activity
             android:name=".BuscarClienteParaRealizarVenta"
             android:label="Buscar Cliente"
-            android:theme="@style/AppTheme.NoActionBar"/>
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".RealizarVentasClientesSupervisor"
             android:label=""

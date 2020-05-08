@@ -17,7 +17,7 @@
 
     <Button
 
-        android:id="@+id/btn_draw_polyline"
+        android:id="@+id/btn_comenzar_reparto"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Comenzar ruta de reparto"
@@ -26,14 +26,17 @@
         android:clickable="true"/>
 
 
-    <com.mapbox.mapboxsdk.maps.MapView
 
+
+    <com.mapbox.mapboxsdk.maps.MapView
         android:id="@+id/mapViewRepartidores"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         mapbox:mapbox_cameraTargetLat="-26.784317"
         mapbox:mapbox_cameraTargetLng="-60.446838"
         mapbox:mapbox_cameraZoom="15"/>
+
+
 
 
 
