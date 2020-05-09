@@ -1117,8 +1117,8 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
             };/*************************FIN DEL EVENTO Response.Listener()******************************/
 
 
-            utilsRequest request = utilsRequest.loginRequest(mEmail, mPassword, "true", responseListener);
-            MySingleton.getInstance(getApplicationContext()).addToRequestQueue(request);
+            //utilsRequest request = utilsRequest.loginRequest(mEmail, mPassword, "true", responseListener);
+            //MySingleton.getInstance(getApplicationContext()).addToRequestQueue(request);
 
 
             Log.d("TFSB", "Se crea la solicitud al servidor. Usuario: " + mEmail + " Pass: " + mPassword);
@@ -1472,8 +1472,8 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
 
             //En ésta parte del código se crea el reponse para enviarlo al servidor
 
-            utilsRequest request = utilsRequest.loginRequest(mEmail, mPassword, "false", responseListener);
-            MySingleton.getInstance(getApplicationContext()).addToRequestQueue(request);
+            //utilsRequest request = utilsRequest.loginRequest(mEmail, mPassword, "false", responseListener);
+           // MySingleton.getInstance(getApplicationContext()).addToRequestQueue(request);
 
 
             Log.d("TFSB", "Se crea la solicitud al servidor. Usuario: " + mEmail + " Pass: " + mPassword);
@@ -1958,8 +1958,8 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
 
             //En ésta parte del código se crea el reponse para enviarlo al servidor
 
-            utilsRequest request = utilsRequest.loginRequest(mEmail, mPassword, "true", responseListener);
-            MySingleton.getInstance(getApplicationContext()).addToRequestQueue(request);
+          //  utilsRequest request = utilsRequest.loginRequest(mEmail, mPassword, "true", responseListener);
+           // MySingleton.getInstance(getApplicationContext()).addToRequestQueue(request);
 
 
             Log.d("TFSB", "DbUserLogin/ Se crea la solicitud al servidor. Usuario: " + mEmail + " pass: " + mPassword);

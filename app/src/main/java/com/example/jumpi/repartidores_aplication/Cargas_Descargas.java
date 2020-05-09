@@ -6,13 +6,11 @@ import android.content.DialogInterface;
 import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.text.TextUtils;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -31,28 +29,19 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.android.volley.Request;
-import com.android.volley.RequestQueue;
-import com.android.volley.Response;
-import com.android.volley.VolleyError;
-import com.android.volley.toolbox.Volley;
-
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collection;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Set;
 
 import static android.view.View.GONE;
 
-public class Cargas_Descargas extends AppCompatActivity {
+public class Cargas_Descargas extends AppCompatActivity implements interfaceRequest{
 
     /************** DECLARACIÓN DE VARIABLES GLOBALES***********/
+
+    private final int NUEVA_CARGA_DESCARGA = 2401;
 
 
     /******ScrollView********/
@@ -517,66 +506,17 @@ public class Cargas_Descargas extends AppCompatActivity {
             String idSupervisor = usuario.getIdPersona();
 
 
-            Response.Listener<JSONObject> responseListener = new Response.Listener<JSONObject>() {
-                @Override
-                public void onResponse(JSONObject response) {
-                    Log.d("TFSB", "response del server");
-
-                    try{
-
-                        JSONObject jsonResponse = new JSONObject(String.valueOf(response));
-
-                        boolean success = jsonResponse.getBoolean("exito");
-                        if (success){
-                            JSONObject jsonData = jsonResponse.getJSONObject("data");
-
-                            if (jsonData.has("tandas")) {
 
 
-                                JSONArray jsonArrayResultado = jsonData.getJSONArray("tandas");
-                                
 
 
-                                for (int i = 0; i < jsonArrayResultado.length(); i++) {
-                                    JSONObject tanda = null;
-                                    try{
-                                        tanda = jsonArrayResultado.getJSONObject(i);
-                                        String idCarga = tanda.getString("idCarga");
-                                        JSONObject detalleCarga = tanda.getJSONObject("detalleCarga");
-                                        if (detalleCarga.has("id")){
-                                            JSONArray idsDetalleCarga = detalleCarga.getJSONArray("id");
-                                            for (int j = 0; i < idsDetalleCarga.length(); i++) {
-                                                // Recorre los id de los detalle de carga
-
-                                            }
-
-                                        }
-
-                                    }
-                                    catch (JSONException e) {
-                                    e.printStackTrace();
-                                    Log.d("TAG", "Error en response Carga Descarga. Falla en la lectura de la tanda" + e.toString());
-                                    Log.d("TAG", "Resultado: "+tanda);
-                                    }
-
-                                }
-
-                                
-                            }
-
-                            }else{
-
-                        }
-
-                    }catch (JSONException a){
-                        Log.e("TAG", "Error en response Carga Descarga " + a.toString());
-
-                    }
-                }
-            };
-
-            utilsRequest request = utilsRequest.cargaDescarga(idSupervisor,dniSupervisor, UtilidadFecha.getFecha("yyyy/MM/dd"),idRepartidor,dniRepartidor, ArrayListCargas, responseListener);
-            MySingleton.getInstance(getApplicationContext()).addToRequestQueue(request);
+            utilsRequest request = new utilsRequest(this,this);
+            try {
+                request.cargaDescarga(idSupervisor,dniSupervisor, UtilidadFecha.getFecha("yyyy/MM/dd"),idRepartidor,dniRepartidor, ArrayListCargas, NUEVA_CARGA_DESCARGA);
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+            //MySingleton.getInstance(getApplicationContext()).addToRequestQueue(request);
 
 
 
@@ -3492,7 +3432,63 @@ public void ObtenerNuevoArticulo(String ValorElementoSeleccionadoSpinnerPrograma
 
 
 
-        }/****************************************FIN DE LA FUNCIÓN onOptionsItemSelected()*****************************************/
+        }
+
+    @Override
+    public void ResultJson(String result, int idRequest) throws JSONException {
+        switch (idRequest){
+            case NUEVA_CARGA_DESCARGA:
+
+
+
+                    JSONObject jsonResponse = new JSONObject(result);
+
+                    boolean success = jsonResponse.getBoolean("exito");
+                    if (success){
+                        JSONObject jsonData = jsonResponse.getJSONObject("data");
+
+                        if (jsonData.has("tandas")) {
+
+                            JSONArray jsonArrayResultado = jsonData.getJSONArray("tandas");
+                            for (int i = 0; i < jsonArrayResultado.length(); i++) {
+                                JSONObject tanda = null;
+
+                                    tanda = jsonArrayResultado.getJSONObject(i);
+                                    String idCarga = tanda.getString("idCarga");
+                                    JSONObject detalleCarga = tanda.getJSONObject("detalleCarga");
+                                    if (detalleCarga.has("id")){
+                                        JSONArray idsDetalleCarga = detalleCarga.getJSONArray("id");
+                                        for (int j = 0; i < idsDetalleCarga.length(); i++) {
+                                            // Recorre los id de los detalle de carga
+
+                                        }
+
+                                    }
+
+                            }
+
+
+                        }else{
+                            Log.d("TAG", "No existen tandas");
+
+                        }
+
+                    }else{
+                        Log.d("TAG", "sucess = false");
+                    }
+
+
+
+
+                break;
+        }
+    }
+
+    @Override
+    public void ResultError(String error) {
+        Log.d("TAG", error);
+    }
+
 
 
 
