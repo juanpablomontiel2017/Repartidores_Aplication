@@ -8,23 +8,48 @@ import android.os.Bundle;
 import com.android.volley.Response;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
+import com.mapbox.android.core.location.LocationEngine;
+import com.mapbox.android.core.location.LocationEngineProvider;
+import com.mapbox.android.core.location.LocationEngineRequest;
+import com.mapbox.api.directions.v5.DirectionsCriteria;
+import com.mapbox.api.directions.v5.models.BannerText;
 import com.mapbox.api.directions.v5.models.DirectionsResponse;
 import com.mapbox.api.directions.v5.models.DirectionsRoute;
 import com.mapbox.geojson.Point;
 import com.mapbox.mapboxsdk.Mapbox;
+import com.mapbox.mapboxsdk.location.LocationComponent;
+import com.mapbox.mapboxsdk.location.modes.RenderMode;
 import com.mapbox.services.android.navigation.ui.v5.NavigationView;
 import com.mapbox.services.android.navigation.ui.v5.NavigationViewOptions;
 import com.mapbox.services.android.navigation.ui.v5.OnNavigationReadyCallback;
+import com.mapbox.services.android.navigation.ui.v5.instruction.InstructionLoader;
+import com.mapbox.services.android.navigation.ui.v5.instruction.InstructionView;
+import com.mapbox.services.android.navigation.ui.v5.listeners.FeedbackListener;
 import com.mapbox.services.android.navigation.ui.v5.listeners.NavigationListener;
 import com.mapbox.services.android.navigation.ui.v5.listeners.RouteListener;
+import com.mapbox.services.android.navigation.ui.v5.map.NavigationMapboxMap;
+import com.mapbox.services.android.navigation.ui.v5.map.NavigationMapboxMapInstanceState;
+import com.mapbox.services.android.navigation.ui.v5.route.NavigationMapRoute;
+import com.mapbox.services.android.navigation.v5.instruction.Instruction;
+import com.mapbox.services.android.navigation.v5.milestone.BannerInstructionMilestone;
+import com.mapbox.services.android.navigation.v5.milestone.Milestone;
+import com.mapbox.services.android.navigation.v5.milestone.MilestoneEventListener;
+import com.mapbox.services.android.navigation.v5.milestone.RouteMilestone;
+import com.mapbox.services.android.navigation.v5.milestone.Trigger;
+import com.mapbox.services.android.navigation.v5.milestone.TriggerProperty;
+import com.mapbox.services.android.navigation.v5.navigation.MapboxNavigation;
+import com.mapbox.services.android.navigation.v5.navigation.NavigationConstants;
 import com.mapbox.services.android.navigation.v5.navigation.NavigationRoute;
+import com.mapbox.services.android.navigation.v5.offroute.OffRouteListener;
 import com.mapbox.services.android.navigation.v5.routeprogress.ProgressChangeListener;
 import com.mapbox.services.android.navigation.v5.routeprogress.RouteProgress;
+import com.mapbox.services.android.navigation.v5.utils.DistanceFormatter;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatDelegate;
 import androidx.appcompat.widget.Toolbar;
+import androidx.navigation.Navigation;
 
 import android.preference.PreferenceManager;
 import android.view.View;
@@ -32,6 +57,7 @@ import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
 import retrofit2.Call;
 
@@ -50,16 +76,24 @@ public class NavigationRepartidores extends AppCompatActivity implements OnNavig
     private List<Point> puntos_clientes = new ArrayList<>();
 
 
+    private LocationComponent locationComponent;
+
+
+
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
+        MapboxNavigation navigation = new MapboxNavigation(getApplicationContext(), getString(R.string.access_token_repartidor));
+
         setTheme(R.style.Theme_AppCompat_NoActionBar);
+
         super.onCreate(savedInstanceState);
 
 
         initNightMode();
+        
 
         //Punto de origen: envasadora AquaVital
         puntos_clientes.add(Point.fromLngLat(-60.446815, -26.784306));
@@ -68,8 +102,6 @@ public class NavigationRepartidores extends AppCompatActivity implements OnNavig
         puntos_clientes.add(Point.fromLngLat(-60.448241,-26.790556));
         puntos_clientes.add(Point.fromLngLat(-60.448427,-26.792986));
         puntos_clientes.add(Point.fromLngLat(-60.446893,-26.792885));
-
-
         puntos_clientes.add(Point.fromLngLat(-60.444785,-26.794505));
         puntos_clientes.add(Point.fromLngLat(-60.442989,-26.792107));
         puntos_clientes.add(Point.fromLngLat(-60.442023,-26.793726));
@@ -87,10 +119,21 @@ public class NavigationRepartidores extends AppCompatActivity implements OnNavig
 
 
 
-
     }/************************** FIN DEL onCreate() **************************************/
 
 
+
+
+    /********************************************************************************************/
+    /********************************************************************************************/
+    /********************************************************************************************/
+    /********************************************************************************************/
+    /********************************************************************************************/
+    /********************************************************************************************/
+    /********************************************************************************************/
+    /********************************************************************************************/
+    /********************************************************************************************/
+    /********************************************************************************************/
 
 
     private void initNightMode() {
@@ -103,6 +146,19 @@ public class NavigationRepartidores extends AppCompatActivity implements OnNavig
         SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
         return preferences.getInt("Modo Nocturno" ,AppCompatDelegate.MODE_NIGHT_AUTO);
     }
+
+
+
+    /********************************************************************************************/
+    /********************************************************************************************/
+    /********************************************************************************************/
+    /********************************************************************************************/
+    /********************************************************************************************/
+    /********************************************************************************************/
+    /********************************************************************************************/
+    /********************************************************************************************/
+    /********************************************************************************************/
+    /********************************************************************************************/
 
 
 
@@ -127,7 +183,7 @@ public class NavigationRepartidores extends AppCompatActivity implements OnNavig
 
     @Override
     public void onBackPressed() {
-// If the navigation view didn't need to do anything, call super
+        // If the navigation view didn't need to do anything, call super
         if (!navigationView.onBackPressed()) {
             super.onBackPressed();
         }
@@ -162,6 +218,21 @@ public class NavigationRepartidores extends AppCompatActivity implements OnNavig
         super.onDestroy();
         navigationView.onDestroy();
     }
+
+
+
+    /********************************************************************************************/
+    /********************************************************************************************/
+    /********************************************************************************************/
+    /********************************************************************************************/
+    /********************************************************************************************/
+    /********************************************************************************************/
+    /********************************************************************************************/
+    /********************************************************************************************/
+    /********************************************************************************************/
+    /********************************************************************************************/
+
+
 
     @Override
     public void onNavigationReady(boolean isRunning) {
@@ -209,7 +280,7 @@ public class NavigationRepartidores extends AppCompatActivity implements OnNavig
         if (!dropoffDialogShown && !puntos_clientes.isEmpty()) {
             showDropoffDialog();
             dropoffDialogShown = true; // Accounts for multiple arrival events
-            Toast.makeText(this, "You have arrived!", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Haz llegado a tu destino!", Toast.LENGTH_SHORT).show();
         }
     }
 
@@ -242,6 +313,7 @@ public class NavigationRepartidores extends AppCompatActivity implements OnNavig
                 .origin(origin)
                 .destination(destination)
                 .alternatives(true)
+                .voiceUnits(DirectionsCriteria.METRIC)
                 .build()
                 .getRoute(new SimplifiedCallback() {
                     @Override
@@ -263,18 +335,13 @@ public class NavigationRepartidores extends AppCompatActivity implements OnNavig
                 .progressChangeListener(this)
                 .routeListener(this)
                 .shouldSimulateRoute(true);
+
         return options.build();
     }
 
     private Point getLastKnownLocation() {
         return Point.fromLngLat(lastKnownLocation.getLongitude(), lastKnownLocation.getLatitude());
     }
-
-
-
-
-
-
 
 
 
