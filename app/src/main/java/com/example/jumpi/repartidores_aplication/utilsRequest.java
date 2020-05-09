@@ -1,6 +1,5 @@
 package com.example.jumpi.repartidores_aplication;
 
-import android.os.AsyncTask;
 import android.util.Log;
 
 import com.android.volley.AuthFailureError;
@@ -100,96 +99,6 @@ public class utilsRequest extends JsonObjectRequest {
         Log.d("TFSB", "retorna request");
         return request;
 
-
-    }
-
-
-    public class Request extends AsyncTask<String,Void, String> {
-
-        int CONSULTA;
-        InterfaceRequest RESPUESTA = interfaceRequest;
-        Notificacion NOTIFICACION = Notificacion;
-        String URL_REQUEST;
-        String METHOD;
-        String PARAMETROS;
-
-        @Override
-        protected String doInBackground(String... params) {
-
-            CONSULTA = Integer.parseInt(params[0]);
-            URL_REQUEST = params[1];
-            METHOD = params[2];
-            try{
-                PARAMETROS = params[3];
-            }catch (Exception e){
-                PARAMETROS = "";
-            }
-
-            HttpClient httpClient = new DefaultHttpClient();
-
-            System.out.println("CONSULTA SERVER"+ URL_REQUEST +"PARAMETROS"+PARAMETROS);
-
-            switch (METHOD) {
-                case "GET":
-                    try {
-                        HttpGet get = new HttpGet(URL_REQUEST);
-                        get.setHeader("content-type", "application/json");
-                        get.setHeader("Authorization",Token);
-                        HttpResponse resp = httpClient.execute(get);
-                        return EntityUtils.toString(resp.getEntity());
-                    } catch (UnsupportedEncodingException e) {
-                        e.printStackTrace();
-                        return "Error" + e;
-                    } catch (ClientProtocolException e) {
-                        e.printStackTrace();
-                        return "Error" + e;
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                        return "Error" + e;
-                    }
-                case "POST":
-                    try {
-                        HttpPost post = new HttpPost(URL_REQUEST);
-                        post.setHeader("content-type", "application/json");
-                        post.setHeader("Authorization",Token);
-                        StringEntity entity = new StringEntity(PARAMETROS,"UTF-8");
-                        post.setEntity(entity);
-
-
-                        HttpResponse resp = httpClient.execute(post);
-                        return EntityUtils.toString(resp.getEntity());
-                    } catch (UnsupportedEncodingException e) {
-                        e.printStackTrace();
-                        return "Error" + e;
-                    } catch (ClientProtocolException e) {
-                        e.printStackTrace();
-                        return "Error" + e;
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                        return "Error" + e;
-                    }
-
-                default:
-                    return "";
-            }
-
-        }
-
-        @Override
-        protected void onPostExecute(String result) {
-            System.out.println("RESPUESTA SERVER "+result);
-            try {
-
-                if(!result.equals("null")){
-                    RESPUESTA.ResultJson(result,CONSULTA);
-                }else{
-                    RESPUESTA.ResultError("Hubo un error en el servidor, intente nuevamente");
-                }
-            } catch (JSONException e) {
-                e.printStackTrace();
-                RESPUESTA.ResultError(e.toString());
-            }
-        }
 
     }
 
