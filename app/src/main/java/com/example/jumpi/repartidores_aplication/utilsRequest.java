@@ -43,6 +43,30 @@ public class utilsRequest  {
 
     }
 
+    public void loginRequest(String username, String password, String primerIntento, Integer idRequest) {
+
+        Request request = new Request();
+
+
+        JSONObject parametro = new JSONObject();
+
+        try {
+            parametro.put("usuario", username);
+            parametro.put("contraseña", password);
+            parametro.put("intento", primerIntento);
+
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+
+        request.execute(Integer.toString(idRequest),URL_SERVER+vault.LOGIN_REQUEST,"POST",parametro.toString());
+
+
+
+    }
+
+
 
     public void cargaDescarga (String idSupervisor,
                                String dniSupervisor,

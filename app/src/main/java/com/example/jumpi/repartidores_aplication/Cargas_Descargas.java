@@ -3486,7 +3486,8 @@ public void ObtenerNuevoArticulo(String ValorElementoSeleccionadoSpinnerPrograma
 
     @Override
     public void ResultError(String error) {
-        Log.d("TAG", error);
+
+            Log.d("TAG", error);
     }
 
 
