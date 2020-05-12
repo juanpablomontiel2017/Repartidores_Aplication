@@ -1,0 +1,252 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/dialog_clientes_id"
+    android:layout_width="350dp"
+    android:layout_height="wrap_content"
+    android:layout_gravity="center">
+
+
+    <ScrollView
+
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:orientation="vertical"
+            android:weightSum="5">
+
+
+            <!-- #################################################### -->
+
+
+            <LinearLayout
+
+                android:layout_width="match_parent"
+                android:layout_height="100dp"
+                android:layout_weight="1"
+                android:gravity="center_horizontal"
+                android:orientation="horizontal"
+                android:weightSum="3">
+
+
+                <ImageView
+
+                    android:id="@+id/dialog_img_cliente_uno"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:src="@mipmap/cliente_img1_hombrebarbudo_512px" />
+
+
+                <ImageView
+
+                    android:id="@+id/dialog_img_cliente_dos"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:src="@mipmap/cliente_img2_hombrerulos_512px" />
+
+
+                <ImageView
+
+                    android:id="@+id/dialog_img_cliente_tres"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:src="@mipmap/cliente_img3_profesor_512px" />
+
+
+            </LinearLayout>
+
+            <!-- #################################################### -->
+
+
+            <LinearLayout
+
+                android:layout_width="match_parent"
+                android:layout_height="100dp"
+                android:layout_marginTop="5dp"
+                android:layout_weight="1"
+                android:gravity="center_horizontal"
+                android:orientation="horizontal"
+                android:weightSum="3">
+
+
+                <ImageView
+
+                    android:id="@+id/dialog_img_cliente_cuatro"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_weight="1"
+                    android:src="@mipmap/cliente_img4_policia_512px" />
+
+
+                <ImageView
+
+                    android:id="@+id/dialog_img_cliente_cinco"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:src="@mipmap/cliente_img5_sra_512px" />
+
+
+                <ImageView
+
+                    android:id="@+id/dialog_img_cliente_seis"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:src="@mipmap/cliente_img6_profesor_512px" />
+
+
+            </LinearLayout>
+
+
+            <!-- ######################################################### -->
+
+
+            <LinearLayout
+
+                android:layout_width="match_parent"
+                android:layout_height="100dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="10dp"
+                android:layout_weight="1"
+                android:gravity="center_horizontal"
+                android:orientation="horizontal"
+                android:weightSum="3">
+
+
+                <ImageView
+
+                    android:id="@+id/dialog_img_cliente_siete"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:src="@mipmap/cliente_img7_abuelo_512px" />
+
+
+                <ImageView
+
+                    android:id="@+id/dialog_img_cliente_ocho"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_weight="1"
+                    android:src="@mipmap/cliente_img8_chica_512px" />
+
+
+                <ImageView
+
+                    android:id="@+id/dialog_img_cliente_nueve"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:src="@mipmap/cliente_img9_dentista_512px" />
+
+
+            </LinearLayout>
+
+            <!-- ############################################################## -->
+
+
+            <LinearLayout
+
+                android:layout_width="match_parent"
+                android:layout_height="100dp"
+                android:layout_marginTop="5dp"
+                android:layout_weight="1"
+                android:gravity="center_horizontal"
+                android:orientation="horizontal"
+                android:weightSum="3">
+
+
+                <ImageView
+
+                    android:id="@+id/dialog_img_cliente_diez"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:src="@mipmap/cliente_img10_doctor_512px" />
+
+
+                <ImageView
+
+                    android:id="@+id/dialog_img_cliente_once"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:src="@mipmap/cliente_img11_woman" />
+
+
+                <ImageView
+
+                    android:id="@+id/dialog_img_cliente_doce"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_weight="1"
+                    android:src="@mipmap/cliente_img12_abuela_512px" />
+
+
+            </LinearLayout>
+
+
+            <!-- #################################################### -->
+
+
+            <LinearLayout
+
+                android:layout_width="match_parent"
+                android:layout_height="100dp"
+                android:layout_marginTop="5dp"
+                android:layout_weight="1"
+                android:gravity="center_horizontal"
+                android:orientation="horizontal"
+                android:weightSum="3">
+
+
+                <ImageView
+
+                    android:id="@+id/dialog_img_cliente_trece"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:src="@mipmap/cliente_img13_bombero_512px" />
+
+
+                <ImageView
+
+                    android:id="@+id/dialog_img_cliente_catorce"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:src="@mipmap/cliente_img14_man_512px" />
+
+
+                <ImageView
+
+                    android:id="@+id/dialog_img_cliente_quince"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:src="@mipmap/cliente_img15_jardinero_512px" />
+
+
+            </LinearLayout>
+
+            <!-- #################################################### -->
+
+
+
+        </LinearLayout>
+
+    </ScrollView>
+
+
+</RelativeLayout>

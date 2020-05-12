@@ -29,19 +29,19 @@
         android:orientation="horizontal">
 
 
-    <Spinner
+        <Spinner
 
-        android:id="@+id/sp_new_art_ventas_supervisor"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_weight="1"
-        android:gravity="center"
-        android:prompt="@string/title_spinner"
-        android:spinnerMode="dialog">
+            android:layout_weight="1"
+            android:id="@+id/sp_new_art_ventas_supervisor"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:prompt="@string/title_spinner"
+            android:spinnerMode="dialog">
 
-    </Spinner>
+        </Spinner>
 
-    </LinearLayout>
+        </LinearLayout>
 
 
 
@@ -55,6 +55,8 @@
         android:hint="Cantidad"
         android:imeOptions="actionNext"
         android:inputType="number" />
+
+
 
 
 </LinearLayout>

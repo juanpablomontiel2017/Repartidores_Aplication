@@ -67,11 +67,9 @@
                     android:layout_height="150dp"
                     android:layout_marginRight="150dp"
                     android:layout_marginBottom="10dp"
-                    android:src="@mipmap/img_nuevo_cliente" />
+                    android:src="@mipmap/cliente_img7_abuelo_512px" />
 
             </LinearLayout>
-
-
 
 
 
@@ -553,7 +551,7 @@
                         android:layout_weight="1"
                         android:gravity="center"
                         android:hint="(Obligatorio)"
-                        android:inputType="textMultiLine"
+                        android:inputType="textCapSentences|textMultiLine"
                         android:maxLength="150"
                         android:textSize="20sp"
                         android:textStyle="bold"
@@ -624,7 +622,7 @@
                         android:layout_weight="1"
                         android:gravity="center"
                         android:hint="(Obligatorio)"
-                        android:inputType="textMultiLine"
+                        android:inputType="textCapSentences|textMultiLine"
                         android:maxLength="100"
                         android:textSize="20sp"
                         android:textStyle="bold"
@@ -770,7 +768,7 @@
                         android:layout_weight="1"
                         android:gravity="center"
                         android:hint="(Obligatorio)"
-                        android:inputType="textMultiLine"
+                        android:inputType="textCapSentences|textMultiLine"
                         android:maxLength="150"
                         android:textSize="20sp"
                         android:textStyle="bold"
@@ -931,7 +929,7 @@
                         android:layout_weight="1"
                         android:gravity="center"
                         android:hint="(Obligatorio)"
-                        android:inputType="textMultiLine"
+                        android:inputType="textCapSentences|textMultiLine"
                         android:maxLength="100"
                         android:textSize="20sp"
                         android:textStyle="bold"
@@ -1007,7 +1005,7 @@
                         android:layout_weight="1"
                         android:gravity="center"
                         android:hint="(Obligatorio)"
-                        android:inputType="textMultiLine"
+                        android:inputType="textCapSentences|textMultiLine"
                         android:maxLength="150"
                         android:textSize="20sp"
                         android:textStyle="bold"
@@ -1080,7 +1078,7 @@
                         android:layout_weight="1"
                         android:gravity="center"
                         android:hint="(Obligatorio)"
-                        android:inputType="textMultiLine"
+                        android:inputType="textCapSentences|textMultiLine"
                         android:maxLength="100"
                         android:textSize="20sp"
                         android:textStyle="bold"
@@ -1156,7 +1154,7 @@
                         android:layout_weight="1"
                         android:gravity="center"
                         android:hint="(Obligatorio)"
-                        android:inputType="textMultiLine"
+                        android:inputType="textCapSentences|textMultiLine"
                         android:maxLength="150"
                         android:textSize="20sp"
                         android:textStyle="bold"

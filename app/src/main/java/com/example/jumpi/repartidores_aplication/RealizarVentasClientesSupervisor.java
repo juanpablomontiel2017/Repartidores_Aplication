@@ -2,13 +2,13 @@ package com.example.jumpi.repartidores_aplication;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
@@ -16,12 +16,17 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -32,13 +37,9 @@ public class RealizarVentasClientesSupervisor extends AppCompatActivity {
     /*******DECLARACIÓN DE VARIABLES GLOBALES**/
 
 
-
-
-
     /**Variables tipo Spinner**/
 
-    Spinner spinner_ventas_supervisor;
-
+    Spinner spinner_ventas;
 
 
 
@@ -51,29 +52,36 @@ public class RealizarVentasClientesSupervisor extends AppCompatActivity {
 
     /** Variables tipo TextView*/
 
-    TextView Nombre_Apellido_Cliente_Ventas_Supervisor;
+    TextView DNI_Cliente_Ventas;
 
-    TextView Direccion_Cliente_Ventas_Supervisor;
+    TextView Apellido_Cliente_Ventas;
 
-    TextView Barrio_Cliente_Ventas_Supervisor;
+    TextView Nombre_Cliente_Ventas;
 
+    TextView Codigo_Area_Cliente_Ventas;
+
+    TextView Telefono_Cliente_Ventas;
+
+    TextView Direccion_Cliente_Ventas;
+
+    TextView Barrio_Cliente_Ventas;
+
+    TextView Referencia_Cliente_Ventas;
+
+    TextView Correo_Cliente_Ventas;
+
+    TextView Cantidad_Importe_Articulos_Ventas;
 
     /******Variables tipo String********/
 
     String ArticuloSeleccionadoAnterior;
-
-
-
-
-
+    Integer Importe_Articulo;
 
     /**Variables tipo EditText*/
 
     EditText eTCantVentas;
 
     EditText eTEntrega;
-
-
 
 
     /** Variables tipo ImageButton*/
@@ -84,11 +92,38 @@ public class RealizarVentasClientesSupervisor extends AppCompatActivity {
 
 
 
+    /** Variables tipo ImageView*/
+
+    ImageView Foto_Cliente_Ventas;
+
     /** Variables tipo LinearLayout*/
     LinearLayout LinearLayoutVerticalDatosPersonales,LinearLayoutVerticalVentas,LinearLayoutHorizontalContenedorSpinner,
-                 LinearLayoutVerticalImporteEntregaVentas;
+                 LinearLayoutVerticalImporteEntregaVentas, LinearLayoutHorizontalVentas;
 
 
+
+
+    /** Variables enteras*/
+
+    int precio_bidones = 100;
+    int precio_dispenser_plastico = 250;
+    int precio_canillas = 70;
+    int precio_dispenser_electrico = 6000;
+
+    int Importe = 0;
+    int importe_anterior = 0;
+
+
+    Integer importeDespuesDeModificacion = 0;
+    Integer importeAntesDeModificacion = 0;
+
+    int contador_de_inicializacion = 0;
+
+
+
+
+
+    /******************************* COMIENZO DEL onCreate() ******************************/
 
 
     @SuppressLint("ResourceType")
@@ -113,25 +148,32 @@ public class RealizarVentasClientesSupervisor extends AppCompatActivity {
 
 
         /* Para cambiar el color del puntero o "burbuja" del EditText */
-        setTheme(R.style.AppTheme_Cursor);
+        setTheme(R.style.AppTheme_CursorSupervisor);
 
 
 
 
 
 
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar_ventas_supervisor);
-        toolbar.setTitle("VENTAS");
-        toolbar.setTitleTextColor(Color.WHITE);
-        setSupportActionBar(toolbar);
+        Foto_Cliente_Ventas = (ImageView) findViewById(R.id.img_cliente) ;
 
+        DNI_Cliente_Ventas  = (TextView) findViewById(R.id.dni_cliente_realizar_ventas);
 
+        Apellido_Cliente_Ventas  = (TextView) findViewById(R.id.apellido_cliente_realizar_ventas);
 
-        Nombre_Apellido_Cliente_Ventas_Supervisor  = (TextView) findViewById(R.id.nombre_apellido_cliente_realizar_ventas_supervisor);
+        Nombre_Cliente_Ventas  = (TextView) findViewById(R.id.nombre_cliente_realizar_ventas);
 
-        Direccion_Cliente_Ventas_Supervisor  = (TextView) findViewById(R.id.direccion_cliente_realizar_ventas_supervisor);
+        Codigo_Area_Cliente_Ventas  = (TextView) findViewById(R.id.codigo_cliente_realizar_ventas);
 
-        Barrio_Cliente_Ventas_Supervisor  = (TextView) findViewById(R.id.barrio_cliente_realizar_ventas_supervisor);
+        Telefono_Cliente_Ventas  = (TextView) findViewById(R.id.telefono_cliente_realizar_ventas);
+
+        Direccion_Cliente_Ventas  = (TextView) findViewById(R.id.direccion_cliente_realizar_ventas);
+
+        Barrio_Cliente_Ventas  = (TextView) findViewById(R.id.barrio_cliente_realizar_ventas);
+
+        Referencia_Cliente_Ventas  = (TextView) findViewById(R.id.referencia_cliente_realizar_ventas);
+
+        Correo_Cliente_Ventas  = (TextView) findViewById(R.id.correo_cliente_realizar_ventas);
 
 
 
@@ -144,21 +186,24 @@ public class RealizarVentasClientesSupervisor extends AppCompatActivity {
 
         LinearLayoutVerticalDatosPersonales = (LinearLayout) findViewById(R.id.llv_datos_personales);
 
-        LinearLayoutVerticalVentas = (LinearLayout) findViewById(R.id.layout_vertical_ventas_supervisor);
+        LinearLayoutVerticalVentas = (LinearLayout) findViewById(R.id.layout_vertical_ventas);
 
         LinearLayoutHorizontalContenedorSpinner = (LinearLayout) findViewById(R.id.llh_contenedor_spinner);
 
-        LinearLayoutVerticalImporteEntregaVentas = (LinearLayout) findViewById(R.id.llv_importe_entrega_venta_supervisor);
+        LinearLayoutVerticalImporteEntregaVentas = (LinearLayout) findViewById(R.id.llv_importe_entrega_venta);
+
+        LinearLayoutHorizontalVentas = (LinearLayout) findViewById(R.id.layout_horizontal_ventas);
 
 
 
-        btnAgregarNuevoArticuloParaVentas = (ImageButton) findViewById(R.id.add_art_ventas_supervisor);
+        btnAgregarNuevoArticuloParaVentas = (ImageButton) findViewById(R.id.add_art_ventas);
 
         /**Método para añadir nuevos artículos pero que deberá cumplir ciertas condiciones para que se cumpla dicha acción**/
         btnAgregarNuevoArticuloParaVentas.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
+                importe_anterior = Importe;
 
                 /*Llamada a la función:  */
                 ValidarCamposParaAñadirNuevoArticuloVentasSupervisor(LinearLayoutVerticalVentas);
@@ -172,21 +217,79 @@ public class RealizarVentasClientesSupervisor extends AppCompatActivity {
 
 
 
-        spinner_ventas_supervisor = (Spinner)findViewById(R.id.sp_art_ventas_supervisor);
 
 
 
-        eTCantVentas = (EditText) findViewById(R.id.edtx_cantidad_productos_ventas_supervisor);
+
+        spinner_ventas = (Spinner)findViewById(R.id.sp_art_ventas);
+
+
+
+
+
+        eTCantVentas = (EditText) findViewById(R.id.edtx_cantidad_productos_ventas);
 
         eTCantVentas.setBackgroundDrawable(getDrawable(R.drawable.edit_text_material_customizado));
+
+        eTCantVentas.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+
+                if (!s.toString().equals("")){
+
+                    Integer cantidadAntesDeModificacion = Integer.parseInt(s.toString());
+
+                    importeAntesDeModificacion = getImporte(spinner_ventas.getSelectedItem().toString(), cantidadAntesDeModificacion);
+
+                }else{
+
+                    importeAntesDeModificacion = 0;
+
+                }
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+                if (!s.toString().equals("")){
+
+                    Integer cantidadDespuesDeModificación = Integer.parseInt(s.toString());
+
+                    importeDespuesDeModificacion = getImporte(spinner_ventas.getSelectedItem().toString(), cantidadDespuesDeModificación);
+
+                    ActualizarImporte();
+
+                }
+
+                else{
+
+
+                    importeDespuesDeModificacion = 0;
+
+                    ActualizarImporte();
+
+                }
+
+
+            }
+
+        });
+
+
+
 
 
 
 
         /*Llamada a la función: */
-
-        setSpinner(spinner_ventas_supervisor,true);
-
+        setSpinner(spinner_ventas,true);
 
 
 
@@ -194,7 +297,11 @@ public class RealizarVentasClientesSupervisor extends AppCompatActivity {
 
 
 
-        buttonConfirmarVentas = (ImageButton) findViewById(R.id.img_button_confirmar_ventas_supervisor);
+
+
+
+
+        buttonConfirmarVentas = (ImageButton) findViewById(R.id.img_button_confirmar_ventas);
 
 
 
@@ -213,9 +320,13 @@ public class RealizarVentasClientesSupervisor extends AppCompatActivity {
 
 
 
-        eTEntrega = (EditText) findViewById(R.id.cantidad_entrega_productos_ventas_supervisor);
+        eTEntrega = (EditText) findViewById(R.id.cantidad_entrega_productos_ventas);
 
         eTEntrega.setBackgroundDrawable(getDrawable(R.drawable.edit_text_material_customizado));
+
+
+
+        Cantidad_Importe_Articulos_Ventas = (TextView) findViewById(R.id.cantidad_importe_articulos_ventas);
 
 
 
@@ -225,46 +336,125 @@ public class RealizarVentasClientesSupervisor extends AppCompatActivity {
 
 
 
-
-
-
-
-        /** Pregunta si el usuario es un "repartidor" entonces habrá un cambio de colores en las activity's
-         * de Patrocinio**/
-
-        Usuario usuario = new Usuario();
-
-        usuario.LeerUsuarioEnUnSharedPreferences(this);
-
-        if(usuario.getTipo_de_Usuario().equals("repartidor")){
-
-            // finally change the color
-            window.setStatusBarColor(Color.parseColor("#303F9F"));
-
-
-            toolbar.setBackgroundColor(Color.parseColor("#3F51B5"));
-            setSupportActionBar(toolbar);
-
-            LinearLayoutVerticalDatosPersonales.setBackgroundColor(Color.parseColor("#283593"));
-
-            LinearLayoutHorizontalContenedorSpinner.setBackgroundDrawable(getDrawable(R.drawable.spinner_style_ventas_repartidor));
-
-
-            LinearLayoutVerticalImporteEntregaVentas.setBackgroundColor(Color.parseColor("#283593"));
-
-
-
-        }//Fin del if
-
-
-
     }/*******************************FIN DEL onCreate()**************************************/
 
 
 
+    /*********************************************************************************************/
+    /*********************************************************************************************/
+    /*********************************************************************************************/
+    /*********************************************************************************************/
+    /*********************************************************************************************/
+    /*********************************************************************************************/
+    /*********************************************************************************************/
+    /*********************************************************************************************/
+    /*********************************************************************************************/
+    /*********************************************************************************************/
 
 
 
+
+
+    public void ActualizarImporte(){
+
+        String cadena = Cantidad_Importe_Articulos_Ventas.getText().toString();
+
+
+        if(!cadena.equals("IMPORTE") && !cadena.equals("")){
+
+
+            Integer importe = Integer.parseInt(Cantidad_Importe_Articulos_Ventas.getText().toString());
+
+            importe = importe - importeAntesDeModificacion + importeDespuesDeModificacion;
+            Cantidad_Importe_Articulos_Ventas.setText(String.valueOf(importe));
+        }
+        else {
+
+
+            Integer importe = 0;
+
+            importe = importe - importeAntesDeModificacion + importeDespuesDeModificacion;
+
+            Cantidad_Importe_Articulos_Ventas.setText(String.valueOf(importe));
+
+
+        }
+
+
+
+
+
+        
+
+
+
+    }/****************** FIN DE LA FUNCIÓN ActualizarImporte() ************************/
+
+
+
+    /********************************************************************************************/
+    /********************************************************************************************/
+    /********************************************************************************************/
+    /********************************************************************************************/
+    /********************************************************************************************/
+    /********************************************************************************************/
+    /********************************************************************************************/
+    /********************************************************************************************/
+    /********************************************************************************************/
+    /********************************************************************************************/
+
+
+
+
+
+
+
+    public Integer getImporte(String ArticuloSeleccionadoSpinner, Integer cantidadArticulo){
+
+
+
+        if (ArticuloSeleccionadoSpinner == "Bidones") {
+
+            Importe_Articulo = CalcularImporteBidones(precio_bidones,cantidadArticulo);
+
+        }
+
+        else if (ArticuloSeleccionadoSpinner == "Dispenser Plástico") {
+
+            Importe_Articulo = CalcularImporteDispenserPlastico(precio_dispenser_plastico,cantidadArticulo);
+
+        }
+
+
+
+        else if (ArticuloSeleccionadoSpinner == "Canillas") {
+
+            Importe_Articulo = CalcularImporteCanillas(precio_canillas,cantidadArticulo);
+
+        }
+
+
+
+        else if (ArticuloSeleccionadoSpinner == "Dispenser Eléctrico") {
+
+            Importe_Articulo = CalcularImporteDispenserElectrico(precio_dispenser_electrico,cantidadArticulo);
+
+        }
+
+        else if (ArticuloSeleccionadoSpinner == "Envases vacíos retirados") {
+
+            Importe_Articulo = 0;
+
+        }
+
+        return Importe_Articulo;
+
+
+    } /*************************** FIN DE LA FUNCIÓN getImporte() ******************************/
+
+
+
+
     /***************************************************************************************************/
     /***************************************************************************************************/
     /***************************************************************************************************/
@@ -275,6 +465,80 @@ public class RealizarVentasClientesSupervisor extends AppCompatActivity {
     /***************************************************************************************************/
     /***************************************************************************************************/
     /***************************************************************************************************/
+
+
+
+
+
+    public int CalcularImporteBidones(int precio_bidones, Integer cantidadArticulo) {
+
+
+
+        int importe_bidones = cantidadArticulo * precio_bidones;
+
+        return importe_bidones;
+
+    }
+
+
+
+
+    public int CalcularImporteDispenserPlastico(int precio_dispenser_plastico,Integer cantidadArticulo) {
+
+
+
+
+
+        int importe_dispenser_plastico = cantidadArticulo * precio_dispenser_plastico;
+
+
+        return importe_dispenser_plastico;
+    }
+
+
+    public int CalcularImporteCanillas(int precio_canillas, Integer cantidadArticulo) {
+
+
+
+
+
+        int importe_canillas = cantidadArticulo * precio_canillas;
+
+
+        return importe_canillas;
+
+    }
+
+
+
+
+    public int CalcularImporteDispenserElectrico(int precio_dispenser_electrico, Integer cantidadArticulo) {
+
+
+
+
+        int importe_dispenser_electrico = cantidadArticulo * precio_dispenser_electrico;
+
+
+        return importe_dispenser_electrico;
+
+    }
+
+
+
+
+    /***************************************************************************************************/
+    /***************************************************************************************************/
+    /***************************************************************************************************/
+    /***************************************************************************************************/
+    /***************************************************************************************************/
+    /***************************************************************************************************/
+    /***************************************************************************************************/
+    /***************************************************************************************************/
+    /***************************************************************************************************/
+    /***************************************************************************************************/
+
+
 
 
 
@@ -282,7 +546,6 @@ public class RealizarVentasClientesSupervisor extends AppCompatActivity {
 
 
     public void ActualizarColorDelCheckBoton(){
-
 
 
         eTCantVentas.addTextChangedListener(new TextWatcher() {
@@ -316,7 +579,6 @@ public class RealizarVentasClientesSupervisor extends AppCompatActivity {
 
 
                     buttonConfirmarVentas.setImageResource(R.drawable.ic_check_rojo);
-
 
 
                 }
@@ -463,25 +725,48 @@ public class RealizarVentasClientesSupervisor extends AppCompatActivity {
     public void RecibirParametrosDeLosClientesVentasSupervisores(){
 
 
-
-        String extras = getIntent().getStringExtra("Nombre_Apellido_Cliente_Supervisor");
-
-        Nombre_Apellido_Cliente_Ventas_Supervisor.setText(extras);
+        int recibir_foto = getIntent().getIntExtra("Foto",0);
+        Foto_Cliente_Ventas.setImageResource(recibir_foto);
 
 
 
-        extras = getIntent().getStringExtra("Direccion_Cliente_Supervisor");
-
-        Direccion_Cliente_Ventas_Supervisor.setText(extras);
-
+        int recibir_dni = getIntent().getIntExtra("DNI",0);
+        DNI_Cliente_Ventas.setText(String.valueOf(recibir_dni));
 
 
-
-        extras = getIntent().getStringExtra("Barrio_Cliente_Supervisor");
-
-        Barrio_Cliente_Ventas_Supervisor.setText(extras);
+        String extras = getIntent().getStringExtra("Apellido");
+        Apellido_Cliente_Ventas.setText(extras);
 
 
+        extras = getIntent().getStringExtra("Nombre");
+        Nombre_Cliente_Ventas.setText(extras);
+
+
+        extras = getIntent().getStringExtra("Codigo_Area");
+        Codigo_Area_Cliente_Ventas.setText(extras);
+
+        extras = getIntent().getStringExtra("Telefono");
+        Telefono_Cliente_Ventas.setText(extras);
+
+        extras = getIntent().getStringExtra("Direccion");
+        Direccion_Cliente_Ventas.setText(extras);
+
+
+        extras = getIntent().getStringExtra("Barrio");
+        Barrio_Cliente_Ventas.setText(extras);
+
+        extras = getIntent().getStringExtra("Referencia");
+        Referencia_Cliente_Ventas.setText(extras);
+
+
+        extras = getIntent().getStringExtra("Correo");
+        Correo_Cliente_Ventas.setText(extras);
+
+        if(extras.equals("No tiene correo")){
+
+            Correo_Cliente_Ventas.setTextColor(Color.parseColor("#263238"));
+
+        }
 
     }/**********************FIN DE LA FUNCIÓN RecibirParametrosDeLosClientesVentasSupervisores()********************************/
 
@@ -515,27 +800,42 @@ public class RealizarVentasClientesSupervisor extends AppCompatActivity {
         NuevoArticuloInfladoVentasSupervisores = AgregarNuevoArticuloParaVentasSupervisores(llv);
 
 
+
         /** Instanciamos las vistas del diseño XML: "nuevo_articulo_ventas.xml" **/
-
-
-
 
         final LinearLayout LinearLayoutHorizontalContenedorSpinnerProgramatico = (LinearLayout) findViewById(R.id.llh_contenedor_spinner_nuevo_articulo_supervisor);
 
 
-        final ImageButton btnEliminarArticuloVentasSupervisores = (ImageButton) NuevoArticuloInfladoVentasSupervisores.findViewById(R.id.delete_art_ventas_supervisor);
+        final ImageButton btnEliminarArticuloVentas = (ImageButton) NuevoArticuloInfladoVentasSupervisores.findViewById(R.id.delete_art_ventas_supervisor);
+
+
+        final EditText EditText_Cantidad_Nuevo_Articulo_Ventas = (EditText) NuevoArticuloInfladoVentasSupervisores.findViewById(R.id.edtx_cantidad_ventas_new_art_supervisor);
+        EditText_Cantidad_Nuevo_Articulo_Ventas.setBackgroundDrawable(getDrawable(R.drawable.edit_text_material_customizado));
+
+
+        final Spinner spinner_nuevos_articulos_ventas_supervisores = (Spinner) NuevoArticuloInfladoVentasSupervisores.findViewById(R.id.sp_new_art_ventas_supervisor);
+
+        //spinner_nuevos_articulos_ventas_supervisores.onTouchEvent()
 
 
 
-
-        final EditText EditText_Carga_Nuevo_Articulo_Ventas_Supervisores = (EditText) NuevoArticuloInfladoVentasSupervisores.findViewById(R.id.edtx_cantidad_ventas_new_art_supervisor);
-
-        EditText_Carga_Nuevo_Articulo_Ventas_Supervisores.setBackgroundDrawable(getDrawable(R.drawable.edit_text_material_customizado));
-
-
-        EditText_Carga_Nuevo_Articulo_Ventas_Supervisores.addTextChangedListener(new TextWatcher() {
+        EditText_Cantidad_Nuevo_Articulo_Ventas.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+                if (!s.toString().equals("")){
+
+                    Integer cantidadAntesDeModificacion = Integer.parseInt(s.toString());
+
+
+                    importeAntesDeModificacion = getImporte(spinner_nuevos_articulos_ventas_supervisores.getSelectedItem().toString(), cantidadAntesDeModificacion);
+
+                }else{
+
+                    importeAntesDeModificacion = 0;
+
+                }
+
 
             }
 
@@ -547,12 +847,34 @@ public class RealizarVentasClientesSupervisor extends AppCompatActivity {
             @Override
             public void afterTextChanged(Editable s) {
 
+                if (!s.toString().equals("")){
+
+                    Integer cantidadDespuesDeModificación = Integer.parseInt(s.toString());
+
+                    importeDespuesDeModificacion = getImporte(spinner_nuevos_articulos_ventas_supervisores.getSelectedItem().toString(), cantidadDespuesDeModificación);
+
+                    ActualizarImporte();
+
+                }else{
 
 
-                if(s.toString().length() > 0 && s.toString().charAt(0) != '0' ){
+                    importeDespuesDeModificacion = 0;
+                    ActualizarImporte();
+                }
+
+
+
+
+
+
+
+
+
+                if(s.toString().length() > 0 && s.toString().charAt(0) != '0'){
 
 
                     buttonConfirmarVentas.setImageResource(R.drawable.ic_check_verde);
+
 
 
                 } else {
@@ -565,11 +887,19 @@ public class RealizarVentasClientesSupervisor extends AppCompatActivity {
 
 
 
-
-            }/*******************************FIN DEL EVENTO afterTextChanged()******************************************/
-
+            }
 
         });/*******************************FIN DEL EVENTO addTextChangedListener()**************************************/
+
+
+
+
+
+
+
+
+
+
 
 
         eTEntrega.addTextChangedListener(new TextWatcher() {
@@ -587,14 +917,14 @@ public class RealizarVentasClientesSupervisor extends AppCompatActivity {
             public void afterTextChanged(Editable s) {
 
 
-                if(!s.toString().isEmpty() && EditText_Carga_Nuevo_Articulo_Ventas_Supervisores.getText().toString().isEmpty() ){
+                if(!s.toString().isEmpty() && EditText_Cantidad_Nuevo_Articulo_Ventas.getText().toString().isEmpty() ){
 
 
                     buttonConfirmarVentas.setImageResource(R.drawable.ic_check_rojo);
 
                 }
 
-                if(s.toString().isEmpty() && EditText_Carga_Nuevo_Articulo_Ventas_Supervisores.getText().toString().isEmpty() ){
+                if(s.toString().isEmpty() && EditText_Cantidad_Nuevo_Articulo_Ventas.getText().toString().isEmpty() ){
 
 
                     buttonConfirmarVentas.setImageResource(R.drawable.ic_check_rojo);
@@ -608,7 +938,6 @@ public class RealizarVentasClientesSupervisor extends AppCompatActivity {
 
 
 
-        final Spinner spinner_nuevos_articulos_ventas_supervisores = (Spinner) NuevoArticuloInfladoVentasSupervisores.findViewById(R.id.sp_new_art_ventas_supervisor);
 
 
         /*Llamada a la función: */
@@ -645,11 +974,15 @@ public class RealizarVentasClientesSupervisor extends AppCompatActivity {
 
 
 
-        btnEliminarArticuloVentasSupervisores.setOnClickListener(new View.OnClickListener() {
+        btnEliminarArticuloVentas.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
+                Integer cantidadAntesDeModificacion = Integer.parseInt(EditText_Cantidad_Nuevo_Articulo_Ventas.getText().toString());
+                importeAntesDeModificacion = getImporte(spinner_nuevos_articulos_ventas_supervisores.getSelectedItem().toString(), cantidadAntesDeModificacion);
+                importeDespuesDeModificacion = 0;
 
+                ActualizarImporte();
 
                 EliminarNuevoArticuloVentasSupervisores(v,spinner_nuevos_articulos_ventas_supervisores);
 
@@ -657,30 +990,6 @@ public class RealizarVentasClientesSupervisor extends AppCompatActivity {
 
             }
         });
-
-
-
-
-
-
-        /** Pregunta si el usuario es un "repartidor" entonces habrá un cambio de colores en las activity's
-         * de Patrocinio**/
-
-        Usuario usuario = new Usuario();
-
-        usuario.LeerUsuarioEnUnSharedPreferences(this);
-
-        if(usuario.getTipo_de_Usuario().equals("repartidor")){
-
-
-            LinearLayoutHorizontalContenedorSpinnerProgramatico.setBackgroundDrawable(getDrawable(R.drawable.spinner_style_ventas_repartidor));
-
-
-
-        }//Fin del if
-
-
-
 
 
     } /**************************************FIN DE LA FUNCIÓN ObtenerNuevoArticuloParaVentasSupervisores()*******************************************/
@@ -855,7 +1164,7 @@ public class RealizarVentasClientesSupervisor extends AppCompatActivity {
             /**VALIDACIÓN DEL CAMPO DE CANTIDAD PARA EL NUEVO ARTICULO**/
 
 
-            final LinearLayout llv_ventas_supervisor = (LinearLayout) findViewById(R.id.layout_vertical_ventas_supervisor);
+            final LinearLayout llv_ventas_supervisor = (LinearLayout) findViewById(R.id.layout_vertical_ventas);
 
             for(int j = 1 ; j < llv_ventas_supervisor.getChildCount() ; j++){
 
@@ -927,8 +1236,8 @@ public class RealizarVentasClientesSupervisor extends AppCompatActivity {
 
 
             /*Llamar a la función*/
-
             ObtenerNuevoArticuloParaVentasSupervisores("",LinearLayout);
+
 
             buttonConfirmarVentas.setImageResource(R.drawable.ic_check_rojo);
 
@@ -1079,11 +1388,18 @@ public class RealizarVentasClientesSupervisor extends AppCompatActivity {
                     to.show();
 
 
-
                     /*Llamada a la función: */
                     Utils_Spinner.RefrescarOtrosSpinnerConBordes((Spinner)adapterView,ArticuloSeleccionadoAnterior,text, RealizarVentasClientesSupervisor.this);
 
+                    //cuando entra por 2da vez a la activity salta el error debido que a que la cantidad recibe un
+                    //valor vacío
 
+                    
+                    Integer cantidadDeArticulo = Utils_Spinner.obtenerCantidadDeArticulo((Spinner) adapterView);
+                    importeAntesDeModificacion = getImporte(ArticuloSeleccionadoAnterior, cantidadDeArticulo);
+                    importeDespuesDeModificacion = getImporte(text, cantidadDeArticulo);
+
+                    ActualizarImporte();
 
 
                 }//Fin del else
@@ -1188,7 +1504,7 @@ public class RealizarVentasClientesSupervisor extends AppCompatActivity {
 
                 /**VALIDACIÓN DE CAMPOS DE CANTIDAD DE ARTÍCULO Y LA ENTREGA PARA LOS NUEVOS ARTICULOS**/
 
-                final LinearLayout llv_ventas_supervisor = (LinearLayout) findViewById(R.id.layout_vertical_ventas_supervisor);
+                final LinearLayout llv_ventas_supervisor = (LinearLayout) findViewById(R.id.layout_vertical_ventas);
 
                 for(int l = 1 ; l < llv_ventas_supervisor.getChildCount() ; l++){
 
@@ -1277,7 +1593,7 @@ public class RealizarVentasClientesSupervisor extends AppCompatActivity {
 
         return flag_validacion_campos_confirmacion_ventas;
 
-    } /*********************************FIN DE LA FUNCION ValidacionDeCamposAntesDeConfirmarVenta() ****************************/
+    } /*********************************FIN DE LA FUNCIÓN ValidacionDeCamposAntesDeConfirmarVenta() ****************************/
 
 
 
@@ -1305,7 +1621,7 @@ public class RealizarVentasClientesSupervisor extends AppCompatActivity {
 
     public void GuardarVentasSupervisoresEnSharedPreferences() {
 
-        SharedPreferences sharedPreferences = getSharedPreferences("Datos", MODE_PRIVATE);
+        SharedPreferences sharedPreferences = getSharedPreferences("Datos_Ventas_Supervisores", MODE_PRIVATE);
 
         SharedPreferences.Editor editor = sharedPreferences.edit();
 
@@ -1315,11 +1631,11 @@ public class RealizarVentasClientesSupervisor extends AppCompatActivity {
 
             int tope_de_articulos = 0;
 
-            final Spinner spinner_fijo_ventas_supervisores = (Spinner) findViewById(R.id.sp_art_ventas_supervisor);
+            final Spinner spinner_fijo_ventas_supervisores = (Spinner) findViewById(R.id.sp_art_ventas);
 
-            final EditText editText_cantidad_articulo_fijo_supervisores = (EditText) findViewById(R.id.edtx_cantidad_productos_ventas_supervisor);
+            final EditText editText_cantidad_articulo_fijo_supervisores = (EditText) findViewById(R.id.edtx_cantidad_productos_ventas);
 
-            final EditText editText_entrega_venta_supervisores = (EditText) findViewById(R.id.cantidad_entrega_productos_ventas_supervisor);
+            final EditText editText_entrega_venta_supervisores = (EditText) findViewById(R.id.cantidad_entrega_productos_ventas);
 
 
 
@@ -1335,7 +1651,7 @@ public class RealizarVentasClientesSupervisor extends AppCompatActivity {
 
 
 
-            final LinearLayout llv_ventas_supervisores = (LinearLayout) findViewById(R.id.layout_vertical_ventas_supervisor);
+            final LinearLayout llv_ventas_supervisores = (LinearLayout) findViewById(R.id.layout_vertical_ventas);
 
             tope_de_articulos = llv_ventas_supervisores.getChildCount()-1;
 
@@ -1369,9 +1685,24 @@ public class RealizarVentasClientesSupervisor extends AppCompatActivity {
 
 
 
-    }/*******************************FIN DE LA FUNCION GuardarVentasSupervisoresEnSharedPreferences()******************************/
+    }/*******************************FIN DE LA FUNCIÓN GuardarVentasSupervisoresEnSharedPreferences()******************************/
 
 
 
 
-}/************FIN DE LA Activity***************/
+    /**************************************************************************************************/
+    /**************************************************************************************************/
+    /**************************************************************************************************/
+    /**************************************************************************************************/
+    /**************************************************************************************************/
+    /**************************************************************************************************/
+    /**************************************************************************************************/
+    /**************************************************************************************************/
+    /**************************************************************************************************/
+    /**************************************************************************************************/
+
+
+
+
+
+}/******************************* FIN DE LA ACTIVITY RealizarVentasClientesSupervisor ***********************************/

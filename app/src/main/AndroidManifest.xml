@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="com.example.jumpi.repartidores_aplication">
 
     <uses-permission android:name="android.permission.READ_PROFILE" />
@@ -10,9 +11,7 @@
     <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
     <uses-permission android:name="android.permission.GET_ACCOUNTS" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
-
-
-
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
 
     <application
         android:allowBackup="true"
@@ -27,22 +26,64 @@
             android:theme="@style/AppTheme.NoActionBar">
 
             <!--
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
+                    <intent-filter>
+                        <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
+                        <category android:name="android.intent.category.LAUNCHER" />
+                    </intent-filter>
             -->
+
         </activity>
 
 
 
+
         <!-- #################### Para REPARTIDORES ########################### -->
+
+
         <activity
             android:name=".Repartidores_Main_Activity"
             android:label=" "
             android:parentActivityName=".LoginActivity"
+            android:theme="@style/AppTheme.NoActionBar">
+
+            <!--
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>     -->
+        </activity>
+
+
+        <activity
+            android:name=".Mapa_Repartidores"
+            android:label=""
+            android:parentActivityName=".Repartidores_Main_Activity"
+            android:theme="@style/AppTheme.NoActionBar">
+
+            <!--
+         <intent-filter>
+             <action android:name="android.intent.action.MAIN" />
+
+             <category android:name="android.intent.category.LAUNCHER" />
+         </intent-filter>
+            -->
+
+        </activity>
+
+
+        <activity
+            android:name=".NavigationRepartidores"
+            android:label=""
             android:theme="@style/AppTheme.NoActionBar" />
+
+        <activity android:name=".RealizarVentasClientesRepartidor"
+            android:label=""
+            android:theme="@style/AppTheme.NoActionBar">
+        </activity>
+
+
         <activity
             android:name=".EditarClientes"
             android:label="Editar Clientes"
@@ -66,17 +107,27 @@
         <activity
             android:name=".Detalle_Faltante_Sobrante_Envases"
             android:label=""
-            android:theme="@style/AppTheme.NoActionBar" /> <!-- ########################## Para SUPERVISORES ########################### -->
+            android:theme="@style/AppTheme.NoActionBar" />
+
+
+
+
+
+        <!-- ########################## Para SUPERVISORES ########################### -->
         <activity
-            android:name=".MainActivity"
+            android:name=".MainActivitySupervisores"
             android:label=" "
             android:parentActivityName=".LoginActivity"
             android:theme="@style/AppTheme.NoActionBar">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
+
+                                    <intent-filter>
+                                        <action android:name="android.intent.action.MAIN" />
+
+                                        <category android:name="android.intent.category.LAUNCHER" />
+                                    </intent-filter>
+
+
         </activity>
         <activity
             android:name=".CombustibleEstadisticas"
@@ -94,7 +145,7 @@
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".BuscarResponsableParaPatrocinio"
-            android:label="Buscar"
+            android:label=""
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".EntregaRetiroEnvasesPatrocinio"
@@ -108,7 +159,8 @@
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".BuscarClienteParaRealizarVenta"
-            android:label="Buscar Cliente" />
+            android:label="Buscar Cliente"
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".RealizarVentasClientesSupervisor"
             android:label=""
@@ -135,12 +187,16 @@
             android:name=".DatosPersonalesResponsable"
             android:label=""
             android:theme="@style/AppTheme.NoActionBar" />
-
-
         <activity
             android:name=".Mapa_Supervisores"
             android:label=""
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar" />
+
+
+        <activity
+            android:name=".Frecuencia_De_Consumo"
+            android:label="@string/title_activity_frecuencia__de__consumo"
+            android:theme="@style/AppTheme.NoActionBar" />
 
     </application>
 

@@ -5,13 +5,15 @@
     android:id="@+id/parent_layout_horizontal_ventas"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:orientation="horizontal">
+    android:orientation="horizontal"
+    android:weightSum="4">
 
 
     <ImageButton
 
+        android:layout_weight="1"
         android:id="@+id/delete_art"
-        android:layout_width="40dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@android:color/transparent"
         android:focusable="false"
@@ -20,10 +22,10 @@
 
     <Spinner
 
+        android:layout_weight="1"
         android:id="@+id/sp_new_art_ventas"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_weight="1"
         android:gravity="center"
         android:prompt="@string/title_spinner"
         android:spinnerMode="dialog">
@@ -33,13 +35,19 @@
 
     <EditText
 
+        android:layout_weight="1"
         android:id="@+id/edtx_cantidad_new_art"
-        android:layout_width="95dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
         android:hint="Cantidad"
         android:imeOptions="actionNext"
         android:inputType="number" />
+
+
+
+
+
 
 
 

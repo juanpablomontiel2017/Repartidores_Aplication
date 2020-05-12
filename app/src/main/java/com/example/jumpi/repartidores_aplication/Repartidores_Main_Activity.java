@@ -1,17 +1,9 @@
 package com.example.jumpi.repartidores_aplication;
 
 import android.content.Intent;
-import android.support.design.widget.TabLayout;
-import android.support.design.widget.FloatingActionButton;
-import android.support.v7.app.ActionBar;
-import android.support.v7.app.AppCompatActivity;
 
-import android.support.v7.widget.Toolbar;
 
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentPagerAdapter;
-import android.support.v4.view.ViewPager;
+
 import android.os.Bundle;
 
 import android.view.LayoutInflater;
@@ -20,7 +12,18 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 
+import android.widget.Button;
 import android.widget.TextView;
+
+import androidx.appcompat.app.ActionBar;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentPagerAdapter;
+
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.android.material.tabs.TabLayout;
 
 
 public class Repartidores_Main_Activity extends AppCompatActivity {
@@ -34,8 +37,9 @@ public class Repartidores_Main_Activity extends AppCompatActivity {
 
     private ViewPagerAdapter adapter;
 
-    private ViewPager mViewPager;
+    private CustomViewPager mViewPager;
 
+    Button button_ir_mapa_repartidores;
 
 
 
@@ -62,7 +66,7 @@ public class Repartidores_Main_Activity extends AppCompatActivity {
 
         super.onCreate(savedInstanceState);
 
-        setContentView(R.layout.repartidores_activity_main);
+        setContentView(R.layout.activity_main_repartidores);
 
 
 
@@ -101,7 +105,7 @@ public class Repartidores_Main_Activity extends AppCompatActivity {
 
         mSectionsPagerAdapter = new SectionsPagerAdapter(getSupportFragmentManager());
 
-        mViewPager = (ViewPager) findViewById(R.id.container);
+        mViewPager = (CustomViewPager) findViewById(R.id.container);
 
         mViewPager.setAdapter(mSectionsPagerAdapter);
 
@@ -109,7 +113,9 @@ public class Repartidores_Main_Activity extends AppCompatActivity {
         adapter = new ViewPagerAdapter(getSupportFragmentManager());
 
         //Add Fragment Here
-        adapter.AddFragment (new StockEnVehiculoFragment(),"Registro de ventas");
+        adapter.AddFragment (new StockEnVehiculoFragment(),"Stock en Vehículo");
+
+        //adapter.AddFragment(new MapaRepartidoresFragment(),"Mapa");
 
 
    //     adapter.AddFragment (clientesFragment,"Clientes");
@@ -118,9 +124,15 @@ public class Repartidores_Main_Activity extends AppCompatActivity {
         mViewPager.setAdapter(adapter);
 
 
+        /*Llamada a la función: */
+        mViewPager.setPagingEnabled(false);
+
+
 
 
         TabLayout tabLayout = (TabLayout) findViewById(R.id.tabs);
+
+
 
         mViewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
 
@@ -135,21 +147,24 @@ public class Repartidores_Main_Activity extends AppCompatActivity {
 
 
 
+        button_ir_mapa_repartidores = (Button) findViewById(R.id.btn_ir_mapa_repartidores);
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-
-        fab.setOnClickListener(new View.OnClickListener() {
+        button_ir_mapa_repartidores.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
 
-                Intent fab = new Intent(Repartidores_Main_Activity.this, AgregarCliente.class);
+                Intent intent = new Intent(getApplicationContext(), Mapa_Repartidores.class);
 
-                startActivity(fab);
+                startActivity(intent);
 
 
             }
         });
+
+
+
+
 
 
     }/*******************************FIN DEL OnCreate*********************************/
@@ -177,7 +192,7 @@ public class Repartidores_Main_Activity extends AppCompatActivity {
     public boolean onCreateOptionsMenu(Menu menu) {
 
 
-        getMenuInflater().inflate(R.menu.menu_second_, menu);
+        getMenuInflater().inflate(R.menu.menu_main_repartidores_, menu);
 
 
         return true;
@@ -341,22 +356,13 @@ public class Repartidores_Main_Activity extends AppCompatActivity {
                     return stock_en_vehiculo_fragment;
 
 
-                case 1:
-
-
-                    ClientesFragment clientesFragment = new ClientesFragment();
-
-
-                    return clientesFragment;
-
-
             }
 
 
             return null;
 
 
-        }/****************   FIN DE LA FUNCIÓN getItem() *******/
+        }/**************** FIN DE LA FUNCIÓN getItem() *******/
 
 
 
@@ -379,8 +385,8 @@ public class Repartidores_Main_Activity extends AppCompatActivity {
         public int getCount() {
 
 
-            // Show 3 total pages.
-            return 3;
+            // Show 1 total pages.
+            return 1;
 
 
         }
@@ -435,12 +441,6 @@ public class Repartidores_Main_Activity extends AppCompatActivity {
 
 
              case 1:
-
-
-                 return "Clientes";
-
-
-             case 2:
 
 
                  return "Mapa";

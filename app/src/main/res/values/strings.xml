@@ -1,149 +1,229 @@
 <resources>
 
+    <!-- Strings related to - Nombre de la aplicación-->
     <string name="app_name">Repartidores_Aplication</string>
 
+
+    <!-- ############################################################################### -->
+    <!-- ############################################################################### -->
+    <!-- ############################################################################### -->
+    <!-- ############################################################################### -->
+    <!-- ############################################################################### -->
+
+
+    <!-- Strings related to - Fragments-->
     <string name="section_format">Hello World from section: %1$d</string>
 
     <string name="hello_blank_fragment">Hello blank fragment</string>
 
+    <string name="hello_first_fragment">Hello first fragment</string>
 
-    <!--Strings menu-->
+    <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
+
+    <string name="first_fragment_label">First Fragment</string>
+
+    <string name="second_fragment_label">Second Fragment</string>
+
+
+    <!-- ############################################################################### -->
+    <!-- ############################################################################### -->
+    <!-- ############################################################################### -->
+    <!-- ############################################################################### -->
+    <!-- ############################################################################### -->
+
+
+    <!-- Strings related to Mapas -->
+    <string name="access_token_repartidor" translatable="false">sk.eyJ1IjoibW9udGllbGp1YW5wYWJsbyIsImEiOiJjazdra210cHMwMHZnM2RvMjA5cGh3Mmc4In0.UXJXSfAOyOaFs_1m8fFIeQ</string>
+
+    <string name="access_tokens_supervisor">pk.eyJ1IjoibW9udGllbGp1YW5wYWJsbyIsImEiOiJjazdiejhrdWIwMmQ2M29vNXEzaHpjcWJ6In0.QMFTnIJ9ABqLlIPlF52GFw</string>
+
+    <string name="user_location_permission_explanation">This app needs location permissions to show its functionality.</string>
+
+    <string name="user_location_permission_not_granted">You didn\'t grant location permissions.</string>
+
+    <string name="tap_on_map_instruction">Algo tiene que decir</string>
+
+    <string name="tap_on_marker_instruction">Algo tiene que decir</string>
+
+    <string name="descripcion">Rejas negras</string>
+
+    <string name="tracking_enabled">Rastreo habilitado</string>
+
+    <string name="tracking_already_enabled">Rastreo listo</string>
+
+    <string name="current_location">Ubicación actual</string>
+
+
+    <!-- ############################################################################### -->
+    <!-- ############################################################################### -->
+    <!-- ############################################################################### -->
+    <!-- ############################################################################### -->
+    <!-- ############################################################################### -->
+
+
+    <!--Strings related to Menus-->
+
     <string name="action_settings">Settings</string>
 
+
+    <!--Patrocinio-->
     <string name="action_ventas_por_patrocinio">Realizar venta por patrocinio</string>
 
 
-    <!--Repartidores_Main_Activity -->
-    <string name="title_repartidores_main_activity">Repartidores_Main_Activity</string>
-
-    <string name="tab_text_1">Tab 1</string>
-
-    <string name="tab_text_2">Tab 2</string>
-
-    <string name="tab_text_3">Tab 3</string>
+    <!--Mapa Repartidores-->
+    <string name="action_venta_mapa_repartidores">Realizar Venta</string>
 
 
-    <!--Ventas Activity -->
-    <string name="title_spinner">Artículos</string>
-
-
-    <!-- Strings related to login -->
-    <string name="title_activity_login">Ingresar</string>
-
-    <string name="prompt_email">Usuario</string>
-
-    <string name="prompt_password">Contraseña</string>
-
-    <string name="action_sign_in">Iniciar Sesión</string>
-
-    <string name="action_sign_in_short">Sign in</string>
-
-    <string name="error_invalid_email">This email address is invalid</string>
-
-    <string name="error_invalid_password">This password is too short</string>
-
-    <string name="error_incorrect_password">This password is incorrect</string>
-
-    <string name="error_field_required">This field is required</string>
-
-    <string name="permission_rationale">"Contacts permissions are needed for providing email
-        completions."
-
-    </string>
-    <string name="title_activity_ventas__por__patrocinio">Ventas_Por_Patrocinio</string>
-
-
-    <!--//////////////////////////Values Strings para Supervisores//////////////////////////////-->
-
-    <string name="access_tokens">pk.eyJ1IjoibW9udGllbGp1YW5wYWJsbyIsImEiOiJjazdiejhrdWIwMmQ2M29vNXEzaHpjcWJ6In0.QMFTnIJ9ABqLlIPlF52GFw</string>
-
-
-
-    <!--Cargas_Descargas Activity y su respectivo Menu-->
-
-    <string name="title_activity_cargas_descargas"> </string>
-
+    <!--Carga_Descargas-->
     <string name="action_save_tanda">Guardar Cambios</string>
-
     <string name="action_finish_tanda">Cerrar Tandas</string>
-
     <string name="action_editar_tanda">Editar Tandas</string>
-
-    <!--Envases Activity-->
-
-    <string name="title_activity_envases"></string>
-
-    <!-- Eleccion Repartidores Activity-->
-
-    <string name="nombre_transicion_imagen">imagen_compartida</string>
+    <string name="action_avaible_tanda">Habilitar Tandas</string>
 
 
-    <!--MainActivity y su respectivo Menu-->
-
+    <!--Supervisores_MainActivity-->
     <string name="action_entrega_retiro_envases_patrocinio">Patrocinio</string>
-
     <string name="action_agregar_cliente">Nuevo Cliente </string>
 
 
-    <!--Menu: buscar_responsable_para_patrocinio.xml -->
-
-    <string name="hint_search">Buscar</string>
-
-    <string name="action_save_changes_erep">Guardar Cambios</string>
-
-    <string name="action_editar_item_evento">Editar Evento</string>
-
-
-    <!--Menu: filtros_gasto_en_combustible.xml -->
-
+    <!--Filtro_Gasto_en_Combustible-->
     <string name="action_gc_mes">Gasto Mensual</string>
-
     <string name="action_gc_seis_meses">Gasto Semestral</string>
-
     <string name="action_gc_anio">Gasto Anual</string>
 
 
-    <!--Menu: menu_filtro_vb.xml -->
-
+    <!--Filtro_Venta de Bidones-->
     <string name="action_vb_mes">Venta Mensual</string>
-
     <string name="action_vb_seis_meses">Venta Semestral</string>
-
     <string name="action_vb_anio">Venta Anual</string>
 
 
-    <!--Menu: entrega_retiro_envases_patrocinio.xml -->
-
+    <!--Entrega_Retiro_Envases_Patrocinio-->
     <string name="action_save_vuelta"> Guardar Cambios </string>
-
     <string name="action_editar_vuelta"> Editar Vuelta </string>
-
     <string name="action_finish_evento"> Finalizar Evento</string>
-
     <string name="action_avaible_evento"> Habilitar Evento</string>
 
 
-    <!-- TODO: Remove or change this placeholder text -->
-    <!-- <string name="hello_blank_fragment">Hello blank fragment</string> -->
-    <string name="title_activity_entrega_retiro_envases_patrocinio">EntregaRetiroEnvasesPatrocinio
-    </string>
+    <!--Buscar_Responsable_para_Patrocinio-->
+    <string name="hint_search">Buscar</string>
+    <string name="action_save_changes_erep">Guardar Cambios</string>
+    <string name="action_editar_item_evento">Editar Evento</string>
 
 
-    <string name="title_activity_buscar_responsable_para_patrocinio">
-        BuscarResponsableParaPatrocinio
-    </string>
+    <!-- ############################################################################### -->
+    <!-- ############################################################################### -->
+    <!-- ############################################################################### -->
+    <!-- ############################################################################### -->
+    <!-- ############################################################################### -->
 
 
-    <!--Activity: NuevoResponsableParaPatrocinio -->
+    <!-- Strings related to Repartidores_Main_Activity -->
+    <string name="tab_text_1">Tab 1</string>
+    <string name="tab_text_2">Tab 2</string>
+    <string name="tab_text_3">Tab 3</string>
 
-    <string name="edittext_hint">
 
-        <font size="16">(Obligatorio)</font>
+    <!-- ############################################################################### -->
+    <!-- ############################################################################### -->
+    <!-- ############################################################################### -->
+    <!-- ############################################################################### -->
+    <!-- ############################################################################### -->
 
-    </string>
+
+    <!-- Strings related to login -->
+    <string name="prompt_email">Usuario</string>
+    <string name="prompt_password">Contraseña</string>
+    <string name="action_sign_in">Iniciar Sesión</string>
+    <string name="action_sign_in_short">Sign in</string>
+    <string name="error_invalid_email">This email address is invalid</string>
+    <string name="error_invalid_password">This password is too short</string>
+    <string name="error_incorrect_password">This password is incorrect</string>
+    <string name="error_field_required">This field is required</string>
+    <string name="permission_rationale">"Contacts permissions are needed for providing email
+        completions."</string>
+
+    <!-- ############################################################################### -->
+    <!-- ############################################################################### -->
+    <!-- ############################################################################### -->
+    <!-- ############################################################################### -->
+    <!-- ############################################################################### -->
+
+
+    <!-- Strings related to Titulos de Activities principales -->
+    <string name="title_activity_login">Ingresar</string>
     <string name="title_activity_datos_personales_responsable">DatosPersonalesResponsable</string>
     <string name="title_activity_mapa">Mapa</string>
     <string name="title_activity_mapa__supervisores">Mapa_Supervisores</string>
+    <string name="title_activity_prueba__mapa__repartidores">Prueba_Mapa_Repartidores</string>
+    <string name="title_activity_frecuencia__de__consumo">Frecuencia_De_Consumo</string>
+    <string name="title_activity_navigation_repartidores">NavigationRepartidores</string>
+    <string name="title_activity_buscar_responsable_para_patrocinio">BuscarResponsableParaPatrocinio</string>
+    <string name="title_activity_entrega_retiro_envases_patrocinio">EntregaRetiroEnvasesPatrocinio</string>
+    <string name="title_activity_envases"></string>
+    <string name="title_activity_cargas_descargas"> </string>
+    <string name="title_activity_ventas__por__patrocinio">Ventas_Por_Patrocinio</string>
+    <string name="title_repartidores_main_activity">Repartidores_Main_Activity</string>
 
+
+    <!-- ############################################################################### -->
+    <!-- ############################################################################### -->
+    <!-- ############################################################################### -->
+    <!-- ############################################################################### -->
+    <!-- ############################################################################### -->
+
+
+    <!-- Strings related to Eleccion Repartidores -->
+    <string name="nombre_transicion_imagen">imagen_compartida</string>
+
+
+    <!-- ############################################################################### -->
+    <!-- ############################################################################### -->
+    <!-- ############################################################################### -->
+    <!-- ############################################################################### -->
+    <!-- ############################################################################### -->
+
+
+    <!--Strings related to DatosPersonalesResponsable -->
+    <string name="mensaje_datos_personales_fecha_fin">Si desea cambiar la fecha de fin estimada primero debe modificar la fecha de inicio del evento</string>
+
+
+    <!-- ############################################################################### -->
+    <!-- ############################################################################### -->
+    <!-- ############################################################################### -->
+    <!-- ############################################################################### -->
+    <!-- ############################################################################### -->
+
+    <!--Strings related to NuevoResponsableParaPatrocinio -->
+    <string name="edittext_hint">
+        <font size="16">(Obligatorio)</font>
+    </string>
+
+
+    <!-- ############################################################################### -->
+    <!-- ############################################################################### -->
+    <!-- ############################################################################### -->
+    <!-- ############################################################################### -->
+    <!-- ############################################################################### -->
+
+    <string name="next">Next</string>
+    <string name="previous">Previous</string>
+
+
+    <!-- ############################################################################### -->
+    <!-- ############################################################################### -->
+    <!-- ############################################################################### -->
+    <!-- ############################################################################### -->
+    <!-- ############################################################################### -->
+
+    <!--Strings related to Ventas Activity -->
+    <string name="title_spinner">Artículos</string>
+
+
+    <!-- ############################################################################### -->
+    <!-- ############################################################################### -->
+    <!-- ############################################################################### -->
+    <!-- ############################################################################### -->
+    <!-- ############################################################################### -->
 
 </resources>

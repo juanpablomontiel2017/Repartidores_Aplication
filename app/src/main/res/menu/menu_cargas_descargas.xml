@@ -31,7 +31,11 @@
 
 
 
-
+            <item
+               android:id="@+id/action_avaible_tanda"
+               android:orderInCategory="100"
+               android:title="@string/action_avaible_tanda"
+               app:showAsAction="never" />
 
 
 

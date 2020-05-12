@@ -3,8 +3,6 @@ package com.example.jumpi.repartidores_aplication;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
@@ -12,6 +10,9 @@ import android.widget.AdapterView;
 import android.widget.GridView;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 
 import java.util.Date;
 
@@ -89,7 +90,7 @@ public class EleccionRepartidores extends AppCompatActivity {
                         /*Llamada a la función: */
                         IniciarActivityCargaDescarga(view);
 
-                        Toast.makeText(EleccionRepartidores.this, "¡Ha ingresado a la activity 'Carga y Descarga'!", Toast.LENGTH_LONG).show();
+                        //Toast.makeText(EleccionRepartidores.this, "¡Ha ingresado a la activity 'Carga y Descarga'!", Toast.LENGTH_LONG).show();
 
                         break;
 
@@ -159,6 +160,8 @@ public class EleccionRepartidores extends AppCompatActivity {
             intent.putExtra("nombre_apellido_repartidor",nombre_apellido_repartidor_enviar);
 
             startActivity(intent);
+
+            //finish();
 
 
 

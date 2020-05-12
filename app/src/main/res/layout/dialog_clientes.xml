@@ -7,129 +7,136 @@
     android:layout_height="wrap_content"
     android:layout_gravity="center">
 
-    
-    <LinearLayout
-        android:layout_marginTop="20dp"
+
+    <ScrollView
+
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="#232323"
-        android:orientation="vertical"
-        android:gravity="center_horizontal">
+        android:layout_height="match_parent">
 
 
-        <TextView
-            android:id="@+id/dialog_apellido_id"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="70dp"
-            android:text="Apellido"
-            android:textColor="@android:color/white"
-            android:textSize="24sp"
-            android:textStyle="bold" />
-
-        <TextView
-            android:id="@+id/dialog_nombre_id"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:text="Nombre"
-            android:textColor="@android:color/white"
-            android:textSize="24sp"
-            android:textStyle="bold" />
-
-
-
-
-
-        <TextView
-            android:id="@+id/dialog_telefono_id"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textSize="18sp"
-            android:text="Teléfono"
-            android:textColor="@android:color/white"
-            android:layout_marginTop="5dp"
-            android:layout_marginBottom="10dp"/>
-
-
-        <TextView
-            android:id="@+id/dialog_correo_id"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textSize="18sp"
-            android:text="Correo"
-            android:textColor="@android:color/white"
-            android:layout_marginTop="5dp"
-            android:layout_marginBottom="10dp"/>
-
-
-
-
-
-        <TextView
-            android:id="@+id/dialog_referencia_id"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textSize="18sp"
-            android:text="Referencia"
-            android:textColor="@android:color/white"
-            android:layout_marginTop="5dp"
-            android:layout_marginBottom="10dp"/>
-
-
-
-        <Button
-            android:id="@+id/dialog_btn_venta"
-            android:padding="20dp"
-            android:textAlignment="textStart"
-            android:drawablePadding="20dp"
-            android:drawableLeft="@drawable/dialog_attach_money_black_24dp"
+        <LinearLayout
+            android:id="@+id/llv_dialog_clientes"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@android:color/white"
-            android:text="Realizar Venta"
-            android:layout_marginTop="10dp"
-            android:layout_gravity="start"/>
+            android:layout_marginTop="30dp"
+            android:layout_marginBottom="5dp"
+            android:background="#D50000"
+            android:gravity="center_horizontal"
+            android:orientation="vertical">
 
 
-        <Button
-            android:id="@+id/dialog_btn_editar"
-            android:padding="20dp"
-            android:textAlignment="textStart"
-            android:drawablePadding="20dp"
-            android:drawableLeft="@drawable/dialog_mode_edit_black_24dp"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@android:color/white"
-            android:text="Editar"
-            android:layout_gravity="start"/>
+            <TextView
+                android:id="@+id/dialog_apellido_id"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="90dp"
+                android:gravity="center"
+                android:text="Apellido"
+                android:textColor="@android:color/white"
+                android:textSize="24sp"
+                android:textStyle="bold" />
 
-        <Button
-            android:id="@+id/dialog_btn_eliminar"
-            android:padding="20dp"
-            android:textAlignment="textStart"
-            android:drawablePadding="20dp"
-            android:drawableLeft="@drawable/dialog_delete_black_24dp"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@android:color/white"
-            android:text="Eliminar"
-            android:layout_gravity="start"/>
+            <TextView
+                android:id="@+id/dialog_nombre_id"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:gravity="center"
+                android:text="Nombre"
+                android:textColor="@android:color/white"
+                android:textSize="24sp"
+                android:textStyle="bold" />
 
 
+            <TextView
 
-    </LinearLayout>
+                android:id="@+id/dialog_direccion_id"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:gravity="center"
+                android:text="Dirección"
+                android:textColor="@android:color/white"
+                android:textSize="24sp"
+                android:textStyle="bold" />
 
+
+            <TextView
+
+                android:id="@+id/dialog_barrio_id"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
+                android:gravity="center"
+                android:text="Barrrio"
+                android:textColor="@android:color/white"
+                android:textSize="24sp"
+                android:textStyle="bold" />
+
+
+            <Button
+                android:id="@+id/dialog_btn_venta"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="start"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
+                android:layout_marginBottom="5dp"
+                android:background="@drawable/dialog_boton_realizar_venta"
+                android:drawableLeft="@drawable/dialog_ic_realizar_venta"
+                android:drawablePadding="20dp"
+                android:padding="20dp"
+                android:text="REALIZAR VENTA"
+                android:textAlignment="textStart"
+                android:textSize="18sp" />
+
+
+            <Button
+                android:id="@+id/dialog_btn_editar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="start"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
+                android:layout_marginBottom="5dp"
+                android:background="@drawable/dialog_boton_editar_ver_datos_cliente"
+                android:drawableLeft="@drawable/dialog_ic_editar_ver_datos_cliente"
+                android:drawablePadding="20dp"
+                android:padding="20dp"
+                android:text="VER/EDITAR DATOS DEL CLIENTE"
+                android:textAlignment="textStart"
+                android:textSize="18sp" />
+
+            <Button
+                android:id="@+id/dialog_btn_eliminar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="start"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
+                android:layout_marginBottom="5dp"
+                android:background="@drawable/dialog_boton_eliminar_cliente"
+                android:drawableLeft="@drawable/dialog_ic_eliminar_cliente"
+                android:drawablePadding="20dp"
+                android:padding="20dp"
+                android:text="ELIMINAR CLIENTE"
+                android:textAlignment="textStart"
+                android:textSize="18sp" />
+
+
+        </LinearLayout>
+
+    </ScrollView>
 
     <ImageView
         android:id="@+id/dialog_img_cliente"
         android:layout_width="300dp"
-        android:layout_height="80dp"
+        android:layout_height="100dp"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:padding="10dp"
-        android:src="@drawable/lautaromartinez" />
-    
-    
-    
+        android:padding="5dp"
+        android:src="@mipmap/cliente_img1_hombrebarbudo_512px" />
+
+
 </RelativeLayout>

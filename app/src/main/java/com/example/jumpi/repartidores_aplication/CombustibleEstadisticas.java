@@ -2,15 +2,16 @@ package com.example.jumpi.repartidores_aplication;
 
 import android.graphics.Color;
 import android.net.Uri;
-import android.support.v4.app.FragmentTransaction;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
+
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+import androidx.fragment.app.FragmentTransaction;
 
 public class CombustibleEstadisticas extends AppCompatActivity implements View.OnClickListener, GastoCombustiblePorMes_Fragment.OnFragmentInteractionListener, GastoCombustibleSemestral_Fragment.OnFragmentInteractionListener, GastoCombustibleAnual_Fragment.OnFragmentInteractionListener {
 
