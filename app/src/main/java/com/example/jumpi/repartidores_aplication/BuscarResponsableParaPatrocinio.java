@@ -630,7 +630,7 @@ public class BuscarResponsableParaPatrocinio extends AppCompatActivity implement
              * de Patrocinio**/
 
 
-            /*
+
             Usuario usuario = new Usuario();
 
             usuario.LeerUsuarioEnUnSharedPreferences(this);
@@ -647,7 +647,7 @@ public class BuscarResponsableParaPatrocinio extends AppCompatActivity implement
             }//FIN DEL if (usuario.getTipo_de_Usuario().equals("repartidor"))
 
 
-             */
+             
 
 
         }  /******* FIN DEL if (Evento Abierto) *******/
