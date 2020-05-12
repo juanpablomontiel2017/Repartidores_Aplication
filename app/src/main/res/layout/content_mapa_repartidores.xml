@@ -14,20 +14,69 @@
     android:orientation="vertical">
 
 
-
-
-
     <com.mapbox.mapboxsdk.maps.MapView
+
         android:id="@+id/mapViewRepartidores"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         mapbox:mapbox_cameraTargetLat="-26.784317"
         mapbox:mapbox_cameraTargetLng="-60.446838"
-        mapbox:mapbox_cameraZoom="15"/>
+        mapbox:mapbox_cameraZoom="15">
 
+
+        <View
+
+            android:id="@+id/view_separador"
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:layout_gravity="bottom"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="90dp"
+            android:background="#000">
+
+
+        </View>
+
+
+
+
+
+
+            <LinearLayout
+
+                android:id="@+id/llh_clientes_mapa_repartidores"
+                android:layout_width="match_parent"
+                android:layout_height="90dp"
+                android:layout_gravity="bottom"
+                android:orientation="horizontal"
+                android:background="#00000000">
+
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/recycler_view_lista_clientes_dia"
+                    android:layout_width="match_parent"
+                    android:layout_height="80dp"
+                    android:layout_gravity="bottom"
+                    android:orientation="horizontal" />
+
+
+            </LinearLayout>
+
+
+
+
+
+
+
+
+
+
+    </com.mapbox.mapboxsdk.maps.MapView>
 
 
 
 
 
 </LinearLayout>
+
+

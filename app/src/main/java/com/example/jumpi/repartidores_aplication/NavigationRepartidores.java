@@ -93,7 +93,7 @@ public class NavigationRepartidores extends AppCompatActivity implements OnNavig
 
 
         initNightMode();
-        
+
 
         //Punto de origen: envasadora AquaVital
         puntos_clientes.add(Point.fromLngLat(-60.446815, -26.784306));

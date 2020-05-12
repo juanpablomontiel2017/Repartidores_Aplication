@@ -15,6 +15,7 @@
 
 
         <LinearLayout
+            android:id="@+id/llv_dialog_clientes"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="30dp"

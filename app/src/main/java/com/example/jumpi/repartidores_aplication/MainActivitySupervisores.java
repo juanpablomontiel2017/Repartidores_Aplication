@@ -268,22 +268,7 @@ public class MainActivitySupervisores extends AppCompatActivity {
 
 
 
-                    Intent intent = new Intent (MainActivitySupervisores.this, BuscarResponsableParaPatrocinio.class);
-
-                    startActivity(intent);
-
-
-            return true;
-
-        }
-
-
-
-        if (id == R.id.action_ac) {
-
-
-
-            Intent intent = new Intent (MainActivitySupervisores.this, AgregarCliente.class);
+            Intent intent = new Intent (MainActivitySupervisores.this, BuscarResponsableParaPatrocinio.class);
 
             startActivity(intent);
 
@@ -291,6 +276,8 @@ public class MainActivitySupervisores extends AppCompatActivity {
             return true;
 
         }
+
+
 
 
 

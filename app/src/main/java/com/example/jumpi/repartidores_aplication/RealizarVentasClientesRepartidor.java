@@ -1,22 +1,19 @@
 package com.example.jumpi.repartidores_aplication;
 
+import androidx.appcompat.app.AppCompatActivity;
+
 import android.annotation.SuppressLint;
 import android.content.Context;
-import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
-import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
-import android.view.Window;
-import android.view.WindowManager;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
@@ -25,13 +22,13 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
-
 import java.util.ArrayList;
 import java.util.Arrays;
 
-public class RealizarVentasClientesSupervisor extends AppCompatActivity {
+public class RealizarVentasClientesRepartidor extends AppCompatActivity {
+
+
+
 
 
     /*******DECLARACIÓN DE VARIABLES GLOBALES**/
@@ -98,7 +95,7 @@ public class RealizarVentasClientesSupervisor extends AppCompatActivity {
 
     /** Variables tipo LinearLayout*/
     LinearLayout LinearLayoutVerticalDatosPersonales,LinearLayoutVerticalVentas,LinearLayoutHorizontalContenedorSpinner,
-                 LinearLayoutVerticalImporteEntregaVentas, LinearLayoutHorizontalVentas;
+            LinearLayoutVerticalImporteEntregaVentas, LinearLayoutHorizontalVentas;
 
 
 
@@ -123,6 +120,7 @@ public class RealizarVentasClientesSupervisor extends AppCompatActivity {
 
 
 
+
     /******************************* COMIENZO DEL onCreate() ******************************/
 
 
@@ -130,26 +128,7 @@ public class RealizarVentasClientesSupervisor extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_realizar_ventas_clientes_supervisor);
-
-
-        /**Añadir "manualmente" color al StatusBar **/
-
-        Window window = this.getWindow();
-
-        // clear FLAG_TRANSLUCENT_STATUS flag:
-        window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
-
-        // add FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS flag to the window
-        window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
-
-        // finally change the color
-        window.setStatusBarColor(Color.parseColor("#b71c1c"));
-
-
-        /* Para cambiar el color del puntero o "burbuja" del EditText */
-        setTheme(R.style.AppTheme_CursorSupervisor);
-
+        setContentView(R.layout.activity_realizar_ventas_clientes_repartidor);
 
 
 
@@ -206,7 +185,7 @@ public class RealizarVentasClientesSupervisor extends AppCompatActivity {
                 importe_anterior = Importe;
 
                 /*Llamada a la función:  */
-                ValidarCamposParaAñadirNuevoArticuloVentasSupervisor(LinearLayoutVerticalVentas);
+                ValidarCamposParaAñadirNuevoArticuloVentasRepartidor(LinearLayoutVerticalVentas);
 
 
 
@@ -312,7 +291,7 @@ public class RealizarVentasClientesSupervisor extends AppCompatActivity {
 
                 ValidacionDeCamposAntesDeConfirmarVenta();
 
-                GuardarVentasSupervisoresEnSharedPreferences();
+                GuardarVentasRepartidoresEnSharedPreferences();
 
             }
         });
@@ -336,7 +315,15 @@ public class RealizarVentasClientesSupervisor extends AppCompatActivity {
 
 
 
+
+
+
     }/*******************************FIN DEL onCreate()**************************************/
+
+
+
+
+
 
 
 
@@ -384,7 +371,7 @@ public class RealizarVentasClientesSupervisor extends AppCompatActivity {
 
 
 
-        
+
 
 
 
@@ -790,32 +777,28 @@ public class RealizarVentasClientesSupervisor extends AppCompatActivity {
 
 
 
-    int ChildNuevoArticuloVentasSupervisores = 0;
+    int ChildNuevoArticuloVentasRepartidores = 0;
 
-    public void ObtenerNuevoArticuloParaVentasSupervisores(String ValorElementoSeleccionadoSpinnerProgramatico,final LinearLayout llv) {
+    public void ObtenerNuevoArticuloParaVentasRepartidores(String ValorElementoSeleccionadoSpinnerProgramatico,final LinearLayout llv) {
 
-        View NuevoArticuloInfladoVentasSupervisores;
+        View NuevoArticuloInfladoVentasRepartidores;
 
         /*Llamada a la función: */
-        NuevoArticuloInfladoVentasSupervisores = AgregarNuevoArticuloParaVentasSupervisores(llv);
+        NuevoArticuloInfladoVentasRepartidores = AgregarNuevoArticuloParaVentasRepartidores(llv);
 
 
 
         /** Instanciamos las vistas del diseño XML: "nuevo_articulo_ventas.xml" **/
 
-        final LinearLayout LinearLayoutHorizontalContenedorSpinnerProgramatico = (LinearLayout) findViewById(R.id.llh_contenedor_spinner_nuevo_articulo_supervisor);
+        final LinearLayout LinearLayoutHorizontalContenedorSpinnerProgramatico = (LinearLayout) findViewById(R.id.llh_contenedor_spinner_nuevo_articulo_repartidor);
 
+        final ImageButton btnEliminarArticuloVentas = (ImageButton) NuevoArticuloInfladoVentasRepartidores.findViewById(R.id.delete_art_ventas_repartidor);
 
-        final ImageButton btnEliminarArticuloVentas = (ImageButton) NuevoArticuloInfladoVentasSupervisores.findViewById(R.id.delete_art_ventas_supervisor);
+        final EditText EditText_Cantidad_Nuevo_Articulo_Ventas = (EditText) NuevoArticuloInfladoVentasRepartidores.findViewById(R.id.edtx_cantidad_ventas_new_art_repartidor);
 
+        final Spinner spinner_nuevos_articulos_ventas = (Spinner) NuevoArticuloInfladoVentasRepartidores.findViewById(R.id.sp_new_art_ventas_repartidor);
 
-        final EditText EditText_Cantidad_Nuevo_Articulo_Ventas = (EditText) NuevoArticuloInfladoVentasSupervisores.findViewById(R.id.edtx_cantidad_ventas_new_art_supervisor);
-        EditText_Cantidad_Nuevo_Articulo_Ventas.setBackgroundDrawable(getDrawable(R.drawable.edit_text_material_customizado));
-
-
-        final Spinner spinner_nuevos_articulos_ventas_supervisores = (Spinner) NuevoArticuloInfladoVentasSupervisores.findViewById(R.id.sp_new_art_ventas_supervisor);
-
-        //spinner_nuevos_articulos_ventas_supervisores.onTouchEvent()
+        //spinner_nuevos_articulos_ventas.onTouchEvent()
 
 
 
@@ -828,7 +811,7 @@ public class RealizarVentasClientesSupervisor extends AppCompatActivity {
                     Integer cantidadAntesDeModificacion = Integer.parseInt(s.toString());
 
 
-                    importeAntesDeModificacion = getImporte(spinner_nuevos_articulos_ventas_supervisores.getSelectedItem().toString(), cantidadAntesDeModificacion);
+                    importeAntesDeModificacion = getImporte(spinner_nuevos_articulos_ventas.getSelectedItem().toString(), cantidadAntesDeModificacion);
 
                 }else{
 
@@ -851,7 +834,7 @@ public class RealizarVentasClientesSupervisor extends AppCompatActivity {
 
                     Integer cantidadDespuesDeModificación = Integer.parseInt(s.toString());
 
-                    importeDespuesDeModificacion = getImporte(spinner_nuevos_articulos_ventas_supervisores.getSelectedItem().toString(), cantidadDespuesDeModificación);
+                    importeDespuesDeModificacion = getImporte(spinner_nuevos_articulos_ventas.getSelectedItem().toString(), cantidadDespuesDeModificación);
 
                     ActualizarImporte();
 
@@ -941,13 +924,13 @@ public class RealizarVentasClientesSupervisor extends AppCompatActivity {
 
 
         /*Llamada a la función: */
-        setSpinner(spinner_nuevos_articulos_ventas_supervisores,false);
+        setSpinner(spinner_nuevos_articulos_ventas,false);
 
 
-        ArticuloSeleccionadoAnterior = spinner_nuevos_articulos_ventas_supervisores.getSelectedItem().toString();
+        ArticuloSeleccionadoAnterior = spinner_nuevos_articulos_ventas.getSelectedItem().toString();
 
 
-        spinner_nuevos_articulos_ventas_supervisores.setSelection(Utils_Spinner.ObtenerPosicionDelElementoEnElSpinner(ValorElementoSeleccionadoSpinnerProgramatico,spinner_nuevos_articulos_ventas_supervisores));
+        spinner_nuevos_articulos_ventas.setSelection(Utils_Spinner.ObtenerPosicionDelElementoEnElSpinner(ValorElementoSeleccionadoSpinnerProgramatico,spinner_nuevos_articulos_ventas));
 
 
 
@@ -957,7 +940,7 @@ public class RealizarVentasClientesSupervisor extends AppCompatActivity {
 
 
             /*Llamada a la función: */
-            Utils_Spinner.RefrescarOtrosSpinnerConBordes(spinner_nuevos_articulos_ventas_supervisores,ArticuloSeleccionadoAnterior,ValorElementoSeleccionadoSpinnerProgramatico, this);
+            Utils_Spinner.RefrescarOtrosSpinnerConBordes(spinner_nuevos_articulos_ventas,ArticuloSeleccionadoAnterior,ValorElementoSeleccionadoSpinnerProgramatico, this);
 
 
         } else{
@@ -965,7 +948,7 @@ public class RealizarVentasClientesSupervisor extends AppCompatActivity {
             Utils_Spinner.contador_de_inicializacion = 0;
 
             /*Llamada a la función: */
-            Utils_Spinner.RefrescarOtrosSpinnerConBordes(spinner_nuevos_articulos_ventas_supervisores,null,ArticuloSeleccionadoAnterior, this);
+            Utils_Spinner.RefrescarOtrosSpinnerConBordes(spinner_nuevos_articulos_ventas,null,ArticuloSeleccionadoAnterior, this);
 
 
         }
@@ -979,12 +962,12 @@ public class RealizarVentasClientesSupervisor extends AppCompatActivity {
             public void onClick(View v) {
 
                 Integer cantidadAntesDeModificacion = Integer.parseInt(EditText_Cantidad_Nuevo_Articulo_Ventas.getText().toString());
-                importeAntesDeModificacion = getImporte(spinner_nuevos_articulos_ventas_supervisores.getSelectedItem().toString(), cantidadAntesDeModificacion);
+                importeAntesDeModificacion = getImporte(spinner_nuevos_articulos_ventas.getSelectedItem().toString(), cantidadAntesDeModificacion);
                 importeDespuesDeModificacion = 0;
 
                 ActualizarImporte();
 
-                EliminarNuevoArticuloVentasSupervisores(v,spinner_nuevos_articulos_ventas_supervisores);
+                EliminarNuevoArticuloVentasRepartidores(v,spinner_nuevos_articulos_ventas);
 
 
 
@@ -992,7 +975,7 @@ public class RealizarVentasClientesSupervisor extends AppCompatActivity {
         });
 
 
-    } /**************************************FIN DE LA FUNCIÓN ObtenerNuevoArticuloParaVentasSupervisores()*******************************************/
+    } /**************************************FIN DE LA FUNCIÓN ObtenerNuevoArticuloParaVentasRepartidores()*******************************************/
 
 
 
@@ -1011,7 +994,7 @@ public class RealizarVentasClientesSupervisor extends AppCompatActivity {
     /***************************************************************************************************/
 
 
-    public View AgregarNuevoArticuloParaVentasSupervisores(final LinearLayout LayoutVertical) {
+    public View AgregarNuevoArticuloParaVentasRepartidores(final LinearLayout LayoutVertical) {
 
 
 
@@ -1019,11 +1002,11 @@ public class RealizarVentasClientesSupervisor extends AppCompatActivity {
 
         LayoutInflater inflater = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 
-        final View InflatedViewVentas = inflater.inflate(R.layout.nuevo_articulo_ventas_supervisor, null, true);
+        final View InflatedViewVentas = inflater.inflate(R.layout.nuevo_articulo_ventas_repartidor, null, true);
 
         LayoutVertical.addView(InflatedViewVentas);
 
-        ChildNuevoArticuloVentasSupervisores = LayoutVertical.getChildCount();
+        ChildNuevoArticuloVentasRepartidores = LayoutVertical.getChildCount();
 
 
 
@@ -1033,7 +1016,7 @@ public class RealizarVentasClientesSupervisor extends AppCompatActivity {
 
 
 
-    } /***************************FIN DE LA FUNCIÓN AgregarNuevoArticuloParaVentasSupervisores()************************************/
+    } /***************************FIN DE LA FUNCIÓN AgregarNuevoArticuloParaVentasRepartidores()************************************/
 
 
 
@@ -1052,7 +1035,7 @@ public class RealizarVentasClientesSupervisor extends AppCompatActivity {
 
 
 
-    public void EliminarNuevoArticuloVentasSupervisores(View btnEliminarNuevoArticuloVentasSupervisores,Spinner spinner) {
+    public void EliminarNuevoArticuloVentasRepartidores(View btnEliminarNuevoArticuloVentasRepartidores,Spinner spinner) {
 
 
 
@@ -1061,7 +1044,7 @@ public class RealizarVentasClientesSupervisor extends AppCompatActivity {
 
 
         /*Llamada a la función: */
-        ImageButton btnAgregarNuevoArticulo = Utils_Spinner.ObtenerBotonParaAgregarNuevosArticulos(btnEliminarNuevoArticuloVentasSupervisores);
+        ImageButton btnAgregarNuevoArticulo = Utils_Spinner.ObtenerBotonParaAgregarNuevosArticulos(btnEliminarNuevoArticuloVentasRepartidores);
 
         btnAgregarNuevoArticulo.setEnabled(true);
 
@@ -1087,7 +1070,7 @@ public class RealizarVentasClientesSupervisor extends AppCompatActivity {
 
 
 
-        final LinearLayout HijoLinearLayoutHorizontalNuevosArticulos = (LinearLayout) btnEliminarNuevoArticuloVentasSupervisores.getParent();
+        final LinearLayout HijoLinearLayoutHorizontalNuevosArticulos = (LinearLayout) btnEliminarNuevoArticuloVentasRepartidores.getParent();
 
         final LinearLayout llv_padre = (LinearLayout) HijoLinearLayoutHorizontalNuevosArticulos.getParent();
 
@@ -1100,7 +1083,7 @@ public class RealizarVentasClientesSupervisor extends AppCompatActivity {
 
 
 
-    } /*************************************FIN DE LA FUNCIÓN EliminarNuevoArticuloVentasSupervisores()***********************************************/
+    } /*************************************FIN DE LA FUNCIÓN EliminarNuevoArticuloVentasRepartidores()***********************************************/
 
 
 
@@ -1124,33 +1107,96 @@ public class RealizarVentasClientesSupervisor extends AppCompatActivity {
 
     Boolean bandera_boleana = false;
 
-    public void ValidarCamposParaAñadirNuevoArticuloVentasSupervisor(LinearLayout LinearLayout){
+    public void ValidarCamposParaAñadirNuevoArticuloVentasRepartidor(LinearLayout LinearLayout){
 
 
-            if (!eTCantVentas.getText().toString().isEmpty()){
+        if (!eTCantVentas.getText().toString().isEmpty()){
+
+            bandera_boleana = true;
+
+        }
+
+
+
+        if(eTCantVentas.getText().toString().isEmpty()){
+
+            Toast.makeText(getApplicationContext(), "Recuerde! Para añadir un nuevo artículo debe completar el campo 'Cantidad' con valores correctos.", Toast.LENGTH_LONG).show();
+
+            bandera_boleana = false;
+
+
+
+        }
+
+
+
+        /** Segunda Validación: Si el campo contiene en el primer dígito  un cero o se trata
+         *  de guardar valores nulos se arrojará un mensaje de error */
+
+        if (eTCantVentas.getText().toString().length() > 0 && eTCantVentas.getText().toString().charAt(0) == '0'){
+
+            Toast.makeText(getApplicationContext(), "Error! No está permitido completar el campo con valores nulos o que el primer" +
+                    " dígito comience con cero ", Toast.LENGTH_LONG).show();
+
+            bandera_boleana = false;
+        }
+
+
+
+
+        /**VALIDACIÓN DEL CAMPO DE CANTIDAD PARA EL NUEVO ARTICULO**/
+
+
+        final LinearLayout llv_ventas_repartidor = (LinearLayout) findViewById(R.id.layout_vertical_ventas);
+
+        for(int j = 1 ; j < llv_ventas_repartidor.getChildCount() ; j++){
+
+            final LinearLayout llh_nuevo_articulo_ventas_repartidor = (LinearLayout) llv_ventas_repartidor.getChildAt(j);
+
+            final EditText et_cantidad_del_nuevo_articulo_ventas_repartidor = (EditText) llh_nuevo_articulo_ventas_repartidor.findViewById(R.id.edtx_cantidad_ventas_new_art_repartidor);
+
+
+            /** Primer Validación: Si el campo ya mencionado contiene un valor, entonces se guardarán los cambios. Caso contrario
+             * se arrojará un mensaje de error*/
+
+            if (!et_cantidad_del_nuevo_articulo_ventas_repartidor.getText().toString().isEmpty()){
 
                 bandera_boleana = true;
 
+
             }
 
 
+            if (et_cantidad_del_nuevo_articulo_ventas_repartidor.getText().toString().isEmpty()) {
 
-            if(eTCantVentas.getText().toString().isEmpty()){
-
-                Toast.makeText(getApplicationContext(), "Recuerde! Para añadir un nuevo artículo debe completar el campo 'Cantidad' con valores correctos.", Toast.LENGTH_LONG).show();
 
                 bandera_boleana = false;
 
+                Toast.makeText(getApplicationContext(), "Error! el campo del nuevo artículo añadido está vacío. Por favor, complete el campo correspondiente.", Toast.LENGTH_LONG).show();
+
+
+            }
+
+            /** Segunda Validación: Si el campo fijo (eTCantVentas) esta vacío pero el campo programático tiene un valor cargado, entonces deberá arrojar un mensaje
+             * de error.
+             */
+
+
+            if (!et_cantidad_del_nuevo_articulo_ventas_repartidor.getText().toString().isEmpty() && eTCantVentas.getText().toString().isEmpty()) {
+
+                bandera_boleana = false;
+
+                Toast.makeText(getApplicationContext(), "Error! el primer campo de los artículos a la venta está vacío. Por favor, complete el campo correspondiente.", Toast.LENGTH_LONG).show();
 
 
             }
 
 
 
-            /** Segunda Validación: Si el campo contiene en el primer dígito  un cero o se trata
+            /** Tercera Validación: Si el campo contiene en el primer dígito un cero o se trata
              *  de guardar valores nulos se arrojará un mensaje de error */
 
-            if (eTCantVentas.getText().toString().length() > 0 && eTCantVentas.getText().toString().charAt(0) == '0'){
+            if (et_cantidad_del_nuevo_articulo_ventas_repartidor.getText().toString().length() > 0 && et_cantidad_del_nuevo_articulo_ventas_repartidor.getText().toString().charAt(0) == '0'){
 
                 Toast.makeText(getApplicationContext(), "Error! No está permitido completar el campo con valores nulos o que el primer" +
                         " dígito comience con cero ", Toast.LENGTH_LONG).show();
@@ -1161,70 +1207,7 @@ public class RealizarVentasClientesSupervisor extends AppCompatActivity {
 
 
 
-            /**VALIDACIÓN DEL CAMPO DE CANTIDAD PARA EL NUEVO ARTICULO**/
-
-
-            final LinearLayout llv_ventas_supervisor = (LinearLayout) findViewById(R.id.layout_vertical_ventas);
-
-            for(int j = 1 ; j < llv_ventas_supervisor.getChildCount() ; j++){
-
-                final LinearLayout llh_nuevo_articulo_ventas_supervisor = (LinearLayout) llv_ventas_supervisor.getChildAt(j);
-
-                final EditText et_cantidad_del_nuevo_articulo_ventas_supervisor = (EditText) llh_nuevo_articulo_ventas_supervisor.findViewById(R.id.edtx_cantidad_ventas_new_art_supervisor);
-
-
-                /** Primer Validación: Si el campo ya mencionado contiene un valor, entonces se guardarán los cambios. Caso contrario
-                 * se arrojará un mensaje de error*/
-
-                if (!et_cantidad_del_nuevo_articulo_ventas_supervisor.getText().toString().isEmpty()){
-
-                    bandera_boleana = true;
-
-
-                }
-
-
-                if (et_cantidad_del_nuevo_articulo_ventas_supervisor.getText().toString().isEmpty()) {
-
-
-                    bandera_boleana = false;
-
-                    Toast.makeText(getApplicationContext(), "Error! el campo del nuevo artículo añadido está vacío. Por favor, complete el campo correspondiente.", Toast.LENGTH_LONG).show();
-
-
-                }
-
-                /** Segunda Validación: Si el campo fijo (eTCantVentas) esta vacío pero el campo programático tiene un valor cargado, entonces deberá arrojar un mensaje
-                 * de error.
-                 */
-
-
-                if (!et_cantidad_del_nuevo_articulo_ventas_supervisor.getText().toString().isEmpty() && eTCantVentas.getText().toString().isEmpty()) {
-
-                    bandera_boleana = false;
-
-                    Toast.makeText(getApplicationContext(), "Error! el primer campo de los artículos a la venta está vacío. Por favor, complete el campo correspondiente.", Toast.LENGTH_LONG).show();
-
-
-                }
-
-
-
-                /** Tercera Validación: Si el campo contiene en el primer dígito un cero o se trata
-                 *  de guardar valores nulos se arrojará un mensaje de error */
-
-                if (et_cantidad_del_nuevo_articulo_ventas_supervisor.getText().toString().length() > 0 && et_cantidad_del_nuevo_articulo_ventas_supervisor.getText().toString().charAt(0) == '0'){
-
-                    Toast.makeText(getApplicationContext(), "Error! No está permitido completar el campo con valores nulos o que el primer" +
-                            " dígito comience con cero ", Toast.LENGTH_LONG).show();
-
-                    bandera_boleana = false;
-                }
-
-
-
-
-            } //Fin del for
+        } //Fin del for
 
 
 
@@ -1236,7 +1219,7 @@ public class RealizarVentasClientesSupervisor extends AppCompatActivity {
 
 
             /*Llamar a la función*/
-            ObtenerNuevoArticuloParaVentasSupervisores("",LinearLayout);
+            ObtenerNuevoArticuloParaVentasRepartidores("",LinearLayout);
 
 
             buttonConfirmarVentas.setImageResource(R.drawable.ic_check_rojo);
@@ -1246,7 +1229,7 @@ public class RealizarVentasClientesSupervisor extends AppCompatActivity {
         }
 
 
-    }/*************************************FIN DE LA FUNCIÓN ValidarCamposParaAñadirNuevoArticuloVentasSupervisor()***********************************************/
+    }/*************************************FIN DE LA FUNCIÓN ValidarCamposParaAñadirNuevoArticuloVentasRepartidor()***********************************************/
 
 
 
@@ -1389,12 +1372,12 @@ public class RealizarVentasClientesSupervisor extends AppCompatActivity {
 
 
                     /*Llamada a la función: */
-                    Utils_Spinner.RefrescarOtrosSpinnerConBordes((Spinner)adapterView,ArticuloSeleccionadoAnterior,text, RealizarVentasClientesSupervisor.this);
+                    Utils_Spinner.RefrescarOtrosSpinnerConBordes((Spinner)adapterView,ArticuloSeleccionadoAnterior,text, RealizarVentasClientesRepartidor.this);
 
                     //cuando entra por 2da vez a la activity salta el error debido que a que la cantidad recibe un
                     //valor vacío
 
-                    
+
                     Integer cantidadDeArticulo = Utils_Spinner.obtenerCantidadDeArticulo((Spinner) adapterView);
                     importeAntesDeModificacion = getImporte(ArticuloSeleccionadoAnterior, cantidadDeArticulo);
                     importeDespuesDeModificacion = getImporte(text, cantidadDeArticulo);
@@ -1456,21 +1439,110 @@ public class RealizarVentasClientesSupervisor extends AppCompatActivity {
 
 
 
-                /** Primer Validación: Si al menos uno de los campos contiene un valor se confirmará la venta. Caso contrario
+            /** Primer Validación: Si al menos uno de los campos contiene un valor se confirmará la venta. Caso contrario
+             * se arrojará un mensaje de error*/
+
+            if (!eTCantVentas.getText().toString().isEmpty() || !eTEntrega.getText().toString().isEmpty()){
+
+                flag_validacion_campos_confirmacion_ventas = true;
+
+            }
+
+
+
+            if (eTCantVentas.getText().toString().isEmpty() && eTEntrega.getText().toString().isEmpty()){
+
+                Toast.makeText(getApplicationContext(),"Error! Los campos estan vacios. Por favor, complete al menos un campo",Toast.LENGTH_LONG).show();
+
+
+                flag_validacion_campos_confirmacion_ventas = false;
+
+
+            }
+
+
+
+
+
+
+            /** Segunda Validación: Si uno de los campos contienen en el primer dígito  un cero o se trata
+             *  de guardar valores nulos, entonces se arrojará un mensaje de error */
+
+            if (eTCantVentas.getText().toString().length() > 0 && eTCantVentas.getText().toString().charAt(0) == '0'
+                    || eTEntrega.getText().toString().length() > 0 && eTEntrega.getText().toString().charAt(0) == '0'){
+
+                Toast.makeText(getApplicationContext(), "Error! No está permitido completar los campos con valores nulos" +
+                        " o que el primer dígito comience con cero ", Toast.LENGTH_LONG).show();
+
+                flag_validacion_campos_confirmacion_ventas = false;
+
+
+            }
+
+
+
+
+
+
+
+            /**VALIDACIÓN DE CAMPOS DE CANTIDAD DE ARTÍCULO Y LA ENTREGA PARA LOS NUEVOS ARTICULOS**/
+
+            final LinearLayout llv_ventas_repartidor = (LinearLayout) findViewById(R.id.layout_vertical_ventas);
+
+            for(int l = 1 ; l < llv_ventas_repartidor.getChildCount() ; l++){
+
+                final LinearLayout llh_nuevo_articulo_ventas_repartidor = (LinearLayout) llv_ventas_repartidor.getChildAt(l);
+
+                final EditText et_cantidad_venta_del_nuevo_articulo_ventas_repartidor = (EditText) llh_nuevo_articulo_ventas_repartidor.findViewById(R.id.edtx_cantidad_ventas_new_art_repartidor);
+
+
+
+                /** Primer Validación: Si al menos uno de los campos contiene un valor se guardarán los cambios. Caso contrario
                  * se arrojará un mensaje de error*/
 
-                if (!eTCantVentas.getText().toString().isEmpty() || !eTEntrega.getText().toString().isEmpty()){
+                if (!et_cantidad_venta_del_nuevo_articulo_ventas_repartidor.getText().toString().isEmpty()){
 
                     flag_validacion_campos_confirmacion_ventas = true;
+                }
+
+
+                if (et_cantidad_venta_del_nuevo_articulo_ventas_repartidor.getText().toString().isEmpty()) {
+
+                    flag_validacion_campos_confirmacion_ventas = false;
+
+                    Toast.makeText(getApplicationContext(), "Error! el campo del nuevo artículo añadido está vacío. Por favor, complete al menos uno de los campos correspondientes.", Toast.LENGTH_LONG).show();
+
 
                 }
 
 
 
-                if (eTCantVentas.getText().toString().isEmpty() && eTEntrega.getText().toString().isEmpty()){
+                /** Segunda Validación: Si el campo fijo (eTCantVentas) esta vacío pero el campo programático tiene un valor cargado, entonces deberá arrojar un mensaje
+                 * de error.
+                 */
 
-                    Toast.makeText(getApplicationContext(),"Error! Los campos estan vacios. Por favor, complete al menos un campo",Toast.LENGTH_LONG).show();
 
+                if (!et_cantidad_venta_del_nuevo_articulo_ventas_repartidor.getText().toString().isEmpty() && eTCantVentas.getText().toString().isEmpty()) {
+
+                    flag_validacion_campos_confirmacion_ventas = false;
+
+                    Toast.makeText(getApplicationContext(), "Error! el primer campo de los artículos a la venta está vaciío. Por favor, complete el campo correspondiente.", Toast.LENGTH_LONG).show();
+
+
+                }
+
+
+
+
+
+                /** Tercera Validación: Si uno o más campos contienen en el primer dígito  un cero o se trata
+                 *  de guardar valores nulos se arrojará un mensaje de error */
+
+
+                if (et_cantidad_venta_del_nuevo_articulo_ventas_repartidor.getText().toString().length() > 0 && et_cantidad_venta_del_nuevo_articulo_ventas_repartidor.getText().toString().charAt(0) == '0'){
+
+                    Toast.makeText(getApplicationContext(), "Error! No está permitido completar el campo con valores nulos o que el primer" +
+                            " dígito comience con cero ", Toast.LENGTH_LONG).show();
 
                     flag_validacion_campos_confirmacion_ventas = false;
 
@@ -1482,96 +1554,7 @@ public class RealizarVentasClientesSupervisor extends AppCompatActivity {
 
 
 
-                /** Segunda Validación: Si uno de los campos contienen en el primer dígito  un cero o se trata
-                 *  de guardar valores nulos, entonces se arrojará un mensaje de error */
-
-                if (eTCantVentas.getText().toString().length() > 0 && eTCantVentas.getText().toString().charAt(0) == '0'
-                        || eTEntrega.getText().toString().length() > 0 && eTEntrega.getText().toString().charAt(0) == '0'){
-
-                    Toast.makeText(getApplicationContext(), "Error! No está permitido completar los campos con valores nulos" +
-                            " o que el primer dígito comience con cero ", Toast.LENGTH_LONG).show();
-
-                    flag_validacion_campos_confirmacion_ventas = false;
-
-
-                }
-
-
-
-
-
-
-
-                /**VALIDACIÓN DE CAMPOS DE CANTIDAD DE ARTÍCULO Y LA ENTREGA PARA LOS NUEVOS ARTICULOS**/
-
-                final LinearLayout llv_ventas_supervisor = (LinearLayout) findViewById(R.id.layout_vertical_ventas);
-
-                for(int l = 1 ; l < llv_ventas_supervisor.getChildCount() ; l++){
-
-                    final LinearLayout llh_nuevo_articulo_ventas_supervisores = (LinearLayout) llv_ventas_supervisor.getChildAt(l);
-
-                    final EditText et_cantidad_venta_del_nuevo_articulo_ventas_supervisor = (EditText) llh_nuevo_articulo_ventas_supervisores.findViewById(R.id.edtx_cantidad_ventas_new_art_supervisor);
-
-
-
-                    /** Primer Validación: Si al menos uno de los campos contiene un valor se guardarán los cambios. Caso contrario
-                     * se arrojará un mensaje de error*/
-
-                    if (!et_cantidad_venta_del_nuevo_articulo_ventas_supervisor.getText().toString().isEmpty()){
-
-                        flag_validacion_campos_confirmacion_ventas = true;
-                    }
-
-
-                    if (et_cantidad_venta_del_nuevo_articulo_ventas_supervisor.getText().toString().isEmpty()) {
-
-                        flag_validacion_campos_confirmacion_ventas = false;
-
-                        Toast.makeText(getApplicationContext(), "Error! el campo del nuevo artículo añadido está vacío. Por favor, complete al menos uno de los campos correspondientes.", Toast.LENGTH_LONG).show();
-
-
-                    }
-
-
-
-                    /** Segunda Validación: Si el campo fijo (eTCantVentas) esta vacío pero el campo programático tiene un valor cargado, entonces deberá arrojar un mensaje
-                     * de error.
-                     */
-
-
-                    if (!et_cantidad_venta_del_nuevo_articulo_ventas_supervisor.getText().toString().isEmpty() && eTCantVentas.getText().toString().isEmpty()) {
-
-                        flag_validacion_campos_confirmacion_ventas = false;
-
-                        Toast.makeText(getApplicationContext(), "Error! el primer campo de los artículos a la venta está vaciío. Por favor, complete el campo correspondiente.", Toast.LENGTH_LONG).show();
-
-
-                    }
-
-
-
-
-
-                    /** Tercera Validación: Si uno o más campos contienen en el primer dígito  un cero o se trata
-                     *  de guardar valores nulos se arrojará un mensaje de error */
-
-
-                    if (et_cantidad_venta_del_nuevo_articulo_ventas_supervisor.getText().toString().length() > 0 && et_cantidad_venta_del_nuevo_articulo_ventas_supervisor.getText().toString().charAt(0) == '0'){
-
-                        Toast.makeText(getApplicationContext(), "Error! No está permitido completar el campo con valores nulos o que el primer" +
-                                " dígito comience con cero ", Toast.LENGTH_LONG).show();
-
-                        flag_validacion_campos_confirmacion_ventas = false;
-
-
-                    }
-
-
-
-
-
-
-                } //Fin del for del "l" ("Articulos Programáticos")
+            } //Fin del for del "l" ("Articulos Programáticos")
 
 
 
@@ -1619,9 +1602,9 @@ public class RealizarVentasClientesSupervisor extends AppCompatActivity {
     //AGREGAR/GUARDAR FECHA EN EL MOMENTO DE LA VENTA
     //ID DEL SUPERVISOR
 
-    public void GuardarVentasSupervisoresEnSharedPreferences() {
+    public void GuardarVentasRepartidoresEnSharedPreferences() {
 
-        SharedPreferences sharedPreferences = getSharedPreferences("Datos_Ventas_Supervisores", MODE_PRIVATE);
+        SharedPreferences sharedPreferences = getSharedPreferences("Datos_Ventas_Repartidores", MODE_PRIVATE);
 
         SharedPreferences.Editor editor = sharedPreferences.edit();
 
@@ -1629,63 +1612,58 @@ public class RealizarVentasClientesSupervisor extends AppCompatActivity {
 
 
 
-            int tope_de_articulos = 0;
+        int tope_de_articulos = 0;
 
-            final Spinner spinner_fijo_ventas_supervisores = (Spinner) findViewById(R.id.sp_art_ventas);
+        final Spinner spinner_fijo_ventas_repartidores = (Spinner) findViewById(R.id.sp_art_ventas);
 
-            final EditText editText_cantidad_articulo_fijo_supervisores = (EditText) findViewById(R.id.edtx_cantidad_productos_ventas);
+        final EditText editText_cantidad_articulo_fijo_repartidores = (EditText) findViewById(R.id.edtx_cantidad_productos_ventas);
 
-            final EditText editText_entrega_venta_supervisores = (EditText) findViewById(R.id.cantidad_entrega_productos_ventas);
-
-
-
-
-            String ArticuloSeleccionado =  spinner_fijo_ventas_supervisores.getSelectedItem().toString();
-
-            editor.putString("Articulo_Seleccionado", ArticuloSeleccionado);
-
-            editor.putString("Cantidad_Articulo", editText_cantidad_articulo_fijo_supervisores.getText().toString());
-
-            editor.putString("Entrega_Venta_Supervisor", editText_entrega_venta_supervisores.getText().toString());
+        final EditText editText_entrega_venta_repartidores = (EditText) findViewById(R.id.cantidad_entrega_productos_ventas);
 
 
 
 
-            final LinearLayout llv_ventas_supervisores = (LinearLayout) findViewById(R.id.layout_vertical_ventas);
+        String ArticuloSeleccionado =  spinner_fijo_ventas_repartidores.getSelectedItem().toString();
 
-            tope_de_articulos = llv_ventas_supervisores.getChildCount()-1;
+        editor.putString("Articulo_Seleccionado", ArticuloSeleccionado);
 
+        editor.putString("Cantidad_Articulo", editText_cantidad_articulo_fijo_repartidores.getText().toString());
 
-
-
-            for(int j = 1 ; j < llv_ventas_supervisores.getChildCount() ; j++){
-
-
-
-                final LinearLayout llh_nuevo_articulo_ventas_supervisor = (LinearLayout) llv_ventas_supervisores.getChildAt(j);
-
-                final Spinner spinner_nuevos_articulos_ventas_supervisor = (Spinner) llh_nuevo_articulo_ventas_supervisor.findViewById(R.id.sp_new_art_ventas_supervisor);
-
-                final EditText et_carga_del_nuevo_articulo_venta_supervisor = (EditText) llh_nuevo_articulo_ventas_supervisor.findViewById(R.id.edtx_cantidad_ventas_new_art_supervisor);
-
-
-
-                String ArticuloSeleccionadoSpinnerProgramatico =  spinner_nuevos_articulos_ventas_supervisor.getSelectedItem().toString();
-
-                editor.putString("Nuevo Articulo Seleccionado - Posicion: " + j, ArticuloSeleccionadoSpinnerProgramatico);
-
-                editor.putString("Cantidad Nuevo Articulo - Posicion: " + j, et_carga_del_nuevo_articulo_venta_supervisor.getText().toString());
-
-
-            } //Fin del for del "j" ("Articulos Programáticos")
+        editor.putString("Entrega_Venta_Supervisor", editText_entrega_venta_repartidores.getText().toString());
 
 
 
 
+        final LinearLayout llv_ventas_repartidor = (LinearLayout) findViewById(R.id.layout_vertical_ventas);
+
+        tope_de_articulos = llv_ventas_repartidor.getChildCount()-1;
+
+
+        for(int j = 1 ; j < llv_ventas_repartidor.getChildCount() ; j++){
 
 
 
-    }/*******************************FIN DE LA FUNCIÓN GuardarVentasSupervisoresEnSharedPreferences()******************************/
+            final LinearLayout llh_nuevo_articulo_ventas_repartidor = (LinearLayout) llv_ventas_repartidor.getChildAt(j);
+
+            final Spinner spinner_nuevos_articulos_ventas_repartidor = (Spinner) llh_nuevo_articulo_ventas_repartidor.findViewById(R.id.sp_new_art_ventas_repartidor);
+
+            final EditText et_carga_del_nuevo_articulo_venta_repartidor = (EditText) llh_nuevo_articulo_ventas_repartidor.findViewById(R.id.edtx_cantidad_ventas_new_art_repartidor);
+
+
+
+            String ArticuloSeleccionadoSpinnerProgramatico =  spinner_nuevos_articulos_ventas_repartidor.getSelectedItem().toString();
+
+            editor.putString("Nuevo Articulo Seleccionado - Posicion: " + j, ArticuloSeleccionadoSpinnerProgramatico);
+
+            editor.putString("Cantidad Nuevo Articulo - Posicion: " + j, et_carga_del_nuevo_articulo_venta_repartidor.getText().toString());
+
+
+        } //Fin del for del "j" ("Articulos Programáticos")
+
+
+
+
+    }/*******************************FIN DE LA FUNCIÓN GuardarVentasRepartidoresEnSharedPreferences()******************************/
 
 
 
@@ -1705,4 +1683,4 @@ public class RealizarVentasClientesSupervisor extends AppCompatActivity {
 
 
 
-}/******************************* FIN DE LA ACTIVITY RealizarVentasClientesSupervisor ***********************************/
+}/******************************* FIN DE LA ACTIVITY RealizarVentasClientesRepartidor ***********************************/

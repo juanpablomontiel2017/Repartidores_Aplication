@@ -151,11 +151,11 @@ public class Cargas_Descargas extends AppCompatActivity {
 
         String FechaActualDelSistema = UtilidadFecha.getFecha("dd/MM/yyyy");
 
-        //String FechaGuardada;
-        String FechaGuardada = "02/05/2020";
+        String FechaGuardada;
+        //String FechaGuardada = "12/05/2020";
 
 
-/*
+
         if(LeerConfiguracionDeActivityEnUnSharedPreferences("Fecha").equals("true")){
 
             FechaGuardada = (UtilidadFecha.SetearFecha(2000,00,01));
@@ -169,7 +169,7 @@ public class Cargas_Descargas extends AppCompatActivity {
         } //Fin del else
 
 
-*/
+
 
 
 
@@ -182,21 +182,13 @@ public class Cargas_Descargas extends AppCompatActivity {
 
         else {
 
-            //GuardarConfiguracionDeActivityEnUnSharedPreferences("EstadoTanda" + nombre_apellido_recibir, "true");
+            GuardarConfiguracionDeActivityEnUnSharedPreferences("EstadoTanda" + nombre_apellido_recibir, "true");
 
-            //Estado_Tanda = true;
+            Estado_Tanda = true;
 
+            /*Llamada a la función: */
+            CierreDeTanda(FechaActualDelSistema);
 
-            if(!Estado_Tanda){
-                
-                /*Llamada a la función: */
-                CierreDeTandaCorrecto(FechaActualDelSistema);
-
-            } else{
-
-                /*Llamada a la función: */
-                CierreDeTandaAbrupto(FechaActualDelSistema);
-            }
 
         }//Fin del else
 
@@ -727,7 +719,7 @@ public class Cargas_Descargas extends AppCompatActivity {
     /***********************************************************************************************/
 
 
-    public void CierreDeTandaCorrecto(final String FechaActualDelSistema){
+    public void CierreDeTanda(final String FechaActualDelSistema){
 
 
         AlertDialog.Builder builder = new AlertDialog.Builder(Cargas_Descargas.this);
@@ -765,65 +757,9 @@ public class Cargas_Descargas extends AppCompatActivity {
 
 
 
-    }/***********************FIN DE LA FUNCIÓN CierreDeTandaCorrecto()********************************/
+    }/***********************FIN DE LA FUNCIÓN CierreDeTanda()********************************/
 
 
-
-
-
-
-    /***************************************************************************************************/
-    /***************************************************************************************************/
-    /***************************************************************************************************/
-    /***************************************************************************************************/
-    /***************************************************************************************************/
-    /***************************************************************************************************/
-    /***************************************************************************************************/
-    /***************************************************************************************************/
-    /***************************************************************************************************/
-    /***************************************************************************************************/
-
-
-
-
-    public void CierreDeTandaAbrupto(final String FechaActualDelSistema){
-
-
-        AlertDialog.Builder builder = new AlertDialog.Builder(Cargas_Descargas.this);
-        builder.setIcon(R.drawable.ic_msj_alerta);
-        builder.setTitle("¡Las tandas se han cerrado automáticamente!");
-        builder.setMessage("¡Esto se debe a que se ha olvidado de cerrar las tandas del días de ayer!");
-
-
-
-        builder.setPositiveButton("ACEPTAR", new DialogInterface.OnClickListener() {
-
-            public void onClick(DialogInterface dialog, int id) {
-
-
-                dialog.cancel(); //Cierra dialogo.
-
-
-            }
-
-        });
-
-
-
-        AlertDialog dialog = builder.create();
-        dialog.show();
-
-
-        BorrarValoresDelSharedPreferences();
-
-        MostrarValoresDelSharedPreferences();
-
-        GuardarConfiguracionDeActivityEnUnSharedPreferences("Fecha" + nombre_apellido_recibir, FechaActualDelSistema);
-
-
-
-
-    }/***********************FIN DE LA FUNCIÓN CierreDeTandaAbrupto()********************************/
 
 
     /***************************************************************************************************/

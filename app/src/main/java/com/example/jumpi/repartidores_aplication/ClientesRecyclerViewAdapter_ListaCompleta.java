@@ -1,14 +1,13 @@
 package com.example.jumpi.repartidores_aplication;
 
-import android.app.AlertDialog;
+import android.annotation.SuppressLint;
 import android.app.Dialog;
-import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
+import android.graphics.PorterDuff;
 import android.graphics.drawable.ColorDrawable;
+import android.graphics.drawable.Drawable;
 import android.view.LayoutInflater;
-import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
@@ -17,18 +16,17 @@ import android.widget.Filterable;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
-import androidx.core.view.MotionEventCompat;
+import androidx.appcompat.content.res.AppCompatResources;
+import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 
-public class ClientesRecyclerViewAdapter extends RecyclerView.Adapter<ClientesRecyclerViewAdapter.ClientesViewHolder> implements Filterable {
+public class ClientesRecyclerViewAdapter_ListaCompleta extends RecyclerView.Adapter<ClientesRecyclerViewAdapter_ListaCompleta.ClientesViewHolder> implements Filterable {
 
 
     /***************** DECLARACIÓN DE VARIABLES GLOBALES **************/
@@ -37,6 +35,8 @@ public class ClientesRecyclerViewAdapter extends RecyclerView.Adapter<ClientesRe
     private List<Clientes> clientesListFull;
     Dialog myDialog;
 
+
+    private Button dialog_cliente_btnVentas, dialog_cliente_btnEditar, dialog_cliente_btnEliminar;
 
 
     public class ClientesViewHolder extends RecyclerView.ViewHolder {
@@ -76,7 +76,7 @@ public class ClientesRecyclerViewAdapter extends RecyclerView.Adapter<ClientesRe
     /*************************************************************************/
     /*************************************************************************/
 
-    ClientesRecyclerViewAdapter(List<Clientes> clientesList) {
+    ClientesRecyclerViewAdapter_ListaCompleta(List<Clientes> clientesList) {
 
         this.clientesList = clientesList;
         clientesListFull = new ArrayList<>(clientesList);
@@ -112,7 +112,27 @@ public class ClientesRecyclerViewAdapter extends RecyclerView.Adapter<ClientesRe
         myDialog.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
 
 
+
+        final LinearLayout linearLayoutvertical = (LinearLayout)  myDialog.findViewById(R.id.llv_dialog_clientes);
+
+        Usuario usuario = new Usuario();
+        usuario.LeerUsuarioEnUnSharedPreferences(parent.getContext());
+
+
+        if(usuario.getTipo_de_Usuario().equals("repartidor")){
+
+            linearLayoutvertical.setBackgroundColor(Color.parseColor("#283593"));
+
+        }// FIN DEL if(usuario.getTipo_de_Usuario().equals("repartidor"))
+
+
+
+
+
+
+
         v.setOnClickListener(new View.OnClickListener() {
+            @SuppressLint("ResourceType")
             @Override
             public void onClick(View view) {
 
@@ -129,43 +149,95 @@ public class ClientesRecyclerViewAdapter extends RecyclerView.Adapter<ClientesRe
 
 
 
+                dialog_cliente_btnVentas = (Button) myDialog.findViewById(R.id.dialog_btn_venta);
+                dialog_cliente_btnEditar = (Button) myDialog.findViewById(R.id.dialog_btn_editar);
+                dialog_cliente_btnEliminar = (Button) myDialog.findViewById(R.id.dialog_btn_eliminar);
+
+
+
+                if(usuario.getTipo_de_Usuario().equals("repartidor")){
+
+
+                    dialog_cliente_btnVentas.setBackground(parent.getContext().getResources().getDrawable(R.drawable.dialog_boton_realizar_venta_repartidor));
+                    dialog_cliente_btnEditar.setVisibility(View.GONE);
+                    dialog_cliente_btnEliminar.setVisibility(View.GONE);
+
+
+                }// FIN DEL if(usuario.getTipo_de_Usuario().equals("repartidor"))
 
 
 
 
-
-                Button dialog_cliente_btnVentas = (Button) myDialog.findViewById(R.id.dialog_btn_venta);
 
                 dialog_cliente_btnVentas.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
 
 
-                        Intent intentVentas = new Intent(parent.getContext(), RealizarVentasClientesSupervisor.class);
+
+                        if(usuario.getTipo_de_Usuario().equals("repartidor")){
 
 
-                        intentVentas.putExtra("Foto",clientesList.get(vHolder.getAdapterPosition()).getFoto());
+                            Intent intentVentas = new Intent(parent.getContext(), RealizarVentasClientesRepartidor.class);
 
-                        intentVentas.putExtra("DNI",clientesList.get(vHolder.getAdapterPosition()).getDNI());
+                            intentVentas.putExtra("Foto",clientesList.get(vHolder.getAdapterPosition()).getFoto());
 
-                        intentVentas.putExtra("Apellido",clientesList.get(vHolder.getAdapterPosition()).getApellido());
+                            intentVentas.putExtra("DNI",clientesList.get(vHolder.getAdapterPosition()).getDNI());
 
-                        intentVentas.putExtra("Nombre",clientesList.get(vHolder.getAdapterPosition()).getNombre());
+                            intentVentas.putExtra("Apellido",clientesList.get(vHolder.getAdapterPosition()).getApellido());
 
-                        intentVentas.putExtra("Codigo_Area",clientesList.get(vHolder.getAdapterPosition()).getCodigo_Area());
+                            intentVentas.putExtra("Nombre",clientesList.get(vHolder.getAdapterPosition()).getNombre());
 
-                        intentVentas.putExtra("Telefono",clientesList.get(vHolder.getAdapterPosition()).getTelefono());
+                            intentVentas.putExtra("Codigo_Area",clientesList.get(vHolder.getAdapterPosition()).getCodigo_Area());
 
-                        intentVentas.putExtra("Direccion", clientesList.get(vHolder.getAdapterPosition()).getDireccion());
+                            intentVentas.putExtra("Telefono",clientesList.get(vHolder.getAdapterPosition()).getTelefono());
 
-                        intentVentas.putExtra("Barrio", clientesList.get(vHolder.getAdapterPosition()).getBarrio());
+                            intentVentas.putExtra("Direccion", clientesList.get(vHolder.getAdapterPosition()).getDireccion());
 
-                        intentVentas.putExtra("Referencia", clientesList.get(vHolder.getAdapterPosition()).getReferencia());
+                            intentVentas.putExtra("Barrio", clientesList.get(vHolder.getAdapterPosition()).getBarrio());
 
-                        intentVentas.putExtra("Correo", clientesList.get(vHolder.getAdapterPosition()).getCorreo());
+                            intentVentas.putExtra("Referencia", clientesList.get(vHolder.getAdapterPosition()).getReferencia());
+
+                            intentVentas.putExtra("Correo", clientesList.get(vHolder.getAdapterPosition()).getCorreo());
+
+                            parent.getContext().startActivity(intentVentas);
 
 
-                        parent.getContext().startActivity(intentVentas);
+                        }// FIN DEL if(usuario.getTipo_de_Usuario().equals("repartidor"))
+
+
+                        else {
+
+
+                            Intent intentVentas = new Intent(parent.getContext(), RealizarVentasClientesSupervisor.class);
+
+                            intentVentas.putExtra("Foto",clientesList.get(vHolder.getAdapterPosition()).getFoto());
+
+                            intentVentas.putExtra("DNI",clientesList.get(vHolder.getAdapterPosition()).getDNI());
+
+                            intentVentas.putExtra("Apellido",clientesList.get(vHolder.getAdapterPosition()).getApellido());
+
+                            intentVentas.putExtra("Nombre",clientesList.get(vHolder.getAdapterPosition()).getNombre());
+
+                            intentVentas.putExtra("Codigo_Area",clientesList.get(vHolder.getAdapterPosition()).getCodigo_Area());
+
+                            intentVentas.putExtra("Telefono",clientesList.get(vHolder.getAdapterPosition()).getTelefono());
+
+                            intentVentas.putExtra("Direccion", clientesList.get(vHolder.getAdapterPosition()).getDireccion());
+
+                            intentVentas.putExtra("Barrio", clientesList.get(vHolder.getAdapterPosition()).getBarrio());
+
+                            intentVentas.putExtra("Referencia", clientesList.get(vHolder.getAdapterPosition()).getReferencia());
+
+                            intentVentas.putExtra("Correo", clientesList.get(vHolder.getAdapterPosition()).getCorreo());
+
+                            parent.getContext().startActivity(intentVentas);
+
+
+
+                        }
+
+
 
 
 
@@ -178,7 +250,6 @@ public class ClientesRecyclerViewAdapter extends RecyclerView.Adapter<ClientesRe
 
 
 
-                Button dialog_cliente_btnEditar = (Button) myDialog.findViewById(R.id.dialog_btn_editar);
                 dialog_cliente_btnEditar.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {

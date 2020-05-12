@@ -76,7 +76,7 @@
         app:layout_behavior="@string/appbar_scrolling_view_behavior"/>
 
 
-    
+<!--
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/fab_ir_mapa_repartidores"
         android:layout_width="wrap_content"
@@ -85,10 +85,22 @@
         android:layout_margin="@dimen/fab_margin"
         app:maxImageSize="40dp"
         android:src="@mipmap/ir_mapa_128px"
-        app:backgroundTint="#ff9100" />
+        app:backgroundTint="#ff9100" /> -->
 
 
+    <Button
 
+        android:id="@+id/btn_ir_mapa_repartidores"
+        android:layout_width="65dp"
+        android:layout_height="65dp"
+        android:layout_gravity="bottom|end"
+        android:layout_marginRight="10dp"
+        android:layout_marginBottom="16dp"
+        android:background="@drawable/repartidores_main_activity_boton_circulo"
+        android:drawableTop="@mipmap/ir_mapa_64px"
+        android:paddingTop="5dp"
+        android:paddingBottom="5dp"
+        android:textColor="#fff" />
 
 
 

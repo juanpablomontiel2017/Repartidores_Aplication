@@ -9,7 +9,7 @@
     android:layout_height="match_parent"
     android:background="#FFFF"
     android:orientation="vertical"
-    tools:context=".RealizarVentasClientesSupervisor">
+    tools:context=".RealizarVentasClientesRepartidor">
 
 
 
@@ -36,7 +36,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="20dp"
                 android:layout_weight="1"
-                android:background="@drawable/ventas_supervisor_gradient"
+                android:background="@drawable/ventas_repartidor_gradient"
                 android:orientation="vertical"
                 android:weightSum="5">
 
@@ -315,7 +315,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
-                            android:background="@drawable/spinner_style"
+                            android:background="@drawable/spinner_style_ventas_repartidor"
                             android:orientation="horizontal">
 
 
@@ -366,7 +366,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
                 android:layout_weight="1"
-                android:background="#ff5722"
+                android:background="#283593"
                 android:orientation="vertical">
 
 

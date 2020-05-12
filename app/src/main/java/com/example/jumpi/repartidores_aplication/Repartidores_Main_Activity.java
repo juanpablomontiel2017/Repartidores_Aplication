@@ -12,6 +12,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 
+import android.widget.Button;
 import android.widget.TextView;
 
 import androidx.appcompat.app.ActionBar;
@@ -38,7 +39,7 @@ public class Repartidores_Main_Activity extends AppCompatActivity {
 
     private CustomViewPager mViewPager;
 
-
+    Button button_ir_mapa_repartidores;
 
 
 
@@ -146,10 +147,9 @@ public class Repartidores_Main_Activity extends AppCompatActivity {
 
 
 
+        button_ir_mapa_repartidores = (Button) findViewById(R.id.btn_ir_mapa_repartidores);
 
-        FloatingActionButton fab_mapa_repartidores = (FloatingActionButton) findViewById(R.id.fab_ir_mapa_repartidores);
-
-        fab_mapa_repartidores.setOnClickListener(new View.OnClickListener() {
+        button_ir_mapa_repartidores.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
@@ -161,6 +161,10 @@ public class Repartidores_Main_Activity extends AppCompatActivity {
 
             }
         });
+
+
+
+
 
 
     }/*******************************FIN DEL OnCreate*********************************/
