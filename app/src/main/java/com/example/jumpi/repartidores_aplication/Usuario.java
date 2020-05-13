@@ -71,7 +71,6 @@ public class Usuario {
     public void GuardarUsuarioEnUnSharedPreferences(Context context){
 
         SharedPreferences sharedPreferences = context.getSharedPreferences("Datos_Usuario", MODE_PRIVATE);
-
         SharedPreferences.Editor editor = sharedPreferences.edit();
 
 

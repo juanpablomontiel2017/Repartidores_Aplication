@@ -121,6 +121,12 @@ public class LoginActivity extends AppCompatActivity implements  LoaderCallbacks
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
+        mLoginFormView = findViewById(R.id.login_form);
+
+        mProgressView = findViewById(R.id.login_progress);
+
+        showProgress(true);
+
 
         DbHelper dbHelper = new DbHelper(getApplicationContext());
         SQLiteDatabase database = dbHelper.getReadableDatabase();
@@ -150,6 +156,7 @@ public class LoginActivity extends AppCompatActivity implements  LoaderCallbacks
 
             if (tipoUsuario.equals("repartidor")){
                 //ingresa a activity repartidor
+                showProgress(false);
                 finish();
                 Intent myIntent = new Intent(LoginActivity.this, Repartidores_Main_Activity.class);
                 Bundle bundle = new Bundle();
@@ -163,6 +170,7 @@ public class LoginActivity extends AppCompatActivity implements  LoaderCallbacks
             }
             else if (tipoUsuario.equals("supervisor")){
                 //ingresa a activity supervisor
+                showProgress(false);
                 finish();
                 Intent myIntent = new Intent(LoginActivity.this, MainActivity.class);
                 Bundle bundle = new Bundle();
@@ -181,49 +189,50 @@ public class LoginActivity extends AppCompatActivity implements  LoaderCallbacks
         }else{
             Log.d("TAG", "No existe usuario registrado");
 
-        }
 
-        // Set up the login form.
-        mEmailView = (AutoCompleteTextView) findViewById(R.id.email);
-        populateAutoComplete();
-        mPasswordView = (EditText) findViewById(R.id.password);
-        mPasswordView.setOnEditorActionListener(new TextView.OnEditorActionListener() {
-            @Override
-            public boolean onEditorAction(TextView textView, int id, KeyEvent keyEvent) {
+            showProgress(false);
 
-                if (id == EditorInfo.IME_ACTION_DONE || id == EditorInfo.IME_NULL) {
+            // Set up the login form.
+            mEmailView = (AutoCompleteTextView) findViewById(R.id.email);
+            populateAutoComplete();
+            mPasswordView = (EditText) findViewById(R.id.password);
+            mPasswordView.setOnEditorActionListener(new TextView.OnEditorActionListener() {
+                @Override
+                public boolean onEditorAction(TextView textView, int id, KeyEvent keyEvent) {
+                    if (id == EditorInfo.IME_ACTION_DONE || id == EditorInfo.IME_NULL) {
 
+                        attemptLogin();
+
+                        return true;
+
+                    }//Fin del if
+                    return false;
+
+                }/***************FIN DEL EVENTO onEditorAction()****************/
+
+
+            });/***************FIN DEL EVENTO setOnEditorActionListener()****************/
+
+
+            Button mEmailSignInButton = (Button) findViewById(R.id.email_sign_in_button);
+
+            mEmailSignInButton.setOnClickListener(new OnClickListener() {
+                @Override
+                public void onClick(View view) {
+
+                    Log.d("TAG", "onClick/ signin button");
                     attemptLogin();
 
-                    return true;
-
-                }//Fin del if
-                return false;
-
-            }/***************FIN DEL EVENTO onEditorAction()****************/
+                }/***************FIN DEL EVENTO OnClick()****************/
 
 
-        });/***************FIN DEL EVENTO setOnEditorActionListener()****************/
+            });/***************FIN DEL EVENTO setOnClickListener()****************/
 
 
-        Button mEmailSignInButton = (Button) findViewById(R.id.email_sign_in_button);
-
-        mEmailSignInButton.setOnClickListener(new OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-                Log.d("TAG", "onClick/ signin button");
-                attemptLogin();
-
-            }/***************FIN DEL EVENTO OnClick()****************/
 
 
-        });/***************FIN DEL EVENTO setOnClickListener()****************/
 
-
-        mLoginFormView = findViewById(R.id.login_form);
-
-        mProgressView = findViewById(R.id.login_progress);
+        }
 
 
     }/************************FIN DEL onCreate()*****************************/
@@ -954,7 +963,14 @@ public class LoginActivity extends AppCompatActivity implements  LoaderCallbacks
                                 myIntent.putExtras(bundle);
                                 myIntent.putExtra("id", id);
                                 myIntent.putExtra("dni", dni);
+
+                                DbHelper helper = new DbHelper(getApplicationContext());
+                                SQLiteDatabase db = helper.getWritableDatabase();
+                                helper.guardarUsuario(Integer.parseInt(usuario.getDNI()),Integer.parseInt(usuario.getIdPersona()),usuario.getUsuario(),usuario.getPassword(),String.valueOf(usuario.getTipo_de_Usuario()),DbContract.SYNC_STATUS_OK, db);
+                                helper.close();
+
                                 LoginActivity.this.startActivity(myIntent);
+                                finish();
 
                             }//Fin del if
 
