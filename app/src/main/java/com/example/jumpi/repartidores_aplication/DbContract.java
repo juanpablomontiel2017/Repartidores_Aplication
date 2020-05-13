@@ -19,6 +19,7 @@ public class DbContract {
     public static final String DNI = "dni";
     public static final String USUARIO = "usuario";
     public static final String PASSWORD = "contrasena";
+    public static final String TIPO_USUARIO = "tipousuario";
     public static final String SYNC_STATUS = "syncstatus";
     public static final int ENTERO_NULO = 9999;
     public static final int DIA_OK = 1;

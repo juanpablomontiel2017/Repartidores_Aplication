@@ -48,6 +48,8 @@ public class LoginActivity extends AppCompatActivity implements  LoaderCallbacks
 
     private static final int REQUEST_READ_CONTACTS = 0;
     private final int login = 2402;
+    private final int usuarioYaLogueado = 2403;
+    private final int nuevoUsuario = 2404;
 
 
     ArrayList<Usuario> ListaUsuario = new ArrayList<>();
@@ -112,12 +114,6 @@ public class LoginActivity extends AppCompatActivity implements  LoaderCallbacks
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
-
-
-
-
-
-
         Log.d("TAG", "***************************");
         Log.d("TAG", "                           ");
         Log.d("TAG", "    BIENVENIDO A LOGCAT    ");
@@ -126,66 +122,74 @@ public class LoginActivity extends AppCompatActivity implements  LoaderCallbacks
         setContentView(R.layout.activity_login);
 
 
-        // Set up the login form.
-        mEmailView = (AutoCompleteTextView) findViewById(R.id.email);
-
-        populateAutoComplete();
-
-
-        mPasswordView = (EditText) findViewById(R.id.password);
-
-
         DbHelper dbHelper = new DbHelper(getApplicationContext());
-
         SQLiteDatabase database = dbHelper.getReadableDatabase();
-
         Cursor cursor = dbHelper.readFromLocalDatabase(database);
 
-        if (dbHelper.checkForTableExists(database, "usuario")) {
-
+        if (dbHelper.checkForTableExists(database, DbContract.TABLE_NAME_USUARIO)) {
 
             Log.d("TAG", "existen datos de usuario");
-
+            //Buscar que tipo de usuario es y hacer un intent
             String usuario = null;
-
-            String password = null;
+            //String password = null;
+            String dni = null;
+            String id = null;
+            String tipoUsuario = null;
 
             while (cursor.moveToNext()) {
                 usuario = cursor.getString(cursor.getColumnIndex(DbContract.USUARIO));
-                password = cursor.getString(cursor.getColumnIndex(DbContract.PASSWORD));
-
+               // password = cursor.getString(cursor.getColumnIndex(DbContract.PASSWORD));
+                dni = cursor.getString(cursor.getColumnIndex(DbContract.DNI));
+                id = cursor.getString(cursor.getColumnIndex(DbContract.ID));
+                tipoUsuario = cursor.getString(cursor.getColumnIndex(DbContract.TIPO_USUARIO));
             }
-
-
             dbHelper.close();
 
 
-            Log.d("TAG", "se encuentra el usuario en la BD");
 
 
-            mEmailView.setText(usuario);
+            if (tipoUsuario.equals("repartidor")){
+                //ingresa a activity repartidor
+                finish();
+                Intent myIntent = new Intent(LoginActivity.this, Repartidores_Main_Activity.class);
+                Bundle bundle = new Bundle();
+                String dia = UtilidadFecha.getNombreDelDia();
+                bundle.putString("dia", dia);
+                myIntent.putExtras(bundle);
+                myIntent.putExtra("id", id);
+                myIntent.putExtra("dni", dni);
+                LoginActivity.this.startActivity(myIntent);
 
-            mPasswordView.setText(password);
+            }
+            else if (tipoUsuario.equals("supervisor")){
+                //ingresa a activity supervisor
+                finish();
+                Intent myIntent = new Intent(LoginActivity.this, MainActivity.class);
+                Bundle bundle = new Bundle();
+                String dia = UtilidadFecha.getNombreDelDia();
+                bundle.putString("dia", dia);
+                myIntent.putExtras(bundle);
+                myIntent.putExtra("id", id);
+                myIntent.putExtra("dni", dni);
+                LoginActivity.this.startActivity(myIntent);
 
-            StringBuilder sb = new StringBuilder();
+            }else{
+                Log.d("TAG", "Error: usuario registrado no es repartidor ni supervisor");
 
-            sb.append(usuario);
+            }
 
-            sb.append(password);
-
-
-            String resultado = sb.toString();
-
-            Log.d("TAG", "Existe un usuario: " + resultado + " se autocompletaran los datos");
-
+        }else{
+            Log.d("TAG", "No existe usuario registrado");
 
         }
 
-
+        // Set up the login form.
+        mEmailView = (AutoCompleteTextView) findViewById(R.id.email);
+        populateAutoComplete();
+        mPasswordView = (EditText) findViewById(R.id.password);
         mPasswordView.setOnEditorActionListener(new TextView.OnEditorActionListener() {
             @Override
             public boolean onEditorAction(TextView textView, int id, KeyEvent keyEvent) {
-
 
                 if (id == EditorInfo.IME_ACTION_DONE || id == EditorInfo.IME_NULL) {
 
@@ -194,9 +198,7 @@ public class LoginActivity extends AppCompatActivity implements  LoaderCallbacks
                     return true;
 
                 }//Fin del if
-
                 return false;
-
 
             }/***************FIN DEL EVENTO onEditorAction()****************/
 
@@ -206,88 +208,12 @@ public class LoginActivity extends AppCompatActivity implements  LoaderCallbacks
 
         Button mEmailSignInButton = (Button) findViewById(R.id.email_sign_in_button);
 
-
         mEmailSignInButton.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View view) {
 
-                Log.d("TAG", "***************************");
-                Log.d("TAG", "                           ");
                 Log.d("TAG", "onClick/ signin button");
-
-
-                DbHelper dbHelper = new DbHelper(getApplicationContext());
-
-                SQLiteDatabase database = dbHelper.getReadableDatabase();
-
-                Cursor cursor = dbHelper.readFromLocalDatabase(database);
-
-                if (dbHelper.checkForTableExists(database, "usuario")) {
-
-
-                    Log.d("TAG", "Se comprueba nuevamente que el usuario existe");
-
-
-                    String usuario = null;
-
-                    String password = null;
-
-                    while (cursor.moveToNext()) {
-
-                        usuario = cursor.getString(cursor.getColumnIndex(DbContract.USUARIO));
-
-                        password = cursor.getString(cursor.getColumnIndex(DbContract.PASSWORD));
-
-                    }//Fin del while
-
-
-                    dbHelper.close();
-
-                    showProgress(true);
-
-                    Log.d("TAG", "onClick/ obtiene los datos del usuario");
-
-
-                    if (TextUtils.equals(usuario, mEmailView.getText().toString()) && TextUtils.equals(password, mPasswordView.getText().toString())) {
-
-                        Log.d("TAG", "onClick/ el usuario y password a enviar se encuentra registrado");
-                        mAuthDb = new DbUserLogin(usuario, password);
-                        mAuthDb.execute();
-
-                        StringBuilder sb = new StringBuilder();
-
-                        sb.append(usuario);
-
-                        sb.append(password);
-
-                        String resultado = sb.toString();
-
-
-                    } else {
-
-                        Log.d("TAG", "onClick/ existe un usuario registrado pero se loguea con otra cuenta");
-
-
-                        /**
-                         * EN ESTA PARTE SE DEBE INVOCAR UN MÉTODO DIFERENTE DE ATTEMPTLOGIN
-                         * NO SOLO DEBE LOGUEAR SI NO TAMBIÉN  BORRAR LAS TABLAS PERTENECIENTES A LA CUENTA VIEJA
-                         */
-
-                        mAuthDb = new DbUserLogin(mEmailView.getText().toString(), mPasswordView.getText().toString());
-
-                        mAuthDb.newUserlogin();
-
-                    }//Fin del else
-
-
-                } //Fin del primer if
-
-                else {
-
-                    attemptLogin();
-
-                }
-
+                attemptLogin();
 
             }/***************FIN DEL EVENTO OnClick()****************/
 
@@ -450,13 +376,6 @@ public class LoginActivity extends AppCompatActivity implements  LoaderCallbacks
     private void attemptLogin() {
         Log.d("TAG", "ingresa a attemptLogin ");
 
-
-        if (mAuthTask != null) {
-            return;
-        }
-
-
-        // Reset errors.
         mEmailView.setError(null);
         mPasswordView.setError(null);
 
@@ -881,99 +800,58 @@ public class LoginActivity extends AppCompatActivity implements  LoaderCallbacks
 
             switch (idRequest){
                 case login:
-
-
                     Log.d("TAG", "ResultJson login");
                     Log.d("TAG", result);
 
-                    mAuthTask = null;
-
                     showProgress(false);
-
-
                     JSONObject jsonResponse = new JSONObject(result);
-
                     boolean success = jsonResponse.getBoolean("exito");
-
-
-
 
                     /** SI SUCCESS ES = TRUE ENTONCES USUARIO Y CONTRASEÑA VÁLIDA**/
 
                     if (success) {
-
                         articulo.borrarArticulosDelSharedPreferences(getApplication());
                         Repartidores.borrarRepartidoresDelSharedPreferences(getApplication());
-
                         JSONObject jsonData = jsonResponse.getJSONObject("data");
 
                         id = jsonData.getString("id");
-
                         dni = jsonData.getString("dni");
-
                         msj = jsonData.getString("msj");
 
-
                         Usuario usuario = new Usuario(id, dni, mEmail, mPassword, msj);
-
                         usuario.GuardarUsuarioEnUnSharedPreferences(LoginActivity.this);
 
-
                         if (TextUtils.equals(msj, "repartidor")) {
-
-
-
                             /*Llamada a la función: */
                             LeerClientesDelResponse(jsonData, lunes, martes, miercoles, jueves
                                     , viernes, sabado, id, dni, msj, mEmail, mPassword);
 
 
-                            // Ingresas a otra activity de la app. Logueo exitoso
-
-
                             Log.d("TAG", "response true. Ingresa a Main Repartidor");
-
 
                             /**
                              * PRUEBA PARA SABER SI GUARDA LOS DATOS DEL USUARIO EN LA BD LOCAL
                              */
 
-
                             DbHelper dbHelperRead = new DbHelper(getApplicationContext());
-
                             SQLiteDatabase databaseRead = dbHelperRead.getReadableDatabase();
-
                             Cursor cursor = dbHelperRead.readFromLocalDatabase(databaseRead);
 
-
                             String usuariobd = null;
-
                             String passwordbd = null;
-
                             String dnibd = null;
-
                             String idbd = null;
 
 
                             while (cursor.moveToNext()) {
                                 usuariobd = cursor.getString(cursor.getColumnIndex(DbContract.USUARIO));
-
                                 passwordbd = cursor.getString(cursor.getColumnIndex(DbContract.PASSWORD));
-
                                 dnibd = cursor.getString(cursor.getColumnIndex(DbContract.DNI));
-
                                 idbd = cursor.getString(cursor.getColumnIndex(DbContract.ID));
-
-
                             }//Fin del while
-
                             dbHelperRead.close();
-
                             cursor.close();
-
-
                             Log.d("TAG", "PRUEBA PARA SABER SI GUARDA LOS DATOS DEL USUARIO -> DNI: " + dnibd + " ID: " + idbd + " USUARIO: " + usuariobd + " PASSWORD: " + passwordbd);
-
 
                             /**
                              * PRUEBA PARA SABER SI GUARDA LOS DATOS DE LOS CLIENTES
@@ -1064,45 +942,19 @@ public class LoginActivity extends AppCompatActivity implements  LoaderCallbacks
 
                         }//Fin del if (TextUtils.equals(msj,"repartidor")
 
-
                         else {
-
-
                             if (TextUtils.equals(msj, "supervisor")) {
-
-
                                 Log.d("TAG", "Ingresa a Main Supervisor");
-
-
-
                                 guardarDatosDeRepartidores(jsonData);
                                 guardarDatosDeArticulos(jsonData);
-
-
-
                                 Intent myIntent = new Intent(LoginActivity.this, MainActivity.class);
-
-
                                 Bundle bundle = new Bundle();
-
-
                                 String dia = UtilidadFecha.getNombreDelDia();
-
-
                                 bundle.putString("dia", dia);
-
-
                                 myIntent.putExtras(bundle);
-
-
                                 myIntent.putExtra("id", id);
-
-
                                 myIntent.putExtra("dni", dni);
-
-
                                 LoginActivity.this.startActivity(myIntent);
-
 
                             }//Fin del if
 
@@ -1114,16 +966,9 @@ public class LoginActivity extends AppCompatActivity implements  LoaderCallbacks
 
 
                     else {
-
-
                         Log.d("TAG", "login error. Usuario o contraseña inválida");
-
                         mPasswordView.setError("La contraseña o el usuario no son válidos. Vuelva a intentar");
-
                         mPasswordView.requestFocus();
-
-
-
                     }
 
                     break;
@@ -1153,7 +998,7 @@ public class LoginActivity extends AppCompatActivity implements  LoaderCallbacks
     /**********************************************************************************************/
 
 
-    public class DbUserLogin {
+    public class DbUserLogin implements interfaceRequest{
 
 
         private final String mEmail;
@@ -1202,282 +1047,6 @@ public class LoginActivity extends AppCompatActivity implements  LoaderCallbacks
             Log.d("TAG", "Execute/ ingresa a execute ");
 
 
-            Response.Listener<JSONObject> responseListener = new Response.Listener<JSONObject>() {
-                // Se realiza una acción cuando se recibe el response
-
-
-                @Override
-                public void onResponse(JSONObject response) {
-
-                    Log.d("TAG", "Execute/ " + String.valueOf(response));
-
-                    Log.d("TAG", "Execute/ ingresa a onResponse");
-
-
-                    mAuthDb = null;
-
-
-                    showProgress(false);
-
-                    try {
-
-
-                        JSONObject jsonResponse = new JSONObject(String.valueOf(response));
-
-                        boolean success = jsonResponse.getBoolean("exito");
-
-
-                        if (success) {
-
-                           articulo.borrarArticulosDelSharedPreferences(getApplication());
-                            Repartidores.borrarRepartidoresDelSharedPreferences(getApplication());
-                            JSONObject jsonData = jsonResponse.getJSONObject("data");
-
-
-                            id = jsonData.getString("id");
-
-                            dni = jsonData.getString("dni");
-
-                            msj = jsonData.getString("msj");
-
-
-                            //Ingresa a otra activity de la app. Logueo exitoso
-
-                            finish();
-
-
-                            String usuariobd = null;
-
-                            String passwordbd = null;
-
-                            String dnibd = null;
-
-                            String idbd = null;
-
-
-                            Usuario usuario = new Usuario(id, dni, mEmail, mPassword, msj);
-
-                            usuario.GuardarUsuarioEnUnSharedPreferences(LoginActivity.this);
-
-
-                            if (TextUtils.equals(msj, "repartidor")) {
-
-
-                                Log.d("TAG", "Execute/ response true. Ingresa a Main Repartidor");
-
-
-                                // prueba para saber si guarda los datos del repartidor en la BD
-
-                                DbHelper dbHelperRead = new DbHelper(getApplicationContext());
-                                SQLiteDatabase databaseRead = dbHelperRead.getReadableDatabase();
-                                Cursor cursor = dbHelperRead.readFromLocalDatabase(databaseRead);
-
-
-                                while (cursor.moveToNext()) {
-
-                                    usuariobd = cursor.getString(cursor.getColumnIndex(DbContract.USUARIO));
-
-                                    passwordbd = cursor.getString(cursor.getColumnIndex(DbContract.PASSWORD));
-
-                                    dnibd = cursor.getString(cursor.getColumnIndex(DbContract.DNI));
-
-
-                                    idbd = cursor.getString(cursor.getColumnIndex(DbContract.ID));
-
-
-                                }//Fin del while
-
-
-                                cursor.close();
-
-                                dbHelperRead.close();
-
-
-                                StringBuilder sb = new StringBuilder();
-
-
-                                sb.append(usuariobd);
-
-                                sb.append(passwordbd);
-
-                                sb.append(dnibd);
-
-                                sb.append(idbd);
-
-
-                                String resultado = sb.toString();
-
-                                Log.d("TAG", "Execute/ resultado en la BD " + resultado);
-
-
-                                /**
-                                 * PRUEBA PARA SABER SI GUARDA LOS DATOS DE LOS CLIENTES
-                                 */
-
-
-                                dbHelperRead = new DbHelper(getApplicationContext());
-
-                                databaseRead = dbHelperRead.getReadableDatabase();
-
-                                cursor = dbHelperRead.readFromLocalDatabaseZonaReparto(databaseRead);
-
-
-                                Log.d("TAG", "                               ");
-                                Log.d("TAG", "  PRUEBA PARA SABER SI GUARDA LOS DATOS DE LOS CLIENTES");
-                                Log.d("TAG", "                               ");
-
-
-                                dnibd = null;
-
-                                idbd = null;
-
-
-                                while (cursor.moveToNext()) {
-
-
-                                    dnibd = cursor.getString(cursor.getColumnIndex(DbContract.DNI));
-
-                                    idbd = cursor.getString(cursor.getColumnIndex(DbContract.ID));
-
-
-                                    String apellidoDB = cursor.getString(cursor.getColumnIndex(DbContract.APELLIDO));
-
-                                    String nombreDB = cursor.getString(cursor.getColumnIndex(DbContract.NOMBRE));
-
-                                    String telefonoDB = cursor.getString(cursor.getColumnIndex(DbContract.TELEFONO));
-
-                                    String emailDB = cursor.getString(cursor.getColumnIndex(DbContract.CORREO));
-
-                                    String direccionDB = cursor.getString(cursor.getColumnIndex(DbContract.DIRECCION));
-
-                                    String barrioDB = cursor.getString(cursor.getColumnIndex(DbContract.BARRIO));
-
-                                    String foto = cursor.getString(cursor.getColumnIndex(DbContract.FOTO));
-
-
-                                    String lunes = cursor.getString(cursor.getColumnIndex(DbContract.LUNES));
-
-                                    String martes = cursor.getString(cursor.getColumnIndex(DbContract.MARTES));
-
-                                    String miercoles = cursor.getString(cursor.getColumnIndex(DbContract.MIERCOLES));
-
-                                    String jueves = cursor.getString(cursor.getColumnIndex(DbContract.JUEVES));
-
-                                    String viernes = cursor.getString(cursor.getColumnIndex(DbContract.VIERNES));
-
-                                    String sabado = cursor.getString(cursor.getColumnIndex(DbContract.SABADO));
-
-
-                                    Log.d("TAG", "DNI: " + dnibd + " ID: " + idbd + " APELLIDO: " + apellidoDB + " NOMBRE: " + nombreDB + " LUNES:" + lunes + " MARTES:" + martes + " MIERCOLES:" + miercoles + " JUEVES:" + jueves + " VIERNES:" + viernes + " SABADO:" + sabado);
-
-
-                                }//Fin del while(cursor.moveToNext)
-
-
-                                dbHelperRead.close();
-
-                                cursor.close();
-
-
-                                Intent myIntent = new Intent(LoginActivity.this, Repartidores_Main_Activity.class);
-
-
-                                Bundle bundle = new Bundle();
-
-
-                                String dia = UtilidadFecha.getNombreDelDia();
-
-
-                                bundle.putString("dia", dia);
-
-
-                                myIntent.putExtras(bundle);
-
-
-                                myIntent.putExtra("id", id);
-
-
-                                myIntent.putExtra("dni", dni);
-
-
-                                LoginActivity.this.startActivity(myIntent);
-
-
-                            }//Fin del if(TextUtils.equals(msj,"repartidor"))
-
-
-                            else {
-
-
-                                if (TextUtils.equals(msj, "supervisor")) {
-
-
-                                    Log.d("TAG", "Execute/ response true/exitoso. Ingresa a Main Supervisor");
-                                    guardarDatosDeRepartidores(jsonData);
-                                    guardarDatosDeArticulos(jsonData);
-
-                                    // Crear el intent y pasar a una activity supervisor
-
-                                    Intent myIntent = new Intent(LoginActivity.this, MainActivity.class);
-
-
-                                    Bundle bundle = new Bundle();
-
-
-                                    String dia = UtilidadFecha.getNombreDelDia();
-
-
-                                    bundle.putString("dia", dia);
-
-
-                                    myIntent.putExtras(bundle);
-
-
-                                    myIntent.putExtra("id", id);
-
-
-                                    myIntent.putExtra("dni", dni);
-
-
-                                    LoginActivity.this.startActivity(myIntent);
-
-
-                                }//Fin del if
-
-
-                            }//Fin el else
-
-
-                        } else {
-
-
-                            Log.d("TAG", "Execute/ response FALSE");
-
-                            mPasswordView.setError("La contraseña o el usuario no son válidos. Vuelva a intentar");
-
-                            mPasswordView.requestFocus();
-
-
-                            Log.d("TAG", "Execute/ incorrect password ");
-                        }//Fin del else
-
-
-                    }//Fin del try
-
-
-                    catch (JSONException e) {
-                        e.printStackTrace();
-                        Log.d("TAG", "Execute/ Error en login/response. Excepción json");
-
-                    }
-
-
-                }/**********************FIN DEL EVENTO onResponse()*****************/
-
-
-            };/**********************FIN DEL EVENTO Response.Listener()*****************/
-
-
             //En ésta parte del código se crea el reponse para enviarlo al servidor
 
             //utilsRequest request = utilsRequest.loginRequest(mEmail, mPassword, "false", responseListener);
@@ -1494,7 +1063,6 @@ public class LoginActivity extends AppCompatActivity implements  LoaderCallbacks
 
         private void newUserlogin() {
 
-            // TODO: attempt authentication against a network service.
 
 
             Log.d("TAG", "DbUserLogin/ ingresa a newUserlogin. Se loguea un nuevo usuario ");
@@ -1732,7 +1300,7 @@ public class LoginActivity extends AppCompatActivity implements  LoaderCallbacks
 
                                 finish();
 
-
+/**
                                 dbHelper = new DbHelper(getApplicationContext());
 
                                 SQLiteDatabase database = dbHelper.getWritableDatabase();
@@ -1740,10 +1308,10 @@ public class LoginActivity extends AppCompatActivity implements  LoaderCallbacks
 
                                 // INSERTA LOS DATOS DEL USUARIO EN LA TABLA USUARIO
 
-                                dbHelper.saveToLocalDatabase(parseInt(dni), parseInt(id), mEmail, mPassword, DbContract.SYNC_STATUS_OK, database);
+                                dbHelper.guardarUsuario(parseInt(dni), parseInt(id), mEmail, mPassword, DbContract.SYNC_STATUS_OK, database);
 
                                 dbHelper.close();
-
+*/
                                 // ingresas a otra activity de la app. Logueo exitoso
 
                                 Log.d("TAG", "response true. Ingresa a Main Repartidor");
@@ -1915,7 +1483,7 @@ public class LoginActivity extends AppCompatActivity implements  LoaderCallbacks
 
                                     myIntent.putExtra("dni", dni);
 
-
+/**
                                     DbHelper dbHelper = new DbHelper(getApplicationContext());
 
                                     SQLiteDatabase database = dbHelper.getWritableDatabase();
@@ -1923,10 +1491,10 @@ public class LoginActivity extends AppCompatActivity implements  LoaderCallbacks
 
                                     // INSERTA LOS DATOS DEL USUARIO EN LA TABLA USUARIO
 
-                                    dbHelper.saveToLocalDatabase(parseInt(dni), parseInt(id), mEmail, mPassword, DbContract.SYNC_STATUS_OK, database);
+                                    dbHelper.guardarUsuario(parseInt(dni), parseInt(id), mEmail, mPassword, DbContract.SYNC_STATUS_OK, database);
 
                                     dbHelper.close();
-
+*/
 
                                     LoginActivity.this.startActivity(myIntent);
 
@@ -1973,7 +1541,28 @@ public class LoginActivity extends AppCompatActivity implements  LoaderCallbacks
             Log.d("TAG", "DbUserLogin/ Se crea la solicitud al servidor. Usuario: " + mEmail + " pass: " + mPassword);
 
 
-        }/********************* FIN DE LA FUNCIÓN NewUserLogin() *********************/
+        }
+
+        @Override
+        public void ResultJson(String result, int idRequest) throws JSONException {
+
+            switch (idRequest){
+                case usuarioYaLogueado:
+
+                    break;
+
+                case nuevoUsuario:
+
+                    break;
+                default:
+                    throw new IllegalStateException("Unexpected value: " + idRequest);
+            }
+        }
+
+        @Override
+        public void ResultError(String error) {
+
+        } /********************* FIN DE LA FUNCIÓN NewUserLogin() *********************/
 
 
     }/******************************************* FIN DE LA CLASE DbUserLogin() ************************************/
@@ -1992,171 +1581,84 @@ public class LoginActivity extends AppCompatActivity implements  LoaderCallbacks
 
 
     public void LeerClientesDelResponse(JSONObject jsonData, int lunes, int martes, int miercoles, int jueves
-            , int viernes, int sabado, String id, String dni, String msj
-            , String mEmail, String mPassword) throws JSONException {
-
-
-        /**
-         * OBTENGO LOS DATOS RECIBIDOS DE LA KEY "DATA"
-         */
-
+            , int viernes, int sabado, String id, String dni, String msj, String mEmail, String mPassword) throws JSONException {
 
         JSONArray jsonClientes = jsonData.getJSONArray("clientes");
-
         JSONObject jsonClientesDatos;
 
-
         for (int i = 0; i < jsonClientes.length(); i++) {
-
-
             try {
-
-
                 jsonClientesDatos = jsonClientes.getJSONObject(i);
-
                 String idDB = jsonClientesDatos.getString("ClientesDirectos_Persona_IdCliente");
-
                 String dniDB = jsonClientesDatos.getString("ClientesDirectos_Persona_DNICliente");
-
                 String apellidoDB = jsonClientesDatos.optString("Apellido");
-
                 String nombreDB = jsonClientesDatos.optString("Nombre");
-
                 String telefonoDB = jsonClientesDatos.optString("Telefono");
-
                 String emailDB = jsonClientesDatos.optString("Email");
-
                 String direccionDB = jsonClientesDatos.optString("Direccion");
-
                 String referenciaDB = jsonClientesDatos.optString("Referencia");
-
                 String barrioDB = jsonClientesDatos.optString("Barrio");
 
-
                 lunes = DbContract.DIA_FAIL;
-
                 martes = DbContract.DIA_FAIL;
-
                 miercoles = DbContract.DIA_FAIL;
-
                 jueves = DbContract.DIA_FAIL;
-
                 viernes = DbContract.DIA_FAIL;
-
                 sabado = DbContract.DIA_FAIL;
-
 
                 if (jsonClientesDatos.has("Dia")) {
 
-
                     JSONArray jsonDia = jsonClientesDatos.getJSONArray("Dia");
-
-
                     JSONObject jsonDiaDatos;
 
-
                     for (int j = 0; j < jsonDia.length(); j++) {
-
                         try {
-
-
                             jsonDiaDatos = jsonDia.getJSONObject(j);
-
-
                             if (jsonDiaDatos.has("Dia")) {
                                 String Dia = jsonDiaDatos.optString("Dia");
-
-
                                 if (TextUtils.equals(Dia, "LUNES")) {
                                     lunes = DbContract.DIA_OK;
                                 }
-
-
                                 if (TextUtils.equals(Dia, "MARTES")) {
                                     martes = DbContract.DIA_OK;
                                 }
-
-
                                 if (TextUtils.equals(Dia, "MIERCOLES")) {
                                     miercoles = DbContract.DIA_OK;
                                 }
-
-
                                 if (TextUtils.equals(Dia, "JUEVES")) {
                                     jueves = DbContract.DIA_OK;
                                 }
-
-
                                 if (TextUtils.equals(Dia, "VIERNES")) {
                                     viernes = DbContract.DIA_OK;
                                 }
-
-
                                 if (TextUtils.equals(Dia, "SABADO")) {
                                     sabado = DbContract.DIA_OK;
                                 }
-
-
                             }//Fin del if(jsonDiaDatos.has("Dia"))
-
-
                         }//Fin del try
-
-
                         catch (JSONException a) {
-                            Log.e("TSFB", "Parser JSON DIA DATOS  " + a.toString());
-
+                            Log.e("TAG", "Parser JSON DIA DATOS  " + a.toString());
                         }//Fin del catch
-
-
                     }//Fin del for (hasta jsonDia)
-
-
                 }//Fin del if(jsonClientesDatos.has("Dia"))
-
 
                 DbHelper dbHelper = new DbHelper(getApplicationContext());
                 SQLiteDatabase database = dbHelper.getWritableDatabase();
-
-                                    /*
-                                        SE INSERTAN LOS DATOS DEL CLIENTE EN LA TABLA ZONAREPARTO
-                                     */
-
-
                 dbHelper.saveToLocalDatabaseZonaReparto(parseInt(dniDB), parseInt(idDB), apellidoDB, nombreDB, direccionDB, barrioDB, referenciaDB, telefonoDB, emailDB, R.drawable.leomessi, lunes, martes, miercoles, jueves, viernes, sabado, DbContract.SYNC_STATUS_OK, database);
-
                 dbHelper.close();
-
             }//Fin del segundo try
-
-
             catch (JSONException e) {
-
-
                 Log.e("TAG", "Parser JSON " + e.toString());
-
-
             }//Fin del catch
-
-
         }//Fin del for(hasta jsonClientes.length)
 
-
-        finish();
-
-
         DbHelper dbHelper = new DbHelper(getApplicationContext());
-
         SQLiteDatabase database = dbHelper.getWritableDatabase();
-
-
-        // INSERTA LOS DATOS DEL USUARIO EN LA TABLA USUARIO
-
-        dbHelper.saveToLocalDatabase(parseInt(dni), parseInt(id), mEmail, mPassword, DbContract.SYNC_STATUS_OK, database);
-
+        dbHelper.guardarUsuario(parseInt(dni), parseInt(id), mEmail, mPassword, msj, DbContract.SYNC_STATUS_OK, database);
         dbHelper.close();
 
 
+        finish();
     }
 
     /************************ FIN DE LA FUNCIÓN LeerClientesDelResponse() *************************/
@@ -2166,146 +1668,74 @@ public class LoginActivity extends AppCompatActivity implements  LoaderCallbacks
 
         /**
          * OBTENGO LOS DATOS RECIBIDOS DE LA KEY "DATA"
-         *
-         * TODO: refactorizar. Probar con enviar jsonArrayRepartidores y no con cada elemento
-         *
          */
 
         if (jsonData.has("repartidores")) {
 
-
             JSONArray jsonArrayRepartidores = jsonData.getJSONArray("repartidores");
-
             JSONObject jsonRepartidor;
 
-
             for (int i = 0; i < jsonArrayRepartidores.length(); i++) {
-
-
                 try {
-
-
                     jsonRepartidor = jsonArrayRepartidores.getJSONObject(i);
-
                     String idRepartidor = jsonRepartidor.getString("Persona_IdRepartidor");
-
                     String dniRepartidor = jsonRepartidor.getString("Persona_DNIRepartidor");
-
                     String apellidoRepartidor = jsonRepartidor.getString("Apellido");
-
                     String nombreRepartidor = jsonRepartidor.getString("Nombre");
 
-
-
                     Repartidores repartidores = new Repartidores(nombreRepartidor + ' ' + apellidoRepartidor, R.mipmap.messi, parseInt(idRepartidor), parseInt(dniRepartidor));
-
                     repartidores.GuardarRepartidoresEnUnSharedPreferences(LoginActivity.this, i);
-
-
 
                 }//Fin del segundo try
 
-
                 catch (JSONException e) {
-
-
-                    Log.d("TSFB", "Parser JSON " + e.toString());
-
-
+                    Log.d("TAG", "Parser JSON " + e.toString());
                 }//Fin del catch
-
-
             }//Fin del for(hasta jsonClientes.length)
 
             SharedPreferences sharedPreferences = this.getSharedPreferences("Datos_Repartidores", MODE_PRIVATE);
-
             SharedPreferences.Editor editor = sharedPreferences.edit();
-
-
             editor.putString("dimensionRepartidores",String.valueOf(jsonArrayRepartidores.length()));
             editor.commit();
-
         }
         else{
-            Log.e("TSFB", "No existe array repartidores en jsonObject data ");
+            Log.e("TAG", "No existe array repartidores en jsonObject data ");
         }
-
-
-
     }/************************ FIN DE LA FUNCIÓN LeerClientesDelResponse() *************************/
 
 
     public void guardarDatosDeArticulos(JSONObject jsonData) throws JSONException {
-
         /**
          * OBTENGO LOS DATOS RECIBIDOS DE LA KEY "DATA"
-         *          * TODO: refactorizar. Probar con enviar jsonArrayArticulos y no con cada elemento
          */
-
         if (jsonData.has("articulos")) {
-
-
             JSONArray jsonArrayArticulos= jsonData.getJSONArray("articulos");
-
             JSONObject jsonArticulo;
 
-
             for (int i = 0; i < jsonArrayArticulos.length(); i++) {
-
-
                 try {
-
-
                     jsonArticulo = jsonArrayArticulos.getJSONObject(i);
-
                     String idArticulo = jsonArticulo.getString("IdArticulo");
-
                     String nombreArticulo = jsonArticulo.getString("Nombre");
-
                     String precioArticulo = jsonArticulo.getString("Precio");
 
-
-
-
-
                     articulo articulo = new articulo(idArticulo, nombreArticulo, precioArticulo);
-
                     articulo.guardarArticulosEnUnSharedPreferences(LoginActivity.this, i);
 
-
-
-
-
                 }//Fin del segundo try
-
-
                 catch (JSONException e) {
-
-
-                    Log.d("TFSB", "Parser JSON " + e.toString());
-
-
+                    Log.d("TAG", "Error: no se puedo leer los datos de artículo " + e.toString());
                 }//Fin del catch
-
-
             }//Fin del for(hasta jsonClientes.length)
 
             SharedPreferences sharedPreferences = this.getSharedPreferences("Datos_Articulos", MODE_PRIVATE);
-
             SharedPreferences.Editor editor = sharedPreferences.edit();
-
-
             editor.putString("dimensionArticulos",String.valueOf(jsonArrayArticulos.length()));
             editor.commit();
-
-
         }
         else{
-            Log.e("TSFB", "No existe array repartidores en jsonObject data ");
+            Log.e("TAG", "No existe array repartidores en jsonObject data ");
         }
-
-
-
     }
 
 
