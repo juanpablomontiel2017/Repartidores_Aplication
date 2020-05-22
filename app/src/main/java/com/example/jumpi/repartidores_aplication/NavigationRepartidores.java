@@ -1,7 +1,12 @@
 package com.example.jumpi.repartidores_aplication;
 
+import android.annotation.SuppressLint;
+import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Bitmap;
+import android.graphics.Color;
 import android.location.Location;
 import android.os.Bundle;
 
@@ -11,17 +16,30 @@ import com.google.android.material.snackbar.Snackbar;
 import com.mapbox.android.core.location.LocationEngine;
 import com.mapbox.android.core.location.LocationEngineProvider;
 import com.mapbox.android.core.location.LocationEngineRequest;
+import com.mapbox.android.core.permissions.PermissionsListener;
+import com.mapbox.android.core.permissions.PermissionsManager;
 import com.mapbox.api.directions.v5.DirectionsCriteria;
 import com.mapbox.api.directions.v5.models.BannerText;
 import com.mapbox.api.directions.v5.models.DirectionsResponse;
 import com.mapbox.api.directions.v5.models.DirectionsRoute;
 import com.mapbox.geojson.Point;
 import com.mapbox.mapboxsdk.Mapbox;
+import com.mapbox.mapboxsdk.annotations.Marker;
 import com.mapbox.mapboxsdk.location.LocationComponent;
+import com.mapbox.mapboxsdk.location.LocationComponentActivationOptions;
+import com.mapbox.mapboxsdk.location.LocationComponentOptions;
+import com.mapbox.mapboxsdk.location.OnCameraTrackingChangedListener;
+import com.mapbox.mapboxsdk.location.OnLocationClickListener;
+import com.mapbox.mapboxsdk.location.modes.CameraMode;
 import com.mapbox.mapboxsdk.location.modes.RenderMode;
+import com.mapbox.mapboxsdk.maps.MapView;
+import com.mapbox.mapboxsdk.maps.MapboxMap;
+import com.mapbox.mapboxsdk.maps.Style;
+import com.mapbox.mapboxsdk.plugins.annotation.SymbolManager;
 import com.mapbox.services.android.navigation.ui.v5.NavigationView;
 import com.mapbox.services.android.navigation.ui.v5.NavigationViewOptions;
 import com.mapbox.services.android.navigation.ui.v5.OnNavigationReadyCallback;
+import com.mapbox.services.android.navigation.ui.v5.ThemeSwitcher;
 import com.mapbox.services.android.navigation.ui.v5.instruction.InstructionLoader;
 import com.mapbox.services.android.navigation.ui.v5.instruction.InstructionView;
 import com.mapbox.services.android.navigation.ui.v5.listeners.FeedbackListener;
@@ -45,6 +63,8 @@ import com.mapbox.services.android.navigation.v5.routeprogress.ProgressChangeLis
 import com.mapbox.services.android.navigation.v5.routeprogress.RouteProgress;
 import com.mapbox.services.android.navigation.v5.utils.DistanceFormatter;
 
+import androidx.annotation.AnyRes;
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatDelegate;
@@ -58,6 +78,7 @@ import android.widget.Toast;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
+import java.util.Objects;
 
 import retrofit2.Call;
 
@@ -76,7 +97,8 @@ public class NavigationRepartidores extends AppCompatActivity implements OnNavig
     private List<Point> puntos_clientes = new ArrayList<>();
 
 
-    private LocationComponent locationComponent;
+
+
 
 
 
@@ -95,18 +117,20 @@ public class NavigationRepartidores extends AppCompatActivity implements OnNavig
         initNightMode();
 
 
-        //Punto de origen: envasadora AquaVital
-        puntos_clientes.add(Point.fromLngLat(-60.446815, -26.784306));
 
-        puntos_clientes.add(Point.fromLngLat(-60.448123,-26.784327));
-        puntos_clientes.add(Point.fromLngLat(-60.448241,-26.790556));
-        puntos_clientes.add(Point.fromLngLat(-60.448427,-26.792986));
-        puntos_clientes.add(Point.fromLngLat(-60.446893,-26.792885));
-        puntos_clientes.add(Point.fromLngLat(-60.444785,-26.794505));
-        puntos_clientes.add(Point.fromLngLat(-60.442989,-26.792107));
-        puntos_clientes.add(Point.fromLngLat(-60.442023,-26.793726));
-        puntos_clientes.add(Point.fromLngLat(-60.442989,-26.792107));
-        puntos_clientes.add(Point.fromLngLat(-60.438246,-26.794419));
+
+        //Punto de origen: envasadora AquaVital
+        puntos_clientes.add(fromLngLat(-60.446815, -26.784306));
+
+        puntos_clientes.add(fromLngLat(-60.448123,-26.784327));
+        puntos_clientes.add(fromLngLat(-60.448241,-26.790556));
+        puntos_clientes.add(fromLngLat(-60.448427,-26.792986));
+        puntos_clientes.add(fromLngLat(-60.446893,-26.792885));
+        puntos_clientes.add(fromLngLat(-60.444785,-26.794505));
+        puntos_clientes.add(fromLngLat(-60.442989,-26.792107));
+        puntos_clientes.add(fromLngLat(-60.442023,-26.793726));
+        puntos_clientes.add(fromLngLat(-60.442989,-26.792107));
+        puntos_clientes.add(fromLngLat(-60.438246,-26.794419));
 
 
         setContentView(R.layout.activity_navigation_repartidores);
@@ -114,8 +138,6 @@ public class NavigationRepartidores extends AppCompatActivity implements OnNavig
         navigationView = findViewById(R.id.navigationView);
         navigationView.onCreate(savedInstanceState);
         navigationView.initialize(this);
-
-
 
 
 
@@ -233,10 +255,11 @@ public class NavigationRepartidores extends AppCompatActivity implements OnNavig
     /********************************************************************************************/
 
 
-
     @Override
     public void onNavigationReady(boolean isRunning) {
+
         fetchRoute(puntos_clientes.remove(0), puntos_clientes.remove(0));
+
     }
 
     @Override
@@ -278,6 +301,8 @@ public class NavigationRepartidores extends AppCompatActivity implements OnNavig
     @Override
     public void onArrival() {
         if (!dropoffDialogShown && !puntos_clientes.isEmpty()) {
+
+            MostrarMensajeDeVenta();
             showDropoffDialog();
             dropoffDialogShown = true; // Accounts for multiple arrival events
             Toast.makeText(this, "Haz llegado a tu destino!", Toast.LENGTH_SHORT).show();
@@ -295,10 +320,13 @@ public class NavigationRepartidores extends AppCompatActivity implements OnNavig
     }
 
     private void showDropoffDialog() {
+
+
         AlertDialog alertDialog = new AlertDialog.Builder(this).create();
         alertDialog.setMessage(getString(R.string.dropoff_dialog_text));
         alertDialog.setButton(AlertDialog.BUTTON_POSITIVE, getString(R.string.dropoff_dialog_positive_text),
                 (dialogInterface, in) -> fetchRoute(getLastKnownLocation(), puntos_clientes.remove(0)));
+
         alertDialog.setButton(DialogInterface.BUTTON_NEGATIVE, getString(R.string.dropoff_dialog_negative_text),
                 (dialogInterface, in) -> {
                     // Do nothing
@@ -339,12 +367,51 @@ public class NavigationRepartidores extends AppCompatActivity implements OnNavig
         return options.build();
     }
 
+
     private Point getLastKnownLocation() {
         return Point.fromLngLat(lastKnownLocation.getLongitude(), lastKnownLocation.getLatitude());
     }
 
 
 
+    public void MostrarMensajeDeVenta(){
+
+        AlertDialog.Builder builder = new AlertDialog.Builder(NavigationRepartidores.this);
+        builder.setIcon(R.drawable.ic_msj_alerta);
+        builder.setTitle("¡Llego a su destino!");
+        builder.setMessage("¿Desea realizar la venta?");
+
+
+        builder.setPositiveButton("Realizar Venta", new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int id) {
+
+
+                showDropoffDialog();
+
+
+            }
+        });
+
+
+        builder.setNegativeButton("Cancelar Venta", new DialogInterface.OnClickListener() {
+
+
+            public void onClick(DialogInterface dialog, int id) {
+
+                showDropoffDialog();
+
+
+                dialog.dismiss();
+
+            }
+        });
+
+
+
+        AlertDialog dialog = builder.create();
+        dialog.show();
+
+    }
 
 
 

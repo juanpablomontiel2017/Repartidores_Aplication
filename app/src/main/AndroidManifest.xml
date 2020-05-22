@@ -7,6 +7,7 @@
     <uses-permission android:name="android.permission.READ_CONTACTS" />
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.VIBRATE" />
     <uses-permission android:name="android.permission.WAKE_LOCK" />
     <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
     <uses-permission android:name="android.permission.GET_ACCOUNTS" />
@@ -19,63 +20,47 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-
         <activity
             android:name=".LoginActivity"
             android:label=""
             android:theme="@style/AppTheme.NoActionBar">
 
-            <!--
-                    <intent-filter>
+            <!--<intent-filter>
                         <action android:name="android.intent.action.MAIN" />
 
                         <category android:name="android.intent.category.LAUNCHER" />
-                    </intent-filter>
-            -->
+                    </intent-filter> -->
+
 
         </activity>
 
 
 
-
         <!-- #################### Para REPARTIDORES ########################### -->
-
-
         <activity
             android:name=".Repartidores_Main_Activity"
             android:label=" "
             android:parentActivityName=".LoginActivity"
             android:theme="@style/AppTheme.NoActionBar">
-
-
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
-
         <activity
             android:name=".Mapa_Repartidores"
             android:label=""
             android:parentActivityName=".Repartidores_Main_Activity"
-            android:theme="@style/AppTheme.NoActionBar">
-
-        </activity>
-
-
+            android:theme="@style/AppTheme.NoActionBar"></activity>
         <activity
             android:name=".NavigationRepartidores"
             android:label=""
             android:theme="@style/AppTheme.NoActionBar" />
-
-        <activity android:name=".RealizarVentasClientesRepartidor"
+        <activity
+            android:name=".RealizarVentasClientesRepartidor"
             android:label=""
-            android:theme="@style/AppTheme.NoActionBar">
-        </activity>
-
-
+            android:theme="@style/AppTheme.NoActionBar"></activity>
         <activity
             android:name=".EditarClientes"
             android:label="Editar Clientes"
@@ -103,6 +88,9 @@
 
 
 
+        <activity android:name=".NavigationMapRouteActivity"></activity>
+
+
 
 
         <!-- ########################## Para SUPERVISORES ########################### -->
@@ -112,15 +100,14 @@
             android:parentActivityName=".LoginActivity"
             android:theme="@style/AppTheme.NoActionBar">
 
-<!--
-                                    <intent-filter>
+
+                                    <!--<intent-filter>
                                         <action android:name="android.intent.action.MAIN" />
 
                                         <category android:name="android.intent.category.LAUNCHER" />
-                                    </intent-filter> -->
-
-
+                                    </intent-filter>-->
         </activity>
+
         <activity
             android:name=".CombustibleEstadisticas"
             android:label=""
@@ -183,13 +170,10 @@
             android:name=".Mapa_Supervisores"
             android:label=""
             android:theme="@style/AppTheme.NoActionBar" />
-
-
         <activity
             android:name=".Frecuencia_De_Consumo"
             android:label="@string/title_activity_frecuencia__de__consumo"
             android:theme="@style/AppTheme.NoActionBar" />
-
     </application>
 
 </manifest>

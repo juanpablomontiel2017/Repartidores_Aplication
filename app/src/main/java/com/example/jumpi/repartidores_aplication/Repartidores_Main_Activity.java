@@ -156,6 +156,8 @@ public class Repartidores_Main_Activity extends AppCompatActivity {
 
                 Intent intent = new Intent(getApplicationContext(), Mapa_Repartidores.class);
 
+                //Intent intent = new Intent(getApplicationContext(), NavigationMapRouteActivity.class);
+
                 startActivity(intent);
 
 

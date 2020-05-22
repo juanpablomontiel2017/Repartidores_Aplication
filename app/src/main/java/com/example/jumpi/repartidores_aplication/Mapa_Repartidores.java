@@ -199,6 +199,8 @@ public class Mapa_Repartidores extends AppCompatActivity implements OnMapReadyCa
 
 
 
+
+
     /****************** COMIENZO DEL onCreate() *******************/
 
     @Override
@@ -206,6 +208,8 @@ public class Mapa_Repartidores extends AppCompatActivity implements OnMapReadyCa
         super.onCreate(savedInstanceState);
 
         Mapbox.getInstance(getApplicationContext(), getString(R.string.access_token_repartidor));
+
+
 
 
         setContentView(R.layout.activity_mapa_repartidores);
@@ -345,20 +349,25 @@ public class Mapa_Repartidores extends AppCompatActivity implements OnMapReadyCa
                 enableLocationComponent(style);
 
 
+
+
+
                 new LoadGeoJson(Mapa_Repartidores.this).execute();
                 new LoadGeoJsonDataTask(Mapa_Repartidores.this).execute();
                 //mapboxMap.addOnMapClickListener(Mapa_Repartidores.this);
 
 
-
-                //Point originPoint = fromLngLat(locationComponent.getLastKnownLocation().getLongitude(),
-                //        locationComponent.getLastKnownLocation().getLatitude());
+/*
+                Point originPoint = fromLngLat(locationComponent.getLastKnownLocation().getLongitude(),
+                       locationComponent.getLastKnownLocation().getLatitude());
 
                 //Point originPoint = fromLngLat(-60.446815, -26.784306) ;
 
-                //Point destinationPoint = fromLngLat(-60.429515,-26.76976) ;
+                Point destinationPoint = fromLngLat(-60.429515,-26.76976) ;
+                //Point destinationPoint = fromLngLat(-59.84138,-27.00968) ;
 
-                //getRoute(originPoint,destinationPoint);
+*/
+
 
                 BotonComenzarReparto = findViewById(R.id.btn_comenzar_reparto);
 
@@ -373,12 +382,12 @@ public class Mapa_Repartidores extends AppCompatActivity implements OnMapReadyCa
                     }
                 });
 
+
 /*
+
+                //getRoute(originPoint,destinationPoint);
+
                 BotonComenzarReparto = findViewById(R.id.btn_comenzar_reparto);
-
-
-                BotonComenzarReparto.setEnabled(true);
-                BotonComenzarReparto.setBackgroundResource(R.color.mapboxBlue);
 
                 BotonComenzarReparto.setOnClickListener(new View.OnClickListener() {
 
@@ -400,8 +409,6 @@ public class Mapa_Repartidores extends AppCompatActivity implements OnMapReadyCa
                         // Call this method with Context from within an Activity
                         NavigationLauncher.startNavigation(Mapa_Repartidores.this, options);
 
-                        Intent intent = new Intent (Mapa_Repartidores.this, NavigationRepartidores.class);
-                        startActivity(intent);
 
 
                     }
@@ -409,8 +416,8 @@ public class Mapa_Repartidores extends AppCompatActivity implements OnMapReadyCa
 
                 });
 
-*/
 
+*/
             }
 
         });

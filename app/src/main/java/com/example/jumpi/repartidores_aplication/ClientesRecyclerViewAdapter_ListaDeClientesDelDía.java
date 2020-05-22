@@ -87,7 +87,6 @@ public class ClientesRecyclerViewAdapter_ListaDeClientesDelDía extends Recycler
 
         View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.dialog_img_clientes_mapa_repartidores,parent, false);
 
-
         final ClientesRecyclerViewAdapter_ListaDeClientesDelDía.ClientesViewHolder vHolder = new ClientesRecyclerViewAdapter_ListaDeClientesDelDía.ClientesViewHolder(v);
 
         myDialog = new Dialog(parent.getContext());
@@ -156,8 +155,6 @@ public class ClientesRecyclerViewAdapter_ListaDeClientesDelDía extends Recycler
 
 
 
-
-
                 /** Muestra algunos de los datos del cliente en el diálogo **/
 
                 dialog_cliente_img.setImageResource(clientesList.get(vHolder.getAdapterPosition()).getFoto());
@@ -180,10 +177,7 @@ public class ClientesRecyclerViewAdapter_ListaDeClientesDelDía extends Recycler
             }/************ FIN DEL MÉTODO onClick() ********************/
 
 
-        });/************+****FIN DEL MÉTODO setOnClickListener() ******************/
-
-
-
+        }); /****************FIN DEL MÉTODO setOnClickListener() ******************/
 
 
         return vHolder;
@@ -209,9 +203,7 @@ public class ClientesRecyclerViewAdapter_ListaDeClientesDelDía extends Recycler
 
         Clientes actualItem = clientesList.get(position);
 
-
         holder.iv_cliente.setImageResource(actualItem.getFoto());
-
 
 
     }/*************** FIN DEL MÉTODO onBindViewHolder() ***************/
