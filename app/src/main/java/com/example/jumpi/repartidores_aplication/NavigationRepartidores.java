@@ -96,9 +96,7 @@ public class NavigationRepartidores extends AppCompatActivity implements OnNavig
 
     private List<Point> puntos_clientes = new ArrayList<>();
 
-
-
-
+    private List<Clientes> clientesList;
 
 
 
@@ -139,6 +137,10 @@ public class NavigationRepartidores extends AppCompatActivity implements OnNavig
         navigationView.onCreate(savedInstanceState);
         navigationView.initialize(this);
 
+
+
+        /*Llamada a las siguientes funciones: */
+        ListaDeClientesDelDia();
 
 
     }/************************** FIN DEL onCreate() **************************************/
@@ -303,7 +305,7 @@ public class NavigationRepartidores extends AppCompatActivity implements OnNavig
         if (!dropoffDialogShown && !puntos_clientes.isEmpty()) {
 
             MostrarMensajeDeVenta();
-            showDropoffDialog();
+            //showDropoffDialog();
             dropoffDialogShown = true; // Accounts for multiple arrival events
             Toast.makeText(this, "Haz llegado a tu destino!", Toast.LENGTH_SHORT).show();
         }
@@ -377,7 +379,6 @@ public class NavigationRepartidores extends AppCompatActivity implements OnNavig
     public void MostrarMensajeDeVenta(){
 
         AlertDialog.Builder builder = new AlertDialog.Builder(NavigationRepartidores.this);
-        builder.setIcon(R.drawable.ic_msj_alerta);
         builder.setTitle("¡Llego a su destino!");
         builder.setMessage("¿Desea realizar la venta?");
 
@@ -385,8 +386,31 @@ public class NavigationRepartidores extends AppCompatActivity implements OnNavig
         builder.setPositiveButton("Realizar Venta", new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int id) {
 
+                Intent intentVentas = new Intent(NavigationRepartidores.this, RealizarVentasClientesRepartidor.class);
 
-                showDropoffDialog();
+                intentVentas.putExtra("Foto",clientesList.get(0).getFoto());
+
+                intentVentas.putExtra("DNI",clientesList.get(0).getDNI());
+
+                intentVentas.putExtra("Apellido",clientesList.get(0).getApellido());
+
+                intentVentas.putExtra("Nombre",clientesList.get(0).getNombre());
+
+                intentVentas.putExtra("Codigo_Area",clientesList.get(0).getCodigo_Area());
+
+                intentVentas.putExtra("Telefono",clientesList.get(0).getTelefono());
+
+                intentVentas.putExtra("Direccion", clientesList.get(0).getDireccion());
+
+                intentVentas.putExtra("Barrio", clientesList.get(0).getBarrio());
+
+                intentVentas.putExtra("Referencia", clientesList.get(0).getReferencia());
+
+                intentVentas.putExtra("Correo", clientesList.get(0).getCorreo());
+
+
+                startActivity(intentVentas);
+
 
 
             }
@@ -400,7 +424,6 @@ public class NavigationRepartidores extends AppCompatActivity implements OnNavig
 
                 showDropoffDialog();
 
-
                 dialog.dismiss();
 
             }
@@ -412,6 +435,55 @@ public class NavigationRepartidores extends AppCompatActivity implements OnNavig
         dialog.show();
 
     }
+
+
+
+    private void ListaDeClientesDelDia() {
+
+        clientesList = new ArrayList<>();
+
+        clientesList.add(new Clientes(38765245,1, R.mipmap.cliente_img1_hombrebarbudo_512px,"Kanje",
+                "George", "Calle 6 entre 9 y 11","Belgrano",
+                "Casi esquina 11, en mano izquierda con un portón de chapa. Tocar timbre 2","364","4445654",
+                "No tiene correo"));
+
+        clientesList.add(new Clientes(35543234,2,R.mipmap.cliente_img2_hombrerulos_512px, "Calamaro",
+                "Andrés","Calle 29 entre 12 y 14", "Centro","Casa azul con frente floreado",
+                "364","4665543","No tiene correo"));
+
+        clientesList.add(new Clientes(38235123,3,R.mipmap.cliente_img3_profesor_512px, "Smoker",
+                "Alejandro","Calle 29 entre 12 y 10","Centro","Casa de 2 pisos, al lado tiene un portón como garage","364","4654321","No tiene correo"));
+
+        clientesList.add(new Clientes(32456953,4,R.mipmap.cliente_img4_policia_512px, "Gomez",
+                "Alberto","Calle 1 entre 12 y 10", "Centro", "Comisaría N°92",
+                "364","4911999","No tiene correo"));
+
+        clientesList.add(new Clientes(35444999,5,R.mipmap.cliente_img5_sra_512px, "Ruiz",
+                "Viviana", "Calle 8 entre 22 y 24", "La Madrid", "Casa blanca con portón de madera",
+                "364","4965433", "vivana_ruiz@gmail.com"));
+
+        clientesList.add(new Clientes(34445885,6,R.mipmap.cliente_img6_profesor_512px, "Iznardo",
+                "Natanael","Calle 19 esquina 14","Centro", "Ferretería Norte",
+                "364","4595959","natanaeliznardo@gmail.com"));
+
+        clientesList.add(new Clientes(27456432,7,R.mipmap.cliente_img7_abuelo_512px, "Montiel",
+                "Timoteo", "Calle 12 entre 21 y 23","Centro", "Al lado de la universidad Siglo 21", "364","4461211","No tiene correo"));
+
+        clientesList.add(new Clientes(38456321,8,R.mipmap.cliente_img8_chica_512px, "Medina",
+                "Belén","Calle 11 entre 3 y 5", "Loma Linda","Al lado del papa Francisco",
+                "364","4456788","No tiene correo"));
+
+        clientesList.add(new Clientes(34567965,9,R.mipmap.cliente_img9_dentista_512px, "Uribarri",
+                "Celeste","Calle 12 entre 47 y 49","San Martín","Mansión de 2 pisos con letrero con el nombre de la cliente","364","4998822","No tiene correo"));
+
+        clientesList.add(new Clientes(34567965,10,R.mipmap.cliente_img10_doctor_512px, "Guzmán",
+                "Leonardo","Calle 9 entre 12 y 14 ","Belgrano","Al lado de estudio contable Sosa","364","4667788","No tiene correo"));
+
+
+
+    }/****************** FIN DE LA FUNCIÓN ListaCompletaDeClientes() ***************/
+
+
 
 
 

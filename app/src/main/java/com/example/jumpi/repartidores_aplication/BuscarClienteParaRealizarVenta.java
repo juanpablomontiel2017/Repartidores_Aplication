@@ -147,7 +147,7 @@ public class BuscarClienteParaRealizarVenta extends AppCompatActivity{
                 "No tiene correo"));
 
         clientesList.add(new Clientes(35543234,2,R.mipmap.cliente_img2_hombrerulos_512px, "Calamaro",
-                "Andrés","Calle 29 entre 12 y 14", "‣Centro","Casa azul con frente floreado",
+                "Andrés","Calle 29 entre 12 y 14", "Centro","Casa azul con frente floreado",
                 "364","4665543","No tiene correo"));
 
         clientesList.add(new Clientes(38235123,3,R.mipmap.cliente_img3_profesor_512px, "Smoker",
