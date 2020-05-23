@@ -1,7 +1,5 @@
 package com.example.jumpi.repartidores_aplication;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
@@ -22,6 +20,8 @@ import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -1569,13 +1569,16 @@ public class RealizarVentasClientesRepartidor extends AppCompatActivity {
                 Toast.makeText(getApplicationContext(),"Venta realizada con éxito",Toast.LENGTH_LONG).show();
 
 
-                Intent intent = new Intent (RealizarVentasClientesRepartidor.this, NavigationRepartidores.class);
+               // Intent intent = new Intent (RealizarVentasClientesRepartidor.this, NavigationRepartidores.class);
 
-                intent.putExtra("Activity","Realizar_Venta_Cliente_Repartidores");
+                //.putExtra("Activity","Realizar_Venta_Cliente_Repartidores");
 
-                startActivity(intent);
+               // startActivity(intent);
 
-
+                // put the String to pass back into an Intent and close this activity
+                Intent intent = new Intent();
+               // intent.putExtra("keyName", stringToPassBack);
+                setResult(RESULT_OK, intent);
                 finish();
 
             } //Fin del if (flag){}

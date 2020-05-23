@@ -1,84 +1,34 @@
 package com.example.jumpi.repartidores_aplication;
 
-import android.annotation.SuppressLint;
-import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.graphics.Bitmap;
-import android.graphics.Color;
 import android.location.Location;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
+import android.widget.Toast;
 
-import com.android.volley.Response;
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.google.android.material.snackbar.Snackbar;
-import com.mapbox.android.core.location.LocationEngine;
-import com.mapbox.android.core.location.LocationEngineProvider;
-import com.mapbox.android.core.location.LocationEngineRequest;
-import com.mapbox.android.core.permissions.PermissionsListener;
-import com.mapbox.android.core.permissions.PermissionsManager;
+import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatDelegate;
+
 import com.mapbox.api.directions.v5.DirectionsCriteria;
-import com.mapbox.api.directions.v5.models.BannerText;
 import com.mapbox.api.directions.v5.models.DirectionsResponse;
 import com.mapbox.api.directions.v5.models.DirectionsRoute;
 import com.mapbox.geojson.Point;
 import com.mapbox.mapboxsdk.Mapbox;
-import com.mapbox.mapboxsdk.annotations.Marker;
-import com.mapbox.mapboxsdk.location.LocationComponent;
-import com.mapbox.mapboxsdk.location.LocationComponentActivationOptions;
-import com.mapbox.mapboxsdk.location.LocationComponentOptions;
-import com.mapbox.mapboxsdk.location.OnCameraTrackingChangedListener;
-import com.mapbox.mapboxsdk.location.OnLocationClickListener;
-import com.mapbox.mapboxsdk.location.modes.CameraMode;
-import com.mapbox.mapboxsdk.location.modes.RenderMode;
-import com.mapbox.mapboxsdk.maps.MapView;
-import com.mapbox.mapboxsdk.maps.MapboxMap;
-import com.mapbox.mapboxsdk.maps.Style;
-import com.mapbox.mapboxsdk.plugins.annotation.SymbolManager;
 import com.mapbox.services.android.navigation.ui.v5.NavigationView;
 import com.mapbox.services.android.navigation.ui.v5.NavigationViewOptions;
 import com.mapbox.services.android.navigation.ui.v5.OnNavigationReadyCallback;
-import com.mapbox.services.android.navigation.ui.v5.ThemeSwitcher;
-import com.mapbox.services.android.navigation.ui.v5.instruction.InstructionLoader;
-import com.mapbox.services.android.navigation.ui.v5.instruction.InstructionView;
-import com.mapbox.services.android.navigation.ui.v5.listeners.FeedbackListener;
 import com.mapbox.services.android.navigation.ui.v5.listeners.NavigationListener;
 import com.mapbox.services.android.navigation.ui.v5.listeners.RouteListener;
-import com.mapbox.services.android.navigation.ui.v5.map.NavigationMapboxMap;
-import com.mapbox.services.android.navigation.ui.v5.map.NavigationMapboxMapInstanceState;
-import com.mapbox.services.android.navigation.ui.v5.route.NavigationMapRoute;
-import com.mapbox.services.android.navigation.v5.instruction.Instruction;
-import com.mapbox.services.android.navigation.v5.milestone.BannerInstructionMilestone;
-import com.mapbox.services.android.navigation.v5.milestone.Milestone;
-import com.mapbox.services.android.navigation.v5.milestone.MilestoneEventListener;
-import com.mapbox.services.android.navigation.v5.milestone.RouteMilestone;
-import com.mapbox.services.android.navigation.v5.milestone.Trigger;
-import com.mapbox.services.android.navigation.v5.milestone.TriggerProperty;
 import com.mapbox.services.android.navigation.v5.navigation.MapboxNavigation;
-import com.mapbox.services.android.navigation.v5.navigation.NavigationConstants;
 import com.mapbox.services.android.navigation.v5.navigation.NavigationRoute;
-import com.mapbox.services.android.navigation.v5.offroute.OffRouteListener;
 import com.mapbox.services.android.navigation.v5.routeprogress.ProgressChangeListener;
 import com.mapbox.services.android.navigation.v5.routeprogress.RouteProgress;
-import com.mapbox.services.android.navigation.v5.utils.DistanceFormatter;
-
-import androidx.annotation.AnyRes;
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AlertDialog;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.app.AppCompatDelegate;
-import androidx.appcompat.widget.Toolbar;
-import androidx.navigation.Navigation;
-
-import android.preference.PreferenceManager;
-import android.view.View;
-import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Locale;
-import java.util.Objects;
 
 import retrofit2.Call;
 
@@ -99,6 +49,7 @@ public class NavigationRepartidores extends AppCompatActivity implements OnNavig
     private List<Clientes> clientesList;
 
     String ActivityProvenienteDe;
+    final private int REALIZAR_VENTA = 1001;
 
 
 
@@ -439,7 +390,8 @@ public class NavigationRepartidores extends AppCompatActivity implements OnNavig
                 intentVentas.putExtra("Correo", clientesList.get(0).getCorreo());
 
 
-                startActivity(intentVentas);
+
+                startActivityForResult(intentVentas, REALIZAR_VENTA);
 
 
 
@@ -511,10 +463,36 @@ public class NavigationRepartidores extends AppCompatActivity implements OnNavig
 
 
 
-    }/****************** FIN DE LA FUNCIÓN ListaCompletaDeClientes() ***************/
+    }
 
 
 
+
+    /****************** FIN DE LA FUNCIÓN ListaCompletaDeClientes() ***************/
+
+    // Esta función es llamada cuando finalice la activity que fue llamada con startActivityForResult
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        // check that it is the SecondActivity with an OK result
+        if (requestCode == REALIZAR_VENTA) {
+            if (resultCode == RESULT_OK) { // Activity.RESULT_OK
+                //En caso de que el resultado fuera correcto
+
+                showDropoffDialog();
+
+
+            }else{
+                //En caso de que el resultado fuera INCORRECTO o no esperado
+
+                showDropoffDialog();
+
+
+
+            }
+        }
+    }
 
 
 }
