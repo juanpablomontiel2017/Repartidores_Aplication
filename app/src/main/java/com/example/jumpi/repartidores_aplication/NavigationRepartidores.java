@@ -463,12 +463,11 @@ public class NavigationRepartidores extends AppCompatActivity implements OnNavig
 
 
 
-    }
+    }/****************** FIN DE LA FUNCIÓN ListaCompletaDeClientes() ***************/
 
 
 
 
-    /****************** FIN DE LA FUNCIÓN ListaCompletaDeClientes() ***************/
 
     // Esta función es llamada cuando finalice la activity que fue llamada con startActivityForResult
     @Override
@@ -478,14 +477,16 @@ public class NavigationRepartidores extends AppCompatActivity implements OnNavig
         // check that it is the SecondActivity with an OK result
         if (requestCode == REALIZAR_VENTA) {
             if (resultCode == RESULT_OK) { // Activity.RESULT_OK
-                //En caso de que el resultado fuera correcto
 
+
+                //En caso de que el resultado fuera correcto
                 showDropoffDialog();
 
 
-            }else{
-                //En caso de que el resultado fuera INCORRECTO o no esperado
+            } else{
 
+
+                //En caso de que el resultado fuera INCORRECTO o no esperado
                 showDropoffDialog();
 
 
@@ -493,6 +494,8 @@ public class NavigationRepartidores extends AppCompatActivity implements OnNavig
             }
         }
     }
+
+
 
 
 }

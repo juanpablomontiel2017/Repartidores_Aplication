@@ -1409,7 +1409,7 @@ public class RealizarVentasClientesRepartidor extends AppCompatActivity {
 
         });/******************************FIN DEL EVENTO setOnItemSelectedListener()*****************************/
 
-    }   /******************************FIN DE LA FUNCIÓN setSpinner()*****************************/
+    } /******************************FIN DE LA FUNCIÓN setSpinner()*****************************/
 
 
 
