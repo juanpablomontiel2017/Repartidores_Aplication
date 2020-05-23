@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -1566,6 +1567,14 @@ public class RealizarVentasClientesRepartidor extends AppCompatActivity {
 
 
                 Toast.makeText(getApplicationContext(),"Venta realizada con éxito",Toast.LENGTH_LONG).show();
+
+
+                Intent intent = new Intent (RealizarVentasClientesRepartidor.this, NavigationRepartidores.class);
+
+                intent.putExtra("Activity","Realizar_Venta_Cliente_Repartidores");
+
+                startActivity(intent);
+
 
                 finish();
 

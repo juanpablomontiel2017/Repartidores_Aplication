@@ -377,6 +377,9 @@ public class Mapa_Repartidores extends AppCompatActivity implements OnMapReadyCa
 
 
                         Intent intent = new Intent (Mapa_Repartidores.this, NavigationRepartidores.class);
+
+                        intent.putExtra("Activity","Mapa_Repartidores");
+
                         startActivity(intent);
 
                     }

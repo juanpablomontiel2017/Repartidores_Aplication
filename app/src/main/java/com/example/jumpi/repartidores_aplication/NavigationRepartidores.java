@@ -98,6 +98,7 @@ public class NavigationRepartidores extends AppCompatActivity implements OnNavig
 
     private List<Clientes> clientesList;
 
+    String ActivityProvenienteDe;
 
 
 
@@ -114,6 +115,29 @@ public class NavigationRepartidores extends AppCompatActivity implements OnNavig
 
         initNightMode();
 
+
+        ActivityProvenienteDe = getIntent().getStringExtra("Activity");
+
+
+        switch (ActivityProvenienteDe){
+
+            case "Mapa_Repartidores":
+
+                Toast.makeText(NavigationRepartidores.this, "¡Bienvenido!", Toast.LENGTH_LONG).show();
+
+                break;
+
+            case "Realizar_Venta_Cliente_Repartidores":
+
+                showDropoffDialog();
+
+
+            default:
+
+                Toast.makeText(NavigationRepartidores.this, "¡No se encontró la activity!", Toast.LENGTH_LONG).show();
+
+
+        }//Fin del switch
 
 
 
@@ -133,9 +157,15 @@ public class NavigationRepartidores extends AppCompatActivity implements OnNavig
 
         setContentView(R.layout.activity_navigation_repartidores);
 
+
+
+
+
+
         navigationView = findViewById(R.id.navigationView);
         navigationView.onCreate(savedInstanceState);
         navigationView.initialize(this);
+
 
 
 
@@ -331,7 +361,7 @@ public class NavigationRepartidores extends AppCompatActivity implements OnNavig
 
         alertDialog.setButton(DialogInterface.BUTTON_NEGATIVE, getString(R.string.dropoff_dialog_negative_text),
                 (dialogInterface, in) -> {
-                    // Do nothing
+                    //finish();
                 });
 
         alertDialog.show();
