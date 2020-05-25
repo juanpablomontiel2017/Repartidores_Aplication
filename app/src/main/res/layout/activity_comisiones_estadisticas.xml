@@ -202,7 +202,7 @@
                 android:layout_marginBottom="10dp"
                 android:background="#d50000"
                 android:gravity="center"
-                android:text="ARTÍCULOS VENDIDOS EN LA SEMANA"
+                android:text="CANTIDAD DE ARTÍCULOS VENDIDOS"
                 android:textColor="#FFFF"
                 android:textSize="20sp"
                 android:textStyle="bold" />

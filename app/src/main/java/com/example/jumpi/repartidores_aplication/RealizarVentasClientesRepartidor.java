@@ -209,8 +209,6 @@ public class RealizarVentasClientesRepartidor extends AppCompatActivity {
 
         eTCantVentas = (EditText) findViewById(R.id.edtx_cantidad_productos_ventas);
 
-        eTCantVentas.setBackgroundDrawable(getDrawable(R.drawable.edit_text_material_customizado));
-
         eTCantVentas.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
@@ -269,7 +267,7 @@ public class RealizarVentasClientesRepartidor extends AppCompatActivity {
 
 
         /*Llamada a la función: */
-        setSpinner(spinner_ventas,true);
+        setSpinner(spinner_ventas,true, eTCantVentas);
 
 
 
@@ -302,7 +300,6 @@ public class RealizarVentasClientesRepartidor extends AppCompatActivity {
 
         eTEntrega = (EditText) findViewById(R.id.cantidad_entrega_productos_ventas);
 
-        eTEntrega.setBackgroundDrawable(getDrawable(R.drawable.edit_text_material_customizado));
 
 
 
@@ -925,7 +922,7 @@ public class RealizarVentasClientesRepartidor extends AppCompatActivity {
 
 
         /*Llamada a la función: */
-        setSpinner(spinner_nuevos_articulos_ventas,false);
+        setSpinner(spinner_nuevos_articulos_ventas,false,EditText_Cantidad_Nuevo_Articulo_Ventas);
 
 
         ArticuloSeleccionadoAnterior = spinner_nuevos_articulos_ventas.getSelectedItem().toString();
@@ -1253,7 +1250,7 @@ public class RealizarVentasClientesRepartidor extends AppCompatActivity {
 
 
 
-    public void setSpinner(final Spinner spinner,boolean EsSpinnerFijo) {
+    public void setSpinner(final Spinner spinner,boolean EsSpinnerFijo, EditText editText) {
 
 
         /*********************************************************************************************************/
@@ -1378,12 +1375,18 @@ public class RealizarVentasClientesRepartidor extends AppCompatActivity {
                     //cuando entra por 2da vez a la activity salta el error debido que a que la cantidad recibe un
                     //valor vacío
 
+                    if (!editText.getText().toString().isEmpty()){
 
-                    Integer cantidadDeArticulo = Utils_Spinner.obtenerCantidadDeArticulo((Spinner) adapterView);
-                    importeAntesDeModificacion = getImporte(ArticuloSeleccionadoAnterior, cantidadDeArticulo);
-                    importeDespuesDeModificacion = getImporte(text, cantidadDeArticulo);
+                        Integer cantidadDeArticulo = Utils_Spinner.obtenerCantidadDeArticulo((Spinner) adapterView);
+                        importeAntesDeModificacion = getImporte(ArticuloSeleccionadoAnterior, cantidadDeArticulo);
+                        importeDespuesDeModificacion = getImporte(text, cantidadDeArticulo);
 
-                    ActualizarImporte();
+                        ActualizarImporte();
+
+                    }
+
+
+
 
 
                 }//Fin del else
@@ -1568,17 +1571,11 @@ public class RealizarVentasClientesRepartidor extends AppCompatActivity {
 
                 Toast.makeText(getApplicationContext(),"Venta realizada con éxito",Toast.LENGTH_LONG).show();
 
-
-               // Intent intent = new Intent (RealizarVentasClientesRepartidor.this, NavigationRepartidores.class);
-
-                //.putExtra("Activity","Realizar_Venta_Cliente_Repartidores");
-
-               // startActivity(intent);
-
                 // put the String to pass back into an Intent and close this activity
                 Intent intent = new Intent();
-               // intent.putExtra("keyName", stringToPassBack);
+
                 setResult(RESULT_OK, intent);
+
                 finish();
 
             } //Fin del if (flag){}

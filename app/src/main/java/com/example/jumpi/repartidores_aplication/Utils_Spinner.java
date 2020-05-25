@@ -572,7 +572,6 @@ public class Utils_Spinner {
         LinearLayout linearLayoutHorizontalContenedorArticulos = (LinearLayout) linearLayoutHorizontalContenedorSpinner.getParent();
 
 
-
         String cantidadDeArticulos = "";
 
 
