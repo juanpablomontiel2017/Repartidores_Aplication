@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+android:id="@+id/barrios_item_id"
+android:layout_width="match_parent"
+android:layout_height="wrap_content"
+android:layout_marginTop="10dp"
+android:orientation="vertical">
+
+
+
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal">
+
+    <ImageView
+        android:id="@+id/img_barrio"
+        android:layout_width="56dp"
+        android:layout_height="56dp"
+        android:layout_gravity="center"
+        android:layout_marginLeft="10dp"
+        android:src="@mipmap/ic_launcher_round" />
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="16dp"
+        android:orientation="vertical">
+
+
+        <TextView
+            android:id="@+id/nombre_barrio"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="17dp"
+            android:text="Nombre del barrio"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
+
+        <View
+
+            android:id="@+id/view_separador_barrio_uno"
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginBottom="0dp"
+            android:background="#e0e0e0">
+
+        </View>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="16dp"
+            android:orientation="horizontal"
+            android:weightSum="2">
+
+
+            <TextView
+
+                android:layout_weight="1"
+                android:id="@+id/tv_consumo"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Consumo"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+
+            <TextView
+
+                android:layout_weight="1"
+                android:id="@+id/numero_consumo"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Número"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+
+
+
+        </LinearLayout>
+
+
+
+
+    </LinearLayout>
+
+
+</LinearLayout>
+
+
+    <View
+
+        android:id="@+id/view_separador_barrio_dos"
+        android:layout_width="match_parent"
+        android:layout_height="3dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginBottom="0dp"
+        android:background="#d50000">
+
+    </View>
+
+
+
+
+</LinearLayout>

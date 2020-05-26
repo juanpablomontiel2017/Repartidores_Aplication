@@ -178,7 +178,7 @@
 
 
             <ImageButton
-                android:id="@+id/img_btn_frecuencia_llamadas_clientes"
+                android:id="@+id/img_btn_frecuencia_consumo"
                 android:layout_width="match_parent"
                 android:layout_height="400dp"
                 android:layout_weight="1"

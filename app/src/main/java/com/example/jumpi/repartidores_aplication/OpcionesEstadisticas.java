@@ -14,7 +14,8 @@ import androidx.appcompat.app.AppCompatActivity;
 public class OpcionesEstadisticas extends AppCompatActivity {
 
 
-    LinearLayout LinearLayoutVerticalComisiones, LinearLayoutVerticalCombustible,LinearLayoutVerticalVentaBidones;
+    LinearLayout LinearLayoutVerticalComisiones, LinearLayoutVerticalCombustible,LinearLayoutVerticalVentaBidones,
+            LinearLayoutVerticalFrecuenciaConsumo;
 
 
 
@@ -179,6 +180,49 @@ public class OpcionesEstadisticas extends AppCompatActivity {
 
 
 
+
+
+
+
+
+        LinearLayoutVerticalFrecuenciaConsumo = (LinearLayout) findViewById(R.id.llv_dos_punto_dos);
+
+        LinearLayoutVerticalFrecuenciaConsumo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+
+                Intent intent = new Intent (OpcionesEstadisticas.this, Frecuencia_De_Consumo.class);
+
+                startActivity(intent);
+
+
+
+            }
+        });
+
+
+
+
+        ImageButton img_btn_frecuencia_consumo = (ImageButton) findViewById(R.id.img_btn_frecuencia_consumo);
+
+        img_btn_frecuencia_consumo.setOnClickListener(new View.OnClickListener() {
+
+
+            @Override
+            public void onClick(View v) {
+
+
+                Intent intent = new Intent (OpcionesEstadisticas.this, Frecuencia_De_Consumo.class);
+
+                startActivity(intent);
+
+
+            }
+
+
+
+        });/*********FIN DEL EVENTO setOnClickListener()*************/
 
 
 

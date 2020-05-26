@@ -97,8 +97,6 @@ public class NavigationRepartidores extends AppCompatActivity implements OnNavig
 
         puntos_clientes.add(fromLngLat(-60.448123,-26.784327));
         puntos_clientes.add(fromLngLat(-60.448241,-26.790556));
-
-
         puntos_clientes.add(fromLngLat(-60.448427,-26.792986));
         puntos_clientes.add(fromLngLat(-60.446893,-26.792885));
         puntos_clientes.add(fromLngLat(-60.444785,-26.794505));
@@ -106,6 +104,7 @@ public class NavigationRepartidores extends AppCompatActivity implements OnNavig
         puntos_clientes.add(fromLngLat(-60.442023,-26.793726));
         puntos_clientes.add(fromLngLat(-60.442989,-26.792107));
         puntos_clientes.add(fromLngLat(-60.438246,-26.794419));
+
 
         //Regreso a la envasadora
         puntos_clientes.add(fromLngLat(-60.446815, -26.784306));

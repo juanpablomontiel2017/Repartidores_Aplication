@@ -1,7 +1,7 @@
 <resources>
 
     <!-- Strings related to - Nombre de la aplicación-->
-    <string name="app_name">Repartidores_Aplication</string>
+    <string name="app_name">Aplicación AquaVital</string>
 
 
     <!-- ############################################################################### -->
@@ -156,7 +156,7 @@
     <string name="title_activity_mapa">Mapa</string>
     <string name="title_activity_mapa__supervisores">Mapa_Supervisores</string>
     <string name="title_activity_prueba__mapa__repartidores">Prueba_Mapa_Repartidores</string>
-    <string name="title_activity_frecuencia__de__consumo">Frecuencia_De_Consumo</string>
+    <string name="title_activity_frecuencia__de__consumo">Buscar Barrio</string>
     <string name="title_activity_navigation_repartidores">NavigationRepartidores</string>
     <string name="title_activity_buscar_responsable_para_patrocinio">BuscarResponsableParaPatrocinio</string>
     <string name="title_activity_entrega_retiro_envases_patrocinio">EntregaRetiroEnvasesPatrocinio</string>
