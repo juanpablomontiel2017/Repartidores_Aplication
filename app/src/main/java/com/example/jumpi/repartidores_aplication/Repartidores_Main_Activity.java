@@ -154,9 +154,11 @@ public class Repartidores_Main_Activity extends AppCompatActivity {
             public void onClick(View view) {
 
 
-                Intent intent = new Intent(getApplicationContext(), Mapa_Repartidores.class);
+                //Intent intent = new Intent(getApplicationContext(), Mapa_Repartidores.class);
 
                 //Intent intent = new Intent(getApplicationContext(), NavigationMapRouteActivity.class);
+
+                Intent intent = new Intent(getApplicationContext(), MapaGoogleRepartidoresActivity.class);
 
                 startActivity(intent);
 
@@ -201,10 +203,6 @@ public class Repartidores_Main_Activity extends AppCompatActivity {
 
 
     }/************* FIN DEL onCreateOptionsMenu() **************/
-
-
-
-
 
 
 

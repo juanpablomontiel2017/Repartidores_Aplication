@@ -218,6 +218,7 @@
 
     <!--Strings related to Ventas Activity -->
     <string name="title_spinner">Artículos</string>
+    <string name="title_activity_mapa_google_repartidores">Map</string>
 
 
     <!-- ############################################################################### -->

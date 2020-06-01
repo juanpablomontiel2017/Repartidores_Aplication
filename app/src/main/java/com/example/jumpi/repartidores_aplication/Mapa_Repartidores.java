@@ -1664,7 +1664,8 @@ public class Mapa_Repartidores extends AppCompatActivity implements OnMapReadyCa
         mapboxMap.getStyle(style -> {
             style.addSource(new GeoJsonSource(layerId, feature));
             style.addLayer(new LineLayer(layerId, layerId).withProperties(
-                    lineColor(ColorUtils.colorToRgbaString(Color.parseColor(lineColorHex))),
+                    //lineColor(ColorUtils.colorToRgbaString(Color.parseColor(lineColorHex))),
+                    lineColor(ColorUtils.colorToRgbaString(Color.parseColor("#d50000"))),
                     lineWidth(4f)
             ));
         });
