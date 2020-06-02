@@ -112,19 +112,12 @@ public class NavigationRepartidores extends AppCompatActivity implements OnNavig
         puntos_clientes.add(fromLngLat(-60.446815, -26.784306));
 
 
-
-
         setContentView(R.layout.activity_navigation_repartidores);
 
-
-
-
-
-
+        
         navigationView = findViewById(R.id.navigationView);
         navigationView.onCreate(savedInstanceState);
         navigationView.initialize(this);
-
 
 
 
@@ -291,13 +284,16 @@ public class NavigationRepartidores extends AppCompatActivity implements OnNavig
 
     @Override
     public void onArrival() {
+
         if (!dropoffDialogShown && !puntos_clientes.isEmpty()) {
 
             MostrarMensajeDeVenta();
             //showDropoffDialog();
             dropoffDialogShown = true; // Accounts for multiple arrival events
             Toast.makeText(this, "Haz llegado a tu destino!", Toast.LENGTH_SHORT).show();
+
         }
+
     }
 
     @Override
@@ -331,6 +327,10 @@ public class NavigationRepartidores extends AppCompatActivity implements OnNavig
         alertDialog.show();
     }
 
+
+
+
+
     private void fetchRoute(Point origin, Point destination) {
         NavigationRoute.builder(this)
                 .accessToken(Mapbox.getAccessToken())
@@ -351,6 +351,10 @@ public class NavigationRepartidores extends AppCompatActivity implements OnNavig
                 });
     }
 
+
+
+
+
     private NavigationViewOptions setupOptions(DirectionsRoute directionsRoute) {
         dropoffDialogShown = false;
 
@@ -364,6 +368,8 @@ public class NavigationRepartidores extends AppCompatActivity implements OnNavig
 
         return options.build();
     }
+
+
 
 
     private Point getLastKnownLocation() {
