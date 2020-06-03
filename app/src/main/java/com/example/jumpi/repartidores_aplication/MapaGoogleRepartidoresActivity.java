@@ -20,7 +20,6 @@ public class MapaGoogleRepartidoresActivity extends FragmentActivity implements 
 
     private GoogleMap mMap;
 
-    Button Btn_Start_Reparto;
 
     MarkerOptions punto_envasadora_av, punto_cliente_uno;
 
@@ -47,18 +46,6 @@ public class MapaGoogleRepartidoresActivity extends FragmentActivity implements 
         punto_envasadora_av = new MarkerOptions().position(new LatLng(-26.784306,-60.446815)).title("Envasadora AquaVital");
 
         punto_cliente_uno = new MarkerOptions().position(new LatLng(-26.784327,-60.448123)).title("Cliente Uno");
-
-
-
-
-/*
-        Btn_Start_Reparto.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                new FetchURL(MapaGoogleRepartidoresActivity.this).execute(getUrl(punto_envasadora_av.getPosition(), punto_cliente_uno.getPosition(), "driving"), "driving");
-            }
-        });
- */
 
 
 
