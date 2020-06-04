@@ -18,8 +18,10 @@ import com.google.android.gms.maps.model.PolylineOptions;
 
 public class MapaGoogleRepartidoresActivity extends FragmentActivity implements OnMapReadyCallback, TaskLoadedCallback {
 
-    private GoogleMap mMap;
 
+
+
+    private GoogleMap mMap;
 
     MarkerOptions punto_envasadora_av, punto_cliente_uno;
 
@@ -69,6 +71,9 @@ public class MapaGoogleRepartidoresActivity extends FragmentActivity implements 
      * it inside the SupportMapFragment. This method will only be triggered once the user has
      * installed Google Play services and returned to the app.
      */
+
+
+
     @Override
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
