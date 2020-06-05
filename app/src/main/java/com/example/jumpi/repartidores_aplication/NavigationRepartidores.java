@@ -332,6 +332,8 @@ public class NavigationRepartidores extends AppCompatActivity implements OnNavig
 
 
     private void fetchRoute(Point origin, Point destination) {
+
+
         NavigationRoute.builder(this)
                 .accessToken(Mapbox.getAccessToken())
                 .origin(origin)

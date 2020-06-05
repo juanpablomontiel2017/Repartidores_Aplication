@@ -1,65 +1,52 @@
 package com.example.jumpi.repartidores_aplication;
 
 
-import android.animation.ObjectAnimator;
-import android.animation.TypeEvaluator;
-import android.animation.ValueAnimator;
 import android.annotation.SuppressLint;
-import android.app.AlertDialog;
-import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.PointF;
-import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
 import android.os.AsyncTask;
-import android.os.Build;
 import android.os.Bundle;
-
-import java.io.InputStream;
-import java.lang.ref.WeakReference;
-import java.nio.charset.Charset;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Objects;
-import java.util.Scanner;
-
 import android.preference.PreferenceManager;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.HorizontalScrollView;
-import android.widget.ImageView;
-import android.widget.LinearLayout;
+import android.widget.Button;
+import android.widget.TextView;
+import android.widget.Toast;
 
-// classes needed to initialize map
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatDelegate;
+import androidx.appcompat.widget.Toolbar;
+import androidx.core.content.res.ResourcesCompat;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
-import com.android.volley.Response;
-import com.github.mikephil.charting.components.MarkerView;
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.google.gson.JsonElement;
-import com.google.gson.JsonObject;
 import com.mapbox.android.core.permissions.PermissionsListener;
+import com.mapbox.android.core.permissions.PermissionsManager;
+import com.mapbox.api.directions.v5.DirectionsCriteria;
 import com.mapbox.api.directions.v5.models.DirectionsResponse;
+import com.mapbox.api.directions.v5.models.DirectionsRoute;
+import com.mapbox.api.matching.v5.MapboxMapMatching;
+import com.mapbox.api.matching.v5.models.MapMatchingResponse;
+import com.mapbox.geojson.Feature;
 import com.mapbox.geojson.FeatureCollection;
 import com.mapbox.geojson.Geometry;
 import com.mapbox.geojson.LineString;
+import com.mapbox.geojson.Point;
 import com.mapbox.geojson.utils.PolylineUtils;
 import com.mapbox.mapboxsdk.Mapbox;
 import com.mapbox.mapboxsdk.annotations.BubbleLayout;
-import com.mapbox.mapboxsdk.annotations.Marker;
-import com.mapbox.mapboxsdk.annotations.MarkerOptions;
-import com.mapbox.mapboxsdk.annotations.Polyline;
-import com.mapbox.mapboxsdk.annotations.PolylineOptions;
+import com.mapbox.mapboxsdk.location.LocationComponent;
 import com.mapbox.mapboxsdk.location.LocationComponentActivationOptions;
 import com.mapbox.mapboxsdk.location.LocationComponentOptions;
 import com.mapbox.mapboxsdk.location.OnCameraTrackingChangedListener;
@@ -68,71 +55,33 @@ import com.mapbox.mapboxsdk.location.modes.CameraMode;
 import com.mapbox.mapboxsdk.location.modes.RenderMode;
 import com.mapbox.mapboxsdk.maps.MapView;
 import com.mapbox.mapboxsdk.maps.MapboxMap;
-import com.mapbox.mapboxsdk.maps.Style;
 import com.mapbox.mapboxsdk.maps.OnMapReadyCallback;
-
-
-// classes needed to add the location component
-import com.mapbox.android.core.permissions.PermissionsManager;
-import com.mapbox.mapboxsdk.location.LocationComponent;
-
-// classes needed to add a marker
-import com.mapbox.geojson.Feature;
-import com.mapbox.geojson.Point;
-import com.mapbox.mapboxsdk.geometry.LatLng;
+import com.mapbox.mapboxsdk.maps.Style;
 import com.mapbox.mapboxsdk.style.layers.LineLayer;
-import com.mapbox.mapboxsdk.style.layers.Property;
-import com.mapbox.mapboxsdk.style.layers.PropertyFactory;
 import com.mapbox.mapboxsdk.style.layers.SymbolLayer;
 import com.mapbox.mapboxsdk.style.sources.GeoJsonSource;
-
-import static com.mapbox.geojson.Point.fromLngLat;
-import static com.mapbox.mapboxsdk.style.expressions.Expression.literal;
-import static com.mapbox.mapboxsdk.style.layers.Property.ICON_ANCHOR_BOTTOM;
-import static com.mapbox.mapboxsdk.style.layers.PropertyFactory.iconAllowOverlap;
-import static com.mapbox.mapboxsdk.style.layers.PropertyFactory.iconAnchor;
-import static com.mapbox.mapboxsdk.style.layers.PropertyFactory.iconIgnorePlacement;
-import static com.mapbox.mapboxsdk.style.layers.PropertyFactory.iconImage;
-import static com.mapbox.mapboxsdk.style.layers.PropertyFactory.iconOffset;
-import static com.mapbox.mapboxsdk.style.layers.PropertyFactory.lineColor;
-import static com.mapbox.mapboxsdk.style.layers.PropertyFactory.lineWidth;
-import static java.nio.file.Paths.get;
-
-// classes to calculate a route
 import com.mapbox.mapboxsdk.utils.BitmapUtils;
 import com.mapbox.mapboxsdk.utils.ColorUtils;
 import com.mapbox.services.android.navigation.ui.v5.NavigationLauncher;
 import com.mapbox.services.android.navigation.ui.v5.NavigationLauncherOptions;
-import com.mapbox.services.android.navigation.ui.v5.NavigationView;
-import com.mapbox.services.android.navigation.ui.v5.map.NavigationMapboxMap;
 import com.mapbox.services.android.navigation.ui.v5.route.NavigationMapRoute;
-import com.mapbox.api.directions.v5.models.DirectionsRoute;
-import com.mapbox.services.android.navigation.v5.navigation.MapboxNavigation;
 import com.mapbox.services.android.navigation.v5.navigation.NavigationRoute;
 
+import java.io.InputStream;
+import java.lang.ref.WeakReference;
+import java.nio.charset.Charset;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Objects;
+import java.util.Scanner;
 
 import retrofit2.Call;
 import retrofit2.Callback;
+import retrofit2.Response;
 import timber.log.Timber;
 
-// classes needed to launch navigation UI
-import android.widget.Button;
-import android.widget.ScrollView;
-import android.widget.TextView;
-import android.widget.Toast;
-
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.annotation.RequiresApi;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.app.AppCompatDelegate;
-import androidx.appcompat.widget.Toolbar;
-import androidx.core.content.res.ResourcesCompat;
-import androidx.navigation.Navigation;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
-
+import static com.mapbox.geojson.Point.fromLngLat;
 import static com.mapbox.mapboxsdk.style.expressions.Expression.eq;
 import static com.mapbox.mapboxsdk.style.expressions.Expression.get;
 import static com.mapbox.mapboxsdk.style.expressions.Expression.literal;
@@ -141,6 +90,14 @@ import static com.mapbox.mapboxsdk.style.layers.PropertyFactory.iconAllowOverlap
 import static com.mapbox.mapboxsdk.style.layers.PropertyFactory.iconAnchor;
 import static com.mapbox.mapboxsdk.style.layers.PropertyFactory.iconImage;
 import static com.mapbox.mapboxsdk.style.layers.PropertyFactory.iconOffset;
+import static com.mapbox.mapboxsdk.style.layers.PropertyFactory.lineColor;
+import static com.mapbox.mapboxsdk.style.layers.PropertyFactory.lineWidth;
+
+// classes needed to initialize map
+// classes needed to add the location component
+// classes needed to add a marker
+// classes to calculate a route
+// classes needed to launch navigation UI
 
 
 
@@ -157,7 +114,10 @@ public class Mapa_Repartidores extends AppCompatActivity implements OnMapReadyCa
     private List<Clientes> clientesList;
 
 
+    private List<Point> puntos_clientes = new ArrayList<>();
 
+
+    private Integer[]  OD = {0,5};
 
     private MapView mapView;
     private MapboxMap mapboxMap;
@@ -237,6 +197,47 @@ public class Mapa_Repartidores extends AppCompatActivity implements OnMapReadyCa
 
         setUpRecyclerView();
 
+        puntos_clientes.add(fromLngLat(-60.446815, -26.784306));
+
+        puntos_clientes.add(fromLngLat(-60.44664, -26.78386));
+        puntos_clientes.add(fromLngLat(-60.44889, -26.78307));
+        puntos_clientes.add(fromLngLat(-60.44842, -26.78207));
+        puntos_clientes.add(fromLngLat(-60.44617, -26.78286));
+
+        puntos_clientes.add(fromLngLat(-60.44547, -26.78118));
+
+        //OD[0]=0;
+        //OD[1]=5;
+
+        MapboxMapMatching.builder()
+                .accessToken(Mapbox.getAccessToken())
+                .coordinates(puntos_clientes)
+                .waypoints(OD)
+                .steps(true)
+                .voiceInstructions(true)
+                .bannerInstructions(true)
+                .profile(DirectionsCriteria.PROFILE_DRIVING)
+                .build().enqueueCall(new Callback<MapMatchingResponse>() {
+
+            @Override
+            public void onResponse(Call<MapMatchingResponse> call, Response<MapMatchingResponse> response) {
+
+                if (response.body() == null) {
+                    Log.e(TAG, "Map matching has failed.");
+                    return;
+                }
+
+                if (response.isSuccessful()) {
+                    currentRoute = response.body().matchings().get(0).toDirectionRoute();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<MapMatchingResponse> call, Throwable t) {
+
+                Log.d("TAG", "FAlló ");
+            }
+        });
 
 
 
@@ -370,7 +371,7 @@ public class Mapa_Repartidores extends AppCompatActivity implements OnMapReadyCa
 
 
                 BotonComenzarReparto = findViewById(R.id.btn_comenzar_reparto);
-
+/**
                 BotonComenzarReparto.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
@@ -386,7 +387,7 @@ public class Mapa_Repartidores extends AppCompatActivity implements OnMapReadyCa
                 });
 
 
-/*
+*/
 
                 //getRoute(originPoint,destinationPoint);
 
@@ -402,7 +403,7 @@ public class Mapa_Repartidores extends AppCompatActivity implements OnMapReadyCa
                         initNightMode();
 
                         boolean simulateRoute = true;
-
+/**
 
                         NavigationLauncherOptions options = NavigationLauncherOptions.builder()
                                 .directionsRoute(currentRoute)
@@ -412,6 +413,17 @@ public class Mapa_Repartidores extends AppCompatActivity implements OnMapReadyCa
                         // Call this method with Context from within an Activity
                         NavigationLauncher.startNavigation(Mapa_Repartidores.this, options);
 
+ */
+                NavigationLauncherOptions options =
+                        NavigationLauncherOptions.builder()
+                        .directionsRoute(currentRoute)
+                        .shouldSimulateRoute(simulateRoute)
+                        .build();
+
+                // Call this method with Context from within an Activity
+                NavigationLauncher.startNavigation(Mapa_Repartidores.this, options);
+
+
 
 
                     }
@@ -420,7 +432,7 @@ public class Mapa_Repartidores extends AppCompatActivity implements OnMapReadyCa
                 });
 
 
-*/
+
             }
 
         });

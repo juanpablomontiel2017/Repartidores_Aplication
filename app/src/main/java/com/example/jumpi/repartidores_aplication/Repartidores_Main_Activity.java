@@ -1,17 +1,12 @@
 package com.example.jumpi.repartidores_aplication;
 
 import android.content.Intent;
-
-
-
 import android.os.Bundle;
-
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-
 import android.widget.Button;
 import android.widget.TextView;
 
@@ -22,17 +17,7 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentPagerAdapter;
 
-import com.google.android.gms.maps.model.LatLng;
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.tabs.TabLayout;
-
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
-
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
 
 
 public class Repartidores_Main_Activity extends AppCompatActivity {
@@ -132,11 +117,11 @@ public class Repartidores_Main_Activity extends AppCompatActivity {
             public void onClick(View view) {
 
 
-                //Intent intent = new Intent(getApplicationContext(), Mapa_Repartidores.class);
+               Intent intent = new Intent(getApplicationContext(), Mapa_Repartidores.class);
 
                 //Intent intent = new Intent(getApplicationContext(), NavigationMapRouteActivity.class);
 
-                Intent intent = new Intent(getApplicationContext(), MapaGoogleRepartidoresActivity.class);
+               // Intent intent = new Intent(getApplicationContext(), MapaGoogleRepartidoresActivity.class);
 
                 startActivity(intent);
 
