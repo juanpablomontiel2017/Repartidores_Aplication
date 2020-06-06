@@ -2,6 +2,7 @@ package com.example.jumpi.repartidores_aplication;
 
 
 import android.annotation.SuppressLint;
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -33,11 +34,10 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.mapbox.android.core.permissions.PermissionsListener;
 import com.mapbox.android.core.permissions.PermissionsManager;
-import com.mapbox.api.directions.v5.DirectionsCriteria;
 import com.mapbox.api.directions.v5.models.DirectionsResponse;
 import com.mapbox.api.directions.v5.models.DirectionsRoute;
-import com.mapbox.api.matching.v5.MapboxMapMatching;
-import com.mapbox.api.matching.v5.models.MapMatchingResponse;
+import com.mapbox.api.directions.v5.models.RouteLeg;
+import com.mapbox.api.directions.v5.models.RouteOptions;
 import com.mapbox.geojson.Feature;
 import com.mapbox.geojson.FeatureCollection;
 import com.mapbox.geojson.Geometry;
@@ -67,6 +67,10 @@ import com.mapbox.services.android.navigation.ui.v5.NavigationLauncherOptions;
 import com.mapbox.services.android.navigation.ui.v5.route.NavigationMapRoute;
 import com.mapbox.services.android.navigation.v5.navigation.NavigationRoute;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.io.InputStream;
 import java.lang.ref.WeakReference;
 import java.nio.charset.Charset;
@@ -78,10 +82,8 @@ import java.util.Scanner;
 
 import retrofit2.Call;
 import retrofit2.Callback;
-import retrofit2.Response;
 import timber.log.Timber;
 
-import static com.mapbox.geojson.Point.fromLngLat;
 import static com.mapbox.mapboxsdk.style.expressions.Expression.eq;
 import static com.mapbox.mapboxsdk.style.expressions.Expression.get;
 import static com.mapbox.mapboxsdk.style.expressions.Expression.literal;
@@ -197,48 +199,52 @@ public class Mapa_Repartidores extends AppCompatActivity implements OnMapReadyCa
 
         setUpRecyclerView();
 
-        puntos_clientes.add(fromLngLat(-60.446815, -26.784306));
+        leerArchivoRutaJson();
 
-        puntos_clientes.add(fromLngLat(-60.44664, -26.78386));
-        puntos_clientes.add(fromLngLat(-60.44889, -26.78307));
-        puntos_clientes.add(fromLngLat(-60.44842, -26.78207));
-        puntos_clientes.add(fromLngLat(-60.44617, -26.78286));
-
-        puntos_clientes.add(fromLngLat(-60.44547, -26.78118));
-
-        //OD[0]=0;
-        //OD[1]=5;
-
-        MapboxMapMatching.builder()
-                .accessToken(Mapbox.getAccessToken())
-                .coordinates(puntos_clientes)
-                .waypoints(OD)
-                .steps(true)
-                .voiceInstructions(true)
-                .bannerInstructions(true)
-                .profile(DirectionsCriteria.PROFILE_DRIVING)
-                .build().enqueueCall(new Callback<MapMatchingResponse>() {
-
-            @Override
-            public void onResponse(Call<MapMatchingResponse> call, Response<MapMatchingResponse> response) {
-
-                if (response.body() == null) {
-                    Log.e(TAG, "Map matching has failed.");
-                    return;
-                }
-
-                if (response.isSuccessful()) {
-                    currentRoute = response.body().matchings().get(0).toDirectionRoute();
-                }
-            }
-
-            @Override
-            public void onFailure(Call<MapMatchingResponse> call, Throwable t) {
-
-                Log.d("TAG", "FAlló ");
-            }
-        });
-
+    /**
+     *     puntos_clientes.add(fromLngLat(-60.446815, -26.784306));
+     *
+     *         puntos_clientes.add(fromLngLat(-60.44664, -26.78386));
+     *         puntos_clientes.add(fromLngLat(-60.44889, -26.78307));
+     *         puntos_clientes.add(fromLngLat(-60.44842, -26.78207));
+     *         puntos_clientes.add(fromLngLat(-60.44617, -26.78286));
+     *
+     *         puntos_clientes.add(fromLngLat(-60.44547, -26.78118));
+     *
+     *         //OD[0]=0;
+     *         //OD[1]=5;
+     *
+     *
+     *
+     *         MapboxMapMatching.builder()
+     *                 .accessToken(Mapbox.getAccessToken())
+     *                 .coordinates(puntos_clientes)
+     *                 .waypoints(OD)
+     *                 .steps(true)
+     *                 .voiceInstructions(true)
+     *                 .bannerInstructions(true)
+     *                 .profile(DirectionsCriteria.PROFILE_DRIVING)
+     *                 .build().enqueueCall(new Callback<MapMatchingResponse>() {
+     *
+     *             @Override
+     *            public void onResponse(Call<MapMatchingResponse> call, Response<MapMatchingResponse> response) {
+     *
+     *                 if (response.body() == null) {
+     *                     Log.e(TAG, "Map matching has failed.");
+     *                     return;
+     *                 }
+     *
+     *                 if (response.isSuccessful()) {
+     *                     currentRoute = response.body().matchings().get(0).toDirectionRoute();
+     *                 }
+     *             }
+     *
+     *             @Override
+     *             public void onFailure(Call<MapMatchingResponse> call, Throwable t) {
+     *
+     *                 Log.d("TAG", "FAlló ");
+     *             }
+     *         });*/
 
 
     }/************** FIN DEL onCreate() **********/
@@ -287,7 +293,52 @@ public class Mapa_Repartidores extends AppCompatActivity implements OnMapReadyCa
     }/****************** FIN DE LA FUNCIÓN ListaCompletaDeClientes() ***************/
 
 
+    private void  leerArchivoRutaJson(){
 
+
+        String archivoOsrmJson = loadGeoJsonFromAsset("rutaDeprueba90.json");
+
+
+
+        //String archivoOsrmJson = String.valueOf(new leerRutasDeArchivo(this).execute());
+
+
+        try {
+            JSONObject jsonObject = new JSONObject(archivoOsrmJson);
+            JSONArray arrayRoute = jsonObject.getJSONArray("routes");
+            JSONObject objectRuta = arrayRoute.getJSONObject(0);
+
+            double distance;
+            double duration;
+            @Nullable String geometry;
+            double weight;
+            String weightName;
+            List<RouteLeg> legs;
+            @Nullable RouteOptions routeOptions;
+            @Nullable String voiceLanguage;
+
+            currentRoute = DirectionsRoute.fromJson(objectRuta.toString());
+            //currentRoute = DirectionsRoute.Builder;
+
+
+            /**
+             * currentRoute = DirectionsRoute.builder()
+             .legs(legs)
+             .geometry(geometry)
+             .weightName(weightName)
+             .weight(weight)
+             .duration(duration)
+             .distance(distance)
+             .routeOptions(routeOptions)
+             .voiceLanguage(voiceLanguage)
+             .build();
+             */
+
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+    }
 
 
     /************************************************************************/
@@ -414,6 +465,9 @@ public class Mapa_Repartidores extends AppCompatActivity implements OnMapReadyCa
                         NavigationLauncher.startNavigation(Mapa_Repartidores.this, options);
 
  */
+
+
+
                 NavigationLauncherOptions options =
                         NavigationLauncherOptions.builder()
                         .directionsRoute(currentRoute)
@@ -595,6 +649,31 @@ public class Mapa_Repartidores extends AppCompatActivity implements OnMapReadyCa
     /**************************************************************************/
     /**************************************************************************/
     /**************************************************************************/
+
+     String loadGeoJsonFromAsset(String filename) {
+
+        try {
+
+            // Load GeoJSON file from local asset folder
+            InputStream is = getApplicationContext().getAssets().open(filename);
+
+            int size = is.available();
+
+            byte[] buffer = new byte[size];
+
+            is.read(buffer);
+
+            is.close();
+
+            return new String(buffer, Charset.forName("UTF-8"));
+
+        } catch (Exception exception) {
+
+            throw new RuntimeException(exception);
+
+        }
+
+    }
 
 
 
@@ -1254,6 +1333,51 @@ public class Mapa_Repartidores extends AppCompatActivity implements OnMapReadyCa
 
 
 
+    private static class leerRutasDeArchivo extends AsyncTask<Void, Void, String> {
+
+        static Context context;
+
+        leerRutasDeArchivo(Context context){
+            this.context = context;
+        }
+
+
+        @Override
+        protected String doInBackground(Void... voids) {
+
+            String ruta = loadGeoJsonFromAsset( "rutaDeprueba90.json");
+
+            return ruta;
+        }
+
+
+        static String loadGeoJsonFromAsset(String filename) {
+
+            try {
+
+                // Load GeoJSON file from local asset folder
+                InputStream is = context.getAssets().open(filename);
+
+                int size = is.available();
+
+                byte[] buffer = new byte[size];
+
+                is.read(buffer);
+
+                is.close();
+
+                return new String(buffer, Charset.forName("UTF-8"));
+
+            } catch (Exception exception) {
+
+                throw new RuntimeException(exception);
+
+            }
+
+        }
+    }
+
+
     /**
      * AsyncTask to load data from the assets folder.
      */
@@ -1266,9 +1390,6 @@ public class Mapa_Repartidores extends AppCompatActivity implements OnMapReadyCa
         LoadGeoJsonDataTask(Mapa_Repartidores activity) {
             this.activityRef = new WeakReference<>(activity);
         }
-
-
-
 
 
         @Override
