@@ -6,6 +6,7 @@ import android.content.SharedPreferences;
 import android.location.Location;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
+import android.util.Log;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AlertDialog;
@@ -13,8 +14,9 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatDelegate;
 
 import com.mapbox.api.directions.v5.DirectionsCriteria;
-import com.mapbox.api.directions.v5.models.DirectionsResponse;
 import com.mapbox.api.directions.v5.models.DirectionsRoute;
+import com.mapbox.api.matching.v5.MapboxMapMatching;
+import com.mapbox.api.matching.v5.models.MapMatchingResponse;
 import com.mapbox.geojson.Point;
 import com.mapbox.mapboxsdk.Mapbox;
 import com.mapbox.services.android.navigation.ui.v5.NavigationView;
@@ -29,10 +31,18 @@ import com.mapbox.services.android.navigation.v5.navigation.NavigationRoute;
 import com.mapbox.services.android.navigation.v5.routeprogress.ProgressChangeListener;
 import com.mapbox.services.android.navigation.v5.routeprogress.RouteProgress;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.io.InputStream;
+import java.nio.charset.Charset;
 import java.util.ArrayList;
 import java.util.List;
 
 import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 import static com.mapbox.geojson.Point.fromLngLat;
 
@@ -45,6 +55,9 @@ public class NavigationRepartidores extends AppCompatActivity implements OnNavig
     private NavigationView navigationView;
     private boolean dropoffDialogShown;
     private Location lastKnownLocation;
+    private DirectionsRoute currentRoute;
+    private DirectionsRoute tramo;
+    private JSONArray arrayLegs = new JSONArray();
 
     private List<Point> puntos_clientes = new ArrayList<>();
 
@@ -71,12 +84,16 @@ public class NavigationRepartidores extends AppCompatActivity implements OnNavig
 
         ActivityProvenienteDe = getIntent().getStringExtra("Activity");
 
+        leerArchivoRutaJson();
 
-        switch (ActivityProvenienteDe){
+
+
+        switch (ActivityProvenienteDe) {
 
             case "Mapa_Repartidores":
 
                 Toast.makeText(NavigationRepartidores.this, "¡Bienvenido!", Toast.LENGTH_LONG).show();
+
 
                 break;
 
@@ -93,19 +110,18 @@ public class NavigationRepartidores extends AppCompatActivity implements OnNavig
         }//Fin del switch
 
 
-
         //Punto de origen: envasadora AquaVital
         puntos_clientes.add(fromLngLat(-60.446815, -26.784306));
 
-        puntos_clientes.add(fromLngLat(-60.448123,-26.784327));
-        puntos_clientes.add(fromLngLat(-60.448241,-26.790556));
-        puntos_clientes.add(fromLngLat(-60.448427,-26.792986));
-        puntos_clientes.add(fromLngLat(-60.446893,-26.792885));
-        puntos_clientes.add(fromLngLat(-60.444785,-26.794505));
-        puntos_clientes.add(fromLngLat(-60.442989,-26.792107));
-        puntos_clientes.add(fromLngLat(-60.442023,-26.793726));
-        puntos_clientes.add(fromLngLat(-60.442989,-26.792107));
-        puntos_clientes.add(fromLngLat(-60.438246,-26.794419));
+        puntos_clientes.add(fromLngLat(-60.448123, -26.784327));
+        puntos_clientes.add(fromLngLat(-60.448241, -26.790556));
+        puntos_clientes.add(fromLngLat(-60.448427, -26.792986));
+        puntos_clientes.add(fromLngLat(-60.446893, -26.792885));
+        puntos_clientes.add(fromLngLat(-60.444785, -26.794505));
+        puntos_clientes.add(fromLngLat(-60.442989, -26.792107));
+        puntos_clientes.add(fromLngLat(-60.442023, -26.793726));
+        puntos_clientes.add(fromLngLat(-60.442989, -26.792107));
+        puntos_clientes.add(fromLngLat(-60.438246, -26.794419));
 
 
         //Regreso a la envasadora
@@ -114,7 +130,7 @@ public class NavigationRepartidores extends AppCompatActivity implements OnNavig
 
         setContentView(R.layout.activity_navigation_repartidores);
 
-        
+
         navigationView = findViewById(R.id.navigationView);
         navigationView.onCreate(savedInstanceState);
         navigationView.initialize(this);
@@ -124,8 +140,34 @@ public class NavigationRepartidores extends AppCompatActivity implements OnNavig
         /*Llamada a las siguientes funciones: */
         ListaDeClientesDelDia();
 
+ /*
 
-    }/************************** FIN DEL onCreate() **************************************/
+        navigation.addMilestone(new RouteMilestone.Builder()
+                .setIdentifier(1024)
+                .setTrigger(
+                        Trigger.all(
+                                Trigger.lt(TriggerProperty.STEP_INDEX, 3), Trigger.gt(TriggerProperty.STEP_DISTANCE_TOTAL_METERS, 200))).build()
+        );
+
+      navigation.addOffRouteListener(new OffRouteListener() {
+            @Override
+            public void userOffRoute(Location location) {
+
+                navigation.addMilestone(new RouteMilestone.Builder()
+                        .setIdentifier(1024)
+                        .setTrigger(
+                                Trigger.all(
+                                        Trigger.lt(TriggerProperty.STEP_INDEX, 3), Trigger.gt(TriggerProperty.STEP_DISTANCE_TOTAL_METERS, 200))).build()
+                );
+
+
+            }
+        });*/
+
+
+    }
+
+            /************************** FIN DEL onCreate() **************************************/
 
 
 
@@ -155,6 +197,115 @@ public class NavigationRepartidores extends AppCompatActivity implements OnNavig
 
 
 
+    private void obtenerTramoDeRuta() throws JSONException {
+
+        List<Point> coordenadasDeSteps = new ArrayList<>();
+
+
+        JSONObject objectLeg = arrayLegs.getJSONObject(0);
+        JSONArray arraySteps = objectLeg.getJSONArray("steps");
+
+        for ( int i=0 ; i < arraySteps.length(); i++ ){
+            JSONObject objectSteps = arraySteps.getJSONObject(i);
+            JSONObject objectManeuver = objectSteps.getJSONObject("maneuver");
+            JSONArray arrayLocation = objectManeuver.getJSONArray("location");
+
+            coordenadasDeSteps.add(fromLngLat((Double)arrayLocation.get(0),(Double)arrayLocation.get(1)));
+
+        }
+
+
+         Integer[]  arregloConIndicesDeOrigenDestino = {0,coordenadasDeSteps.size()-1};
+
+
+
+
+        MapboxMapMatching.builder()
+                .accessToken(Mapbox.getAccessToken())
+                .coordinates(coordenadasDeSteps)
+                .waypoints(arregloConIndicesDeOrigenDestino)
+                .steps(true)
+                .voiceInstructions(true)
+                .bannerInstructions(true)
+                .profile(DirectionsCriteria.PROFILE_DRIVING)
+                .build().enqueueCall(new Callback<MapMatchingResponse>() {
+
+                @Override
+                public void onResponse(Call<MapMatchingResponse> call, Response<MapMatchingResponse> response) {
+
+                    if (response.body() == null) {
+                        Log.e("TAG", "Map matching has failed.");
+                        return;
+                    }
+
+                    if (response.isSuccessful()) {
+                        tramo = response.body().matchings().get(0).toDirectionRoute();
+
+
+                        fetchRoute(coordenadasDeSteps.get(0), coordenadasDeSteps.get(coordenadasDeSteps.size()-1));
+                    }
+                }
+
+                @Override
+                public void onFailure(Call<MapMatchingResponse> call, Throwable t) {
+
+                    Log.d("TAG", "FAlló ");
+                }
+        });
+
+        arrayLegs.remove(0);
+    }
+
+    private void  leerArchivoRutaJson(){
+
+
+        String archivoOsrmJson = loadGeoJsonFromAsset("rutaDeprueba90.json");
+
+
+
+        //String archivoOsrmJson = String.valueOf(new leerRutasDeArchivo(this).execute());
+
+
+        try {
+            JSONObject jsonObject = new JSONObject(archivoOsrmJson);
+            JSONArray arrayRoute = jsonObject.getJSONArray("routes");
+            JSONObject objectRuta = arrayRoute.getJSONObject(0);
+
+            JSONArray arrayLegs = objectRuta.getJSONArray("legs");
+
+
+
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+    }
+
+    String loadGeoJsonFromAsset(String filename) {
+
+        try {
+
+            // Load GeoJSON file from local asset folder
+            InputStream is = getApplicationContext().getAssets().open(filename);
+
+            int size = is.available();
+
+            byte[] buffer = new byte[size];
+
+            is.read(buffer);
+
+            is.close();
+
+            return new String(buffer, Charset.forName("UTF-8"));
+
+        } catch (Exception exception) {
+
+            throw new RuntimeException(exception);
+
+        }
+
+    }
+
     /********************************************************************************************/
     /********************************************************************************************/
     /********************************************************************************************/
@@ -172,6 +323,8 @@ public class NavigationRepartidores extends AppCompatActivity implements OnNavig
     @Override
     public void onStart() {
         super.onStart();
+
+
         navigationView.onStart();
     }
 
@@ -242,7 +395,13 @@ public class NavigationRepartidores extends AppCompatActivity implements OnNavig
     @Override
     public void onNavigationReady(boolean isRunning) {
 
-        fetchRoute(puntos_clientes.remove(0), puntos_clientes.remove(0));
+        try {
+            obtenerTramoDeRuta();
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+        //startNavigation(currentRoute);
 
     }
 
@@ -303,6 +462,7 @@ public class NavigationRepartidores extends AppCompatActivity implements OnNavig
 
     private void startNavigation(DirectionsRoute directionsRoute) {
         NavigationViewOptions navigationViewOptions = setupOptions(directionsRoute);
+
         navigationView.startNavigation(navigationViewOptions);
     }
 
@@ -312,7 +472,13 @@ public class NavigationRepartidores extends AppCompatActivity implements OnNavig
         AlertDialog alertDialog = new AlertDialog.Builder(this).create();
         alertDialog.setMessage(getString(R.string.dropoff_dialog_text));
         alertDialog.setButton(AlertDialog.BUTTON_POSITIVE, getString(R.string.dropoff_dialog_positive_text),
-                (dialogInterface, in) -> fetchRoute(getLastKnownLocation(), puntos_clientes.remove(0)));
+                (dialogInterface, in) -> {
+                    try {
+                        obtenerTramoDeRuta();
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+                });
 
         alertDialog.setButton(DialogInterface.BUTTON_NEGATIVE, getString(R.string.dropoff_dialog_negative_text),
                 (dialogInterface, in) -> {
@@ -334,6 +500,7 @@ public class NavigationRepartidores extends AppCompatActivity implements OnNavig
     private void fetchRoute(Point origin, Point destination) {
 
 
+
         NavigationRoute.builder(this)
                 .accessToken(Mapbox.getAccessToken())
                 .origin(origin)
@@ -341,8 +508,9 @@ public class NavigationRepartidores extends AppCompatActivity implements OnNavig
                 .alternatives(true)
                 .voiceUnits(DirectionsCriteria.METRIC)
                 .enableRefresh(true)
-                .build()
-                .getRoute(new SimplifiedCallback() {
+                .build();
+
+             /*   .getRoute(new SimplifiedCallback() {
                     @Override
                     public void onResponse(Call<DirectionsResponse> call, retrofit2.Response<DirectionsResponse> response) {
 
@@ -350,7 +518,9 @@ public class NavigationRepartidores extends AppCompatActivity implements OnNavig
 
                     }
 
-                });
+                })*/
+
+             startNavigation(tramo);
     }
 
 
@@ -367,6 +537,11 @@ public class NavigationRepartidores extends AppCompatActivity implements OnNavig
                 .routeListener(this)
                 .feedbackListener(this)
                 .shouldSimulateRoute(true);
+
+               /* .navigationOptions(MapboxNavigationOptions.builder()
+                        .defaultMilestonesEnabled(false)
+                        .build());*/
+
 
         return options.build();
     }
