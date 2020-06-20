@@ -56,7 +56,12 @@
                     </intent-filter>
             -->
 
-        </activity> <!-- #################### Para REPARTIDORES ########################### -->
+        </activity>
+
+
+
+
+        <!-- #################### Para REPARTIDORES ########################### -->
         <activity
             android:name=".Repartidores_Main_Activity"
             android:label=" "
@@ -76,6 +81,7 @@
         <activity
             android:name=".NavigationRepartidores"
             android:label=""
+            android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".RealizarVentasClientesRepartidor"
@@ -105,7 +111,12 @@
             android:name=".Detalle_Faltante_Sobrante_Envases"
             android:label=""
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".NavigationMapRouteActivity" /> <!-- ########################## Para SUPERVISORES ########################### -->
+        <activity android:name=".NavigationMapRouteActivity" />
+
+
+
+
+        <!-- ########################## Para SUPERVISORES ########################### -->
         <activity
             android:name=".MainActivitySupervisores"
             android:label=" "

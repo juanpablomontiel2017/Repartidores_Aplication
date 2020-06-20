@@ -226,6 +226,7 @@ public class NavigationRepartidores extends AppCompatActivity implements OnNavig
                 .waypoints(arregloConIndicesDeOrigenDestino)
                 .steps(true)
                 .voiceInstructions(true)
+                .voiceUnits(DirectionsCriteria.METRIC)
                 .bannerInstructions(true)
                 .profile(DirectionsCriteria.PROFILE_DRIVING)
                 .build().enqueueCall(new Callback<MapMatchingResponse>() {
@@ -267,6 +268,7 @@ public class NavigationRepartidores extends AppCompatActivity implements OnNavig
 
 
         try {
+
             JSONObject jsonObject = new JSONObject(archivoOsrmJson);
             JSONArray arrayRoute = jsonObject.getJSONArray("routes");
             JSONObject objectRuta = arrayRoute.getJSONObject(0);
