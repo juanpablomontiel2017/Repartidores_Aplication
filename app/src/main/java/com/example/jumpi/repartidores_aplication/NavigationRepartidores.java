@@ -271,12 +271,13 @@ public class NavigationRepartidores extends AppCompatActivity implements OnNavig
             JSONArray arrayRoute = jsonObject.getJSONArray("routes");
             JSONObject objectRuta = arrayRoute.getJSONObject(0);
 
-            JSONArray arrayLegs = objectRuta.getJSONArray("legs");
+            arrayLegs = objectRuta.getJSONArray("legs");
 
 
 
         } catch (JSONException e) {
             e.printStackTrace();
+            Log.e("TAG", e.toString());
         }
 
     }
