@@ -2,14 +2,25 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
+        <item
+                android:id="@+id/btn_mas"
+                android:icon="@drawable/mapa_repartidores_ic_more"
+                android:title="Mas"
+                app:showAsAction="always">
 
-    <item
-        android:id="@+id/action_venta_mapa_repartidores"
-        android:icon="@drawable/mapa_repartidores_ic_venta"
-        android:orderInCategory="100"
-        android:title="@string/action_venta_mapa_repartidores"
-        app:showAsAction="always|withText" />
+                <menu>
 
-    
+                        <item
+                            android:id="@+id/action_cliente_mapa_repartidores"
+                            android:icon="@drawable/mapa_repartidores_ic_clientes"
+                            android:title="@string/action_cliente_mapa_repartidores"/>
+
+                </menu>
+
+
+        </item>
+
+
+
 
 </menu>

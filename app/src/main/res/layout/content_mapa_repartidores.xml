@@ -24,6 +24,9 @@
         mapbox:mapbox_cameraZoom="15">
 
 
+        <!--
+
+
         <View
 
             android:id="@+id/view_separador"
@@ -36,7 +39,6 @@
 
 
         </View>
-
 
 
 
@@ -62,7 +64,7 @@
 
             </LinearLayout>
 
-
+-->
 
 
 

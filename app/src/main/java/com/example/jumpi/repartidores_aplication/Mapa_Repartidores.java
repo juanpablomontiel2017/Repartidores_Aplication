@@ -184,64 +184,21 @@ public class Mapa_Repartidores extends AppCompatActivity implements OnMapReadyCa
         mapView.getMapAsync(this);
 
 
-
+/*
         View_Separador = (View) findViewById(R.id.view_separador);
         View_Separador.setAlpha((float) 0.5);
 
-
+*/
 
 
         /*Llamada a las siguientes funciones: */
         ListaDeClientesDelDia();
 
-        setUpRecyclerView();
+        //setUpRecyclerView();
 
         leerArchivoRutaJson();
 
-    /**
-     *     puntos_clientes.add(fromLngLat(-60.446815, -26.784306));
-     *
-     *         puntos_clientes.add(fromLngLat(-60.44664, -26.78386));
-     *         puntos_clientes.add(fromLngLat(-60.44889, -26.78307));
-     *         puntos_clientes.add(fromLngLat(-60.44842, -26.78207));
-     *         puntos_clientes.add(fromLngLat(-60.44617, -26.78286));
-     *
-     *         puntos_clientes.add(fromLngLat(-60.44547, -26.78118));
-     *
-     *         //OD[0]=0;
-     *         //OD[1]=5;
-     *
-     *
-     *
-     *         MapboxMapMatching.builder()
-     *                 .accessToken(Mapbox.getAccessToken())
-     *                 .coordinates(puntos_clientes)
-     *                 .waypoints(OD)
-     *                 .steps(true)
-     *                 .voiceInstructions(true)
-     *                 .bannerInstructions(true)
-     *                 .profile(DirectionsCriteria.PROFILE_DRIVING)
-     *                 .build().enqueueCall(new Callback<MapMatchingResponse>() {
-     *
-     *             @Override
-     *            public void onResponse(Call<MapMatchingResponse> call, Response<MapMatchingResponse> response) {
-     *
-     *                 if (response.body() == null) {
-     *                     Log.e(TAG, "Map matching has failed.");
-     *                     return;
-     *                 }
-     *
-     *                 if (response.isSuccessful()) {
-     *                     currentRoute = response.body().matchings().get(0).toDirectionRoute();
-     *                 }
-     *             }
-     *
-     *             @Override
-     *             public void onFailure(Call<MapMatchingResponse> call, Throwable t) {
-     *
-     *                 Log.d("TAG", "FAlló ");
-     *             }
-     *         });*/
+
 
 
     }/************** FIN DEL onCreate() **********/
@@ -349,7 +306,7 @@ public class Mapa_Repartidores extends AppCompatActivity implements OnMapReadyCa
     /************************************************************************/
     /************************************************************************/
 
-
+/*
     private void setUpRecyclerView() {
 
 
@@ -361,7 +318,7 @@ public class Mapa_Repartidores extends AppCompatActivity implements OnMapReadyCa
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setAdapter(adapter);
 
-    }/****************** FIN DE LA FUNCIÓN setUpRecyclerView() ***************/
+    } */  /****************** FIN DE LA FUNCIÓN setUpRecyclerView() ***************/
 
 
 
@@ -1878,7 +1835,7 @@ public class Mapa_Repartidores extends AppCompatActivity implements OnMapReadyCa
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
-        if (id == R.id.action_venta_mapa_repartidores) {
+        if (id == R.id.action_cliente_mapa_repartidores) {
 
 
 

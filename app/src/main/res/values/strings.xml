@@ -71,7 +71,7 @@
 
 
     <!--Mapa Repartidores-->
-    <string name="action_venta_mapa_repartidores">Realizar Venta</string>
+    <string name="action_cliente_mapa_repartidores">Ver Clientes</string>
 
 
     <!--Carga_Descargas-->
