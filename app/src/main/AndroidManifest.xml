@@ -41,9 +41,6 @@
             android:value="@string/google_maps_key" />
 
         <activity
-            android:name=".MapaGoogleRepartidoresActivity"
-            android:label="@string/title_activity_mapa_google_repartidores" />
-        <activity
             android:name=".LoginActivity"
             android:label=""
             android:theme="@style/AppTheme.NoActionBar">
@@ -111,9 +108,6 @@
             android:name=".Detalle_Faltante_Sobrante_Envases"
             android:label=""
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".NavigationMapRouteActivity" />
-
-
 
 
         <!-- ########################## Para SUPERVISORES ########################### -->

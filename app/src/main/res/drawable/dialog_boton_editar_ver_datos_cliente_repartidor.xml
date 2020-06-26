@@ -2,15 +2,16 @@
     <!-- Sombra -->
     <item android:top="4dp">
         <shape>
-            <solid android:color="#0091ea" />
+            <solid android:color="#5c6bc0" />
             <corners android:radius="4dip" />
         </shape>
     </item>
     <!-- Contenido -->
     <item android:bottom="4dp">
         <shape>
-            <solid android:color="#03a9f4" />
+            <solid android:color="#9fa8da" />
             <corners android:radius="4dip" />
         </shape>
     </item>
 </layer-list>
+

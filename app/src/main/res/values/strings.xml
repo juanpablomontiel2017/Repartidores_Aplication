@@ -47,9 +47,9 @@
 
     <string name="descripcion">Rejas negras</string>
 
-    <string name="tracking_enabled">Rastreo habilitado</string>
+    <string name="tracking_enabled">Usted se encuentra aquí</string>
 
-    <string name="tracking_already_enabled">Rastreo listo</string>
+    <string name="tracking_already_enabled">Usted se encuentra aquí</string>
 
     <string name="current_location">Ubicación actual</string>
 

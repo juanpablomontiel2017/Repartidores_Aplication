@@ -159,7 +159,7 @@ public class ClientesRecyclerViewAdapter_ListaCompleta extends RecyclerView.Adap
 
 
                     dialog_cliente_btnVentas.setBackground(parent.getContext().getResources().getDrawable(R.drawable.dialog_boton_realizar_venta_repartidor));
-                    dialog_cliente_btnEditar.setVisibility(View.GONE);
+                    dialog_cliente_btnEditar.setBackground(parent.getContext().getResources().getDrawable(R.drawable.dialog_boton_editar_ver_datos_cliente_repartidor));
                     dialog_cliente_btnEliminar.setVisibility(View.GONE);
 
 
@@ -254,33 +254,72 @@ public class ClientesRecyclerViewAdapter_ListaCompleta extends RecyclerView.Adap
                     @Override
                     public void onClick(View view) {
 
-                        Intent intentEditar = new Intent(parent.getContext(), EditarClientes.class);
+
+                        if(usuario.getTipo_de_Usuario().equals("repartidor")) {
+
+                            Intent intentEditar = new Intent(parent.getContext(), EditarClientes.class);
 
 
-                        intentEditar.putExtra("Foto",clientesList.get(vHolder.getAdapterPosition()).getFoto());
+                            intentEditar.putExtra("Foto",clientesList.get(vHolder.getAdapterPosition()).getFoto());
 
-                        intentEditar.putExtra("DNI",  clientesList.get(vHolder.getAdapterPosition()).getDNI());
+                            intentEditar.putExtra("DNI",  clientesList.get(vHolder.getAdapterPosition()).getDNI());
 
-                        intentEditar.putExtra("Apellido", clientesList.get(vHolder.getAdapterPosition()).getApellido());
+                            intentEditar.putExtra("Apellido", clientesList.get(vHolder.getAdapterPosition()).getApellido());
 
-                        intentEditar.putExtra("Nombre", clientesList.get(vHolder.getAdapterPosition()).getNombre());
+                            intentEditar.putExtra("Nombre", clientesList.get(vHolder.getAdapterPosition()).getNombre());
 
-                        intentEditar.putExtra("Codigo_Area",clientesList.get(vHolder.getAdapterPosition()).getCodigo_Area());
+                            intentEditar.putExtra("Codigo_Area",clientesList.get(vHolder.getAdapterPosition()).getCodigo_Area());
 
-                        intentEditar.putExtra("Telefono",clientesList.get(vHolder.getAdapterPosition()).getTelefono());
+                            intentEditar.putExtra("Telefono",clientesList.get(vHolder.getAdapterPosition()).getTelefono());
 
-                        intentEditar.putExtra("Direccion", clientesList.get(vHolder.getAdapterPosition()).getDireccion());
+                            intentEditar.putExtra("Direccion", clientesList.get(vHolder.getAdapterPosition()).getDireccion());
 
-                        intentEditar.putExtra("Barrio",  clientesList.get(vHolder.getAdapterPosition()).getBarrio());
+                            intentEditar.putExtra("Barrio",  clientesList.get(vHolder.getAdapterPosition()).getBarrio());
 
-                        intentEditar.putExtra("Telefono",clientesList.get(vHolder.getAdapterPosition()).getTelefono());
+                            intentEditar.putExtra("Telefono",clientesList.get(vHolder.getAdapterPosition()).getTelefono());
 
-                        intentEditar.putExtra("Correo",  clientesList.get(vHolder.getAdapterPosition()).getCorreo());
+                            intentEditar.putExtra("Correo",  clientesList.get(vHolder.getAdapterPosition()).getCorreo());
 
-                        intentEditar.putExtra("Referencia", clientesList.get(vHolder.getAdapterPosition()).getReferencia());
+                            intentEditar.putExtra("Referencia", clientesList.get(vHolder.getAdapterPosition()).getReferencia());
 
 
-                        parent.getContext().startActivity(intentEditar);
+                            parent.getContext().startActivity(intentEditar);
+
+                        }// FIN DEL if(usuario.getTipo_de_Usuario().equals("repartidor"))
+
+                        else {
+
+
+                            Intent intentEditar = new Intent(parent.getContext(), EditarClientes.class);
+
+
+                            intentEditar.putExtra("Foto",clientesList.get(vHolder.getAdapterPosition()).getFoto());
+
+                            intentEditar.putExtra("DNI",  clientesList.get(vHolder.getAdapterPosition()).getDNI());
+
+                            intentEditar.putExtra("Apellido", clientesList.get(vHolder.getAdapterPosition()).getApellido());
+
+                            intentEditar.putExtra("Nombre", clientesList.get(vHolder.getAdapterPosition()).getNombre());
+
+                            intentEditar.putExtra("Codigo_Area",clientesList.get(vHolder.getAdapterPosition()).getCodigo_Area());
+
+                            intentEditar.putExtra("Telefono",clientesList.get(vHolder.getAdapterPosition()).getTelefono());
+
+                            intentEditar.putExtra("Direccion", clientesList.get(vHolder.getAdapterPosition()).getDireccion());
+
+                            intentEditar.putExtra("Barrio",  clientesList.get(vHolder.getAdapterPosition()).getBarrio());
+
+                            intentEditar.putExtra("Telefono",clientesList.get(vHolder.getAdapterPosition()).getTelefono());
+
+                            intentEditar.putExtra("Correo",  clientesList.get(vHolder.getAdapterPosition()).getCorreo());
+
+                            intentEditar.putExtra("Referencia", clientesList.get(vHolder.getAdapterPosition()).getReferencia());
+
+
+                            parent.getContext().startActivity(intentEditar);
+
+                        }
+
 
                     }
                 });
