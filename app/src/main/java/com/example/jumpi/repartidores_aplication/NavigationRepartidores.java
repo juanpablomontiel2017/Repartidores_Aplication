@@ -39,6 +39,7 @@ import java.io.InputStream;
 import java.nio.charset.Charset;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -58,13 +59,9 @@ public class NavigationRepartidores extends AppCompatActivity implements OnNavig
 
     private Location lastKnownLocation;
 
-    private DirectionsRoute currentRoute;
-
     private DirectionsRoute tramo;
 
     private JSONArray arrayLegs = new JSONArray();
-
-    private List<Point> puntos_clientes = new ArrayList<>();
 
     private List<Clientes> clientesList;
 
@@ -127,33 +124,6 @@ public class NavigationRepartidores extends AppCompatActivity implements OnNavig
         }//Fin del switch
 
 
-
-
-
-
-
-        //Punto de origen: envasadora AquaVital
-        puntos_clientes.add(fromLngLat(-60.446815, -26.784306));
-
-        puntos_clientes.add(fromLngLat(-60.448123, -26.784327));
-        puntos_clientes.add(fromLngLat(-60.448241, -26.790556));
-        puntos_clientes.add(fromLngLat(-60.448427, -26.792986));
-        puntos_clientes.add(fromLngLat(-60.446893, -26.792885));
-        puntos_clientes.add(fromLngLat(-60.444785, -26.794505));
-        puntos_clientes.add(fromLngLat(-60.442989, -26.792107));
-        puntos_clientes.add(fromLngLat(-60.442023, -26.793726));
-        puntos_clientes.add(fromLngLat(-60.442989, -26.792107));
-        puntos_clientes.add(fromLngLat(-60.438246, -26.794419));
-
-
-        //Regreso a la envasadora
-        puntos_clientes.add(fromLngLat(-60.446815, -26.784306));
-
-
-
-
-
-
         setContentView(R.layout.activity_navigation_repartidores);
 
 
@@ -214,15 +184,20 @@ public class NavigationRepartidores extends AppCompatActivity implements OnNavig
 
     private void obtenerTramoDeRuta() throws JSONException {
 
+
         List<Point> coordenadasDeSteps = new ArrayList<>();
 
 
         JSONObject objectLeg = arrayLegs.getJSONObject(0);
+
         JSONArray arraySteps = objectLeg.getJSONArray("steps");
 
         for ( int i=0 ; i < arraySteps.length(); i++ ){
+
             JSONObject objectSteps = arraySteps.getJSONObject(i);
+
             JSONObject objectManeuver = objectSteps.getJSONObject("maneuver");
+
             JSONArray arrayLocation = objectManeuver.getJSONArray("location");
 
             coordenadasDeSteps.add(fromLngLat((Double)arrayLocation.get(0),(Double)arrayLocation.get(1)));
@@ -242,6 +217,7 @@ public class NavigationRepartidores extends AppCompatActivity implements OnNavig
                 .steps(true)
                 .voiceInstructions(true)
                 .voiceUnits(DirectionsCriteria.METRIC)
+                .language(Locale.getDefault())
                 .bannerInstructions(true)
                 .profile(DirectionsCriteria.PROFILE_DRIVING)
                 .build().enqueueCall(new Callback<MapMatchingResponse>() {
@@ -255,11 +231,13 @@ public class NavigationRepartidores extends AppCompatActivity implements OnNavig
                     }
 
                     if (response.isSuccessful()) {
+
                         tramo = response.body().matchings().get(0).toDirectionRoute();
 
-
                         fetchRoute(coordenadasDeSteps.get(0), coordenadasDeSteps.get(coordenadasDeSteps.size()-1));
+
                     }
+
                 }
 
                 @Override
@@ -512,7 +490,7 @@ public class NavigationRepartidores extends AppCompatActivity implements OnNavig
     @Override
     public void onArrival() {
 
-        if (!dropoffDialogShown && !puntos_clientes.isEmpty()) {
+        if (!dropoffDialogShown) {
 
             /* Llamada a la función: */
             MostrarMensajeDeVenta();
@@ -558,9 +536,11 @@ public class NavigationRepartidores extends AppCompatActivity implements OnNavig
 
 
     private void startNavigation(DirectionsRoute directionsRoute) {
+
         NavigationViewOptions navigationViewOptions = setupOptions(directionsRoute);
 
         navigationView.startNavigation(navigationViewOptions);
+
     }
 
 
@@ -581,15 +561,24 @@ public class NavigationRepartidores extends AppCompatActivity implements OnNavig
 
 
         AlertDialog alertDialog = new AlertDialog.Builder(this).create();
+
         alertDialog.setMessage(getString(R.string.dropoff_dialog_text));
+
         alertDialog.setButton(AlertDialog.BUTTON_POSITIVE, getString(R.string.dropoff_dialog_positive_text),
                 (dialogInterface, in) -> {
+
                     try {
+
                         obtenerTramoDeRuta();
+
                     } catch (JSONException e) {
+
                         e.printStackTrace();
+
                     }
+
                 });
+
 
         alertDialog.setButton(DialogInterface.BUTTON_NEGATIVE, getString(R.string.dropoff_dialog_negative_text),
                 (dialogInterface, in) -> {
@@ -660,6 +649,7 @@ public class NavigationRepartidores extends AppCompatActivity implements OnNavig
 
 
     private NavigationViewOptions setupOptions(DirectionsRoute directionsRoute) {
+
         dropoffDialogShown = false;
 
         NavigationViewOptions.Builder options = NavigationViewOptions.builder();
@@ -712,7 +702,7 @@ public class NavigationRepartidores extends AppCompatActivity implements OnNavig
     /********************************************************************************************/
 
 
-
+    int id_cliente = 0;
 
     public void MostrarMensajeDeVenta(){
 
@@ -726,30 +716,30 @@ public class NavigationRepartidores extends AppCompatActivity implements OnNavig
 
                 Intent intentVentas = new Intent(NavigationRepartidores.this, RealizarVentasClientesRepartidor.class);
 
-                intentVentas.putExtra("Foto",clientesList.get(0).getFoto());
+                intentVentas.putExtra("Foto",clientesList.get(id_cliente).getFoto());
 
-                intentVentas.putExtra("DNI",clientesList.get(0).getDNI());
+                intentVentas.putExtra("DNI",clientesList.get(id_cliente).getDNI());
 
-                intentVentas.putExtra("Apellido",clientesList.get(0).getApellido());
+                intentVentas.putExtra("Apellido",clientesList.get(id_cliente).getApellido());
 
-                intentVentas.putExtra("Nombre",clientesList.get(0).getNombre());
+                intentVentas.putExtra("Nombre",clientesList.get(id_cliente).getNombre());
 
-                intentVentas.putExtra("Codigo_Area",clientesList.get(0).getCodigo_Area());
+                intentVentas.putExtra("Codigo_Area",clientesList.get(id_cliente).getCodigo_Area());
 
-                intentVentas.putExtra("Telefono",clientesList.get(0).getTelefono());
+                intentVentas.putExtra("Telefono",clientesList.get(id_cliente).getTelefono());
 
-                intentVentas.putExtra("Direccion", clientesList.get(0).getDireccion());
+                intentVentas.putExtra("Direccion", clientesList.get(id_cliente).getDireccion());
 
-                intentVentas.putExtra("Barrio", clientesList.get(0).getBarrio());
+                intentVentas.putExtra("Barrio", clientesList.get(id_cliente).getBarrio());
 
-                intentVentas.putExtra("Referencia", clientesList.get(0).getReferencia());
+                intentVentas.putExtra("Referencia", clientesList.get(id_cliente).getReferencia());
 
-                intentVentas.putExtra("Correo", clientesList.get(0).getCorreo());
+                intentVentas.putExtra("Correo", clientesList.get(id_cliente).getCorreo());
 
 
+                id_cliente++;
 
                 startActivityForResult(intentVentas, REALIZAR_VENTA);
-
 
 
             }
@@ -833,6 +823,23 @@ public class NavigationRepartidores extends AppCompatActivity implements OnNavig
         clientesList.add(new Clientes(34567965,10,R.mipmap.cliente_img10_doctor_512px, "Guzmán",
                 "Leonardo","Calle 9 entre 12 y 14 ","Belgrano","Al lado de estudio contable Sosa","364","4667788","No tiene correo"));
 
+        clientesList.add(new Clientes(34567965,11,R.mipmap.cliente_img11_woman, "Malaspina",
+                "Romina","Calle 7 entre 12 y 14 ","Puerta del Sol","Al lado de mercadito DUO","364","4667798","No tiene correo"));
+
+        clientesList.add(new Clientes(34567965,12,R.mipmap.cliente_img12_abuela_512px, "Melgar",
+                "Elsa","Calle 1 entre 16 y 18 ","Centro","Al lado de tienda Pupé","364","4667728","No tiene correo"));
+
+        clientesList.add(new Clientes(34567965,13,R.mipmap.cliente_img13_bombero_512px, "Hector",
+                "Barrionuevo","Calle 13 entre 10 y 12 ","Loma Linda","Al lado de un Kiosko","364","4667728","No tiene correo"));
+
+        clientesList.add(new Clientes(34567965,14,R.mipmap.cliente_img14_man_512px, "Trnka",
+                "Carlos","Calle 15 entre 12 y 14 ","Ramsey","Casa blanca con porton negro","364","4654321","No tiene correo"));
+
+        clientesList.add(new Clientes(34567965,14,R.mipmap.cliente_img15_jardinero_512px, "Franco",
+                "Pintos","Calle 13 entre 14 y 16 ","Ensanche Sur","Departamentos de Angnello","364","4654321","No tiene correo"));
+
+        clientesList.add(new Clientes(34567965,15,R.mipmap.cliente_img1_hombrebarbudo_512px, "Franco",
+                "Pintos","Calle 13 entre 14 y 16 ","Ensanche Sur","Departamentos de Angnello","364","4654321","No tiene correo"));
 
 
     }/****************** FIN DE LA FUNCIÓN ListaCompletaDeClientes() ***************/
