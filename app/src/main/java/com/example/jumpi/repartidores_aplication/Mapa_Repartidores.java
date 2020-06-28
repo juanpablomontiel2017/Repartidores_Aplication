@@ -155,6 +155,8 @@ public class Mapa_Repartidores extends AppCompatActivity implements OnMapReadyCa
     private FeatureCollection featureCollection;
 
 
+    String ActivityProvenienteDe;
+
 
 
 
@@ -184,6 +186,7 @@ public class Mapa_Repartidores extends AppCompatActivity implements OnMapReadyCa
         mapView.getMapAsync(this);
 
 
+        ActivityProvenienteDe = getIntent().getStringExtra("Activity");
 
 
     }/*********************************** FIN DEL onCreate() ****************************************/
@@ -230,16 +233,42 @@ public class Mapa_Repartidores extends AppCompatActivity implements OnMapReadyCa
                     public void onClick(View v) {
 
 
-                        Intent intent = new Intent (Mapa_Repartidores.this, NavigationRepartidores.class);
 
-                        intent.putExtra("Activity","Mapa_Repartidores");
 
-                        setResult(RESULT_OK, intent);
+                        switch (ActivityProvenienteDe) {
 
-                        startActivity(intent);
+                            case "Repartidores_Main_Activity":
 
-                        //Debo finalizar la activity para que actúe el ActivityForResult
-                        finish();
+
+                                Intent intent = new Intent (Mapa_Repartidores.this, NavigationRepartidores.class);
+
+                                intent.putExtra("Activity","Mapa_Repartidores");
+
+                                startActivity(intent);
+
+
+                                break;
+
+                            case "NavigationRepartidores":
+
+
+                                Intent intent_navigation = new Intent (Mapa_Repartidores.this, NavigationRepartidores.class);
+
+                                setResult(RESULT_OK, intent_navigation);
+
+                                //Debo finalizar la activity para que actúe el ActivityForResult
+                                finish();
+
+
+
+                            default:
+
+                                Toast.makeText(Mapa_Repartidores.this, "¡No se encontró la activity!", Toast.LENGTH_LONG).show();
+
+
+                        }//Fin del switch
+
+
 
                     }
                 });

@@ -119,11 +119,9 @@ public class Repartidores_Main_Activity extends AppCompatActivity {
 
                Intent intent = new Intent(getApplicationContext(), Mapa_Repartidores.class);
 
-                //Intent intent = new Intent(getApplicationContext(), NavigationMapRouteActivity.class);
+               intent.putExtra("Activity","Repartidores_Main_Activity");
 
-               // Intent intent = new Intent(getApplicationContext(), MapaGoogleRepartidoresActivity.class);
-
-                startActivity(intent);
+               startActivity(intent);
 
 
             }

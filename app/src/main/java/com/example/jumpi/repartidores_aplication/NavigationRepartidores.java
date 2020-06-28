@@ -583,11 +583,12 @@ public class NavigationRepartidores extends AppCompatActivity implements OnNavig
         alertDialog.setButton(DialogInterface.BUTTON_NEGATIVE, getString(R.string.dropoff_dialog_negative_text),
                 (dialogInterface, in) -> {
 
+
                     Intent intent = new Intent(NavigationRepartidores.this, Mapa_Repartidores.class);
 
-                    startActivityForResult(intent, MAPA_REPARTIDORES);
+                    intent.putExtra("Activity","NavigationRepartidores");
 
-                    //startActivity(intent);
+                    startActivityForResult(intent, MAPA_REPARTIDORES);
 
 
                 });
