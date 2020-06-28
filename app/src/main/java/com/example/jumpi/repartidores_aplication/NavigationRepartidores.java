@@ -7,6 +7,7 @@ import android.location.Location;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AlertDialog;
@@ -70,6 +71,8 @@ public class NavigationRepartidores extends AppCompatActivity implements OnNavig
     final private int REALIZAR_VENTA = 1001;
 
     final private int MAPA_REPARTIDORES = 1002;
+
+    final private int MAPA_REPARTIDORES_ON_KEY = 1003;
 
 
 
@@ -561,6 +564,7 @@ public class NavigationRepartidores extends AppCompatActivity implements OnNavig
 
 
         AlertDialog alertDialog = new AlertDialog.Builder(this).create();
+        alertDialog.setCancelable(false);
 
         alertDialog.setMessage(getString(R.string.dropoff_dialog_text));
 
@@ -580,7 +584,7 @@ public class NavigationRepartidores extends AppCompatActivity implements OnNavig
                 });
 
 
-        alertDialog.setButton(DialogInterface.BUTTON_NEGATIVE, getString(R.string.dropoff_dialog_negative_text),
+        alertDialog.setButton(DialogInterface.BUTTON_NEGATIVE, "Cancelar Temporalmente",
                 (dialogInterface, in) -> {
 
 
@@ -912,6 +916,33 @@ public class NavigationRepartidores extends AppCompatActivity implements OnNavig
 
         } /************** FIN DEL if(requestCode == MAPA_REPARTIDORES) *****************/
 
+        /*********************************************************************/
+        /*********************************************************************/
+        /*********************************************************************/
+        /*********************************************************************/
+        /*********************************************************************/
+
+
+        // check that it is the SecondActivity with an OK result
+        if (requestCode == MAPA_REPARTIDORES_ON_KEY) {
+
+            if (resultCode == RESULT_OK) { // Activity.RESULT_OK
+
+                //En caso de que el resultado fuera correcto
+                Toast.makeText(NavigationRepartidores.this, "¡Haz quedado aquí!", Toast.LENGTH_LONG).show();
+
+
+            } else{
+
+                //En caso de que el resultado fuera INCORRECTO o no esperado
+                Toast.makeText(NavigationRepartidores.this, "¡Haz quedado aquí!", Toast.LENGTH_LONG).show();
+
+
+
+            }
+
+        } /************** FIN DEL if(requestCode == MAPA_REPARTIDORES) *****************/
+
 
 
 
@@ -948,6 +979,33 @@ public class NavigationRepartidores extends AppCompatActivity implements OnNavig
     @Override
     public void onFeedbackSent(FeedbackItem feedbackItem) {
 
+    }
+
+
+
+
+
+
+
+
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+
+        // TODO Auto-generated method stub
+        if (keyCode == event.KEYCODE_BACK) {
+
+
+            Intent intent = new Intent (NavigationRepartidores.this, Mapa_Repartidores.class);
+
+            intent.putExtra("Activity","NavigationRepartidoresOnKey");
+
+            startActivityForResult(intent, MAPA_REPARTIDORES_ON_KEY);
+
+
+
+        }
+
+        return super.onKeyDown(keyCode, event);
     }
 
 

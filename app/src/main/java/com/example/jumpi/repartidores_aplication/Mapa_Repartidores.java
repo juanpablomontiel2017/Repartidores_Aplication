@@ -14,6 +14,7 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -106,17 +107,6 @@ public class Mapa_Repartidores extends AppCompatActivity implements OnMapReadyCa
     /********************* DECLARACIÓN DE VARIABLES GLOBALES **********************/
 
 
-    private View View_Separador;
-
-    private ClientesRecyclerViewAdapter_ListaDeClientesDelDía adapter;
-
-    private List<Clientes> clientesList;
-
-
-    private List<Point> puntos_clientes = new ArrayList<>();
-
-
-    private Integer[]  OD = {0,5};
 
     private MapView mapView;
     private MapboxMap mapboxMap;
@@ -128,34 +118,13 @@ public class Mapa_Repartidores extends AppCompatActivity implements OnMapReadyCa
     private boolean isInTrackingMode;
 
 
-    private DirectionsRoute currentRoute;
-
-
     private Button BotonComenzarReparto;
 
 
 
-    private NavigationMapRoute navigationMapRoute;
-
-
-    private static final String TAG = "DirectionsActivity";
-
-
-
-
-    private static final String GEOJSON_SOURCE_ID = "GEOJSON_SOURCE_ID";
-    private static final String MARKER_IMAGE_ID = "MARKER_IMAGE_ID";
-    private static final String MARKER_LAYER_ID = "MARKER_LAYER_ID";
-    private static final String CALLOUT_LAYER_ID = "CALLOUT_LAYER_ID";
-    private static final String PROPERTY_SELECTED = "selectedState";
-    private static final String PROPERTY_NAME = "name";
-    private static final String PROPERTY_CAPITAL = "referencia";
-
-    private GeoJsonSource source;
-    private FeatureCollection featureCollection;
-
 
     String ActivityProvenienteDe;
+
 
 
 
@@ -187,6 +156,7 @@ public class Mapa_Repartidores extends AppCompatActivity implements OnMapReadyCa
 
 
         ActivityProvenienteDe = getIntent().getStringExtra("Activity");
+
 
 
     }/*********************************** FIN DEL onCreate() ****************************************/
@@ -237,6 +207,8 @@ public class Mapa_Repartidores extends AppCompatActivity implements OnMapReadyCa
 
                         switch (ActivityProvenienteDe) {
 
+
+
                             case "Repartidores_Main_Activity":
 
 
@@ -249,12 +221,27 @@ public class Mapa_Repartidores extends AppCompatActivity implements OnMapReadyCa
 
                                 break;
 
+
+
+
                             case "NavigationRepartidores":
 
 
                                 Intent intent_navigation = new Intent (Mapa_Repartidores.this, NavigationRepartidores.class);
 
                                 setResult(RESULT_OK, intent_navigation);
+
+                                //Debo finalizar la activity para que actúe el ActivityForResult
+                                finish();
+
+
+
+                            case "NavigationRepartidoresOnKey":
+
+
+                                Intent intent_navigation_onkey = new Intent (Mapa_Repartidores.this, NavigationRepartidores.class);
+
+                                setResult(RESULT_OK, intent_navigation_onkey);
 
                                 //Debo finalizar la activity para que actúe el ActivityForResult
                                 finish();
@@ -626,6 +613,30 @@ public class Mapa_Repartidores extends AppCompatActivity implements OnMapReadyCa
 
     } /*************************FIN DE LA FUNCIÓN onOptionsItemSelected()*******************/
 
+
+
+
+
+
+
+
+
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+
+        // TODO Auto-generated method stub
+        if (keyCode == event.KEYCODE_BACK) {
+
+
+            Intent intent = new Intent (Mapa_Repartidores.this, Repartidores_Main_Activity.class);
+
+            startActivity(intent);
+
+
+
+        }
+
+        return super.onKeyDown(keyCode, event);
+    }
 
 
 

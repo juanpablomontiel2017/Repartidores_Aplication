@@ -53,6 +53,9 @@
 
     <string name="current_location">Ubicación actual</string>
 
+    <string name="dropoff_dialog_negative_text">Cancelar Temporalmente</string>
+
+
 
     <!-- ############################################################################### -->
     <!-- ############################################################################### -->
