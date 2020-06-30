@@ -847,7 +847,7 @@ public class NavigationRepartidores extends AppCompatActivity implements OnNavig
                 "Pintos","Calle 13 entre 14 y 16 ","Ensanche Sur","Departamentos de Angnello","364","4654321","No tiene correo"));
 
 
-    }/****************** FIN DE LA FUNCIÓN ListaCompletaDeClientes() ***************/
+    }/****************** FIN DE LA FUNCIÓN ListaDeClientesDelDia() ***************/
 
 
 
