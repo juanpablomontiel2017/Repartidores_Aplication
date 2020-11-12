@@ -6,6 +6,7 @@ import android.content.DialogInterface;
 import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -117,11 +118,13 @@ public class ActivityCargasDescargas extends AppCompatActivity {
         String FechaGuardada;
         //String FechaGuardada = "12/05/2020";
 
-
+        Log.d("debug", "FechaActualDelSistema: "+ FechaActualDelSistema);
 
         if(LeerConfiguracionDeActivityEnUnSharedPreferences("Fecha").equals("true")){
 
-            FechaGuardada = (UtilidadFecha.SetearFecha(2000,00,01));
+            //FechaGuardada = (UtilidadFecha.SetearFecha(2000,00,01));
+            FechaGuardada = UtilidadFecha.getFecha("dd/MM/yyyy");
+            GuardarConfiguracionDeActivityEnUnSharedPreferences("fecha", UtilidadFecha.getFecha("dd/MM/yyyy"));
 
         }//Fin del if
 
@@ -133,7 +136,7 @@ public class ActivityCargasDescargas extends AppCompatActivity {
 
 
 
-
+        Log.d("debug", "FechaGuardada: "+ FechaGuardada);
 
 
         if(FechaGuardada.equals(FechaActualDelSistema)) {
