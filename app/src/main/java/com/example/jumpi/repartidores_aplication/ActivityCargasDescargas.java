@@ -114,32 +114,13 @@ public class ActivityCargasDescargas extends AppCompatActivity {
 
         String FechaActualDelSistema = UtilidadFecha.getFecha("dd/MM/yyyy");
 
-        String FechaGuardada;
-        //String FechaGuardada = "12/05/2020";
-
-
-
-        if(LeerConfiguracionDeActivityEnUnSharedPreferences("Fecha").equals("true")){
-
-            FechaGuardada = (UtilidadFecha.SetearFecha(2000,00,01));
-
-        }//Fin del if
-
-        else {
-
-            FechaGuardada = LeerConfiguracionDeActivityEnUnSharedPreferences("Fecha");
-
-        } //Fin del else
-
-
-
+        String FechaGuardada = UtilidadFecha.getFecha("dd/MM/yyyy");
 
 
 
         if(FechaGuardada.equals(FechaActualDelSistema)) {
 
             Toast.makeText(ActivityCargasDescargas.this, "Dia: " + Nombre_Dia, Toast.LENGTH_LONG).show();
-
 
         } //Fin del primer if
 
