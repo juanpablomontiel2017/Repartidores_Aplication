@@ -11,7 +11,7 @@
     android:orientation="vertical"
 
 
-    tools:context=".ComisionesEstadisticas">
+    tools:context=".ActivityComisionesEstadisticas">
 
     <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"
@@ -22,7 +22,7 @@
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
-            android:background="#d50000"
+            android:background="@color/colorPrimary"
             app:popupTheme="@style/AppTheme.PopupOverlay" />
 
     </com.google.android.material.appbar.AppBarLayout>
@@ -65,7 +65,7 @@
                 android:layout_marginBottom="10dp"
                 android:gravity="left"
                 android:text="FALTANTE Y/O SOBRANTE DE DINERO "
-                android:textColor="#000000"
+                android:textColor="@color/primaryTextColor"
                 android:textSize="20sp"
                 android:textStyle="bold" />
 
@@ -78,7 +78,7 @@
                 android:layout_marginLeft="5dp"
                 android:layout_marginRight="5dp"
                 android:layout_marginBottom="20dp"
-                android:background="@drawable/contenedor_llh_nuevo_responsable_supervisor"
+                android:background="@drawable/contenedor_ll_dos"
                 android:gravity="center"
                 android:orientation="horizontal"
                 android:weightSum="2">
@@ -103,7 +103,7 @@
                     android:layout_marginTop="10dp"
                     android:layout_marginRight="10dp"
                     android:layout_marginBottom="10dp"
-                    android:background="#ff5722"/>
+                    android:background="@color/colorPrimary"/>
 
 
                 <TextView
@@ -135,7 +135,7 @@
             android:layout_marginBottom="10dp"
             android:gravity="left"
             android:text="COMISIÓN "
-            android:textColor="#000000"
+            android:textColor="@color/primaryTextColor"
             android:textSize="20sp"
             android:textStyle="bold" />
 
@@ -149,7 +149,7 @@
                 android:layout_marginRight="5dp"
                 android:layout_marginBottom="20dp"
                 android:layout_weight="1"
-                android:background="@drawable/contenedor_llh_nuevo_responsable_supervisor"
+                android:background="@drawable/contenedor_ll_dos"
                 android:gravity="center"
                 android:orientation="horizontal"
                 android:weightSum="2">
@@ -177,7 +177,7 @@
                     android:layout_marginTop="10dp"
                     android:layout_marginRight="10dp"
                     android:layout_marginBottom="10dp"
-                    android:background="#ff5722" />
+                    android:background="@color/colorPrimary" />
 
                 <TextView
 
@@ -200,10 +200,10 @@
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:layout_marginBottom="10dp"
-                android:background="#d50000"
+                android:background="@color/colorPrimary"
                 android:gravity="center"
                 android:text="CANTIDAD DE ARTÍCULOS VENDIDOS"
-                android:textColor="#FFFF"
+                android:textColor="@color/secondaryTextColor"
                 android:textSize="20sp"
                 android:textStyle="bold" />
 
@@ -237,7 +237,7 @@
             android:layout_marginBottom="10dp"
             android:gravity="left"
             android:text="BIDONES "
-            android:textColor="#000000"
+            android:textColor="@color/primaryTextColor"
             android:textSize="20sp"
             android:textStyle="bold" />
 
@@ -252,7 +252,7 @@
             android:layout_marginLeft="5dp"
             android:layout_marginRight="5dp"
             android:layout_marginBottom="20dp"
-            android:background="@drawable/contenedor_llh_nuevo_responsable_supervisor"
+            android:background="@drawable/contenedor_ll_dos"
             android:layout_gravity="center"
             android:gravity="center"
             android:orientation="horizontal"
@@ -279,7 +279,7 @@
                 android:layout_marginTop="10dp"
                 android:layout_marginRight="10dp"
                 android:layout_marginBottom="10dp"
-                android:background="#ff5722"/>
+                android:background="@color/colorPrimary"/>
 
 
             <TextView
@@ -310,7 +310,7 @@
             android:layout_marginBottom="10dp"
             android:gravity="left"
             android:text="DISPENSER PLÁSTICO "
-            android:textColor="#000000"
+            android:textColor="@color/secondaryTextColor"
             android:textSize="20sp"
             android:textStyle="bold" />
 
@@ -326,7 +326,7 @@
             android:layout_marginLeft="5dp"
             android:layout_marginRight="5dp"
             android:layout_marginBottom="20dp"
-            android:background="@drawable/contenedor_llh_nuevo_responsable_supervisor"
+            android:background="@drawable/contenedor_ll_dos"
             android:layout_gravity="center"
             android:gravity="center"
             android:orientation="horizontal"
@@ -354,7 +354,7 @@
                 android:layout_marginTop="10dp"
                 android:layout_marginRight="10dp"
                 android:layout_marginBottom="10dp"
-                android:background="#ff5722"/>
+                android:background="@color/colorPrimary"/>
 
 
 
@@ -386,7 +386,7 @@
             android:layout_marginBottom="10dp"
             android:gravity="left"
             android:text="DISPENSER ELÉCTRICO "
-            android:textColor="#000000"
+            android:textColor="@color/primaryTextColor"
             android:textSize="20sp"
             android:textStyle="bold" />
 
@@ -401,7 +401,7 @@
             android:layout_marginLeft="5dp"
             android:layout_marginRight="5dp"
             android:layout_marginBottom="20dp"
-            android:background="@drawable/contenedor_llh_nuevo_responsable_supervisor"
+            android:background="@drawable/contenedor_ll_dos"
             android:layout_gravity="center"
             android:gravity="center"
             android:orientation="horizontal"
@@ -428,7 +428,7 @@
                 android:layout_marginTop="10dp"
                 android:layout_marginRight="10dp"
                 android:layout_marginBottom="10dp"
-                android:background="#ff5722"/>
+                android:background="@color/colorPrimary"/>
 
 
 
@@ -465,7 +465,7 @@
             android:layout_marginBottom="10dp"
             android:gravity="left"
             android:text="CANILLAS "
-            android:textColor="#000000"
+            android:textColor="@color/primaryTextColor"
             android:textSize="20sp"
             android:textStyle="bold" />
 
@@ -478,7 +478,7 @@
             android:layout_marginLeft="5dp"
             android:layout_marginRight="5dp"
             android:layout_marginBottom="20dp"
-            android:background="@drawable/contenedor_llh_nuevo_responsable_supervisor"
+            android:background="@drawable/contenedor_ll_dos"
             android:layout_gravity="center"
             android:gravity="center"
             android:orientation="horizontal"
@@ -507,7 +507,7 @@
                 android:layout_marginTop="10dp"
                 android:layout_marginRight="10dp"
                 android:layout_marginBottom="10dp"
-                android:background="#ff5722"/>
+                android:background="@color/colorPrimary"/>
 
 
             <TextView

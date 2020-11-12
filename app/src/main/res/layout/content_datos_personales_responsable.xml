@@ -7,10 +7,10 @@
 
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#FFFF"
+    android:background="@color/secondaryTextColor"
 
     android:orientation="vertical"
-    tools:context=".NuevoResponsablePatrocinio">
+    tools:context=".ActivityNuevoResponsablePatrocinio">
 
 
     <ScrollView
@@ -45,7 +45,7 @@
                     android:layout_weight="1"
                     android:gravity="center"
                     android:text="DATOS DEL RESPONSABLE"
-                    android:textColor="#d50000"
+                    android:textColor="@color/colorAccent"
                     android:textSize="23sp"
                     android:textStyle="bold" />
 
@@ -60,7 +60,7 @@
                     android:layout_marginTop="10dp"
                     android:layout_marginRight="10dp"
                     android:layout_marginBottom="10dp"
-                    android:background="#ff5722">
+                    android:background="@color/colorPrimary">
 
                 </View>
 
@@ -71,7 +71,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
                     android:layout_weight="1"
-                    android:background="#ffff"
+                    android:background="@color/secondaryTextColor"
                     android:src="@drawable/ic_editar_datos_personales_responsable" />
 
             </LinearLayout>
@@ -87,7 +87,7 @@
                 android:layout_marginTop="0dp"
                 android:layout_marginRight="0dp"
                 android:layout_marginBottom="20dp"
-                android:background="#eceff1">
+                android:background="@color/tercerTextColor">
 
             </View>
 
@@ -152,7 +152,6 @@
                         android:imeOptions="actionNext"
                         android:inputType="number"
                         android:maxLength="8"
-                        android:textCursorDrawable="@color/colorCursorSupervisores"
                         android:textSize="25sp"
                         android:textStyle="bold" />
 
@@ -184,7 +183,6 @@
                         android:imeOptions="actionNext"
                         android:inputType="textAutoCorrect|textCapWords"
                         android:maxLength="45"
-                        android:textCursorDrawable="@color/colorCursorSupervisores"
                         android:textSize="25sp"
                         android:textStyle="bold" />
 
@@ -216,7 +214,6 @@
                         android:imeOptions="actionNext"
                         android:inputType="textAutoCorrect|textCapWords"
                         android:maxLength="45"
-                        android:textCursorDrawable="@color/colorCursorSupervisores"
                         android:textSize="25sp"
                         android:textStyle="bold" />
 
@@ -271,7 +268,6 @@
                             android:imeOptions="actionNext"
                             android:inputType="number"
                             android:maxLength="4"
-                            android:textCursorDrawable="@color/colorCursorSupervisores"
                             android:textSize="25sp"
                             android:textStyle="bold" />
 
@@ -305,7 +301,6 @@
                             android:imeOptions="actionNext"
                             android:inputType="number"
                             android:maxLength="8"
-                            android:textCursorDrawable="@color/colorCursorSupervisores"
                             android:textSize="25sp"
                             android:textStyle="bold" />
 
@@ -339,7 +334,6 @@
                         android:imeOptions="actionNext"
                         android:inputType="textCapSentences|textMultiLine"
                         android:maxLength="150"
-                        android:textCursorDrawable="@color/colorCursorSupervisores"
                         android:textSize="25sp"
                         android:textStyle="bold" />
 
@@ -370,7 +364,6 @@
                         android:imeOptions="actionNext"
                         android:inputType="textCapSentences|textMultiLine"
                         android:maxLength="100"
-                        android:textCursorDrawable="@color/colorCursorSupervisores"
                         android:textSize="25sp"
                         android:textStyle="bold" />
 
@@ -402,7 +395,6 @@
                         android:imeOptions="actionNext"
                         android:inputType="textMultiLine|textEmailAddress"
                         android:maxLength="45"
-                        android:textCursorDrawable="@color/colorCursorSupervisores"
                         android:textSize="25sp"
                         android:textStyle="bold" />
 
@@ -432,7 +424,6 @@
                         android:imeOptions="actionNext"
                         android:inputType="textCapSentences|textMultiLine"
                         android:maxLength="150"
-                        android:textCursorDrawable="@color/colorCursorSupervisores"
                         android:textSize="25sp"
                         android:textStyle="bold" />
 
@@ -455,7 +446,7 @@
                 android:layout_marginTop="0dp"
                 android:layout_marginRight="0dp"
                 android:layout_marginBottom="0dp"
-                android:background="#eceff1">
+                android:background="@color/tercerTextColor">
 
             </View>
 
@@ -476,7 +467,7 @@
                     android:layout_weight="1"
                     android:gravity="center"
                     android:text="DATOS DEL EVENTO"
-                    android:textColor="#d50000"
+                    android:textColor="@color/colorAccent"
                     android:textSize="25sp"
                     android:textStyle="bold" />
 
@@ -517,11 +508,9 @@
                     android:layout_marginBottom="20dp"
                     android:src="@mipmap/conferencia" />
 
-
-
-
-
             </LinearLayout>
+
+
 
 
             <View
@@ -533,7 +522,7 @@
                 android:layout_marginTop="0dp"
                 android:layout_marginRight="0dp"
                 android:layout_marginBottom="20dp"
-                android:background="#eceff1">
+                android:background="@color/tercerTextColor">
 
             </View>
 
@@ -545,7 +534,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="20dp"
                 android:layout_marginRight="20dp"
-                android:background="#FFFF"
+                android:background="@color/secondaryTextColor"
                 android:orientation="vertical">
 
 
@@ -574,7 +563,6 @@
                         android:imeOptions="actionNext"
                         android:inputType="textCapSentences|textMultiLine"
                         android:maxLength="100"
-                        android:textCursorDrawable="@color/colorCursorSupervisores"
                         android:textSize="25sp"
                         android:textStyle="bold" />
 
@@ -607,7 +595,6 @@
                         android:imeOptions="actionNext"
                         android:inputType="textCapSentences|textMultiLine"
                         android:maxLength="150"
-                        android:textCursorDrawable="@color/colorCursorSupervisores"
                         android:textSize="25sp"
                         android:textStyle="bold" />
 
@@ -641,7 +628,6 @@
                         android:imeOptions="actionNext"
                         android:inputType="textCapSentences|textMultiLine"
                         android:maxLength="100"
-                        android:textCursorDrawable="@color/colorCursorSupervisores"
                         android:textSize="25sp"
                         android:textStyle="bold" />
 
@@ -675,7 +661,6 @@
                         android:imeOptions="actionNext"
                         android:inputType="textCapSentences|textMultiLine"
                         android:maxLength="150"
-                        android:textCursorDrawable="@color/colorCursorSupervisores"
                         android:textSize="25sp"
                         android:textStyle="bold" />
 
@@ -707,7 +692,6 @@
                         android:imeOptions="actionNext"
                         android:inputType="datetime"
                         android:maxLength="10"
-                        android:textCursorDrawable="@color/colorCursorSupervisores"
                         android:textSize="25sp"
                         android:textStyle="bold" />
 
@@ -728,31 +712,6 @@
                     android:weightSum="2">
 
 
-                    <!--   <ImageView
-
-                        android:id="@+id/img_fecha_fin_evento_nrp"
-                        android:layout_weight="1"
-                        android:layout_width="100dp"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:layout_marginLeft="5dp"
-                        android:src="@drawable/ic_fecha_fin_nrp_supervisor" />
-
-
-                    <View
-
-                        android:id="@+id/separador_fecha_fin_evento_nrp"
-                        android:layout_width="1dp"
-                        android:layout_height="match_parent"
-                        android:layout_marginLeft="10dp"
-                        android:layout_marginTop="10dp"
-                        android:layout_marginRight="10dp"
-                        android:layout_marginBottom="10dp"
-                        android:background="#ff5722">
-
-                    </View>
-
--->
 
                     <EditText
 
@@ -764,7 +723,6 @@
                         android:gravity="center"
                         android:inputType="datetime"
                         android:maxLength="10"
-                        android:textCursorDrawable="@color/colorCursorSupervisores"
                         android:textSize="25sp"
                         android:textStyle="bold" />
 
@@ -784,7 +742,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
                 android:layout_marginBottom="10dp"
-                android:background="#FFF"
+                android:background="@color/secondaryTextColor"
                 android:orientation="horizontal"
                 android:weightSum="2">
 
@@ -798,10 +756,10 @@
                     android:layout_marginRight="10dp"
                     android:layout_marginBottom="10dp"
                     android:layout_weight="1"
-                    android:background="@drawable/btn_cancelar_nuevo_responsable_esquinas_con_bordes_repartidor"
+                    android:background="@drawable/btn_cancelar_uno"
                     android:gravity="center"
                     android:text="SALIR"
-                    android:textColor="#FFF"
+                    android:textColor="@color/secondaryTextColor"
                     android:textSize="24sp"
                     android:textStyle="bold" />
 
@@ -813,10 +771,10 @@
                     android:layout_marginRight="10dp"
                     android:layout_marginBottom="10dp"
                     android:layout_weight="1"
-                    android:background="@drawable/btn_guardar_cambios_deshabilitado_responsable"
+                    android:background="@drawable/btn_confirmar_dos"
                     android:gravity="center"
                     android:text="GUARDAR"
-                    android:textColor="#FFF"
+                    android:textColor="@color/secondaryTextColor"
                     android:textSize="24sp"
                     android:textStyle="bold" />
 

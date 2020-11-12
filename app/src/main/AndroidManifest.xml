@@ -2,11 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     package="com.example.jumpi.repartidores_aplication">
-    <!--
-         The ACCESS_COARSE/FINE_LOCATION permissions are not required to use
-         Google Maps Android API v2, but you must specify either coarse or fine
-         location permissions for the 'MyLocation' functionality.
-    -->
+    <!-- ########################## PERMISOS #################################### -->
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.READ_PROFILE" />
     <uses-permission android:name="android.permission.READ_CONTACTS" />
@@ -24,172 +20,150 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <!--
-             The API key for Google Maps-based APIs is defined as a string resource.
-             (See the file "res/values/google_maps_api.xml").
-             Note that the API key is linked to the encryption key used to sign the APK.
-             You need a different API key for each encryption key, including the release key that is used to
-             sign the APK for publishing.
-             You can define the keys for the debug and release targets in src/debug/ and src/release/.
-        -->
-        <meta-data
-            android:name="com.google.android.gms.version"
-            android:value="@integer/google_play_services_version" />
 
-        <meta-data
-            android:name="com.google.android.geo.API_KEY"
-            android:value="@string/google_maps_key" />
 
         <activity
-            android:name=".LoginActivity"
+            android:name=".ActivityLogin"
             android:label=""
             android:theme="@style/AppTheme.NoActionBar">
 
-            <!--
-                <intent-filter>
+
+                <!--<intent-filter>
                         <action android:name="android.intent.action.MAIN" />
 
                         <category android:name="android.intent.category.LAUNCHER" />
-                    </intent-filter>
-            -->
+                    </intent-filter>-->
+
 
         </activity>
 
-
-
-
         <!-- #################### Para REPARTIDORES ########################### -->
         <activity
-            android:name=".Repartidores_Main_Activity"
-            android:label=" "
-            android:parentActivityName=".LoginActivity"
+            android:name=".ActivityMainRepartidores"
+            android:label="@string/title_activity_main_repartidores"
+            android:parentActivityName=".ActivityLogin"
             android:theme="@style/AppTheme.NoActionBar">
+
+
             <!--<intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>-->
+
         </activity>
         <activity
-            android:name=".Mapa_Repartidores"
+            android:name=".ActivityMapaRepartidores"
             android:label=""
-            android:parentActivityName=".Repartidores_Main_Activity"
+            android:parentActivityName=".ActivityMainRepartidores"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".NavigationRepartidores"
+            android:name=".ActivityNavigationRepartidores"
             android:label=""
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".RealizarVentasClientesRepartidor"
+            android:name=".ActivityVentasClientes"
             android:label=""
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".EditarClientes"
-            android:label="Editar Clientes"
-            android:theme="@style/AppTheme.NoActionBar" />
-        <activity
-            android:name=".AgregarCliente"
+            android:name=".ActivityEditarClientes"
             android:label=""
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".Detalle_Envases"
+            android:name=".ActivityAgregarCliente"
             android:label=""
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".Detalle_Articulos"
+            android:name=".ActivityDetalleEnvases"
             android:label=""
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".Detalle_Dinero"
+            android:name=".ActivityDetalleArticulos"
             android:label=""
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".Detalle_Faltante_Sobrante_Envases"
+            android:name=".ActivityDetalleDinero"
+            android:label=""
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".ActivityDetalleFaltanteSobranteEnvases"
             android:label=""
             android:theme="@style/AppTheme.NoActionBar" />
 
 
         <!-- ########################## Para SUPERVISORES ########################### -->
         <activity
-            android:name=".MainActivitySupervisores"
-            android:label=" "
-            android:parentActivityName=".LoginActivity"
+            android:name=".ActivityMainSupervisores"
+            android:label="@string/title_activity_main_supervisores"
+            android:parentActivityName=".ActivityLogin"
             android:theme="@style/AppTheme.NoActionBar">
-
-
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-
         </activity>
         <activity
-            android:name=".CombustibleEstadisticas"
+            android:name=".ActivityCombustibleEstadisticas"
             android:label=""
             android:screenOrientation="landscape"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".VentaBidonesEstadisticas"
+            android:name=".ActivityVentaBidonesEstadisticas"
             android:label=""
             android:screenOrientation="landscape"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".NuevoEventoPatrocinio"
+            android:name=".ActivityNuevoEventoPatrocinio"
             android:label=""
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".BuscarResponsableParaPatrocinio"
-            android:label=""
+            android:name=".ActivityBuscarResponsablePatrocinio"
+            android:label="@string/title_activity_buscar_responsable_patrocinio"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".EntregaRetiroEnvasesPatrocinio"
+            android:name=".ActivityEntregaRetiroEnvasesPatrocinio"
             android:configChanges="screenSize|orientation"
             android:label=" "
             android:theme="@style/AppTheme.NoActionBar"
             android:windowSoftInputMode="stateAlwaysVisible" />
         <activity
-            android:name=".NuevoResponsablePatrocinio"
+            android:name=".ActivityNuevoResponsablePatrocinio"
             android:label=""
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".BuscarClienteParaRealizarVenta"
-            android:label="Buscar Cliente"
+            android:name=".ActivityBuscarClienteVentas"
+            android:label="@string/title_activity_buscar_cliente_ventas"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".RealizarVentasClientesSupervisor"
+            android:name=".ActivityComisionesEstadisticas"
             android:label=""
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".ComisionesEstadisticas"
-            android:label="@string/title_activity_envases"
+            android:name=".ActivityEstadisticas"
+            android:label="@string/title_activity_estadisticas" />
+        <activity
+            android:name=".ActivityEleccionRepartidores"
+            android:label="@string/title_activity_eleccion_repartidores"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".OpcionesEstadisticas"
-            android:label=""
-            android:theme="@style/AppTheme.NoActionBar" />
-        <activity
-            android:name=".EleccionRepartidores"
-            android:label="Elija un Repartidor"
-            android:theme="@style/AppTheme.NoActionBar" />
-        <activity
-            android:name=".Cargas_Descargas"
+            android:name=".ActivityCargasDescargas"
             android:configChanges="screenSize|orientation"
-            android:label="@string/title_activity_cargas_descargas"
+            android:label=""
             android:theme="@style/AppTheme.NoActionBar"
             android:windowSoftInputMode="stateAlwaysVisible" />
         <activity
-            android:name=".DatosPersonalesResponsable"
+            android:name=".ActivityDatosPersonalesPatrocinio"
             android:label=""
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".Mapa_Supervisores"
-            android:label=""
+            android:name=".ActivityMapaSupervisores"
+            android:label="@string/title_activity_mapa_supervisores"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity
-            android:name=".Frecuencia_De_Consumo"
-            android:label="@string/title_activity_frecuencia__de__consumo"
-            android:theme="@style/AppTheme.NoActionBar" />
+
+        <activity android:name=".ActivityCargasDescargasAnteriores"></activity>
+
     </application>
 
 </manifest>

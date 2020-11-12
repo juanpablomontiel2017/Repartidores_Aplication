@@ -12,7 +12,7 @@
     android:orientation="horizontal"
     android:background="@mipmap/background_editar_cliente_repartidor"
 
-    tools:context=".EditarClientes">
+    tools:context=".ActivityEditarClientes">
 
 
 
@@ -54,7 +54,7 @@
                     android:layout_marginBottom="@dimen/mapbox_internalMinSpan23"
                     android:layout_weight="1"
                     android:text="EDITAR CLIENTE"
-                    android:textColor="#FFFF"
+                    android:textColor="@color/secondaryTextColor"
                     android:textSize="25sp" />
 
 
@@ -64,7 +64,7 @@
                     android:layout_width="100dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:src="@drawable/editar_cliente_boton_ec_64px" />
+                    android:src="@drawable/btn_editar_dos_64px" />
 
 
             </LinearLayout>
@@ -119,7 +119,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="DNI"
-                        android:textColor="#FFFF"
+                        android:textColor="@color/secondaryTextColor"
                         android:textSize="24sp"/>
 
 
@@ -143,7 +143,7 @@
                         android:hint="OBLIGATORIO"
                         android:inputType="number"
                         android:maxLength="8"
-                        android:textColor="#03a9f4"
+                        android:textColor="@color/primaryLightColor"
                         android:textSize="24sp"
                         android:textStyle="bold" />
 
@@ -165,7 +165,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="APELLIDO"
-                        android:textColor="#FFFF"
+                        android:textColor="@color/secondaryTextColor"
                         android:textSize="24sp"/>
 
 
@@ -189,7 +189,7 @@
                         android:hint="OBLIGATORIO"
                         android:inputType="textAutoCorrect|textCapWords"
                         android:maxLength="45"
-                        android:textColor="#03a9f4"
+                        android:textColor="@color/primaryLightColor"
                         android:textSize="24sp"
                         android:textStyle="bold" />
 
@@ -210,7 +210,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="NOMBRE"
-                        android:textColor="#FFFF"
+                        android:textColor="@color/secondaryTextColor"
                         android:textSize="24sp"/>
 
 
@@ -233,7 +233,7 @@
                         android:hint="OBLIGATORIO"
                         android:inputType="textAutoCorrect|textCapWords"
                         android:maxLength="45"
-                        android:textColor="#03a9f4"
+                        android:textColor="@color/primaryLightColor"
                         android:textSize="24sp"
                         android:textStyle="bold" />
 
@@ -254,7 +254,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="CÓDIGO DE ÁREA"
-                        android:textColor="#FFFF"
+                        android:textColor="@color/secondaryTextColor"
                         android:textSize="24sp"/>
 
 
@@ -278,7 +278,7 @@
                         android:hint="OBLIGATORIO"
                         android:maxLength="4"
                         android:inputType="number"
-                        android:textColor="#03a9f4"
+                        android:textColor="@color/primaryLightColor"
                         android:textSize="24sp"
                         android:textStyle="bold" />
 
@@ -303,7 +303,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="TELÉFONO"
-                        android:textColor="#FFFF"
+                        android:textColor="@color/secondaryTextColor"
                         android:textSize="24sp"/>
 
 
@@ -327,7 +327,7 @@
                         android:hint="OBLIGATORIO"
                         android:inputType="number"
                         android:maxLength="8"
-                        android:textColor="#03a9f4"
+                        android:textColor="@color/primaryLightColor"
                         android:textSize="24sp"
                         android:textStyle="bold" />
 
@@ -349,7 +349,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="DIRECCIÓN"
-                        android:textColor="#FFFF"
+                        android:textColor="@color/secondaryTextColor"
                         android:textSize="24sp" />
 
 
@@ -373,7 +373,7 @@
                         android:gravity="center|left"
                         android:hint="OBLIGATORIO"
                         android:inputType="textCapSentences|textMultiLine"
-                        android:textColor="#03a9f4"
+                        android:textColor="@color/primaryLightColor"
                         android:textSize="24sp"
                         android:textStyle="bold" />
 
@@ -394,7 +394,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="BARRIO"
-                        android:textColor="#FFFF"
+                        android:textColor="@color/secondaryTextColor"
                         android:textSize="24sp"/>
 
 
@@ -417,7 +417,7 @@
                         android:gravity="center|left"
                         android:hint="OBLIGATORIO"
                         android:inputType="textCapSentences|textMultiLine"
-                        android:textColor="#03a9f4"
+                        android:textColor="@color/primaryLightColor"
                         android:textSize="24sp"
                         android:textStyle="bold" />
 
@@ -439,7 +439,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="CORREO"
-                        android:textColor="#FFFF"
+                        android:textColor="@color/secondaryTextColor"
                         android:textSize="24sp"/>
 
 
@@ -462,8 +462,7 @@
                         android:gravity="center|left"
                         android:hint="OPCIONAL"
                         android:inputType="textMultiLine|textEmailAddress"
-                        android:textColor="#03a9f4"
-                        android:textColorHint="#18ffff"
+                        android:textColor="@color/primaryLightColor"
                         android:textSize="24sp"
                         android:textStyle="bold" />
 
@@ -486,8 +485,7 @@
                         android:layout_height="wrap_content"
                         android:hint="OBLIGATORIO"
                         android:text="REFERENCIA"
-                        android:textColor="#FFFF"
-                        android:textColorHint="#18ffff"
+                        android:textColor="@color/secondaryTextColor"
                         android:textSize="24sp" />
 
 
@@ -510,7 +508,7 @@
                         android:layout_gravity="center"
                         android:gravity="center|left"
                         android:inputType="textCapSentences|textMultiLine"
-                        android:textColor="#03a9f4"
+                        android:textColor="@color/primaryLightColor"
                         android:textSize="24sp"
                         android:textStyle="bold" />
 
@@ -535,9 +533,9 @@
                         android:layout_height="60dp"
                         android:layout_margin="@dimen/appbar_padding_top"
                         android:layout_marginTop="10dp"
-                        android:background="@drawable/editar_cliente_btn_guardar_cambios_repartidor"
+                        android:background="@drawable/btn_confirmar_uno"
                         android:text="GUARDAR CAMBIOS"
-                        android:textColor="#FFFF"
+                        android:textColor="@color/secondaryTextColor"
                         android:textSize="20sp"
                         android:textStyle="bold" />
 
@@ -563,7 +561,7 @@
                         android:layout_marginTop="10dp"
                         android:background="@drawable/btn_borde_redondeado_blanco_sin_color_fondo"
                         android:text="CANCELAR"
-                        android:textColor="#FFFF"
+                        android:textColor="@color/secondaryTextColor"
                         android:textSize="20sp"
                         android:textStyle="bold" />
 

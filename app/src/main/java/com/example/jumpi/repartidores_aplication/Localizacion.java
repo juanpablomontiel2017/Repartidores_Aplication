@@ -6,24 +6,24 @@ import android.location.LocationProvider;
 import android.os.Bundle;
 import android.util.Log;
 
-import static com.example.jumpi.repartidores_aplication.Mapa_Supervisores.mensaje1;
+import static com.example.jumpi.repartidores_aplication.ActivityMapaSupervisores.mensaje1;
 
 public class Localizacion implements LocationListener {
 
 
-    Mapa_Supervisores mapa_supervisores;
+    ActivityMapaSupervisores activityMapa_supervisores;
 
 
 
-    public Mapa_Supervisores getMapaSupervisoresActivity() {
+    public ActivityMapaSupervisores getMapaSupervisoresActivity() {
 
-        return mapa_supervisores;
+        return activityMapa_supervisores;
     }
 
 
-    public void setMapaSupervisoresActivity(Mapa_Supervisores mapa_supervisores_activity) {
+    public void setMapaSupervisoresActivity(ActivityMapaSupervisores activityMapa_supervisores_activity) {
 
-        this.mapa_supervisores = mapa_supervisores_activity;
+        this.activityMapa_supervisores = activityMapa_supervisores_activity;
 
     }
 
@@ -37,7 +37,7 @@ public class Localizacion implements LocationListener {
         String Text = "Mi ubicacion actual es: " + "\n Lat = "
                 + loc.getLatitude() + "\n Long = " + loc.getLongitude();
         mensaje1.setText(Text);
-        this.mapa_supervisores.setLocation(loc);
+        this.activityMapa_supervisores.setLocation(loc);
     }
 
 

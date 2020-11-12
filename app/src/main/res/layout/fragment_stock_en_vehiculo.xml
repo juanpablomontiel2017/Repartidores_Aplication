@@ -5,11 +5,11 @@
     android:id="@+id/fragment_stock_disponible_id"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#FFF"
+    android:background="@color/secondaryTextColor"
     android:orientation="vertical"
     android:weightSum="1"
 
-    tools:context="com.example.jumpi.repartidores_aplication.StockEnVehiculoFragment">
+    tools:context="com.example.jumpi.repartidores_aplication.FragmentStockEnVehiculo">
 
 
 
@@ -41,7 +41,7 @@
              android:layout_marginRight="10dp"
              android:layout_marginBottom="10dp"
              android:layout_weight="1"
-             android:background="@drawable/contenedor_items_stock_vehiculo"
+             android:background="@drawable/contenedor_ll_cuatro"
              android:orientation="horizontal">
 
 
@@ -67,7 +67,7 @@
                      android:layout_marginBottom="15dp"
                      android:gravity="center"
                      android:text="ENVASES"
-                     android:textColor="#283593"
+                     android:textColor="@color/colorAccent"
                      android:textSize="30sp"
                      android:textStyle="bold|italic" />
 
@@ -91,7 +91,7 @@
                          android:layout_weight="1"
                          android:gravity="center"
                          android:text="LLENOS "
-                         android:textColor="#000"
+                         android:textColor="@color/primaryTextColor"
                          android:textSize="25sp"
                          android:textStyle="bold" />
 
@@ -103,7 +103,7 @@
                          android:layout_weight="1"
                          android:gravity="center"
                          android:text="Cantidad"
-                         android:textColorHint="#e0e0e0"
+                         android:textColorHint="@color/tercerTextColor"
                          android:textSize="25sp"
                          android:textStyle="bold" />
 
@@ -128,7 +128,7 @@
                          android:layout_weight="1"
                          android:gravity="center"
                          android:text="VACÍOS "
-                         android:textColor="#000"
+                         android:textColor="@color/primaryTextColor"
                          android:textSize="25sp"
                          android:textStyle="bold" />
 
@@ -140,7 +140,7 @@
                          android:layout_weight="1"
                          android:gravity="center"
                          android:text="Cantidad"
-                         android:textColorHint="#e0e0e0"
+                         android:textColorHint="@color/tercerTextColor"
                          android:textSize="25sp"
                          android:textStyle="bold" />
 
@@ -170,13 +170,13 @@
                          android:layout_marginTop="3dp"
                          android:layout_marginRight="6dp"
                          android:layout_marginBottom="10dp"
-                         android:background="@drawable/contenedor_boton_detalle_stock_vehiculo"
-                         android:backgroundTint="#0091ea"
+                         android:background="@drawable/contenedor_ll_ocho"
+                         android:backgroundTint="@color/colorPrimary"
                          android:drawableLeft="@drawable/ic_detalle_stock_vehiculo"
                          android:gravity="center"
                          android:paddingLeft="30dp"
                          android:text="VER DETALLE"
-                         android:textColor="#FFFF"
+                         android:textColor="@color/secondaryTextColor"
                          android:textSize="25sp"
                          android:textStyle="bold" />
 
@@ -205,7 +205,7 @@
              android:layout_marginRight="10dp"
              android:layout_marginBottom="10dp"
              android:layout_weight="1"
-             android:background="@drawable/contenedor_items_stock_vehiculo"
+             android:background="@drawable/contenedor_ll_cuatro"
              android:orientation="horizontal">
 
 
@@ -235,7 +235,7 @@
                      android:layout_marginBottom="15dp"
                      android:gravity="center"
                      android:text="DINERO"
-                     android:textColor="#283593"
+                     android:textColor="@color/colorAccent"
                      android:textSize="30sp"
                      android:textStyle="bold|italic" />
 
@@ -264,7 +264,7 @@
                          android:layout_weight="1"
                          android:gravity="center"
                          android:text="EN TU BILLETERA "
-                         android:textColor="#000"
+                         android:textColor="@color/primaryTextColor"
                          android:textSize="25sp"
                          android:textStyle="bold" />
 
@@ -276,7 +276,7 @@
                          android:layout_weight="1"
                          android:gravity="center"
                          android:text="Cantidad"
-                         android:textColorHint="#e0e0e0"
+                         android:textColorHint="@color/tercerTextColor"
                          android:textSize="25sp"
                          android:textStyle="bold" />
 
@@ -307,13 +307,13 @@
                          android:layout_marginTop="3dp"
                          android:layout_marginRight="6dp"
                          android:layout_marginBottom="10dp"
-                         android:background="@drawable/contenedor_boton_detalle_stock_vehiculo"
-                         android:backgroundTint="#0091ea"
+                         android:background="@drawable/contenedor_ll_ocho"
+                         android:backgroundTint="@color/colorPrimary"
                          android:drawableLeft="@drawable/ic_detalle_stock_vehiculo"
                          android:gravity="center"
                          android:text="VER DETALLE"
                          android:paddingLeft="30dp"
-                         android:textColor="#FFFF"
+                         android:textColor="@color/secondaryTextColor"
                          android:textSize="25sp"
                          android:textStyle="bold" />
 
@@ -339,7 +339,7 @@
              android:layout_marginRight="10dp"
              android:layout_marginBottom="10dp"
              android:layout_weight="1"
-             android:background="@drawable/contenedor_items_stock_vehiculo"
+             android:background="@drawable/contenedor_ll_cuatro"
              android:orientation="horizontal">
 
 
@@ -365,7 +365,7 @@
                      android:layout_marginBottom="15dp"
                      android:gravity="center"
                      android:text="OTROS ARTÍCULOS"
-                     android:textColor="#283593"
+                     android:textColor="@color/colorAccent"
                      android:textSize="30sp"
                      android:textStyle="bold|italic" />
 
@@ -392,7 +392,7 @@
                          android:layout_weight="1"
                          android:gravity="center"
                          android:text="DISPENSER PLÁSTICO "
-                         android:textColor="#000"
+                         android:textColor="@color/primaryTextColor"
                          android:textSize="25sp"
                          android:textStyle="bold" />
 
@@ -404,7 +404,7 @@
                          android:layout_weight="1"
                          android:gravity="center"
                          android:text="Cantidad"
-                         android:textColorHint="#e0e0e0"
+                         android:textColorHint="@color/tercerTextColor"
                          android:textSize="25sp"
                          android:textStyle="bold" />
 
@@ -430,7 +430,7 @@
                          android:layout_weight="1"
                          android:gravity="center"
                          android:text="CANILLAS "
-                         android:textColor="#000"
+                         android:textColor="@color/primaryTextColor"
                          android:textSize="25sp"
                          android:textStyle="bold" />
 
@@ -442,7 +442,7 @@
                          android:layout_weight="1"
                          android:gravity="center"
                          android:text="Cantidad"
-                         android:textColorHint="#e0e0e0"
+                         android:textColorHint="@color/tercerTextColor"
                          android:textSize="25sp"
                          android:textStyle="bold" />
 
@@ -468,7 +468,7 @@
                          android:layout_weight="1"
                          android:gravity="center"
                          android:text="DISPENSER ELÉCTRICO "
-                         android:textColor="#000"
+                         android:textColor="@color/primaryTextColor"
                          android:textSize="25sp"
                          android:textStyle="bold" />
 
@@ -480,7 +480,7 @@
                          android:layout_weight="1"
                          android:gravity="center"
                          android:text="Cantidad"
-                         android:textColorHint="#e0e0e0"
+                         android:textColorHint="@color/tercerTextColor"
                          android:textSize="25sp"
                          android:textStyle="bold" />
 
@@ -509,13 +509,13 @@
                          android:layout_marginTop="3dp"
                          android:layout_marginRight="6dp"
                          android:layout_marginBottom="10dp"
-                         android:background="@drawable/contenedor_boton_detalle_stock_vehiculo"
-                         android:backgroundTint="#0091ea"
+                         android:background="@drawable/contenedor_ll_ocho"
+                         android:backgroundTint="@color/colorPrimary"
                          android:drawableLeft="@drawable/ic_detalle_stock_vehiculo"
                          android:gravity="center"
                          android:text="VER DETALLE"
                          android:paddingLeft="30dp"
-                         android:textColor="#FFFF"
+                         android:textColor="@color/secondaryTextColor"
                          android:textSize="25sp"
                          android:textStyle="bold"/>
 
@@ -545,7 +545,7 @@
              android:layout_marginRight="10dp"
              android:layout_marginBottom="80dp"
              android:layout_weight="1"
-             android:background="@drawable/contenedor_items_stock_vehiculo"
+             android:background="@drawable/contenedor_ll_cuatro"
              android:orientation="horizontal">
 
 
@@ -573,7 +573,7 @@
                      android:layout_marginBottom="15dp"
                      android:gravity="center"
                      android:text="FALTANTE Y/O SOBRANTE DE ENVASES"
-                     android:textColor="#283593"
+                     android:textColor="@color/colorAccent"
                      android:textSize="30sp"
                      android:textStyle="bold|italic" />
 
@@ -600,7 +600,7 @@
                          android:layout_marginLeft="3dp"
                          android:gravity="center"
                          android:text="FALTANTE Y/O SOBRANTE "
-                         android:textColor="#000"
+                         android:textColor="@color/primaryTextColor"
                          android:textSize="25sp"
                          android:textStyle="bold" />
 
@@ -612,7 +612,7 @@
                          android:layout_weight="1"
                          android:gravity="center"
                          android:text="Cantidad"
-                         android:textColorHint="#e0e0e0"
+                         android:textColorHint="@color/tercerTextColor"
                          android:textSize="25sp"
                          android:textStyle="bold" />
 
@@ -644,8 +644,8 @@
                              android:layout_marginTop="3dp"
                              android:layout_marginRight="6dp"
                              android:layout_marginBottom="10dp"
-                             android:background="@drawable/contenedor_boton_detalle_stock_vehiculo"
-                             android:backgroundTint="#0091ea"
+                             android:background="@drawable/contenedor_ll_ocho"
+                             android:backgroundTint="@color/colorPrimary"
                              android:drawableLeft="@drawable/ic_detalle_stock_vehiculo"
                              android:gravity="center"
                              android:text="VER DETALLE"

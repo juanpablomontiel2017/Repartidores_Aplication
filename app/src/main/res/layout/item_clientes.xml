@@ -76,7 +76,7 @@
         android:layout_marginTop="10dp"
         android:layout_marginRight="10dp"
         android:layout_marginBottom="0dp"
-        android:background="#e0e0e0">
+        android:background="@color/tercerTextColor">
 
     </View>
 

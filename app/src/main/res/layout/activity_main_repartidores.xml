@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
-    tools:context=".Repartidores_Main_Activity">
+    tools:context=".ActivityMainRepartidores">
 
 
 
@@ -31,61 +31,38 @@
 
         </androidx.appcompat.widget.Toolbar>
 
-        <View
-
-            android:id="@+id/view_estado_evento"
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:layout_marginLeft="10dp"
-            android:layout_marginTop="10dp"
-            android:layout_marginRight="10dp"
-            android:layout_marginBottom="10dp"
-            android:background="#303f9f">
-
-        </View>
-
 
         <com.google.android.material.tabs.TabLayout
             android:id="@+id/tabs"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:background="@color/secondaryTextColor"
+            app:tabTextColor="@color/colorAccent">
 
             <com.google.android.material.tabs.TabItem
-                android:id="@+id/tabItem"
+                android:id="@+id/tab_stock_en_vehiculo"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Stock En Vehículo" />
-
-
-
+                android:text="Stock En Vehículo"
+                android:icon="@drawable/ic_stock_en_vehiculo"/>
 
         </com.google.android.material.tabs.TabLayout>
-
-
 
 
 
     </com.google.android.material.appbar.AppBarLayout>
 
 
-    <com.example.jumpi.repartidores_aplication.CustomViewPager
-        android:id="@+id/container"
+    <FrameLayout
+
+        android:id="@+id/fragment_container"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:scrollbars="vertical"
-        app:layout_behavior="@string/appbar_scrolling_view_behavior"/>
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
 
-<!--
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/fab_ir_mapa_repartidores"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="end|bottom"
-        android:layout_margin="@dimen/fab_margin"
-        app:maxImageSize="40dp"
-        android:src="@mipmap/ir_mapa_128px"
-        app:backgroundTint="#ff9100" /> -->
+    </FrameLayout>
+
 
 
     <Button
@@ -100,7 +77,7 @@
         android:drawableTop="@mipmap/ir_mapa_64px"
         android:paddingTop="5dp"
         android:paddingBottom="5dp"
-        android:textColor="#fff" />
+        android:textColor="@color/secondaryTextColor" />
 
 
 

@@ -7,10 +7,10 @@
 
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#FFFF"
+    android:background="@color/secondaryTextColor"
 
     android:orientation="vertical"
-    tools:context=".NuevoResponsablePatrocinio">
+    tools:context=".ActivityNuevoResponsablePatrocinio">
 
 
     <ScrollView
@@ -42,10 +42,10 @@
                     android:layout_width="match_parent"
                     android:layout_height="50dp"
                     android:layout_weight="1"
-                    android:background="#d50000"
+                    android:background="@color/colorAccent"
                     android:gravity="center"
                     android:text="DATOS DEL RESPONSABLE"
-                    android:textColor="#FFFF"
+                    android:textColor="@color/secondaryTextColor"
                     android:textSize="24sp"
                     android:textStyle="bold" />
 
@@ -95,7 +95,7 @@
                     android:layout_marginLeft="5dp"
                     android:layout_marginRight="5dp"
                     android:text="DNI"
-                    android:textColor="#000000"
+                    android:textColor="@color/primaryTextColor"
                     android:textSize="24sp"
                     android:textStyle="bold" />
 
@@ -108,7 +108,7 @@
                     android:layout_marginLeft="5dp"
                     android:layout_marginRight="5dp"
                     android:layout_marginBottom="20dp"
-                    android:background="@drawable/contenedor_llh_nuevo_responsable_supervisor"
+                    android:background="@drawable/contenedor_ll_dos"
                     android:gravity="center"
                     android:orientation="horizontal"
                     android:weightSum="2">
@@ -136,7 +136,7 @@
                         android:layout_marginTop="10dp"
                         android:layout_marginRight="10dp"
                         android:layout_marginBottom="10dp"
-                        android:background="#ff5722">
+                        android:background="@color/colorPrimary">
 
                     </View>
 
@@ -154,7 +154,6 @@
                         android:maxLength="8"
                         android:textSize="20sp"
                         android:textStyle="bold"
-                        android:textCursorDrawable="@color/colorCursorSupervisores"
                         android:imeOptions="actionNext"/>
 
 
@@ -171,7 +170,7 @@
                     android:layout_marginLeft="5dp"
                     android:layout_marginRight="5dp"
                     android:text="NOMBRE"
-                    android:textColor="#000000"
+                    android:textColor="@color/primaryTextColor"
                     android:textSize="24sp"
                     android:textStyle="bold" />
 
@@ -184,7 +183,7 @@
                     android:layout_marginLeft="5dp"
                     android:layout_marginRight="5dp"
                     android:layout_marginBottom="20dp"
-                    android:background="@drawable/contenedor_llh_nuevo_responsable_supervisor"
+                    android:background="@drawable/contenedor_ll_dos"
                     android:gravity="center"
                     android:orientation="horizontal"
                     android:weightSum="2">
@@ -212,7 +211,7 @@
                         android:layout_marginTop="10dp"
                         android:layout_marginRight="10dp"
                         android:layout_marginBottom="10dp"
-                        android:background="#ff5722">
+                        android:background="@color/colorPrimary">
 
                     </View>
 
@@ -229,7 +228,6 @@
                         android:imeOptions="actionNext"
                         android:inputType="textAutoCorrect|textCapWords"
                         android:maxLength="45"
-                        android:textCursorDrawable="@color/colorCursorSupervisores"
                         android:textSize="20sp"
                         android:textStyle="bold" />
 
@@ -261,7 +259,7 @@
                     android:layout_marginLeft="5dp"
                     android:layout_marginRight="5dp"
                     android:layout_marginBottom="20dp"
-                    android:background="@drawable/contenedor_llh_nuevo_responsable_supervisor"
+                    android:background="@drawable/contenedor_ll_dos"
                     android:gravity="center"
                     android:orientation="horizontal"
                     android:weightSum="2">
@@ -289,7 +287,7 @@
                         android:layout_marginTop="10dp"
                         android:layout_marginRight="10dp"
                         android:layout_marginBottom="10dp"
-                        android:background="#ff5722">
+                        android:background="@color/colorPrimary">
 
                     </View>
 
@@ -306,7 +304,6 @@
                         android:imeOptions="actionNext"
                         android:inputType="textAutoCorrect|textCapWords"
                         android:maxLength="45"
-                        android:textCursorDrawable="@color/colorCursorSupervisores"
                         android:textSize="20sp"
                         android:textStyle="bold" />
 
@@ -332,7 +329,7 @@
                         android:layout_marginLeft="5dp"
                         android:layout_marginRight="5dp"
                         android:text="CÓDIGO DE ÁREA"
-                        android:textColor="#000000"
+                        android:textColor="@color/primaryTextColor"
                         android:textSize="24sp"
                         android:textStyle="bold"
                         android:layout_weight="1" />
@@ -347,7 +344,7 @@
                         android:layout_weight="1"
                         android:gravity="center"
                         android:text="TELÉFONO"
-                        android:textColor="#000000"
+                        android:textColor="@color/primaryTextColor"
                         android:textSize="24sp"
                         android:textStyle="bold" />
 
@@ -373,7 +370,7 @@
                         android:layout_marginLeft="5dp"
                         android:layout_marginRight="5dp"
                         android:layout_marginBottom="20dp"
-                        android:background="@drawable/contenedor_llh_nuevo_responsable_supervisor"
+                        android:background="@drawable/contenedor_ll_dos"
                         android:gravity="center"
                         android:orientation="horizontal"
                         android:weightSum="2">
@@ -401,7 +398,7 @@
                             android:layout_marginTop="10dp"
                             android:layout_marginRight="10dp"
                             android:layout_marginBottom="10dp"
-                            android:background="#ff5722">
+                            android:background="@color/colorPrimary">
 
                         </View>
 
@@ -419,8 +416,7 @@
                             android:maxLength="4"
                             android:textSize="20sp"
                             android:textStyle="bold"
-                            android:imeOptions="actionNext"
-                            android:textCursorDrawable="@color/colorCursorSupervisores" />
+                            android:imeOptions="actionNext"/>
 
 
                     </LinearLayout>
@@ -435,7 +431,7 @@
                         android:layout_marginLeft="5dp"
                         android:layout_marginRight="5dp"
                         android:layout_marginBottom="20dp"
-                        android:background="@drawable/contenedor_llh_nuevo_responsable_supervisor"
+                        android:background="@drawable/contenedor_ll_dos"
                         android:gravity="center"
                         android:orientation="horizontal"
                         android:weightSum="2">
@@ -463,7 +459,7 @@
                             android:layout_marginTop="10dp"
                             android:layout_marginRight="10dp"
                             android:layout_marginBottom="10dp"
-                            android:background="#ff5722">
+                            android:background="@color/colorPrimary">
 
                         </View>
 
@@ -480,7 +476,7 @@
                             android:textSize="20sp"
                             android:textStyle="bold"
                             android:imeOptions="actionNext"
-                            android:textCursorDrawable="@color/colorCursorSupervisores"/>
+                            android:textCursorDrawable="@color/colorAccent"/>
 
 
                 </LinearLayout>
@@ -497,7 +493,7 @@
                     android:layout_marginLeft="5dp"
                     android:layout_marginRight="5dp"
                     android:text="DIRECCIÓN"
-                    android:textColor="#000000"
+                    android:textColor="@color/primaryTextColor"
                     android:textSize="24sp"
                     android:textStyle="bold" />
 
@@ -509,7 +505,7 @@
                     android:layout_marginLeft="5dp"
                     android:layout_marginRight="5dp"
                     android:layout_marginBottom="20dp"
-                    android:background="@drawable/contenedor_llh_nuevo_responsable_supervisor"
+                    android:background="@drawable/contenedor_ll_dos"
                     android:gravity="center"
                     android:orientation="horizontal"
                     android:weightSum="2">
@@ -538,7 +534,7 @@
                         android:layout_marginTop="10dp"
                         android:layout_marginRight="10dp"
                         android:layout_marginBottom="10dp"
-                        android:background="#ff5722">
+                        android:background="@color/colorPrimary">
 
                     </View>
 
@@ -555,8 +551,7 @@
                         android:maxLength="150"
                         android:textSize="20sp"
                         android:textStyle="bold"
-                        android:imeOptions="actionNext"
-                        android:textCursorDrawable="@color/colorCursorSupervisores"/>
+                        android:imeOptions="actionNext"/>
 
                 </LinearLayout>
 
@@ -569,7 +564,7 @@
                     android:layout_marginLeft="5dp"
                     android:layout_marginRight="5dp"
                     android:text="BARRIO"
-                    android:textColor="#000000"
+                    android:textColor="@color/primaryTextColor"
                     android:textSize="24sp"
                     android:textStyle="bold" />
 
@@ -581,7 +576,7 @@
                     android:layout_marginLeft="5dp"
                     android:layout_marginRight="5dp"
                     android:layout_marginBottom="20dp"
-                    android:background="@drawable/contenedor_llh_nuevo_responsable_supervisor"
+                    android:background="@drawable/contenedor_ll_dos"
                     android:gravity="center"
                     android:orientation="horizontal"
                     android:weightSum="2">
@@ -609,7 +604,7 @@
                         android:layout_marginTop="10dp"
                         android:layout_marginRight="10dp"
                         android:layout_marginBottom="10dp"
-                        android:background="#ff5722">
+                        android:background="@color/colorPrimary">
 
                     </View>
 
@@ -626,8 +621,7 @@
                         android:maxLength="100"
                         android:textSize="20sp"
                         android:textStyle="bold"
-                        android:imeOptions="actionNext"
-                        android:textCursorDrawable="@color/colorCursorSupervisores"/>
+                        android:imeOptions="actionNext"/>
 
 
                 </LinearLayout>
@@ -642,7 +636,7 @@
                     android:layout_marginLeft="5dp"
                     android:layout_marginRight="5dp"
                     android:text="CORREO"
-                    android:textColor="#000000"
+                    android:textColor="@color/primaryTextColor"
                     android:textSize="24sp"
                     android:textStyle="bold" />
 
@@ -655,7 +649,7 @@
                     android:layout_marginLeft="5dp"
                     android:layout_marginRight="5dp"
                     android:layout_marginBottom="20dp"
-                    android:background="@drawable/contenedor_llh_nuevo_responsable_supervisor"
+                    android:background="@drawable/contenedor_ll_dos"
                     android:gravity="center"
                     android:orientation="horizontal"
                     android:weightSum="2">
@@ -683,7 +677,7 @@
                         android:layout_marginTop="10dp"
                         android:layout_marginRight="10dp"
                         android:layout_marginBottom="10dp"
-                        android:background="#ff5722">
+                        android:background="@color/colorPrimary">
 
                     </View>
 
@@ -700,8 +694,7 @@
                         android:maxLength="45"
                         android:textSize="20sp"
                         android:textStyle="bold"
-                        android:imeOptions="actionNext"
-                        android:textCursorDrawable="@color/colorCursorSupervisores"/>
+                        android:imeOptions="actionNext"/>
 
                 </LinearLayout>
 
@@ -715,7 +708,7 @@
                     android:layout_marginLeft="5dp"
                     android:layout_marginRight="5dp"
                     android:text="REFERENCIA"
-                    android:textColor="#000000"
+                    android:textColor="@color/primaryTextColor"
                     android:textSize="24sp"
                     android:textStyle="bold" />
 
@@ -728,7 +721,7 @@
                     android:layout_marginLeft="5dp"
                     android:layout_marginRight="5dp"
                     android:layout_marginBottom="20dp"
-                    android:background="@drawable/contenedor_llh_nuevo_responsable_supervisor"
+                    android:background="@drawable/contenedor_ll_dos"
                     android:gravity="center"
                     android:orientation="horizontal"
                     android:weightSum="2">
@@ -755,7 +748,7 @@
                         android:layout_marginTop="10dp"
                         android:layout_marginRight="10dp"
                         android:layout_marginBottom="10dp"
-                        android:background="#ff5722">
+                        android:background="@color/colorPrimary">
 
                     </View>
 
@@ -772,8 +765,7 @@
                         android:maxLength="150"
                         android:textSize="20sp"
                         android:textStyle="bold"
-                        android:imeOptions="actionNext"
-                        android:textCursorDrawable="@color/colorCursorSupervisores"/>
+                        android:imeOptions="actionNext"/>
 
 
                 </LinearLayout>
@@ -800,10 +792,10 @@
                     android:layout_width="match_parent"
                     android:layout_height="50dp"
                     android:layout_weight="1"
-                    android:background="#d50000"
+                    android:background="@color/colorAccent"
                     android:gravity="center"
                     android:text="DATOS DEL EVENTO"
-                    android:textColor="#FFFF"
+                    android:textColor="@color/secondaryTextColor"
                     android:textSize="24sp"
                     android:textStyle="bold" />
 
@@ -868,7 +860,7 @@
                     android:layout_marginLeft="5dp"
                     android:layout_marginRight="5dp"
                     android:text="NOMBRE"
-                    android:textColor="#000000"
+                    android:textColor="@color/primaryTextColor"
                     android:textSize="24sp"
                     android:textStyle="bold" />
 
@@ -887,7 +879,7 @@
                     android:layout_marginBottom="20dp"
                     android:gravity="center"
                     android:orientation="horizontal"
-                    android:background="@drawable/contenedor_llh_nuevo_responsable_supervisor"
+                    android:background="@drawable/contenedor_ll_dos"
                     android:weightSum="2">
 
 
@@ -915,7 +907,7 @@
                         android:layout_marginTop="10dp"
                         android:layout_marginRight="10dp"
                         android:layout_marginBottom="10dp"
-                        android:background="#ff5722">
+                        android:background="@color/colorPrimary">
 
                     </View>
 
@@ -933,8 +925,7 @@
                         android:maxLength="100"
                         android:textSize="20sp"
                         android:textStyle="bold"
-                        android:imeOptions="actionNext"
-                        android:textCursorDrawable="@color/colorCursorSupervisores"/>
+                        android:imeOptions="actionNext"/>
 
                 </LinearLayout>
 
@@ -948,7 +939,7 @@
                     android:layout_marginLeft="5dp"
                     android:layout_marginRight="5dp"
                     android:text="DIRECCIÓN"
-                    android:textColor="#000000"
+                    android:textColor="@color/primaryTextColor"
                     android:textSize="24sp"
                     android:textStyle="bold" />
 
@@ -963,7 +954,7 @@
                     android:layout_marginBottom="20dp"
                     android:gravity="center"
                     android:orientation="horizontal"
-                    android:background="@drawable/contenedor_llh_nuevo_responsable_supervisor"
+                    android:background="@drawable/contenedor_ll_dos"
                     android:weightSum="2">
 
 
@@ -991,7 +982,7 @@
                         android:layout_marginTop="10dp"
                         android:layout_marginRight="10dp"
                         android:layout_marginBottom="10dp"
-                        android:background="#ff5722">
+                        android:background="@color/colorPrimary">
 
                     </View>
 
@@ -1009,8 +1000,7 @@
                         android:maxLength="150"
                         android:textSize="20sp"
                         android:textStyle="bold"
-                        android:imeOptions="actionNext"
-                        android:textCursorDrawable="@color/colorCursorSupervisores"/>
+                        android:imeOptions="actionNext"/>
 
 
                 </LinearLayout>
@@ -1024,7 +1014,7 @@
                     android:layout_marginLeft="5dp"
                     android:layout_marginRight="5dp"
                     android:text="BARRIO"
-                    android:textColor="#000000"
+                    android:textColor="@color/primaryTextColor"
                     android:textSize="24sp"
                     android:textStyle="bold" />
 
@@ -1039,7 +1029,7 @@
                     android:layout_marginBottom="20dp"
                     android:gravity="center"
                     android:orientation="horizontal"
-                    android:background="@drawable/contenedor_llh_nuevo_responsable_supervisor"
+                    android:background="@drawable/contenedor_ll_dos"
                     android:weightSum="2">
 
 
@@ -1064,7 +1054,7 @@
                         android:layout_marginTop="10dp"
                         android:layout_marginRight="10dp"
                         android:layout_marginBottom="10dp"
-                        android:background="#ff5722">
+                        android:background="@color/colorPrimary">
 
                     </View>
 
@@ -1082,8 +1072,7 @@
                         android:maxLength="100"
                         android:textSize="20sp"
                         android:textStyle="bold"
-                        android:imeOptions="actionNext"
-                        android:textCursorDrawable="@color/colorCursorSupervisores"/>
+                        android:imeOptions="actionNext"/>
 
 
 
@@ -1099,7 +1088,7 @@
                     android:text="REFERENCIA"
                     android:layout_marginLeft="5dp"
                     android:layout_marginRight="5dp"
-                    android:textColor="#000000"
+                    android:textColor="@color/primaryTextColor"
                     android:textSize="24sp"
                     android:textStyle="bold" />
 
@@ -1115,7 +1104,7 @@
                     android:layout_marginBottom="20dp"
                     android:gravity="center"
                     android:orientation="horizontal"
-                    android:background="@drawable/contenedor_llh_nuevo_responsable_supervisor"
+                    android:background="@drawable/contenedor_ll_dos"
                     android:weightSum="2">
 
 
@@ -1140,7 +1129,7 @@
                         android:layout_marginTop="10dp"
                         android:layout_marginRight="10dp"
                         android:layout_marginBottom="10dp"
-                        android:background="#ff5722">
+                        android:background="@color/colorPrimary">
 
                     </View>
 
@@ -1158,8 +1147,7 @@
                         android:maxLength="150"
                         android:textSize="20sp"
                         android:textStyle="bold"
-                        android:imeOptions="actionNext"
-                        android:textCursorDrawable="@color/colorCursorSupervisores"/>
+                        android:imeOptions="actionNext"/>
 
                 </LinearLayout>
 
@@ -1174,7 +1162,7 @@
                     android:layout_marginLeft="5dp"
                     android:layout_marginRight="5dp"
                     android:text="FECHA DE INICIO"
-                    android:textColor="#000000"
+                    android:textColor="@color/primaryTextColor"
                     android:textSize="24sp"
                     android:textStyle="bold" />
 
@@ -1188,7 +1176,7 @@
                     android:layout_marginBottom="20dp"
                     android:gravity="center"
                     android:orientation="horizontal"
-                    android:background="@drawable/contenedor_llh_nuevo_responsable_supervisor"
+                    android:background="@drawable/contenedor_ll_dos"
                     android:weightSum="2">
 
 
@@ -1212,7 +1200,7 @@
                         android:layout_marginTop="10dp"
                         android:layout_marginRight="10dp"
                         android:layout_marginBottom="10dp"
-                        android:background="#ff5722">
+                        android:background="@color/colorPrimary">
 
                     </View>
 
@@ -1233,8 +1221,7 @@
                         android:textSize="20sp"
                         android:textStyle="bold"
                         android:imeOptions="actionNext"
-                        android:maxLines="1"
-                        android:textCursorDrawable="@color/colorCursorSupervisores"/>
+                        android:maxLines="1" />
 
 
                 </LinearLayout>
@@ -1249,7 +1236,7 @@
                     android:layout_marginLeft="5dp"
                     android:layout_marginRight="5dp"
                     android:text="FECHA DE FIN ESTIMADA"
-                    android:textColor="#000000"
+                    android:textColor="@color/primaryTextColor"
                     android:textSize="24sp"
                     android:textStyle="bold" />
 
@@ -1263,7 +1250,7 @@
                     android:layout_marginBottom="20dp"
                     android:gravity="center"
                     android:orientation="horizontal"
-                    android:background="@drawable/contenedor_llh_nuevo_responsable_supervisor"
+                    android:background="@drawable/contenedor_ll_dos"
                     android:weightSum="2">
 
 
@@ -1287,7 +1274,7 @@
                         android:layout_marginTop="10dp"
                         android:layout_marginRight="10dp"
                         android:layout_marginBottom="10dp"
-                        android:background="#ff5722">
+                        android:background="@color/colorPrimary">
 
                     </View>
 
@@ -1307,8 +1294,7 @@
                         android:clickable="true"
                         android:maxLength="10"
                         android:textSize="20sp"
-                        android:textStyle="bold"
-                        android:textCursorDrawable="@color/colorCursorSupervisores"/>
+                        android:textStyle="bold"/>
 
                 </LinearLayout>
 
@@ -1326,7 +1312,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
                 android:layout_marginBottom="10dp"
-                android:background="#FFF"
+                android:background="@color/secondaryTextColor"
                 android:orientation="horizontal"
                 android:weightSum="2">
 
@@ -1340,12 +1326,12 @@
                     android:layout_marginRight="10dp"
                     android:layout_marginBottom="10dp"
                     android:layout_weight="1"
-                    android:background="@drawable/btn_cancelar_nuevo_responsable_esquinas_con_bordes_repartidor"
                     android:gravity="center"
                     android:text="CANCELAR"
-                    android:textColor="#FFF"
+                    android:textColor="@color/secondaryTextColor"
                     android:textSize="24sp"
-                    android:textStyle="bold" />
+                    android:textStyle="bold"
+                    android:background="@drawable/btn_cancelar_uno"/>
 
                 <Button
 
@@ -1355,10 +1341,10 @@
                     android:layout_marginRight="10dp"
                     android:layout_marginBottom="10dp"
                     android:layout_weight="1"
-                    android:background="@drawable/btn_confirmar_nuevo_responsable_esquina_con_bordes_supervisor"
+                    android:background="@drawable/btn_confirmar_uno"
                     android:gravity="center"
                     android:text="CONFIRMAR"
-                    android:textColor="#FFF"
+                    android:textColor="@color/secondaryTextColor"
                     android:textSize="24sp"
                     android:textStyle="bold" />
 

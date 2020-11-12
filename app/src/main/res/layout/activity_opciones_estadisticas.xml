@@ -7,16 +7,11 @@
 
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_marginLeft="0dp"
-    android:layout_marginTop="0dp"
-    android:layout_marginRight="0dp"
-    android:layout_marginBottom="0dp"
-    android:background="#d50000"
     android:orientation="vertical"
     android:weightSum="2"
 
 
-    tools:context=".OpcionesEstadisticas">
+    tools:context=".ActivityEstadisticas">
 
 
     <LinearLayout
@@ -33,9 +28,6 @@
             android:id="@+id/llv_uno_punto_uno"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_marginLeft="10dp"
-            android:layout_marginTop="10dp"
-            android:layout_marginBottom="10dp"
             android:layout_weight="1"
             android:orientation="vertical"
             android:weightSum="2">
@@ -45,9 +37,9 @@
                 android:id="@+id/img_btn_comisiones"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginRight="10dp"
+                android:layout_marginTop="10dp"
                 android:layout_weight="1"
-                android:background="#FFFF"
+                android:background="@color/secondaryTextColor"
                 android:src="@mipmap/ic_comision_128px" />
 
 
@@ -56,17 +48,17 @@
                 android:id="@+id/main_tv_comisiones"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginRight="10dp"
                 android:layout_weight="1"
                 android:background="#FFFF"
                 android:gravity="center|top"
                 android:text="COMISIONES"
-                android:textColor="#d50000"
+                android:textColor="@color/colorAccent"
                 android:textSize="24sp"
                 android:textStyle="bold" />
 
 
         </LinearLayout>
+
 
 
         <LinearLayout
@@ -74,39 +66,36 @@
             android:id="@+id/llv_uno_punto_dos"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_marginTop="10dp"
-            android:layout_marginRight="10dp"
-            android:layout_marginBottom="10dp"
             android:layout_weight="1"
-            android:background="#FFFF"
             android:orientation="vertical"
             android:weightSum="2">
 
 
             <ImageButton
-                android:id="@+id/img_btn_combustible"
+                android:id="@+id/img_btn_gasto_combustible"
                 android:layout_width="match_parent"
-                android:layout_height="300dp"
-                android:layout_gravity="center"
+                android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:backgroundTint="#FFFF"
+                android:background="@color/secondaryTextColor"
                 android:src="@mipmap/gasolinera_estadisticas_128px" />
 
 
             <TextView
 
-                android:id="@+id/main_tv_combustible"
+                android:id="@+id/main_tv_gasto_combustible"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:background="#FFFF"
-                android:gravity="center"
+                android:background="@color/secondaryTextColor"
+                android:gravity="center|top"
                 android:text="GASTO EN COMBUSTIBLE"
-                android:textColor="#d50000"
+                android:textColor="@color/colorAccent"
                 android:textSize="24sp"
                 android:textStyle="bold" />
 
+
         </LinearLayout>
+
 
 
     </LinearLayout>
@@ -129,8 +118,6 @@
             android:id="@+id/llv_dos_punto_uno"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_marginLeft="10dp"
-            android:layout_marginBottom="10dp"
             android:layout_weight="1"
             android:orientation="vertical"
             android:weightSum="2">
@@ -139,71 +126,27 @@
             <ImageButton
                 android:id="@+id/img_btn_venta_bidones"
                 android:layout_width="match_parent"
-                android:layout_height="400dp"
-                android:layout_marginRight="10dp"
+                android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:background="#FFFF"
-                android:src="@mipmap/bidon_128px">
+                android:background="@color/secondaryTextColor"
+                android:src="@mipmap/bidon_128px" />
 
-            </ImageButton>
 
             <TextView
 
                 android:id="@+id/main_tv_venta_bidones"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginRight="10dp"
+                android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:background="#FFFF"
-                android:gravity="center"
+                android:background="@color/secondaryTextColor"
+                android:gravity="center|top"
                 android:text="VENTA DE BIDONES"
-                android:textColor="#d50000"
+                android:textColor="@color/colorAccent"
                 android:textSize="24sp"
                 android:textStyle="bold" />
 
 
         </LinearLayout>
-
-
-        <LinearLayout
-
-            android:id="@+id/llv_dos_punto_dos"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginRight="10dp"
-            android:layout_marginBottom="10dp"
-            android:layout_weight="1"
-            android:orientation="vertical"
-            android:weightSum="2">
-
-
-            <ImageButton
-                android:id="@+id/img_btn_frecuencia_consumo"
-                android:layout_width="match_parent"
-                android:layout_height="400dp"
-                android:layout_weight="1"
-                android:background="#FFFF"
-                android:src="@mipmap/people_drinking_water">
-
-            </ImageButton>
-
-
-            <TextView
-
-                android:id="@+id/main_tv_frecuencia_llamadas_clientes"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:background="#FFFF"
-                android:gravity="center"
-                android:text="FRECUENCIA DE CONSUMO"
-                android:textColor="#d50000"
-                android:textSize="24sp"
-                android:textStyle="bold" />
-
-
-        </LinearLayout>
-
 
     </LinearLayout>
 

@@ -3,9 +3,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".GastoCombustibleSemestral_Fragment">
+    tools:context=".FragmentGastoCombustibleSemestral">
 
-    <!-- TODO: Update blank fragment layout -->
+
 
 
     <LinearLayout
@@ -13,7 +13,7 @@
 
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="#FFFF"
+        android:background="@color/secondaryTextColor"
         android:orientation="vertical"
         android:weightSum="1">
 
@@ -22,10 +22,9 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
-            android:background="#FFFF"
             android:gravity="center"
             android:text="GASTO SEMESTRAL"
-            android:textColor="#000"
+            android:textColor="@color/primaryTextColor"
             android:textSize="18sp"
             android:textStyle="bold" />
 

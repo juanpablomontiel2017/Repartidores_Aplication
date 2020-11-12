@@ -9,7 +9,7 @@
     android:id="@+id/llv_contenedor_principal_item"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#FFF"
+    android:background="@color/secondaryTextColor"
     android:weightSum="1">
 
 
@@ -22,7 +22,7 @@
         android:layout_marginTop="2dp"
         android:layout_marginRight="2dp"
         android:layout_marginBottom="2dp"
-        android:background="#d50000"
+        android:background="@color/colorPrimary"
         android:orientation="vertical"
         android:weightSum="5">
 
@@ -39,7 +39,7 @@
             android:layout_marginRight="5dp"
             android:layout_marginBottom="5dp"
             android:layout_weight="1"
-            android:background="#eeeeee"
+            android:background="@color/secondaryTextColor"
             android:orientation="horizontal">
 
 
@@ -74,12 +74,11 @@
                     android:layout_marginTop="10dp"
                     android:layout_marginRight="10dp"
                     android:layout_marginBottom="15dp"
-                    android:background="#eeeeee"
+                    android:background="@color/secondaryTextColor"
                     android:cursorVisible="false"
                     android:focusable="false"
                     android:gravity="center"
-                    android:textColor="#000"
-                    android:textCursorDrawable="@color/colorCursorSupervisores"
+                    android:textColor="@color/primaryTextColor"
                     android:textSize="30sp"
                     android:textStyle="bold" />
 
@@ -92,12 +91,11 @@
                     android:layout_marginTop="10dp"
                     android:layout_marginRight="10dp"
                     android:layout_marginBottom="0dp"
-                    android:background="#eeeeee"
+                    android:background="@color/secondaryTextColor"
                     android:cursorVisible="false"
                     android:focusable="false"
                     android:gravity="center"
-                    android:textColor="#000"
-                    android:textCursorDrawable="@color/colorCursorSupervisores"
+                    android:textColor="@color/primaryTextColor"
                     android:textSize="30sp"
                     android:textStyle="bold" />
 
@@ -109,12 +107,11 @@
                     android:layout_marginTop="10dp"
                     android:layout_marginRight="10dp"
                     android:layout_marginBottom="0dp"
-                    android:background="#eeeeee"
+                    android:background="@color/secondaryTextColor"
                     android:cursorVisible="false"
                     android:focusable="false"
                     android:gravity="center"
-                    android:textColor="#000"
-                    android:textCursorDrawable="@color/colorCursorSupervisores"
+                    android:textColor="@color/primaryTextColor"
                     android:textSize="30sp"
                     android:textStyle="bold" />
 
@@ -127,7 +124,7 @@
                     android:layout_marginTop="10dp"
                     android:layout_marginRight="10dp"
                     android:layout_marginBottom="0dp"
-                    android:background="#e0e0e0">
+                    android:background="@color/tercerTextColor">
 
                 </View>
 
@@ -152,7 +149,7 @@
                         android:layout_weight="1"
                         android:gravity="center"
                         android:text="FECHA DE INICIO "
-                        android:textColor="#000"
+                        android:textColor="@color/primaryTextColor"
                         android:textSize="25sp"
                         android:textStyle="bold" />
 
@@ -163,12 +160,11 @@
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:layout_weight="1"
-                        android:background="#eeeeee"
+                        android:background="@color/secondaryTextColor"
                         android:cursorVisible="false"
                         android:focusable="false"
                         android:gravity="center"
-                        android:textColor="#000"
-                        android:textCursorDrawable="@color/colorCursorSupervisores"
+                        android:textColor="@color/primaryTextColor"
                         android:textSize="25sp"
                         android:textStyle="bold" />
 
@@ -198,7 +194,7 @@
                         android:layout_weight="1"
                         android:gravity="center"
                         android:text="FECHA DE FIN ESTIMADA "
-                        android:textColor="#000"
+                        android:textColor="@color/primaryTextColor"
                         android:textSize="25sp"
                         android:textStyle="bold" />
 
@@ -210,12 +206,11 @@
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:layout_weight="1"
-                        android:background="#eeeeee"
+                        android:background="@color/secondaryTextColor"
                         android:cursorVisible="false"
                         android:focusable="false"
                         android:gravity="center"
-                        android:textColor="#000"
-                        android:textCursorDrawable="@color/colorCursorSupervisores"
+                        android:textColor="@color/primaryTextColor"
                         android:textSize="25sp"
                         android:textStyle="bold" />
 
@@ -233,13 +228,12 @@
                     android:layout_marginTop="10dp"
                     android:layout_marginRight="10dp"
                     android:layout_marginBottom="0dp"
-                    android:background="#e0e0e0">
+                    android:background="@color/tercerTextColor">
 
                 </View>
 
 
 
-                <!-- ##################################################################3 -->
 
 
                 <!-- ##################################################################3 -->
@@ -265,13 +259,13 @@
                         android:layout_marginTop="5dp"
                         android:layout_marginRight="5dp"
                         android:layout_marginBottom="5dp"
-                        android:background="@drawable/contenedor_boton_detalle_stock_vehiculo"
-                        android:backgroundTint="#dd2c00"
+                        android:background="@drawable/contenedor_ll_ocho"
+                        android:backgroundTint="@color/colorPrimary"
                         android:drawableLeft="@drawable/ic_detalle_stock_vehiculo"
                         android:gravity="center"
                         android:paddingLeft="30dp"
                         android:text="VER EVENTO"
-                        android:textColor="#FFFF"
+                        android:textColor="@color/secondaryTextColor"
                         android:textSize="25sp"
                         android:textStyle="bold" />
 
@@ -301,13 +295,13 @@
                         android:layout_marginTop="5dp"
                         android:layout_marginRight="5dp"
                         android:layout_marginBottom="5dp"
-                        android:background="@drawable/contenedor_boton_detalle_stock_vehiculo"
-                        android:backgroundTint="#ff3d00"
+                        android:background="@drawable/contenedor_ll_ocho"
+                        android:backgroundTint="@color/secondaryLightColor"
                         android:drawableLeft="@drawable/ic_ver_datos_personales_responsable"
                         android:gravity="center"
                         android:paddingLeft="30dp"
                         android:text="VER Y/O EDITAR RESPONSABLE"
-                        android:textColor="#FFFF"
+                        android:textColor="@color/secondaryTextColor"
                         android:textSize="25sp"
                         android:textStyle="bold" />
 

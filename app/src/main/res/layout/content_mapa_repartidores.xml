@@ -9,7 +9,7 @@
     android:layout_height="match_parent"
 
     mapbox:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:context=".Mapa_Repartidores"
+    tools:context=".ActivityMapaRepartidores"
     tools:showIn="@layout/activity_mapa_repartidores"
     android:orientation="vertical">
 

@@ -7,9 +7,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
 
-    tools:context=".GastoCombustibleAnual_Fragment">
-
-    <!-- TODO: Update blank fragment layout -->
+    tools:context=".FragmentGastoCombustibleAnual">
 
 
     <LinearLayout
@@ -17,7 +15,7 @@
 
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="#FFFF"
+        android:background="@color/secondaryTextColor"
         android:orientation="vertical"
         android:weightSum="1">
 
@@ -26,10 +24,9 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
-            android:background="#FFFF"
             android:gravity="center"
             android:text="GASTO ANUAL"
-            android:textColor="#000"
+            android:textColor="@color/primaryTextColor"
             android:textSize="18sp"
             android:textStyle="bold" />
 

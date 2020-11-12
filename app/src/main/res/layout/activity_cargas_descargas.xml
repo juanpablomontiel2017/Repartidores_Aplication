@@ -8,7 +8,7 @@
     android:id="@+id/id_contenedor_activity_cd"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Cargas_Descargas">
+    tools:context=".ActivityCargasDescargas">
 
 
     <com.google.android.material.appbar.AppBarLayout
@@ -20,7 +20,7 @@
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
-            android:background="#d50000"
+            android:background="@color/colorPrimary"
             app:popupTheme="@style/AppTheme.PopupOverlay" />
 
     </com.google.android.material.appbar.AppBarLayout>
@@ -47,7 +47,7 @@
             android:layout_margin="@dimen/fab_margin"
             android:src="@drawable/ic_new_tanda"
             android:visibility="invisible"
-            app:backgroundTint="#263238" />
+            app:backgroundTint="@color/colorAccent" />
 
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
@@ -60,7 +60,7 @@
             android:onClick="CancelarNuevaTanda"
             android:src="@drawable/ic_menos_tanda"
             android:visibility="gone"
-            app:backgroundTint="#263238" />
+            app:backgroundTint="@color/colorAccent" />
 
     </LinearLayout>
 

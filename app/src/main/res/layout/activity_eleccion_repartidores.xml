@@ -10,14 +10,14 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
 
-    tools:context=".EleccionRepartidores">
+    tools:context=".ActivityEleccionRepartidores">
 
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="#d50000"
+        android:background="@color/colorPrimary"
         app:popupTheme="@style/AppTheme.PopupOverlay" />
 
     <GridView
@@ -27,4 +27,4 @@
         android:numColumns="2"/>
 
 
-</LinearLayout> <!--FIN DEL activity_eleccion_repartidores.xml -->
+</LinearLayout>

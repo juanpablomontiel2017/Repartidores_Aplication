@@ -6,19 +6,19 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".EntregaRetiroEnvasesPatrocinio">
+    tools:context=".ActivityEntregaRetiroEnvasesPatrocinio">
 
     <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="#d50000"
+        android:background="@color/colorPrimary"
         android:theme="@style/AppTheme.AppBarOverlay">
 
         <androidx.appcompat.widget.Toolbar
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
-            android:background="#d50000"
+            android:background="@color/colorPrimary"
             app:popupTheme="@style/AppTheme.PopupOverlay" />
 
     </com.google.android.material.appbar.AppBarLayout>
@@ -43,7 +43,7 @@
             android:layout_gravity="bottom|end"
             android:layout_margin="@dimen/fab_margin"
             android:src="@mipmap/camion_entrega_retiro_512px"
-            app:backgroundTint="#ffa726"
+            app:backgroundTint="@color/colorAccent"
             android:visibility="invisible"
             app:maxImageSize="40dp" />
 
@@ -57,7 +57,7 @@
             android:onClick="CancelarNuevaVuelta"
             android:src="@drawable/ic_menos_tanda"
             android:visibility="gone"
-            app:backgroundTint="#263238"
+            app:backgroundTint="@color/colorAccent"
             app:maxImageSize="40dp" />
 
 

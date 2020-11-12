@@ -20,7 +20,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="30dp"
             android:layout_marginBottom="5dp"
-            android:background="#D50000"
+            android:background="@color/secondaryTextColor"
             android:gravity="center_horizontal"
             android:orientation="vertical">
 
@@ -32,7 +32,7 @@
                 android:layout_marginTop="90dp"
                 android:gravity="center"
                 android:text="Apellido"
-                android:textColor="@android:color/white"
+                android:textColor="@color/primaryTextColor"
                 android:textSize="24sp"
                 android:textStyle="bold" />
 
@@ -43,7 +43,7 @@
                 android:layout_marginTop="10dp"
                 android:gravity="center"
                 android:text="Nombre"
-                android:textColor="@android:color/white"
+                android:textColor="@color/primaryTextColor"
                 android:textSize="24sp"
                 android:textStyle="bold" />
 
@@ -56,7 +56,7 @@
                 android:layout_marginTop="10dp"
                 android:gravity="center"
                 android:text="Dirección"
-                android:textColor="@android:color/white"
+                android:textColor="@color/primaryTextColor"
                 android:textSize="24sp"
                 android:textStyle="bold" />
 
@@ -70,7 +70,7 @@
                 android:layout_marginBottom="10dp"
                 android:gravity="center"
                 android:text="Barrrio"
-                android:textColor="@android:color/white"
+                android:textColor="@color/primaryTextColor"
                 android:textSize="24sp"
                 android:textStyle="bold" />
 
@@ -83,7 +83,7 @@
                 android:layout_marginLeft="5dp"
                 android:layout_marginRight="5dp"
                 android:layout_marginBottom="5dp"
-                android:background="@drawable/dialog_boton_realizar_venta"
+                android:background="@drawable/btn_dialog_ventas"
                 android:drawableLeft="@drawable/dialog_ic_realizar_venta"
                 android:drawablePadding="20dp"
                 android:padding="20dp"
@@ -100,7 +100,7 @@
                 android:layout_marginLeft="5dp"
                 android:layout_marginRight="5dp"
                 android:layout_marginBottom="5dp"
-                android:background="@drawable/dialog_boton_editar_ver_datos_cliente"
+                android:background="@drawable/btn_dialog_editar"
                 android:drawableLeft="@drawable/dialog_ic_editar_ver_datos_cliente"
                 android:drawablePadding="20dp"
                 android:padding="20dp"
@@ -116,7 +116,7 @@
                 android:layout_marginLeft="5dp"
                 android:layout_marginRight="5dp"
                 android:layout_marginBottom="5dp"
-                android:background="@drawable/dialog_boton_eliminar_cliente"
+                android:background="@drawable/btn_dialog_eliminar"
                 android:drawableLeft="@drawable/dialog_ic_eliminar_cliente"
                 android:drawablePadding="20dp"
                 android:padding="20dp"

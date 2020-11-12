@@ -13,8 +13,8 @@
 
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
 
-    tools:context=".BuscarResponsableParaPatrocinio"
-    tools:showIn="@layout/activity_buscar_responsable_para_patrocinio">
+    tools:context=".ActivityBuscarResponsablePatrocinio"
+    tools:showIn="@layout/activity_buscar_responsable_patrocinio">
 
 
 
@@ -26,7 +26,7 @@
 
 
 
-        <!-- List View de elementos  -->
+        <!-- List View de Responsables  -->
         <ListView
             android:id="@+id/list_view"
             android:layout_width="match_parent"

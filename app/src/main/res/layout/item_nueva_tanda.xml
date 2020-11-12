@@ -1,0 +1,266 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+
+    android:id="@+id/parent_layout_vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+
+        <LinearLayout
+
+            android:id="@+id/layout_vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+
+            <LinearLayout
+
+                android:id="@+id/llv_contenedor_para_bordes"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="2dp"
+                android:layout_marginRight="2dp"
+                android:background="@drawable/contenedor_ll_uno"
+                android:orientation="vertical">
+
+
+                <!--#################################################-->
+
+
+                <LinearLayout
+
+                    android:id="@+id/layout_horizontal_primer_tupla"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="2dp"
+                    android:orientation="horizontal">
+
+
+                    <TextView
+                        android:id="@+id/tandas"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="2dp"
+                        android:layout_marginTop="2dp"
+                        android:layout_marginRight="2dp"
+                        android:background="@color/secondaryLightColor"
+                        android:gravity="bottom|center"
+                        android:text="Tanda N° "
+                        android:textColor="@color/secondaryTextColor"
+                        android:textSize="24sp" />
+
+
+                </LinearLayout>
+
+
+                <!--#################################################-->
+
+
+                <LinearLayout
+                    android:id="@+id/layout_horizontal_segunda_tupla"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="2dp"
+                    android:layout_marginRight="2dp"
+                    android:background="@color/secondaryLightColor"
+                    android:orientation="horizontal"
+                    android:weightSum="1"
+                    tools:visibility="visible">
+
+
+                    <TextView
+
+                        android:id="@+id/articulos"
+                        android:layout_width="150dp"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:text="Artículos"
+                        android:textColor="@color/secondaryTextColor"
+                        android:textSize="20sp" />
+
+
+                    <ImageView
+
+                        android:id="@+id/img_carga"
+                        android:layout_width="30dp"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/ic_carga" />
+
+
+                    <TextView
+
+                        android:id="@+id/tv_carga"
+                        android:layout_width="60dp"
+                        android:layout_height="wrap_content"
+                        android:gravity="center|left"
+                        android:text="Carga"
+                        android:textColor="@color/secondaryTextColor"
+                        android:textSize="20sp" />
+
+
+                    <ImageView
+
+                        android:id="@+id/img_descarga"
+                        android:layout_width="30dp"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/ic_descarga" />
+
+
+                    <TextView
+
+                        android:id="@+id/tv_descarga"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="left"
+                        android:text="Descarga"
+                        android:textColor="@color/secondaryTextColor"
+                        android:textSize="20sp" />
+
+
+                </LinearLayout>
+
+
+                <!--#######################################################################-->
+
+
+                <LinearLayout
+
+                    android:id="@+id/layout_vertical_tercer_tupla"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+
+                    <LinearLayout
+                        android:id="@+id/layout_horizontal_tercera_tupla"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginTop="10dp"
+                        android:orientation="horizontal"
+                        android:weightSum="2">
+
+                        <ImageButton
+
+                            android:id="@+id/add_art"
+                            android:layout_width="30dp"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:background="@android:color/transparent"
+                            android:src="@drawable/ic_add_new_art" />
+
+                        <Spinner
+
+                            android:id="@+id/sp_art"
+                            style="@style/Widget.AppCompat.Spinner.DropDown"
+                            android:layout_width="155dp"
+                            android:layout_height="wrap_content"
+                            android:dropDownWidth="wrap_content"
+                            android:gravity="center"
+                            android:popupElevation="16dp"
+                            android:prompt="@string/title_spinner"
+                            android:spinnerMode="dialog">
+
+                        </Spinner>
+
+
+                        <EditText
+
+                            android:id="@+id/edtx_carga"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:gravity="center"
+                            android:hint="Cantidad"
+                            android:imeOptions="actionNext"
+                            android:inputType="number" />
+
+
+                        <EditText
+
+                            android:id="@+id/edtx_descarga"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:gravity="center"
+                            android:hint="Cantidad"
+                            android:imeOptions="actionNext"
+                            android:inputType="number" />
+
+
+                    </LinearLayout>
+
+                </LinearLayout> <!--Fin del "layout_vertical_tercer_tupla"-->
+
+
+                <!--#######################################################################-->
+
+
+                <LinearLayout
+
+                    android:id="@+id/layout_horizontal_cuarta_tupla"
+                    android:layout_width="match_parent"
+                    android:layout_height="70dp"
+                    android:layout_marginTop="20dp"
+                    android:orientation="horizontal"
+                    android:weightSum="2">
+
+
+                    <ImageView
+
+                        android:id="@+id/img_money"
+                        android:layout_width="165dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:src="@mipmap/dinero" />
+
+
+                    <EditText
+
+                        android:id="@+id/edtx_carga_money"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:hint="$"
+                        android:imeOptions="actionNext"
+                        android:inputType="number" />
+
+
+                    <EditText
+
+                        android:id="@+id/edtx_descarga_money"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:hint="$"
+                        android:imeOptions="actionDone"
+                        android:inputType="number" />
+
+
+                </LinearLayout>
+
+
+            </LinearLayout> <!--Fin del llv_contenedor_para_bordes-->
+
+
+
+        </LinearLayout>   <!-- Fin del "layout_vertical" -->
+
+
+
+
+    </LinearLayout>     <!-- Fin del "parent_layout_vertical" -->
+
+
+
+
+
+
+<!-- </ScrollView>  -->

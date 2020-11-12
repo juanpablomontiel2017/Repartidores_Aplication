@@ -9,7 +9,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
 
-    tools:context=".NuevoEventoPatrocinio">
+    tools:context=".ActivityNuevoEventoPatrocinio">
 
 
 
@@ -33,7 +33,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:background="#FFFF"
+                android:background="@color/secondaryTextColor"
                 android:orientation="vertical"
                 android:weightSum="9">
 
@@ -79,8 +79,7 @@
                         android:inputType="number"
                         android:maxLength="8"
                         android:textSize="25sp"
-                        android:textStyle="bold"
-                        android:textCursorDrawable="@color/colorCursorSupervisores"/>
+                        android:textStyle="bold"/>
 
 
                 </LinearLayout>
@@ -107,7 +106,6 @@
                         android:textSize="25sp"
                         android:textStyle="bold"
                         android:maxLength="45"
-                        android:textCursorDrawable="@color/colorCursorSupervisores"
                         android:inputType="textMultiLine"/>
 
 
@@ -136,8 +134,7 @@
                         android:textSize="25sp"
                         android:textStyle="bold"
                         android:inputType="textMultiLine"
-                        android:maxLength="45"
-                        android:textCursorDrawable="@color/colorCursorSupervisores"/>
+                        android:maxLength="45"/>
 
 
                 </LinearLayout>
@@ -164,7 +161,6 @@
                         android:gravity="center"
                         android:textSize="25sp"
                         android:textStyle="bold"
-                        android:textCursorDrawable="@color/colorCursorSupervisores"
                         android:maxLength="4"
                         android:inputType="number"/>
 
@@ -179,8 +175,7 @@
                         android:gravity="left"
                         android:textSize="25sp"
                         android:textStyle="bold"
-                        android:inputType="number"
-                        android:textCursorDrawable="@color/colorCursorSupervisores" />
+                        android:inputType="number"/>
 
                 </LinearLayout>
 
@@ -205,8 +200,7 @@
                         android:textSize="25sp"
                         android:textStyle="bold"
                         android:inputType="textMultiLine"
-                        android:maxLength="150"
-                        android:textCursorDrawable="@color/colorCursorSupervisores"/>
+                        android:maxLength="150"/>
 
                 </LinearLayout>
 
@@ -230,8 +224,7 @@
                         android:textStyle="bold"
                         android:gravity="center"
                         android:inputType="textMultiLine"
-                        android:maxLength="100"
-                        android:textCursorDrawable="@color/colorCursorSupervisores"/>
+                        android:maxLength="100"/>
 
                 </LinearLayout>
 
@@ -256,8 +249,7 @@
                         android:textStyle="bold"
                         android:gravity="center"
                         android:inputType="textMultiLine"
-                        android:maxLength="150"
-                        android:textCursorDrawable="@color/colorCursorSupervisores"/>
+                        android:maxLength="150"/>
 
 
 
@@ -284,8 +276,7 @@
                         android:textStyle="bold"
                         android:gravity="center"
                         android:inputType="textMultiLine|textEmailAddress"
-                        android:maxLength="45"
-                        android:textCursorDrawable="@color/colorCursorSupervisores"/>
+                        android:maxLength="45"/>
 
 
                 </LinearLayout>
@@ -308,7 +299,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:background="#d50000"
+                android:background="@color/colorPrimary"
                 android:orientation="vertical"
                 android:weightSum="8">
 
@@ -357,7 +348,7 @@
                         android:gravity="center"
                         android:text="NUEVO EVENTO"
                         android:textAlignment="center"
-                        android:textColor="#FFFF"
+                        android:textColor="@color/secondaryTextColor"
                         android:textSize="35sp"
                         android:textStyle="bold" />
 
@@ -373,7 +364,7 @@
                     android:layout_marginLeft="10dp"
                     android:layout_marginRight="10dp"
                     android:text="NOMBRE"
-                    android:textColor="#FFFF"
+                    android:textColor="@color/secondaryTextColor"
                     android:textSize="25sp"
                     android:textStyle="bold" />
 
@@ -386,7 +377,7 @@
                     android:layout_marginRight="10dp"
                     android:layout_marginBottom="5dp"
                     android:layout_weight="1"
-                    android:background="@drawable/contenedor_et_nuevo_evento_patrocinio"
+                    android:background="@drawable/contenedor_ll_seis"
                     android:gravity="center"
                     android:orientation="horizontal"
                     android:weightSum="2">
@@ -415,7 +406,7 @@
                         android:layout_marginTop="10dp"
                         android:layout_marginRight="10dp"
                         android:layout_marginBottom="10dp"
-                        android:background="#FFFF">
+                        android:background="@color/secondaryTextColor">
 
                     </View>
 
@@ -431,11 +422,11 @@
                         android:gravity="center"
                         android:hint="(Obligatorio)"
                         android:inputType="textCapSentences|textMultiLine"
-                        android:textColor="#FFFF"
-                        android:textColorHint="#e0e0e0"
+                        android:textColor="@color/secondaryTextColor"
+                        android:textColorHint="@color/tercerTextColor"
                         android:textSize="25sp"
                         android:textStyle="bold"
-                        android:textCursorDrawable="@color/colorCursorNuevoEvento"/>
+                        android:textCursorDrawable="@color/secondaryTextColor"/>
 
                 </LinearLayout>
 
@@ -449,7 +440,7 @@
                     android:layout_marginLeft="10dp"
                     android:layout_marginRight="10dp"
                     android:text="DIRECCIÓN"
-                    android:textColor="#FFFF"
+                    android:textColor="@color/secondaryTextColor"
                     android:textSize="25sp"
                     android:textStyle="bold" />
 
@@ -464,7 +455,7 @@
                     android:layout_marginRight="10dp"
                     android:layout_marginBottom="5dp"
                     android:layout_weight="1"
-                    android:background="@drawable/contenedor_et_nuevo_evento_patrocinio"
+                    android:background="@drawable/contenedor_ll_seis"
                     android:gravity="center"
                     android:orientation="horizontal"
                     android:weightSum="2">
@@ -492,7 +483,7 @@
                         android:layout_marginTop="10dp"
                         android:layout_marginRight="10dp"
                         android:layout_marginBottom="10dp"
-                        android:background="#FFFF">
+                        android:background="@color/secondaryTextColor">
 
                     </View>
 
@@ -508,11 +499,11 @@
                         android:gravity="center"
                         android:hint="(Obligatorio)"
                         android:inputType="textCapSentences|textMultiLine"
-                        android:textColor="#FFFF"
-                        android:textColorHint="#e0e0e0"
+                        android:textColor="@color/secondaryTextColor"
+                        android:textColorHint="@color/tercerTextColor"
                         android:textSize="25sp"
                         android:textStyle="bold"
-                        android:textCursorDrawable="@color/colorCursorNuevoEvento"/>
+                        android:textCursorDrawable="@color/secondaryTextColor"/>
 
                 </LinearLayout>
 
@@ -525,7 +516,7 @@
                     android:layout_marginLeft="10dp"
                     android:layout_marginRight="10dp"
                     android:text="BARRIO"
-                    android:textColor="#FFFF"
+                    android:textColor="@color/secondaryTextColor"
                     android:textSize="25sp"
                     android:textStyle="bold" />
 
@@ -538,7 +529,7 @@
                     android:layout_marginRight="10dp"
                     android:layout_marginBottom="5dp"
                     android:layout_weight="1"
-                    android:background="@drawable/contenedor_et_nuevo_evento_patrocinio"
+                    android:background="@drawable/contenedor_ll_seis"
                     android:gravity="center"
                     android:orientation="horizontal"
                     android:weightSum="2">
@@ -567,7 +558,7 @@
                         android:layout_marginTop="10dp"
                         android:layout_marginRight="10dp"
                         android:layout_marginBottom="10dp"
-                        android:background="#FFFF">
+                        android:background="@color/secondaryTextColor">
 
                     </View>
 
@@ -583,11 +574,11 @@
                         android:gravity="center"
                         android:hint="(Obligatorio)"
                         android:inputType="textCapSentences|textMultiLine"
-                        android:textColor="#FFFF"
-                        android:textColorHint="#e0e0e0"
+                        android:textColor="@color/secondaryTextColor"
+                        android:textColorHint="@color/tercerTextColor"
                         android:textSize="25sp"
                         android:textStyle="bold"
-                        android:textCursorDrawable="@color/colorCursorNuevoEvento"/>
+                        android:textCursorDrawable="@color/secondaryTextColor"/>
 
                 </LinearLayout>
 
@@ -601,7 +592,7 @@
                     android:layout_marginLeft="10dp"
                     android:layout_marginRight="10dp"
                     android:text="REFERENCIA"
-                    android:textColor="#FFFF"
+                    android:textColor="@color/secondaryTextColor"
                     android:textSize="25sp"
                     android:textStyle="bold" />
 
@@ -616,7 +607,7 @@
                     android:layout_marginRight="10dp"
                     android:layout_marginBottom="5dp"
                     android:layout_weight="1"
-                    android:background="@drawable/contenedor_et_nuevo_evento_patrocinio"
+                    android:background="@drawable/contenedor_ll_seis"
                     android:gravity="center"
                     android:orientation="horizontal"
                     android:weightSum="2">
@@ -643,7 +634,7 @@
                         android:layout_marginTop="10dp"
                         android:layout_marginRight="10dp"
                         android:layout_marginBottom="10dp"
-                        android:background="#FFFF">
+                        android:background="@color/secondaryTextColor">
 
                     </View>
 
@@ -659,9 +650,9 @@
                         android:gravity="center"
                         android:hint="(Obligatorio)"
                         android:inputType="textCapSentences|textMultiLine"
-                        android:textColor="#FFFF"
-                        android:textColorHint="#e0e0e0"
-                        android:textCursorDrawable="@color/colorCursorNuevoEvento"
+                        android:textColor="@color/secondaryTextColor"
+                        android:textColorHint="@color/tercerTextColor"
+                        android:textCursorDrawable="@color/secondaryTextColor"
                         android:textSize="25sp"
                         android:textStyle="bold" />
 
@@ -682,7 +673,7 @@
                     android:layout_marginLeft="10dp"
                     android:layout_marginRight="10dp"
                     android:text="FECHA DE INICIO"
-                    android:textColor="#FFFF"
+                    android:textColor="@color/secondaryTextColor"
                     android:textSize="25sp"
                     android:textStyle="bold" />
 
@@ -696,7 +687,7 @@
                     android:layout_marginRight="10dp"
                     android:layout_marginBottom="5dp"
                     android:layout_weight="1"
-                    android:background="@drawable/contenedor_et_nuevo_evento_patrocinio"
+                    android:background="@drawable/contenedor_ll_seis"
                     android:gravity="center"
                     android:orientation="horizontal"
                     android:weightSum="2">
@@ -723,7 +714,7 @@
                         android:layout_marginTop="10dp"
                         android:layout_marginRight="10dp"
                         android:layout_marginBottom="10dp"
-                        android:background="#FFFF">
+                        android:background="@color/secondaryTextColor">
 
                     </View>
 
@@ -742,9 +733,9 @@
                         android:focusable="false"
                         android:clickable="true"
                         android:maxLength="10"
-                        android:textColor="#FFFF"
-                        android:textColorHint="#e0e0e0"
-                        android:textCursorDrawable="@color/colorCursorNuevoEvento"
+                        android:textColor="@color/secondaryTextColor"
+                        android:textColorHint="@color/tercerTextColor"
+                        android:textCursorDrawable="@color/secondaryTextColor"
                         android:textSize="25sp"
                         android:textStyle="bold" />
 
@@ -763,7 +754,7 @@
                     android:layout_marginLeft="10dp"
                     android:layout_marginRight="10dp"
                     android:text="FECHA DE FIN ESTIMADA"
-                    android:textColor="#FFFF"
+                    android:textColor="@color/secondaryTextColor"
                     android:textSize="25sp"
                     android:textStyle="bold" />
 
@@ -777,7 +768,7 @@
                     android:layout_marginRight="10dp"
                     android:layout_marginBottom="50dp"
                     android:layout_weight="1"
-                    android:background="@drawable/contenedor_et_nuevo_evento_patrocinio"
+                    android:background="@drawable/contenedor_ll_seis"
                     android:gravity="center"
                     android:orientation="horizontal"
                     android:weightSum="2">
@@ -805,7 +796,7 @@
                         android:layout_marginTop="10dp"
                         android:layout_marginRight="10dp"
                         android:layout_marginBottom="10dp"
-                        android:background="#FFFF">
+                        android:background="@color/secondaryTextColor">
 
                     </View>
 
@@ -824,9 +815,9 @@
                         android:focusable="false"
                         android:clickable="true"
                         android:maxLength="10"
-                        android:textColor="#FFFF"
-                        android:textColorHint="#e0e0e0"
-                        android:textCursorDrawable="@color/colorCursorNuevoEvento"
+                        android:textColor="@color/secondaryTextColor"
+                        android:textColorHint="@color/tercerTextColor"
+                        android:textCursorDrawable="@color/secondaryTextColor"
                         android:textSize="25sp"
                         android:textStyle="bold" />
 
@@ -850,10 +841,10 @@
                         android:layout_marginLeft="10dp"
                         android:layout_marginRight="10dp"
                         android:background="@drawable/btn_borde_redondeado"
-                        android:backgroundTint="#ff5722"
+                        android:backgroundTint="@color/primaryLightColor"
                         android:gravity="center"
                         android:text="CONFIRMAR"
-                        android:textColor="#FFF"
+                        android:textColor="@color/secondaryTextColor"
                         android:textSize="24sp"
                         android:textStyle="bold" />
 
@@ -876,10 +867,10 @@
                         android:layout_marginLeft="10dp"
                         android:layout_marginRight="10dp"
                         android:background="@drawable/btn_borde_redondeado"
-                        android:backgroundTint="#000"
+                        android:backgroundTint="@color/colorAccent"
                         android:gravity="center"
                         android:text="CANCELAR"
-                        android:textColor="#FFF"
+                        android:textColor="@color/secondaryTextColor"
                         android:textSize="24sp"
                         android:textStyle="bold" />
 

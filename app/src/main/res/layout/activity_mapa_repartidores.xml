@@ -10,7 +10,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
 
-    tools:context=".Mapa_Repartidores">
+    tools:context=".ActivityMapaRepartidores">
 
     <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"

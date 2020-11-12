@@ -16,7 +16,7 @@
 
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
 
-    tools:context=".MainActivitySupervisores"
+    tools:context=".ActivityMainSupervisores"
     tools:showIn="@layout/activity_main_supervisores">
 
 
@@ -48,7 +48,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginRight="10dp"
-                    android:background="#d50000"
+                    android:background="@color/colorAccent"
                     android:src="@drawable/ic_main_carga_descarga"
                     android:layout_weight="1"/>
 
@@ -60,10 +60,10 @@
                     android:layout_height="wrap_content"
                     android:layout_marginRight="10dp"
                     android:layout_weight="1"
-                    android:background="#d50000"
+                    android:background="@color/colorAccent"
                     android:gravity="center|top"
                     android:text="CARGA Y DESCARGA"
-                    android:textColor="#FFFF"
+                    android:textColor="@color/secondaryTextColor"
                     android:textSize="24sp"
                     android:textStyle="bold" />
 
@@ -89,7 +89,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:background="#d50000"
+                android:background="@color/colorAccent"
                 android:src="@drawable/ic_main_estadisticas" />
 
 
@@ -98,10 +98,10 @@
                 android:id="@+id/main_tv_estadisticas"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:background="#d50000"
+                android:background="@color/colorAccent"
                 android:gravity="center|top"
                 android:text="VER ESTADISTICAS"
-                android:textColor="#FFFF"
+                android:textColor="@color/secondaryTextColor"
                 android:textSize="24sp"
                 android:textStyle="bold"
                 android:layout_weight="1"/>
@@ -149,7 +149,7 @@
                 android:layout_height="match_parent"
                 android:layout_marginRight="10dp"
                 android:layout_weight="1"
-                android:background="#d50000"
+                android:background="@color/colorAccent"
                 android:src="@drawable/ic_main_ventas">
 
             </ImageButton>
@@ -161,10 +161,10 @@
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:layout_marginRight="10dp"
-                android:background="#d50000"
+                android:background="@color/colorAccent"
                 android:gravity="center|top"
                 android:text="REALIZAR VENTA"
-                android:textColor="#FFFF"
+                android:textColor="@color/secondaryTextColor"
                 android:textSize="24sp"
                 android:textStyle="bold" />
 
@@ -187,7 +187,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:background="#d50000"
+                android:background="@color/colorAccent"
                 android:src="@drawable/ic_main_mapa">
 
             </ImageButton>
@@ -199,10 +199,10 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:background="#d50000"
+                android:background="@color/colorAccent"
                 android:gravity="center|top"
                 android:text="VER MAPA"
-                android:textColor="#FFFF"
+                android:textColor="@color/secondaryTextColor"
                 android:textSize="24sp"
                 android:textStyle="bold" />
 

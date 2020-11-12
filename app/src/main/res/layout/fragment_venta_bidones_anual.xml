@@ -7,9 +7,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
 
-    tools:context=".VentaBidonesAnual_Fragment">
+    tools:context=".FragmentVentaBidonesAnual">
 
-    <!-- TODO: Update blank fragment layout -->
 
 
     <LinearLayout
@@ -17,7 +16,7 @@
 
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="#000"
+        android:background="@color/secondaryTextColor"
         android:orientation="vertical"
         android:weightSum="1">
 
@@ -26,10 +25,9 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
-            android:background="#000"
             android:gravity="center"
             android:text="VENTA ANUAL"
-            android:textColor="#FFFF"
+            android:textColor="@color/primaryTextColor"
             android:textSize="18sp"
             android:textStyle="bold" />
 
