@@ -115,12 +115,7 @@ public class ActivityCargasDescargas extends AppCompatActivity {
 
         String FechaActualDelSistema = UtilidadFecha.getFecha("dd/MM/yyyy");
 
-<<<<<<< HEAD
-        String FechaGuardada = UtilidadFecha.getFecha("dd/MM/yyyy");
-
-=======
         String FechaGuardada;
-        //String FechaGuardada = "12/05/2020";
 
         Log.d("debug", "FechaActualDelSistema: "+ FechaActualDelSistema);
 
@@ -141,7 +136,8 @@ public class ActivityCargasDescargas extends AppCompatActivity {
 
 
         Log.d("debug", "FechaGuardada: "+ FechaGuardada);
->>>>>>> Modificaciones
+
+
 
 
         if(FechaGuardada.equals(FechaActualDelSistema)) {
