@@ -120,17 +120,20 @@ public class ActivityCargasDescargas extends AppCompatActivity {
 
         Log.d("debug", "FechaActualDelSistema: "+ FechaActualDelSistema);
 
-        if(LeerConfiguracionDeActivityEnUnSharedPreferences("Fecha").equals("true")){
+        Log.d("debug", "FechaSharedPreferences: "+ LeerConfiguracionDeActivityEnUnSharedPreferences("fecha"));
+
+        if(LeerConfiguracionDeActivityEnUnSharedPreferences("fecha").equals("true")){
 
             //FechaGuardada = (UtilidadFecha.SetearFecha(2000,00,01));
             FechaGuardada = UtilidadFecha.getFecha("dd/MM/yyyy");
             GuardarConfiguracionDeActivityEnUnSharedPreferences("fecha", UtilidadFecha.getFecha("dd/MM/yyyy"));
+            Log.d("debug", "FechaSharedPreferences después de guardar: "+ LeerConfiguracionDeActivityEnUnSharedPreferences("fecha"));
 
         }//Fin del if
 
         else {
 
-            FechaGuardada = LeerConfiguracionDeActivityEnUnSharedPreferences("Fecha");
+            FechaGuardada = LeerConfiguracionDeActivityEnUnSharedPreferences("fecha");
 
         } //Fin del else
 
