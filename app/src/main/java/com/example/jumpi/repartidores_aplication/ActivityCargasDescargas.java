@@ -116,7 +116,6 @@ public class ActivityCargasDescargas extends AppCompatActivity {
         String FechaActualDelSistema = UtilidadFecha.getFecha("dd/MM/yyyy");
 
         String FechaGuardada;
-        //String FechaGuardada = "12/05/2020";
 
         Log.d("debug", "FechaActualDelSistema: "+ FechaActualDelSistema);
 
@@ -142,10 +141,11 @@ public class ActivityCargasDescargas extends AppCompatActivity {
         Log.d("debug", "FechaGuardada: "+ FechaGuardada);
 
 
+
+
         if(FechaGuardada.equals(FechaActualDelSistema)) {
 
             Toast.makeText(ActivityCargasDescargas.this, "Dia: " + Nombre_Dia, Toast.LENGTH_LONG).show();
-
 
         } //Fin del primer if
 
