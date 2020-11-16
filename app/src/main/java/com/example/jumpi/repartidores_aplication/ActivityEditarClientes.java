@@ -1473,7 +1473,7 @@ public class ActivityEditarClientes extends AppCompatActivity {
             eTTelefono.setFocusableInTouchMode(true);
             eTTelefono.setCursorVisible(true);
             eTTelefono.setHint("(Obligatorio)");
-            eTTelefono.setBackgroundDrawable(getDrawable(R.drawable.edit_text_material_customizado));
+            eTTelefono.setBackgroundDrawable(getDrawable(R.drawable.edit_text_underline_coloraccent));
 
             flag_codigo_area_ec = true;
 

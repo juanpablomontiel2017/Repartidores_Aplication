@@ -1238,7 +1238,7 @@ public class ActivityAgregarCliente extends AppCompatActivity {
 
             eTTelefonoAC.setFocusableInTouchMode(true);
             eTTelefonoAC.setCursorVisible(true);
-            eTTelefonoAC.setBackgroundDrawable(getDrawable(R.drawable.edit_text_material_customizado));
+            eTTelefonoAC.setBackgroundDrawable(getDrawable(R.drawable.edit_text_underline_coloraccent));
             eTTelefonoAC.setHint("(Obligatorio)");
 
             flag_codigo_area_ac = true;

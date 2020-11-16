@@ -112,7 +112,7 @@ public class ActivityEntregaRetiroEnvasesPatrocinio extends AppCompatActivity {
         Indice_Evento = getIntent().getIntExtra("Indice_Evento",0);
 
 
-        Fecha_Actual = UtilidadFecha.getFecha("dd/MM/yyyy");
+        Fecha_Actual = UtilsFecha.getFecha("dd/MM/yyyy");
 
 
         SharedPreferences preferences = getSharedPreferences("Datos_Evento", MODE_PRIVATE);
@@ -575,12 +575,12 @@ public class ActivityEntregaRetiroEnvasesPatrocinio extends AppCompatActivity {
 
         eTcantEntrega = (EditText) findViewById(R.id.edtx_entrega_erep);
         eTcantEntrega.requestFocus();
-        eTcantEntrega.setBackgroundDrawable(getDrawable(R.drawable.edit_text_material_customizado));
+        eTcantEntrega.setBackgroundDrawable(getDrawable(R.drawable.edit_text_underline_coloraccent));
 
 
 
         eTcantRetiro = (EditText) findViewById(R.id.edtx_retiro_erep);
-        eTcantRetiro.setBackgroundDrawable(getDrawable(R.drawable.edit_text_material_customizado));
+        eTcantRetiro.setBackgroundDrawable(getDrawable(R.drawable.edit_text_underline_coloraccent));
 
 
 
@@ -3533,7 +3533,7 @@ public class ActivityEntregaRetiroEnvasesPatrocinio extends AppCompatActivity {
                     /*Llamada a la función: */
                     CambiarEstadoDeEvento(false);
 
-                    String Fecha_donde_finalizo_evento = UtilidadFecha.getFecha("dd/MM/yyyy");
+                    String Fecha_donde_finalizo_evento = UtilsFecha.getFecha("dd/MM/yyyy");
 
 
                     SharedPreferences sharedPreferences = getSharedPreferences("Datos_Evento", MODE_PRIVATE);

@@ -36,8 +36,6 @@
                 android:id="@+id/llv_contenedor_para_bordes"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="2dp"
-                android:layout_marginRight="2dp"
                 android:background="@drawable/contenedor_ll_tres"
                 android:orientation="vertical">
 
@@ -93,7 +91,7 @@
                         android:gravity="center"
                         android:text="Artículos"
                         android:textColor="@color/secondaryTextColor"
-                        android:textSize="20sp" />
+                        android:textSize="18sp" />
 
 
                     <ImageView
@@ -112,7 +110,7 @@
                         android:gravity="center|left"
                         android:text="Carga"
                         android:textColor="@color/secondaryTextColor"
-                        android:textSize="20sp" />
+                        android:textSize="18sp" />
 
 
                     <ImageView
@@ -132,7 +130,7 @@
                         android:gravity="left"
                         android:text="Descarga"
                         android:textColor="@color/secondaryTextColor"
-                        android:textSize="20sp" />
+                        android:textSize="18sp" />
 
                 </LinearLayout>
 
@@ -204,6 +202,9 @@
                             android:hint="Cantidad"
                             android:imeOptions="actionNext"
                             android:inputType="number" />
+
+
+
 
                     </LinearLayout>
 

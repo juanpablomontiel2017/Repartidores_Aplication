@@ -371,7 +371,7 @@ public class ActivityBuscarResponsablePatrocinio extends AppCompatActivity imple
 
             /*Cierro el evento donde su fecha de fin ha expirado, por ende
              * cambio los colores de las vistas */
-            String Fecha_Actual = UtilidadFecha.getFecha("dd/MM/yyyy");
+            String Fecha_Actual = UtilsFecha.getFecha("dd/MM/yyyy");
 
             if(Fecha_Fin_Estimada_Evento.equals(Fecha_Actual)) {
 

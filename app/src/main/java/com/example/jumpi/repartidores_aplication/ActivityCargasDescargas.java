@@ -28,7 +28,6 @@ import androidx.appcompat.widget.Toolbar;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 
-import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.Arrays;
 
@@ -50,7 +49,6 @@ public class ActivityCargasDescargas extends AppCompatActivity {
 
 
     /******ImageButton********/
-
     ImageButton btnAgregarNuevoArticulo;
 
 
@@ -111,9 +109,9 @@ public class ActivityCargasDescargas extends AppCompatActivity {
 
         Estado_Tanda = Boolean.parseBoolean(LeerConfiguracionDeActivityEnUnSharedPreferences("EstadoTanda" + nombre_apellido_recibir));
 
-        String Nombre_Dia = UtilidadFecha.getNombreDelDia();
+        String Nombre_Dia = UtilsFecha.getNombreDelDia();
 
-        String FechaActualDelSistema = UtilidadFecha.getFecha("dd/MM/yyyy");
+        String FechaActualDelSistema = UtilsFecha.getFecha("dd/MM/yyyy");
 
         String FechaGuardada;
 
@@ -124,8 +122,8 @@ public class ActivityCargasDescargas extends AppCompatActivity {
         if(LeerConfiguracionDeActivityEnUnSharedPreferences("fecha").equals("true")){
 
             //FechaGuardada = (UtilidadFecha.SetearFecha(2000,00,01));
-            FechaGuardada = UtilidadFecha.getFecha("dd/MM/yyyy");
-            GuardarConfiguracionDeActivityEnUnSharedPreferences("fecha", UtilidadFecha.getFecha("dd/MM/yyyy"));
+            FechaGuardada = UtilsFecha.getFecha("dd/MM/yyyy");
+            GuardarConfiguracionDeActivityEnUnSharedPreferences("fecha", UtilsFecha.getFecha("dd/MM/yyyy"));
             Log.d("debug", "FechaSharedPreferences después de guardar: "+ LeerConfiguracionDeActivityEnUnSharedPreferences("fecha"));
 
         }//Fin del if
@@ -1263,7 +1261,7 @@ public class ActivityCargasDescargas extends AppCompatActivity {
         } else {
 
             EditTextDescarga.setEnabled(true);
-            EditTextDescarga.setBackgroundDrawable(getDrawable(R.drawable.edit_text_material_customizado));
+            EditTextDescarga.setBackgroundDrawable(getDrawable(R.drawable.edit_text_underline_coloraccent));
 
         }
 
@@ -1415,6 +1413,7 @@ public class ActivityCargasDescargas extends AppCompatActivity {
 
         if(preferences.getBoolean("Repartidor: " + nombre_apellido_recibir + "GuardarLasVistasDeLasTandasDeshabilitadas",false)){
 
+
             DeshabilitarVistasDeLasTandasAlGuardarCambios(true);
 
         }
@@ -1484,7 +1483,7 @@ public class ActivityCargasDescargas extends AppCompatActivity {
 
 
         final EditText EditText_Carga_Nuevo_Articulo = (EditText) NuevoArticuloInflado.findViewById(R.id.edtx_carga_new_art);
-        EditText_Carga_Nuevo_Articulo.setBackgroundDrawable(getDrawable(R.drawable.edit_text_material_customizado));
+        EditText_Carga_Nuevo_Articulo.setBackgroundDrawable(getDrawable(R.drawable.edit_text_underline_coloraccent));
 
 
         if(Valor_a_SetearDelEditTextCargaParaNuevoArticuloPrimerTanda != ""){
@@ -1499,7 +1498,7 @@ public class ActivityCargasDescargas extends AppCompatActivity {
 
 
         final EditText EditText_Descarga_Nuevo_Articulo= (EditText) NuevoArticuloInflado.findViewById(R.id.edtx_descarga_new_art);
-        EditText_Descarga_Nuevo_Articulo.setBackgroundDrawable(getDrawable(R.drawable.edit_text_material_customizado));
+        EditText_Descarga_Nuevo_Articulo.setBackgroundDrawable(getDrawable(R.drawable.edit_text_underline_coloraccent));
 
 
 
@@ -1547,27 +1546,6 @@ public class ActivityCargasDescargas extends AppCompatActivity {
 
 
         }
-
-
-        /************ Cambiar color del cursor de cada EditText *************/
-        Field f = null;
-
-        try {
-
-            f = TextView.class.getDeclaredField("mCursorDrawableRes");
-            f.setAccessible(true);
-            f.set(EditText_Carga_Nuevo_Articulo, R.drawable.color_cursor_supervisores);
-            f.set(EditText_Descarga_Nuevo_Articulo, R.drawable.color_cursor_supervisores);
-
-
-
-
-        } catch (NoSuchFieldException | IllegalAccessException e) {
-        e.printStackTrace();
-        }
-
-
-
 
 
 
@@ -1761,26 +1739,26 @@ public class ActivityCargasDescargas extends AppCompatActivity {
 
             final EditText et_carga_nueva_tanda = (EditText) NuevaTandaInflada.findViewById(R.id.edtx_carga);
             et_carga_nueva_tanda.requestFocus();
-            et_carga_nueva_tanda.setBackgroundDrawable(getDrawable(R.drawable.edit_text_material_customizado));
+            et_carga_nueva_tanda.setBackgroundDrawable(getDrawable(R.drawable.edit_text_underline_coloraccent));
             et_carga_nueva_tanda.setText(ValorSeteadoDelEditTextCargaDeArticulosFijoParaNuevaTanda);
 
 
 
             final EditText et_descarga_nueva_tanda = (EditText) NuevaTandaInflada.findViewById(R.id.edtx_descarga);
-            et_descarga_nueva_tanda.setBackgroundDrawable(getDrawable(R.drawable.edit_text_material_customizado));
+            et_descarga_nueva_tanda.setBackgroundDrawable(getDrawable(R.drawable.edit_text_underline_coloraccent));
             et_descarga_nueva_tanda.setText(ValorSeteadoDelEditTextDescargaDeArticulosFijoParaNuevaTanda);
 
 
 
             final EditText et_carga_nueva_tanda_money = (EditText) NuevaTandaInflada.findViewById(R.id.edtx_carga_money);
-            et_carga_nueva_tanda_money.setBackgroundDrawable(getDrawable(R.drawable.edit_text_material_customizado));
+            et_carga_nueva_tanda_money.setBackgroundDrawable(getDrawable(R.drawable.edit_text_underline_coloraccent));
             et_carga_nueva_tanda_money.setText(ValorSeteadoDelEditTextCargaDeMoneyFijoParaNuevaTanda);
 
 
 
 
             final EditText et_descarga_nueva_tanda_money = (EditText) NuevaTandaInflada.findViewById(R.id.edtx_descarga_money);
-            et_descarga_nueva_tanda_money.setBackgroundDrawable(getDrawable(R.drawable.edit_text_material_customizado));
+            et_descarga_nueva_tanda_money.setBackgroundDrawable(getDrawable(R.drawable.edit_text_underline_coloraccent));
             et_descarga_nueva_tanda_money.setText(ValorSeteadoDelEditTextDescargaDeMoneyFijoParaNuevaTanda);
 
 
@@ -1805,26 +1783,6 @@ public class ActivityCargasDescargas extends AppCompatActivity {
 
 
             ArticuloSeleccionadoAnterior = spinner_fijo_nueva_tanda.getSelectedItem().toString();
-
-
-
-            /************ Cambiar color del cursor de cada EditText *************/
-            Field f = null;
-
-            try {
-
-                f = TextView.class.getDeclaredField("mCursorDrawableRes");
-                f.setAccessible(true);
-                f.set(et_carga_nueva_tanda, R.drawable.color_cursor_supervisores);
-                f.set(et_descarga_nueva_tanda, R.drawable.color_cursor_supervisores);
-                f.set(et_carga_nueva_tanda_money, R.drawable.color_cursor_supervisores);
-                f.set(et_descarga_nueva_tanda_money, R.drawable.color_cursor_supervisores);
-
-
-
-            }  catch (NoSuchFieldException | IllegalAccessException e) {
-                e.printStackTrace();
-            }
 
 
         }/***** FIN tandas habilitadas *****/
@@ -2449,9 +2407,10 @@ public class ActivityCargasDescargas extends AppCompatActivity {
 
 
 
-    /**********FUNCIÓN PARA GUARDAR CAMBIOS REALIZADOS EN CADA TANDA**************************/
+    /********** FUNCIÓN PARA GUARDAR CAMBIOS REALIZADOS EN CADA TANDA**************************/
 
         public boolean DeshabilitarVistasDeLasTandasAlGuardarCambios(boolean flag_enabled){
+
 
             if (flag_enabled) {
 
@@ -2479,14 +2438,11 @@ public class ActivityCargasDescargas extends AppCompatActivity {
                     sp_nueva_tanda.setEnabled(false);
 
 
-
-
                     editText_carga_nueva_tanda.setFocusable(false);
                     editText_carga_nueva_tanda.setCursorVisible(false);
                     editText_carga_nueva_tanda.setHint("");
                     editText_carga_nueva_tanda.setHintTextColor(Color.parseColor("#fafafa"));
                     editText_carga_nueva_tanda.setBackgroundColor(Color.TRANSPARENT);
-
 
 
                     editText_descarga_nueva_tanda.setFocusable(false);
@@ -2567,7 +2523,7 @@ public class ActivityCargasDescargas extends AppCompatActivity {
 
 
 
-        }/*******FIN DE LA FUNCIÓN DeshabilitarVistasDeLasTandasAlGuardarCambios() ********/
+        }/*************** FIN DE LA FUNCIÓN DeshabilitarVistasDeLasTandasAlGuardarCambios() **************/
 
 
 
@@ -2640,7 +2596,7 @@ public class ActivityCargasDescargas extends AppCompatActivity {
                     editText_carga.setCursorVisible(true);
                     editText_carga.setHint("Cantidad");
                     editText_carga.setHintTextColor(Color.parseColor("#9e9e9e"));
-                    editText_carga.setBackgroundDrawable(getDrawable(R.drawable.edit_text_material_customizado));
+                    editText_carga.setBackgroundDrawable(getDrawable(R.drawable.edit_text_underline_coloraccent));
 
 
 
@@ -2650,7 +2606,7 @@ public class ActivityCargasDescargas extends AppCompatActivity {
                     editText_descarga.setCursorVisible(true);
                     editText_descarga.setHint("Cantidad");
                     editText_descarga.setHintTextColor(Color.parseColor("#9e9e9e"));
-                    editText_descarga.setBackgroundDrawable(getDrawable(R.drawable.edit_text_material_customizado));
+                    editText_descarga.setBackgroundDrawable(getDrawable(R.drawable.edit_text_underline_coloraccent));
 
                 }
 
@@ -2668,7 +2624,7 @@ public class ActivityCargasDescargas extends AppCompatActivity {
                 } else {
 
                     editText_descarga.setEnabled(true);
-                    editText_descarga.setBackgroundDrawable(getDrawable(R.drawable.edit_text_material_customizado));
+                    editText_descarga.setBackgroundDrawable(getDrawable(R.drawable.edit_text_underline_coloraccent));
 
                 }
 
@@ -2679,7 +2635,7 @@ public class ActivityCargasDescargas extends AppCompatActivity {
                 editText_carga_money.setCursorVisible(true);
                 editText_carga_money.setHint("$");
                 editText_carga_money.setHintTextColor(Color.parseColor("#9e9e9e"));
-                editText_carga_money.setBackgroundDrawable(getDrawable(R.drawable.edit_text_material_customizado));
+                editText_carga_money.setBackgroundDrawable(getDrawable(R.drawable.edit_text_underline_coloraccent));
 
 
 
@@ -2688,7 +2644,7 @@ public class ActivityCargasDescargas extends AppCompatActivity {
                 editText_descarga_money.setCursorVisible(true);
                 editText_descarga_money.setHint("$");
                 editText_descarga_money.setHintTextColor(Color.parseColor("#9e9e9e"));
-                editText_descarga_money.setBackgroundDrawable(getDrawable(R.drawable.edit_text_material_customizado));
+                editText_descarga_money.setBackgroundDrawable(getDrawable(R.drawable.edit_text_underline_coloraccent));
 
 
 
@@ -2740,7 +2696,7 @@ public class ActivityCargasDescargas extends AppCompatActivity {
                         et_carga_del_nuevo_articulo.setCursorVisible(true);
                         et_carga_del_nuevo_articulo.setHint("Cantidad");
                         et_carga_del_nuevo_articulo.setHintTextColor(Color.parseColor("#9e9e9e"));
-                        et_carga_del_nuevo_articulo.setBackgroundDrawable(getDrawable(R.drawable.edit_text_material_customizado));
+                        et_carga_del_nuevo_articulo.setBackgroundDrawable(getDrawable(R.drawable.edit_text_underline_coloraccent));
 
 
 
@@ -2749,7 +2705,7 @@ public class ActivityCargasDescargas extends AppCompatActivity {
                         et_descarga_del_nuevo_articulo.setCursorVisible(true);
                         et_descarga_del_nuevo_articulo.setHint("Cantidad");
                         et_descarga_del_nuevo_articulo.setHintTextColor(Color.parseColor("#9e9e9e"));
-                        et_descarga_del_nuevo_articulo.setBackgroundDrawable(getDrawable(R.drawable.edit_text_material_customizado));
+                        et_descarga_del_nuevo_articulo.setBackgroundDrawable(getDrawable(R.drawable.edit_text_underline_coloraccent));
 
 
 
@@ -2771,7 +2727,7 @@ public class ActivityCargasDescargas extends AppCompatActivity {
                     } else {
 
                         et_descarga_del_nuevo_articulo.setEnabled(true);
-                        et_descarga_del_nuevo_articulo.setBackgroundDrawable(getDrawable(R.drawable.edit_text_material_customizado));
+                        et_descarga_del_nuevo_articulo.setBackgroundDrawable(getDrawable(R.drawable.edit_text_underline_coloraccent));
 
                     }
 
@@ -2787,7 +2743,7 @@ public class ActivityCargasDescargas extends AppCompatActivity {
 
         }  /*Fin del primer if (flag_edit) {}*/
 
-    }/*******FIN DE LA FUNCIÓN EditarTandas() ********/
+    }/******* FIN DE LA FUNCIÓN EditarTandas() ********/
 
 
 
@@ -3031,11 +2987,11 @@ public class ActivityCargasDescargas extends AppCompatActivity {
 
 
             final LinearLayout llh_segunda_tupla = (LinearLayout) ArrayListTandas.get(k).findViewById(R.id.layout_horizontal_segunda_tupla);
-            llh_segunda_tupla.setBackgroundColor(Color.parseColor("#ff6d00"));
+            llh_segunda_tupla.setBackgroundColor(Color.parseColor("#534bae"));
 
 
             final TextView tv_tandas = (TextView) ArrayListTandas.get(k).findViewById(R.id.tandas);
-            tv_tandas.setBackgroundColor(Color.parseColor("#ff3d00"));
+            tv_tandas.setBackgroundColor(Color.parseColor("#534bae"));
 
         }//Fin del primer for
 

@@ -1187,7 +1187,7 @@ public class ActivityLogin extends AppCompatActivity implements LoaderCallbacks<
                                     Bundle bundle = new Bundle();
 
 
-                                    String dia = UtilidadFecha.getNombreDelDia();
+                                    String dia = UtilsFecha.getNombreDelDia();
 
 
                                     bundle.putString("dia",dia);
@@ -1607,7 +1607,7 @@ public class ActivityLogin extends AppCompatActivity implements LoaderCallbacks<
                                     Bundle bundle = new Bundle();
 
 
-                                    String dia = UtilidadFecha.getNombreDelDia();
+                                    String dia = UtilsFecha.getNombreDelDia();
 
 
                                     bundle.putString("dia",dia);
@@ -2136,7 +2136,7 @@ public class ActivityLogin extends AppCompatActivity implements LoaderCallbacks<
 
 
 
-                                String dia = UtilidadFecha.getNombreDelDia();
+                                String dia = UtilsFecha.getNombreDelDia();
 
                                 bundle.putString("dia",dia);
 
@@ -2174,7 +2174,7 @@ public class ActivityLogin extends AppCompatActivity implements LoaderCallbacks<
                                     Bundle bundle = new Bundle();
 
 
-                                    String dia = UtilidadFecha.getNombreDelDia();
+                                    String dia = UtilsFecha.getNombreDelDia();
 
 
                                     bundle.putString("dia",dia);

@@ -23,9 +23,7 @@
                 android:id="@+id/llv_contenedor_para_bordes"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="2dp"
-                android:layout_marginRight="2dp"
-                android:background="@drawable/contenedor_ll_uno"
+                android:background="@drawable/contenedor_ll_tres"
                 android:orientation="vertical">
 
 

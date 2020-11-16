@@ -1293,7 +1293,7 @@ public class ActivityNuevoResponsablePatrocinio extends AppCompatActivity {
 
             et_telefono_nuevo_responsable.setFocusableInTouchMode(true);
             et_telefono_nuevo_responsable.setCursorVisible(true);
-            et_telefono_nuevo_responsable.setBackgroundDrawable(getDrawable(R.drawable.edit_text_material_customizado));
+            et_telefono_nuevo_responsable.setBackgroundDrawable(getDrawable(R.drawable.edit_text_underline_coloraccent));
             et_telefono_nuevo_responsable.setHint(R.string.edittext_hint);
 
             flag_codigo_area_responsable = true;

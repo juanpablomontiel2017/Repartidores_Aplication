@@ -119,9 +119,9 @@ public class ActivityEleccionRepartidores extends AppCompatActivity {
         String nombre_apellido_repartidor_enviar = nombre_apellido_repartidor.getText().toString();
 
 
-        Date HoraSistema = UtilidadFecha.getHoraActual("HH:mm:ss");
+        Date HoraSistema = UtilsFecha.getHoraActual("HH:mm:ss");
 
-        Date HoraInicio = UtilidadFecha.getHoraInicio();
+        Date HoraInicio = UtilsFecha.getHoraInicio();
 
 
 
