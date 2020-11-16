@@ -121,8 +121,8 @@ public class ActivityCargasDescargas extends AppCompatActivity {
 
         if(LeerConfiguracionDeActivityEnUnSharedPreferences("fecha").equals("true")){
 
-            //FechaGuardada = (UtilidadFecha.SetearFecha(2000,00,01));
-            FechaGuardada = UtilsFecha.getFecha("dd/MM/yyyy");
+            FechaGuardada = (UtilsFecha.SetearFecha(2000,00,01));
+            //FechaGuardada = UtilsFecha.getFecha("dd/MM/yyyy");
             GuardarConfiguracionDeActivityEnUnSharedPreferences("fecha", UtilsFecha.getFecha("dd/MM/yyyy"));
             Log.d("debug", "FechaSharedPreferences después de guardar: "+ LeerConfiguracionDeActivityEnUnSharedPreferences("fecha"));
 
@@ -155,6 +155,8 @@ public class ActivityCargasDescargas extends AppCompatActivity {
 
             /*Llamada a la función: */
             CierreDeTanda(FechaActualDelSistema);
+            GuardarConfiguracionDeActivityEnUnSharedPreferences("fecha", UtilsFecha.getFecha("dd/MM/yyyy"));
+
 
 
         }//Fin del else

@@ -4,6 +4,7 @@
     <modules>
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/Repartidores_Aplication.iml" filepath="$PROJECT_DIR$/.idea/modules/Repartidores_Aplication.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/Repartidores_Aplication.app.iml" filepath="$PROJECT_DIR$/.idea/modules/app/Repartidores_Aplication.app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/git-repositorios.Repartidores_Aplication.iml" filepath="$PROJECT_DIR$/.idea/modules/git-repositorios.Repartidores_Aplication.iml" />
     </modules>
   </component>
 </project>
